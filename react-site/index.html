@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The FRM Part II curriculum — 5 books, 101 readings — as an interactive learning system: teacher-grade explanations, quizzes, mock exams, spaced repetition, highlights, drills and a study planner.">
+<meta name="theme-color" content="#0e1116">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230e1116'/%3E%3Ctext x='32' y='42' font-family='system-ui,sans-serif' font-size='28' font-weight='800' text-anchor='middle' fill='%236c9dff'%3EF2%3C/text%3E%3C/svg%3E">
+<title>FRM Part II — Interactive Curriculum</title>
+<script>
+/* Apply theme before first paint to avoid a flash (mirrors original app.js). */
+(function () {
+  var t = null;
+  try { t = localStorage.getItem("frm-theme"); } catch (e) {}
+  if (t) document.documentElement.setAttribute("data-theme", t);
+  else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches)
+    document.documentElement.setAttribute("data-theme", "light");
+})();
+</script>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

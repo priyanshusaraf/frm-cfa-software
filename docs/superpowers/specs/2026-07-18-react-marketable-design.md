@@ -66,8 +66,10 @@ and a UI that doesn't look AI-generated.
 - **Confusion drill** — quiz mode generated from `connections.confused` pairs.
 
 ### Ideas proposed, not built yet (see final report)
-Study planner to exam date; error log ("why I was wrong" notes type); glossary index;
-calculation drills with randomized numbers; sync backend; multi-course shell.
+~~Study planner to exam date; error log ("why I was wrong" notes type); glossary index;
+calculation drills with randomized numbers~~ — all four shipped 2026-07-19
+(`/planner`, notes `kind:"error"` + quiz "Log to error log", `/glossary`, `/drills`).
+Still open: sync backend; multi-course shell.
 
 ## Content pass (workflow, Sonnet)
 

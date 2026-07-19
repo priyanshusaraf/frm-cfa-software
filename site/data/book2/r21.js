@@ -9,14 +9,14 @@ FRM.register({
   why: `<p>Merton is the single most important model in the whole book — it comes back in R25 (precise numerical form) and R29 (inside CVA). Get comfortable with the CONCEPT here (equity = call option on assets) so R25's algebra feels like a continuation, not new material.</p>`,
 
   intuition: `<p>Merton's insight: shareholders effectively hold a call option on the firm's assets, struck at the face value of debt L. If assets exceed L at maturity, shareholders "exercise" by repaying debt and keeping the residual; if assets fall short, they walk away and creditors get the (insufficient) assets. This single idea — equity as a call option — is why option-pricing machinery (Black-Scholes) can price corporate default risk.</p>
-  <p>The IRB capital formula has two exam-favorite comparative statics: asset correlation R DECREASES as PD increases (higher-PD firms are more idiosyncratic, less tied to the broad economy), and R INCREASES with firm size (bigger firms move more with the broad economy). Maturity adjustment β is higher for LOW-PD borrowers (more room to deteriorate) — capital requirements rise with maturity.</p>`,
+  <p>The IRB capital formula has two exam-favorite comparative statics: asset correlation R DECREASES as PD increases (higher-PD firms are more idiosyncratic, less tied to the broad economy), and R INCREASES with firm size (bigger firms move more with the broad economy). Maturity adjustment \\(\\beta\\) is higher for LOW-PD borrowers (more room to deteriorate) — capital requirements rise with maturity.</p>`,
 
   formulas: [
-    { name: "Capital Adequacy Ratio", math: "CAR = (Tier 1 + Tier 2 Capital) / Risk-Weighted Assets", note: "Minimum α = 8% (Basel II) or 10.5% (Basel III)." },
-    { name: "IRB capital charge K", math: "K = LGD × [N(√(1/(1−R))·N⁻¹(PD) + √(R/(1−R))·N⁻¹(0.999)) − PD] × β(maturity adj.)", note: "R (asset correlation) falls as PD rises; rises with firm size. β (maturity adj.) is higher for low-PD borrowers." },
-    { name: "Equity value (Black-Scholes-Merton)", math: "E = A·N(d1) − L·e⁻ʳᵀ·N(d2)", note: "Equity as a call option on firm assets A, struck at debt face value L." },
-    { name: "Risk-neutral PD (Merton)", math: "PD<sub>RN</sub> = N(−d2)", note: "Real-world PD: replace r with μ (expected asset return) inside d2 — real-world PD is lower since μ > r typically." },
-    { name: "RAROC", math: "RAROC = Loan revenue / Capital at risk", note: "Loan revenue = Loan value × (spread + fees − losses − costs) × (1−tax). Loan profitable if RAROC > bank's cost of capital." }
+    { name: "Capital Adequacy Ratio", math: "\\text{CAR} = \\dfrac{\\text{Tier 1} + \\text{Tier 2 Capital}}{\\text{Risk-Weighted Assets}}", note: "Minimum \\(\\alpha\\) = 8% (Basel II) or 10.5% (Basel III)." },
+    { name: "IRB capital charge K", math: "K = \\text{LGD}\\times\\left[N\\!\\left(\\sqrt{\\tfrac{1}{1-R}}\\,N^{-1}(\\text{PD}) + \\sqrt{\\tfrac{R}{1-R}}\\,N^{-1}(0.999)\\right) - \\text{PD}\\right]\\times \\beta\\,(\\text{maturity adj.})", note: "R (asset correlation) falls as PD rises; rises with firm size. \\(\\beta\\) (maturity adj.) is higher for low-PD borrowers." },
+    { name: "Equity value (Black-Scholes-Merton)", math: "E = A\\cdot N(d1) - L\\cdot e^{-rT}\\cdot N(d2)", note: "Equity as a call option on firm assets A, struck at debt face value L." },
+    { name: "Risk-neutral PD (Merton)", math: "PD_{RN} = N(-d2)", note: "Real-world PD: replace r with \\(\\mu\\) (expected asset return) inside d2 — real-world PD is lower since \\(\\mu\\) > r typically." },
+    { name: "RAROC", math: "\\text{RAROC} = \\dfrac{\\text{Loan revenue}}{\\text{Capital at risk}}", note: "Loan revenue = Loan value × (spread + fees − losses − costs) × (1−tax). Loan profitable if RAROC > bank's cost of capital." }
   ],
 
   concepts: [
@@ -28,8 +28,8 @@ FRM.register({
     },
     {
       name: "CAR and the IRB capital formula",
-      def: "CAR = Capital/RWA, minimum 8% (Basel II) or 10.5% (Basel III). IRB capital charge K depends on LGD, PD, asset correlation R, and a maturity adjustment β.",
-      example: "R decreases as PD increases (higher-PD firms more idiosyncratic); R increases with firm size (bigger firms track the broad economy more). β is higher for low-PD borrowers (more room to deteriorate); capital rises with maturity.",
+      def: "CAR = Capital/RWA, minimum 8% (Basel II) or 10.5% (Basel III). IRB capital charge K depends on LGD, PD, asset correlation R, and a maturity adjustment \\(\\beta\\).",
+      example: "R decreases as PD increases (higher-PD firms more idiosyncratic); R increases with firm size (bigger firms track the broad economy more). \\(\\beta\\) is higher for low-PD borrowers (more room to deteriorate); capital rises with maturity.",
       pitfall: "Both comparative statics (R vs PD, R vs size) are exam favorites — know the DIRECTION of each, not just that they're related.",
       related: [{ r: 20, label: "R20 — the EL/UL logic this formula is built on" }],
       memory: "R falls as PD rises (risky firms are idiosyncratic); R rises with size (big firms move with the market)."
@@ -42,7 +42,7 @@ FRM.register({
     {
       name: "The Merton model",
       def: "Equity is a call option on firm assets, struck at the face value of debt L. If assets A_T > L at maturity, shareholders exercise (repay debt); otherwise they walk away and creditors get the assets.",
-      example: "E = A·N(d1) − L·e⁻ʳᵀ·N(d2); risk-neutral PD = N(−d2); distance to default DD = d2 (standard deviations of asset value above the default point).",
+      example: "E = A·N(d1) − \\(L\\cdot e^{-rT}\\cdot N(d2)\\); risk-neutral PD = N(−d2); distance to default DD = d2 (standard deviations of asset value above the default point).",
       related: [{ r: 25, label: "R25 — the precise numerical Merton machinery" }, { r: 29, label: "R29 — Merton reused inside the CVA/derivatives context" }],
       memory: "Equity = a call option on the firm. Default = the option expiring worthless."
     },
@@ -55,7 +55,7 @@ FRM.register({
     },
     {
       name: "RAROC",
-      def: "Risk-adjusted return on capital = loan revenue / capital at risk. Loan revenue = loan value × (spread + fees − losses − costs) × (1−tax). Capital at risk ≈ α×LGD×EAD (α≈2.6σ at 99.5% under normality, but 5-6σ in practice given skew) or via duration: ΔL=−D×L×Δi.",
+      def: "Risk-adjusted return on capital = loan revenue / capital at risk. Loan revenue = loan value × (spread + fees − losses − costs) × (1−tax). Capital at risk ≈ \\(\\alpha \\times LGD\\times EAD\\) \\((\\alpha \\approx 2.6\\sigma\\) at 99.5% under normality, but \\(5-6\\sigma\\) in practice given skew) or via duration: \\(\\Delta L=- D\\times L\\times \\Delta i\\).",
       pitfall: "A loan is profitable if RAROC exceeds the bank's OWN cost of capital — not some universal hurdle rate.",
       related: [{ r: 20, label: "R20 — economic capital, the denominator's conceptual twin" }]
     }
@@ -84,9 +84,9 @@ FRM.register({
   ],
 
   highYield: [
-    { stars: 5, what: "Merton model: equity as a call option, E=A·N(d1)−L·e⁻ʳᵀ·N(d2), risk-neutral PD=N(−d2).", why: "The single most important model in Book 2 — reused with increasing precision in R25 and R29." },
+    { stars: 5, what: "Merton model: equity as a call option, \\(E=A\\cdot N(d1)- L\\cdot e^{-rT}\\cdot N(d2)\\), risk-neutral PD=N(−d2).", why: "The single most important model in Book 2 — reused with increasing precision in R25 and R29." },
     { stars: 4, what: "Merton vs. Moody's-KMV: default point (short-term debt only vs. + half long-term debt) and distribution assumption (normal vs. historical).", why: "The most commonly tested Merton-vs-KMV distinction, explicitly flagged as easy to conflate." },
-    { stars: 4, what: "IRB formula comparative statics: R falls with PD, R rises with size; β higher for low-PD borrowers.", why: "A clean set of directional facts, reliably tested as 'which way does R move.'" },
+    { stars: 4, what: "IRB formula comparative statics: R falls with PD, R rises with size; \\(\\beta\\) higher for low-PD borrowers.", why: "A clean set of directional facts, reliably tested as 'which way does R move.'" },
     { stars: 3, what: "Three default model families (judgmental/empirical/financial) and when each applies.", why: "Straightforward classification question, useful as a quick conceptual anchor." },
     { stars: 3, what: "RAROC formula and the 'profitable if RAROC > cost of capital' rule.", why: "A clean decision-rule fact, easily tested with a numeric RAROC vs. hurdle-rate comparison." }
   ],
@@ -103,5 +103,5 @@ FRM.register({
     { title: "KMV = Merton plus half a debt load", text: "Moody's-KMV is Merton's cousin who counts half of long-term debt toward the default point, and trusts real history over the normal curve." }
   ],
 
-  summary: `<p><strong>CAMEL</strong>: Capital, Asset quality, Management, Earnings, Liquidity. <strong>CAR</strong> = Capital/RWA (min 8% Basel II, 10.5% Basel III). <strong>IRB charge K</strong>: R falls as PD rises, rises with size; β (maturity adj.) higher for low-PD borrowers. <strong>Three default model families</strong>: judgmental (5C), empirical, financial (Merton structural / reduced-form). <strong>Merton</strong>: equity = call option on assets struck at debt L; E=A·N(d1)−L·e⁻ʳᵀ·N(d2); PD_RN=N(−d2); DD=d2. <strong>KMV</strong> adds ½ long-term debt to the default point + uses historical distribution. <strong>CreditMetrics</strong>: mark-to-market via rating transitions. <strong>CreditRisk+</strong>: Poisson default-only, least data needed. <strong>RAROC</strong> = loan revenue/capital at risk; profitable only if RAROC > bank's cost of capital.</p>`
+  summary: `<p><strong>CAMEL</strong>: Capital, Asset quality, Management, Earnings, Liquidity. <strong>CAR</strong> = Capital/RWA (min 8% Basel II, 10.5% Basel III). <strong>IRB charge K</strong>: R falls as PD rises, rises with size; \\(\\beta\\) (maturity adj.) higher for low-PD borrowers. <strong>Three default model families</strong>: judgmental (5C), empirical, financial (Merton structural / reduced-form). <strong>Merton</strong>: equity = call option on assets struck at debt L; \\(E=A\\cdot N(d1)- L\\cdot e^{-rT}\\cdot N(d2)\\); PD_RN=N(−d2); DD=d2. <strong>KMV</strong> adds ½ long-term debt to the default point + uses historical distribution. <strong>CreditMetrics</strong>: mark-to-market via rating transitions. <strong>CreditRisk+</strong>: Poisson default-only, least data needed. <strong>RAROC</strong> = loan revenue/capital at risk; profitable only if RAROC > bank's cost of capital.</p>`
 });

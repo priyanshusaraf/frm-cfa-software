@@ -14,8 +14,8 @@ FRM.register({
   visual: `<div class="widget" data-widget="lossdist"></div>`,
 
   formulas: [
-    { name: "Fault tree analysis (independent AND conditions)", math: "P(loss) = P(A) × P(B) × P(C) × ...", note: "Phishing 99% × firewall fails 5% × employee fails 10% × detection fails 3% × exit 1% = 0.0001485%. Assumes independence — often unrealistic." },
-    { name: "LDA aggregate loss", math: "Aggregate loss = frequency (Poisson, λ) ⊗ severity (lognormal)", note: "Convoluted via Monte Carlo. 99.9th percentile of the aggregate distribution = standalone capital requirement." }
+    { name: "Fault tree analysis (independent AND conditions)", math: "P(loss) = P(A) \\times P(B) \\times P(C) \\times ...", note: "Phishing 99% × firewall fails 5% × employee fails 10% × detection fails 3% × exit 1% = 0.0001485%. Assumes independence — often unrealistic." },
+    { name: "LDA aggregate loss", math: "Aggregate loss = frequency (Poisson, \\lambda ) \\otimes severity (lognormal)", note: "Convoluted via Monte Carlo. 99.9th percentile of the aggregate distribution = standalone capital requirement." }
   ],
 
   concepts: [
@@ -48,7 +48,7 @@ FRM.register({
     },
     {
       name: "Loss distribution approach (LDA)",
-      def: "Splits losses into frequency (discrete, usually Poisson — one parameter λ = both mean and variance) and severity (continuous, fat-tailed, usually lognormal), modeled independently then convoluted (often via Monte Carlo) into an aggregate loss distribution.",
+      def: "Splits losses into frequency (discrete, usually Poisson — one parameter \\(\\lambda\\) = both mean and variance) and severity (continuous, fat-tailed, usually lognormal), modeled independently then convoluted (often via Monte Carlo) into an aggregate loss distribution.",
       example: "The 99.9th percentile of that aggregate distribution is the stand-alone capital requirement under LDA.",
       pitfall: "Units of measure (UoM) should be homogeneous (similar loss drivers) but homogeneity trades off against data volume — finer UoMs mean less data per bucket. Copulas aggregate across UoMs, capturing tail dependence.",
       related: [{ r: 62, label: "R62 — the SMA, LDA's non-model-based successor" }],

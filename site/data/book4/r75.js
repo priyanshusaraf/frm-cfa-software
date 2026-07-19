@@ -13,7 +13,7 @@ FRM.register({
   visual: `<div class="widget" data-widget="ladder" data-ladder='[{"bucket":"Available funds gap","gap":80}]'></div>`,
 
   formulas: [
-    { name: "Available funds gap", math: "= (current + projected loans/investments) − (current + expected deposit inflows/available funds)", note: "A positive gap means nondeposit funding is needed to cover the shortfall." }
+    { name: "Available funds gap", math: "= (\\text{current} + \\text{projected loans/investments}) - (\\text{current} + \\text{expected deposit inflows/available funds})", note: "A positive gap means nondeposit funding is needed to cover the shortfall." }
   ],
 
   concepts: [

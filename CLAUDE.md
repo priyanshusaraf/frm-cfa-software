@@ -20,7 +20,7 @@ An **interactive learning website for the FRM Part II exam** (5 books, 101 readi
     require("fs").readdirSync("data").forEach(d=>require("fs").readdirSync("data/"+d).forEach(f=>require("./data/"+d+"/"+f)));
     console.log(Object.keys(FRM.readings).length,"readings")'
   ```
-- **Render-check a page** (catches runtime/rendering errors `node -c` cannot): headless Chrome dumping the post-JS DOM, then grep for `widget failed`, `undefined<`, `>null<`:
+- **Render-check a page** (catches runtime/rendering errors `node -c` cannot): headless Chrome dumping the post-JS DOM, then grep for `widget failed`, `undefined<`, `>null<`, `tex-error`:
   ```bash
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --disable-gpu \
     --virtual-time-budget=4500 --dump-dom "file://$(pwd)/site/chapter.html?r=85"
@@ -55,7 +55,10 @@ One IIFE exposing the `FRM` global. Contains the renderers (`renderChapter`, `re
 `index / book / chapter / mindmap / search / revision.html` each load `meta.js` + `app.js` and call one `FRM.render*` (or `FRM.loadAll` + inline logic for search/revision). `chapter.html` additionally loads the per-book widget files.
 
 ### Widgets
-Interactive SVG teaching diagrams. Core widgets live in `app.js`'s `WIDGETS` object; per-book widgets live in `site/assets/widgets-bookN.js`, which register onto `FRM.WIDGETS` using `FRM.widgetHelpers` and are loaded via `<script>` in `chapter.html` only (that is the only page that renders `visual` fields). A reading shows a widget by setting its `visual` field to a `<div class="widget" data-widget="NAME">`. Conventions: colors must be theme-aware CSS variables (`var(--accent)`, `var(--red)`, …) so light/dark both work; each widget calls its own `draw()` once and re-draws on control input; numeric widgets read real values from `data-*` JSON attributes with sensible defaults.
+Interactive SVG teaching diagrams. Core widgets live in `app.js`'s `WIDGETS` object; per-book widgets live in `site/assets/widgets-bookN.js` (currently books 3–5 only — books 1–2 widgets still live inline in `app.js`), which register onto `FRM.WIDGETS` using `FRM.widgetHelpers` and are loaded via `<script>` in `chapter.html` only (that is the only page that renders `visual` fields). A reading shows a widget by setting its `visual` field to a `<div class="widget" data-widget="NAME">`. Conventions: colors must be theme-aware CSS variables (`var(--accent)`, `var(--red)`, …) so light/dark both work; each widget calls its own `draw()` once and re-draws on control input; numeric widgets read real values from `data-*` JSON attributes with sensible defaults.
+
+### Math rendering (KaTeX, chapter.html only)
+Formulas are real LaTeX, typeset by a locally vendored copy of KaTeX at `site/assets/vendor/katex/` (JS + CSS + fonts) — no CDN, keeping the `file://`/no-build constraint intact. `chapter.html` loads it directly; other pages do not. In `app.js`: `FRM.renderMath(s, display)` typesets a `formulas[].math` string if it "looks like TeX" (contains a backslash or a braced `_{}`/`^{}`) and otherwise passes it through unchanged; `FRM.renderMathInline` handles LaTeX embedded in prose via `\( … \)` (inline) / `\[ … \]` (display) — deliberately not `$…$`, since dollar amounts in the source text (e.g. "$100 million") must not be mangled; `FRM.fitMath(root)` auto-shrinks formulas that overflow their card. When writing a new reading's `formulas[].math`, use LaTeX syntax (e.g. `\dfrac{\text{...}}{\text{...}}` for ratios) rather than the old HTML/Unicode form.
 
 ## Content rule (most important)
 

@@ -14,7 +14,7 @@ FRM.register({
   formulas: [
     {
       name: "Gross exposure vs. net exposure",
-      math: "Net exposure = Gross exposure − mitigation benefits (insurance + hedges)",
+      math: "\\text{Net exposure} = \\text{Gross exposure} - \\text{mitigation benefits (insurance + hedges)}",
       note: "Gross exposure is the climate risk impact BEFORE any mitigation is applied — it should still be modeled and disclosed separately even when mitigants exist, because mitigants can lapse, fail, or change over time. Net exposure nets out insurance and derivatives hedging benefits. Both numbers matter; reporting only net exposure hides fragility if the mitigation disappears."
     }
   ],

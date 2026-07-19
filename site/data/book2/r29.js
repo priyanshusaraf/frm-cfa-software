@@ -11,9 +11,9 @@ FRM.register({
   intuition: `<p>CVA answers "how much should I discount a derivative's value because my counterparty might not pay?" DVA is the mirror image — a BENEFIT to my own book value reflecting the (grim) fact that if I default, I don't have to pay either. Wrong-way risk (PD positively correlated with exposure — bad) and right-way risk (negatively correlated — good) determine whether this counterparty-risk adjustment gets worse or better as the trade itself moves in your favor.</p>`,
 
   formulas: [
-    { name: "Value including default risk", math: "f = f<sub>nd</sub> − CVA + DVA", note: "f_nd = no-default value. CVA lowers value (cost); DVA raises it (benefit, since your own default relieves you of paying)." },
-    { name: "Single uncollateralized derivative shortcut", math: "f = f<sub>nd</sub> × e^(−(credit spread)×T)", note: "No simulation needed if DVA=0 — just discount by the counterparty's credit spread." },
-    { name: "Credit VaR via one-factor Gaussian copula", math: "V(T,X) = N[(N⁻¹(Q(T)) + √ρ·N⁻¹(X)) / √(1−ρ)]; Credit VaR = L×(1−RR)×V(T,X)", note: "Identical in structure to Vasicek's WCDR from R26 — same equation, different notation." }
+    { name: "Value including default risk", math: "f = f_{nd} - CVA + DVA", note: "f_nd = no-default value. CVA lowers value (cost); DVA raises it (benefit, since your own default relieves you of paying)." },
+    { name: "Single uncollateralized derivative shortcut", math: "f = f_{nd}\\times e^{-(\\text{credit spread})\\times T}", note: "No simulation needed if DVA=0 — just discount by the counterparty's credit spread." },
+    { name: "Credit VaR via one-factor Gaussian copula", math: "V(T,X) = N\\!\\left[\\dfrac{N^{-1}(Q(T)) + \\sqrt{\\rho}\\,N^{-1}(X)}{\\sqrt{1-\\rho}}\\right];\\quad \\text{Credit VaR} = L\\times(1-\\text{RR})\\times V(T,X)", note: "Identical in structure to Vasicek's WCDR from R26 — same equation, different notation." }
   ],
 
   concepts: [
@@ -95,5 +95,5 @@ FRM.register({
     { title: "One formula, two reading numbers", text: "V(T,X) here and WCDR(T,X) in R26 are the same equation. If a formula looks familiar across readings, it probably is — check before memorizing twice." }
   ],
 
-  summary: `<p><strong>Hazard rate recap</strong>: conditional PD = unconditional PD(t)/survival(t−1). <strong>CVA</strong> = PV(cost if counterparty defaults); <strong>DVA</strong> = PV(benefit if the bank itself defaults); f=f_nd−CVA+DVA. <strong>Wrong-way risk</strong> (PD & exposure positively correlated) raises CVA, lowers DVA; right-way risk is the mirror. <strong>Netting</strong>: sum ALL trades (+ and −), not just positive-value ones. <strong>Reduced-form</strong> (fast, low achievable correlation, captures economic cycle) vs. <strong>structural</strong> (slow, arbitrarily high correlation, less direct cycle capture). <strong>One-factor Gaussian copula</strong> V(T,X)=N[(N⁻¹(Q(T))+√ρN⁻¹(X))/√(1−ρ)] — structurally identical to R26's Vasicek WCDR formula.</p>`
+  summary: `<p><strong>Hazard rate recap</strong>: conditional PD = unconditional PD(t)/survival(t−1). <strong>CVA</strong> = PV(cost if counterparty defaults); <strong>DVA</strong> = PV(benefit if the bank itself defaults); f=f_nd−CVA+DVA. <strong>Wrong-way risk</strong> (PD & exposure positively correlated) raises CVA, lowers DVA; right-way risk is the mirror. <strong>Netting</strong>: sum ALL trades (+ and −), not just positive-value ones. <strong>Reduced-form</strong> (fast, low achievable correlation, captures economic cycle) vs. <strong>structural</strong> (slow, arbitrarily high correlation, less direct cycle capture). <strong>One-factor Gaussian copula</strong> V(T,\\(X)=N[(N^{-1}(Q(T))+\\sqrt{\\rho }N^{-1}(X))/\\sqrt{1- \\rho }]\\) — structurally identical to R26's Vasicek WCDR formula.</p>`
 });

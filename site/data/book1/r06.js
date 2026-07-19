@@ -16,7 +16,7 @@ FRM.register({
     {
       name: "VaR time horizon — no universal answer",
       def: "There is no single 'correct' VaR horizon — it depends on portfolio liquidity and purpose. The common 10-day convention is a regulatory convention, not a law of nature.",
-      pitfall: "Don't treat the √10 scaling rule as universally valid — it assumes i.i.d. returns, which real markets violate especially in stress.",
+      pitfall: "Don't treat the \\(\\sqrt{10}\\) scaling rule as universally valid — it assumes i.i.d. returns, which real markets violate especially in stress.",
       related: [{ r: 16, label: "R16 — FRTB's multiple liquidity horizons directly address this" }]
     },
     {

@@ -14,11 +14,11 @@ FRM.register({
   visual: `<div class="widget" data-widget="raroc" data-raroc='{"revenue":105,"cost":75,"expectedLoss":7.5,"capital":120,"hurdle":0.09}'></div>`,
 
   formulas: [
-    { name: "Basic RAROC", math: "RAROC = risk-adjusted return / risk-adjusted (economic) capital", note: "The simplest form." },
-    { name: "Detailed RAROC (capital budgeting)", math: "RAROC = [revenues − costs − EL − taxes + return on econ. capital − transfers] / economic capital", note: "$1.5B portfolio example: RAROC = [(105−75−7.5+1.2)×(1−0.25)]/120 = 8.56% after-tax." },
-    { name: "Hurdle rate (after-tax)", math: "h_AT = after-tax weighted average cost of equity capital (via CAPM)", note: "RAROC > hurdle rate → accept; RAROC < hurdle rate → reject." },
-    { name: "Adjusted RAROC (ARAROC)", math: "ARAROC = RAROC − β×(market return − rf)", note: "RAROC=12%, rf=5%, market return=11%, β=1.5 → ARAROC=12%−1.5×6%=3% < 5% → reject." },
-    { name: "Diversification benefit (2-activity example)", math: "Benefit = (stand-alone A + stand-alone B) − combined capital", note: "A=$50, B=$60, combined=$90 → benefit=$20, allocated pro-rata." }
+    { name: "Basic RAROC", math: "\\text{RAROC} = \\dfrac{\\text{risk-adjusted return}}{\\text{risk-adjusted (economic) capital}}", note: "The simplest form." },
+    { name: "Detailed RAROC (capital budgeting)", math: "\\text{RAROC} = \\dfrac{\\text{revenues} - \\text{costs} - \\text{EL} - \\text{taxes} + \\text{return on econ. capital} - \\text{transfers}}{\\text{economic capital}}", note: "$1.5B portfolio example: RAROC = [(105−75−7.5+1.2)×(1−0.25)]/120 = 8.56% after-tax." },
+    { name: "Hurdle rate (after-tax)", math: "h_{\\text{AT}} = \\text{after-tax weighted average cost of equity capital (via CAPM)}", note: "RAROC > hurdle rate → accept; RAROC < hurdle rate → reject." },
+    { name: "Adjusted RAROC (ARAROC)", math: "\\text{ARAROC} = \\text{RAROC} - \\beta\\times(\\text{market return} - r_f)", note: "RAROC=12%, rf=5%, market return=11%, \\(\\beta =1.5\\) → ARAROC=12%−1.5×6%=3% < 5% → reject." },
+    { name: "Diversification benefit (2-activity example)", math: "\\text{Benefit} = (\\text{stand-alone }A + \\text{stand-alone }B) - \\text{combined capital}", note: "A=$50, B=$60, combined=$90 → benefit=$20, allocated pro-rata." }
   ],
 
   concepts: [
@@ -42,7 +42,7 @@ FRM.register({
     {
       name: "Time horizon, default probability, confidence level — the three judgment calls",
       def: "Time horizon: usually one year; the square-root-of-time rule scales 1-day VaR to annual, adjusted for 'time to reduce' risk to a core level. Default probability: point-in-time (PIT) for short-term pricing/expected loss; through-the-cycle (TTC) for economic capital, profitability, and strategic decisions. Confidence level: must match the firm's target credit rating (AA/AAA needs >99.95%).",
-      example: "Daily VaR=80, core risk=60, 10 days to reduce (2/day), 252 business days: annualized VaR = 80×√252 = 1,269.96. Required risk capital ≈ 75.6% of annualized VaR (blending the reduction path with the core-risk floor).",
+      example: "Daily VaR=80, core risk=60, 10 days to reduce (2/day), 252 business days: annualized VaR = \\(80\\times \\sqrt{252}\\) = 1,269.96. Required risk capital ≈ 75.6% of annualized VaR (blending the reduction path with the core-risk floor).",
       pitfall: "A LONGER RAROC time horizon isn't automatically 'better' — risk and return data over one year quickly becomes unreliable, which is exactly why one year remains the default despite the appeal of capturing a 'full business cycle.' TTC produces LOWER economic-capital volatility since ratings change less often under a TTC lens. Lowering the confidence level cuts required capital MOST DRAMATICALLY for firms whose big losses are rare (op/credit/settlement risk-heavy books).",
       related: [{ r: 22, label: "R22 — through-the-cycle vs point-in-time ratings, the same concept" }],
       memory: "PIT for pricing (react fast); TTC for capital/strategy (smooth, stable)."
@@ -51,7 +51,7 @@ FRM.register({
       name: "Hurdle rate and adjusted RAROC",
       def: "Hurdle rate h_AT = after-tax weighted average cost of equity capital (via CAPM). Decision rule: RAROC > hurdle rate → accept; RAROC < hurdle rate → reject.",
       pitfall: "This basic rule ignores that high-RAROC projects can still be high-risk, and low-RAROC projects can be low-risk and value-preserving — hence adjusted RAROC (ARAROC), which nets out systematic risk via CAPM. ARAROC decision rule: ARAROC > risk-free rate → accept; ARAROC < risk-free rate → reject.",
-      example: "RAROC=12%, rf=5%, market return=11%, β=1.5. ARAROC = 12% − 1.5×6% = 3%. Since 3% < 5% (rf), reject the project — despite RAROC exceeding the simple hurdle rate comparison might have suggested acceptance.",
+      example: "RAROC=12%, rf=5%, market return=11%, \\(\\beta =1.5\\). ARAROC = 12% − 1.5×6% = 3%. Since 3% < 5% (rf), reject the project — despite RAROC exceeding the simple hurdle rate comparison might have suggested acceptance.",
       related: [],
       memory: "Simple RAROC vs hurdle rate can approve a project that ARAROC (accounting for systematic risk) correctly rejects."
     },
@@ -112,5 +112,5 @@ FRM.register({
     { title: "Correlation's disappearing act", text: "Diversification benefit is a magic trick that vanishes exactly when you need it most — correlations rush toward 1 in a crisis, and the 'benefit' the model promised evaporates." }
   ],
 
-  summary: `<p><strong>Economic capital</strong> = risk capital + strategic risk capital; allocate the GREATER of risk capital and regulatory capital per division. <strong>Detailed RAROC</strong> = [revenue−costs−EL−taxes+return on econ capital−transfers]/economic capital. Three judgment calls: <strong>time horizon</strong> (1yr default, longer horizons unreliable), <strong>default probability</strong> (PIT for pricing, TTC for capital/strategy), <strong>confidence level</strong> (tied to target credit rating). <strong>RAROC vs hurdle rate</strong> (after-tax CAPM WACC) ignores systematic risk level; <strong>ARAROC</strong> = RAROC−β(market return−rf), compared to rf, corrects this. <strong>Stand-alone</strong> (incentive pay) / <strong>fully diversified</strong> (solvency, pro-rata allocated) / <strong>marginal</strong> (portfolio decisions, sums to less than total — expected) capital serve different purposes. Correlations can collapse to ±1 in a crisis, erasing assumed diversification benefit.</p>`
+  summary: `<p><strong>Economic capital</strong> = risk capital + strategic risk capital; allocate the GREATER of risk capital and regulatory capital per division. <strong>Detailed RAROC</strong> = [revenue−costs−EL−taxes+return on econ capital−transfers]/economic capital. Three judgment calls: <strong>time horizon</strong> (1yr default, longer horizons unreliable), <strong>default probability</strong> (PIT for pricing, TTC for capital/strategy), <strong>confidence level</strong> (tied to target credit rating). <strong>RAROC vs hurdle rate</strong> (after-tax CAPM WACC) ignores systematic risk level; <strong>ARAROC</strong> = \\(RAROC- \\beta (market\\) return−rf), compared to rf, corrects this. <strong>Stand-alone</strong> (incentive pay) / <strong>fully diversified</strong> (solvency, pro-rata allocated) / <strong>marginal</strong> (portfolio decisions, sums to less than total — expected) capital serve different purposes. Correlations can collapse to ±1 in a crisis, erasing assumed diversification benefit.</p>`
 });

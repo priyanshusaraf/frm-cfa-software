@@ -12,10 +12,10 @@ FRM.register({
   <p>General collateral (GC) trades get the highest repo rate because the lender doesn't care WHICH specific security they get — any bond in the broad category will do. Special collateral trades get a LOWER "special rate" because the lender specifically wants THAT bond (for shorting or financing purposes) and is willing to accept less interest in exchange for guaranteed access to it. The special spread (GC rate − special rate) narrows right after a Treasury auction (fresh supply) and widens before the next one (scarcity as shorts must roll into the still-scarce current issue).</p>`,
 
   formulas: [
-    { name: "Repurchase price", math: "Repurchase price = Contract price × [1 + repo rate × (days/360)]", note: "$11M for 31 days at 0.3% → $11,002,842. Actual/360 day count, annualized rate." },
-    { name: "Net replacement ratio", math: "NRR = current exposure with netting / current exposure without netting", note: "See R59 for full worked example — netting benefit quantification." },
-    { name: "Special spread", math: "Special spread = GC rate − special rate", note: "Narrows right after an auction (fresh OTR supply); widens before the next (scarcity)." },
-    { name: "Financing value of a special bond", math: "Value = $100 × special spread × (days/360)", note: "Special spread=0.18%, 90 days → $0.045 per $100 (4.5 cents) of financing value." }
+    { name: "Repurchase price", math: "\\text{Repurchase price} = \\text{Contract price}\\times\\left[1 + \\text{repo rate}\\times\\tfrac{\\text{days}}{360}\\right]", note: "$11M for 31 days at 0.3% → $11,002,842. Actual/360 day count, annualized rate." },
+    { name: "Net replacement ratio", math: "\\text{NRR} = \\dfrac{\\text{current exposure with netting}}{\\text{current exposure without netting}}", note: "See R59 for full worked example — netting benefit quantification." },
+    { name: "Special spread", math: "\\text{Special spread} = \\text{GC rate} - \\text{special rate}", note: "Narrows right after an auction (fresh OTR supply); widens before the next (scarcity)." },
+    { name: "Financing value of a special bond", math: "\\text{Value} = \\$100\\times\\text{special spread}\\times\\tfrac{\\text{days}}{360}", note: "Special spread=0.18%, 90 days → $0.045 per $100 (4.5 cents) of financing value." }
   ],
 
   concepts: [

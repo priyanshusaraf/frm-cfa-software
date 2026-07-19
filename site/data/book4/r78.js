@@ -13,8 +13,8 @@ FRM.register({
   <p>The USD funding gap scales this same tension to the entire global banking system: a funding gap exists whenever USD asset investment horizons exceed the maturity of the USD liabilities/swaps funding them. Domestic-currency mismatches are backstopped by the home central bank (lender of last resort in its own currency) — but no central bank outside the Fed can create USD, making foreign-currency funding gaps structurally more dangerous. The Fed's swap-line network made it, in effect, an international lender of last resort.</p>`,
 
   formulas: [
-    { name: "Covered interest parity", math: "F = S×(1+r)/(1+r*); equivalently (F−S) = S×(r−r*)", note: "r=USD rate, r*=foreign currency rate, S=spot, F=forward. A gap between these two 'invest in USD' returns is risk-free arbitrage." },
-    { name: "Cross-currency basis", math: "b = adjustment to the USD leg's rate that restores CIP", note: "Since 2008, USD trades at a persistent premium, so b is typically positive: USD borrower pays the basis on top; FC borrower pays less by the basis amount." }
+    { name: "Covered interest parity", math: "F = S\\times (1+r)/(1+r*); equivalently (F-S) = S\\times (r-r*)", note: "r=USD rate, r*=foreign currency rate, S=spot, F=forward. A gap between these two 'invest in USD' returns is risk-free arbitrage." },
+    { name: "Cross-currency basis", math: "b = \\text{adjustment to the USD leg's rate that restores CIP}", note: "Since 2008, USD trades at a persistent premium, so b is typically positive: USD borrower pays the basis on top; FC borrower pays less by the basis amount." }
   ],
 
   concepts: [

@@ -12,7 +12,7 @@ FRM.register({
   <p>The stress-testing taxonomy has two dimensions worth separating: analytical approach (quantitative vs. qualitative) and risk type (measurable vs. immeasurable) — and three named approaches: parameter testing (shock model INPUTS), macroeconomic testing (shock SCENARIOS), and reverse testing (start from a FAILURE, work backward to what would cause it).</p>`,
 
   formulas: [
-    { name: "RAROC (previewed)", math: "RAROC = expected after-tax risk-adjusted net income / economic capital", note: "Full mechanics developed in R56." }
+    { name: "RAROC (previewed)", math: "\\text{RAROC} = \\dfrac{\\text{expected after-tax risk-adjusted net income}}{\\text{economic capital}}", note: "Full mechanics developed in R56." }
   ],
 
   concepts: [

@@ -133,7 +133,7 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
   font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em;
   color: var(--accent); margin-bottom: 0.2rem;
 }
-.lead { font-size: 1.06rem; color: var(--text-dim); margin-top: 0; }
+.lead { font-size: 1.2rem; line-height: 1.5; color: var(--text-dim); margin-top: 0; }
 
 /* ---------- Cards ---------- */
 .card {
@@ -201,6 +201,9 @@ details.concept .concept-body { padding: 0.2rem 1.15rem 1rem; border-top: 1px so
 .field-tag.rel { background: var(--cyan-soft); color: var(--cyan); }
 .field-tag.mem { background: var(--pink-soft); color: var(--pink); }
 .concept-field > div { font-size: 0.95rem; }
+/* The definition is the testable core of a term — render it larger and warmer. */
+.concept-field.def { border-left: 2px solid var(--accent); padding-left: 0.7rem; margin-left: -0.1rem; }
+.concept-field.def > div { font-size: 1.08rem; font-weight: 500; color: var(--text); line-height: 1.5; }
 
 /* ---------- Misconception rows ---------- */
 .misc-row {
@@ -224,10 +227,21 @@ details.concept .concept-body { padding: 0.2rem 1.15rem 1rem; border-top: 1px so
   padding: 0.75rem 1rem; border: 1px solid var(--border); border-radius: var(--radius);
   background: var(--bg-raised); margin: 0.55rem 0;
 }
-.hy-stars { font-size: 0.85rem; color: var(--amber); white-space: nowrap; letter-spacing: 0.1em; padding-top: 0.15rem; min-width: 5.4em; }
+.hy-stars { font-size: 0.9rem; color: var(--amber); white-space: nowrap; letter-spacing: 0.1em; padding-top: 0.2rem; min-width: 5.6em; }
 .hy-stars .off { color: var(--border-strong); }
-.hy-body { font-size: 0.94rem; }
-.hy-body .hy-why { color: var(--text-dim); font-size: 0.88rem; margin-top: 0.2rem; }
+.hy-body { font-size: 1.02rem; line-height: 1.5; }
+.hy-body .hy-what { font-weight: 560; }
+.hy-body .hy-why { color: var(--text-dim); font-size: 0.9rem; font-weight: 400; margin-top: 0.25rem; }
+/* Tiered emphasis: the most-testable items read larger and warmer. */
+.hy-item.hy-4 { border-color: color-mix(in srgb, var(--amber) 40%, var(--border)); }
+.hy-item.hy-4 .hy-what { font-size: 1.1rem; font-weight: 600; }
+.hy-item.hy-5 {
+  border-color: color-mix(in srgb, var(--amber) 60%, var(--border));
+  background: var(--amber-soft);
+  padding: 0.9rem 1.1rem;
+}
+.hy-item.hy-5 .hy-what { font-size: 1.2rem; font-weight: 640; letter-spacing: -0.01em; }
+.hy-item.hy-5 .hy-why { font-size: 0.94rem; }
 
 /* ---------- Active recall cards ---------- */
 .recall-card {
@@ -243,13 +257,21 @@ details.concept .concept-body { padding: 0.2rem 1.15rem 1rem; border-top: 1px so
 
 /* ---------- Formula blocks ---------- */
 .formula-block {
-  background: var(--bg-inset); border: 1px solid var(--border); border-radius: var(--radius);
-  padding: 0.9rem 1.15rem; margin: 0.7rem 0; overflow-x: auto;
+  background: var(--bg-inset);
+  border: 1px solid var(--border); border-left: 3px solid var(--cyan);
+  border-radius: var(--radius);
+  padding: 0.85rem 1.2rem 0.95rem; margin: 0.9rem 0;
+  box-shadow: var(--shadow);
 }
-.formula-block .f-name { font-size: 0.76rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 0.3rem; }
-.formula-block .f-math { font-family: var(--mono); font-size: 0.98rem; white-space: nowrap; }
-.formula-block .f-note { font-size: 0.86rem; color: var(--text-dim); margin-top: 0.4rem; white-space: normal; }
+.formula-block .f-name { font-size: 0.76rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 0.35rem; }
+/* legacy HTML math (un-converted readings) */
+.formula-block .f-math { font-family: var(--mono); font-size: 0.98rem; white-space: nowrap; overflow-x: auto; }
+/* KaTeX-typeset math: centered, enlarged, horizontally scrollable if wide */
+.formula-block .f-tex { font-size: 1.22rem; overflow-x: auto; overflow-y: hidden; padding: 0.15rem 0 0.05rem; }
+.formula-block .f-tex .katex-display { margin: 0.35rem 0; }
+.formula-block .f-note { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.5rem; white-space: normal; }
 .formula-block sub, .formula-block sup { font-size: 0.7em; }
+.tex-error { font-family: var(--mono); color: var(--red); }
 
 /* ---------- Chips / links ---------- */
 .chip {

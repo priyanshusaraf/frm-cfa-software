@@ -13,10 +13,10 @@ FRM.register({
   visual: `<div class="widget" data-widget="lossdist"></div>`,
 
   formulas: [
-    { name: "Business Indicator", math: "BI = ILDC + SC + FC", note: "ILDC (net interest+dividend income), SC (services: max fee income/expense + max other operating income/expense), FC (|trading P&L|+|banking book P&L|). All 3-year averages." },
-    { name: "BIC — marginal coefficients by bucket", math: "Bucket1 (BI≤€1bn): 12% · Bucket2 (€1bn<BI≤€30bn): 15% · Bucket3 (BI>€30bn): 18%", note: "Marginal, tax-bracket-style: apply each rate only to the portion of BI within that bucket." },
-    { name: "Internal Loss Multiplier (ILM)", math: "ILM = ln[e + (Loss Component/BIC)^0.8 − 1]", note: "e = Euler's number (≈2.71828). Loss Component = 15× average annual op-risk losses over the last 10 years." },
-    { name: "Full capital requirement", math: "Bucket 1: capital=BIC (ILM not used). Buckets 2&3: capital=BIC×ILM", note: "PS Bank example: BI=€18.48M (bucket 1) → capital=0.12×18.48=€2.22M (BIC only)." }
+    { name: "Business Indicator", math: "\\text{BI} = \\text{ILDC} + \\text{SC} + \\text{FC}", note: "ILDC (net interest+dividend income), SC (services: max fee income/expense + max other operating income/expense), FC (|trading P&L|+|banking book P&L|). All 3-year averages." },
+    { name: "BIC — marginal coefficients by bucket", math: "Bucket1 (BI ≤ €1bn): 12% · Bucket2 (€1bn–€30bn): 15% · Bucket3 (BI > €30bn): 18%", note: "Marginal, tax-bracket-style: apply each rate only to the portion of BI within that bucket." },
+    { name: "Internal Loss Multiplier (ILM)", math: "\\text{ILM} = \\ln\\!\\left[e + \\left(\\tfrac{\\text{Loss Component}}{\\text{BIC}}\\right)^{0.8} - 1\\right]", note: "e = Euler's number (≈2.71828). Loss Component = 15× average annual op-risk losses over the last 10 years." },
+    { name: "Full capital requirement", math: "\\text{Bucket 1: capital}=\\text{BIC (ILM not used)}.\\quad \\text{Buckets 2\\&3: capital}=\\text{BIC}\\times\\text{ILM}", note: "PS Bank example: BI=€18.48M (bucket 1) → capital=0.12×18.48=€2.22M (BIC only)." }
   ],
 
   concepts: [

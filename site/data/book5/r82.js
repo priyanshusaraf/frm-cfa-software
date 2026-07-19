@@ -14,9 +14,9 @@ FRM.register({
   visual: `<div class="widget" data-widget="frontier"></div>`,
 
   formulas: [
-    { name: "Fama-French three-factor model", math: "E(Rᵢ)−R_F = βᵢ,MKT×[E(R_M)−R_F] + βᵢ,SMB×E(SMB) + βᵢ,HML×E(HML)", note: "MKT=market, SMB=small-minus-big (size), HML=high-minus-low book-to-market (value)." },
-    { name: "Momentum-augmented (four-factor) model", math: "adds βᵢ,WML×E(WML)", note: "WML='winners minus losers' (also UMD, 'up minus down'). Momentum premium far exceeds SMB/HML historically but crashes hard." },
-    { name: "Expected market risk premium and volatility", math: "E(R_M)−R_F = (risk aversion) × σ²_M (approximately)", note: "Coefficient estimated as positive, negative, or zero across studies — theoretically positive, empirically ambiguous." }
+    { name: "Fama-French three-factor model", math: "E(R_{i})-R_F = \\beta_{i},MKT\\times [E(R_M)-R_F] + \\beta_{i},SMB\\times E(SMB) + \\beta_{i},HML\\times E(HML)", note: "MKT=market, SMB=small-minus-big (size), HML=high-minus-low book-to-market (value)." },
+    { name: "Momentum-augmented (four-factor) model", math: "adds \\beta_{i},WML\\times E(WML)", note: "WML='winners minus losers' (also UMD, 'up minus down'). Momentum premium far exceeds SMB/HML historically but crashes hard." },
+    { name: "Expected market risk premium and volatility", math: "E(R_M)-R_F = (risk aversion) \\times \\sigma^{2}_M (approximately)", note: "Coefficient estimated as positive, negative, or zero across studies — theoretically positive, empirically ambiguous." }
   ],
 
   concepts: [

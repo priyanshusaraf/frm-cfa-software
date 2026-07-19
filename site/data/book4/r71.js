@@ -12,7 +12,7 @@ FRM.register({
   <p>"Garbage in, garbage out" is the reading's warning about assumptions: the whole stress test is only as good as its key assumptions (investment portfolio haircuts, deposit outflows, unsecured wholesale funding, collateral requirements, contingent liabilities, business reduction) — a technically sophisticated model built on unrealistic assumptions produces a false sense of security.</p>`,
 
   formulas: [
-    { name: "Stressed liquidity asset buffer", math: "stressed buffer = (normal) liquidity asset buffer − stressed cash outflows + stressed cash inflows", note: "Sufficiency check: does the buffer stay positive under stress?" }
+    { name: "Stressed liquidity asset buffer", math: "\\text{stressed buffer} = \\text{(normal) liquidity asset buffer} - \\text{stressed cash outflows} + \\text{stressed cash inflows}", note: "Sufficiency check: does the buffer stay positive under stress?" }
   ],
 
   concepts: [

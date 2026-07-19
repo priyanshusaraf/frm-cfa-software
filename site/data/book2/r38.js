@@ -11,7 +11,7 @@ FRM.register({
   intuition: `<p>Stressing "current exposure" alone (a snapshot today) has two structural shortcomings: aggregation across many counterparties ignores each one's credit quality (a $10M exposure to a AAA counterparty and a $10M exposure to a CCC counterparty get treated identically), and a static shock provides zero information about wrong-way risk — it can't tell you whether THIS shock scenario is exactly the one where your counterparty is also more likely to default.</p>`,
 
   formulas: [
-    { name: "Stressed expected loss (loan portfolio)", math: "EL = Σᵢ PDᵢ × EADᵢ × LGDᵢ; stress loss = EL_stressed − EL", note: "Shock PD to get EL_stressed." }
+    { name: "Stressed expected loss (loan portfolio)", math: "\\text{EL} = \\sum_i \\text{PD}_i\\times \\text{EAD}_i\\times \\text{LGD}_i;\\quad \\text{stress loss} = \\text{EL}_{\\text{stressed}} - \\text{EL}", note: "Shock PD to get EL_stressed." }
   ],
 
   concepts: [
@@ -36,7 +36,7 @@ FRM.register({
     {
       name: "Stressed expected loss",
       def: "Loan portfolio: EL_i = PD_i×EAD_i×LGD_i, summed across the portfolio; stress by shocking PD to get EL_stressed, and the stress loss is EL_stressed − EL.",
-      example: "Derivatives portfolio: EL_i is a function of PD_i, LGD_i, and EPE_i multiplied by an alpha factor (α) that scales EPE up to account for portfolio effects.",
+      example: "Derivatives portfolio: EL_i is a function of PD_i, LGD_i, and EPE_i multiplied by an alpha factor \\((\\alpha )\\) that scales EPE up to account for portfolio effects.",
       related: [{ r: 20, label: "R20 — the original EL formula this stresses" }],
       memory: "Loan stress: shock PD directly. Derivatives stress: shock via EPE, scaled by an alpha factor for portfolio effects."
     }

@@ -14,7 +14,7 @@ FRM.register({
   visual: `<div class="widget" data-widget="lcr"></div>`,
 
   formulas: [
-    { name: "TSECF / TSECCF (maturity ladder)", math: "TSECF = expected cash flows by date; TSECCF = cumulative running total", note: "Ideally stays positive at every date — negative TSECCF is a precursor to insolvency, the single most important number Treasury watches." }
+    { name: "TSECF / TSECCF (maturity ladder)", math: "\\text{TSECF} = \\text{expected cash flows by date};\\quad \\text{TSECCF} = \\text{cumulative running total}", note: "Ideally stays positive at every date — negative TSECCF is a precursor to insolvency, the single most important number Treasury watches." }
   ],
 
   concepts: [

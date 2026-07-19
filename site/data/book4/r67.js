@@ -11,8 +11,8 @@ FRM.register({
   intuition: `<p>Net liquidity position is simple arithmetic: supplies of liquidity minus demands for liquidity. Negative means you have a deficit and must raise funds; positive means you have a surplus to invest. The four estimation approaches are four different LENSES on the same question: sources-and-uses tracks deposit/loan flows directly; structure-of-funds splits funding by withdrawal likelihood (hot money vs. core deposits); liquidity indicator uses benchmarked ratios; market signals watches external confidence signals (stock price, borrowing risk premiums).</p>`,
 
   formulas: [
-    { name: "Net liquidity position", math: "L = supplies of liquidity − demands for liquidity", note: "L<0: deficit, must raise funds. L>0: surplus, invest the excess." },
-    { name: "Total required legal reserves", math: "= reservable liabilities × applicable reserve ratio (summed across categories)", note: "Excess reserves = legal reserves > required; deficit = legal reserves < required." }
+    { name: "Net liquidity position", math: "L = \\text{supplies of liquidity} - \\text{demands for liquidity}", note: "L<0: deficit, must raise funds. L>0: surplus, invest the excess." },
+    { name: "Total required legal reserves", math: "= reservable liabilities \\times applicable reserve ratio (summed across categories)", note: "Excess reserves = legal reserves > required; deficit = legal reserves < required." }
   ],
 
   concepts: [

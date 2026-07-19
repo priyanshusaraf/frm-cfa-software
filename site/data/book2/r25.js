@@ -11,12 +11,14 @@ FRM.register({
   intuition: `<p>There are fundamentally three ways to estimate PD: from a firm's financial STATEMENTS (Altman's Z-score — a discriminant function on balance-sheet ratios), from historical RATING BEHAVIOR (migration matrices — cumulative/marginal PD read off transition tables), or from MARKET PRICES (hazard rates backed out of credit spreads, or the Merton model backed out of equity value and volatility). Each answers a slightly different question and lives in a different part of the curriculum.</p>
   <p>The single most important conceptual fact: RISK-NEUTRAL PD (backed out of market spreads) is systematically HIGHER than REAL-WORLD PD (based on historical default rates) for the same firm — because market prices embed a risk premium for bearing systematic, illiquidity, and unsystematic risk that isn't captured by pure historical frequency. Use risk-neutral PDs for valuation/pricing; use real-world PDs for scenario analysis.</p>`,
 
+  visual: `<div class="widget" data-widget="merton"></div>`,
+
   formulas: [
-    { name: "Altman's Z-score (public manufacturers)", math: "Z = 1.2X₁ + 1.4X₂ + 3.3X₃ + 0.6X₄ + 0.999X₅", note: "X1=WC/TA, X2=RE/TA, X3=EBIT/TA, X4=MV equity/BV liabilities, X5=Sales/TA. Z>3: safe · 2.7-3: potential default · 1.8-2.7: reasonable PD · <1.8: high likelihood." },
-    { name: "Constant hazard rate", math: "Q(t) = 1 − e⁻λᵗ", note: "PD by time t under a constant default intensity λ." },
-    { name: "Hazard rate from credit spread (bond near par)", math: "λ ≈ s(T) / (1 − RR)", note: "s(T) = credit spread (annual expected loss). The ancestor formula of R30's CDS pricing and R37's CVA." },
-    { name: "CDS-bond basis", math: "CDS-bond basis = CDS spread − bond yield spread", note: "Should ≈ 0 in theory; nonzero in practice due to specific named frictions." },
-    { name: "Merton setup (precise numeric)", math: "E₀ = Black-Scholes call on V₀; σ_E·E₀ = N(d1)·σ_V·V₀", note: "Solve simultaneously for V0 (asset value) and σV (asset volatility) given observable E0 and σE." }
+    { name: "Altman's Z-score (public manufacturers)", math: "Z = 1.2X_{1} + 1.4X_{2} + 3.3X_{3} + 0.6X_{4} + 0.999X_{5}", note: "X1=WC/TA, X2=RE/TA, X3=EBIT/TA, X4=MV equity/BV liabilities, X5=Sales/TA. Z>3: safe · 2.7-3: potential default · 1.8-2.7: reasonable PD · <1.8: high likelihood." },
+    { name: "Constant hazard rate", math: "Q(t) = 1 - e^{-}\\lambda^{t}", note: "PD by time t under a constant default intensity \\(\\lambda\\)." },
+    { name: "Hazard rate from credit spread (bond near par)", math: "\\lambda \\approx s(T) / (1 - RR)", note: "s(T) = credit spread (annual expected loss). The ancestor formula of R30's CDS pricing and R37's CVA." },
+    { name: "CDS-bond basis", math: "\\text{CDS-bond basis} = \\text{CDS spread} - \\text{bond yield spread}", note: "Should ≈ 0 in theory; nonzero in practice due to specific named frictions." },
+    { name: "Merton setup (precise numeric)", math: "E_0 = \\text{Black-Scholes call on }V_0;\\quad \\sigma_E\\,E_0 = N(d_1)\\,\\sigma_V\\,V_0", note: "Solve simultaneously for V0 (asset value) and \\(\\sigma V\\) (asset volatility) given observable E0 and \\(\\sigma E\\)." }
   ],
 
   concepts: [
@@ -35,9 +37,9 @@ FRM.register({
     },
     {
       name: "Hazard rate (default intensity)",
-      def: "Q(t) = 1−e^(−λt) for constant hazard rate λ. Approximate: λ ≈ s(T)/(1−RR) for a bond priced near par.",
+      def: "Q(t) = \\(1- e^{- \\lambda t}\\) for constant hazard rate \\(\\lambda\\). Approximate: \\(\\lambda\\) ≈ s(T)/(1−RR) for a bond priced near par.",
       example: "3/5/10-yr CDS spreads = 80/90/110bps, RR=65%: avg hazard(3yr)=2.29%, avg hazard(5yr)=2.57%, avg hazard(10yr)=3.14%. Forward hazard rate Yr3-5: [(5×2.57%)−(3×2.29%)]/2 = 2.99%.",
-      pitfall: "A more precise hazard-rate calc (for bonds priced away from par) compares risk-free vs. risky bond prices; the price gap equals PV of expected loss, set equal to Σ(discounted LGD×Q) and solved for Q.",
+      pitfall: "A more precise hazard-rate calc (for bonds priced away from par) compares risk-free vs. risky bond prices; the price gap equals PV of expected loss, set equal to \\(\\Sigma (discounted\\) LGD×Q) and solved for Q.",
       related: [{ r: 30, label: "R30 — the full CDS spread valuation this formula anchors" }, { r: 37, label: "R37 — CVA's discounting engine, built on this same hazard rate" }]
     },
     {
@@ -68,8 +70,8 @@ FRM.register({
     },
     {
       name: "Merton model — precise numeric version",
-      def: "E_T = max(V_T − D, 0); solve simultaneously E0 = Black-Scholes call on V0, and σ_E·E0 = N(d1)·σ_V·V0.",
-      example: "E0=$3M, σE=80%, D=$10M, T=1yr, r=5% → V0=$12.40M, σV=21.23%, N(d1)=0.9117, N(d2)=0.873. Risk-neutral PD = N(−d2) = 12.7%. Distance to default d2=1.1408. Expected loss on debt = (9.51−9.40)/9.51 = 1.2% of no-default value.",
+      def: "E_T = max(V_T − D, 0); solve simultaneously E0 = Black-Scholes call on V0, and \\(\\sigma_E\\cdot E0\\) = \\(N(d1)\\cdot \\sigma_V\\cdot V0\\).",
+      example: "E0=$3M, \\(\\sigma E=80\\)%, D=$10M, T=1yr, r=5% → V0=$12.40M, \\(\\sigma V=21.23\\)%, N(d1)=0.9117, N(d2)=0.873. Risk-neutral PD = N(−d2) = 12.7%. Distance to default d2=1.1408. Expected loss on debt = (9.51−9.40)/9.51 = 1.2% of no-default value.",
       related: [{ r: 21, label: "R21 — the conceptual Merton model this makes precise" }]
     }
   ],
@@ -81,7 +83,7 @@ FRM.register({
     to: [
       { r: 26, why: "Credit VaR needs a PD input for every asset — every method here feeds it." },
       { r: 29, why: "The risk-neutral-vs-real-world PD distinction resurfaces explicitly in R29's guidance table." },
-      { r: 30, why: "λ≈s/(1−RR) is the direct ancestor of R30's full CDS-spread valuation." },
+      { r: 30, why: "\\(\\lambda \\approx s/(1- RR)\\) is the direct ancestor of R30's full CDS-spread valuation." },
       { r: 37, why: "The hazard-rate discounting engine feeds directly into the CVA formula." }
     ],
     confused: [
@@ -98,16 +100,16 @@ FRM.register({
   ],
 
   highYield: [
-    { stars: 5, what: "λ ≈ s(T)/(1−RR) and full hazard rate mechanics (worked CDS spread example).", why: "The most-repeated formula thread in Book 2 — ancestor of R30's CDS pricing and R37's CVA." },
+    { stars: 5, what: "\\(\\lambda\\) ≈ s(T)/(1−RR) and full hazard rate mechanics (worked CDS spread example).", why: "The most-repeated formula thread in Book 2 — ancestor of R30's CDS pricing and R37's CVA." },
     { stars: 5, what: "Risk-neutral vs. real-world PD: which is higher, why, and which to use for pricing vs. scenario analysis.", why: "A foundational distinction reused explicitly in R29 and implicitly throughout the book." },
-    { stars: 4, what: "Merton precise numerical solution: solving simultaneously for V0/σV, then PD=N(−d2).", why: "The calculation backbone of this reading, directly testable as a multi-step numeric problem." },
+    { stars: 4, what: "Merton precise numerical solution: solving simultaneously for \\(V0/\\sigma V\\), then PD=N(−d2).", why: "The calculation backbone of this reading, directly testable as a multi-step numeric problem." },
     { stars: 4, what: "CDS-bond basis: the five named frictions and their direction.", why: "A precise list-based question format GARP favors — know the list, not just 'frictions exist.'" },
     { stars: 3, what: "Recovery rate negatively correlated with default rate.", why: "A compact, high-value fact that resurfaces in R28's tranche analysis." },
     { stars: 3, what: "IG vs junk marginal PD trend asymmetry.", why: "A subtle directional trap worth memorizing as a pair." }
   ],
 
   recall: [
-    { q: "A 5-year CDS trades at 90bps with RR=65%. Estimate the average hazard rate.", a: "λ ≈ s/(1−RR) = 0.90%/(1−0.65) = 0.90%/0.35 ≈ 2.57% — the approximate constant hazard rate consistent with this credit spread and recovery assumption." },
+    { q: "A 5-year CDS trades at 90bps with RR=65%. Estimate the average hazard rate.", a: "\\(\\lambda\\) ≈ s/(1−RR) = 0.90%/(1−0.65) = 0.90%/0.35 ≈ 2.57% — the approximate constant hazard rate consistent with this credit spread and recovery assumption." },
     { q: "Why is risk-neutral PD systematically higher than real-world PD for the same firm?", a: "Risk-neutral PD assumes assets grow at the risk-free rate; real-world PD assumes assets grow at risk-free PLUS a risk premium, giving a higher expected asset value path and hence a LOWER probability of falling below the default threshold. The gap between the two compensates for systematic risk, illiquidity, and unsystematic risk that can't be fully diversified away." },
     { q: "Why might a CDS-bond basis be persistently positive rather than zero?", a: "The cheapest-to-deliver (CTD) option embedded in physically-settled CDS gives the protection buyer a valuable choice among deliverable bonds, and broad restructuring clauses add extra triggering scenarios — both push CDS spreads up relative to the bond yield spread, creating a positive basis." },
     { q: "Explain why investment-grade bonds show RISING marginal default probability in early years while junk bonds show FALLING marginal probability after the early years.", a: "IG issuers start from a position of apparent strength; the passage of time reveals which ones are actually deteriorating, so marginal PD creeps up as hidden problems surface. Junk issuers start already risky; the ones that survive the dangerous early period are self-selected as the sturdier survivors, so their marginal PD tends to fall thereafter." }
@@ -119,5 +121,5 @@ FRM.register({
     { title: "The double-whammy of bad times", text: "Recovery rates fall exactly when default rates rise — weak economies hit you twice, not once." }
   ],
 
-  summary: `<p><strong>Altman's Z-score</strong>: 5-ratio discriminant, Z>3 safe, <1.8 high default likelihood. <strong>Migration matrices</strong>: marginal PD = cumulative(t)−cumulative(t−1); IG marginal PD rises early, junk falls after early years. <strong>Hazard rate</strong>: Q(t)=1−e^(−λt); λ≈s(T)/(1−RR) from credit spreads. <strong>Recovery rate</strong> negatively correlated with default rate. <strong>CDS mechanics</strong>: periodic spread, physical/cash settlement, up-front premium for coupon gaps. <strong>CDS-bond basis</strong> ≈0 in theory; five named frictions push it off zero in practice. <strong>Risk-neutral PD</strong> (pricing) > <strong>real-world PD</strong> (scenario analysis) always, for the same firm. <strong>Merton</strong> (precise): solve simultaneously for V0, σV from observable E0, σE; PD_RN=N(−d2).</p>`
+  summary: `<p><strong>Altman's Z-score</strong>: 5-ratio discriminant, Z>3 safe, <1.8 high default likelihood. <strong>Migration matrices</strong>: marginal PD = cumulative(t)−cumulative(t−1); IG marginal PD rises early, junk falls after early years. <strong>Hazard rate</strong>: \\(Q(t)=1- e^{- \\lambda t}\\); \\(\\lambda \\approx s(T)/(1- RR)\\) from credit spreads. <strong>Recovery rate</strong> negatively correlated with default rate. <strong>CDS mechanics</strong>: periodic spread, physical/cash settlement, up-front premium for coupon gaps. <strong>CDS-bond basis</strong> ≈0 in theory; five named frictions push it off zero in practice. <strong>Risk-neutral PD</strong> (pricing) > <strong>real-world PD</strong> (scenario analysis) always, for the same firm. <strong>Merton</strong> (precise): solve simultaneously for V0, \\(\\sigma V\\) from observable E0, \\(\\sigma E\\); PD_RN=N(−d2).</p>`
 });

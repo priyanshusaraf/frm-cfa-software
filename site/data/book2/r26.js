@@ -10,8 +10,10 @@ FRM.register({
 
   intuition: `<p>Market VaR asks "what did daily P&L actually do over the last 1,000 days?" — plenty of data, smooth distribution. Credit VaR asks "what could a whole YEAR of defaults look like?" — defaults are rare, so you can't just look at history; you need a MODEL of how correlated defaults arise. The four families differ in what they capture: Vasicek/CreditRisk+ capture DEFAULTS ONLY; CreditMetrics captures BOTH defaults and downgrades (via Monte Carlo over a full rating transition matrix).</p>`,
 
+  visual: `<div class="widget" data-widget="creditvar"></div>`,
+
   formulas: [
-    { name: "Vasicek worst-case default rate (WCDR)", math: "WCDR(T,X) = N[(N⁻¹(PD) + √ρ·N⁻¹(X)) / √(1−ρ)]", note: "ρ (credit correlation) proxied by ROA/ROE correlation. This is also the Basel IRB capital engine (R21)." }
+    { name: "Vasicek worst-case default rate (WCDR)", math: "WCDR(T,X) = N[(N^{-1}(PD) + \\sqrt{\\rho }\\cdot N^{-1}(X)) / \\sqrt{1-\\rho }]", note: "\\(\\rho\\) (credit correlation) proxied by ROA/ROE correlation. This is also the Basel IRB capital engine (R21)." }
   ],
 
   concepts: [
@@ -30,15 +32,15 @@ FRM.register({
     },
     {
       name: "Vasicek's Gaussian copula model (Basel IRB engine)",
-      def: "WCDR(T,X) = N[(N⁻¹(PD) + √ρ·N⁻¹(X))/√(1−ρ)]. ρ (credit correlation) proxied by correlation between firms' ROA/ROE.",
-      pitfall: "Limitation: NO tail correlation — correlation is assumed constant, but real defaults cluster more violently in the tail than a constant-ρ model predicts.",
+      def: "WCDR(T,X) = \\(N[(N^{-1}(PD)\\) + \\(\\sqrt{\\rho }\\cdot N^{-1}(X))/\\sqrt{1- \\rho }]\\). \\(\\rho\\) (credit correlation) proxied by correlation between firms' ROA/ROE.",
+      pitfall: "Limitation: NO tail correlation — correlation is assumed constant, but real defaults cluster more violently in the tail than a \\(constant-\\rho\\) model predicts.",
       related: [{ r: 21, label: "R21 — the identical formula underlying the IRB capital charge" }, { r: 3, label: "R3 — the tail-dependence problem this constant-ρ assumption misses" }],
       memory: "This IS the Basel IRB formula — memorize once, recognize everywhere."
     },
     {
       name: "CreditRisk+ (Credit Suisse)",
       def: "Independent-default binomial → Poisson approximation (small PD, many loans) → if the expected number of defaults follows a gamma distribution, Poisson becomes negative binomial.",
-      pitfall: "As uncertainty (σ) about the default rate rises, the chance of many simultaneous defaults rises and the loss distribution becomes positively skewed (vs. symmetric under low/no correlation).",
+      pitfall: "As uncertainty \\((\\sigma )\\) about the default rate rises, the chance of many simultaneous defaults rises and the loss distribution becomes positively skewed (vs. symmetric under low/no correlation).",
       related: ["CreditMetrics"]
     },
     {
@@ -95,5 +97,5 @@ FRM.register({
     { title: "Two questions credit models ask", text: "'Did it default?' (Vasicek, CreditRisk+) vs. 'What's its rating NOW?' (CreditMetrics) — the second question is strictly richer, capturing downgrade pain the first ignores entirely." }
   ],
 
-  summary: `<p><strong>Market VaR</strong> (1-day, historical sim) vs <strong>Credit VaR</strong> (1-year, elaborate models — lumpy, rare losses). <strong>Migration matrices</strong>: raise to the Nth power for multi-year, fractional root for sub-year — assumes independence, violated by rating momentum. <strong>Vasicek's Gaussian copula</strong> (=Basel IRB engine): WCDR(T,X)=N[(N⁻¹(PD)+√ρ·N⁻¹(X))/√(1−ρ)] — no tail correlation captured (constant ρ). <strong>CreditRisk+</strong>: Poisson/negative-binomial, defaults only, needs least data. <strong>CreditMetrics</strong>: Monte Carlo over rating transitions, captures BOTH defaults AND downgrades — the answer whenever migration risk matters. <strong>Rebalancing</strong>: constant-level-of-risk < buy-and-hold in Credit VaR.</p>`
+  summary: `<p><strong>Market VaR</strong> (1-day, historical sim) vs <strong>Credit VaR</strong> (1-year, elaborate models — lumpy, rare losses). <strong>Migration matrices</strong>: raise to the Nth power for multi-year, fractional root for sub-year — assumes independence, violated by rating momentum. <strong>Vasicek's Gaussian copula</strong> (=Basel IRB engine): WCDR(T,\\(X)=N[(N^{-1}(PD)+\\sqrt{\\rho }\\cdot N^{-1}(X))/\\sqrt{1- \\rho }]\\) — no tail correlation captured (constant \\(\\rho )\\). <strong>CreditRisk+</strong>: Poisson/negative-binomial, defaults only, needs least data. <strong>CreditMetrics</strong>: Monte Carlo over rating transitions, captures BOTH defaults AND downgrades — the answer whenever migration risk matters. <strong>Rebalancing</strong>: constant-level-of-risk < buy-and-hold in Credit VaR.</p>`
 });

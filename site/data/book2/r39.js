@@ -12,12 +12,12 @@ FRM.register({
   <p>Overcollateralization is a subtle mechanism: pool assets EXCEED the notes issued against them (e.g., 101 mortgages backing 100 mortgages' worth of notes) — investors absorb one default "for free" before any tranche actually takes a loss. This is why the MOST SENIOR class is NOT the overcollateralized one — overcollateralization protects the senior tranche precisely by making the MOST JUNIOR class absorb the excess collateral risk.</p>`,
 
   formulas: [
-    { name: "Delinquency ratio", math: "90dpd balance / total pool balance", note: "$880,000/$57,800,000 = 1.522% in the worked example." },
-    { name: "Default ratio", math: "Written-off balance / total pool balance", note: "$1,100,000/$57,800,000 = 1.903%." },
-    { name: "Monthly payment rate (MPR)", math: "Monthly P&I / total pool balance", note: "$1,560,000/$57,800,000 = 2.699%." },
-    { name: "DSCR", math: "DSCR = NOI / total debt payments", note: "$89,572,500/$87,958,000 = 1.02. DSCR<1 means the pool doesn't cover debt service; residential typically 2.5-3.0." },
-    { name: "WAC", math: "WAC = Σ(pool balance × pool rate) / total balance", note: "($6M×7.8%+$10M×6.0%+$4M×5.0%)/$20M = 6.34%." },
-    { name: "CPR from SMM", math: "CPR = 1 − (1−SMM)¹²", note: "SMM=1.5% → CPR = 1−(1−0.015)¹² = 16.59%." }
+    { name: "Delinquency ratio", math: "\\dfrac{\\text{90dpd balance}}{\\text{total pool balance}}", note: "$880,000/$57,800,000 = 1.522% in the worked example." },
+    { name: "Default ratio", math: "\\dfrac{\\text{Written-off balance}}{\\text{total pool balance}}", note: "$1,100,000/$57,800,000 = 1.903%." },
+    { name: "Monthly payment rate (MPR)", math: "\\text{MPR} = \\dfrac{\\text{Monthly P\\&I}}{\\text{total pool balance}}", note: "$1,560,000/$57,800,000 = 2.699%." },
+    { name: "DSCR", math: "\\text{DSCR} = \\dfrac{\\text{NOI}}{\\text{total debt payments}}", note: "$89,572,500/$87,958,000 = 1.02. DSCR<1 means the pool doesn't cover debt service; residential typically 2.5-3.0." },
+    { name: "WAC", math: "\\text{WAC} = \\dfrac{\\sum(\\text{pool balance}\\times\\text{pool rate})}{\\text{total balance}}", note: "($6M×7.8%+$10M×6.0%+$4M×5.0%)/$20M = 6.34%." },
+    { name: "CPR from SMM", math: "CPR = 1 - (1-SMM)^{12}", note: "SMM=1.5% → CPR = \\(1- (1- 0.015)^{12}\\) = 16.59%." }
   ],
 
   concepts: [
@@ -58,8 +58,8 @@ FRM.register({
     },
     {
       name: "CPR and PSA",
-      def: "CPR = 1−(1−SMM)¹² (constant prepayment rate annualized from single monthly mortality). PSA benchmark: 100% PSA assumes CPR starts at 0% and rises 0.2%/month for 30 months, then holds flat at 6%.",
-      example: "50% PSA: rises 0.1%/month to 3% plateau. 150% PSA: rises 0.3%/month to 9% plateau. SMM=1.5% → CPR=1−(1−0.015)¹²=16.59%.",
+      def: "CPR = \\(1- (1- SMM)^{12}\\) (constant prepayment rate annualized from single monthly mortality). PSA benchmark: 100% PSA assumes CPR starts at 0% and rises 0.2%/month for 30 months, then holds flat at 6%.",
+      example: "50% PSA: rises 0.1%/month to 3% plateau. 150% PSA: rises 0.3%/month to 9% plateau. SMM=1.5% → \\(CPR=1- (1- 0.015)^{12}=16.59\\)%.",
       related: []
     }
   ],
@@ -91,7 +91,7 @@ FRM.register({
 
   recall: [
     { q: "A credit card ABS pool has total balance $57.8M, with $0.88M currently 90+ days past due and $1.1M written off. Compute the delinquency ratio and default ratio.", a: "Delinquency ratio = 880,000/57,800,000 = 1.522%. Default ratio = 1,100,000/57,800,000 = 1.903%. Both use total pool balance as the denominator but different numerators (currently-delinquent vs. already-written-off balances)." },
-    { q: "A mortgage pool shows SMM = 2%. What is the annualized CPR?", a: "CPR = 1−(1−0.02)¹² = 1−0.7847 ≈ 21.53%." },
+    { q: "A mortgage pool shows SMM = 2%. What is the annualized CPR?", a: "CPR = \\(1- (1- 0.02)^{12}\\) = 1−0.7847 ≈ 21.53%." },
     { q: "Why is it wrong to say the most senior tranche in a securitization is 'the overcollateralized one'?", a: "Overcollateralization means the pool of assets exceeds the notes issued — that EXCESS sits at the bottom of the capital structure, absorbed by the MOST JUNIOR tranche. The senior tranche is protected BY this junior-absorbed excess, not itself 'overcollateralized' in the sense of holding the extra buffer." },
     { q: "Why does the SPV's cost of liabilities (notes issued) need to be lower than its cost of assets (receivables) for the structure to work?", a: "The gap between the higher-yielding assets (receivables, e.g., mortgage or credit card interest) and the lower-cost notes issued to investors IS the excess spread — the cash flow that pays servicing fees, credit enhancement costs, and ultimately flows to the equity/first-loss piece. Without this positive spread, there would be no residual value to distribute down the waterfall." }
   ],
@@ -101,5 +101,5 @@ FRM.register({
     { title: "Buy low, sell high — SPV edition", text: "The SPV's whole business model is 'buy' (fund) at a low cost (notes to investors) and 'own' higher-yielding assets (receivables) — the spread between the two is the fuel for the whole structure." }
   ],
 
-  summary: `<p><strong>True sale</strong>: the SPV's legal separateness from the originator is the foundational concept. <strong>Overcollateralization</strong>: pool assets exceed notes issued; the JUNIOR class absorbs this excess, protecting the SENIOR class (a frequently reversed fact). <strong>Three SPV structures</strong>: amortizing/pass-through (mortgages), revolving (credit cards/auto), master trust (multiple issuances, shared excess spread). <strong>Why securitize</strong>: funding diversification, capital relief, risk management. <strong>Credit enhancements</strong>: overcollateralization, pool insurance, subordination, margin step-up, excess spread. <strong>Performance ratios</strong>: delinquency ratio, default ratio, MPR (all /total pool balance); DSCR=NOI/debt payments; WAC=weighted coupon; WAM/WAL=weighted maturity/prepayment-adjusted life; CPR=1−(1−SMM)¹²; PSA benchmarks (100% = 0%→6% over 30 months). SPV liability side costs LESS than its asset side — that gap is the excess spread.</p>`
+  summary: `<p><strong>True sale</strong>: the SPV's legal separateness from the originator is the foundational concept. <strong>Overcollateralization</strong>: pool assets exceed notes issued; the JUNIOR class absorbs this excess, protecting the SENIOR class (a frequently reversed fact). <strong>Three SPV structures</strong>: amortizing/pass-through (mortgages), revolving (credit cards/auto), master trust (multiple issuances, shared excess spread). <strong>Why securitize</strong>: funding diversification, capital relief, risk management. <strong>Credit enhancements</strong>: overcollateralization, pool insurance, subordination, margin step-up, excess spread. <strong>Performance ratios</strong>: delinquency ratio, default ratio, MPR (all /total pool balance); DSCR=NOI/debt payments; WAC=weighted coupon; WAM/WAL=weighted maturity/prepayment-adjusted life; \\(CPR=1- (1- SMM)^{12}\\); PSA benchmarks (100% = 0%→6% over 30 months). SPV liability side costs LESS than its asset side — that gap is the excess spread.</p>`
 });

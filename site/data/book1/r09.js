@@ -12,7 +12,7 @@ FRM.register({
   <p>The Gaussian copula's tragedy: it reduced a 100+ asset CDO correlation problem to one tractable multivariate function — but Gaussian dependence has essentially ZERO tail dependence. It badly underestimated the tendency of assets to crash TOGETHER in extremes — the exact multivariate-EVT concern flagged in R3.</p>`,
 
   formulas: [
-    { name: "Gaussian copula for default", math: "C<sub>GD</sub> = M<sub>n</sub>[N⁻¹(Q₁(t)), …; ρ<sub>M</sub>]", note: "Map each firm's cumulative default probability through the inverse normal CDF, then evaluate the joint via a multivariate normal CDF with correlation ρ_M." }
+    { name: "Gaussian copula for default", math: "C_{GD} = M_{n}[N^{-1}(Q_{1}(t)), \\dots ; \\rho_{M}]", note: "Map each firm's cumulative default probability through the inverse normal CDF, then evaluate the joint via a multivariate normal CDF with correlation \\(\\rho_M\\)." }
   ],
 
   concepts: [
@@ -26,8 +26,8 @@ FRM.register({
     },
     {
       name: "Gaussian copula for default",
-      def: "Map each company's cumulative default probability Q(t) through N⁻¹ onto the standard normal; the joint default probability is read off the bivariate (or multivariate) normal CDF at those mapped points, using default correlation ρ.",
-      example: "Company B and C's 1-year cumulative default probabilities map to N⁻¹(Q_B(t)) and N⁻¹(Q_C(t)); with bivariate normal M₂ and correlation ρ, joint default probability reads off the bivariate normal CDF at those two points.",
+      def: "Map each company's cumulative default probability Q(t) through \\(N^{-1}\\) onto the standard normal; the joint default probability is read off the bivariate (or multivariate) normal CDF at those mapped points, using default correlation \\(\\rho\\).",
+      example: "Company B and C's 1-year cumulative default probabilities map to \\(N^{-1}(Q_B(t))\\) and \\(N^{-1}(Q_C(t))\\); with bivariate normal \\(M_{2}\\) and correlation \\(\\rho\\), joint default probability reads off the bivariate normal CDF at those two points.",
       pitfall: "The exam will NOT ask you to compute the bivariate normal integral by hand — focus on the MAPPING LOGIC and what each symbol represents, not numerical integration.",
       related: ["Correlated default time via simulation"]
     },
@@ -40,7 +40,7 @@ FRM.register({
     {
       name: "Why copulas (Gaussian specifically) fell out of favor",
       def: "The Gaussian copula was popular because it reduced a 100+ asset CDO correlation problem to a single tractable multivariate function. But it badly underestimated TAIL DEPENDENCE — the tendency of assets to crash together in extremes.",
-      pitfall: "The Gaussian copula assumes normal-style tail behavior; real crises exhibit fat-tailed, highly dependent joint crashes the Gaussian copula structurally CANNOT capture, no matter how you calibrate ρ. This is a direct thematic callback: R3 (EVT/tail dependence) → R9 (Gaussian copula's failure to capture exactly that).",
+      pitfall: "The Gaussian copula assumes normal-style tail behavior; real crises exhibit fat-tailed, highly dependent joint crashes the Gaussian copula structurally CANNOT capture, no matter how you calibrate \\(\\rho\\). This is a direct thematic callback: R3 (EVT/tail dependence) → R9 (Gaussian copula's failure to capture exactly that).",
       related: [{ r: 3, label: "R3 — the curse of dimensionality this exposed" }, { r: 7, label: "R7 — the 2008 tranche trade this machinery mispriced" }, { r: 28, label: "R28 — tranche modeling still uses copulas, now more carefully" }],
       memory: "Gaussian copula: great at the middle, blind at the edges — exactly where CDOs lived or died."
     }
@@ -76,7 +76,7 @@ FRM.register({
 
   recall: [
     { q: "In plain language, what problem does a copula solve that a correlation matrix alone cannot?", a: "A correlation matrix alone implicitly assumes elliptical (e.g., multivariate normal) joint behavior. A copula lets each variable keep its own, possibly very different, marginal distribution while still defining a workable joint dependence structure — by mapping each marginal onto a common well-behaved space (standard normal) first." },
-    { q: "Explain precisely why the Gaussian copula underestimated CDO tail risk even with a 'correctly calibrated' correlation parameter ρ.", a: "Gaussian dependence structurally has near-zero tail dependence — no matter how you calibrate ρ, the model cannot generate the fat-tailed, highly-dependent joint crashes real markets exhibit. The failure isn't a calibration error; it's a structural blind spot of the Gaussian assumption itself." },
+    { q: "Explain precisely why the Gaussian copula underestimated CDO tail risk even with a 'correctly calibrated' correlation parameter \\(\\rho\\).", a: "Gaussian dependence structurally has near-zero tail dependence — no matter how you calibrate \\(\\rho\\), the model cannot generate the fat-tailed, highly-dependent joint crashes real markets exhibit. The failure isn't a calibration error; it's a structural blind spot of the Gaussian assumption itself." },
     { q: "Why is simulation (not a closed-form formula) required to generate correlated default times for a large portfolio?", a: "For n > 2 correlated assets there's no closed-form solution linking simulated normal draws to a full joint default-time distribution — Cholesky decomposition generates correlated normal samples, each matched against the market-implied default curve, repeated thousands of times to build up the distribution empirically." }
   ],
 
@@ -85,5 +85,5 @@ FRM.register({
     { title: "Great in the middle, blind at the edges", text: "The Gaussian copula was the popular kid because it made joint modeling tractable — but tractability came at the cost of tail dependence, exactly where CDO tranches lived or died." }
   ],
 
-  summary: `<p><strong>Copula core idea</strong>: map each marginal (however awkward) percentile-to-percentile onto standard normal, define correlation there — preserves marginals exactly while adding a joint dependence structure. <strong>Gaussian copula for default</strong>: C_GD = M_n[N⁻¹(Q₁(t)),…; ρ_M] — mapping logic matters, not hand-computing the integral. <strong>Correlated default time</strong>: Cholesky decomposition + simulation (100,000+ draws) since no closed form exists for n>2. <strong>Why it fell out of favor</strong>: Gaussian dependence has near-zero tail dependence — it structurally cannot capture joint crashes, the same blind spot multivariate EVT (R3) warns about, and the direct cause of the mispriced 2008 tranche trades (R7).</p>`
+  summary: `<p><strong>Copula core idea</strong>: map each marginal (however awkward) percentile-to-percentile onto standard normal, define correlation there — preserves marginals exactly while adding a joint dependence structure. <strong>Gaussian copula for default</strong>: C_GD = \\(M_n[N^{-1}(Q_{1}(t))\\),…; \\(\\rho_M]\\) — mapping logic matters, not hand-computing the integral. <strong>Correlated default time</strong>: Cholesky decomposition + simulation (100,000+ draws) since no closed form exists for n>2. <strong>Why it fell out of favor</strong>: Gaussian dependence has near-zero tail dependence — it structurally cannot capture joint crashes, the same blind spot multivariate EVT (R3) warns about, and the direct cause of the mispriced 2008 tranche trades (R7).</p>`
 });

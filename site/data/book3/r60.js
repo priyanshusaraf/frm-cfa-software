@@ -14,11 +14,11 @@ FRM.register({
   visual: `<div class="widget" data-widget="capitalstack" data-stack='{"cet1":4.5,"at1":1.5,"t2":2.0,"ccb":2.5,"ccyb":0,"gsib":0}'></div>`,
 
   formulas: [
-    { name: "Total market risk capital (with stressed VaR)", math: "capital = VaR_previous day + (m_s × avg stressed VaR, 60-day)", note: "$15.6M + (3×$18.4M) = $70.8M — roughly double the pre-2.5 charge, by design." },
-    { name: "Basel III minimum ratios (normal times)", math: "Tier1 equity/RWA≥4.5% · Total Tier1/RWA≥6% · Total capital/RWA≥8%", note: "With the 2.5% capital conservation buffer added: 7.0% / 8.5% / 10.5%." },
-    { name: "Leverage ratio", math: "capital / total exposure ≥ 3%", note: "Unweighted, includes some off-balance-sheet items." },
-    { name: "Liquidity Coverage Ratio (LCR)", math: "HQLA / net cash outflows over 30 days ≥ 100%", note: "$30 HQLA / $20 net outflow = 150% ✓." },
-    { name: "Net Stable Funding Ratio (NSFR)", math: "ASF / RSF ≥ 100%", note: "$147.50 ASF / $137.00 RSF = 107.66% ✓." }
+    { name: "Total market risk capital (with stressed VaR)", math: "\\text{capital} = \\text{VaR}_{\\text{previous day}} + (m_s\\times\\text{avg stressed VaR, 60-day})", note: "$15.6M + (3×$18.4M) = $70.8M — roughly double the pre-2.5 charge, by design." },
+    { name: "Basel III minimum ratios (normal times)", math: "\\dfrac{\\text{Tier1 equity}}{\\text{RWA}}\\ge 4.5\\% \\quad\\cdot\\quad \\dfrac{\\text{Total Tier1}}{\\text{RWA}}\\ge 6\\% \\quad\\cdot\\quad \\dfrac{\\text{Total capital}}{\\text{RWA}}\\ge 8\\%", note: "With the 2.5% capital conservation buffer added: 7.0% / 8.5% / 10.5%." },
+    { name: "Leverage ratio", math: "\\dfrac{\\text{capital}}{\\text{total exposure}} \\ge 3\\%", note: "Unweighted, includes some off-balance-sheet items." },
+    { name: "Liquidity Coverage Ratio (LCR)", math: "\\dfrac{\\text{HQLA}}{\\text{net cash outflows over 30 days}} \\ge 100\\%", note: "$30 HQLA / $20 net outflow = 150% ✓." },
+    { name: "Net Stable Funding Ratio (NSFR)", math: "ASF / RSF \\ge 100\\%", note: "$147.50 ASF / $137.00 RSF = 107.66% ✓." }
   ],
 
   concepts: [

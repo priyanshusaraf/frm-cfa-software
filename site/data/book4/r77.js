@@ -12,9 +12,9 @@ FRM.register({
   <p>The worked example makes the stakes vivid: Bank MMM charges 1bp for a 1-year loan and 80bps for a 5-year loan (correctly pricing the much higher liquidity risk of longer-tenor lending), while Bank AVG charges a flat 2bps regardless of maturity — underpricing the 5-year loan by 4×. That mispricing is a systematic subsidy someone eventually exploits.</p>`,
 
   formulas: [
-    { name: "Worked example: matched-maturity vs average cost", math: "Bank MMM: 1bp(1yr)=$10, 80bps(5yr)=$80. Bank AVG: flat 2bps=$20 for BOTH.", note: "The 5-year loan is underpriced by 4× under the average approach." },
-    { name: "WAL method (uncertain-cash-flow amortizing pools)", math: "Charge = matched-maturity rate at portfolio's WAL × portfolio balance", note: "$1B of 15yr loans, WAL=8yr, 8yr rate=58bps → charge=$5.8M." },
-    { name: "Contingent commitment charge rate", math: "Rate = (prob. of drawdown × undrawn amount × cushion cost) / total credit line amount", note: "$20M line, $15M undrawn, 70% draw prob, 15bps cushion cost → rate=0.07875% → charge=$15,750." }
+    { name: "Worked example: matched-maturity vs average cost", math: "\\text{Bank MMM: }1\\text{bp(1yr)}=\\$10,\\ 80\\text{bps(5yr)}=\\$80.\\quad \\text{Bank AVG: flat }2\\text{bps}=\\$20\\text{ for BOTH}", note: "The 5-year loan is underpriced by 4× under the average approach." },
+    { name: "WAL method (uncertain-cash-flow amortizing pools)", math: "\\text{Charge} = \\text{matched-maturity rate at portfolio's WAL}\\times\\text{portfolio balance}", note: "$1B of 15yr loans, WAL=8yr, 8yr rate=58bps → charge=$5.8M." },
+    { name: "Contingent commitment charge rate", math: "\\text{Rate} = \\dfrac{\\text{prob. of drawdown}\\times\\text{undrawn amount}\\times\\text{cushion cost}}{\\text{total credit line amount}}", note: "$20M line, $15M undrawn, 70% draw prob, 15bps cushion cost → rate=0.07875% → charge=$15,750." }
   ],
 
   concepts: [

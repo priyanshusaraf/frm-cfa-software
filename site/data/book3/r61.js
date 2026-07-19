@@ -13,7 +13,7 @@ FRM.register({
   visual: `<div class="widget" data-widget="capitalstack"></div>`,
 
   formulas: [
-    { name: "Output floor rule", math: "RWA = max(RWA under approved approach, 72.5% × RWA under standardized approach)", note: "Stops large banks from using internal models to shrink capital requirements far below the standardized approach." }
+    { name: "Output floor rule", math: "RWA = max(RWA under approved approach, 72.5\\% \\times RWA under standardized approach)", note: "Stops large banks from using internal models to shrink capital requirements far below the standardized approach." }
   ],
 
   concepts: [

@@ -6,7 +6,7 @@ FRM.register({
 
   teaches: `<p>The base CVA formula, CVA as a running spread, how credit spread/recovery assumptions move CVA, netting and collateral inside CVA, MPoR scaling, incremental vs. marginal CVA, bilateral CVA (BCVA), and wrong-way/right-way risk with modeling approaches.</p>`,
 
-  why: `<p>Structurally, everything in this reading is a variation on one formula — CVA = −Σ(exposure × default probability × loss rate, discounted). Understanding this as EL's derivatives-specific cousin (rather than a new concept) makes the whole reading tractable.</p>`,
+  why: `<p>Structurally, everything in this reading is a variation on one formula — CVA = \\(- \\Sigma (exposure\\) × default probability × loss rate, discounted). Understanding this as EL's derivatives-specific cousin (rather than a new concept) makes the whole reading tractable.</p>`,
 
   intuition: `<p>CVA is EL = PD×LGD×EAD, generalized to a TIME SERIES of exposures instead of one fixed EAD. Each future date has its own expected exposure EE(t) and default probability q(t); CVA sums the discounted products across all dates. Everything else — netting's reduction of exposure, collateral's reduction of EE, MPoR scaling — is a variation on how exactly EE(t) and q(t) get computed before you plug them into this one sum.</p>
   <p>The trickiest asymmetry: incremental CVA answers "what does adding THIS new trade change CVA by" (pricing decision); marginal CVA answers "how much of the TOTAL netted CVA is attributable to each existing trade" (ex-post attribution). Same underlying machinery, different question, frequently confused.</p>`,
@@ -14,16 +14,16 @@ FRM.register({
   visual: `<div class="widget" data-widget="exposure"></div>`,
 
   formulas: [
-    { name: "Base CVA (no WWR, no netting, no collateral)", math: "CVA = −(1−RR) × Σᵢ EE(tᵢ) × qᵢ × DF(tᵢ)", note: "q_i = probability of default in interval i. Negative sign because CVA is a cost." },
-    { name: "MPoR scaling (square-root-of-time)", math: "CVA(20-day MPoR) ≈ CVA(10-day MPoR) × √2", note: "At MPoR ≈ 40 days, collateralized CVA is roughly HALF the uncollateralized CVA." },
-    { name: "Bilateral CVA (BCVA)", math: "BCVA = CVA(counterparty) + DVA(institution)", note: "Can be positive if DVA > CVA. Symmetric: Party 1's BCVA = −Party 2's BCVA." },
-    { name: "BCVA as a spread", math: "BCVA spread = −(counterparty spread × EPE) − (−institution spread × ENE)", note: "EPE=5%, ENE=3%, counterparty spread=300bps, institution spread=200bps → BCVA=(−5%×300)−(−3%×200)=−9bps." }
+    { name: "Base CVA (no WWR, no netting, no collateral)", math: "CVA = -(1-RR) \\times \\Sigma_{i} EE(t_{i}) \\times q_{i} \\times DF(t_{i})", note: "q_i = probability of default in interval i. Negative sign because CVA is a cost." },
+    { name: "MPoR scaling (square-root-of-time)", math: "CVA(20-day MPoR) \\approx CVA(10-day MPoR) \\times \\sqrt{2}", note: "At MPoR ≈ 40 days, collateralized CVA is roughly HALF the uncollateralized CVA." },
+    { name: "Bilateral CVA (BCVA)", math: "\\text{BCVA} = \\text{CVA(counterparty)} + \\text{DVA(institution)}", note: "Can be positive if DVA > CVA. Symmetric: Party 1's BCVA = −Party 2's BCVA." },
+    { name: "BCVA as a spread", math: "\\text{BCVA spread} = -(\\text{counterparty spread}\\times \\text{EPE}) - (-\\,\\text{institution spread}\\times \\text{ENE})", note: "EPE=5%, ENE=3%, counterparty spread=300bps, institution spread=200bps → BCVA=(−5%×300)−(−3%×200)=−9bps." }
   ],
 
   concepts: [
     {
       name: "The base CVA formula",
-      def: "CVA = −(1−RR)×Σᵢ EE(tᵢ)×qᵢ×DF(tᵢ). Assumptions behind the running-spread shortcut: EPE constant over the profile, PD constant over the profile, EE/PD symmetric over the profile.",
+      def: "CVA = \\(- (1- RR)\\times \\Sigma_{i}\\) \\(EE(t_{i})\\times q_{i}\\times DF(t_{i})\\). Assumptions behind the running-spread shortcut: EPE constant over the profile, PD constant over the profile, EE/PD symmetric over the profile.",
       related: [{ r: 36, label: "R36 — EE, the exposure metric this formula multiplies" }, { r: 25, label: "R25 — the default probability qᵢ this formula multiplies" }]
     },
     {
@@ -115,5 +115,5 @@ FRM.register({
     { title: "The mirror that can tip", text: "BCVA is a mirror — usually the counterparty's risk dominates (CVA), but if YOU'RE the riskier one, the mirror tips and BCVA can flip positive." }
   ],
 
-  summary: `<p><strong>Base CVA</strong> = −(1−RR)ΣEE(tᵢ)qᵢDF(tᵢ) — EL's derivatives cousin, stretched across time. <strong>Spread/recovery</strong>: ↑spread→↑CVA nonlinearly (capped at PD=100%); ↑RR→↑implied PD but ↓CVA. <strong>Netting/collateral</strong>: both reduce CVA (netting via exposure, collateral via EE); threshold/MTA raise CVA, initial margin lowers it. <strong>Incremental CVA</strong> (pricing a new trade) ≠ <strong>marginal CVA</strong> (attributing existing CVA) — a frequently confused pair. <strong>BCVA</strong> = CVA+DVA: can be positive (if institution riskier), symmetric across parties, netting can be a DISADVANTAGE if own DVA dominates. <strong>WWR</strong> (exposure & PD positively correlated: ↑CVA ↓DVA) vs <strong>RWR</strong> (mirror) — higher credit quality AMPLIFIES WWR impact, counterintuitively. Gradual exposure increases let collateral help; sudden jumps outpace it.</p>`
+  summary: `<p><strong>Base CVA</strong> = \\(- (1- RR)\\Sigma EE(t_{i})q_{i}DF(t_{i})\\) — EL's derivatives cousin, stretched across time. <strong>Spread/recovery</strong>: ↑spread→↑CVA nonlinearly (capped at PD=100%); ↑RR→↑implied PD but ↓CVA. <strong>Netting/collateral</strong>: both reduce CVA (netting via exposure, collateral via EE); threshold/MTA raise CVA, initial margin lowers it. <strong>Incremental CVA</strong> (pricing a new trade) ≠ <strong>marginal CVA</strong> (attributing existing CVA) — a frequently confused pair. <strong>BCVA</strong> = CVA+DVA: can be positive (if institution riskier), symmetric across parties, netting can be a DISADVANTAGE if own DVA dominates. <strong>WWR</strong> (exposure & PD positively correlated: ↑CVA ↓DVA) vs <strong>RWR</strong> (mirror) — higher credit quality AMPLIFIES WWR impact, counterintuitively. Gradual exposure increases let collateral help; sudden jumps outpace it.</p>`
 });

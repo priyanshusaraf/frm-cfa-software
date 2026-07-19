@@ -14,9 +14,9 @@ FRM.register({
   visual: `<div class="widget" data-widget="exposure"></div>`,
 
   formulas: [
-    { name: "Netting factor", math: "Netting factor = √[(1 + (n−1)ρ) / n]", note: "ρ=1 → factor=100% (no benefit). ρ=0, n=2 → 71%. ρ=0, n=4 → 50%. More exposures + lower correlation = bigger benefit." },
-    { name: "EE/PFE during MPoR", math: "EE(MPoR) = current exposure × √(MPoR/250) × vol; PFE(MPoR) = z × vol × √(MPoR/250)", note: "10-day MPoR, 7% annual vol, 99% (z=2.33): PFE = 2.33×0.07×√(10/250) = 3.27% of notional." },
-    { name: "Collateral volatility with correlation", math: "σ_overall = √(σ_trade² + σ_collateral² − 2ρσ_tradeσ_collateral)", note: "Uncorrelated case simplifies to √(σ_collateral²+σ_exposure²)." }
+    { name: "Netting factor", math: "Netting factor = \\sqrt{(1 + (n-1)\\rho ) / n}", note: "\\(\\rho =1\\) → factor=100% (no benefit). \\(\\rho =0\\), n=2 → 71%. \\(\\rho =0\\), n=4 → 50%. More exposures + lower correlation = bigger benefit." },
+    { name: "EE/PFE during MPoR", math: "\\text{EE(MPoR)} = \\text{current exposure}\\times\\sqrt{\\tfrac{\\text{MPoR}}{250}}\\times\\text{vol};\\quad \\text{PFE(MPoR)} = z\\times\\text{vol}\\times\\sqrt{\\tfrac{\\text{MPoR}}{250}}", note: "10-day MPoR, 7% annual vol, 99% (z=2.33): PFE = \\(2.33\\times 0.07\\times \\sqrt{10/250}\\) = 3.27% of notional." },
+    { name: "Collateral volatility with correlation", math: "\\sigma_overall = \\sqrt{\\sigma_trade^{2} + \\sigma_collateral^{2} - 2\\rho \\sigma_trade\\sigma_collateral}", note: "Uncorrelated case simplifies to \\(\\sqrt{\\sigma_collateral^{2}+\\sigma_exposure^{2}}\\)." }
   ],
 
   concepts: [
@@ -41,14 +41,14 @@ FRM.register({
     },
     {
       name: "Netting factor",
-      def: "Netting factor = √[(1+(n−1)ρ)/n]. ρ=1 → 100% (no benefit). ρ=0, n=2 → 71%. ρ=0, n=4 → 50%.",
-      pitfall: "More exposures + lower correlation = bigger netting benefit. Perfect negative correlation gives the MAXIMUM benefit (trades fully offset) — don't assume ρ=0 is the best case; ρ→−1 is even better.",
+      def: "Netting factor = \\(\\sqrt{(1+(n- 1)\\rho )/n}\\). \\(\\rho =1\\) → 100% (no benefit). \\(\\rho =0\\), n=2 → 71%. \\(\\rho =0\\), n=4 → 50%.",
+      pitfall: "More exposures + lower correlation = bigger netting benefit. Perfect negative correlation gives the MAXIMUM benefit (trades fully offset) — don't assume \\(\\rho =0\\) is the best case; \\(\\rho\\)→−1 is even better.",
       related: [{ r: 33, label: "R33 — the netting concept this formula quantifies" }]
     },
     {
       name: "Margin period of risk (MPoR)",
       def: "Five steps: (1) valuation/margin call → (2) receiving collateral → (3) settlement (cash: intraday; govt bonds: ~1 day; corporate bonds: ~3 days) → (4) grace period → (5) liquidation/close-out/re-hedge.",
-      example: "7% annual vol, 10-day MPoR, 99% confidence (z=2.33): PFE = 2.33×0.07×√(10/250) = 3.27% of notional.",
+      example: "7% annual vol, 10-day MPoR, 99% confidence (z=2.33): PFE = \\(2.33\\times 0.07\\times \\sqrt{10/250}\\) = 3.27% of notional.",
       related: ["Collateral parameters that create residual exposure"]
     },
     {
@@ -80,20 +80,20 @@ FRM.register({
     { wrong: "\"Expected exposure (EE) can be negative, just like expected MtM.\"", right: "EE only counts the POSITIVE part of the value distribution (loss if MtM>0 AND counterparty defaults) — it's non-negative by construction, unlike expected MtM which can be negative." },
     { wrong: "\"Receiving payments less frequently than paying them reduces counterparty exposure.\"", right: "The opposite — RECEIVING more often than paying REDUCES exposure, since cash comes in faster than it's owed out, shrinking the average outstanding exposure window." },
     { wrong: "\"PFE analysis fully accounts for wrong-way risk since it already models worst-case exposure.\"", right: "PFE analysis explicitly IGNORES wrong-way risk, collateral-value uncertainty, and liquidity/liquidation risk — it silently assumes a strongly collateralized position. These specific omissions are the tested limitations, not a vague 'it's just an estimate.'" },
-    { wrong: "\"Zero correlation (ρ=0) gives the maximum netting benefit.\"", right: "Perfect NEGATIVE correlation (ρ→−1) gives the maximum benefit (trades fully offset) — the netting factor formula shows benefit keeps improving as ρ falls below zero, not just to zero." }
+    { wrong: "\"Zero correlation \\((\\rho =0)\\) gives the maximum netting benefit.\"", right: "Perfect NEGATIVE correlation \\((\\rho\\)→−1) gives the maximum benefit (trades fully offset) — the netting factor formula shows benefit keeps improving as \\(\\rho\\) falls below zero, not just to zero." }
   ],
 
   highYield: [
     { stars: 5, what: "The exposure profile shapes by product (flat/hump/rising/rise-then-jump) — visual and verbal recognition.", why: "Explicitly flagged as tested visually AND verbally, not just numerically — a distinctive, high-value study target." },
     { stars: 4, what: "EE vs PFE vs EPE vs ENE definitions, especially EE's 'positive part only' filter.", why: "The core vocabulary R37's CVA formula assumes fluent — get this wrong and CVA calculations break." },
-    { stars: 4, what: "Netting factor formula and its extremes (ρ=1 no benefit, ρ→−1 maximum benefit).", why: "A clean, frequently tested formula with clear boundary behavior." },
+    { stars: 4, what: "Netting factor formula and its extremes \\((\\rho =1\\) no benefit, \\(\\rho\\)→−1 maximum benefit).", why: "A clean, frequently tested formula with clear boundary behavior." },
     { stars: 3, what: "PFE's silent assumptions/limitations (ignores WWR, collateral uncertainty, liquidity risk).", why: "A precise 'what's missing' question format GARP favors." },
     { stars: 3, what: "Swaption vs forward swap exposure before/after the exercise date.", why: "A subtle, well-defined comparison connecting option theory to exposure profiles." }
   ],
 
   recall: [
     { q: "Why does an interest rate swap's exposure profile peak in the middle of its life rather than rising monotonically like an FX swap's?", a: "Two forces fight: rising uncertainty about future rate paths pushes exposure up over time (diffusion), while the shrinking number of remaining cash flows as maturity approaches pulls exposure down (amortization/roll-off). Early on diffusion dominates; later, roll-off dominates, producing a hump. An FX swap lacks this offsetting roll-off force as strongly, since its terminal notional exchange dominates and grows with time." },
-    { q: "A netting agreement covers 4 trades with pairwise correlation 0. What is the netting factor, and what does it mean?", a: "Netting factor = √[(1+(4−1)×0)/4] = √(1/4) = 50%. This means netted exposure is roughly half of what gross (unnetted) exposure would be — reflecting substantial diversification benefit from combining 4 uncorrelated exposures." },
+    { q: "A netting agreement covers 4 trades with pairwise correlation 0. What is the netting factor, and what does it mean?", a: "Netting factor = \\(\\sqrt{(1+(4- 1)\\times 0)/4}\\) = \\(\\sqrt{1/4}\\) = 50%. This means netted exposure is roughly half of what gross (unnetted) exposure would be — reflecting substantial diversification benefit from combining 4 uncorrelated exposures." },
     { q: "List the specific risks that PFE analysis is known to silently ignore.", a: "Wrong-way risk, collateral-value uncertainty, and liquidity/liquidation risk. PFE analysis assumes a strongly collateralized position and doesn't model these — these specific omissions are the standard tested answer when asked about PFE's limitations." },
     { q: "Why does a swaption have HIGHER exposure than an equivalent forward swap before the exercise date, but LOWER exposure after?", a: "Before exercise, the swaption holder retains the OPTION to walk away if the swap would be unfavorable — this optionality itself has positive value in bad states, adding exposure relative to a forward swap that's locked in regardless. After the exercise date (once exercised into a swap, or lapsed), the swaption's distinguishing optionality is gone; the forward swap, having been obligated all along, can accumulate more downside exposure in adverse scenarios that the (now-decided) swaption already avoided by not exercising." }
   ],
@@ -101,8 +101,8 @@ FRM.register({
   hooks: [
     { title: "Silhouettes to memorize", text: "Flat line (bonds), a hump (swaps — diffusion fights roll-off), a rising ramp (FX/options), a ramp that jumps at the end (CDS pre-default). Four shapes, four stories — memorize the SILHOUETTE, not just the name." },
     { title: "EE already filtered", text: "Expected MtM is the raw average — can go negative. EE has already been through airport security: only the positive part gets through." },
-    { title: "Negative correlation is the jackpot, not zero", text: "The netting factor formula keeps improving past ρ=0 — perfect negative correlation (trades that always offset) is the actual best case, not just 'no correlation.'" }
+    { title: "Negative correlation is the jackpot, not zero", text: "The netting factor formula keeps improving past \\(\\rho =0\\) — perfect negative correlation (trades that always offset) is the actual best case, not just 'no correlation.'" }
   ],
 
-  summary: `<p><strong>Exposure family</strong>: Expected MtM (can be negative) → EE (positive part only) → PFE (tail, high-confidence worst case) → EPE (time-average of EE) → ENE (counterparty's mirror) → effective EE/EPE (non-decreasing, captures rollover risk). Exposure vs VaR: used for pricing AND risk management, spans many future dates, must model netting/collateral. <strong>Profile shapes</strong>: bonds flat, swaps hump, FX/options rising, CDS rise-then-jump. <strong>Netting factor</strong> = √[(1+(n−1)ρ)/n] — ρ=1 no benefit, ρ→−1 maximum benefit. <strong>MPoR</strong>: 5-step process (call→collateral→settlement→grace→liquidation); PFE(MPoR)=z·vol·√(MPoR/250). PFE ignores wrong-way risk, collateral-value uncertainty, liquidity risk. Collateral is path-dependent.</p>`
+  summary: `<p><strong>Exposure family</strong>: Expected MtM (can be negative) → EE (positive part only) → PFE (tail, high-confidence worst case) → EPE (time-average of EE) → ENE (counterparty's mirror) → effective EE/EPE (non-decreasing, captures rollover risk). Exposure vs VaR: used for pricing AND risk management, spans many future dates, must model netting/collateral. <strong>Profile shapes</strong>: bonds flat, swaps hump, FX/options rising, CDS rise-then-jump. <strong>Netting factor</strong> = \\(\\sqrt{(1+(n- 1)\\rho )/n}\\) — \\(\\rho =1\\) no benefit, \\(\\rho\\)→−1 maximum benefit. <strong>MPoR</strong>: 5-step process (call→collateral→settlement→grace→liquidation); \\(PFE(MPoR)=z\\cdot vol\\cdot \\sqrt{MPoR/250}\\). PFE ignores wrong-way risk, collateral-value uncertainty, liquidity risk. Collateral is path-dependent.</p>`
 });

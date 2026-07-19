@@ -14,15 +14,15 @@ FRM.register({
   visual: `<div class="widget" data-widget="bars" data-title="Fixed-income mapping precision ranking (same $200M bond portfolio)" data-caption="More precision (right to left) almost always means a LOWER, more realistic VaR — because it captures diversification cruder methods miss." data-bars='{"items":[{"l":"Principal mapping","v":2.968,"d":"$2.968M","c":"#ef7b7b"},{"l":"Duration mapping","v":2.737,"d":"$2.737M","c":"#e8b45a"},{"l":"Cash flow (undiversified)","v":2.674,"d":"$2.674M","c":"#5fd4d0"},{"l":"Cash flow (diversified)","v":2.615,"d":"$2.615M","c":"#4ecf8e"}]}'></div>`,
 
   formulas: [
-    { name: "Undiversified VaR (ρ = 1)", math: "VaR<sub>undiv</sub> = Σ |x<sub>i</sub>| V<sub>i</sub>", note: "Sum of each mapped exposure's own VaR — assumes perfect correlation, always ≥ the diversified figure." },
-    { name: "Diversified VaR", math: "VaR<sub>div</sub> = √(x′ R x) using the correlation matrix R", note: "Full matrix algebra across mapped factor exposures; captures genuine diversification benefit." }
+    { name: "Undiversified VaR (ρ = 1)", math: "VaR_{undiv} = \\Sigma |x_{i}| V_{i}", note: "Sum of each mapped exposure's own VaR — assumes perfect correlation, always ≥ the diversified figure." },
+    { name: "Diversified VaR", math: "\\text{VaR}_{\\text{div}} = \\sqrt{x'\\,R\\,x}\\quad(\\text{using correlation matrix }R)", note: "Full matrix algebra across mapped factor exposures; captures genuine diversification benefit." }
   ],
 
   concepts: [
     {
       name: "Why mapping is necessary",
       def: "Mapping is needed when: (1) too many positions to model individually, (2) a common risk-factor language is needed across different instrument types, (3) an asset lacks sufficient history (e.g., a recent IPO) and must borrow history from factors that have it, (4) exposures change over time (e.g., bonds rolling down the curve).",
-      example: "A 5,000-stock portfolio needs ~12.5 million pairwise covariances stock-by-stock; mapping each stock to a market index via β collapses this to essentially one factor.",
+      example: "A 5,000-stock portfolio needs ~12.5 million pairwise covariances stock-by-stock; mapping each stock to a market index via \\(\\beta\\) collapses this to essentially one factor.",
       related: [{ r: 10, label: "R10 — PCA compresses the yield curve the same way" }]
     },
     {
@@ -41,7 +41,7 @@ FRM.register({
     },
     {
       name: "Stress testing & tracking error VaR",
-      def: "Stressing each mapped zero by its own VaR (assuming ρ=1) reproduces undiversified VaR without matrix algebra, but breaks down the moment correlations aren't perfect. Tracking error VaR measures a portfolio's VaR relative to a BENCHMARK.",
+      def: "Stressing each mapped zero by its own VaR (assuming \\(\\rho =1)\\) reproduces undiversified VaR without matrix algebra, but breaks down the moment correlations aren't perfect. Tracking error VaR measures a portfolio's VaR relative to a BENCHMARK.",
       pitfall: "Minimizing tracking error is NOT the same objective as minimizing absolute VaR — a portfolio can have the lowest absolute VaR and simultaneously the HIGHEST tracking error (classic example: a barbell portfolio vs a bulleted benchmark).",
       related: [{ r: 86, label: "R86 — risk budgeting reuses tracking-error logic" }]
     },
@@ -64,7 +64,7 @@ FRM.register({
       { r: 85, why: "Component/marginal VaR in Book 5 decomposes portfolio risk using the same mapped-factor structure." }
     ],
     confused: [
-      { what: "Undiversified vs diversified VaR", how: "Undiversified sums individual VaRs assuming ρ=1 (a stress-test shortcut); diversified uses the true correlation matrix and is always ≤ undiversified." },
+      { what: "Undiversified vs diversified VaR", how: "Undiversified sums individual VaRs assuming \\(\\rho =1\\) (a stress-test shortcut); diversified uses the true correlation matrix and is always ≤ undiversified." },
       { what: "Specific risk vs idiosyncratic risk vs general risk", how: "Same thing — the part NOT explained by your chosen risk factors. It shrinks as your factor set grows finer; it is not a fixed asset property." },
       { what: "Delta-normal VaR vs full revaluation", how: "Delta-normal is a fast linear approximation, accurate only for small moves/short horizons; full revaluation actually reprices the option under each scenario and captures convexity." }
     ]
@@ -86,7 +86,7 @@ FRM.register({
   ],
 
   recall: [
-    { q: "Why can't you just run historical simulation on 5,000 individual stock positions directly?", a: "You'd need the full covariance structure across 5,000 assets (~12.5M pairwise covariances) — computationally and statistically infeasible. Mapping each stock to a factor (e.g., market β) collapses this to a tractable few factors." },
+    { q: "Why can't you just run historical simulation on 5,000 individual stock positions directly?", a: "You'd need the full covariance structure across 5,000 assets (~12.5M pairwise covariances) — computationally and statistically infeasible. Mapping each stock to a factor (e.g., market \\(\\beta )\\) collapses this to a tractable few factors." },
     { q: "A bond portfolio's duration-only model shows high 'specific risk.' You add a credit-spread factor. What happens to specific risk, and why doesn't this mean the bond became less risky?", a: "Specific risk shrinks — some of what was unexplained is now captured by the new factor. Total risk is unchanged; you've just relabeled part of 'specific' as 'general.' Specific risk is a modeling artifact, not an asset property." },
     { q: "Why does cash-flow mapping (diversified) produce a lower VaR than principal mapping for the same bond portfolio?", a: "Principal mapping crudely lumps everything at one weighted-average maturity, implicitly assuming perfect co-movement. Diversified cash-flow mapping captures the true (imperfect) correlation between different points on the curve, revealing real diversification benefit that cruder methods hide." },
     { q: "Explain how a portfolio can have the lowest absolute VaR yet the highest tracking error against its benchmark.", a: "Absolute VaR depends on the portfolio's own risk; tracking error depends on how differently it moves from the BENCHMARK. A very low-risk portfolio built very differently from a higher-risk benchmark (e.g., barbell vs bullet duration profile) can minimize its own VaR while maximizing its divergence from the benchmark." },
@@ -99,5 +99,5 @@ FRM.register({
     { title: "Snapshot vs movie", text: "Delta-normal VaR is a single photograph of an option's sensitivity; a big move or long horizon needs the whole movie (full revaluation) to see how that sensitivity itself changes." }
   ],
 
-  summary: `<p>Mapping replaces many positions with exposures to a handful of shared risk factors so R1-4's machinery becomes tractable. <strong>General vs specific risk</strong>: specific risk shrinks as factors get finer — it is not fixed. <strong>Fixed-income mapping</strong>, coarse to fine: principal (weighted-avg life) → duration (single zero match) → cash-flow (every payment mapped, correlations included) — precision typically lowers VaR by revealing diversification. <strong>Undiversified VaR</strong> (Σ|xᵢ|Vᵢ, ρ=1) is a stress-test upper bound; <strong>diversified VaR</strong> uses the true correlation matrix. <strong>Tracking error VaR</strong> (vs benchmark) can move opposite to absolute VaR — barbell vs bullet is the classic case. <strong>Derivatives</strong>: linear instruments (forwards/swaps) map cleanly; options need delta-normal (fast, first-order, breaks down over long horizons) or full revaluation/delta-gamma.</p>`
+  summary: `<p>Mapping replaces many positions with exposures to a handful of shared risk factors so R1-4's machinery becomes tractable. <strong>General vs specific risk</strong>: specific risk shrinks as factors get finer — it is not fixed. <strong>Fixed-income mapping</strong>, coarse to fine: principal (weighted-avg life) → duration (single zero match) → cash-flow (every payment mapped, correlations included) — precision typically lowers VaR by revealing diversification. <strong>Undiversified VaR</strong> \\((\\Sigma |x_{i}|V_{i}\\), \\(\\rho =1)\\) is a stress-test upper bound; <strong>diversified VaR</strong> uses the true correlation matrix. <strong>Tracking error VaR</strong> (vs benchmark) can move opposite to absolute VaR — barbell vs bullet is the classic case. <strong>Derivatives</strong>: linear instruments (forwards/swaps) map cleanly; options need delta-normal (fast, first-order, breaks down over long horizons) or full revaluation/delta-gamma.</p>`
 });

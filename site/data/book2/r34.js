@@ -11,7 +11,7 @@ FRM.register({
   intuition: `<p>Collateral posting isn't automatic or continuous — it's governed by specific parameters that create gaps. THRESHOLD is the amount of exposure allowed to go uncollateralized before any collateral is called at all. MINIMUM TRANSFER AMOUNT prevents tiny, operationally wasteful collateral movements. Both parameters, while operationally sensible, create windows of real uncollateralized exposure that a naive "we have a CSA so we're covered" assumption would miss.</p>`,
 
   formulas: [
-    { name: "Credit support amount (variation margin)", math: "Credit support amount = Exposure − Threshold", note: "Collateral is called if positive, up to the threshold; a negative result means no posting is currently required." }
+    { name: "Credit support amount (variation margin)", math: "\\text{Credit support amount} = \\text{Exposure} - \\text{Threshold}", note: "Collateral is called if positive, up to the threshold; a negative result means no posting is currently required." }
   ],
 
   concepts: [

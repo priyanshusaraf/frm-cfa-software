@@ -14,15 +14,15 @@ FRM.register({
   visual: `<div class="widget" data-widget="lvar"></div>`,
 
   formulas: [
-    { name: "Cost of liquidation (normal markets)", math: "cost = Σᵢ [αᵢ × sᵢ / 2]", note: "s = spread/mid-price. 2M ABC shares + 500K XYZ shares example → cost ≈ $1,874,961." },
-    { name: "Stressed cost of liquidation", math: "cost_stressed = Σ{αᵢ × [μᵢ + γσᵢ]/2}", note: "γ = confidence z-score. Same position at 95% confidence → $7,015,577, ≈3.7× the normal-market cost." },
-    { name: "Liquidity-adjusted VaR", math: "LVaR = VaR + Cost of liquidation (normal or stressed)", note: "Quick unwind: less market-risk exposure, more spread-widening exposure. Slow unwind: the reverse." }
+    { name: "Cost of liquidation (normal markets)", math: "\\text{cost} = \\sum_i \\dfrac{\\alpha_i\\, s_i}{2}", note: "s = spread/mid-price. 2M ABC shares + 500K XYZ shares example → cost ≈ $1,874,961." },
+    { name: "Stressed cost of liquidation", math: "\\text{cost}_{\\text{stressed}} = \\sum_i \\dfrac{\\alpha_i\\,[\\mu_i + \\gamma\\sigma_i]}{2}", note: "\\(\\gamma\\) = confidence z-score. Same position at 95% confidence → $7,015,577, ≈3.7× the normal-market cost." },
+    { name: "Liquidity-adjusted VaR", math: "\\text{LVaR} = \\text{VaR} + \\text{Cost of liquidation (normal or stressed)}", note: "Quick unwind: less market-risk exposure, more spread-widening exposure. Slow unwind: the reverse." }
   ],
 
   concepts: [
     {
       name: "Cost of liquidation — normal and stressed markets",
-      def: "Normal: cost = s×(α/2) per position, s=spread/mid-price. Stressed: cost = [μ+γσ]/2 per position, using the spread's mean, SD, and a confidence z-score.",
+      def: "Normal: cost = \\(s\\times (\\alpha /2)\\) per position, s=spread/mid-price. Stressed: cost = \\([\\mu +\\gamma \\sigma ]/2\\) per position, using the spread's mean, SD, and a confidence z-score.",
       example: "2M shares ABC (bid $25.50, offer $27.00) + 500K shares XYZ (bid $45.00, offer $46.50): normal cost ≈ $1,874,961. Same positions at 95% confidence stressed: cost ≈ $7,015,577 — roughly 3.7× the normal-market cost.",
       related: ["Liquidity-adjusted VaR (LVaR)"]
     },
@@ -92,7 +92,7 @@ FRM.register({
   ],
 
   recall: [
-    { q: "Why is stressed-market liquidation cost roughly 3.7× the normal-market cost in the reading's worked example, rather than just modestly higher?", a: "Stressed cost uses the spread's mean PLUS a confidence-multiple (γ×σ) of its standard deviation — under stress, spreads don't just have a higher average, they also become far more volatile/uncertain, and the confidence-adjustment term compounds this into a dramatically larger liquidation cost than simply scaling the normal-market mean spread." },
+    { q: "Why is stressed-market liquidation cost roughly 3.7× the normal-market cost in the reading's worked example, rather than just modestly higher?", a: "Stressed cost uses the spread's mean PLUS a confidence-multiple \\((\\gamma \\times \\sigma )\\) of its standard deviation — under stress, spreads don't just have a higher average, they also become far more volatile/uncertain, and the confidence-adjustment term compounds this into a dramatically larger liquidation cost than simply scaling the normal-market mean spread." },
     { q: "Explain the shared lesson across Northern Rock, Ashanti Goldfields, and Metallgesellschaft despite their very different underlying positions.", a: "In each case, the underlying economic position (mortgage book, gold hedge, oil hedge) may have been sound or even eventually profitable — but a cash-timing mismatch (a funding run, an unexpected price spike triggering margin calls, falling prices triggering margin calls) forced action or collapse before the position's fundamental soundness could matter. Margin calls and funding withdrawals are due in cash, immediately, regardless of the position's paper value." },
     { q: "Why might uniform liquidity regulation across banks, pension funds, and insurers actually increase systemic risk rather than reduce it?", a: "If all institution types are forced to hold the same liquid assets or react identically to the same market shock, they all become forced sellers (or buyers) of the same assets at the same time — removing the diversity of behavior that would otherwise cushion a shock, since different institution types with different rules would naturally act at different times and in different ways." }
   ],
@@ -103,5 +103,5 @@ FRM.register({
     { title: "Sameness is the danger", text: "When every institution type follows the same rulebook, they all reach for the exit at the same moment — diversity of regulation is a shock absorber, not red tape." }
   ],
 
-  summary: `<p><strong>LVaR</strong> = VaR + cost of liquidation; normal cost=Σ[α×s/2], stressed cost=Σ{α×[μ+γσ]/2} (≈3.7× normal in the worked example). <strong>Six funding-liquidity sources</strong>: cash/treasuries, deposits (surprisingly unstable), trading book liquidation, securitization, borrowing ability, central bank borrowing. <strong>Three case studies</strong> (Northern Rock, Ashanti Goldfields, Metallgesellschaft): economically sound positions bankrupted by cash-timing mismatches — the book's central recurring lesson. <strong>Basel III</strong>: LCR=HQLA/30-day outflow≥100%, NSFR=ASF/RSF≥100%. <strong>Liquidity black holes</strong>: positive feedback trading (stop-losses, delta-hedging, forced liquidation) destabilizes; uniform regulation across institution types can itself create black holes — regulatory diversity stabilizes.</p>`
+  summary: `<p><strong>LVaR</strong> = VaR + cost of liquidation; normal \\(cost=\\Sigma [\\alpha \\times s/2]\\), stressed \\(cost=\\Sigma\\){\\(\\alpha \\times [\\mu +\\gamma \\sigma ]/2\\)} (≈3.7× normal in the worked example). <strong>Six funding-liquidity sources</strong>: cash/treasuries, deposits (surprisingly unstable), trading book liquidation, securitization, borrowing ability, central bank borrowing. <strong>Three case studies</strong> (Northern Rock, Ashanti Goldfields, Metallgesellschaft): economically sound positions bankrupted by cash-timing mismatches — the book's central recurring lesson. <strong>Basel III</strong>: LCR=HQLA/30-day outflow≥100%, NSFR=ASF/RSF≥100%. <strong>Liquidity black holes</strong>: positive feedback trading (stop-losses, delta-hedging, forced liquidation) destabilizes; uniform regulation across institution types can itself create black holes — regulatory diversity stabilizes.</p>`
 });

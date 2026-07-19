@@ -11,7 +11,7 @@ FRM.register({
   intuition: `<p>Think of the asset classification spectrum as a patient's health chart: standard (healthy) → specially mentioned (early symptoms) → substandard → doubtful → loss (already a write-off). Provisioning intensity should rise as the patient's condition worsens — that's the whole logic connecting classification to loss reserves.</p>`,
 
   formulas: [
-    { name: "Expected loss (first appearance, qualitative)", math: "EL = PD × LGD × EAD", note: "The 'average' loss. UL is what's NOT captured by this average — the variability around it. Becomes fully quantitative with formulas in R20." }
+    { name: "Expected loss (first appearance, qualitative)", math: "EL = PD \\times LGD \\times EAD", note: "The 'average' loss. UL is what's NOT captured by this average — the variability around it. Becomes fully quantitative with formulas in R20." }
   ],
 
   concepts: [

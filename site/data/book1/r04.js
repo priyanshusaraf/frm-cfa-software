@@ -15,9 +15,9 @@ FRM.register({
   visual: `<div class="widget" data-widget="traffic"></div>`,
 
   formulas: [
-    { name: "Failure-rate z-test", math: "z = (x − pT) / √(p(1−p)T)", note: "x = exceptions, p = 1−VaR confidence, T = days. |z| > 1.96 → reject unbiasedness at 95%." },
-    { name: "Kupiec unconditional coverage", math: "LR<sub>uc</sub> ~ χ²(1); reject if LR<sub>uc</sub> > 3.84", note: "3.84 = 1.96² — the χ² threshold is literally the squared normal critical value. The exam likes this 'aha.'" },
-    { name: "Christoffersen conditional coverage", math: "LR<sub>cc</sub> = LR<sub>uc</sub> + LR<sub>ind</sub>; reject if > 5.99 (χ², 2df)", note: "LR_ind alone: reject independence if > 3.84 (χ², 1df). You need what each tests, not hand computation." }
+    { name: "Failure-rate z-test", math: "z = (x - pT) / \\sqrt{p(1-p)T}", note: "x = exceptions, p = 1−VaR confidence, T = days. |z| > 1.96 → reject unbiasedness at 95%." },
+    { name: "Kupiec unconditional coverage", math: "LR_{uc} ~ \\chi^{2}(1); reject if LR_{uc} > 3.84", note: "3.84 = \\(1.96^{2}\\) — the \\(\\chi^{2}\\) threshold is literally the squared normal critical value. The exam likes this 'aha.'" },
+    { name: "Christoffersen conditional coverage", math: "LR_{cc} = LR_{uc} + LR_{ind}; reject if > 5.99 (\\chi^{2}, 2df)", note: "LR_ind alone: reject independence if > 3.84 \\((\\chi^{2}\\), 1df). You need what each tests, not hand computation." }
   ],
 
   concepts: [
@@ -38,7 +38,7 @@ FRM.register({
     },
     {
       name: "The z-test on failure rates",
-      def: "Model the exception count as binomial(T, p); z = (x − pT)/√(p(1−p)T) against the standard normal.",
+      def: "Model the exception count as binomial(T, p); z = (x − \\(pT)/\\sqrt{p(1- p)T}\\) against the standard normal.",
       example: "95% VaR, 252 days, 22 exceptions: z = (22 − 12.6)/3.46 ≈ 2.72 > 1.96 → reject; the model understates risk.",
       pitfall: "TWO different confidence levels coexist: the VaR confidence (95%) and the TEST confidence (also often 95% → 1.96) — separate choices that needn't match. Questions deliberately set them different to catch conflation.",
       related: ["Kupiec LR test"]
@@ -54,8 +54,8 @@ FRM.register({
     },
     {
       name: "Kupiec unconditional coverage (LRuc)",
-      def: "Likelihood-ratio test on the exception COUNT against binomial expectation; χ²(1) under the null; reject above 3.84.",
-      intuition: "The z-test's likelihood-ratio twin. 3.84 = 1.96² is not a coincidence — same test, squared geometry.",
+      def: "Likelihood-ratio test on the exception COUNT against binomial expectation; \\(\\chi^{2}(1)\\) under the null; reject above 3.84.",
+      intuition: "The z-test's likelihood-ratio twin. 3.84 = \\(1.96^{2}\\) is not a coincidence — same test, squared geometry.",
       example: "T=252, p=0.05, N=12 vs expected 12.6 → LRuc far below 3.84 → fail to reject; model validated.",
       pitfall: "'Unconditional' = only the COUNT matters; timing is invisible. That blindness is the whole reason conditional coverage exists.",
       related: ["Christoffersen conditional coverage"]
@@ -100,7 +100,7 @@ FRM.register({
     { wrong: "\"5 exceptions at 99% over 250 days proves the model is broken.\"", right: "A correct model produces ≥5 exceptions ≈10.8% of the time. That's why yellow is a discretion zone, not an automatic penalty." },
     { wrong: "\"Small sample size is an official cause of yellow-zone exceptions.\"", right: "It's the planted WRONG answer. The four causes: integrity failure, accuracy needs improvement, intraday trading, bad luck." },
     { wrong: "\"Passing Kupiec means the model is validated.\"", right: "Kupiec sees only the count. Clustered exceptions can pass Kupiec while failing independence — you need conditional coverage for the full verdict." },
-    { wrong: "\"The 3.84 and 5.99 thresholds are arbitrary.\"", right: "3.84 = 1.96² = χ²(1) at 95%; 5.99 = χ²(2) at 95% because LRcc stacks two component tests (count + independence), consuming 2 degrees of freedom." }
+    { wrong: "\"The 3.84 and 5.99 thresholds are arbitrary.\"", right: "3.84 = \\(1.96^{2}\\) = \\(\\chi^{2}(1)\\) at 95%; 5.99 = \\(\\chi^{2}(2)\\) at 95% because LRcc stacks two component tests (count + independence), consuming 2 degrees of freedom." }
   ],
 
   highYield: [
@@ -112,7 +112,7 @@ FRM.register({
   ],
 
   recall: [
-    { q: "95% VaR, 500 days, 35 exceptions. Run the z-test and conclude.", a: "Expected = 25, SE = √(0.05·0.95·500) ≈ 4.87, z = (35−25)/4.87 ≈ 2.05 > 1.96 → reject: too many exceptions, model understates risk." },
+    { q: "95% VaR, 500 days, 35 exceptions. Run the z-test and conclude.", a: "Expected = 25, SE = \\(\\sqrt{0.05\\cdot 0.95\\cdot 500}\\) ≈ 4.87, z = (35−25)/4.87 ≈ 2.05 > 1.96 → reject: too many exceptions, model understates risk." },
     { q: "Why do regulators accept a 10.8% false-alarm rate on good models?", a: "Because the alternative — loosening the trigger — raises Type II risk: flawed models slipping through with too little capital behind them. Regulators price systemic misses as costlier than unfair penalties." },
     { q: "A model shows exactly the expected number of exceptions, but all in one quarter. Which tests pass and fail, and what does it mean?", a: "Kupiec (count) passes; independence (LRind) fails, so conditional coverage fails. The model didn't adapt to a regime shift — the count is fine, the timing is damning." },
     { q: "Name the four Basel yellow-zone causes and the classic non-cause distractor.", a: "Integrity lacking; accuracy needs improvement; intraday trading; bad luck. Distractor: 'small sample size.'" },
@@ -121,9 +121,9 @@ FRM.register({
 
   hooks: [
     { title: "The storm forecaster", text: "A VaR model claims '5% storm chance daily.' Count the storms: ≈13 in a year is honest, 22 is a broken forecaster, 0 is a forecaster crying storm-danger to inflate their budget. Clustered storms mean the climate changed and the forecast didn't." },
-    { title: "1.96² = 3.84", text: "The Kupiec threshold is the z-critical squared — the χ²(1) is a squared normal. Two tests, one geometry. If you remember 1.96, you already remember 3.84." },
+    { title: "1.96² = 3.84", text: "The Kupiec threshold is the z-critical squared — the \\(\\chi^{2}(1)\\) is a squared normal. Two tests, one geometry. If you remember 1.96, you already remember 3.84." },
     { title: "Traffic lights", text: "GREEN 0–4 drive on (k=3). YELLOW 5–9 pull over, officer's discretion (k up to 3.85). RED 10+ license suspended (k=4). And 'small sample size' is never a valid excuse to the officer." }
   ],
 
-  summary: `<p>Backtesting audits VaR by counting <strong>exceptions</strong> (loss > VaR). Binomial logic → <strong>z-test</strong>: z=(x−pT)/√(p(1−p)T) vs 1.96. <strong>Kupiec LRuc</strong> (χ²(1), reject >3.84) tests the count; <strong>Christoffersen</strong> adds independence — LRcc = LRuc + LRind, reject >5.99; clustering fails independence even when the count passes. <strong>Type I</strong> (punish good model) vs <strong>Type II</strong> (miss bad model — regulators' bigger fear). <strong>Basel</strong>: 250 days, 99% VaR: green 0–4 (k=3.00), yellow 5–9 (k=3.40–3.85, four named causes, 'small sample' is a distractor), red 10+ (k=4.00). Dirty-P&L problem: static-portfolio VaR vs traded-portfolio reality → use cleaned/hypothetical returns. Two confidence levels (VaR's and the test's) are separate dials.</p>`
+  summary: `<p>Backtesting audits VaR by counting <strong>exceptions</strong> (loss > VaR). Binomial logic → <strong>z-test</strong>: \\(z=(x- pT)/\\sqrt{p(1- p)T}\\) vs 1.96. <strong>Kupiec LRuc</strong> \\((\\chi^{2}(1)\\), reject >3.84) tests the count; <strong>Christoffersen</strong> adds independence — LRcc = LRuc + LRind, reject >5.99; clustering fails independence even when the count passes. <strong>Type I</strong> (punish good model) vs <strong>Type II</strong> (miss bad model — regulators' bigger fear). <strong>Basel</strong>: 250 days, 99% VaR: green 0–4 (k=3.00), yellow 5–9 (k=3.40–3.85, four named causes, 'small sample' is a distractor), red 10+ (k=4.00). Dirty-P&L problem: static-portfolio VaR vs traded-portfolio reality → use cleaned/hypothetical returns. Two confidence levels (VaR's and the test's) are separate dials.</p>`
 });

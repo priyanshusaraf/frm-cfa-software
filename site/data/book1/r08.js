@@ -11,8 +11,8 @@ FRM.register({
   intuition: `<p>The single most counter-intuitive, heavily tested result here: correlation LEVEL is highest in recessions (crashes move everything together), but correlation VOLATILITY (how much correlation itself jumps around) is highest in NORMAL times, not recessions. During a recession or expansion, direction is at least "expected" — correlation sits high and stays there. In normal times, nobody agrees on where the market is headed, so correlation estimates swing more.</p>`,
 
   formulas: [
-    { name: "Mean reversion + 1-period autocorrelation identity", math: "mean reversion rate (a) + 1-period autocorrelation = 1", note: "Know one, get the other for free — no separate calculation needed." },
-    { name: "Estimating mean reversion via regression", math: "regress (S<sub>t</sub> − S<sub>t−1</sub>) on S<sub>t−1</sub>; slope β = −a", note: "Larger a (faster reversion) → deviations from the long-run mean die out quickly." }
+    { name: "Mean reversion + 1-period autocorrelation identity", math: "\\text{mean reversion rate }(a) + \\text{1-period autocorrelation} = 1", note: "Know one, get the other for free — no separate calculation needed." },
+    { name: "Estimating mean reversion via regression", math: "regress (S_{t} - S_{t-1}) on S_{t-1}; slope \\beta = -a", note: "Larger a (faster reversion) → deviations from the long-run mean die out quickly." }
   ],
 
   concepts: [

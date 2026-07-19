@@ -12,17 +12,17 @@ FRM.register({
   <p>A useful shortcut: the recovery rate assumption barely matters for matching a given spread, because risk-neutral PD ≈ proportional to 1/(1−RR) — a higher assumed RR just implies a correspondingly higher RN PD, netting out in the final spread.</p>`,
 
   formulas: [
-    { name: "CDS spread balance equation", math: "PV(expected premium payments + accrual) = PV(expected payoff)", note: "Solve for spread s. Everything else in this reading is a variation on this one equation." },
-    { name: "Up-front payment", math: "Up-front = (spread − fixed coupon) × duration × notional", note: "Spread > coupon → seller pays buyer is WRONG; verify direction from the worked example — spread<coupon → seller pays buyer the difference." },
-    { name: "Breakeven synthetic CDO spread", math: "s × (A + B) = C", note: "A = PV(notional outstanding over life), B = PV(final accrual on losses), C = PV(expected credit losses)." },
-    { name: "CPR from SMM", math: "CPR = 1 − (1−SMM)¹²", note: "Constant prepayment rate annualized from single monthly mortality." }
+    { name: "CDS spread balance equation", math: "\\text{PV(expected premium payments + accrual)} = \\text{PV(expected payoff)}", note: "Solve for spread s. Everything else in this reading is a variation on this one equation." },
+    { name: "Up-front payment", math: "\\text{Up-front} = (\\text{spread} - \\text{fixed coupon})\\times \\text{duration}\\times \\text{notional}", note: "Spread > coupon → seller pays buyer is WRONG; verify direction from the worked example — spread<coupon → seller pays buyer the difference." },
+    { name: "Breakeven synthetic CDO spread", math: "s \\times (A + B) = C", note: "A = PV(notional outstanding over life), B = PV(final accrual on losses), C = PV(expected credit losses)." },
+    { name: "CPR from SMM", math: "CPR = 1 - (1-SMM)^{12}", note: "Constant prepayment rate annualized from single monthly mortality." }
   ],
 
   concepts: [
     {
       name: "CDS spread — the core balance equation",
       def: "Set PV(expected premium payments + accrual) = PV(expected payoff) and solve for spread s.",
-      example: "3-yr CDS, λ=3%, RR=35%, r=4%, annual settlement, default mid-year: survival probs Yr1=97.045%, Yr2=94.176%, Yr3=91.393%. PV(payments)=2.6123s, PV(accrual)=0.0406s, total=2.6529s. Solving PV(payments)=PV(payoff) → s=1.99%.",
+      example: "3-yr CDS, \\(\\lambda =3\\)%, RR=35%, r=4%, annual settlement, default mid-year: survival probs Yr1=97.045%, Yr2=94.176%, Yr3=91.393%. PV(payments)=2.6123s, PV(accrual)=0.0406s, total=2.6529s. Solving PV(payments)=PV(payoff) → s=1.99%.",
       related: ["Risk-neutral PD implied by market spread"]
     },
     {
@@ -73,7 +73,7 @@ FRM.register({
       name: "Synthetic CDOs and tranche spreads",
       def: "Breakeven spread: s×(A+B)=C, where A=PV(notional outstanding), B=PV(final accrual on losses), C=PV(expected credit losses).",
       example: "$100M notional, 25 bonds×$4M, avg CDS spread=2% → annual spread income=$2M. Equity (5%, $5M): 10%/yr ($0.5M). Mezzanine (20%, $20M): 5.625%/yr ($1.125M). Senior (75%, $75M): 0.5%/yr ($0.375M).",
-      pitfall: "One-factor Gaussian copula approach: assumes homogeneous default-time distribution Q(t) and a single constant pairwise correlation ρ; conditional PD given the common factor F used with the binomial distribution for probability of exactly k defaults by time t. At inception, tranches are priced to earn a spread CONSISTENT WITH THEIR SENIORITY, not equally — equity earns far more per dollar of notional than senior, reflecting its much higher expected loss, NOT an arbitrage.",
+      pitfall: "One-factor Gaussian copula approach: assumes homogeneous default-time distribution Q(t) and a single constant pairwise correlation \\(\\rho\\); conditional PD given the common factor F used with the binomial distribution for probability of exactly k defaults by time t. At inception, tranches are priced to earn a spread CONSISTENT WITH THEIR SENIORITY, not equally — equity earns far more per dollar of notional than senior, reflecting its much higher expected loss, NOT an arbitrage.",
       related: [{ r: 28, label: "R28 — the tranche structure this prices" }],
       memory: "Different spreads by tranche isn't a pricing error — it's compensation matching each tranche's very different expected loss."
     },

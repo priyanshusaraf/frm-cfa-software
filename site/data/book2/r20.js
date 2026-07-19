@@ -12,11 +12,11 @@ FRM.register({
   <p>Credit losses are modeled with a BETA distribution (bounded 0-100%, flexible skew), not normal — because credit losses are inherently skewed: capped upside (get paid back in full) and a fat left tail (default).</p>`,
 
   formulas: [
-    { name: "Expected loss (single asset)", math: "EL = EA × PD × LR", note: "EA = exposure amount (EAD), PD = probability of default, LR = loss rate (LGD) = 1 − recovery rate." },
-    { name: "Unexpected loss (single asset)", math: "UL = EA × √[PD·σ<sub>LR</sub>² + LR²·σ<sub>PD</sub>²]", note: "σ_PD² = PD(1−PD) under a binomial default assumption." },
-    { name: "Portfolio UL", math: "UL<sub>P</sub>² = ΣΣ ρ<sub>ij</sub> UL<sub>i</sub> UL<sub>j</sub>", note: "If every pairwise ρ=1, UL_P = ΣUL_i (no diversification). In every realistic case ρ<1, so UL_P < ΣUL_i." },
-    { name: "Risk contribution (2-asset)", math: "RC₁ = (UL₁² + ρ₁₂UL₁UL₂) / UL<sub>P</sub>", note: "RC₁ + RC₂ = UL_P — each asset's slice sums exactly to total portfolio UL." },
-    { name: "Economic capital", math: "EC = CM × UL<sub>P</sub>", note: "CM (capital multiplier) = distance from expected outcome to a chosen extreme confidence level (typically 99.97%), expressed as a multiple of UL_P." }
+    { name: "Expected loss (single asset)", math: "EL = EA \\times PD \\times LR", note: "EA = exposure amount (EAD), PD = probability of default, LR = loss rate (LGD) = 1 − recovery rate." },
+    { name: "Unexpected loss (single asset)", math: "UL = EA \\times \\sqrt{PD\\cdot \\sigma_{LR}^{2} + LR^{2}\\cdot \\sigma_{PD}^{2}}", note: "\\(\\sigma_PD^{2}\\) = PD(1−PD) under a binomial default assumption." },
+    { name: "Portfolio UL", math: "UL_{P}^{2} = \\Sigma \\Sigma \\rho_{ij} UL_{i} UL_{j}", note: "If every pairwise \\(\\rho =1\\), UL_P = \\(\\Sigma UL_i\\) (no diversification). In every realistic case \\(\\rho\\)<1, so UL_P < \\(\\Sigma UL_i\\)." },
+    { name: "Risk contribution (2-asset)", math: "RC_{1} = (UL_{1}^{2} + \\rho_{12}UL_{1}UL_{2}) / UL_{P}", note: "\\(RC_{1}\\) + \\(RC_{2}\\) = UL_P — each asset's slice sums exactly to total portfolio UL." },
+    { name: "Economic capital", math: "EC = CM \\times UL_{P}", note: "CM (capital multiplier) = distance from expected outcome to a chosen extreme confidence level (typically 99.97%), expressed as a multiple of UL_P." }
   ],
 
   concepts: [
@@ -28,22 +28,22 @@ FRM.register({
     },
     {
       name: "Unexpected loss (single asset)",
-      def: "UL = EA × √[PD·σ_LR² + LR²·σ_PD²], with σ_PD² = PD(1−PD) under a binomial default assumption.",
-      example: "Same loan: PD=1%, LR=40%, σPD=10%, σLR=30%: UL = 1,800,000 × √[0.01×0.3² + 0.4²×0.1²] = $90,000 (5% of exposure).",
+      def: "UL = EA × \\(\\sqrt{PD\\cdot \\sigma_LR^{2}}\\) + \\(LR^{2}\\cdot \\sigma_PD^{2}]\\), with \\(\\sigma_PD^{2}\\) = PD(1−PD) under a binomial default assumption.",
+      example: "Same loan: PD=1%, LR=40%, \\(\\sigma PD=10\\)%, \\(\\sigma LR=30\\)%: UL = 1,800,000 × \\(\\sqrt{0.01\\times 0.3^{2}}\\) + \\(0.4^{2}\\times 0.1^{2}]\\) = $90,000 (5% of exposure).",
       pitfall: "Increasing recovery rate DECREASES LR, which decreases EL — but the exam likes to combine a recovery-rate change with a PD change in the same question and ask for net direction. Both a PD decrease and an RR increase point the SAME way (EL down) — watch for sign-flipping one of them.",
       related: ["Portfolio UL"]
     },
     {
       name: "Portfolio EL and UL — where diversification shows up",
-      def: "Portfolio EL just adds up (ΣEL_i). Portfolio UL involves cross-terms: UL_P² = ΣΣρ_ij UL_i UL_j.",
-      intuition: "If every pairwise ρ=1, UL_P = ΣUL_i (no diversification benefit at all). In every realistic case ρ<1, so UL_P < ΣUL_i.",
+      def: "Portfolio EL just adds up \\((\\Sigma EL_i)\\). Portfolio UL involves cross-terms: \\(UL_P^{2}\\) = \\(\\Sigma \\Sigma \\rho_ij\\) UL_i UL_j.",
+      intuition: "If every pairwise \\(\\rho =1\\), UL_P = \\(\\Sigma UL_i\\) (no diversification benefit at all). In every realistic case \\(\\rho\\)<1, so UL_P < \\(\\Sigma UL_i\\).",
       example: "A 20-asset portfolio has 190 unique correlation pairs; a 100-asset portfolio has 4,950 — exactly why practitioners collapse pairwise correlation into one representative number instead of estimating each pair.",
       related: [{ r: 27, label: "R27 — the single-factor model that operationalizes this at scale" }],
-      memory: "Diversification benefit lives entirely in the cross-terms — kill correlation (ρ→0) and UL_P shrinks well below the naive sum."
+      memory: "Diversification benefit lives entirely in the cross-terms — kill correlation \\((\\rho\\)→0) and UL_P shrinks well below the naive sum."
     },
     {
       name: "Risk contribution",
-      def: "Each asset's slice of portfolio UL: RC₁ = (UL₁² + ρ₁₂UL₁UL₂)/UL_P (two-asset case), with RC₁+RC₂=UL_P.",
+      def: "Each asset's slice of portfolio UL: \\(RC_{1}\\) = \\((UL_{1}^{2}\\) + \\(\\rho_{12}UL_{1}UL_{2})/UL_P\\) (two-asset case), with \\(RC_{1}+RC_{2}=UL_P\\).",
       intuition: "Risk contribution decomposes total portfolio risk back down to the asset level — useful for pricing (RAROC) and limit-setting.",
       related: ["Portfolio EL and UL"]
     },
@@ -68,29 +68,29 @@ FRM.register({
     ],
     confused: [
       { what: "EL vs UL", how: "EL is the AVERAGE loss (priced into spreads/reserves); UL is the VARIABILITY around that average (what capital protects against)." },
-      { what: "Portfolio UL vs sum of individual ULs", how: "They're equal ONLY if correlation is 1. Realistically ρ<1, so portfolio UL is meaningfully smaller — diversification benefit lives in this gap." }
+      { what: "Portfolio UL vs sum of individual ULs", how: "They're equal ONLY if correlation is 1. Realistically \\(\\rho\\)<1, so portfolio UL is meaningfully smaller — diversification benefit lives in this gap." }
     ]
   },
 
   misconceptions: [
-    { wrong: "\"Portfolio UL equals the sum of individual asset ULs.\"", right: "Only true if every pairwise correlation is exactly 1. In every realistic case (ρ<1), portfolio UL is LESS than the sum — the cross-terms in UL_P² = ΣΣρ_ij UL_i UL_j capture real diversification benefit." },
+    { wrong: "\"Portfolio UL equals the sum of individual asset ULs.\"", right: "Only true if every pairwise correlation is exactly 1. In every realistic case \\((\\rho\\)<1), portfolio UL is LESS than the sum — the cross-terms in \\(UL_P^{2}\\) = \\(\\Sigma \\Sigma \\rho_ij\\) UL_i UL_j capture real diversification benefit." },
     { wrong: "\"A PD decrease and a recovery-rate increase might offset each other on EL.\"", right: "They point the SAME direction — both LOWER EL (lower PD directly reduces EL; higher recovery rate lowers LR, which also reduces EL). A question combining both is testing whether you correctly sign both effects the same way, not whether they cancel." },
     { wrong: "\"Credit losses are well-approximated by a normal distribution, like market returns.\"", right: "Credit losses are modeled with a BETA distribution — bounded 0-100%, capped upside, fat left tail. Normal distributions don't capture this inherent skew." }
   ],
 
   highYield: [
-    { stars: 5, what: "EL = EA×PD×LR and UL = EA√[PD·σLR²+LR²·σPD²] — full worked calculation fluency.", why: "The single most-repeated formula pair in the entire book — resurfaces in R21, R28, R37, R38 with only notation changes." },
-    { stars: 5, what: "Portfolio UL cross-terms and why UL_P < ΣUL_i whenever ρ<1.", why: "The core diversification insight tested repeatedly across credit-portfolio questions." },
-    { stars: 4, what: "Risk contribution formula and RC₁+RC₂=UL_P identity.", why: "A clean decomposition formula, testable both as calculation and as a 'why does this sum' concept check." },
+    { stars: 5, what: "EL = EA×PD×LR and UL = \\(EA\\sqrt{PD\\cdot \\sigma LR^{2}+LR^{2}\\cdot \\sigma PD^{2}}\\) — full worked calculation fluency.", why: "The single most-repeated formula pair in the entire book — resurfaces in R21, R28, R37, R38 with only notation changes." },
+    { stars: 5, what: "Portfolio UL cross-terms and why UL_P < \\(\\Sigma UL_i\\) whenever \\(\\rho\\)<1.", why: "The core diversification insight tested repeatedly across credit-portfolio questions." },
+    { stars: 4, what: "Risk contribution formula and \\(RC_{1}+RC_{2}=UL_P\\) identity.", why: "A clean decomposition formula, testable both as calculation and as a 'why does this sum' concept check." },
     { stars: 4, what: "Economic capital = CM × UL_P, and why beta (not normal) models credit losses.", why: "Connects directly to Book 3's economic capital framework — a high-value conceptual bridge." },
     { stars: 3, what: "The PD-decrease + RR-increase same-direction trap.", why: "A compact, frequently combined two-variable question." }
   ],
 
   recall: [
-    { q: "A $5M loan has PD=2%, LR=50%, σPD and σLR given. If recovery rate rises from 40% to 55%, what happens to EL, and why doesn't this offset a simultaneous PD increase?", a: "LR = 1−RR falls from 60% to 45%, which lowers EL (since EL=EA×PD×LR). A simultaneous PD increase raises EL. These are independent, separately-signed effects on the same EL formula — they don't automatically cancel; you must compute (or at least sign) each change separately and combine them." },
+    { q: "A $5M loan has PD=2%, LR=50%, \\(\\sigma PD\\) and \\(\\sigma LR\\) given. If recovery rate rises from 40% to 55%, what happens to EL, and why doesn't this offset a simultaneous PD increase?", a: "LR = 1−RR falls from 60% to 45%, which lowers EL (since EL=EA×PD×LR). A simultaneous PD increase raises EL. These are independent, separately-signed effects on the same EL formula — they don't automatically cancel; you must compute (or at least sign) each change separately and combine them." },
     { q: "Explain, without formulas, why a 100-asset credit portfolio's UL is dramatically smaller than 100 times a single asset's UL.", a: "Portfolio UL depends on correlated cross-terms, not a simple sum. With realistic (well below 1) pairwise default correlation, bad outcomes in some loans are statistically offset by good outcomes in others — the portfolio's aggregate loss variability shrinks far below what summing each loan's individual UL would suggest. This diversification benefit is exactly what economic capital models are built to quantify." },
     { q: "Why does economic capital use a beta distribution instead of a normal distribution for credit losses?", a: "Credit losses are inherently skewed: there's a hard cap on the upside (full repayment, loss=0) but a fat left tail (default can wipe out most or all of the exposure). A beta distribution, bounded on [0,1] with flexible skew, captures this shape; a normal distribution would misprice both the cap and the tail." },
-    { q: "What does RC₁ (risk contribution of asset 1 in a two-asset portfolio) actually measure, and why must RC₁+RC₂ = UL_P?", a: "RC₁ measures how much of the TOTAL portfolio UL is attributable to asset 1, accounting for its own risk and its correlation with asset 2. By construction the formula RC₁=(UL₁²+ρ₁₂UL₁UL₂)/UL_P decomposes the portfolio UL exactly, so the two risk contributions must sum to the total — no risk is created or destroyed by the decomposition, only reattributed." }
+    { q: "What does \\(RC_{1}\\) (risk contribution of asset 1 in a two-asset portfolio) actually measure, and why must \\(RC_{1}+RC_{2}\\) = UL_P?", a: "\\(RC_{1}\\) measures how much of the TOTAL portfolio UL is attributable to asset 1, accounting for its own risk and its correlation with asset 2. By construction the formula \\(RC_{1}=(UL_{1}^{2}+\\rho_{12}UL_{1}UL_{2})/UL_P\\) decomposes the portfolio UL exactly, so the two risk contributions must sum to the total — no risk is created or destroyed by the decomposition, only reattributed." }
   ],
 
   hooks: [
@@ -99,5 +99,5 @@ FRM.register({
     { title: "Capped upside, fat left tail", text: "Credit losses look like a ski slope: a flat plateau at zero (get paid back) that suddenly drops off a cliff (default). Beta distribution, not the symmetric bell curve of market returns." }
   ],
 
-  summary: `<p><strong>EL</strong> = EA×PD×LR (average loss). <strong>UL</strong> = EA√[PD·σLR²+LR²·σPD²] (variability around EL), σPD²=PD(1−PD). <strong>Portfolio EL</strong> just sums; <strong>portfolio UL</strong> involves correlation cross-terms (UL_P²=ΣΣρ_ijUL_iUL_j) — diversification benefit is real whenever ρ<1, vanishes only at ρ=1. <strong>Risk contribution</strong> decomposes UL_P back to the asset level (RC₁+RC₂=UL_P). <strong>Economic capital</strong> = CM×UL_P, the gap between expected and extreme-confidence (typically 99.97%) loss — modeled via a BETA distribution (capped upside, fat left tail) since credit losses are inherently skewed, not normal.</p>`
+  summary: `<p><strong>EL</strong> = EA×PD×LR (average loss). <strong>UL</strong> = \\(EA\\sqrt{PD\\cdot \\sigma LR^{2}+LR^{2}\\cdot \\sigma PD^{2}}\\) (variability around EL), \\(\\sigma PD^{2}=PD(1- PD)\\). <strong>Portfolio EL</strong> just sums; <strong>portfolio UL</strong> involves correlation cross-terms \\((UL_P^{2}=\\Sigma \\Sigma \\rho_ijUL_iUL_j)\\) — diversification benefit is real whenever \\(\\rho\\)<1, vanishes only at ρ=1. <strong>Risk contribution</strong> decomposes UL_P back to the asset level \\((RC_{1}+RC_{2}=UL_P)\\). <strong>Economic capital</strong> = CM×UL_P, the gap between expected and extreme-confidence (typically 99.97%) loss — modeled via a BETA distribution (capped upside, fat left tail) since credit losses are inherently skewed, not normal.</p>`
 });

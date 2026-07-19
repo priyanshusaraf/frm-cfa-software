@@ -13,8 +13,8 @@ FRM.register({
   <p>Alpha and beta from a benchmark regression separate manager SKILL (alpha, tested for statistical significance) from LEVERAGE/exposure choices (beta — how much market exposure, over/underweighting). Peer-group regressions do something similar but suffer from SURVIVORSHIP BIAS (failed peers vanish from the comparison set) and wide size variation, reducing comparability.</p>`,
 
   formulas: [
-    { name: "Sharpe ratio", math: "Sharpe = (portfolio return − risk-free rate) / portfolio standard deviation", note: "A risk-adjusted return measure vs. the risk-free benchmark." },
-    { name: "Information ratio", math: "IR = (portfolio excess return − benchmark excess return) / tracking error", note: "A risk-adjusted return measure vs. an active benchmark; denominator is tracking error, not total SD." }
+    { name: "Sharpe ratio", math: "\\text{Sharpe} = \\dfrac{\\text{portfolio return} - \\text{risk-free rate}}{\\text{portfolio standard deviation}}", note: "A risk-adjusted return measure vs. the risk-free benchmark." },
+    { name: "Information ratio", math: "\\text{IR} = \\dfrac{\\text{portfolio excess return} - \\text{benchmark excess return}}{\\text{tracking error}}", note: "A risk-adjusted return measure vs. an active benchmark; denominator is tracking error, not total SD." }
   ],
 
   concepts: [

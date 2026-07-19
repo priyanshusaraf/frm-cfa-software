@@ -14,11 +14,11 @@ FRM.register({
   visual: `<div class="widget" data-widget="gap"></div>`,
 
   formulas: [
-    { name: "Net interest margin", math: "NIM = NII / earning assets; NII = interest income − interest expense", note: "Assets=$50B, earning assets=$45B, int. income=$4B, int. expense=$2.2B → NIM=(4−2.2)/45=4.00%." },
-    { name: "IS gap (per repricing bucket)", math: "IS gap = IS assets − IS liabilities", note: "Positive = asset sensitive (rates↑→NII↑). Negative = liability sensitive (rates↑→NII↓). Zero = NII unaffected." },
-    { name: "Change in NII from a rate change", math: "ΔNII = Δrate × IS gap", note: "0-30 day bucket gap=−700: +1%→ΔNII=−$7.00. 31-90 day bucket gap=+900: +1%→ΔNII=+$9.00." },
-    { name: "Duration-based % price change", math: "Δ(value)/value ≈ −D × Δi", note: "D≈5.28, Δi=0.5%, $250M assets → Δvalue≈−$6.6 million." },
-    { name: "Leverage-adjusted duration gap", math: "D_gap = D_A − (Total Liabilities/Total Assets) × D_L", note: "To fully insulate net worth: D_A = (TL/TA)×D_L, NOT simply D_A=D_L." }
+    { name: "Net interest margin", math: "\\text{NIM} = \\dfrac{\\text{NII}}{\\text{earning assets}};\\quad \\text{NII} = \\text{interest income} - \\text{interest expense}", note: "Assets=$50B, earning assets=$45B, int. income=$4B, int. expense=$2.2B → NIM=(4−2.2)/45=4.00%." },
+    { name: "IS gap (per repricing bucket)", math: "\\text{IS gap} = \\text{IS assets} - \\text{IS liabilities}", note: "Positive = asset sensitive (rates↑→NII↑). Negative = liability sensitive (rates↑→NII↓). Zero = NII unaffected." },
+    { name: "Change in NII from a rate change", math: "\\Delta NII = \\Delta rate \\times IS gap", note: "0-30 day bucket gap=−700: +1%→\\(\\Delta NII=-\\)$7.00. 31-90 day bucket gap=+900: +1%→\\(\\Delta NII=+\\)$9.00." },
+    { name: "Duration-based % price change", math: "\\Delta (value)/value \\approx -D \\times \\Delta i", note: "D≈5.28, \\(\\Delta i=0.5\\)%, $250M assets → \\(\\Delta value\\approx -\\)$6.6 million." },
+    { name: "Leverage-adjusted duration gap", math: "D_{\\text{gap}} = D_A - \\dfrac{\\text{Total Liabilities}}{\\text{Total Assets}}\\times D_L", note: "To fully insulate net worth: D_A = (TL/TA)×D_L, NOT simply D_A=D_L." }
   ],
 
   concepts: [
@@ -30,14 +30,14 @@ FRM.register({
     },
     {
       name: "Change in NII from a rate change",
-      def: "ΔNII = Δrate × IS gap.",
-      example: "0-30 day bucket IS gap=−700 (liability sensitive): +1% rate move → ΔNII=0.01×(−700)=−$7.00. 31-90 day bucket IS gap=+900 (asset sensitive): +1%→ΔNII=0.01×900=+$9.00. If the CUMULATIVE IS gap across all buckets is zero and all rates move in lockstep, overall NII is unaffected.",
+      def: "\\(\\Delta NII\\) = \\(\\Delta rate\\) × IS gap.",
+      example: "0-30 day bucket IS gap=−700 (liability sensitive): +1% rate move → \\(\\Delta NII=0.01\\times (- 700)=-\\)$7.00. 31-90 day bucket IS gap=+900 (asset sensitive): +1%→\\(\\Delta NII=0.01\\times 900=+\\)$9.00. If the CUMULATIVE IS gap across all buckets is zero and all rates move in lockstep, overall NII is unaffected.",
       pitfall: "Relative gap = IS gap/total assets. Interest sensitivity ratio (ISR) = IS assets/IS liabilities. A bank confident in its rate forecast may DELIBERATELY skew the IS gap toward asset- or liability-sensitivity to profit from the expected move — the gap is a RISK-MANAGEMENT LEVER, not just a passive risk measure.",
       related: []
     },
     {
       name: "Duration and the leverage-adjusted duration gap",
-      def: "Δ(value)/value ≈ −D×Δi. D_gap = D_A − (TL/TA)×D_L.",
+      def: "\\(\\Delta (value)/value\\) ≈ \\(- D\\times \\Delta i\\). D_gap = D_A − (TL/TA)×D_L.",
       example: "To fully insulate net worth from rate changes, a bank needs D_A = (TL/TA)×D_L — NOT simply D_A=D_L, because assets almost always exceed liabilities (positive equity), so equal percentage value changes on unequal dollar bases still move net worth.",
       pitfall: "Duration gap sign and its effect on net worth: zero → net worth insulated. Positive (typical bank: long-duration assets, short-duration liabilities) → net worth FALLS as rates rise (assets lose more value than liabilities). Negative → net worth RISES as rates rise (liabilities lose more value than assets).",
       related: [],
@@ -78,7 +78,7 @@ FRM.register({
   ],
 
   highYield: [
-    { stars: 5, what: "IS gap sign convention, ΔNII=Δrate×IS gap, and full multi-bucket worked calculation.", why: "The most calculation-heavy formula in this reading — expect multi-part numeric questions." },
+    { stars: 5, what: "IS gap sign convention, \\(\\Delta NII=\\Delta rate\\times IS\\) gap, and full multi-bucket worked calculation.", why: "The most calculation-heavy formula in this reading — expect multi-part numeric questions." },
     { stars: 5, what: "Leverage-adjusted duration gap formula and why D_A=D_L does NOT insulate net worth.", why: "The single most important conceptual correction in this reading — a frequently tested trap." },
     { stars: 5, what: "The 'opposite-direction' trap: negative IS gap + positive duration gap simultaneously, both correct.", why: "Explicitly flagged as the reading's central conceptual trap — a guaranteed high-value exam point." },
     { stars: 4, what: "Duration gap sign and net worth effect (zero/positive/negative cases).", why: "A clean three-case table, frequently tested." },
@@ -86,7 +86,7 @@ FRM.register({
   ],
 
   recall: [
-    { q: "A bank's 0-90 day IS gap is −$500M. If rates rise by 75bps, what is the approximate change in NII?", a: "ΔNII = 0.0075 × (−$500M) = −$3.75M — a liability-sensitive (negative gap) position loses NII when rates rise." },
+    { q: "A bank's 0-90 day IS gap is −$500M. If rates rise by 75bps, what is the approximate change in NII?", a: "\\(\\Delta NII\\) = 0.0075 × (−$500M) = −$3.75M — a liability-sensitive (negative gap) position loses NII when rates rise." },
     { q: "A bank has D_A=6, D_L=4, Total Liabilities=$900M, Total Assets=$1,000M. Compute the leverage-adjusted duration gap and interpret its sign.", a: "D_gap = 6 − (900/1000)×4 = 6−3.6 = 2.4 (positive). A positive duration gap means net worth FALLS as rates rise (assets lose more value than liabilities, given the leverage adjustment) — this is the typical bank profile (long-duration assets, shorter-duration liabilities)." },
     { q: "Explain how a bank can simultaneously have a negative IS gap and a positive duration gap, and why this isn't a contradiction.", a: "IS gap measures INCOME sensitivity (which repricing bucket has more liabilities than assets); duration gap measures NET WORTH sensitivity (present value impact of rate changes on the whole balance sheet). A typical bank funds long-duration, fixed-rate assets (mortgages) with short-duration liabilities (deposits) — this makes it liability-sensitive in the near term (negative IS gap, since liabilities reprice faster) while ALSO having a positive duration gap (since the long-duration assets' present value swings more than the short-duration liabilities' present value). These are two different lenses on the same balance sheet, and both are correct simultaneously — they don't need to match." },
     { q: "Why is duration gap analysis considered less reliable for large interest rate moves than for small ones?", a: "Duration is a linear (first-order) approximation of the relationship between value and yield — it ignores convexity, which becomes more significant as the rate change gets larger. For small rate moves, the linear approximation is close to accurate; for large moves, the true price-yield relationship curves away from the linear duration estimate, requiring a convexity adjustment for accuracy." }
@@ -97,5 +97,5 @@ FRM.register({
     { title: "Matching durations isn't enough", text: "D_A=D_L feels like it should work — but with more assets than liabilities in dollar terms, matching the percentage-move rate (duration) still leaves a dollar-value mismatch. You have to adjust for leverage (TL/TA) to actually cancel out net worth exposure." }
   ],
 
-  summary: `<p><strong>NIM</strong>=NII/earning assets. <strong>IS gap</strong>=IS assets−IS liabilities; positive=asset sensitive, negative=liability sensitive; <strong>ΔNII</strong>=Δrate×IS gap. <strong>Duration-based % price change</strong>≈−D×Δi. <strong>Leverage-adjusted duration gap</strong>: D_gap=D_A−(TL/TA)×D_L — full insulation needs D_A=(TL/TA)×D_L, NOT simply D_A=D_L. Duration gap sign: zero=insulated, positive (typical bank)=net worth falls with rising rates, negative=net worth rises. <strong>Limitations</strong>: IS gap assumes uniform rate moves and clean repricing timing; duration gap assumes small parallel shifts and struggles with demand-deposit/prepayment cash flows. A typical bank has NEGATIVE IS gap AND POSITIVE duration gap simultaneously — both correct, since they measure income vs. net worth respectively.</p>`
+  summary: `<p><strong>NIM</strong>=NII/earning assets. <strong>IS gap</strong>=IS assets−IS liabilities; positive=asset sensitive, negative=liability sensitive; <strong>\\(\\Delta NII\\)</strong>\\(=\\Delta rate\\times IS\\) gap. <strong>Duration-based % price change</strong>\\(\\approx - D\\times \\Delta i\\). <strong>Leverage-adjusted duration gap</strong>: D_gap=D_A−(TL/TA)×D_L — full insulation needs D_A=(TL/TA)×D_L, NOT simply D_A=D_L. Duration gap sign: zero=insulated, positive (typical bank)=net worth falls with rising rates, negative=net worth rises. <strong>Limitations</strong>: IS gap assumes uniform rate moves and clean repricing timing; duration gap assumes small parallel shifts and struggles with demand-deposit/prepayment cash flows. A typical bank has NEGATIVE IS gap AND POSITIVE duration gap simultaneously — both correct, since they measure income vs. net worth respectively.</p>`
 });

@@ -14,7 +14,7 @@ FRM.register({
   visual: `<div class="widget" data-widget="tree"></div>`,
 
   formulas: [
-    { name: "Backward induction node value", math: "V<sub>node</sub> = [0.5×(V<sub>up</sub>+C) + 0.5×(V<sub>down</sub>+C)] / (1+r<sub>node</sub>)", note: "Average the two next-period discounted values (plus coupon), using that node's own forward rate to discount." }
+    { name: "Backward induction node value", math: "V_{node} = [0.5\\times (V_{up}+C) + 0.5\\times (V_{down}+C)] / (1+r_{node})", note: "Average the two next-period discounted values (plus coupon), using that node's own forward rate to discount." }
   ],
 
   concepts: [

@@ -14,9 +14,9 @@ FRM.register({
   visual: `<div class="widget" data-widget="frontier"></div>`,
 
   formulas: [
-    { name: "CAPM security market line", math: "E(Rᵢ) = R_F + βᵢ×[E(R_M)−R_F]", note: "βᵢ = cov(Rᵢ,R_M)/var(R_M). Higher beta → higher required return (compensation for bad-times risk)." },
-    { name: "Stochastic discount factor (SDF)", math: "m = a + b×R_M (CAPM special case, linear); generalizes to m(f₁,f₂,...,f_k) for multiple factors", note: "m is 'an index of bad times' — high when marginal utility of an extra dollar is high (job loss, low GDP growth, low consumption)." },
-    { name: "Asset risk premium via SDF beta", math: "E(Rᵢ) − R_F = −βᵢ,ₘ × [cov(Rᵢ,m) pricing]", note: "βᵢ,ₘ = cov(Rᵢ,m)/var(m). Negative sign: assets with positive payoff in bad times (high cov with m) have LOW/negative risk premiums." }
+    { name: "CAPM security market line", math: "E(R_{i}) = R_F + \\beta_{i}\\times [E(R_M)-R_F]", note: "\\(\\beta_{i}\\) = \\(cov(R_{i}\\),R_M)/var(R_M). Higher beta → higher required return (compensation for bad-times risk)." },
+    { name: "Stochastic discount factor (SDF)", math: "m = a + b\\,R_M \\quad(\\text{CAPM special case, linear});\\ \\text{generalizes to } m(f_1,f_2,\\dots,f_k)\\text{ for multiple factors}", note: "m is 'an index of bad times' — high when marginal utility of an extra dollar is high (job loss, low GDP growth, low consumption)." },
+    { name: "Asset risk premium via SDF beta", math: "E(R_{i}) - R_F = -\\beta_{i},_{m} \\times [cov(R_{i},m) pricing]", note: "\\(\\beta_{i}\\),\\(_{m}\\) = \\(cov(R_{i}\\),m)/var(m). Negative sign: assets with positive payoff in bad times (high cov with m) have LOW/negative risk premiums." }
   ],
 
   concepts: [
@@ -50,7 +50,7 @@ FRM.register({
       name: "Pricing kernels (stochastic discount factor)",
       def: "The SDF (m) is a random variable representing 'an index of bad times' across multiple factors and states. CAPM is the special case where m moves LINEARLY with the market return — a shortcoming the SDF framework fixes by allowing nonlinearity.",
       intuition: "Bad times = periods when an additional $1 of income becomes very valuable (marginal utility framing) — job loss, low GDP growth, low consumption relative to past consumption.",
-      pitfall: "Assets with a POSITIVE payoff in bad times are valuable (high price, low/negative expected return) — the SDF-beta relationship inverts the usual sign, since it's measuring cov(Rᵢ, m), not cov(Rᵢ, R_M) directly.",
+      pitfall: "Assets with a POSITIVE payoff in bad times are valuable (high price, low/negative expected return) — the SDF-beta relationship inverts the usual sign, since it's measuring \\(cov(R_{i}\\), m), not \\(cov(R_{i}\\), R_M) directly.",
       related: [],
       memory: "SDF = CAPM's 'm is linear in the market' assumption, generalized to allow m to be any nonlinear function of many bad-times factors."
     },
@@ -73,7 +73,7 @@ FRM.register({
     ],
     confused: [
       { what: "Factors vs assets that carry factor risk", how: "The market and (arguably) government bonds/equities can be thought of AS factors. Corporate bonds, private equity, hedge funds are NOT factors — they CONTAIN multiple factor exposures (equity risk, rate risk, vol risk, default risk)." },
-      { what: "CAPM beta vs SDF beta sign convention", how: "Standard CAPM: higher beta (more market co-movement) → higher required return. SDF framing: higher cov(Rᵢ,m) (better payoff in bad times) → LOWER required return — same underlying idea, opposite-looking sign because m indexes 'bad times,' not the market directly." }
+      { what: "CAPM beta vs SDF beta sign convention", how: "Standard CAPM: higher beta (more market co-movement) → higher required return. SDF framing: higher \\(cov(R_{i}\\),m) (better payoff in bad times) → LOWER required return — same underlying idea, opposite-looking sign because m indexes 'bad times,' not the market directly." }
     ]
   },
 

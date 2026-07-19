@@ -13,37 +13,37 @@ FRM.register({
   visual: `<div class="widget" data-widget="divers"></div>`,
 
   formulas: [
-    { name: "Two-asset portfolio variance", math: "σ<sub>P</sub>² = w<sub>X</sub>²σ<sub>X</sub>² + w<sub>Y</sub>²σ<sub>Y</sub>² + 2w<sub>X</sub>w<sub>Y</sub>σ<sub>X</sub>σ<sub>Y</sub>ρ", note: "The foundation formula — every diversification, VaR, and factor-correlation argument in the curriculum traces back to this." },
-    { name: "Correlation swap payoff", math: "Notional × (ρ<sub>realized</sub> − ρ<sub>fixed</sub>)", note: "A pure bet on realized average pairwise correlation vs a fixed strike." }
+    { name: "Two-asset portfolio variance", math: "\\sigma_{P}^{2} = w_{X}^{2}\\sigma_{X}^{2} + w_{Y}^{2}\\sigma_{Y}^{2} + 2w_{X}w_{Y}\\sigma_{X}\\sigma_{Y}\\rho", note: "The foundation formula — every diversification, VaR, and factor-correlation argument in the curriculum traces back to this." },
+    { name: "Correlation swap payoff", math: "\\text{Notional}\\times(\\rho_{\\text{realized}} - \\rho_{\\text{fixed}})", note: "A pure bet on realized average pairwise correlation vs a fixed strike." }
   ],
 
   concepts: [
     {
       name: "Portfolio mean/variance foundation",
-      def: "σ_P² = w_X²σ_X² + w_Y²σ_Y² + 2w_Xw_Yσ_Xσ_Yρ — the return/risk ratio improves as ρ falls.",
-      pitfall: "This is a SMOOTH, continuous relationship, not a step function — diversification benefit exists well before ρ reaches −1. A drop from 0.9 to 0.5 already meaningfully improves the ratio; don't assume benefit only appears at extreme negative correlation.",
+      def: "\\(\\sigma_P^{2}\\) = \\(w_X^{2}\\sigma_X^{2}\\) + \\(w_Y^{2}\\sigma_Y^{2}\\) + \\(2w_Xw_Y\\sigma_X\\sigma_Y\\rho\\) — the return/risk ratio improves as \\(\\rho\\) falls.",
+      pitfall: "This is a SMOOTH, continuous relationship, not a step function — diversification benefit exists well before \\(\\rho\\) reaches −1. A drop from 0.9 to 0.5 already meaningfully improves the ratio; don't assume benefit only appears at extreme negative correlation.",
       related: [{ r: 1, label: "R1 — the risk being diversified" }, { r: 81, label: "R81 — factor correlations reuse this exact logic" }]
     },
     {
       name: "Wrong-way risk (WWR) in CDS",
       def: "The reference asset and the CDS-seller counterparty are positively correlated, so the CDS is most likely to be needed exactly when the seller is least able to pay.",
       intuition: "You bought insurance from a company whose fortunes rise and fall with the very thing you insured — the payout and the payer's solvency are the same bet, wearing different clothes.",
-      pitfall: "The CDS spread-vs-correlation relationship is NON-monotonic: near ρ = −1 the spread can rise slightly, because simultaneous default of both becomes nearly impossible, but replacement-cost risk after a single default still bites.",
+      pitfall: "The CDS spread-vs-correlation relationship is NON-monotonic: near \\(\\rho\\) = −1 the spread can rise slightly, because simultaneous default of both becomes nearly impossible, but replacement-cost risk after a single default still bites.",
       related: [{ r: 32, label: "R32 — wrong-way risk generalized to all counterparty exposure" }, { r: 37, label: "R37 — CVA's wrong-way adjustment" }],
       memory: "WWR = 'the fire insurance company is next door to the fire.'"
     },
     {
       name: "Correlation options and correlation swaps",
       def: "For almost every multi-asset correlation strategy, LOWER correlation → HIGHER option price (more dispersion, better chance of a favorable payout).",
-      example: "Buyer pays fixed 0.2, notional $1M, 3 assets ρ₂,₁=0.6, ρ₃,₁=0.2, ρ₃,₂=0.04 → realized ρ = 0.28 → payoff = $1M×(0.28−0.20) = $80,000.",
+      example: "Buyer pays fixed 0.2, notional $1M, 3 assets \\(\\rho_{2}\\),\\(_{1}=0.6\\), \\(\\rho_{3}\\),\\(_{1}=0.2\\), \\(\\rho_{3}\\),\\(_{2}=0.04\\) → realized \\(\\rho\\) = 0.28 → payoff = $1M×(0.28−0.20) = $80,000.",
       counter: "The one notable EXCEPTION: an option on the WORSE-OF two assets — there, LOWER correlation reduces the price (more dispersion increases the chance one asset is bad, hurting a worse-of payoff). Quanto options: lower correlation between underlying and FX rate → HIGHER quanto price.",
       pitfall: "Memorize the exception, not just the rule — 'lower correlation, higher price' fails for worse-of options specifically.",
       related: ["Portfolio mean/variance foundation"]
     },
     {
       name: "VaR and correlation",
-      def: "VaR increases as correlation between portfolio assets increases — diversification benefit shrinks as ρ→1. Basel requires capital ≥ 3× the 10-day VaR for trading-book assets.",
-      example: "$8M asset A (σ=1.5%), $4M asset B (σ=2%), ρ=0.6, 99% (z=2.33), 10-day: build covariance matrix → σ_P → 10-day VaR ≈ $1.325M → required capital ≈ 3×$1.325M ≈ $3.97M.",
+      def: "VaR increases as correlation between portfolio assets increases — diversification benefit shrinks as \\(\\rho\\)→1. Basel requires capital ≥ 3× the 10-day VaR for trading-book assets.",
+      example: "$8M asset A \\((\\sigma =1.5\\)%), $4M asset B \\((\\sigma =2\\)%), \\(\\rho =0.6\\), 99% (z=2.33), 10-day: build covariance matrix → \\(\\sigma_P\\) → 10-day VaR ≈ $1.325M → required capital ≈ 3×$1.325M ≈ $3.97M.",
       related: [{ r: 1, label: "R1 — the VaR formula being fed correlated inputs" }, { r: 5, label: "R5 — diversified vs undiversified VaR" }]
     },
     {
@@ -80,7 +80,7 @@ FRM.register({
   },
 
   misconceptions: [
-    { wrong: "\"Diversification benefit only exists near ρ = −1.\"", right: "It's continuous — even modest reductions (0.9→0.5) meaningfully improve the return/risk ratio. Don't wait for extreme correlation to expect benefit." },
+    { wrong: "\"Diversification benefit only exists near \\(\\rho\\) = −1.\"", right: "It's continuous — even modest reductions (0.9→0.5) meaningfully improve the return/risk ratio. Don't wait for extreme correlation to expect benefit." },
     { wrong: "\"Lower correlation always raises a correlation-sensitive option's price.\"", right: "True for most multi-asset payoffs, but reversed for options on the WORSE-OF two assets, and for quanto options the relevant correlation is between the underlying and FX." },
     { wrong: "\"Splitting a large exposure into many smaller ones always reduces expected loss.\"", right: "Only if default correlation ALSO falls. At correlation = 1, splitting changes nothing — EL is identical to the single large exposure." },
     { wrong: "\"The 2008 CDO tranche trade lost money because the long leg alone went bad.\"", right: "BOTH legs lost simultaneously — mezzanine correlation fell (lowering its spread, hurting the short position) while equity spreads rose (hurting the long position). The 'hedge' failed on both sides at once." }
@@ -107,5 +107,5 @@ FRM.register({
     { title: "Splitting doesn't help if they're glued together", text: "Ten loans glued by correlation=1 behave like one loan. Diversification needs both MORE names AND LOWER correlation — one alone is theater." }
   ],
 
-  summary: `<p><strong>Portfolio variance</strong> σ_P² = w_X²σ_X² + w_Y²σ_Y² + 2w_Xw_Yσ_Xσ_Yρ — diversification benefit is continuous, not step-like. <strong>Wrong-way risk</strong>: reference asset and counterparty solvency positively correlated; spread-correlation relationship is non-monotonic. <strong>Correlation products</strong>: lower ρ → higher option price generally, EXCEPT worse-of options (reversed) and quanto options (lower ρ between underlying/FX → higher price). <strong>VaR rises with correlation</strong>; Basel requires capital ≥ 3× 10-day VaR. <strong>2008 mechanism</strong>: long equity tranche + short mezzanine, both legs lost simultaneously as equity spreads rose and mezzanine correlation (and spreads) fell — the copula models (R9) misunderstood tranche correlation dynamics. <strong>Concentration + default correlation</strong> must BOTH fall to reduce worst-case loss; splitting exposures alone (correlation unchanged) does nothing.</p>`
+  summary: `<p><strong>Portfolio variance</strong> \\(\\sigma_P^{2}\\) = \\(w_X^{2}\\sigma_X^{2}\\) + \\(w_Y^{2}\\sigma_Y^{2}\\) + \\(2w_Xw_Y\\sigma_X\\sigma_Y\\rho\\) — diversification benefit is continuous, not step-like. <strong>Wrong-way risk</strong>: reference asset and counterparty solvency positively correlated; spread-correlation relationship is non-monotonic. <strong>Correlation products</strong>: lower \\(\\rho\\) → higher option price generally, EXCEPT worse-of options (reversed) and quanto options (lower \\(\\rho\\) between underlying/FX → higher price). <strong>VaR rises with correlation</strong>; Basel requires capital ≥ 3× 10-day VaR. <strong>2008 mechanism</strong>: long equity tranche + short mezzanine, both legs lost simultaneously as equity spreads rose and mezzanine correlation (and spreads) fell — the copula models (R9) misunderstood tranche correlation dynamics. <strong>Concentration + default correlation</strong> must BOTH fall to reduce worst-case loss; splitting exposures alone (correlation unchanged) does nothing.</p>`
 });

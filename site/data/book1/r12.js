@@ -13,7 +13,7 @@ FRM.register({
   <p><strong>Risk premium</strong> is a third, separate, additive effect: risk-averse investors demand compensation beyond the risk-neutral expected return, lowering the bond's price (raising its expected return) on top of — not instead of — the convexity adjustment.</p>`,
 
   formulas: [
-    { name: "Jensen's inequality applied to discounting", math: "E[1/(1+r)] > 1/(1+E[r])", note: "Convexity of the discount factor means volatility-aware pricing gives a HIGHER expected price, hence a LOWER implied yield, than naively plugging in the expected rate." }
+    { name: "Jensen's inequality applied to discounting", math: "E\\!\\left[\\tfrac{1}{1+r}\\right] > \\tfrac{1}{1+E[r]}", note: "Convexity of the discount factor means volatility-aware pricing gives a HIGHER expected price, hence a LOWER implied yield, than naively plugging in the expected rate." }
   ],
 
   concepts: [

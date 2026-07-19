@@ -12,13 +12,13 @@ FRM.register({
   <p>The IRB formula is the Vasicek/Gordy one-factor Gaussian copula (identical machinery to R26's WCDR and R29's V(T,X)) applied as the actual regulatory capital rule: Capital = EAD×LGD×[WCDR−PD]×MA. Higher-rated corporate exposures see their capital requirement fall substantially under IRB relative to Basel I's flat treatment — the whole point of adding risk sensitivity.</p>`,
 
   formulas: [
-    { name: "Basel I's three Cooke ratios", math: "Assets/Capital < 20 · Tier1/RWA > 4% · Total capital/RWA > 8%", note: "Tier 1 = equity minus goodwill + noncumulative perpetual preferred. Tier 2 (capped at 50% of total) = cumulative preferred, 99yr debentures, subordinated debt >5yr." },
-    { name: "CEA for derivatives (current exposure method)", math: "CEA = max(V, 0) + D × L", note: "V=current value, D=add-on factor, L=principal. $175M swap, current value $2.5M, add-on 0.5% → CEA=2.5+(0.005×175)=$3.375M." },
-    { name: "Net replacement ratio (1995 netting amendment)", math: "NRR = exposure with netting / exposure without netting", note: "+20,−7,+5 → without netting=$25M, with netting=$18M → NRR=0.72." },
-    { name: "Market risk capital charge (1996 amendment)", math: "capital = max(previous day VaR, mc × avg 60-day VaR) + specific risk charge", note: "10-day 99% VaR; mc≥3 set by backtesting 250 days (traffic-light zones)." },
-    { name: "IRB capital charge (Vasicek/Gordy one-factor)", math: "Capital = EAD × LGD × [WCDR − PD] × MA", note: "WCDR = DR₉₉.₉, the 99.9th-percentile default rate." },
-    { name: "Maturity adjustment & RWA", math: "MA = [1+(M−2.5)b] / (1−1.5b); RWA = 12.5 × Capital", note: "$150M A-rated loan, PD=0.1%, LGD=50%, DR99.9=3.4%, M=2.5: Capital=150×0.5×(0.034−0.001)=$2.475M → RWA=$49.19M (vs $150M flat under Basel I)." },
-    { name: "Basel II operational risk — BIA", math: "Capital = 15% × 3-year average annual gross income", note: "Negative-income years excluded from the average. $20B/−$2B(excl)/$12B → (20+12)/2×0.15=$2.4B." }
+    { name: "Basel I's three Cooke ratios", math: "\\dfrac{\\text{Assets}}{\\text{Capital}} < 20 \\quad\\cdot\\quad \\dfrac{\\text{Tier1}}{\\text{RWA}} > 4\\% \\quad\\cdot\\quad \\dfrac{\\text{Total capital}}{\\text{RWA}} > 8\\%", note: "Tier 1 = equity minus goodwill + noncumulative perpetual preferred. Tier 2 (capped at 50% of total) = cumulative preferred, 99yr debentures, subordinated debt >5yr." },
+    { name: "CEA for derivatives (current exposure method)", math: "CEA = max(V, 0) + D \\times L", note: "V=current value, D=add-on factor, L=principal. $175M swap, current value $2.5M, add-on 0.5% → CEA=2.5+(0.005×175)=$3.375M." },
+    { name: "Net replacement ratio (1995 netting amendment)", math: "\\text{NRR} = \\dfrac{\\text{exposure with netting}}{\\text{exposure without netting}}", note: "+20,−7,+5 → without netting=$25M, with netting=$18M → NRR=0.72." },
+    { name: "Market risk capital charge (1996 amendment)", math: "\\text{capital} = \\max(\\text{previous day VaR},\\ m_c\\times\\text{avg 60-day VaR}) + \\text{specific risk charge}", note: "10-day 99% VaR; mc≥3 set by backtesting 250 days (traffic-light zones)." },
+    { name: "IRB capital charge (Vasicek/Gordy one-factor)", math: "\\text{Capital} = \\text{EAD}\\times\\text{LGD}\\times[\\text{WCDR} - \\text{PD}]\\times\\text{MA}", note: "WCDR = \\(DR_{99}._{9}\\), the 99.9th-percentile default rate." },
+    { name: "Maturity adjustment & RWA", math: "\\text{MA} = \\dfrac{1+(M-2.5)b}{1-1.5b};\\quad \\text{RWA} = 12.5\\times\\text{Capital}", note: "$150M A-rated loan, PD=0.1%, LGD=50%, DR99.9=3.4%, M=2.5: Capital=150×0.5×(0.034−0.001)=$2.475M → RWA=$49.19M (vs $150M flat under Basel I)." },
+    { name: "Basel II operational risk — BIA", math: "\\text{Capital} = 15\\%\\times\\text{(3-year average annual gross income)}", note: "Negative-income years excluded from the average. $20B/−$2B(excl)/$12B → (20+12)/2×0.15=$2.4B." }
   ],
 
   concepts: [
@@ -59,7 +59,7 @@ FRM.register({
     },
     {
       name: "IRB capital charge (Vasicek/Gordy one-factor Gaussian copula)",
-      def: "Capital_i = EAD_i × LGD_i × [WCDR_i − PD_i] × MA. WCDR = DR₉₉.₉, the 99.9th-percentile default rate. MA = [1+(M−2.5)b]/(1−1.5b); RWA = 12.5 × Capital required.",
+      def: "Capital_i = EAD_i × LGD_i × [WCDR_i − PD_i] × MA. WCDR = \\(DR_{99}._{9}\\), the 99.9th-percentile default rate. MA = [1+(M−2.5)b]/(1−1.5b); RWA = 12.5 × Capital required.",
       example: "$150M loan to A-rated corp, PD=0.1%, LGD=50%, DR99.9=3.4%, M=2.5yr. Capital = 150×0.5×(0.034−0.001) = $2.475M → RWA = 12.5×2.475 = $49.19M (vs. $150M flat under Basel I — IRB substantially lowers RWA for higher-rated corporate exposures).",
       pitfall: "Retail exposures merge foundation/advanced IRB (bank supplies PD, EAD, LGD directly) and DROP the maturity adjustment entirely: capital = EAD×LGD×(DR99.9−PD). This IRB formula is the identical Vasicek/Gordy machinery from R26/R29 — same equation, regulatory context.",
       related: [{ r: 26, label: "R26 — the identical Vasicek WCDR formula" }, { r: 29, label: "R29 — the identical one-factor Gaussian copula" }],

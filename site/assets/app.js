@@ -47,6 +47,50 @@
   };
   function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;"); }
 
+  /* ---------- math rendering ----------
+     A math string that contains a backslash is treated as LaTeX and typeset with
+     KaTeX (vendored, offline). Legacy HTML-math strings (Unicode + <sub>/<sup>)
+     are passed through untouched, so un-converted readings keep working. */
+  // LaTeX markers: a backslash macro, or a braced sub/superscript. Legacy HTML-math
+  // (Unicode + <sub>/<sup>) never contains "_{" or "^{", so this cleanly separates them.
+  function isTex(s) { return /\\|[_^]\{/.test(s); }
+  function katexRender(tex, display) {
+    try {
+      return window.katex.renderToString(tex, {
+        throwOnError: false, displayMode: !!display, output: "html",
+        strict: false, trust: false
+      });
+    } catch (e) { return '<span class="tex-error">' + esc(tex) + "</span>"; }
+  }
+  // Formula-box math: typeset only strings that look like LaTeX (contain a backslash);
+  // legacy HTML-math strings pass through untouched.
+  FRM.renderMath = function (s, display) {
+    return (window.katex && isTex(s)) ? katexRender(s, display) : s;
+  };
+  // Prose math: typeset \( … \) inline and \[ … \] display, leaving all other
+  // HTML (and every literal $ for currency) untouched. No-op on un-annotated text.
+  FRM.renderProse = function (s) {
+    if (s == null || !window.katex) return s;
+    return String(s)
+      .replace(/\\\[([\s\S]+?)\\\]/g, function (_m, t) { return katexRender(t.trim(), true); })
+      .replace(/\\\(([\s\S]+?)\\\)/g, function (_m, t) { return katexRender(t.trim(), false); });
+  };
+  // A few formulas are wider than the formula box. KaTeX display math can't line-wrap,
+  // so scale the font down just enough that it fits on one line (floored for legibility).
+  FRM.fitMath = function (root) {
+    if (!window.katex) return;
+    (root || document).querySelectorAll(".f-tex").forEach(function (el) {
+      el.style.fontSize = "";
+      var inner = el.querySelector(".katex");   // the actual (nowrap) typeset content
+      if (!inner) return;
+      var size = 1.22, guard = 0;               // rem; must match .f-tex in style.css
+      while (inner.offsetWidth > el.clientWidth - 2 && size > 0.7 && guard++ < 40) {
+        size -= 0.03;
+        el.style.fontSize = size.toFixed(3) + "rem";
+      }
+    });
+  };
+
   /* ---------- data loading ---------- */
   FRM.loadReading = function (rn, cb) {
     if (FRM.readings[rn]) return cb(FRM.readings[rn]);
@@ -178,22 +222,23 @@
         return;
       }
       tocSections = [];
-      var h = "";
+      var h = "", P = FRM.renderProse;
       h += '<div class="crumbs"><a href="index.html">Home</a> / <a href="book.html?b=' + book.n + '">Book ' + book.n + " · " + book.short + "</a> / Reading " + rn + "</div>";
       h += '<div class="kicker" style="color:' + book.color + '">' + d.session + " · Reading " + rn + "</div>";
       h += "<h1>" + d.title + "</h1>";
-      if (d.tagline) h += '<p class="lead">' + d.tagline + "</p>";
+      if (d.tagline) h += '<p class="lead">' + P(d.tagline) + "</p>";
 
-      if (d.teaches) h += label("What this chapter teaches", book.color) + '<div class="prose">' + d.teaches + "</div>";
-      if (d.why) h += label("Why it matters", book.color) + '<div class="prose">' + d.why + "</div>";
-      if (d.intuition) h += label("Core intuition", book.color) + '<div class="prose">' + d.intuition + "</div>";
+      if (d.teaches) h += label("What this chapter teaches", book.color) + '<div class="prose">' + P(d.teaches) + "</div>";
+      if (d.why) h += label("Why it matters", book.color) + '<div class="prose">' + P(d.why) + "</div>";
+      if (d.intuition) h += label("Core intuition", book.color) + '<div class="prose">' + P(d.intuition) + "</div>";
       if (d.visual) h += label("See it", book.color) + '<div class="prose">' + d.visual + "</div>";
 
       if (d.formulas && d.formulas.length) {
         h += label("Formula box", book.color);
         d.formulas.forEach(function (f) {
-          h += '<div class="formula-block"><div class="f-name">' + f.name + '</div><div class="f-math">' + f.math + "</div>" +
-            (f.note ? '<div class="f-note">' + f.note + "</div>" : "") + "</div>";
+          var mathCls = "f-math" + (window.katex && isTex(f.math) ? " f-tex" : "");
+          h += '<div class="formula-block"><div class="f-name">' + f.name + '</div><div class="' + mathCls + '">' + FRM.renderMath(f.math, true) + "</div>" +
+            (f.note ? '<div class="f-note">' + P(f.note) + "</div>" : "") + "</div>";
         });
       }
 
@@ -204,7 +249,8 @@
           h += '<div class="concept-body">';
           function fld(tag, cls, val) {
             if (!val) return "";
-            return '<div class="concept-field"><span class="field-tag ' + cls + '">' + tag + "</span><div>" + val + "</div></div>";
+            var body = cls === "rel" ? val : P(val);
+            return '<div class="concept-field ' + cls + '"><span class="field-tag ' + cls + '">' + tag + "</span><div>" + body + "</div></div>";
           }
           h += fld("Definition", "def", c.def);
           h += fld("Intuition", "int", c.intuition);
@@ -232,8 +278,8 @@
           arr.forEach(function (x) {
             if (x.r) {
               var rm = FRM.readingMeta(x.r);
-              s += '<p><a href="' + FRM.rlink(x.r) + '"><strong>R' + x.r + " · " + (rm ? rm.t : "") + "</strong></a> — " + x.why + "</p>";
-            } else s += "<p><strong>" + (x.label || "") + "</strong>" + (x.label ? " — " : "") + x.why + "</p>";
+              s += '<p><a href="' + FRM.rlink(x.r) + '"><strong>R' + x.r + " · " + (rm ? rm.t : "") + "</strong></a> — " + P(x.why) + "</p>";
+            } else s += "<p><strong>" + (x.label || "") + "</strong>" + (x.label ? " — " : "") + P(x.why) + "</p>";
           });
           return s + "</div>";
         }
@@ -243,7 +289,7 @@
         h += "</div>";
         if (cn.confused && cn.confused.length) {
           var s = '<div class="card accent"><h3>Commonly confused with</h3>';
-          cn.confused.forEach(function (x) { s += "<p><strong>" + x.what + "</strong> — " + x.how + "</p>"; });
+          cn.confused.forEach(function (x) { s += "<p><strong>" + P(x.what) + "</strong> — " + P(x.how) + "</p>"; });
           h += s + "</div>";
         }
       }
@@ -251,23 +297,24 @@
       if (d.misconceptions && d.misconceptions.length) {
         h += label("Common misconceptions & exam traps", "var(--red)");
         d.misconceptions.forEach(function (m) {
-          h += '<div class="misc-row"><div class="wrong"><span class="tag">Looks true / trap</span>' + m.wrong +
-            '</div><div class="right"><span class="tag">Actually</span>' + m.right + "</div></div>";
+          h += '<div class="misc-row"><div class="wrong"><span class="tag">Looks true / trap</span>' + P(m.wrong) +
+            '</div><div class="right"><span class="tag">Actually</span>' + P(m.right) + "</div></div>";
         });
       }
 
       if (d.highYield && d.highYield.length) {
         h += label("High yield — what to prioritize", "var(--amber)");
         d.highYield.forEach(function (y) {
-          h += '<div class="hy-item">' + FRM.stars(y.stars) + '<div class="hy-body"><div>' + y.what +
-            '</div><div class="hy-why">' + (y.why || "") + "</div></div></div>";
+          var tier = y.stars >= 5 ? " hy-5" : y.stars >= 4 ? " hy-4" : "";
+          h += '<div class="hy-item' + tier + '">' + FRM.stars(y.stars) + '<div class="hy-body"><div class="hy-what">' + P(y.what) +
+            '</div><div class="hy-why">' + P(y.why || "") + "</div></div></div>";
         });
       }
 
       if (d.recall && d.recall.length) {
         h += label("Active recall — answer before revealing", "var(--purple)");
         d.recall.forEach(function (q) {
-          h += '<div class="recall-card"><div class="recall-q">' + q.q + '</div><div class="recall-a">' + q.a + "</div></div>";
+          h += '<div class="recall-card"><div class="recall-q">' + P(q.q) + '</div><div class="recall-a">' + P(q.a) + "</div></div>";
         });
       }
 
@@ -275,12 +322,12 @@
         h += label("Memory hooks", "var(--pink)");
         h += '<div class="grid2">';
         d.hooks.forEach(function (k) {
-          h += '<div class="card"><h3>' + k.title + "</h3><p style='font-size:0.92rem'>" + k.text + "</p></div>";
+          h += '<div class="card"><h3>' + k.title + "</h3><p style='font-size:0.92rem'>" + P(k.text) + "</p></div>";
         });
         h += "</div>";
       }
 
-      if (d.summary) h += label("One-page summary", book.color) + '<div class="card accent">' + d.summary + "</div>";
+      if (d.summary) h += label("One-page summary", book.color) + '<div class="card accent">' + P(d.summary) + "</div>";
 
       /* prev / next */
       var flat = [];
@@ -303,6 +350,7 @@
         el.addEventListener("click", function () { el.parentElement.classList.toggle("open"); });
       });
       FRM.initWidgets(mount);
+      FRM.fitMath(mount);
       buildTOC(tocSections);
       tocSections = null;
       window.scrollTo(0, 0);
@@ -1147,6 +1195,145 @@
       t2.textContent = it.d || it.v;
       y += 38;
     });
+  };
+
+  /* --- Merton structural model: distance to default & PD (r25) --- */
+  WIDGETS.merton = function (el) {
+    var svg = widgetShell(el, "Merton model — distance to default & PD",
+      '<label>Asset volatility σ<sub>A</sub> <input type="range" min="0.08" max="0.60" step="0.01" value="0.25"><span class="w-value" data-vol></span></label>' +
+      '<label>Leverage D/V<sub>0</sub> <input type="range" min="0.30" max="0.97" step="0.01" value="0.70"><span class="w-value" data-lev></span></label>' +
+      '<span class="w-value" data-out></span>', 640, 250,
+      "Terminal asset value is lognormal; the firm defaults if it lands left of the debt threshold ln(D/V₀). Distance to default (DD) is how many standard deviations the mean sits above that threshold; PD = N(−DD) is the shaded tail. Raise volatility or leverage and watch the threshold slide into the distribution — PD climbs non-linearly.");
+    var sliders = el.querySelectorAll("input"), volS = sliders[0], levS = sliders[1];
+    var volO = el.querySelector("[data-vol]"), levO = el.querySelector("[data-lev]"), out = el.querySelector("[data-out]");
+    function draw() {
+      var sig = parseFloat(volS.value), L = parseFloat(levS.value), T = 1;
+      volO.textContent = (sig * 100).toFixed(0) + "%";
+      levO.textContent = L.toFixed(2);
+      var s = sig * Math.sqrt(T), m = -0.5 * sig * sig * T;   // mean/sd of ln(V_T/V0), μ=0
+      var xd = Math.log(L);                                   // default threshold (log space)
+      var DD = (-Math.log(L) - 0.5 * sig * sig * T) / s;
+      var PD = ncdf(-DD);
+      out.textContent = "DD = " + DD.toFixed(2) + " · PD = " + (PD * 100).toFixed(PD < 0.01 ? 2 : 1) + "%";
+      svg.innerHTML = "";
+      var W = 640, H = 250, x0 = 20, x1 = W - 16, y0 = H - 30;
+      var lo = Math.min(m - 4 * s, xd - 0.06), hi = m + 4 * s;
+      function X(x) { return x0 + (x - lo) / (hi - lo) * (x1 - x0); }
+      var pmax = npdf(0) / s;
+      function Y(p) { return y0 - p / pmax * (H - 74); }
+      function pdf(x) { return npdf((x - m) / s) / s; }
+      /* default-region fill (x <= xd) */
+      var df = "M" + X(lo) + "," + Y(0);
+      for (var x = lo; x <= xd; x += (hi - lo) / 400) df += " L" + X(x) + "," + Y(pdf(x));
+      df += " L" + X(xd) + "," + Y(0) + " Z";
+      svgEl("path", { d: df, fill: "var(--red)", opacity: 0.4 }, svg);
+      /* curve */
+      var d = "";
+      for (var x2 = lo; x2 <= hi; x2 += (hi - lo) / 400) d += (d ? " L" : "M") + X(x2) + "," + Y(pdf(x2));
+      svgEl("path", { d: d, fill: "none", stroke: "var(--accent)", "stroke-width": 2 }, svg);
+      /* threshold line */
+      svgEl("line", { x1: X(xd), x2: X(xd), y1: Y(pmax * 1.02), y2: Y(0), stroke: "var(--red)", "stroke-width": 2, "stroke-dasharray": "4 3" }, svg);
+      var t1 = svgEl("text", { x: X(xd), y: Y(pmax * 1.02) - 4, "text-anchor": "middle", "font-size": 11.5, fill: "var(--red)" }, svg);
+      t1.textContent = "default point ln(D/V₀)";
+      /* mean line + DD bracket */
+      svgEl("line", { x1: X(m), x2: X(m), y1: Y(pmax), y2: Y(0), stroke: "var(--cyan)", "stroke-width": 1.5, "stroke-dasharray": "2 2" }, svg);
+      var t2 = svgEl("text", { x: X(m), y: Y(pmax) - 4, "text-anchor": "middle", "font-size": 11.5, fill: "var(--cyan)" }, svg);
+      t2.textContent = "E[ln V]";
+      svgEl("line", { x1: x0, x2: x1, y1: y0, y2: y0, stroke: "var(--border-strong)" }, svg);
+      var t3 = svgEl("text", { x: x1 - 4, y: y0 + 17, "text-anchor": "end", "font-size": 11 }, svg);
+      t3.textContent = "ln(V_T / V₀) →";
+    }
+    volS.addEventListener("input", draw);
+    levS.addEventListener("input", draw);
+    draw();
+  };
+
+  /* --- Credit VaR: expected vs unexpected loss on the Vasicek loss distribution (r26) --- */
+  WIDGETS.creditvar = function (el) {
+    var svg = widgetShell(el, "Credit VaR — expected vs unexpected loss",
+      '<label>PD <input type="range" min="0.005" max="0.10" step="0.005" value="0.02"><span class="w-value" data-pd></span></label>' +
+      '<label>Correlation ρ <input type="range" min="0.04" max="0.40" step="0.01" value="0.15"><span class="w-value" data-rho></span></label>' +
+      '<label>Confidence <input type="range" min="0.99" max="0.9995" step="0.0005" value="0.999"><span class="w-value" data-conf></span></label>' +
+      '<span class="w-value" data-out></span>', 640, 250,
+      "The portfolio loss distribution is right-skewed (Vasicek). Expected loss (EL) is the mean — priced in, covered by provisions. Credit VaR is the high quantile; the gap between it and EL is Unexpected Loss, the economic capital a bank must hold. Raise correlation ρ and the tail fattens dramatically — same EL, far more capital.");
+    var sl = el.querySelectorAll("input"), pdS = sl[0], rhoS = sl[1], cfS = sl[2];
+    var pdO = el.querySelector("[data-pd]"), rhoO = el.querySelector("[data-rho]"), cfO = el.querySelector("[data-conf]"), out = el.querySelector("[data-out]");
+    function draw() {
+      var pd = parseFloat(pdS.value), rho = parseFloat(rhoS.value), conf = parseFloat(cfS.value);
+      pdO.textContent = (pd * 100).toFixed(1) + "%"; rhoO.textContent = rho.toFixed(2); cfO.textContent = (conf * 100).toFixed(2) + "%";
+      var b = ninv(pd);
+      var wcdr = ncdf((b + Math.sqrt(rho) * ninv(conf)) / Math.sqrt(1 - rho));
+      out.textContent = "EL = " + (pd * 100).toFixed(1) + "% · CreditVaR = " + (wcdr * 100).toFixed(1) + "% · UL = " + ((wcdr - pd) * 100).toFixed(1) + "%";
+      function f(x) { if (x <= 0 || x >= 1) return 0; var a = ninv(x); return Math.sqrt((1 - rho) / rho) * Math.exp(0.5 * (a * a - Math.pow(Math.sqrt(1 - rho) * a - b, 2) / rho)); }
+      svg.innerHTML = "";
+      var W = 640, H = 250, x0 = 20, x1 = W - 16, y0 = H - 30;
+      var xmax = Math.min(0.9995, Math.max(wcdr * 1.25, pd * 5));
+      function X(x) { return x0 + x / xmax * (x1 - x0); }
+      var fmax = 0, N = 500, i, xx;
+      for (i = 1; i < N; i++) { xx = i / N * xmax; fmax = Math.max(fmax, f(xx)); }
+      function Y(p) { return y0 - Math.min(p, fmax) / fmax * (H - 74); }
+      function region(a2, bb, fill, op) { var d = "M" + X(a2) + "," + Y(0); for (var x = a2; x <= bb; x += xmax / N) d += " L" + X(x) + "," + Y(f(x)); d += " L" + X(bb) + "," + Y(0) + " Z"; svgEl("path", { d: d, fill: fill, opacity: op }, svg); }
+      region(pd, wcdr, "var(--amber)", 0.35);        // unexpected loss / economic capital
+      region(wcdr, xmax, "var(--red)", 0.35);         // stress tail beyond Credit VaR
+      var d = "";
+      for (i = 1; i <= N; i++) { xx = i / N * xmax; d += (d ? " L" : "M") + X(xx) + "," + Y(f(xx)); }
+      svgEl("path", { d: d, fill: "none", stroke: "var(--accent)", "stroke-width": 2 }, svg);
+      svgEl("line", { x1: X(pd), x2: X(pd), y1: Y(fmax), y2: Y(0), stroke: "var(--green)", "stroke-width": 2, "stroke-dasharray": "4 3" }, svg);
+      var tEL = svgEl("text", { x: X(pd), y: Y(fmax) - 4, "text-anchor": "middle", "font-size": 11.5, fill: "var(--green)" }, svg); tEL.textContent = "EL";
+      svgEl("line", { x1: X(wcdr), x2: X(wcdr), y1: Y(fmax * 0.75), y2: Y(0), stroke: "var(--red)", "stroke-width": 2 }, svg);
+      var tV = svgEl("text", { x: X(wcdr), y: Y(fmax * 0.75) - 4, "text-anchor": "middle", "font-size": 11.5, fill: "var(--red)" }, svg); tV.textContent = "Credit VaR";
+      svgEl("line", { x1: x0, x2: x1, y1: y0, y2: y0, stroke: "var(--border-strong)" }, svg);
+      var tx = svgEl("text", { x: x1 - 4, y: y0 + 17, "text-anchor": "end", "font-size": 11 }, svg); tx.textContent = "portfolio loss rate →";
+    }
+    pdS.addEventListener("input", draw); rhoS.addEventListener("input", draw); cfS.addEventListener("input", draw);
+    draw();
+  };
+
+  /* --- FRTB: VaR(99%) vs ES(97.5%) + liquidity-horizon scaling (r16) --- */
+  WIDGETS.frtb = function (el) {
+    var svg = widgetShell(el, "FRTB — why ES(97.5%) replaced VaR(99%)",
+      '<label>Liquidity horizon <input type="range" min="0" max="4" step="1" value="0"><span class="w-value" data-lh></span></label>' +
+      '<span class="w-value" data-out></span>', 640, 250,
+      "Under a normal distribution ES(97.5%) ≈ 2.34σ lands almost exactly on VaR(99%) = 2.33σ — that is why the Basel Committee chose 97.5%. But ES averages the whole tail beyond the 97.5% point (shaded), so it still rises when tails are fat, where VaR is blind. FRTB then scales each risk factor by its liquidity horizon: charge ∝ √(LH/10 days).");
+    var slider = el.querySelector("input"), lhO = el.querySelector("[data-lh]"), out = el.querySelector("[data-out]");
+    var LHS = [10, 20, 40, 60, 120];
+    function draw() {
+      var lh = LHS[parseInt(slider.value, 10)];
+      lhO.textContent = lh + " days";
+      var zVaR = ninv(0.99);                 // 2.326
+      var esFactor = npdf(ninv(0.975)) / 0.025; // 2.337
+      var scale = Math.sqrt(lh / 10);
+      out.textContent = "VaR(99%)=" + zVaR.toFixed(2) + "σ · ES(97.5%)=" + esFactor.toFixed(2) + "σ · LH-scaled ES=" + (esFactor * scale).toFixed(2) + "σ";
+      svg.innerHTML = "";
+      var W = 640, H = 250, x0 = 24, x1 = W - 16, y0 = H - 30;
+      function X(x) { return x0 + (x + 4) / 8 * (x1 - x0); }
+      function Y(p) { return y0 - p / 0.42 * (H - 78); }
+      var q975 = ninv(0.975);
+      /* tail beyond 97.5% (what ES averages) */
+      var df = "M" + X(q975) + "," + Y(0);
+      for (var x = q975; x <= 4; x += 0.04) df += " L" + X(x) + "," + Y(npdf(x));
+      df += " L" + X(4) + "," + Y(0) + " Z";
+      svgEl("path", { d: df, fill: "var(--amber)", opacity: 0.4 }, svg);
+      var d = "";
+      for (var x2 = -4; x2 <= 4; x2 += 0.04) d += (d ? " L" : "M") + X(x2) + "," + Y(npdf(x2));
+      svgEl("path", { d: d, fill: "none", stroke: "var(--accent)", "stroke-width": 2 }, svg);
+      /* VaR 99% line */
+      svgEl("line", { x1: X(zVaR), x2: X(zVaR), y1: Y(0.30), y2: Y(0), stroke: "var(--red)", "stroke-width": 2, "stroke-dasharray": "4 3" }, svg);
+      var t1 = svgEl("text", { x: X(zVaR), y: Y(0.30) - 4, "text-anchor": "end", "font-size": 11, fill: "var(--red)" }, svg); t1.textContent = "VaR 99%";
+      /* ES 97.5% line (avg of amber tail) */
+      svgEl("line", { x1: X(esFactor), x2: X(esFactor), y1: Y(0.19), y2: Y(0), stroke: "var(--amber)", "stroke-width": 2 }, svg);
+      var t2 = svgEl("text", { x: X(esFactor), y: Y(0.19) - 4, "text-anchor": "start", "font-size": 11, fill: "var(--amber)" }, svg); t2.textContent = "ES 97.5%";
+      /* LH-scaled ES line */
+      var sc = esFactor * scale;
+      if (sc <= 3.98) {
+        svgEl("line", { x1: X(sc), x2: X(sc), y1: Y(0.09), y2: Y(0), stroke: "var(--purple)", "stroke-width": 2 }, svg);
+        var t3 = svgEl("text", { x: X(sc), y: Y(0.09) - 4, "text-anchor": "middle", "font-size": 11, fill: "var(--purple)" }, svg); t3.textContent = "LH-scaled";
+      }
+      svgEl("line", { x1: x0, x2: x1, y1: y0, y2: y0, stroke: "var(--border-strong)" }, svg);
+      var tx = svgEl("text", { x: x1 - 4, y: y0 + 17, "text-anchor": "end", "font-size": 11 }, svg); tx.textContent = "loss (σ units) →";
+    }
+    slider.addEventListener("input", draw);
+    draw();
   };
 
   FRM.initWidgets = function (root) {

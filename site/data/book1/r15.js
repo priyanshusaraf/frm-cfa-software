@@ -31,13 +31,13 @@ FRM.register({
     },
     {
       name: "Alternative smile parameterizations and vol surfaces",
-      def: "Instead of X/S₀, traders sometimes use X alone (less stable, price-level dependent), X/F₀ (forward price — often preferred since forward = theoretical ATM expectation), or option delta (works even for non-European/American payoffs).",
+      def: "Instead of \\(X/S_{0}\\), traders sometimes use X alone (less stable, price-level dependent), \\(X/F_{0}\\) (forward price — often preferred since forward = theoretical ATM expectation), or option delta (works even for non-European/American payoffs).",
       example: "A volatility SURFACE = volatility smile (across strikes) × volatility term structure (across maturities), combined into one 3-D pricing tool.",
       related: ["Impact on the Greeks"]
     },
     {
       name: "Impact on the Greeks — minimum variance delta",
-      def: "Two competing effects when equity price changes: (1) moving along the existing smile curve (as X/S₀ changes), and (2) the WHOLE curve shifting up or down (since equity price and volatility are typically negatively correlated).",
+      def: "Two competing effects when equity price changes: (1) moving along the existing smile curve (as \\(X/S_{0}\\) changes), and (2) the WHOLE curve shifting up or down (since equity price and volatility are typically negatively correlated).",
       pitfall: "Effect (2) DOMINATES in practice. The minimum variance delta incorporates this whole-curve shift and is LOWER than the standard BSM delta, which ignores it entirely — a common trap is assuming standard BSM delta already captures this.",
       related: ["Smile, skew, and frown"],
       memory: "Standard delta only walks along the smile; minimum variance delta also accounts for the smile itself moving."
@@ -86,5 +86,5 @@ FRM.register({
     { title: "The whole smile moves", text: "Standard delta watches you walk along a hallway (the smile curve). Minimum variance delta notices the whole hallway is also sliding sideways — and that sliding is usually the bigger effect." }
   ],
 
-  summary: `<p><strong>Put-call parity</strong> mechanically forces equal implied vol for same-strike calls/puts — a no-arbitrage fact, not an empirical claim. <strong>Smile</strong> (FX): fat tails both sides, vol jumps/regime shifts. <strong>Skew/smirk</strong> (equity): down-side feared more — leverage effect (genuine vol rise) + crashophobia (pricing premium only). <strong>Frown</strong>: anticipated binary event, ATM richer than wings — opposite of a smile. Parameterizations: X/S₀, X alone, X/F₀ (often preferred), or delta. <strong>Vol surface</strong> = smile × term structure. <strong>Greeks</strong>: standard BSM delta only tracks movement along the smile; the DOMINANT effect is the whole smile shifting (price-vol negative correlation), captured by the systematically LOWER minimum variance delta.</p>`
+  summary: `<p><strong>Put-call parity</strong> mechanically forces equal implied vol for same-strike calls/puts — a no-arbitrage fact, not an empirical claim. <strong>Smile</strong> (FX): fat tails both sides, vol jumps/regime shifts. <strong>Skew/smirk</strong> (equity): down-side feared more — leverage effect (genuine vol rise) + crashophobia (pricing premium only). <strong>Frown</strong>: anticipated binary event, ATM richer than wings — opposite of a smile. Parameterizations: \\(X/S_{0}\\), X alone, \\(X/F_{0}\\) (often preferred), or delta. <strong>Vol surface</strong> = smile × term structure. <strong>Greeks</strong>: standard BSM delta only tracks movement along the smile; the DOMINANT effect is the whole smile shifting (price-vol negative correlation), captured by the systematically LOWER minimum variance delta.</p>`
 });
