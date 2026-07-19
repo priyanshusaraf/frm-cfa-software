@@ -2,9 +2,26 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## What this is
+## What this is — READ THIS FIRST
 
-An **interactive learning website for the FRM Part II exam** (5 books, 101 readings), built as a fully static, dependency-free vanilla-JS site. There is **no build system, no framework, no package.json, no server** — the site runs directly from `file://`. The application lives entirely in `site/`; the repository root holds the source material the content is derived from.
+An **interactive learning website for the FRM Part II exam** (5 books, 101 readings). There
+are two apps in this repo:
+
+- **`react-site/` — the ACTIVE product** (Vite + React). All development happens here.
+  Before touching it, read **`react-site/CLAUDE.md`** — the binding guide (written by Fable)
+  for teaching style, content schema rules, code conventions, UI doctrine, and verification.
+  Read **`PROGRESS.md`** at the root for where development stands, and update it before
+  ending any session.
+- **`site/` — FROZEN** vanilla-JS predecessor. Never edit it; it's the reference the React
+  app's widgets/renderers were ported from. The rest of this file documents it for
+  reference only.
+
+The repository root holds the Schweser source material both apps' content derives from —
+the content rule at the bottom of this file applies to BOTH apps.
+
+## The frozen vanilla site (`site/`) — reference documentation
+
+Built as a fully static, dependency-free vanilla-JS site. There is **no build system, no framework, no package.json, no server** — the site runs directly from `file://`.
 
 ## Running & verifying (there is no build/lint/test tooling)
 
