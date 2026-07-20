@@ -80,7 +80,7 @@ export default ({
         {
           symbol: "X",
           meaning: "The confidence level for the stress scenario (Basel fixes this at 99.9% for the IRB capital formula).",
-          why: "It picks how bad an economic downturn to plan for. N⁻¹(X) is the (very negative) percentile of the common factor M that represents that downturn; higher X means a rarer, more severe scenario, and a higher WCDR."
+          why: "It picks how severe an economic downturn to plan for, and it hides a sign trap worth getting right. The bad economy is a very NEGATIVE draw of the common factor M, but in the WCDR formula it appears as a large POSITIVE N⁻¹(X), about +3.09 at X = 99.9%, because M enters the underlying default equation with a minus sign and the two negatives cancel. That positive term is exactly what lifts the worst-case rate above PD; a higher X gives a larger N⁻¹(X) and a higher WCDR. Plug in a negative value here and you get a rate far BELOW PD, the classic mistake that inverts the whole result."
         },
         {
           symbol: "N(·)",
