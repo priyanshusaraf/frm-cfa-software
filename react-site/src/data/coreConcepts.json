@@ -1,0 +1,54 @@
+[
+  {
+    "slug": "information-ratio",
+    "name": "Information ratio",
+    "kind": "formula",
+    "homeReading": 83,
+    "refs": [
+      83,
+      87,
+      88
+    ]
+  },
+  {
+    "slug": "sharpe-ratio",
+    "name": "Sharpe ratio",
+    "kind": "formula",
+    "homeReading": 83,
+    "refs": [
+      83,
+      87,
+      88
+    ]
+  },
+  {
+    "slug": "cpr-from-smm",
+    "name": "CPR from SMM",
+    "kind": "formula",
+    "homeReading": 30,
+    "refs": [
+      30,
+      39
+    ]
+  },
+  {
+    "slug": "isda-master-agreement",
+    "name": "ISDA Master Agreement",
+    "kind": "concept",
+    "homeReading": 31,
+    "refs": [
+      31,
+      33
+    ]
+  },
+  {
+    "slug": "vasicek-worst-case-default-rate-wcdr",
+    "name": "Vasicek worst-case default rate (WCDR)",
+    "kind": "formula",
+    "homeReading": 26,
+    "refs": [
+      26,
+      29
+    ]
+  }
+]

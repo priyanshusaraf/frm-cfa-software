@@ -31,6 +31,8 @@ const Highlights = lazy(() => import("./pages/Highlights.jsx"));
 const MockExam = lazy(() => import("./pages/MockExam.jsx"));
 const Bookmarks = lazy(() => import("./pages/Bookmarks.jsx"));
 const Settings = lazy(() => import("./pages/Settings.jsx"));
+const ConceptsIndex = lazy(() => import("./pages/ConceptsIndex.jsx"));
+const ConceptPage = lazy(() => import("./pages/ConceptPage.jsx"));
 
 function PageLoading() {
   return (
@@ -64,6 +66,8 @@ createRoot(document.getElementById("root")).render(
           <Route path="/mock" element={<MockExam />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/concepts" element={<ConceptsIndex />} />
+          <Route path="/concept/:slug" element={<ConceptPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

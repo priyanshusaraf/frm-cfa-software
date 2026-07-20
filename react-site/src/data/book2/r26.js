@@ -65,7 +65,36 @@ export default ({
       <p style="text-align:center">\\(R_i = \\sqrt{\\rho}\\,M + \\sqrt{1-\\rho}\\,Z_i\\)</p>
       <p>where \\(M\\) and each \\(Z_i\\) are independent standard normals, and \\(\\rho\\) is the share of a borrower's return variance driven by the common factor — this IS the credit correlation. A borrower defaults when its asset return falls below a threshold calibrated so the unconditional default probability equals its known PD, i.e., when \\(R_i < N^{-1}(PD)\\).</p>
       <p>Conditional on a particular draw of the systematic factor \\(M = m\\), the probability that borrower <em>i</em> defaults becomes \\(N\\!\\left[\\dfrac{N^{-1}(PD) - \\sqrt{\\rho}\\,m}{\\sqrt{1-\\rho}}\\right]\\). For a large, well-diversified portfolio, the law of large numbers means the realized default rate converges to exactly this conditional probability — all the idiosyncratic \\(Z_i\\) noise washes out, leaving only the systematic factor \\(M\\) as the source of portfolio-wide uncertainty. To get the default rate that is only exceeded \\((1-X)\\%\\) of the time, you plug in the "bad" \\(X\\)-th percentile of \\(M\\), which is \\(-N^{-1}(X)\\) (a large negative draw of the economy factor). Substituting \\(m = -N^{-1}(X)\\) and flipping the sign convention gives exactly the WCDR formula above.</p>`,
-      note: "\\(\\rho\\) (credit correlation) proxied by ROA/ROE correlation. This is also the Basel IRB capital engine (R21)."
+      note: "\\(\\rho\\) (credit correlation) proxied by ROA/ROE correlation. This is also the Basel IRB capital engine (R21).",
+      terms: [
+        {
+          symbol: "PD",
+          meaning: "The borrower's (or a pool's average) one-year, through-the-cycle probability of default, estimated from historical default history.",
+          why: "It's the starting point: without knowing how risky the borrower normally is, there's nothing to stress in the first place. N⁻¹(PD) converts that ordinary default probability into a threshold on the standard normal scale, so it can be combined with the correlation and confidence terms below."
+        },
+        {
+          symbol: "ρ (rho)",
+          meaning: "The asset correlation: how much of a borrower's fortunes move with the broader economy rather than with its own firm-specific luck.",
+          why: "If ρ were 0, every borrower's default would be an independent coin flip and a large loan pool's default rate would barely move from PD, no fat tail. ρ is what ties every borrower to the same economic cycle, so a downturn can push many of them into default at once. The √ρ and √(1-ρ) weights split each borrower's return into a shared piece (√ρ · M) and an idiosyncratic piece (√(1-ρ) · Z), which is exactly the one-factor structure the model is built on."
+        },
+        {
+          symbol: "X",
+          meaning: "The confidence level for the stress scenario (Basel fixes this at 99.9% for the IRB capital formula).",
+          why: "It picks how bad an economic downturn to plan for. N⁻¹(X) is the (very negative) percentile of the common factor M that represents that downturn; higher X means a rarer, more severe scenario, and a higher WCDR."
+        },
+        {
+          symbol: "N(·)",
+          meaning: "The standard normal cumulative distribution function.",
+          why: "Both PD and X started life as probabilities. N⁻¹ converts a probability into the normal-distribution threshold that produces it; the outer N converts the combined, correlation-adjusted threshold back into a probability, the worst-case default rate itself. The whole formula is just moving between 'probability' and 'z-score' space so the correlation term can be added in."
+        },
+        {
+          symbol: "T",
+          meaning: "The risk horizon over which the default rate is measured (1 year for Basel IRB, though the model generalizes to other horizons).",
+          why: "It fixes what PD itself means. Change T and PD would need to change with it. Basel standardizes on T = 1 year specifically so every bank's IRB inputs are comparable."
+        }
+      ],
+      deepDive: `<p>The Vasicek one-factor model became the backbone of Basel II/III's IRB (Internal Ratings-Based) capital formula precisely because it has a closed-form solution: most portfolio credit-loss models need Monte Carlo simulation to get a percentile like WCDR, but the single common-factor assumption lets it be written as one line of algebra. That tractability, not superior realism, is why regulators standardized on it.</p>
+      <p>The model has two well-known limitations that Schweser's coverage doesn't dwell on. First, it assumes a SINGLE systematic factor drives every borrower's correlation to every other borrower, so it cannot represent that, say, two airlines are more correlated to each other than either is to a software company. Basel handles this crudely by letting ρ vary with PD and firm size (larger, safer borrowers get higher assumed correlation) rather than modeling sector structure directly. Second, ρ itself is calibrated from long-run asset-return correlations (often proxied by equity correlations), which are notoriously unstable and tend to rise in a crisis exactly when the model most needs them to be right, a form of procyclicality regulators have had to patch with separate capital buffers (the countercyclical capital buffer under Basel III) rather than by fixing the model itself.</p>`
     },
     {
       name: "Loss at the Xth percentile (large, granular portfolio)",

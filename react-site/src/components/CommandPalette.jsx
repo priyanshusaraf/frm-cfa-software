@@ -19,6 +19,7 @@ const PAGES = [
   { label: "Notes", path: "/notes" },
   { label: "Highlights", path: "/highlights" },
   { label: "Bookmarks", path: "/bookmarks" },
+  { label: "Core Concepts", path: "/concepts" },
   { label: "Settings", path: "/settings" },
 ];
 

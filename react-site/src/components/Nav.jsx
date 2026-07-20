@@ -19,6 +19,7 @@ import {
   Bookmark,
   Timer,
   Settings as SettingsIcon,
+  Boxes,
 } from "lucide-react";
 import { META } from "../lib/meta.js";
 import { useStore } from "../lib/store.js";
@@ -36,6 +37,7 @@ const STUDY_ITEMS = [
   ["/notes", "Notes", StickyNote],
   ["/highlights", "Highlights", Highlighter],
   ["/bookmarks", "Bookmarks", Bookmark],
+  ["/concepts", "Core Concepts", Boxes],
   ["/settings", "Settings", SettingsIcon],
 ];
 
