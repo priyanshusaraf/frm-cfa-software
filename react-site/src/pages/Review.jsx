@@ -10,6 +10,7 @@ export const SOURCE_KINDS = [
   { key: "recall", label: "Recall Q&A" },
   { key: "highYield", label: "High-yield facts" },
   { key: "lists", label: "List order (why?)" },
+  { key: "foundations", label: "Foundational prerequisites" },
 ];
 
 /* Build every reviewable card, across all readings and every enabled source
@@ -47,6 +48,22 @@ function useAllCards(readingsMap, sources) {
             });
           });
         }
+        /* Foundational-prerequisite cards (CLAUDE.md §7.1): reuse each reading's
+           existing connections.from entries verbatim (already-authored, sourced
+           `why` text) rather than authoring new prerequisite content — a reading
+           already declares what earlier reading it assumes and why. */
+        if (sources.includes("foundations") && d.connections && d.connections.from) {
+          d.connections.from.forEach((c, i) => {
+            if (!c.r) return;
+            const prereqMeta = readingMeta(c.r);
+            cards.push({
+              id: r.n + ":prereq:" + i, rn: r.n, book: b, meta, tags, kind: "foundations",
+              prereqRn: c.r, prereqMeta,
+              q: `Before R${r.n} (${meta ? meta.t : ""}), what should you already remember from R${c.r}${prereqMeta ? " (" + prereqMeta.t + ")" : ""}?`,
+              a: c.why,
+            });
+          });
+        }
       }
     }
     return cards;
@@ -57,7 +74,7 @@ export default function Review() {
   useEffect(() => { document.title = "Review — FRM Part II"; }, []);
 
   const readingsMap = useAllReadings();
-  const [sourceFilter, setSourceFilter] = useState(["recall", "highYield", "lists"]);
+  const [sourceFilter, setSourceFilter] = useState(["recall", "highYield", "lists", "foundations"]);
   const allCards = useAllCards(readingsMap, sourceFilter);
   const srs = useStore((s) => s.srs);
   const [bookFilter, setBookFilter] = useState([]); // array of book numbers, empty = all
@@ -214,9 +231,15 @@ export default function Review() {
       ) : (
         <div className="card">
           <div className="kicker" style={{ color: current.book.color, display: "flex", gap: "0.5rem", alignItems: "center" }}>
-            <Link to={rpath(current.rn)} style={{ color: current.book.color }}>
-              R{current.rn} · {current.meta ? current.meta.t : ""}
-            </Link>
+            {current.kind === "foundations" ? (
+              <Link to={rpath(current.prereqRn)} style={{ color: current.book.color }}>
+                R{current.prereqRn} · {current.prereqMeta ? current.prereqMeta.t : ""}
+              </Link>
+            ) : (
+              <Link to={rpath(current.rn)} style={{ color: current.book.color }}>
+                R{current.rn} · {current.meta ? current.meta.t : ""}
+              </Link>
+            )}
             <span style={{ fontSize: "0.72rem", color: "var(--text-faint)", textTransform: "none" }}>
               {SOURCE_KINDS.find((s) => s.key === current.kind)?.label}
             </span>

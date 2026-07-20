@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useParams, Navigate, Link, useNavigate, useLocation } from "react-router-dom";
 import { readingMeta, bookOf, rpath, bpath, META } from "../lib/meta.js";
 import { useReading } from "../lib/readings.js";
@@ -34,6 +34,7 @@ export default function Chapter() {
   const resumeRef = useRef({ y: 0, scrollTo: null });
   const [openRecall, setOpenRecall] = useState({});
   const isDone = useStore((s) => !!s.done[rn]);
+  const doneMap = useStore((s) => s.done); // raw slice (stable identity) — see CLAUDE.md #185 note
   const quizScore = useStore((s) => s.quiz[rn]);
   const pageWidth = useStore((s) => (s.layout && s.layout.pageWidth) || null);
   /* raw booleans (not an object) so the selector returns a stable primitive each
@@ -83,6 +84,16 @@ export default function Chapter() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [rn, navigate]);
+
+  /* Foundational-prerequisite reminder (CLAUDE.md §7.1): connections.from already
+     declares which earlier reading each reading assumes and why; surface the ones
+     the student hasn't marked done yet as a just-in-time nudge instead of a new
+     authored field. Also reviewable later via /review's "Foundational
+     prerequisites" card source (Review.jsx). */
+  const unstudiedPrereqs = useMemo(() => {
+    if (!d || !d.connections || !d.connections.from) return [];
+    return d.connections.from.filter((c) => c.r && !doneMap[c.r]);
+  }, [d, doneMap]);
 
   /* section list for the sticky TOC — must mirror the conditions in the JSX below exactly.
      Computed with d-optional guards (not a hook) so it's stable to include as an effect dep
@@ -234,6 +245,24 @@ export default function Chapter() {
         )}
         {quizScore && <Badge tone={quizScore.best >= 70 ? "green" : "amber"}>Quiz best {quizScore.best}%</Badge>}
       </div>
+
+      {unstudiedPrereqs.length > 0 && (
+        <div className="card" style={{ borderLeft: "3px solid var(--amber)", marginBottom: "1.2rem" }}>
+          <div style={{ fontSize: "0.72rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.07em", color: "var(--amber)", marginBottom: "0.4rem" }}>
+            Refresher — this reading assumes you remember
+          </div>
+          {unstudiedPrereqs.map((c, i) => {
+            const pm = readingMeta(c.r);
+            return (
+              <p key={i} style={{ fontSize: "0.9rem", margin: i === 0 ? 0 : "0.5rem 0 0" }}>
+                <Link to={rpath(c.r)}><strong>R{c.r}{pm ? " · " + pm.t : ""}</strong></Link>
+                {" — "}
+                <Html as="span" html={c.why} />
+              </p>
+            );
+          })}
+        </div>
+      )}
 
       {d.teaches && (<>
         <SectionLabel txt="What this chapter teaches" color={book.color} rn={rn} />
