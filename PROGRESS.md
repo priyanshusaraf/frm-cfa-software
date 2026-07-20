@@ -4,9 +4,22 @@ Single source of truth for **where development stands**, so work can resume even
 session dies or limits run out. Scope of all work: **`react-site/` only** — the vanilla
 `site/` app is frozen. Full design: `docs/superpowers/specs/2026-07-18-react-marketable-design.md`.
 
-> **⏭ ACTIVE RESUME POINT (2026-07-21, tenth session):** branch `scoped-roadmap-2026-07`
-> (pushed, NOT merged to main — stops short of that for review) implemented the CLAUDE.md
-> §6/§7 backlog the ninth session scoped, in easiest-first order:
+> **⏭ ACTIVE RESUME POINT (2026-07-21, eleventh session):** the tenth session's feature work
+> (below) was reviewed, audited, and **MERGED to `main`** (fast-forward, commit `129be91`);
+> the `scoped-roadmap-2026-07` branch was deleted. Work now continues on a fresh branch
+> **`content-quality-2026-07`**. **The next priority is NOT a new feature: it is the
+> content-quality pass, scoped in full in `react-site/CLAUDE.md` section 8** (em-dash purge +
+> tone humanization + why-depth + a NEW formula-correctness verification layer). Owner
+> directive: "hammering the main portions of the content is what will make users retain this
+> software; everything else is replaceable." The phone-first card/deck/digestibility slate
+> (Fable's M1-M7) is explicitly DEFERRED to a later version per the owner. Eleventh-session
+> audit also caught and fixed a real defect in the tenth session's Vasicek WCDR content: the
+> piecewise X-term called N⁻¹(X) "very negative" when in the formula it is +3.09 (a student
+> trusting the prose would compute 0.002% vs the correct 14.6%); fixed in `book2/r26.js` and
+> turned into a "teach the trap" point. This exact miss is why section 8.4 (numerical
+> correctness verification) now exists. The tenth-session feature summary, for reference:
+>
+> Tenth session (now merged) implemented the CLAUDE.md §6/§7 backlog in easiest-first order:
 > 1. **§7.2 Settings** — `/settings` page, `layout.fontScale` store key applied as
 >    `--font-scale` on `<html>`. Font family / background color deliberately not built
 >    (still out of scope per the spec).
@@ -42,12 +55,11 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > `validate-reading.mjs` runs. Flagged, NOT verified (needs a real browser): the split-view
 > pane divider drag-resize, the desktop/narrow-viewport split fallback, and the settings
 > font-size chips' visual result across the type scale.
-> **Known debt, not blocking:** the em-dash/prose-tone cleanup is still incomplete across
-> several Book 3 readings (r40-r43, r50-r51) AND, newly confirmed this session while touching
-> R26/R29 for the Vasicek pilot, Book 2 r26 (47 dashes) and r29 (48 dashes) also fail the
-> validator's dash budget — all pre-existing, none introduced this or the ninth session. A
-> future tone-pass should sweep both books fully; this expands the known-debt list beyond just
-> Book 3.
+> **Known debt, now the TOP priority (see CLAUDE.md section 8):** the em-dash/prose-tone
+> cleanup was never done at scale. Measured 2026-07-21: **7,614 em/en-dashes across `src/data`;
+> 100 of 101 readings fail the validator's dash budget** (all pre-existing enrichment output,
+> not introduced by recent sessions). Plus the unverified tone-humanization, the why-depth gap
+> (r63 exemplar), and the newly-added formula-correctness audit. This is the next build.
 
 Update the checkboxes as items land. Last updated: **2026-07-20 (seventh session — comfort-UI
 batch: floating-pill Key points + On-this-page rails, draggable reading width, exact-position

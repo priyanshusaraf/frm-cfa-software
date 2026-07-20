@@ -82,8 +82,11 @@ it — that's the bar.
   characters are specifically the long dashes. Grep check before shipping any content edit:
   `grep -Rn '—\|–' src/data/<file>` must return nothing.
 - **Human, plain tone.** Write the way a sharp tutor talks, not the way a textbook is printed.
-  The tone-humanization + em-dash removal has NOT been verified across all 101 readings yet
-  (see the content-quality workstream in `docs/superpowers/specs/2026-07-20-comfort-ui-v2-plan.md`).
+  The tone-humanization + em-dash removal has NOT been done across the 101 readings: as of
+  2026-07-21, `src/data` still holds **7,614 em/en-dashes and 100 of 101 readings fail the
+  validator's dash budget.** This is now the product's TOP-PRIORITY backlog item, scoped in
+  full in **section 8** (it supersedes the older workstream note in
+  `docs/superpowers/specs/2026-07-20-comfort-ui-v2-plan.md` §6b).
 
 ### Content schema (each `src/data/bookN/rNN.js` default-exports this)
 
@@ -527,3 +530,78 @@ alone, condensed alone, or both at once (reading gives up its space when both ar
 evenly); desktop-only (≥1100px, matching the reading-width resizer's breakpoint), falling
 back to the full-screen `/pdf/:bn` route below that. A live divider between two open panes is
 deferred (static 50/50 split for now, a reasonable default rather than a gap).
+
+## 8. TOP PRIORITY: the content-quality pass (scoped 2026-07-21, eleventh session)
+
+The product owner's explicit direction after reviewing the tenth session's feature work:
+**hammering the main portions of the content is what will make users retain this software;
+everything else is replaceable.** This section is the single highest-priority backlog item,
+ABOVE any new feature. The content was enriched across all 101 readings in earlier sessions,
+but three quality gaps were never closed and a fourth was found in the tenth session's audit.
+As each data file gets opened, do 8.1 + 8.2 + 8.3 in ONE pass (the agent re-reads the file
+anyway), with 8.4 as an Opus review layer on top.
+
+### 8.1 Em-dash / en-dash purge (the owner's #1 "reads as AI" tell)
+
+Measured 2026-07-21: **7,614 em/en-dashes across `src/data`; 100 of 101 readings fail
+`validate-reading.mjs`'s dash budget.** The owner banned these outright (section 1 "Prose
+style HARD RULES") because they are the most visible AI-generated signal in the product, and
+for a paid product a buyer will notice. A blind `sed`/regex replace is FORBIDDEN: it produces
+broken grammar in thousands of spots. Every dash needs a context-appropriate rewrite (comma,
+colon, parentheses, or a full stop; a full stop or colon usually reads best). Gate each file
+with `grep -Rn '—\|–' src/data/bookN/rNN.js` returning nothing AND the validator passing.
+
+### 8.2 Tone humanization
+
+The warm, sharp-tutor voice (sections 1 and 1a) has NOT been verified across the 101 readings.
+In the same per-file pass, rewrite textbook-flavored or lecture-note prose into a tutor
+thinking out loud with the student. The R28 exemplar (section 1) and the problem-first
+doctrine (section 1a) are the bar; simpler where students struggle, but never oversimplified.
+
+### 8.3 Why-depth (never make the student reach for another AI)
+
+Per section 1.7: every counterintuitive claim must carry its causal mechanism in the same
+breath, sourced from Schweser, never invented. The reference failure is r63's "deposits have
+become LESS stable over time" asserting the surprise without the why. In the same per-file
+pass, find counterintuitive assertions and supply the sourced mechanism.
+
+### 8.4 Formula / numerical correctness verification (NEW, added this session)
+
+Motivating incident: the tenth session's Vasicek WCDR piecewise breakdown shipped with a sign
+error (the X term called N⁻¹(X) "very negative" when in the formula it is +3.09; a student
+trusting the prose would compute 0.002% instead of the correct 14.6%), caught and fixed only
+during an Opus audit. The enrichment's math (every `formulas[].plain`, `.derivation`,
+`.terms[]`, and any worked number in prose) has never been numerically audited, and
+intuitive-sounding prose can be mathematically inverted while still reading fine, so tone
+review alone will not catch this. Add a math-correctness layer: for every formula touched, an
+Opus reviewer checks the plain-language and derivation text against the actual equation (plug
+in numbers where feasible) so no explanation contradicts its own formula. This is a real
+defect class that students rely on for the exam, not a style nit.
+
+### 8.5 Flagship content build: the securitization / structured-finance family
+
+Per sections 1a and 6: build the covered bonds → pass-through MBS → CMO → CDO/CLO family to
+the problem-first doctrine, with the CMO-vs-CDO/CLO distinction (cash-flow/prepayment
+tranching vs credit/default tranching under the shared word "tranche") as the stage-6
+comparison centerpiece. Needs both a Revision page (section 7.1 v2, structured finance from
+first principles) and a Core-Concept page (section 6). This is content work and fits this
+priority; scan the Book 2/3/4 source coverage first, invent nothing.
+
+### 8.6 Execution and the DEFERRED slate
+
+Execution: Sonnet fleet, one agent per data file (section 5 rules: file-scoped prompts, agents
+never build and never touch git state), each agent given its file plus the relevant Schweser
+source path, MUST NOT invent facts. Opus reviewers handle 8.4 (math correctness) and
+doctrine/tone compliance before a wave is done; route any fix back through Sonnet, then
+re-review. Batch in waves; the orchestrator builds, import-sweeps, and render-checks after each
+wave and tracks completion per file. Start with one reference file (r63 for the why-depth bar,
+plus one math-dense reading such as r26 for the correctness bar) so the owner can approve the
+depth/tone/correctness bar before the full ~101-file fleet runs.
+
+**Explicitly DEFERRED to a later software version (owner directive, 2026-07-21):** the
+phone-first digestibility / card-deck slate Fable designed in
+`docs/superpowers/specs/2026-07-20-comfort-ui-v2-plan.md` (section 5 flashcard engine +
+`/deck/:rn`, section 6 M2 trap-check game, M3 story mode, M4 streak/daily-goal, M7 two-minute
+sprint) and the section 6c progressive balance-sheet widget. In the owner's words these are
+"not exactly necessary right now"; content retention beats new surfaces. Revisit only after
+the content-quality pass has landed.
