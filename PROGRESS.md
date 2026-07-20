@@ -4,24 +4,50 @@ Single source of truth for **where development stands**, so work can resume even
 session dies or limits run out. Scope of all work: **`react-site/` only** — the vanilla
 `site/` app is frozen. Full design: `docs/superpowers/specs/2026-07-18-react-marketable-design.md`.
 
-> **⏭ ACTIVE RESUME POINT (2026-07-21, ninth session):** comfort-ui-mobile-fixes branch
-> (resize/mobile P0 fixes + local per-list resizers + book 1-2 content refinements) is merged
-> to `main` and pushed. This session then shipped a Fable-designed memorization batch (spec:
-> `react-site/docs/superpowers/specs/2026-07-20-memorization-design.md`) — see the shipped
-> section below — and wrote a **not-yet-built roadmap** for a cross-reading "core concept"
-> hover/deep-dive system (Vasicek WCDR etc.) into `react-site/CLAUDE.md` section 6. That
-> roadmap is spec-only; next session should brainstorm→plan→build it as its own scoped
-> project, starting with Phase 1 (see CLAUDE.md section 6), NOT resume mid-build.
-> Also fixed this session: the tranche widget's overlapping axis labels (r28) and a drill
-> design flaw where ListBuilder items authored with a canonical numbered name up front
-> ("Tier 1:") handed the ordering answer away for free. Four more ideas from this session are
-> scoped (not built) in `react-site/CLAUDE.md` section 7: foundational-concept revision,
-> a settings page (font size first), paid-access device licensing, and split-view source
-> material alongside a reading. **If the user says "check CLAUDE.md for what's left," read
-> sections 6 and 7 — that's the full backlog.**
+> **⏭ ACTIVE RESUME POINT (2026-07-21, tenth session):** branch `scoped-roadmap-2026-07`
+> (pushed, NOT merged to main — stops short of that for review) implemented the CLAUDE.md
+> §6/§7 backlog the ninth session scoped, in easiest-first order:
+> 1. **§7.2 Settings** — `/settings` page, `layout.fontScale` store key applied as
+>    `--font-scale` on `<html>`. Font family / background color deliberately not built
+>    (still out of scope per the spec).
+> 2. **§7.4 Split-view source material** — `PdfView.jsx`'s rendering was extracted into a
+>    shared `PdfCore` component (`window` mode for the existing `/pdf/:bn` route, new `pane`
+>    mode for container-scrolled side panes) so nothing was duplicated. Chapter.jsx gets
+>    "Split: Source" / "Split: Condensed" toggles (desktop-only, ≥1100px, matching the
+>    reading-width breakpoint; narrower viewports fall back to `/pdf/:bn`). Condensed
+>    companion PDFs (books 1-4) copied into `public/pdfs/condensed{1..4}.pdf`. A live divider
+>    between two open panes is deferred (static 50/50 split) — noted as a reasonable default,
+>    not a gap.
+> 3. **§7.1 Foundational-concept revision** — resolved the three open design questions:
+>    prerequisites are read straight off each reading's existing `connections.from` (no new
+>    tag); the revision surface is BOTH a new "Foundational prerequisites" card kind in
+>    `Review.jsx`'s existing SRS engine (auto-generated Q/A from `connections.from[].why`, no
+>    new authoring) AND an inline "Refresher" banner on Chapter.jsx for any prerequisite not
+>    yet marked done.
+> 4. **§6 Core-concept cross-reading system** — Phase 1 (auto-detection + `/concepts` index +
+>    `/concept/:slug` deep-dive page + gated back-to-reading button) and Phase 2 (piecewise
+>    `formulas[].terms[]` + `deepDive`, piloted on Vasicek WCDR, R26/R29) are DONE. **Phase 3
+>    (inline hover-snippet linking fan-out across every reading that reuses a core concept) is
+>    NOT built** — intentionally deferred per the roadmap's own sequencing note, since it's the
+>    expensive phase and next session should treat it as its own dedicated fleet run (CLAUDE.md
+>    §5), not squeezed into this session's tail. Also worth knowing: Phase 1's exact-name
+>    auto-detector only surfaces 5 core concepts total on the current corpus (Sharpe ratio,
+>    Information ratio, CPR from SMM, ISDA Master Agreement, Vasicek WCDR) — narrower than
+>    CLAUDE.md §6's full R8/R11/R12/R13/R14/R21/R26/R27/R29/R59 Vasicek example, because most of
+>    those readings reference the model in PROSE rather than in a `formulas[]`/`concepts[]`
+>    name. Closing that gap is exactly what Phase 3's prose-level keyword matching is for.
+> **§7.3 (paid-access device licensing)** was correctly left unbuilt (needs backend/auth
+> infrastructure this repo doesn't have) per the roadmap's explicit deprioritization.
+> **Every phase**: `npm run build` green, headless render-checks (0 failure markers), relevant
+> `validate-reading.mjs` runs. Flagged, NOT verified (needs a real browser): the split-view
+> pane divider drag-resize, the desktop/narrow-viewport split fallback, and the settings
+> font-size chips' visual result across the type scale.
 > **Known debt, not blocking:** the em-dash/prose-tone cleanup is still incomplete across
-> several Book 3 readings (r40-r43, r50-r51 fail the validator's dash budget; pre-existing,
-> confirmed not introduced this session) — a future tone-pass should sweep book3 fully.
+> several Book 3 readings (r40-r43, r50-r51) AND, newly confirmed this session while touching
+> R26/R29 for the Vasicek pilot, Book 2 r26 (47 dashes) and r29 (48 dashes) also fail the
+> validator's dash budget — all pre-existing, none introduced this or the ninth session. A
+> future tone-pass should sweep both books fully; this expands the known-debt list beyond just
+> Book 3.
 
 Update the checkboxes as items land. Last updated: **2026-07-20 (seventh session — comfort-UI
 batch: floating-pill Key points + On-this-page rails, draggable reading width, exact-position
