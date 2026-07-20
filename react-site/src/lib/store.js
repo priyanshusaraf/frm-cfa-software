@@ -14,9 +14,10 @@
      hlLabels:   { y, g, b, r },                      // user-editable color legend
      lastVisited:{ rn, ts, y, section },              // most recently opened chapter (+ scroll y, section label left off in)
      bookmarks:  { [rn]: [ { id, txt, ts } ] },       // section bookmarks; id = slugify(section title)
-     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale },
+     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, split },
               // reading-column width (px) + rail open states + per-block widths { [`${rn}:key`]: px }
               // + fontScale: app-wide text size multiplier (Settings page), applied as --font-scale
+              // + split: { panes:{source,condensed}, ratio, width } — split-view source panes (Chapter.jsx)
      mocks:  [ { ts, total, correct, perBook, minutes } ], // mock-exam history (newest first)
    }
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
@@ -201,6 +202,31 @@ export function setFontScale(scale) {
   const s = load();
   const fontScale = typeof scale === "number" && scale > 0 ? scale : undefined;
   save({ ...s, layout: { ...(s.layout || {}), fontScale } });
+}
+
+/* ---- split-view source material alongside a reading (Chapter.jsx) ----
+   panes: { source: bool, condensed: bool } — which side-by-side PDF panes are open.
+   ratio: 0..1 divider position when BOTH panes are open (source | condensed).
+   width: px width of the whole pane region when exactly one pane is open
+   (reading | one pane) — desktop-only feature, see CLAUDE.md §7.4. */
+export function setSplitPane(kind, open) {
+  const s = load();
+  const cur = (s.layout && s.layout.split) || {};
+  const panes = { ...(cur.panes || {}) };
+  if (open) panes[kind] = true; else delete panes[kind];
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, panes } } });
+}
+export function setSplitRatio(ratio) {
+  const s = load();
+  const cur = (s.layout && s.layout.split) || {};
+  const r = typeof ratio === "number" && ratio > 0.15 && ratio < 0.85 ? ratio : undefined;
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, ratio: r } } });
+}
+export function setSplitWidth(px) {
+  const s = load();
+  const cur = (s.layout && s.layout.split) || {};
+  const width = typeof px === "number" && px > 0 ? Math.round(px) : undefined;
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, width } } });
 }
 
 /* ---- study planner ---- */

@@ -37,6 +37,7 @@
   --maxw: 860px;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
   --font-scale: 1;
+  --nav-h: 3.4rem;
 }
 :root[data-theme="light"] {
   --bg: #fafafa;
@@ -602,6 +603,39 @@ svg .axis line, svg .axis path { stroke: var(--border-strong); }
     background: var(--border); opacity: 0; transition: opacity 0.15s, background 0.15s;
   }
   .page-resize:hover::before, .page-resize.dragging::before { opacity: 1; background: var(--accent); }
+}
+
+/* ---------- Split-view source material (Chapter.jsx, CLAUDE.md §7.4) ----------
+   Desktop-only (Chapter.jsx's toggleSplit falls back to the full-screen /pdf/:bn
+   route below the same 1100px breakpoint as the reading-width resizer above).
+   `.split-shell` replaces the plain `<main class="page">` as Chapter's root when a
+   pane is open: the reading column drops its centering/max-width and shares a flex
+   row with the pane region, which docks to the right and pins its own height under
+   the sticky nav. */
+.split-shell { display: flex; align-items: flex-start; }
+.split-shell > .page { flex: 1 1 auto; min-width: 0; margin: 0; max-width: none; }
+.split-region {
+  position: sticky; top: var(--nav-h); height: calc(100vh - var(--nav-h));
+  flex: 1 1 auto; min-width: 0; border-left: 1px solid var(--border);
+  background: var(--bg-raised); overflow: hidden;
+}
+.split-region-resize {
+  position: absolute; top: 0; left: -7px; width: 14px; height: 100%;
+  cursor: ew-resize; z-index: 30; touch-action: none;
+}
+.split-region-resize::before {
+  content: ""; position: absolute; top: 0; bottom: 0; left: 6px; width: 2px; border-radius: 2px;
+  background: var(--border); opacity: 0; transition: opacity 0.15s, background 0.15s;
+}
+.split-region-resize:hover::before, .split-region-resize.dragging::before { opacity: 1; background: var(--accent); }
+.split-panes { display: flex; height: 100%; }
+.split-pane { flex: 1 1 0; min-width: 0; height: 100%; border-left: 1px solid var(--border); }
+.split-pane:first-child { border-left: none; }
+@media (max-width: 1099px) {
+  /* Split view is desktop-only; Chapter.jsx never opens a pane below this breakpoint,
+     but this is a hard backstop in case layout state persists from a wider session. */
+  .split-shell { display: block; }
+  .split-region { display: none; }
 }
 
 /* ---------- section-label bookmark toggle ---------- */

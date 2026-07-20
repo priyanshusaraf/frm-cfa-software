@@ -18,9 +18,10 @@ import MatchPairs from "../components/chapter/MatchPairs.jsx";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
-import { useStore, toggleDone, touchVisited, setPageWidth, getState } from "../lib/store.js";
+import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, getState } from "../lib/store.js";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
 import Resizable from "../components/chapter/Resizable.jsx";
+import SplitView from "../components/chapter/SplitView.jsx";
 import { useEdgeResize } from "../lib/useEdgeResize.js";
 
 /* flat reading order across all books, for prev/next nav */
@@ -35,6 +36,12 @@ export default function Chapter() {
   const isDone = useStore((s) => !!s.done[rn]);
   const quizScore = useStore((s) => s.quiz[rn]);
   const pageWidth = useStore((s) => (s.layout && s.layout.pageWidth) || null);
+  /* raw booleans (not an object) so the selector returns a stable primitive each
+     render, per the useSyncExternalStore #185 rule in CLAUDE.md */
+  const splitSource = useStore((s) => !!(s.layout && s.layout.split && s.layout.split.panes && s.layout.split.panes.source));
+  const splitCondensed = useStore((s) => !!(s.layout && s.layout.split && s.layout.split.panes && s.layout.split.panes.condensed));
+  const splitOpen = splitSource || splitCondensed;
+  const splitBoth = splitSource && splitCondensed;
   const { width: dragWidth, onPointerDown: onResizeDown, onDoubleClick: onResizeReset } = useEdgeResize({
     targetRef: rootRef, min: 720, factor: 2,
     onCommit: (px) => setPageWidth(px),
@@ -167,8 +174,25 @@ export default function Chapter() {
     setOpenRecall((s) => ({ ...s, [i]: !s[i] }));
   }
 
-  return (
-    <main className="page" ref={rootRef} style={appliedWidth ? { maxWidth: appliedWidth } : undefined}>
+  /* Split view is desktop-only (a true side-by-side layout doesn't fit narrow
+     viewports); below the breakpoint, fall back to the existing full-screen
+     /pdf/:bn route instead (CLAUDE.md §7.4). */
+  function toggleSplit(kind) {
+    const isNarrow = !(window.matchMedia && window.matchMedia("(min-width: 1100px)").matches);
+    const alreadyOpen = kind === "source" ? splitSource : splitCondensed;
+    if (isNarrow) {
+      if (kind === "source" && d.pdf) {
+        navigate(`/pdf/${d.pdf.book}?q=${encodeURIComponent(d.pdf.query)}`, { state: { from: `/chapter/${rn}` } });
+      } else if (kind === "condensed" && d.pdf) {
+        navigate(`/pdf/${d.pdf.book}`, { state: { from: `/chapter/${rn}` } });
+      }
+      return;
+    }
+    setSplitPane(kind, !alreadyOpen);
+  }
+
+  const readingContent = (
+    <main className="page" ref={rootRef} style={!splitOpen && appliedWidth ? { maxWidth: appliedWidth } : undefined}>
       <div
         className="page-resize"
         onPointerDown={onResizeDown}
@@ -197,6 +221,16 @@ export default function Chapter() {
           <Link to={`/pdf/${d.pdf.book}?q=${encodeURIComponent(d.pdf.query)}`} state={{ from: `/chapter/${rn}` }}>
             <Button size="sm" variant="outline">Open source PDF ↗</Button>
           </Link>
+        )}
+        {d.pdf && (
+          <Button size="sm" variant={splitSource ? "default" : "outline"} onClick={() => toggleSplit("source")} className="hidden lg:inline-flex">
+            {splitSource ? "✓ Source split" : "Split: Source"}
+          </Button>
+        )}
+        {d.pdf && d.pdf.book <= 4 && (
+          <Button size="sm" variant={splitCondensed ? "default" : "outline"} onClick={() => toggleSplit("condensed")} className="hidden lg:inline-flex">
+            {splitCondensed ? "✓ Condensed split" : "Split: Condensed"}
+          </Button>
         )}
         {quizScore && <Badge tone={quizScore.best >= 70 ? "green" : "amber"}>Quiz best {quizScore.best}%</Badge>}
       </div>
@@ -396,4 +430,19 @@ export default function Chapter() {
       <Highlighter rn={rn} book={book.n} containerRef={rootRef} />
     </main>
   );
+
+  if (splitOpen && d.pdf) {
+    return (
+      <SplitView
+        source={splitSource}
+        condensed={splitCondensed}
+        bn={d.pdf.book}
+        query={d.pdf.query}
+        onClosePane={(kind) => setSplitPane(kind, false)}
+      >
+        {splitBoth ? null : readingContent}
+      </SplitView>
+    );
+  }
+  return readingContent;
 }
