@@ -183,6 +183,24 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
 /* touch devices have no hover: keep the section bookmark toggle tappable */
 @media (hover: none) { .bookmark-toggle { opacity: 1; } }
 
+/* ---- per-list resizable blocks (local resizers; global page resizer is separate) ---- */
+.resizable { position: relative; }
+/* breakdown "At a glance" cards: flex-wrap so a widened card reflows the others */
+.breakdown-grid { display: flex; flex-wrap: wrap; gap: 1rem; align-items: start; }
+.breakdown-grid > .resizable { flex: 1 1 calc(50% - 0.5rem); min-width: 260px; }
+.block-resize { display: none; }
+@media (min-width: 1100px) {
+  .block-resize {
+    display: block; position: absolute; top: 0; right: -7px; width: 12px; height: 100%;
+    cursor: ew-resize; z-index: 6; touch-action: none;
+  }
+  .block-resize::before {
+    content: ""; position: absolute; top: 10px; bottom: 10px; left: 5px; width: 2px; border-radius: 2px;
+    background: var(--border); opacity: 0; transition: opacity 0.15s, background 0.15s;
+  }
+  .resizable:hover .block-resize::before, .block-resize.dragging::before { opacity: 1; background: var(--accent); }
+}
+
 /* ---------- Section blocks in chapters ---------- */
 .section-label {
   display: flex; align-items: center; gap: 0.55rem;

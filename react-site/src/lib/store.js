@@ -13,7 +13,8 @@
      hlLabels:   { y, g, b, r },                      // user-editable color legend
      lastVisited:{ rn, ts, y, section },              // most recently opened chapter (+ scroll y, section label left off in)
      bookmarks:  { [rn]: [ { id, txt, ts } ] },       // section bookmarks; id = slugify(section title)
-     layout: { pageWidth, keyPointsOpen, tocOpen },   // reading-column width (px) + rail open states
+     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths },
+              // reading-column width (px) + rail open states + per-block widths { [`${rn}:key`]: px }
      mocks:  [ { ts, total, correct, perBook, minutes } ], // mock-exam history (newest first)
    }
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
@@ -184,6 +185,14 @@ export function setKeyPointsOpen(open) {
 export function setTocOpen(open) {
   const s = load();
   save({ ...s, layout: { ...(s.layout || {}), tocOpen: !!open } });
+}
+/* per-block (per-list) width override; px>0 sets, anything else clears (reset to default) */
+export function setBlockWidth(key, px) {
+  if (!key) return;
+  const s = load();
+  const bw = { ...((s.layout && s.layout.blockWidths) || {}) };
+  if (typeof px === "number" && px > 0) bw[key] = Math.round(px); else delete bw[key];
+  save({ ...s, layout: { ...(s.layout || {}), blockWidths: bw } });
 }
 
 /* ---- study planner ---- */

@@ -35,7 +35,12 @@ Pending in THIS plan (ordered by priority):
       formulas/tables/widgets already have overflow scroll / max-width caps).
 - [ ] **P0** — real-phone responsive confirmation + any residual fixes (bookmark toggle now
       `@media(hover:none)` visible; re-check nav, quiz, mock, accordions, both themes).
-- [ ] **P1** — local per-list/per-card resizers (keep the global one too) — §4.
+- [x] **P1** — local per-list resizers. DONE for the breakdown "At a glance" cards: new
+      `lib/useEdgeResize.js` (shared bug-free drag hook), `components/chapter/Resizable.jsx`
+      wrapper, store `layout.blockWidths` + `setBlockWidth`, `.breakdown-grid` flex-wrap so a
+      widened card reflows the others. Desktop-only handle (<1100px hidden), double-click resets.
+      Extend to other `.grid2` blocks (Connections/Hooks/Sources) later if wanted. Drag is
+      interactive-only — needs browser confirm.
 - [ ] **P1 FEATURE** — Flashcards card-engine (`lib/cards.js` + `<Flashcard>` + `/deck/:rn` +
       `/review` upgrade) — §5, Fable-designed, build-ready.
 - [ ] **P1 CONTENT** — em-dash purge (8,280 across 101 files) + why-depth + tone pass — §6b.

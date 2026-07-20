@@ -18,6 +18,7 @@ import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
 import { useStore, toggleDone, touchVisited, setPageWidth, getState } from "../lib/store.js";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
+import Resizable from "../components/chapter/Resizable.jsx";
 
 /* flat reading order across all books, for prev/next nav */
 const FLAT = META.books.flatMap((b) => b.readings.map((r) => r.n));
@@ -259,16 +260,16 @@ export default function Chapter() {
       </>)}
       {d.breakdown && d.breakdown.length > 0 && (<>
         <SectionLabel txt="At a glance — the lists that matter" color={book.color} rn={rn} />
-        <div className="grid2">
+        <div className="breakdown-grid">
           {d.breakdown.map((b, i) => (
-            <div className="card" key={i}>
+            <Resizable key={i} blockKey={`${rn}:bd:${i}`} className="card">
               <h3><Html as="span" html={b.title} /></h3>
               <ol style={{ margin: "0.4rem 0 0", paddingLeft: "1.2rem" }}>
                 {(b.points || []).map((p, j) => (
                   <li key={j} style={{ fontSize: "0.92rem", margin: "0.25rem 0" }}><Html as="span" html={p} /></li>
                 ))}
               </ol>
-            </div>
+            </Resizable>
           ))}
         </div>
       </>)}
