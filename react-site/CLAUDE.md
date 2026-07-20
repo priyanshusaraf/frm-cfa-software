@@ -129,6 +129,100 @@ after ANY multi-agent run over data files, import-sweep every touched file
 (`node --input-type=module -e "await import('./src/data/$f')"`) — agents killed mid-edit can
 leave unescaped quotes that the validator never gets to see.
 
+### 1a. Problem-first teaching doctrine: binding for Revision and Core-Concept pages
+
+Added 2026-07-21 (third pass), after the user reviewed a ChatGPT explanation of the
+CDO/CLO/CMO/securitization family and found it far better than anything currently in the app:
+clear on the fundamental picture, explained simply, and explicit about the concept's distinct
+use cases (credit-loss tranching vs mortgage-prepayment tranching) instead of blurring them
+together. This section makes that explanation shape a standing doctrine, not a one-off.
+
+**Where this applies.** Section 1's rules above (ground in Schweser, intuition before
+formalism, teach the trap, concrete numbers) govern every reading. This doctrine is an
+ADDITIONAL, stricter structure that specifically governs the two standalone content layers
+that exist to teach something once, deeply, and get reused everywhere it resurfaces:
+
+1. **Foundational-concept / revision pages** (section 7.1): Part I (or otherwise
+   already-assumed) knowledge that a Part II reading depends on and that students have
+   typically half-forgotten. These should reteach the concept from first principles, not
+   just remind the student of a fact. The shipped v1 (a `connections.from`-derived "Refresher"
+   banner + SRS card, both auto-generated from a one-line `why`) is the lightweight case;
+   a concept dense or confusing enough to need real re-teaching (securitization, TVM,
+   duration/convexity, option basics, correlation, copulas) earns a dedicated page built to
+   the structure below instead of a one-liner.
+2. **Core-concept deep-dive pages** (section 6, `/concept/:slug`): an advanced model or
+   structure that resurfaces across readings and deserves one authoritative, deeper-than-the-
+   book explanation instead of getting thinly re-explained every time it comes up.
+
+Ordinary per-reading content (`teaches`/`why`/`intuition`/etc.) should keep doing what
+section 1 already asks of it, but should NOT re-teach something that has its own Revision
+or Core-Concept page: it should explain the reading's own specific material and link out
+(`connections.from`/`related`) to the deeper page for the underlying concept. The reading is
+where the curriculum-specific material lives; the Revision/Core-Concept page is where the
+concept itself lives.
+
+**The narrative structure.** Do not open with a definition. A definition is a label for an
+idea the student doesn't have yet, and a label attached too early gets memorized instead of
+understood. Instead, build the idea in this order:
+
+1. **Create the problem.** Put the student inside a concrete situation as the person who has
+   to act, not as an observer reading a description. "You're a bank holding a thousand
+   mortgages and you need cash today, not in thirty years" beats "securitization is a
+   process by which...". Name the actor, their constraint, and what they're stuck wanting to
+   do that they currently can't.
+2. **Explain why the obvious first move falls short.** There is almost always an existing,
+   simpler way to handle the problem before the concept being taught existed. Show it, and
+   show concretely why it stops being enough, the specific pain point, not a vague "but this
+   has limits." The student should start wanting the next idea before you introduce it.
+3. **Introduce the simplest real solution, alone.** One idea at a time. No exceptions, no
+   variants, no forward references to what comes later. The student should think "that
+   makes sense" before any complexity gets layered on.
+4. **Show where that simplest solution runs out.** Who is left unhappy by it, and why,
+   concretely (a number, a scenario, an incentive that doesn't line up).
+5. **Introduce the next evolution as the direct answer to that gap**, and repeat steps 4-5
+   for every further step in the concept's real history, sourced from Schweser (or, for the
+   core-concept "extra depth" layer specifically, well-established outside finance history,
+   clearly labeled per section 6's beyond-exam-scope rule). The progression should read as a
+   chain the student can retrace (A existed, A's limit forced B, B's limit forced C), not a
+   flat list of siblings.
+6. **Once multiple live options exist, compare them explicitly, side by side.** Don't teach
+   sibling structures as separate, unconnected facts. Name what they share (often the same
+   mechanical skeleton, tranching, waterfalls, thresholds) and the ONE dimension that
+   actually differs between them, then answer, concretely: why would someone choose one over
+   another, what risk does one carry that the other doesn't, what does an investor or
+   manager actually get from each that they don't get from its sibling. (This is exactly
+   where the CDO/CLO-vs-CMO confusion lived: both tranche a pool, but a CMO tranches
+   PREPAYMENT/cash-flow timing while a CDO/CLO tranches DEFAULT/credit losses, two unrelated
+   risk dimensions that happen to use the same word, "tranche.")
+7. **Only now, name it.** Formal terms become labels the student attaches to an idea they
+   already hold, not the thing they were asked to memorize cold.
+
+Thread through every stage: **treat each new idea as the answer to a question the student
+has already started asking, and never answer a question they don't have yet.** If the reader
+wouldn't yet be wondering "so what happens if...", don't introduce the thing that answers it.
+
+**Tone.** Same "human, plain tone" hard rule as the rest of section 1 (no em/en-dashes,
+concrete numbers, a person and their incentive, not "X is defined as Y"). This doctrine
+changes STRUCTURE and ORDER, not the prose-style rules already in force. Write like a sharp
+tutor thinking out loud with the student, not a textbook or a lecture-note summary: ask the
+question the student is silently forming, then answer it, rather than pre-empting every
+question with an encyclopedia entry.
+
+**Priority content backlog under this doctrine (not yet built):** the securitization/
+structured-finance family, covered bonds to pass-through MBS to CMOs to credit tranching
+(CDO/CLO) to CDO-squared, is the flagship case that motivated this section and should be the
+next Revision-and-Core-Concept build (after the existing Vasicek WCDR core-concept pilot).
+It needs BOTH layers: a Revision page re-teaching securitization/structured finance from
+first principles (Part I foundation many Part II readings assume), and a Core-Concept page
+(or a small family of them, one per structure) making the CMO-vs-CDO/CLO distinction the
+explicit centerpiece via stage 6 above, since that exact distinction, cash-flow/prepayment
+tranching vs credit/default tranching under the shared word "tranche", is the single biggest
+source of confusion the user identified. Build it the same way section 6/7.1 were built:
+research the actual Book 2-4 source coverage of these structures first, confirm the specific
+readings and formulas involved, then write to the structure above; do not invent facts or
+history not supported by Schweser or well-established finance history (and label the latter
+per the beyond-exam-scope rule).
+
 ---
 
 ## 2. How to write code here
@@ -261,7 +355,7 @@ had the edits in its own context and could redo them). Agents touch only their a
 files with Edit/Write; if a file-scoped edit needs a clean baseline, re-read the file, don't
 stash.
 
-## 6. Roadmap: cross-reading core-concept system (NOT YET BUILT — spec only)
+## 6. Roadmap: cross-reading core-concept system (Phase 1+2 BUILT, Phase 3 not yet)
 
 Requested 2026-07-21: reused, theory-dense models (the motivating example: Vasicek WCDR,
 which is defined once in R21 and then referenced by name across R8/R11/R12/R13/R14/R26/R27/
@@ -310,14 +404,33 @@ Proposed build (not yet started, no code written):
    present, so arriving via `/concepts` or a bare link shows no button.
 
 Sequencing, because this touches every reading that reuses any core concept (a large
-fan-out): **Phase 1** — auto-detection lib + `/concepts` index + basic `/concept/:slug` page
-(book-layer content only) + back-to-reading button, no hover snippets yet, no extra-depth
-content yet. **Phase 2** — piecewise `terms[]` breakdown + first authored `deepDive` content,
-piloted on Vasicek WCDR only. **Phase 3** — the inline hover-snippet linking pass across all
-readings that reference an established core concept (the expensive phase; do as a dedicated
-fleet run, one agent per file, following section 5's rules).
+fan-out): **Phase 1** (BUILT, 2026-07-21 tenth session): `scripts/build-core-concepts.mjs`
+auto-detection + `/concepts` index + `/concept/:slug` page (book-layer content only) +
+back-to-reading button, no hover snippets yet, no extra-depth content yet. **Phase 2**
+(BUILT, same session): piecewise `formulas[].terms[]` breakdown + first authored
+`formulas[].deepDive` content, piloted on Vasicek WCDR (`src/data/book2/r26.js`). **Phase 3**
+(NOT YET BUILT): the inline hover-snippet linking pass across all readings that reference an
+established core concept (the expensive phase; do as a dedicated fleet run, one agent per
+file, following section 5's rules).
 
-## 7. Roadmap: further ideas scoped 2026-07-21 (NOT YET BUILT — spec only)
+Every Core-Concept page's authored content (the base layer plus any `deepDive`/`terms[]`
+layer) MUST follow the problem-first narrative doctrine in section 1a, not just the general
+section 1 rules. The Vasicek WCDR pilot's `deepDive` predates section 1a and should get a
+pass against it (stage-by-stage: problem, why the simple version falls short, evolution,
+comparison, only-then-the-formula) next time that page is touched, not necessarily as its own
+standalone task.
+
+**Next priority content build (per section 1a):** the securitization/structured-finance
+family, covered bonds through pass-through MBS through CMOs to CDO/CLO credit tranching. Scan
+Book 2 (Credit Risk) and Book 3/4 (wherever MBS/ABS/CMO mechanics live) for the actual
+readings and formulas involved before writing anything, the way the Vasicek pilot did, then
+build both a Revision page (section 7.1, securitization from first principles as Part I
+foundation) and a Core-Concept page or small family of them (this section), built to make the
+CMO-vs-CDO/CLO distinction (cash-flow/prepayment tranching vs credit/default tranching, the
+same word "tranche" for two unrelated risk dimensions) the explicit stage-6 comparison
+centerpiece.
+
+## 7. Roadmap: further ideas scoped 2026-07-21 (7.1/7.2/7.4 v1 BUILT, 7.3 deprioritized)
 
 Four more requests from the same session, deliberately scoped here instead of built, so a
 future session with more usage budget can implement them without re-deriving requirements.
@@ -330,32 +443,44 @@ since these are still spec-level, not fully nailed down.
 
 The problem, in the user's words: for FRM Part II specifically (as opposed to Part I / CFA
 Level I), readings constantly assume prerequisite concepts the student learned earlier and
-may have quietly forgotten — the user's own example was forgetting that equity is the lowest
-tranche in the capital structure while reading R28's correlation material, which depends on
-already knowing the tranche waterfall. This is a *different* problem from section 6's
-core-concept system: section 6 is about a reused ADVANCED model resurfacing (Vasicek WCDR);
-this is about a basic/foundational prerequisite silently assumed and never re-taught. Needs
-its own design pass before building — open questions to resolve with the user: how are
-"foundational prerequisite" facts identified (a new lightweight tag on `concepts[]`/
-`connections.from`? auto-derived from `connections.from` external-prereq entries that already
-exist in the schema?); what the revision surface looks like (a dedicated page, an inline
-just-in-time reminder when a reading's `connections.from` references a prerequisite the
-student hasn't visited/marked done, both?); whether it plugs into the existing SRS engine
-(section 2.1 of the memorization spec) as another card source, which seems like the natural
-fit given the infrastructure already exists.
+may have quietly forgotten. This is a *different* problem from section 6's core-concept
+system: section 6 is about a reused ADVANCED model resurfacing (Vasicek WCDR); this is about
+a basic/foundational prerequisite silently assumed and never re-taught.
 
-### 7.2 Settings page
+**v1, BUILT (tenth session, 2026-07-21):** prerequisites are read straight off each reading's
+existing `connections.from` entries (no new tag needed); the surface is both a "Refresher"
+banner on Chapter.jsx for any prerequisite reading not yet marked done, and a "Foundational
+prerequisites" card kind in `Review.jsx`'s existing SRS engine, auto-generated from
+`connections.from[].why` (no new authoring). This v1 is intentionally lightweight: a one-line
+reminder plus a spaced-repetition card, not a re-teaching.
 
-New `/settings` page (lazy route, Study-menu + command-palette entry, same pattern as every
-other secondary page). **Build now, when this gets picked up: font size only** — a `layout`
-store key (e.g. `layout.fontScale`, multiplier applied as a CSS custom property on `<html>`
-or `main.page`, following the existing `--text`/`--text-dim` CSS-variable convention so it
-doesn't fight the type scale doctrine in section 3). Everything else the user mentioned (font
-family, background color/theme granularity beyond the existing dark/light toggle) is
-explicitly deferred — "not that important," in the user's words — so don't build those until
-asked again, even though the settings page shell should probably be laid out to accommodate
-them later (a simple list of labeled controls, not a one-off single-field page that has to be
-restructured when more settings arrive).
+**v2, NOT YET BUILT: real revision pages.** The user's own example that motivated going
+further: forgetting that equity is the lowest tranche in the capital structure while reading
+R28's correlation material, which depends on already knowing the tranche waterfall, plus a
+second, richer example surfaced later (2026-07-21, same day): CDO/CLO/CMO structuring is Part
+I foundational knowledge that resurfaces constantly in Part II credit and structured-product
+readings, and a one-line reminder isn't enough for it, it needs to be RE-TAUGHT from first
+principles. v2 is a dedicated, reusable Revision page per major prerequisite concept
+(securitization/structured finance, TVM, duration/convexity, option basics, futures
+mechanics, correlation, copulas, regression intuition, credit-risk fundamentals, and others as
+they come up), built to the section 1a problem-first doctrine, not a summary of the prior
+material. Likely implementation: reuse the section 6 `/concept/:slug` page architecture (it
+already renders a base layer, comparison content, and a gated back-to-reading button) with a
+`layer: "revision"` vs `layer: "core"` distinction, rather than building a parallel page type
+from scratch, since the two systems want the same shape (one deep page, linked from every
+reading that assumes it, don't re-teach inline). The securitization/CDO-CLO-CMO family
+(section 6's "next priority content build") is the natural pilot for this v2 mechanism, since
+it needs both a Revision page (structured finance from first principles) and a Core-Concept
+page (the CMO-vs-CDO/CLO comparison) at once.
+
+### 7.2 Settings page (BUILT, tenth session, 2026-07-21: font size only)
+
+`/settings` page (lazy route, Study-menu + command-palette entry). `layout.fontScale` store
+key, applied as `--font-scale` on `<html>` per the existing CSS-variable convention. Font
+family and background color/theme granularity beyond the existing dark/light toggle remain
+explicitly deferred, "not that important," in the user's words, don't build those until
+asked again. The page shell is laid out as labeled sections so more controls can be added
+without restructuring.
 
 ### 7.3 Paid-access device licensing (auth + device binding)
 
@@ -391,20 +516,14 @@ large project (needs a backend, a database, session/device-token management, and
 workflow) that should get its own brainstorm-through-plan cycle whenever the product is
 ready to charge for access.
 
-### 7.4 Split-view source material alongside a reading
+### 7.4 Split-view source material alongside a reading (BUILT, tenth session, 2026-07-21)
 
-Let the student open source material (the full Schweser book, `Book N (1).md`/PDF) and/or
-the condensed companion PDF (`FRM2_*_CompleteBookN.md`/PDF, Books 1-4 only) in a side pane
-next to the reading, instead of navigating away to `/pdf/:bn`. Requested combinations: source
-alone on one side, condensed alone, or both open at once (one per side) while the reading (or
-nothing) occupies the remaining space. This is a natural extension of the existing
-`PdfView.jsx` (already lazy-loads pdfjs, already used by the "Open source PDF ↗" button and
-the `/pdf/:bn` route) rather than a new subsystem: the design should reuse `PdfView` as a
-mountable pane in a resizable split layout (likely following the `useEdgeResize.js` drag
-pattern already used for the reading-width resizer and the per-list `Resizable.jsx`
-component), with a `layout` store key for which pane(s) are open and at what split ratio.
-Open questions for the design pass: whether split view is available on mobile at all (screen
-width makes a true side-by-side unrealistic below some breakpoint — probably desktop-only,
-falling back to the existing full-screen `/pdf/:bn` on narrow viewports) and whether the
-condensed-companion PDF needs its own query-jump support like `d.pdf.query` already provides
-for the full source.
+Lets the student open source material (the full Schweser book) and/or the condensed
+companion PDF (Books 1-4 only) in a side pane next to the reading instead of navigating away
+to `/pdf/:bn`. `PdfView.jsx`'s rendering was extracted into a shared `PdfCore` component
+(`window` mode for the route, `pane` mode for the new container-scrolled side panes) rather
+than duplicating it. Chapter.jsx's "Split: Source"/"Split: Condensed" toggles support source
+alone, condensed alone, or both at once (reading gives up its space when both are open, split
+evenly); desktop-only (≥1100px, matching the reading-width resizer's breakpoint), falling
+back to the full-screen `/pdf/:bn` route below that. A live divider between two open panes is
+deferred (static 50/50 split for now, a reasonable default rather than a gap).
