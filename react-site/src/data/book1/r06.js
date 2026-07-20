@@ -31,9 +31,20 @@ export default ({
     {
       title: "Three types of stress-testing exercises",
       points: [
-        "Historical scenarios: replay an actual past market episode's moves against today's portfolio.",
-        "Predefined scenarios: a risk team specifies a hypothetical adverse change in a chosen set of risk factors and reprices the book under it.",
-        "Mechanical-search stress tests: an automated routine mechanically searches across risk-factor combinations to find the worst-case loss, without a human hand-picking the scenario."
+        "Historical scenarios: replay an actual past market episode's moves (1998 or 2008, say) against today's portfolio.",
+        "Predefined scenarios: a risk team specifies a hypothetical adverse change in a chosen set of risk factors ('equities down 20%, rates up 100bp') and reprices the book under it.",
+        "Mechanical-search stress tests: an automated routine mechanically searches across risk-factor combinations to find the worst-case loss, without a human hand-picking the scenario.",
+        "Stress the correlation matrix itself, not just the individual factor levels. In a real crisis correlations move too (see R8), so holding them fixed while shocking only volatilities understates the stress loss."
+      ]
+    },
+    {
+      title: "Liquidity risk splits in two (LO 6.b)",
+      points: [
+        "In a crisis, market liquidity worsens and the 'liquidity horizon' of a position lengthens: it takes longer to unwind without materially moving the price.",
+        "Exogenous liquidity: the market-wide, average transaction cost (essentially the bid/ask spread) that applies to any trader regardless of who they are or how large the trade is. It is handled by a liquidity-adjusted VaR (LVaR), which adds an estimated spread cost on top of ordinary VaR.",
+        "Endogenous liquidity: the price-impact effect of your OWN trade size, i.e. the elasticity of price to your own trading volume. It appears only when your order is large enough, relative to the market, to move the price against you as you execute.",
+        "Endogenous liquidity matters most for large, complex, or exotic positions, and is especially dangerous in high-stress conditions, when a 'flight to quality' pulls other participants back from thinly traded assets exactly as you need to sell. Some endogenous cost is present even in normal markets.",
+        "Academic studies suggest models should account for endogenous liquidity first, since it is the one that most changes behaviour in a crisis."
       ]
     }
   ],
@@ -53,7 +64,7 @@ export default ({
     },
     {
       name: "Exogenous vs endogenous liquidity risk",
-      def: "During a financial crisis, market liquidity conditions worsen, which lengthens the 'liquidity horizon' of a position: the time it actually takes to unwind it without materially moving its price. The literature splits liquidity risk into two types. Exogenous liquidity is the market-wide, average transaction cost (essentially, the bid/ask spread) that applies to any trader regardless of who they are or how large their trade is. It's handled by computing a liquidity-adjusted VaR (LVaR), which simply adds an estimated spread cost on top of the ordinary VaR number. Endogenous liquidity is the price-impact effect of your OWN trade size. It only shows up when your order is large enough, relative to the market, to move the price against you as you execute it (it's the elasticity of price to your own trading volume). Endogenous liquidity is most relevant for large, complex, or exotic positions, and is especially dangerous in high-stress conditions, when a 'flight to quality' means other market participants pull back from thinly traded assets exactly when you need to sell, though some endogenous liquidity cost is present even in normal markets. Academic studies suggest that of the two, models should account for endogenous liquidity first, since it's the one that most changes behavior in a crisis.",
+      def: "The literature splits liquidity risk into a market-wide transaction cost every trader pays (exogenous) and the price impact your own trade size creates (endogenous), and it matters because ordinary VaR prices neither, so a position's true exit cost is invisible in the headline number.",
       pitfall: "Don't conflate the two. Exogenous is a market feature you can price in with a spread add-on that's the same for every trader; endogenous requires modeling your own price impact, a fundamentally harder problem because it depends on your position size relative to the market, not just the market's general spread.",
       related: [{ r: 63, label: "R63 — full liquidity risk framework" }],
       memory: "Exogenous = the market's toll booth. Endogenous = your truck is too big for the road."
@@ -85,7 +96,7 @@ export default ({
     },
     {
       name: "Stress testing: three exercise types",
-      def: "Stress testing supplements VaR by asking 'what if a specific bad scenario happens' rather than relying on the historical return distribution alone. The literature groups stress-testing exercises into three types: historical scenarios (replay an actual past market episode, e.g. 1998 or 2008, against today's portfolio), predefined scenarios (a risk team specifies a hypothetical adverse move in a chosen set of risk factors, e.g. 'equities down 20%, rates up 100bp,' and reprices the book), and mechanical-search stress tests (an automated routine mechanically searches across combinations of risk-factor changes to find the worst loss, without a human choosing the scenario by hand). A key part of doing this correctly is 'stressing' the correlation matrix itself, not just individual factor levels. In a real crisis, correlations move too (see R8), so holding correlations fixed while shocking only volatilities understates the stress loss.",
+      def: "Stress testing supplements VaR by asking 'what if a specific bad scenario happens' rather than relying on the historical return distribution alone, and the literature groups the exercises into three types (historical, predefined, and mechanical-search) set out in the breakdown above.",
       pitfall: "An unreasonable assumption embedded in most stress tests is that the shock happens instantly and the trader cannot re-hedge or adjust the position in response. Real portfolios can partially react, so a naive stress test can overstate the loss in one direction while, by using normal-market correlations, understating it in another. Also, ordinary VaR is computed under normal market conditions, so a 'stressed VaR' add-on (built for stressed periods) is a distinct, less-validated tool. Don't assume a bank's everyday VaR model is automatically reliable in a crisis.",
       related: [{ r: 16, label: "R16 — stressed VaR under FRTB is this idea formalized into a capital requirement" }],
       memory: "Historical = replay the past. Predefined = pick your own nightmare. Mechanical-search = let the computer find the worst one."
