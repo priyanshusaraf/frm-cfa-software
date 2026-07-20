@@ -19,6 +19,7 @@ const PAGES = [
   { label: "Notes", path: "/notes" },
   { label: "Highlights", path: "/highlights" },
   { label: "Bookmarks", path: "/bookmarks" },
+  { label: "Settings", path: "/settings" },
 ];
 
 function stripTags(html) {

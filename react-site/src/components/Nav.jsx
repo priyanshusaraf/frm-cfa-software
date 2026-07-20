@@ -18,6 +18,7 @@ import {
   Highlighter,
   Bookmark,
   Timer,
+  Settings as SettingsIcon,
 } from "lucide-react";
 import { META } from "../lib/meta.js";
 import { useStore } from "../lib/store.js";
@@ -35,6 +36,7 @@ const STUDY_ITEMS = [
   ["/notes", "Notes", StickyNote],
   ["/highlights", "Highlights", Highlighter],
   ["/bookmarks", "Bookmarks", Bookmark],
+  ["/settings", "Settings", SettingsIcon],
 ];
 
 function openPalette() {

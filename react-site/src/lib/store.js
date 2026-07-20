@@ -14,8 +14,9 @@
      hlLabels:   { y, g, b, r },                      // user-editable color legend
      lastVisited:{ rn, ts, y, section },              // most recently opened chapter (+ scroll y, section label left off in)
      bookmarks:  { [rn]: [ { id, txt, ts } ] },       // section bookmarks; id = slugify(section title)
-     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths },
+     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale },
               // reading-column width (px) + rail open states + per-block widths { [`${rn}:key`]: px }
+              // + fontScale: app-wide text size multiplier (Settings page), applied as --font-scale
      mocks:  [ { ts, total, correct, perBook, minutes } ], // mock-exam history (newest first)
    }
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
@@ -194,6 +195,12 @@ export function setBlockWidth(key, px) {
   const bw = { ...((s.layout && s.layout.blockWidths) || {}) };
   if (typeof px === "number" && px > 0) bw[key] = Math.round(px); else delete bw[key];
   save({ ...s, layout: { ...(s.layout || {}), blockWidths: bw } });
+}
+/* app-wide text size multiplier, applied as --font-scale on <html> (Settings page) */
+export function setFontScale(scale) {
+  const s = load();
+  const fontScale = typeof scale === "number" && scale > 0 ? scale : undefined;
+  save({ ...s, layout: { ...(s.layout || {}), fontScale } });
 }
 
 /* ---- study planner ---- */

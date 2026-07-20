@@ -9,6 +9,7 @@ import "./widgets/all.js";
 import Nav from "./components/Nav.jsx";
 import QuickNotes from "./components/QuickNotes.jsx";
 import CommandPalette from "./components/CommandPalette.jsx";
+import FontScaleSync from "./components/FontScaleSync.jsx";
 import Home from "./pages/Home.jsx";
 import Book from "./pages/Book.jsx";
 import Chapter from "./pages/Chapter.jsx";
@@ -29,6 +30,7 @@ const Drills = lazy(() => import("./pages/Drills.jsx"));
 const Highlights = lazy(() => import("./pages/Highlights.jsx"));
 const MockExam = lazy(() => import("./pages/MockExam.jsx"));
 const Bookmarks = lazy(() => import("./pages/Bookmarks.jsx"));
+const Settings = lazy(() => import("./pages/Settings.jsx"));
 
 function PageLoading() {
   return (
@@ -61,11 +63,13 @@ createRoot(document.getElementById("root")).render(
           <Route path="/highlights" element={<Highlights />} />
           <Route path="/mock" element={<MockExam />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
+          <Route path="/settings" element={<Settings />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
       <QuickNotes />
       <CommandPalette />
+      <FontScaleSync />
     </HashRouter>
   </React.StrictMode>
 );

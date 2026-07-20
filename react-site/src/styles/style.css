@@ -36,6 +36,7 @@
   --font-mono: var(--mono);
   --maxw: 860px;
   --shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+  --font-scale: 1;
 }
 :root[data-theme="light"] {
   --bg: #fafafa;
@@ -65,7 +66,9 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+/* Settings page text-size control: every rem unit in the app is relative to this,
+   so scaling it here scales body copy, headings and formulas together. */
+html { scroll-behavior: smooth; font-size: calc(16px * var(--font-scale, 1)); }
 
 /* Tailwind preflight is OFF, so form controls keep the user-agent defaults —
    most importantly `background-color: ButtonFace`, which is a light grey the
@@ -93,7 +96,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }

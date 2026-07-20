@@ -16,6 +16,15 @@
   else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches)
     document.documentElement.setAttribute("data-theme", "light");
 })();
+/* Apply the Settings-page text-size scale before first paint (same reasoning as theme above). */
+(function () {
+  try {
+    var raw = localStorage.getItem("frm2.user.v1");
+    var st = raw ? JSON.parse(raw) : null;
+    var fs = st && st.layout && st.layout.fontScale;
+    if (typeof fs === "number" && fs > 0) document.documentElement.style.setProperty("--font-scale", fs);
+  } catch (e) {}
+})();
 </script>
 </head>
 <body>
