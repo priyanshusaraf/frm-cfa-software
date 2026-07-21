@@ -602,6 +602,48 @@ depth/tone/correctness bar before the full ~101-file fleet runs.
 phone-first digestibility / card-deck slate Fable designed in
 `docs/superpowers/specs/2026-07-20-comfort-ui-v2-plan.md` (section 5 flashcard engine +
 `/deck/:rn`, section 6 M2 trap-check game, M3 story mode, M4 streak/daily-goal, M7 two-minute
-sprint) and the section 6c progressive balance-sheet widget. In the owner's words these are
-"not exactly necessary right now"; content retention beats new surfaces. Revisit only after
-the content-quality pass has landed.
+sprint). In the owner's words these are "not exactly necessary right now"; content retention
+beats new surfaces. Revisit only after the content-quality pass has landed.
+
+NOTE: the section 6c **progressive balance-sheet widget** was previously listed here as
+deferred, but the owner RE-PRIORITIZED it on 2026-07-21 into the learning-coherence build
+(section 9): it is no longer deferred. It grows into a reusable visual-builder family
+(balance-sheet stepper + correlation/matrix widget) because the future CFA accounting/FSA
+material will lean on it.
+
+## 9. Roadmap: the learning-coherence build (spec'd 2026-07-21, NOT YET BUILT)
+
+Full design: `docs/superpowers/specs/2026-07-21-learning-coherence-design.md`. Brainstormed and
+owner-approved. This is the next major build after (and partly alongside) the section 8 content
+pass. One thesis, the student cannot feel the story, addressed in four workstreams. Decisions
+already locked with the owner (do not re-litigate without asking):
+
+- **A. Planner as the study spine (HYBRID sequencing).** New `src/lib/studyPath.js` builds a
+  base order by topologically sorting `deps` within each `sessions` group (prereqs before
+  dependents, sessions kept contiguous), then applies a small authored override table
+  (`src/data/studyPath.js`, e.g. `{ move: 29, near: 37, why: "..." }`) for the genuinely
+  confusing clusters (CVA family, IRB-capital R21<->R59, copula chain). `Planner.jsx` uses this
+  instead of the raw `r.n` sort. Add `planner.startDate` (optional store key, default today) so
+  the plan window is `[start..exam]`. Add a "Next in your plan ->" CTA on `Chapter.jsx` (plan
+  order, additive, does NOT hijack the curriculum-order prev/next or `[`/`]`). Framing is
+  honest exam-weighted coverage, NOT an invented pass-probability model.
+- **B. Narrative orientation (BOTH layers).** Auto breadcrumb `ReadingArc.jsx` on every chapter
+  (session position + builds-on + sets-up, derived from `sessions`/`deps`/`connections`, no
+  authoring) PLUS an authored arc doctrine for 3-star-plus readings (extends sections 1a/8):
+  each opens by establishing its lens/perspective, what it assumes, what it sets up, and every
+  formula must say what you do with it and where it is reused. R26/R28/R29 (audited as
+  incoherent grab-bags) are the pilot rewrites.
+- **C. List exposition.** `breakdown[].points` may become `{ point, explain }` (plain string
+  still allowed); `explain` renders as an always-visible dimmer sub-line. Content pass adds it
+  where list items are cryptic dead-ends. Folds into the section 8 per-file fleet.
+- **D. Visual builders as infrastructure** (this is where the section 6c widget went, no longer
+  deferred): a progressive two-column balance-sheet stepper (pilot r63; generalizes to
+  leverage/liquidity/capital/securitization/repo and future CFA accounting/FSA) and a
+  matrix/correlation-table widget (heatmap grid). Standard widget conventions; numbers derived
+  from existing narrative, invent nothing.
+
+Content workstreams (B, C, and the 3-star-plus coherence rewrites) fold into the section 8
+per-file fleet with Opus review; the code/infra workstreams (A planner, D widgets) are
+orchestrator-owned and run in parallel. Pilot set: R26/R28/R29 + R63, so the owner approves the
+bar before the full fleet. Sub-reading content splitting (physically breaking R29 apart) is
+explicitly OUT of v1 scope, flagged for a later pass.

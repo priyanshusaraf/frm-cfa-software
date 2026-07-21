@@ -17,7 +17,18 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > piecewise X-term called N⁻¹(X) "very negative" when in the formula it is +3.09 (a student
 > trusting the prose would compute 0.002% vs the correct 14.6%); fixed in `book2/r26.js` and
 > turned into a "teach the trap" point. This exact miss is why section 8.4 (numerical
-> correctness verification) now exists. The tenth-session feature summary, for reference:
+> correctness verification) now exists. Also this session: brainstormed and wrote a NEW scoped
+> design, `react-site/docs/superpowers/specs/2026-07-21-learning-coherence-design.md` (CLAUDE.md
+> section 9), covering four workstreams the owner flagged after using the app: (A) planner as
+> the study spine with hybrid `deps`+`sessions` sequencing + a curated override table + start
+> date + "next in plan" CTA; (B) narrative orientation (auto arc breadcrumb + authored arc on
+> 3-star-plus readings); (C) list exposition (breakdown points gain optional `explain`); (D)
+> visual builders (progressive balance-sheet stepper + correlation/matrix widget, reviving and
+> generalizing Fable's deferred section 6c for future CFA accounting/FSA material). Root causes
+> confirmed by audit: R26/R28/R29 are incoherent grab-bags; the planner ignores all existing
+> structural metadata and distributes in raw r.n order. That spec is the next major build after
+> (and partly alongside) the section 8 content pass. NOT built, scoped only.
+> The tenth-session feature summary, for reference:
 >
 > Tenth session (now merged) implemented the CLAUDE.md §6/§7 backlog in easiest-first order:
 > 1. **§7.2 Settings** — `/settings` page, `layout.fontScale` store key applied as
