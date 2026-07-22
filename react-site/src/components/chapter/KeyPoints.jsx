@@ -8,7 +8,20 @@ import { useStore, setKeyPointsOpen } from "../../lib/store.js";
    reading's own highYield items — no new content, just the top-priority ones
    kept one click away while scrolling. Portal onto <body> for the same reason
    as ChapterTOC. */
-export default function KeyPoints({ items, color }) {
+/* Scroll to the anchor a key point resolves to (a concept card or a section),
+   expanding the card first if it's a collapsed <details>, and flash it so the
+   eye lands on it. */
+function jumpTo(target) {
+  if (!target || !target.id) return;
+  const el = document.getElementById(target.id);
+  if (!el) return;
+  if (target.expand && el.tagName === "DETAILS") el.open = true;
+  el.scrollIntoView({ behavior: "smooth", block: "start" });
+  el.classList.add("jump-flash");
+  setTimeout(() => el.classList.remove("jump-flash"), 1300);
+}
+
+export default function KeyPoints({ items, color, resolve }) {
   const open = useStore((s) => (s.layout && s.layout.keyPointsOpen) || false);
   const top = (items || []).filter((y) => y.stars >= 4).slice(0, 6);
   if (!top.length) return null;
@@ -37,12 +50,24 @@ export default function KeyPoints({ items, color }) {
       </div>
       <div className="key-points">
         <ul>
-          {top.map((y, i) => (
-            <li key={i}>
-              <span className="kp-stars">{"★".repeat(y.stars)}</span>
-              <Html as="span" html={y.what} />
-            </li>
-          ))}
+          {top.map((y, i) => {
+            const target = resolve ? resolve(y.what) : null;
+            return (
+              <li
+                key={i}
+                className={target ? "kp-jump" : undefined}
+                role={target ? "button" : undefined}
+                tabIndex={target ? 0 : undefined}
+                onClick={target ? () => jumpTo(target) : undefined}
+                onKeyDown={target ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); jumpTo(target); } } : undefined}
+                title={target ? "Jump to where this is explained" : undefined}
+              >
+                <span className="kp-stars">{"★".repeat(y.stars)}</span>
+                <Html as="span" html={y.what} />
+                {target && <span className="kp-jump-arrow" aria-hidden="true">↳</span>}
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>,

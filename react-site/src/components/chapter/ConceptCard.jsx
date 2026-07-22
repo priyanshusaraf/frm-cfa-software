@@ -11,10 +11,11 @@ function Field({ tag, cls, children }) {
   );
 }
 
-/* One <details class="concept"> card, ported from the fld() closure in renderChapter. */
-export default function ConceptCard({ c, open }) {
+/* One <details class="concept"> card, ported from the fld() closure in renderChapter.
+   `id` (concept-<slug>) makes the card a scroll target for the Key-points jump-to. */
+export default function ConceptCard({ c, open, id }) {
   return (
-    <details className="concept" open={open || undefined}>
+    <details className="concept" id={id} open={open || undefined}>
       <summary>{c.name}</summary>
       <div className="concept-body">
         {c.def && <Field tag="Definition" cls="def"><Html as="span" html={c.def} /></Field>}

@@ -519,17 +519,37 @@ large project (needs a backend, a database, session/device-token management, and
 workflow) that should get its own brainstorm-through-plan cycle whenever the product is
 ready to charge for access.
 
-### 7.4 Split-view source material alongside a reading (BUILT, tenth session, 2026-07-21)
+### 7.4 Split-view source material alongside a reading (BUILT, tenth session; free-form rework twelfth session, 2026-07-22)
 
 Lets the student open source material (the full Schweser book) and/or the condensed
 companion PDF (Books 1-4 only) in a side pane next to the reading instead of navigating away
 to `/pdf/:bn`. `PdfView.jsx`'s rendering was extracted into a shared `PdfCore` component
 (`window` mode for the route, `pane` mode for the new container-scrolled side panes) rather
 than duplicating it. Chapter.jsx's "Split: Source"/"Split: Condensed" toggles support source
-alone, condensed alone, or both at once (reading gives up its space when both are open, split
-evenly); desktop-only (≥1100px, matching the reading-width resizer's breakpoint), falling
-back to the full-screen `/pdf/:bn` route below that. A live divider between two open panes is
-deferred (static 50/50 split for now, a reasonable default rather than a gap).
+alone, condensed alone, or both at once; desktop-only (≥1100px, matching the reading-width
+resizer's breakpoint), falling back to the full-screen `/pdf/:bn` route below that.
+
+**Free-form rework (2026-07-22, this file's twelfth session), per the owner's "full
+customizability" ask:** the layout is now one flex row where the **reading column is always
+visible** (`flex: 1 1 auto`, `min-width: 160px` so a book can fill ~90% of the screen) and
+each open pane is an independent fixed-width column. Model deliberately kept simple: **the
+reading column absorbs every drag** — dragging a pane's own resize handle (on the edge facing
+the reading) changes only that pane's width via `setSplitPaneWidth`; to move width between two
+open books you drag each one (no two-way divider, by owner's request). A **left/right dock
+toggle** (`setSplitSide`, "Dock left/right" button in the chapter action row) flips the pane
+group to either side of the reading. Each PDF pane has its own **zoom** (`setSplitZoom`, −/%/+
+in the PdfCore toolbar, 0.5–3×): the pane page now fills its width (pane-mode `maxWidth` raised
+to 2400) and zoom multiplies beyond that with horizontal scroll. All new state lives on the
+`layout.split` blob as optional keys `{ side, widths:{source,condensed}, zoom:{source,condensed} }`
+(the old single-region `width`/`ratio` keys and their setters were removed). PDF text
+highlighting was explicitly **deferred** out of this pass (it needs a selectable text layer
+over every page + its own stored book-highlights data — its own build when the owner asks).
+
+Separately this session: the **top navbar center** now shows "Reading N" on any `/chapter/:rn`
+page with app-wide **font-size zoom** (A−/%/A+, wired to the existing `layout.fontScale` /
+`setFontScale`, clamped 0.8–1.6×) right underneath it, so the student can resize reading text
+without opening Settings. It's an absolutely-centered, `pointer-events-none` wrapper inside the
+sticky `.topnav` (children re-enable pointer events) so it never disturbs the nav flex layout.
 
 ## 8. TOP PRIORITY: the content-quality pass (scoped 2026-07-21, eleventh session)
 

@@ -18,9 +18,10 @@ import MatchPairs from "../components/chapter/MatchPairs.jsx";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
-import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, getState } from "../lib/store.js";
+import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, getState } from "../lib/store.js";
 import coreConceptsTable from "../data/coreConcepts.json";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
+import { keyPointAnchor } from "../lib/keyPointAnchor.js";
 import Resizable from "../components/chapter/Resizable.jsx";
 import SplitView from "../components/chapter/SplitView.jsx";
 import { useEdgeResize } from "../lib/useEdgeResize.js";
@@ -43,7 +44,7 @@ export default function Chapter() {
   const splitSource = useStore((s) => !!(s.layout && s.layout.split && s.layout.split.panes && s.layout.split.panes.source));
   const splitCondensed = useStore((s) => !!(s.layout && s.layout.split && s.layout.split.panes && s.layout.split.panes.condensed));
   const splitOpen = splitSource || splitCondensed;
-  const splitBoth = splitSource && splitCondensed;
+  const splitSide = useStore((s) => s.layout && s.layout.split && s.layout.split.side) || "right";
   const { width: dragWidth, onPointerDown: onResizeDown, onDoubleClick: onResizeReset } = useEdgeResize({
     targetRef: rootRef, min: 720, factor: 2,
     onCommit: (px) => setPageWidth(px),
@@ -254,6 +255,17 @@ export default function Chapter() {
             {splitCondensed ? "✓ Condensed split" : "Split: Condensed"}
           </Button>
         )}
+        {splitOpen && (
+          <span className="hidden lg:inline-flex items-center gap-1.5">
+            <span className="text-[0.72rem] text-faint">Books on</span>
+            <Button size="sm" variant={splitSide === "left" ? "default" : "outline"} onClick={() => setSplitSide("left")} title="Dock the source panes to the left of the reading">
+              ◧ Left
+            </Button>
+            <Button size="sm" variant={splitSide === "right" ? "default" : "outline"} onClick={() => setSplitSide("right")} title="Dock the source panes to the right of the reading">
+              Right ◨
+            </Button>
+          </span>
+        )}
         {quizScore && <Badge tone={quizScore.best >= 70 ? "green" : "amber"}>Quiz best {quizScore.best}%</Badge>}
       </div>
 
@@ -352,7 +364,7 @@ export default function Chapter() {
 
       {d.concepts && d.concepts.length > 0 && (<>
         <SectionLabel txt="Concept hierarchy — click to expand" color={book.color} rn={rn} />
-        {d.concepts.map((c, i) => <ConceptCard key={i} c={c} open={i === 0} />)}
+        {d.concepts.map((c, i) => <ConceptCard key={i} c={c} open={i === 0} id={"concept-" + slugify(c.name)} />)}
       </>)}
 
       {readingCoreConcepts.length > 0 && (
@@ -484,7 +496,7 @@ export default function Chapter() {
       </div>
 
       <ChapterTOC sections={sections} rn={rn} />
-      <KeyPoints items={d.highYield} color={book.color} />
+      <KeyPoints items={d.highYield} color={book.color} resolve={(t) => keyPointAnchor(t, d.concepts, sections)} />
       <Highlighter rn={rn} book={book.n} containerRef={rootRef} />
     </main>
   );
@@ -498,7 +510,7 @@ export default function Chapter() {
         query={d.pdf.query}
         onClosePane={(kind) => setSplitPane(kind, false)}
       >
-        {splitBoth ? null : readingContent}
+        {readingContent}
       </SplitView>
     );
   }

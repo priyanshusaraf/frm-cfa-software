@@ -22,7 +22,7 @@ import {
   Boxes,
 } from "lucide-react";
 import { META } from "../lib/meta.js";
-import { useStore } from "../lib/store.js";
+import { useStore, setFontScale } from "../lib/store.js";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover.jsx";
 
 const STUDY_ITEMS = [
@@ -76,6 +76,10 @@ export default function Nav() {
   const [studyOpen, setStudyOpen] = useState(false);
   const done = useStore((s) => s.done);
   const examDate = useStore((s) => (s.planner && s.planner.examDate) || "");
+  const fontScale = useStore((s) => s.layout && s.layout.fontScale) || 1;
+
+  const chapterMatch = location.pathname.match(/^\/chapter\/(\d+)/);
+  const currentReading = chapterMatch ? chapterMatch[1] : null;
 
   const totalReadings = META.books.reduce((n, b) => n + b.readings.length, 0);
   const doneCount = Object.keys(done).length;
@@ -156,6 +160,42 @@ export default function Nav() {
           ))}
         </PopoverContent>
       </Popover>
+
+      <span className="spacer" />
+
+      {currentReading && (
+        <div className="flex shrink-0 flex-col items-center gap-0.5 rounded-el border border-line bg-inset px-2.5 py-1">
+          <span className="font-mono text-[0.6rem] font-semibold uppercase leading-none tracking-wide text-faint">
+            Reading {currentReading}
+          </span>
+          <div className="flex items-center gap-1.5">
+            <NavButton
+              onClick={() => setFontScale(Math.max(0.8, Math.round((fontScale - 0.1) * 100) / 100))}
+              title="Decrease text size"
+              className="flex h-[1.15rem] min-w-[1.3rem] cursor-pointer select-none items-center justify-center rounded-el border border-line font-mono text-[0.72rem] leading-none text-dim hover:bg-hovered hover:text-ink"
+            >
+              A−
+            </NavButton>
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={() => setFontScale(1)}
+              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setFontScale(1); } }}
+              title="Reset text size to 100%"
+              className="min-w-[2.4rem] cursor-pointer select-none text-center font-mono text-[0.68rem] leading-none text-dim hover:text-ink"
+            >
+              {Math.round(fontScale * 100)}%
+            </span>
+            <NavButton
+              onClick={() => setFontScale(Math.min(1.6, Math.round((fontScale + 0.1) * 100) / 100))}
+              title="Increase text size"
+              className="flex h-[1.15rem] min-w-[1.3rem] cursor-pointer select-none items-center justify-center rounded-el border border-line font-mono text-[0.72rem] leading-none text-dim hover:bg-hovered hover:text-ink"
+            >
+              A+
+            </NavButton>
+          </div>
+        </div>
+      )}
 
       <span className="spacer" />
 

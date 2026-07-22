@@ -608,34 +608,46 @@ svg .axis line, svg .axis path { stroke: var(--border-strong); }
 /* ---------- Split-view source material (Chapter.jsx, CLAUDE.md §7.4) ----------
    Desktop-only (Chapter.jsx's toggleSplit falls back to the full-screen /pdf/:bn
    route below the same 1100px breakpoint as the reading-width resizer above).
-   `.split-shell` replaces the plain `<main class="page">` as Chapter's root when a
-   pane is open: the reading column drops its centering/max-width and shares a flex
-   row with the pane region, which docks to the right and pins its own height under
-   the sticky nav. */
+   Free-form column model: `.split-shell` is one flex row. The reading column
+   (`.page`) is flex:1 1 auto and absorbs every drag; each open pane is a fixed-width
+   sticky column with its own resize handle on the edge facing the reading, so a
+   book can be dragged from small up to ~90% of the screen while the reading column
+   never fully disappears (small min-width, not zero). The pane group docks left or
+   right of the reading via DOM order (SplitView.jsx), driven by layout.split.side. */
 .split-shell { display: flex; align-items: flex-start; }
-.split-shell > .page { flex: 1 1 auto; min-width: 0; margin: 0; max-width: none; }
-.split-region {
+.split-shell > .page { flex: 1 1 auto; min-width: 160px; margin: 0; max-width: none; }
+/* The GROUP is the sticky flex child (its parent .split-shell is as tall as the
+   long reading, giving it room to stick); each pane just fills the group's height.
+   Making individual panes sticky instead fails: their parent .split-panes is only
+   as tall as the panes, so there is no scroll room and they scroll away. */
+.split-panes {
   position: sticky; top: var(--nav-h); height: calc(100vh - var(--nav-h));
-  flex: 1 1 auto; min-width: 0; border-left: 1px solid var(--border);
-  background: var(--bg-raised); overflow: hidden;
+  align-self: flex-start; flex: 0 0 auto;
+  display: flex; align-items: stretch;
 }
-.split-region-resize {
-  position: absolute; top: 0; left: -7px; width: 14px; height: 100%;
+.split-pane {
+  position: relative; height: 100%;
+  min-width: 0; background: var(--bg-raised); overflow: hidden;
+  border-left: 1px solid var(--border);
+}
+.split-pane-resize {
+  position: absolute; top: 0; width: 14px; height: 100%;
   cursor: ew-resize; z-index: 30; touch-action: none;
 }
-.split-region-resize::before {
-  content: ""; position: absolute; top: 0; bottom: 0; left: 6px; width: 2px; border-radius: 2px;
+.split-pane-resize--left { left: -7px; }
+.split-pane-resize--right { right: -7px; }
+.split-pane-resize::before {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 2px; border-radius: 2px;
   background: var(--border); opacity: 0; transition: opacity 0.15s, background 0.15s;
 }
-.split-region-resize:hover::before, .split-region-resize.dragging::before { opacity: 1; background: var(--accent); }
-.split-panes { display: flex; height: 100%; }
-.split-pane { flex: 1 1 0; min-width: 0; height: 100%; border-left: 1px solid var(--border); }
-.split-pane:first-child { border-left: none; }
+.split-pane-resize--left::before { left: 6px; }
+.split-pane-resize--right::before { right: 6px; }
+.split-pane-resize:hover::before, .split-pane-resize.dragging::before { opacity: 1; background: var(--accent); }
 @media (max-width: 1099px) {
   /* Split view is desktop-only; Chapter.jsx never opens a pane below this breakpoint,
      but this is a hard backstop in case layout state persists from a wider session. */
   .split-shell { display: block; }
-  .split-region { display: none; }
+  .split-panes { display: none; }
 }
 
 /* ---------- section-label bookmark toggle ---------- */
@@ -693,3 +705,15 @@ mark.hl.hl-r { background: color-mix(in srgb, var(--red) 26%, transparent); box-
 .key-points li { font-size: 0.8rem; line-height: 1.4; margin: 0 0 0.55rem; }
 .key-points li:last-child { margin-bottom: 0; }
 .key-points .kp-stars { display: block; font-size: 0.66rem; color: var(--amber); letter-spacing: 0.08em; }
+/* clickable key points (those that resolve to an in-page anchor) */
+.key-points li.kp-jump { cursor: pointer; border-radius: var(--radius-sm); margin-left: -0.4rem; margin-right: -0.4rem; padding: 0.25rem 0.4rem; transition: background 0.12s; }
+.key-points li.kp-jump:hover, .key-points li.kp-jump:focus-visible { background: var(--bg-hover); outline: none; }
+.key-points li.kp-jump .kp-jump-arrow { color: var(--text-faint); margin-left: 0.3rem; font-size: 0.75rem; }
+.key-points li.kp-jump:hover .kp-jump-arrow { color: var(--accent); }
+
+/* brief pulse on the target a key point (or other jump) lands on */
+@keyframes jump-flash-kf {
+  0% { background: var(--accent-soft); box-shadow: 0 0 0 3px var(--accent-soft); }
+  100% { background: transparent; box-shadow: 0 0 0 3px transparent; }
+}
+.jump-flash { animation: jump-flash-kf 1.3s ease-out; border-radius: var(--radius-sm); scroll-margin-top: calc(var(--nav-h) + 0.75rem); }

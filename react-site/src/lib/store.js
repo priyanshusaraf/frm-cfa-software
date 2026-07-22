@@ -17,7 +17,8 @@
      layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, split },
               // reading-column width (px) + rail open states + per-block widths { [`${rn}:key`]: px }
               // + fontScale: app-wide text size multiplier (Settings page), applied as --font-scale
-              // + split: { panes:{source,condensed}, ratio, width } — split-view source panes (Chapter.jsx)
+              // + split: { panes:{source,condensed}, side:'left'|'right', widths:{source,condensed}px,
+              //            zoom:{source,condensed} } — free-form split-view source panes (Chapter.jsx §7.4)
      mocks:  [ { ts, total, correct, perBook, minutes } ], // mock-exam history (newest first)
    }
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
@@ -204,11 +205,13 @@ export function setFontScale(scale) {
   save({ ...s, layout: { ...(s.layout || {}), fontScale } });
 }
 
-/* ---- split-view source material alongside a reading (Chapter.jsx) ----
-   panes: { source: bool, condensed: bool } — which side-by-side PDF panes are open.
-   ratio: 0..1 divider position when BOTH panes are open (source | condensed).
-   width: px width of the whole pane region when exactly one pane is open
-   (reading | one pane) — desktop-only feature, see CLAUDE.md §7.4. */
+/* ---- split-view source material alongside a reading (Chapter.jsx §7.4) ----
+   Free-form columns: the reading is the flex-fill column and each open PDF pane
+   carries its own px width; every drag is absorbed by the reading column.
+   panes:  { source, condensed } — which side-by-side PDF panes are open.
+   side:   'left' | 'right' — which side of the reading the pane group docks (default right).
+   widths: { source, condensed } px — per-pane width (reading takes the rest).
+   zoom:   { source, condensed } — per-pane page-zoom multiplier (1 = fit-to-pane). */
 export function setSplitPane(kind, open) {
   const s = load();
   const cur = (s.layout && s.layout.split) || {};
@@ -216,17 +219,27 @@ export function setSplitPane(kind, open) {
   if (open) panes[kind] = true; else delete panes[kind];
   save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, panes } } });
 }
-export function setSplitRatio(ratio) {
+export function setSplitSide(side) {
   const s = load();
   const cur = (s.layout && s.layout.split) || {};
-  const r = typeof ratio === "number" && ratio > 0.15 && ratio < 0.85 ? ratio : undefined;
-  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, ratio: r } } });
+  const v = side === "left" ? "left" : "right";
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, side: v } } });
 }
-export function setSplitWidth(px) {
+export function setSplitPaneWidth(kind, px) {
+  if (kind !== "source" && kind !== "condensed") return;
   const s = load();
   const cur = (s.layout && s.layout.split) || {};
-  const width = typeof px === "number" && px > 0 ? Math.round(px) : undefined;
-  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, width } } });
+  const widths = { ...(cur.widths || {}) };
+  if (typeof px === "number" && px > 0) widths[kind] = Math.round(px); else delete widths[kind];
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, widths } } });
+}
+export function setSplitZoom(kind, zoom) {
+  if (kind !== "source" && kind !== "condensed") return;
+  const s = load();
+  const cur = (s.layout && s.layout.split) || {};
+  const z = { ...(cur.zoom || {}) };
+  if (typeof zoom === "number" && zoom > 0) z[kind] = zoom; else delete z[kind];
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, zoom } } });
 }
 
 /* ---- study planner ---- */

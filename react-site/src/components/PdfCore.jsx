@@ -157,6 +157,8 @@ export default function PdfCore({
   mode = "window",
   initialQuery = "",
   initialPage = null,
+  zoom = 1,
+  onZoom, // optional: presence renders the zoom control group (panes only, not the /pdf/:bn route)
   toolbarLeft, // optional extra node rendered at the start of the toolbar (back link, etc.)
   toolbarRight, // optional extra node rendered at the end of the toolbar (open-full link, close button)
 }) {
@@ -240,9 +242,10 @@ export default function PdfCore({
     return () => ro.disconnect();
   }, [containerEl, maxWidth]);
 
-  const scale = pageBase ? containerWidth / pageBase.width : 1;
-  const cssWidth = containerWidth;
-  const cssHeight = pageBase ? Math.round(containerWidth * (pageBase.height / pageBase.width)) : 640;
+  const zoomedWidth = Math.round(containerWidth * zoom);
+  const scale = pageBase ? zoomedWidth / pageBase.width : 1;
+  const cssWidth = zoomedWidth;
+  const cssHeight = pageBase ? Math.round(zoomedWidth * (pageBase.height / pageBase.width)) : 640;
 
   /* Scroll → visible page range, computed arithmetically (all pages share one
      height), so no per-page observers and no layout reads in a loop. In "pane"
@@ -316,12 +319,22 @@ export default function PdfCore({
     setSearching(true);
     setScanned(0);
     try {
+      // Jump to the first matching page AS SOON AS it's scanned, rather than
+      // waiting for the whole book to be scanned first — so a split pane opens
+      // straight onto the reading's page instead of sitting on page 1. Workers
+      // hand out pages in ascending order, so the earliest match surfaces first;
+      // we still re-jump if a strictly earlier page matches later.
       let next = 1;
+      let jumped = null;
       const worker = async () => {
         while (next <= total) {
           const n = next++;
-          await getPageText(n);
+          const e = await getPageText(n);
           setScanned((s) => s + 1);
+          if (e && e.norm.includes(normQ) && (jumped === null || n < jumped)) {
+            jumped = n;
+            jumpTo(n);
+          }
         }
       };
       await Promise.all(Array.from({ length: Math.min(SEARCH_CONCURRENCY, total) }, worker));
@@ -433,6 +446,33 @@ export default function PdfCore({
           </span>
         )}
       </span>
+      {onZoom && (
+        <span className="flex items-center gap-1">
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => onZoom(Math.round(Math.min(3, Math.max(0.5, zoom - 0.1)) * 10) / 10)}
+            title="Zoom out"
+          >
+            −
+          </Button>
+          <span
+            className="text-xs font-mono text-faint w-9 text-center select-none cursor-pointer"
+            onDoubleClick={() => onZoom(1)}
+            title="Double-click to reset zoom"
+          >
+            {Math.round(zoom * 100)}%
+          </span>
+          <Button
+            size="sm"
+            variant="ghost"
+            onClick={() => onZoom(Math.round(Math.min(3, Math.max(0.5, zoom + 0.1)) * 10) / 10)}
+            title="Zoom in"
+          >
+            +
+          </Button>
+        </span>
+      )}
       {toolbarRight}
     </div>
   );
@@ -480,7 +520,7 @@ export default function PdfCore({
     return (
       <div className="flex h-full flex-col">
         {toolbar}
-        <div className="flex-1 overflow-y-auto" ref={scrollElRef}>
+        <div className="flex-1 overflow-auto" ref={scrollElRef}>
           {body}
         </div>
       </div>
