@@ -77,11 +77,28 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > **final whole-branch review is still PENDING** (needs a fresh subagent budget). Ledger:
 > `.superpowers/sdd/progress.md`.
 >
-> **NEXT: Phase 1 infra** (roadmap spec order: F diagram-fidelity widgets -> G planner UI + Block
-> Review -> §9-B ReadingArc -> §7.1 v2 concept `layer`). These do NOT yet have task-level
-> implementation plans; write them (superpowers:writing-plans) from the roadmap + expansion
-> specs before subagent execution. Owner should also run the Phase 0.5 manual-verify checklist
-> above and approve the planner/preview bar (run `node scripts/preview-blocks.mjs`).
+> **PHASE 1 F.1 (source-diagram audit) + Phase 0 visual pilot DONE.**
+> - `docs/superpowers/specs/2026-07-24-source-diagram-audit.md` (commit `465479f`): 25 findings of
+>   described-but-unrendered source visuals; 5 recommended reusable primitives
+>   (`bowtie`, `nested-rings`, `annotated-table`, `waterfall-flow`, `party-flow`); pilot pick = the
+>   R43 bow-tie. It cross-checked the existing widget registry so it does not re-flag the ~13
+>   readings already covered.
+> - **`bowtie` widget built + wired to R43** (commit `b8c1e88`, Opus-reviewed clean): renders
+>   Figure 43.1 (center risk event; left wing = causes + preventive controls / frequency; right
+>   wing = impacts + detective/corrective controls / severity) using R43's own sourced IT-outage
+>   example as data-driven defaults, alongside the existing `lossdist` widget. CSS-variable colors
+>   only, orphan-safe. First primitive of the Phase 1 F library. **Manual-verify:** bow-tie
+>   legibility in both themes at `#/chapter/43`.
+>
+> **⏸ OWNER CHECKPOINT (roadmap Phase 0 gate).** Two of the three Phase 0 bars now have concrete,
+> reviewed samples ready to approve: the **planner** (`node react-site/scripts/preview-blocks.mjs`)
+> and the **visual-fidelity** bar (the R43 bow-tie). The roadmap gates Phase 1 SCALING on owner
+> approval of all three bars (planner, visual-fidelity, Block Review) plus the manual-verify
+> checklist above. **NEXT builds (each its own task, not yet done):** the balance-sheet stepper on
+> r63 (completes the visual bar) and the dynamic Block Review pilot (a runtime-composition engine +
+> SRS graduation, the largest remaining Phase 0 piece); then Phase 1 scales (F widget library ->
+> G planner UI/Block Review -> §9-B ReadingArc -> §7.1 v2 concept `layer`), which still need
+> task-level plans written from the roadmap/expansion specs before subagent execution.
 >
 > ---
 >
