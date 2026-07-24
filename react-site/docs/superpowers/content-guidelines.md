@@ -129,3 +129,34 @@ rest.
 - Not yet reviewed line-by-line. R34 is a natural home for the spread-vs-naked
   margin example if it does not fit R33. R35's CCP loss-waterfall now has the
   `waterfall-flow` widget (Phase 1).
+
+## Durable learnings from the Phase 3 linking run (2026-07-25)
+
+Phase 3 turns concept NAMES into links automatically, which made one thing
+obvious: **a concept's `name` is now user-facing machinery, not just a label.**
+Rules for anyone adding or renaming a `formulas[]`/`concepts[]` entry:
+
+1. **Name the concept, not the section.** "Why the basis opened (demand) and why
+   it has not closed (limits to arbitrage)" is a heading; "Covered interest
+   parity" is a concept. Only the latter can be matched, linked, or looked up.
+2. **A parenthetical is either an acronym or a disambiguator, and they behave
+   differently.** "Value at Risk (VaR)" gains "VaR" as a match phrase; "Expected
+   loss (single asset)" does not gain "single asset", and the qualifier is
+   stripped from the page heading. Acronyms match case-sensitively, so "VaR"
+   never fires on the variance function `var(m)`.
+3. **Two entries for one idea cost you the link.** "Wrong-way risk (introduced
+   via the CDS example)" and "Wrong-way risk (WWR) in CDS" were two names for one
+   concept; the generator now keeps only the most-referenced. If a reading needs
+   its own angle on a shared concept, put it in that reading's prose, not in a
+   near-duplicate concept name.
+4. **Watch for words that mean two things across books.** Caught in the run and
+   fixed at the source: "pass-through" (MBS vs a control's failure probability,
+   R43), "CSA" (Credit Support Annex vs Singapore's Cyber Security Agency, R47),
+   "tranching" (credit/prepayment vs deposit maturity buckets, R77), "equity
+   value" (Black-Scholes-Merton vs a bank's net worth, R79), "risk contribution"
+   (portfolio measure vs "systemic-risk contribution", R68). When the content run
+   introduces a term that is already loaded elsewhere, say which sense you mean
+   in the sentence.
+5. **Rerun the generator after renaming anything.**
+   `node scripts/build-core-concepts.mjs`, then
+   `node scripts/preview-concept-links.mjs <rn...>` to see what changed.

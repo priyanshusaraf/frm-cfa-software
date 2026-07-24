@@ -6,12 +6,13 @@ this file, finds its place, and continues. Procedure lives in
 
 ## ACTIVE PHASE
 
-    phase-3-hover-linking
+    ui-sweep
 
 Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality first):
 
-1. `phase-3-hover-linking` .......... ACTIVE. Inline hover-snippet core-concept links.
-2. `ui-sweep` ....................... Polish/bug pass over built surfaces (planner,
+1. `phase-3-hover-linking` .......... DONE 2026-07-25 (waves 1-20, all 101 rows verified).
+                                      Linking is automatic; see the protocol section 1.
+2. `ui-sweep` ....................... ACTIVE. Polish/bug pass over built surfaces (planner,
                                       block review, case study, consistency). Not
                                       per-reading, so it has no rows here; record it
                                       in PROGRESS.md and flip the phase when done.
@@ -130,9 +131,9 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 93 | 5 | The Credit Suisse CoCo Wipeout | done | todo | 19 | - | |
 | 94 | 5 | Artificial Intelligence and Bank Supervision | done | todo | 19 | - | |
 | 95 | 5 | Explainable, Trustworthy, Responsible AI in Risk Management | done | todo | 19 | - | |
-| 96 | 5 | Artificial Intelligence Risk Management Framework | todo | todo | - | - | |
-| 97 | 5 | Climate-Related Risk Drivers and Transmission Channels | todo | todo | - | - | |
-| 98 | 5 | Climate-Related Financial Risks: Measurement Methodologies | todo | todo | - | - | |
-| 99 | 5 | Principles for the Effective Management and Supervision of Climate-Related Financial Risks | todo | todo | - | - | |
-| 100 | 5 | The Crypto Ecosystem: Key Elements and Risks | todo | todo | - | - | |
-| 101 | 5 | Digital Resilience and Financial Stability | todo | todo | - | - | |
+| 96 | 5 | Artificial Intelligence Risk Management Framework | done | todo | 20 | - | |
+| 97 | 5 | Climate-Related Risk Drivers and Transmission Channels | done | todo | 20 | - | |
+| 98 | 5 | Climate-Related Financial Risks: Measurement Methodologies | done | todo | 20 | - | |
+| 99 | 5 | Principles for the Effective Management and Supervision of Climate-Related Financial Risks | done | todo | 20 | - | |
+| 100 | 5 | The Crypto Ecosystem: Key Elements and Risks | done | todo | 20 | - | |
+| 101 | 5 | Digital Resilience and Financial Stability | done | todo | 20 | - | |

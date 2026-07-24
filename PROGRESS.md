@@ -10,6 +10,21 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > Sequencing spec: `specs/2026-07-25-content-run-sequencing-design.md`. Phase order: Phase 3
 > hover-linking -> UI sweep -> Sonnet content clearance (waves of 5 + Opus-A gate) -> Opus-B
 > improvement. PROGRESS.md is now PHASE-LEVEL ONLY; reading-level truth lives in the ledger.
+>
+> **PHASE 3 (hover linking) COMPLETE, seventeenth session 2026-07-25.** Active phase is now
+> `ui-sweep`. Linking is AUTOMATIC, no reading was edited: `scripts/build-core-concepts.mjs`
+> also emits `src/data/conceptLinkTable.js` (54 linkable concepts, up from the 5 the
+> exact-name detector found, via prose promotion: named once, then name-dropped in 2+ other
+> readings); `src/lib/conceptLinks.js` `linkifyRoot()` wraps the first occurrence per concept
+> after render; `ConceptHover.jsx` shows the snippet card; `/concept/:slug` and `/concepts`
+> resolve the promoted concepts. 68 of 101 readings carry at least one link. Guards, each
+> added after a real false positive caught during verification: forward-only linking for core
+> concepts (a Book 1 reader must not land on "first defined in R31"), revision-layer pages
+> link from anywhere, case-sensitive acronyms (`VaR` vs `var(m)`), two-capital acronym test
+> (not "Merton"), no leading-hyphen matches ("systemic-risk contribution"), near-duplicate
+> topic collapse, and a phrase-exclusion list for cross-book collisions (CSA, pass-through,
+> tranching, equity value). Durable naming rules are in `content-guidelines.md`.
+>
 > Previous resume note follows.
 >
 > **(historical, fifteenth session, ORCHESTRATED build):** executing the
