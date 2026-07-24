@@ -43,13 +43,38 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > string em-dash-free. **MANUAL-VERIFY:** all four new widgets' legibility in both themes; set an
 > exam date and confirm the block schedule + Next-in-plan CTA; ReadingArc links.
 >
-> **NEXT (Phase 2, feature builds with functional Sonnet-grade prose, flagged for Phase 5):**
-> 1. flagship securitization build (uses the new §7.1 v2 layer: a Revision page + Core-Concept
->    family with the CMO-vs-CDO/CLO tranche distinction as the stage-6 centerpiece; research Book
->    2/3/4 source first, invent nothing); 2. case-study system (workstream E, `/case-study` route +
->    financial-statement deep-dive consuming F widgets); 3. session-summary through-lines (piece c);
->    4. case-study inline hooks. Then Phase 3 hover-linking, Phase 4 flag consolidation, Phase 5
->    Opus content pass over the whole corpus.
+> **PHASE 2 (feature builds) IN PROGRESS** (commits `0255e93..310eeb0`, orchestrator-built, each
+> build+render-verified, all content grounded in-source and flagged for Phase 5):
+> 1. **Flagship securitization build DONE** (`0255e93`): the §7.1 v2 layer's first real content in
+>    `src/data/authoredConcepts.js`, sourced verbatim from Book 2 R28 (~lines 4740-4800) + R39.
+>    `layer:"revision"` `/concept/securitization` (covered bonds -> pass-through MBS -> CMO ->
+>    CDO/CLO, problem-first §1a) and `layer:"core"` `/concept/cmo-vs-cdo-tranche` (the stage-6
+>    centerpiece: CMO tranches WHEN you are paid / prepayment timing; CDO/CLO tranches WHETHER you
+>    are paid / credit loss). Both listed in `/concepts` with layer chips.
+> 2. **Session through-lines (piece c) STARTED** (`28c3e2b`): Book 1's three Schweser sessions
+>    (`b1-1`, `b1-7`, `b1-10`) authored into `src/data/blockThroughlines.js`, grounded in the
+>    readings' sourced tags; feed the Block Review authored-overview branch + case-study spine.
+>    Books 2-5 sessions still use the metadata-composed fallback (bounded follow-on).
+> 3. **Case-study system (workstream E) FOUNDATION + SVB pilot DONE** (`310eeb0`): new `/case-study`
+>    lazy route (Study-menu + palette) + `src/data/caseStudy.js`. SVB (Book 4) fully authored:
+>    problem-first Mar-2023 liquidity/IRRBB narrative tied to LCR/deposit-stability/HTM-AFS/IRRBB
+>    mechanics, a financial-statement deep-dive via the F `annotated-table` widget (approximate
+>    public figures, clearly labeled), and R63/R69/R79 "where this shows up" links. All real-world
+>    fields carry the "Beyond exam scope" label (§6 exception). Other four banks carry mapping +
+>    rationale, status `"planned"`.
+>
+> **REMAINING (all fleet-scale per the roadmap's own execution model, ≤5 concurrent):**
+> - Phase 2 tail: the four remaining bank narratives (JPMorgan/London Whale, CS/Archegos,
+>   Barings+SocGen+Knight, CS current-issues), Books 2-5 session through-lines, and the case-study
+>   inline hook CARDS inside each reading (reverse fan-out; the `hooks` data already exists).
+> - **Phase 3** §6-Phase-3 inline hover-snippet core-concept linking across every reading that
+>   reuses a core concept (the expensive dedicated Sonnet fan-out; anchors on stable concept names).
+> - **Phase 4** flag consolidation of `content-flags.md` into a per-reading worklist.
+> - **Phase 5 (the main event)** the Opus-only content-quality pass over the ENTIRE corpus (101
+>   readings + all Phase 1/2 net-new prose): §8.1 em-dash purge, §8.2 tone, §8.3 why-depth, §8.4
+>   formula correctness, worked examples + real-world links. Bar-set on R63/R26/R28 first, then fan
+>   out one Opus agent per file. `content-flags.md` now carries the securitization + case-study +
+>   Book-1-through-line flags added this session.
 >
 > **PHASE 0.5 (reading-flow fixes) COMPLETE** — commits `c942658..85fdbcd`. All 6 tasks +
 > a §1.6 follow-up landed, each Opus-reviewed clean. Build green; headless render-check 0
