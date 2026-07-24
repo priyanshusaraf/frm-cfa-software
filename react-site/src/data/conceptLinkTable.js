@@ -621,7 +621,10 @@ export const conceptLinkTable = [
       72
     ],
     "linkPhrases": [],
-    "snippet": "The document, incorporated into an ISDA Master Agreement, that lets two counterparties mitigate credit risk by defining exactly how collateral is posted between them: what can be posted, how it's valued, when it moves,..."
+    "snippet": "The document, incorporated into an ISDA Master Agreement, that lets two counterparties mitigate credit risk by defining exactly how collateral is posted between them: what can be posted, how it's valued, when it moves,...",
+    "excludePhrases": [
+      "CSA"
+    ]
   },
   {
     "slug": "default-correlation-two-firm",

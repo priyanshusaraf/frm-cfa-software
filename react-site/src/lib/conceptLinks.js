@@ -60,7 +60,12 @@ export function conceptPhrases(entry) {
     if (isAbbrev(paren[1])) add(paren[1]);
   }
   (entry.linkPhrases || []).forEach(add);
-  return [...out].sort(byLengthDesc);
+  /* `excludePhrases` removes a phrase the name would otherwise generate, for
+     acronyms that collide across the corpus: "CSA" is a Credit Support Annex in
+     Book 2 and Singapore's Cyber Security Agency in R47. The full name still
+     matches, so the concept stays linkable where it is unambiguous. */
+  const deny = new Set((entry.excludePhrases || []).map((p) => String(p).toLowerCase()));
+  return [...out].filter((p) => !deny.has(p.toLowerCase())).sort(byLengthDesc);
 }
 
 function escapeRe(s) {

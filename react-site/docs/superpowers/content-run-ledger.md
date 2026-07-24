@@ -80,11 +80,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 43 | 3 | Risk Measurement and Assessment | done | todo | 9 | - | |
 | 44 | 3 | Risk Mitigation | done | todo | 9 | - | |
 | 45 | 3 | Risk Reporting | done | todo | 9 | - | |
-| 46 | 3 | Integrated Risk Management | todo | todo | - | - | |
-| 47 | 3 | Cyber-Resilience: Range of Practices | todo | todo | - | - | |
-| 48 | 3 | Case Study: Cyberthreats and Information Security Risks | todo | todo | - | - | |
-| 49 | 3 | Case Study: Financial Crime and Fraud | todo | todo | - | - | |
-| 50 | 3 | Guidance on Managing Outsourcing Risk | todo | todo | - | - | |
+| 46 | 3 | Integrated Risk Management | done | todo | 10 | - | |
+| 47 | 3 | Cyber-Resilience: Range of Practices | done | todo | 10 | - | |
+| 48 | 3 | Case Study: Cyberthreats and Information Security Risks | done | todo | 10 | - | |
+| 49 | 3 | Case Study: Financial Crime and Fraud | done | todo | 10 | - | |
+| 50 | 3 | Guidance on Managing Outsourcing Risk | done | todo | 10 | - | |
 | 51 | 3 | Case Study: Third-Party Risk Management | todo | todo | - | - | |
 | 52 | 3 | Case Study: Investor Protection and Compliance Risks | todo | todo | - | - | |
 | 53 | 3 | Supervisory Guidance on Model Risk Management | todo | todo | - | - | |
