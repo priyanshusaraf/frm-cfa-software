@@ -23,6 +23,7 @@ import { buildBlocks, nextInPlan } from "../lib/studyPath.js";
 import { blockEligibility, blockForReading } from "../lib/blockEligibility.js";
 import coreConceptsTable from "../data/coreConcepts.json";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
+import ReadingArc from "../components/chapter/ReadingArc.jsx";
 import { keyPointAnchor } from "../lib/keyPointAnchor.js";
 import Resizable from "../components/chapter/Resizable.jsx";
 import SplitView from "../components/chapter/SplitView.jsx";
@@ -306,6 +307,7 @@ export default function Chapter() {
       </div>
       <h1>{d.title}</h1>
       {d.tagline && <p className="lead"><Html as="span" html={d.tagline} /></p>}
+      <ReadingArc rn={rn} />
 
       <div className="flex flex-wrap items-center gap-2 mt-2 mb-1">
         <Button size="sm" variant={isDone ? "default" : "outline"} onClick={() => toggleDone(rn)}>
