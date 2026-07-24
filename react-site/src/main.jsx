@@ -37,6 +37,7 @@ const Bookmarks = lazy(() => import("./pages/Bookmarks.jsx"));
 const Settings = lazy(() => import("./pages/Settings.jsx"));
 const ConceptsIndex = lazy(() => import("./pages/ConceptsIndex.jsx"));
 const ConceptPage = lazy(() => import("./pages/ConceptPage.jsx"));
+const BlockReview = lazy(() => import("./pages/BlockReview.jsx"));
 
 function PageLoading() {
   return (
@@ -102,6 +103,7 @@ function Shell() {
           <Route path="/settings" element={<Settings />} />
           <Route path="/concepts" element={<ConceptsIndex />} />
           <Route path="/concept/:slug" element={<ConceptPage />} />
+          <Route path="/block-review/:blockId" element={<BlockReview />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>
