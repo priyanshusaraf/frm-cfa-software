@@ -110,11 +110,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 73 | 4 | Contingency Funding Planning | done | todo | 15 | - | |
 | 74 | 4 | Managing and Pricing Deposit Services | done | todo | 15 | - | |
 | 75 | 4 | Managing Nondeposit Liabilities | done | todo | 15 | - | |
-| 76 | 4 | Repurchase Agreements and Financing | todo | todo | - | - | |
-| 77 | 4 | Liquidity Transfer Pricing: A Guide to Better Practice | todo | todo | - | - | |
-| 78 | 4 | Covered Interest Parity Lost | todo | todo | - | - | |
-| 79 | 4 | Risk Management for Changing Interest Rates: ALM & Duration | todo | todo | - | - | |
-| 80 | 4 | Illiquid Assets | todo | todo | - | - | |
+| 76 | 4 | Repurchase Agreements and Financing | done | todo | 16 | - | |
+| 77 | 4 | Liquidity Transfer Pricing: A Guide to Better Practice | done | todo | 16 | - | |
+| 78 | 4 | Covered Interest Parity Lost | done | todo | 16 | - | |
+| 79 | 4 | Risk Management for Changing Interest Rates: ALM & Duration | done | todo | 16 | - | |
+| 80 | 4 | Illiquid Assets | done | todo | 16 | - | |
 | 81 | 5 | Factor Theory | todo | todo | - | - | |
 | 82 | 5 | Factors | todo | todo | - | - | |
 | 83 | 5 | Alpha (and the Low-Risk Anomaly) | todo | todo | - | - | |

@@ -146,6 +146,9 @@ const MIN_MENTIONS = 2;
    its full-name phrase, so it still links where it is unambiguous. */
 const EXCLUDE_PHRASES = {
   "credit-support-annex-csa": ["CSA"], // R47: Singapore's Cyber Security Agency
+  /* "equity value" means a bank's net worth in R79's duration gap and a
+     tranche's residual in R28, neither of which is equity-as-a-call-option. */
+  "equity-value-black-scholes-merton": ["equity value"],
 };
 
 function isSpecificEnough(name) {

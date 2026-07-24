@@ -81,7 +81,9 @@ export const authoredConcepts = [
     refs: [28, 39, 30],
     linkPhrases: [
       "collateralized mortgage obligation", "collateralized debt obligation",
-      "collateralized loan obligation", "sequential-pay", "tranching",
+      /* not bare "tranching": R77 tranches deposits by maturity for liquidity
+         transfer pricing, which has nothing to do with either structure. */
+      "collateralized loan obligation", "sequential-pay",
       "CMO", "CDO", "CLO",
     ],
     lead: "A CMO and a CDO both pool debt, slice it into tranches, and pay them in a waterfall, and they share the word tranche. But they divide two unrelated risks. Confusing them is one of the most common structured-finance mistakes.",

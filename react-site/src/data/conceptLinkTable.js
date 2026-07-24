@@ -33,7 +33,6 @@ export const conceptLinkTable = [
       "collateralized debt obligation",
       "collateralized loan obligation",
       "sequential-pay",
-      "tranching",
       "CMO",
       "CDO",
       "CLO"
@@ -477,7 +476,10 @@ export const conceptLinkTable = [
       82
     ],
     "linkPhrases": [],
-    "snippet": "Equity value equals what you'd pay for a call option on the firm's assets, struck at the face value of the debt: the asset value scaled down by the option's delta, minus the present value of the debt scaled down by the..."
+    "snippet": "Equity value equals what you'd pay for a call option on the firm's assets, struck at the face value of the debt: the asset value scaled down by the option's delta, minus the present value of the debt scaled down by the...",
+    "excludePhrases": [
+      "equity value"
+    ]
   },
   {
     "slug": "expected-shortfall",
