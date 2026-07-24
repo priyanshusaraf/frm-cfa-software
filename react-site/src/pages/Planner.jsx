@@ -1,18 +1,10 @@
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { META, rpath } from "../lib/meta.js";
+import { rpath } from "../lib/meta.js";
 import { useStore, setExamDate } from "../lib/store.js";
 import { stars } from "../lib/html.js";
 import Html from "../components/Html.jsx";
-
-/* Curriculum order, with the priority stars used as an effort weight:
-   a 5-star reading gets ~2.5x the study time of a 2-star one. */
-function allReadingsOrdered() {
-  const out = [];
-  META.books.forEach((b) => b.readings.forEach((r) => out.push({ ...r, book: b })));
-  out.sort((a, b) => a.n - b.n);
-  return out;
-}
+import { orderedReadings } from "../lib/studyPath.js";
 
 const DAY = 86400e3;
 
@@ -31,7 +23,7 @@ function buildPlan({ examDate, done }) {
   const daysToExam = Math.round((exam - today) / DAY);
   if (isNaN(exam) || daysToExam <= 0) return { daysToExam: isNaN(exam) ? 0 : daysToExam, days: [], reviewDays: 0, remaining: [] };
 
-  const remaining = allReadingsOrdered().filter((r) => !done[r.n]);
+  const remaining = orderedReadings().filter((r) => !done[r.n]);
   const reviewDays = Math.min(10, Math.max(1, Math.floor(daysToExam * 0.15)));
   const studyDays = Math.max(1, daysToExam - reviewDays);
 
