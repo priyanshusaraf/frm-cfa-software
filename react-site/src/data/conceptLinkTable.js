@@ -759,23 +759,6 @@ export const conceptLinkTable = [
     "snippet": "Unexpected loss is the standard deviation of that same loss variable — it measures how far a bad year's actual loss could plausibly swing away from the average (EL), driven jointly by uncertainty in whether default..."
   },
   {
-    "slug": "wrong-way-risk-wwr-in-cds",
-    "name": "Wrong-way risk (WWR) in CDS",
-    "display": "Wrong-way risk (WWR) in CDS",
-    "layer": "core",
-    "kind": "concept",
-    "homeReading": 7,
-    "refs": [
-      7,
-      35,
-      36,
-      37,
-      38
-    ],
-    "linkPhrases": [],
-    "snippet": "The reference asset and the CDS-seller counterparty are positively correlated, so the CDS is most likely to be needed exactly when the seller is least able to pay."
-  },
-  {
     "slug": "business-indicator",
     "name": "Business Indicator",
     "display": "Business Indicator",
@@ -886,21 +869,6 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "Charging different customers different prices (interest rates/fees) based on their individual assessed risk, rather than one flat price for everyone. Motivated by adverse selection: a single flat price attracts..."
-  },
-  {
-    "slug": "business-indicator-component-bic",
-    "name": "Business Indicator Component (BIC)",
-    "display": "Business Indicator Component (BIC)",
-    "layer": "core",
-    "kind": "formula",
-    "homeReading": 41,
-    "refs": [
-      41,
-      45,
-      62
-    ],
-    "linkPhrases": [],
-    "snippet": "BIC converts the size measure BI into a capital-relevant number by applying a bigger percentage the larger the bank's business activity is."
   },
   {
     "slug": "country-risk",

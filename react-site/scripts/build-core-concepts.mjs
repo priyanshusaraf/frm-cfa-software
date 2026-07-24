@@ -183,12 +183,25 @@ for (const entry of byNorm.values()) {
    worse than no link. Phrases already owned by an authored or exact-name entry
    are off limits too. */
 const ownedPhrases = new Set();
-for (const r of linkRows) conceptPhrases(r).forEach((p) => ownedPhrases.add(normalize(p)));
+const ownedTopics = [];
+for (const r of linkRows) {
+  conceptPhrases(r).forEach((p) => ownedPhrases.add(normalize(p)));
+  ownedTopics.push(normalize(r.display || r.name));
+}
+/* Near-duplicates are the other failure mode: "Wrong-way risk (introduced via
+   the CDS example)" and "Wrong-way risk (WWR) in CDS" are two entries for one
+   idea, and both fired in the same sentence of R35. Treat one display name
+   containing another as the same topic and keep only the most-referenced. */
+const sameTopic = (a, b) => a === b || a.startsWith(b + " ") || b.startsWith(a + " ");
+
 candidates.sort((a, b) => b.mentions - a.mentions || a.name.localeCompare(b.name));
 const promoted = [];
 for (const c of candidates) {
   if (c.phrases.some((p) => ownedPhrases.has(normalize(p)))) continue;
+  const topic = normalize(c.display);
+  if (ownedTopics.some((t) => sameTopic(topic, t))) continue;
   c.phrases.forEach((p) => ownedPhrases.add(normalize(p)));
+  ownedTopics.push(topic);
   promoted.push(c);
 }
 linkRows.push(...promoted.map(({ mentions, phrases, ...rest }) => rest));

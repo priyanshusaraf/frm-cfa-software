@@ -65,11 +65,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 28 | 2 | Structured Credit Risk | done | todo | 6 | - | |
 | 29 | 2 | Credit Risk (Spread Risk & Default Intensity) | done | todo | 6 | - | |
 | 30 | 2 | Credit Derivatives | done | todo | 6 | - | |
-| 31 | 2 | Derivatives (Counterparty Risk Intro) | todo | todo | - | - | |
-| 32 | 2 | Counterparty Risk and Beyond | todo | todo | - | - | |
-| 33 | 2 | Netting, Close-Out, and Related Aspects | todo | todo | - | - | |
-| 34 | 2 | Margin (Collateral) and Settlement | todo | todo | - | - | |
-| 35 | 2 | Central Clearing | todo | todo | - | - | |
+| 31 | 2 | Derivatives (Counterparty Risk Intro) | done | todo | 7 | - | |
+| 32 | 2 | Counterparty Risk and Beyond | done | todo | 7 | - | |
+| 33 | 2 | Netting, Close-Out, and Related Aspects | done | todo | 7 | - | |
+| 34 | 2 | Margin (Collateral) and Settlement | done | todo | 7 | - | |
+| 35 | 2 | Central Clearing | done | todo | 7 | - | |
 | 36 | 2 | Future Value and Exposure | todo | todo | - | - | |
 | 37 | 2 | CVA | todo | todo | - | - | |
 | 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | todo | todo | - | - | |
