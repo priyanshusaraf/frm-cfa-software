@@ -28,9 +28,9 @@ function buildRoundItems(review) {
 
 export default function BlockReview() {
   const { blockId } = useParams();
-  useEffect(() => { document.title = "Block review — FRM Part II"; }, []);
+  useEffect(() => { document.title = "Block review · FRM Part II"; }, []);
 
-  // buildBlocks() is pure/cheap (studyPath.js) — safe to call per blockId change.
+  // buildBlocks() is pure/cheap (studyPath.js); safe to call per blockId change.
   const block = useMemo(() => buildBlocks().find((b) => b.id === blockId), [blockId]);
   const book = block ? bookOf(block.readings[0]) : null;
 
@@ -51,7 +51,7 @@ export default function BlockReview() {
   const roundDone = roundItems.length > 0 ? step >= roundItems.length : !!review;
 
   // Fire markBlockReviewSeen exactly once per mount, when the round is finished
-  // (or there was nothing to review) — guarded so re-renders never re-fire it.
+  // (or there was nothing to review); guarded so re-renders never re-fire it.
   useEffect(() => {
     if (!block || !roundDone) return;
     if (seenFiredRef.current) return;
