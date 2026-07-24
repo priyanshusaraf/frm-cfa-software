@@ -339,3 +339,47 @@ Phase 5 (content polish, OPUS only, <=5 concurrent)
   `widget failed|undefined<|>null<|tex-error`. Interactive behavior (Block Review flow, planner
   drag, widget input) is flagged for manual browser verification, never claimed from headless.
 - Update `PROGRESS.md` and CLAUDE.md's roadmap sections as phases land.
+
+---
+
+## Addendum (2026-07-24, part 2): new workstreams
+
+Full detail: `2026-07-24-expansion-and-fixes-design.md`. North star and execution model:
+`../../../GOAL.md`. These slot into the phase order as follows.
+
+**New Phase 0.5, near-term reading-flow fixes (runs before Phase 1, bugs are "asap").** The
+scroll-stability bugs (concept-expand jump, with and without split view), the homepage-star
+opens-at-top fix, the global "Return to Reading N" button, "Next reading" clears the previous,
+the 45-minute hydration reminder, and the META-blurb formatting/em-dash sweep. These degrade
+daily use now, so they are fixed first. Own Sonnet plan, Opus review, at most 5 concurrent.
+
+**Into Phase 1/2 (feature build).**
+- **Core-concept expansion (section 3).** Expand the origin-state concept system: prior-level
+  revision (`layer: "prior-level"` on `/concept/:slug`, a reading's `assumes: [...]` field for
+  CFA L1 / FRM P1 concepts) plus the thorough Wikipedia-style hover previews. The hover-preview
+  fan-out is the same work as §6 Phase 3 and keeps its late slot (after feature builds, anchored
+  on stable concept names); the concept-page CONTENT it links into is expanded here first.
+- **Consistency dashboard (section 4).** GitHub-style heatmap + pace/consistency metrics, derived
+  from store timestamps (plus an optional `activity` day-counter key). Local and low-risk; may
+  slot earlier if wanted, otherwise near launch.
+
+**Into Phase 5 (Opus content polish).**
+- **`content-guidelines.md` (section 5.1)** is built DURING this phase: the durable
+  mistakes-and-fixes playbook that makes the next level (CFA L1, FRM P1, ...) smooth. Distinct
+  from the transient `content-flags.md`.
+- **End-of-reading coverage rule (section 5.2)** becomes an acceptance check: every `summary` and
+  `eli5` must cover the reading end to end, with the last third as carefully as the first.
+
+**Near launch, after polish, its own backend brainstorm-through-plan cycle.**
+- **Accounts, free trials, device licensing (section 2).** This SUPERSEDES CLAUDE.md §7.3. The
+  new rule set: no in-app payments (out-of-band collection), free trial, one account usable from
+  at most 2 devices (one primary + one temporary), only one device active at a time, temporary
+  access limited to a 2-hour window once per day, primary reassignment at most twice per plan,
+  human sales escape hatch. Requires a backend, auth with a device-binding token, single-active
+  lease enforcement, and per-user server-backed storage migrated from the current single-user
+  `localStorage` blob. The old §7.3 device model (two concurrent primary devices, 4-hour window,
+  2-day lockout, weekly reassignment) is OBSOLETE; do not build to it.
+
+Execution model unchanged from `GOAL.md`: Sonnet 5 workers one issue at a time with Opus review
+between tasks, at most 5 concurrent; the final content polish removes Sonnet and runs Opus 4.8
+only, one reading at a time.
