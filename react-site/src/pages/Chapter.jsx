@@ -18,7 +18,7 @@ import MatchPairs from "../components/chapter/MatchPairs.jsx";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
-import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, setActiveReading, getState } from "../lib/store.js";
+import { useStore, toggleDone, touchVisited, touchActivity, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, setActiveReading, getState } from "../lib/store.js";
 import { buildBlocks, nextInPlan } from "../lib/studyPath.js";
 import { blockEligibility, blockForReading } from "../lib/blockEligibility.js";
 import coreConceptsTable from "../data/coreConcepts.json";
@@ -105,6 +105,7 @@ export default function Chapter() {
        in; drop it the moment we move to another one */
     setSplitQuery(null);
     if (rn) touchVisited(rn);
+    if (rn) touchActivity(); // one study-activity tick per chapter open (for /consistency)
     if (rn && !getState().done[rn]) setActiveReading(rn);
   }, [rn]);
 

@@ -39,6 +39,7 @@ const ConceptsIndex = lazy(() => import("./pages/ConceptsIndex.jsx"));
 const ConceptPage = lazy(() => import("./pages/ConceptPage.jsx"));
 const BlockReview = lazy(() => import("./pages/BlockReview.jsx"));
 const CaseStudy = lazy(() => import("./pages/CaseStudy.jsx"));
+const Consistency = lazy(() => import("./pages/Consistency.jsx"));
 
 function PageLoading() {
   return (
@@ -106,6 +107,7 @@ function Shell() {
           <Route path="/concept/:slug" element={<ConceptPage />} />
           <Route path="/block-review/:blockId" element={<BlockReview />} />
           <Route path="/case-study" element={<CaseStudy />} />
+          <Route path="/consistency" element={<Consistency />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Suspense>

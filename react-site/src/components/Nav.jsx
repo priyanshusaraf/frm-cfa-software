@@ -41,6 +41,7 @@ const STUDY_ITEMS = [
   ["/bookmarks", "Bookmarks", Bookmark],
   ["/concepts", "Core Concepts", Boxes],
   ["/case-study", "Case study", Boxes],
+  ["/consistency", "Consistency", BarChart3],
   ["/settings", "Settings", SettingsIcon],
 ];
 

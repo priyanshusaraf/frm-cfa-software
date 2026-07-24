@@ -174,6 +174,17 @@ export function touchVisited(rn, extra) {
   save({ ...s, lastVisited: { rn, ts: Date.now(), y: y || 0, section: section || "" } });
 }
 
+/* ---- study-consistency activity counter (optional key: activity {yyyy-mm-dd:n}) ----
+   Bumped once per chapter open (not on scroll) so the /consistency heatmap has a
+   forward-looking signal on top of the derived timestamps. Old blobs lack it. */
+export function touchActivity() {
+  const s = load();
+  const d = new Date();
+  const k = d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0");
+  const act = s.activity || {};
+  save({ ...s, activity: { ...act, [k]: (act[k] || 0) + 1 } });
+}
+
 /* ---- section bookmarks ---- */
 export function toggleBookmark(rn, { id, txt }) {
   if (!rn || !id) return;
