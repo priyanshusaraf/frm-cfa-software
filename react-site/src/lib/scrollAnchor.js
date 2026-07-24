@@ -27,6 +27,27 @@ const BUSY_GUARD = 220; // ms to hold off treating our own corrective scroll as 
 // large drifts on font-scale changes (a spurious recapture locks in whatever
 // half-corrected position happened to be on screen as the new "truth").
 const TEXT_LEN = 40; // identity fingerprint length for re-resolving an anchor across a remount
+const CONTENT_TOGGLE_SELECTOR = "summary, [aria-expanded]"; // native <details> concept cards
+// AND Radix AccordionTrigger (which stamps aria-expanded on its button) AND the recall/
+// flashcard reveal toggle — the in-content expand/collapse controls, deliberately not just
+// "any click inside .page": the reading-column resize handle (`.page-resize`) and the header
+// action buttons (Split: Source/Condensed, Mark as done, dock left/right, zoom) all live
+// INSIDE `.page` too but must keep triggering restore() normally (drag needs correcting live;
+// a split toggle's remount-triggered restore in the effect below must not be swallowed).
+const CONTENT_TOGGLE_GUARD = 400; // ms after an in-content toggle click during which restore()
+// is suppressed. Root cause (confirmed by tracing the math, not just symptom-patching): when
+// a concept/accordion body opens, content BELOW the click point (including whatever paragraph
+// was last captured as the scroll anchor while the user was reading) shifts down on screen —
+// exactly the native, correct, no-JS-needed behavior the spec wants (clicked element stays put,
+// content grows below it). But that shift is a real, non-trivial change in the anchor's
+// getBoundingClientRect().top (not sub-pixel noise MIN_DELTA already filters), so restore()
+// dutifully "corrects" it with a scrollBy that keeps the passive, far-below anchor pinned
+// instead, which yanks the just-expanded content (and the summary the user clicked) up off
+// screen — the reported downward-jump bug. The fix is not a bigger MIN_DELTA (that would also
+// swallow real resize/drag corrections of the same magnitude); it's recognizing that a reflow
+// whose pointerdown landed on a content toggle is user-initiated growth the browser already
+// handles correctly, not one of the passive layout changes (resize, drag, font-scale,
+// split-remount) this file exists to compensate for.
 
 /* --nav-h is authored in rem and custom properties come back unresolved, so the
    rem has to be converted against the root font size (which --font-scale moves). */
@@ -61,6 +82,7 @@ export function useScrollAnchor(rootRef) {
   const busyTimerRef = useRef(null);
   const observedRef = useRef(null);
   const roRef = useRef(null);
+  const contentToggleAtRef = useRef(0); // timestamp of the last pointerdown on an in-content toggle
   const restoreRef = useRef(null); // lets the identity-change effect below call the same restore() the RO uses
 
   useEffect(() => {
@@ -103,8 +125,21 @@ export function useScrollAnchor(rootRef) {
       timer = setTimeout(capture, CAPTURE_DELAY);
     }
 
+    // Captured on the pointerdown itself (not click/toggle), since the ResizeObserver's
+    // debounced restore() can fire before a "click" would have bubbled — pointerdown is the
+    // earliest reliable signal that this reflow, whenever it lands, was user-initiated content
+    // growth rather than an external layout change.
+    function onContentPointerDown(e) {
+      const root = rootRef.current;
+      if (!root || !root.contains(e.target)) return;
+      if (e.target.closest && e.target.closest(CONTENT_TOGGLE_SELECTOR)) {
+        contentToggleAtRef.current = Date.now();
+      }
+    }
+
     function restore() {
       reflowAt = Date.now();
+      if (Date.now() - contentToggleAtRef.current < CONTENT_TOGGLE_GUARD) return;
       let a = anchorRef.current;
       if (!a) return;
       // reading navigation / a split-pane open-close remount detaches the anchor
@@ -137,6 +172,10 @@ export function useScrollAnchor(rootRef) {
     window.addEventListener("scroll", onScroll, { passive: true });
     // the root's own box does not change on a viewport-height-only resize
     window.addEventListener("resize", restore);
+    // capture phase, on document (not rootRef.current): a split-pane open/close remounts
+    // `.page` to a new node, so a listener attached to the element itself would need
+    // re-attaching on every remount for no benefit — document outlives the remount.
+    document.addEventListener("pointerdown", onContentPointerDown, true);
     let roTimer = null;
     if (typeof ResizeObserver !== "undefined") {
       roRef.current = new ResizeObserver(() => {
@@ -176,6 +215,7 @@ export function useScrollAnchor(rootRef) {
     return () => {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", restore);
+      document.removeEventListener("pointerdown", onContentPointerDown, true);
       if (roRef.current) { roRef.current.disconnect(); roRef.current = null; }
       if (mo) mo.disconnect();
       if (moTimer) clearTimeout(moTimer);
