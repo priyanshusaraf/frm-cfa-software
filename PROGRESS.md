@@ -4,7 +4,15 @@ Single source of truth for **where development stands**, so work can resume even
 session dies or limits run out. Scope of all work: **`react-site/` only** — the vanilla
 `site/` app is frozen. Full design: `docs/superpowers/specs/2026-07-18-react-marketable-design.md`.
 
-> **⏭ ACTIVE RESUME POINT (2026-07-24, fifteenth session, ORCHESTRATED build):** executing the
+> **⏭ ACTIVE RESUME POINT (2026-07-25, sixteenth session):** the run is now driven by
+> `react-site/docs/superpowers/content-run-ledger.md` (position) + `content-run-protocol.md`
+> (procedure), entered by saying "continue" (see the block at the top of the root CLAUDE.md).
+> Sequencing spec: `specs/2026-07-25-content-run-sequencing-design.md`. Phase order: Phase 3
+> hover-linking -> UI sweep -> Sonnet content clearance (waves of 5 + Opus-A gate) -> Opus-B
+> improvement. PROGRESS.md is now PHASE-LEVEL ONLY; reading-level truth lives in the ledger.
+> Previous resume note follows.
+>
+> **(historical, fifteenth session, ORCHESTRATED build):** executing the
 > committed master roadmap (`docs/superpowers/specs/2026-07-24-react-site-roadmap.md`) via
 > subagent-driven development (Sonnet implementers, Opus review between tasks, <=5 concurrent).
 > Branch `roadmap-2026-07`. Ledger: `.superpowers/sdd/progress.md` (gitignored scratch).
@@ -93,10 +101,15 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 >   condense-repetition + naked-call-vs-spread margin example, richer go-deeper, and GLOBAL:
 >   tricky-quiz-wording, AI-ism purge, explain-why, cross-reading example continuity.
 >
+> **PHASE 2 CLOSED (verified 2026-07-25, audit pass).** The three items previously listed as the
+> "Phase 2 tail" are all in fact landed and verified in the built DOM: all five bank narratives
+> (`caseStudy.js` carries JPMorgan/London Whale, CS/Archegos, Barings+SocGen+Knight, SVB, and
+> SVB+CS current-issues); through-lines cover ALL 14 Schweser sessions plus the `c27` curated
+> cluster (15 keys in `blockThroughlines.js`, so the metadata-composed fallback is now only for
+> arbitrary planner blocks); and the inline hook CARDS render (`CaseStudyHook.jsx`, mounted at
+> `Chapter.jsx:575`, confirmed firing on ch30/ch63/ch93 with the "beyond exam scope" chip).
+>
 > **REMAINING (all fleet-scale per the roadmap's own execution model, ≤5 concurrent):**
-> - Phase 2 tail: the four remaining bank narratives (JPMorgan/London Whale, CS/Archegos,
->   Barings+SocGen+Knight, CS current-issues), Books 2-5 session through-lines, and the case-study
->   inline hook CARDS inside each reading (reverse fan-out; the `hooks` data already exists).
 > - **Phase 3** §6-Phase-3 inline hover-snippet core-concept linking across every reading that
 >   reuses a core concept (the expensive dedicated Sonnet fan-out; anchors on stable concept names).
 > - **Phase 4** flag consolidation of `content-flags.md` into a per-reading worklist.

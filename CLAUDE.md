@@ -2,6 +2,26 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+## IF THE USER SAYS "CONTINUE" (or "continue with the previously mentioned tasks")
+
+That phrase means: **resume the standing run.** It is not ambiguous, and you do not need
+the user to tell you where things stand. Do this, in order:
+
+1. Read `react-site/docs/superpowers/content-run-ledger.md`. Its header names the
+   **active phase**; its rows are the per-reading position.
+2. Find the first row whose column for the active phase is `todo`. That is where you are.
+3. Read `react-site/docs/superpowers/content-run-protocol.md` and follow the section for
+   the active phase **literally**. It is written for a session that has just been cleared.
+4. Work a wave (5 readings), verify, update the ledger, commit, then **start the next wave
+   without asking.** The user has said to let it run; do not check in between waves.
+5. Stop only when: the phase is complete, a gate has failed twice on the same reading, or
+   you are running out of context. Whatever happens, **leave the ledger accurate** — the
+   next session trusts it and will skip real work if it lies.
+
+This project is worked across many sessions with full context clears between them. The
+ledger plus the per-wave commit ARE the memory. Never leave a wave uncommitted, and never
+record a reading as done that you have not verified.
+
 ## What this is — READ THIS FIRST
 
 An **interactive learning website for the FRM Part II exam** (5 books, 101 readings). There
