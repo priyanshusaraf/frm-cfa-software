@@ -316,13 +316,13 @@ register("balancesheet", function (el) {
   var liquidA = sum(assets, function (x) { return x.liquid ? (x.amount || 0) : 0; });
   var nearTermL = sum(liabilities, function (x) { return x.nearTerm ? (x.amount || 0) : 0; });
   var gap = nearTermL - liquidA;                                  // positive => illiquid shortfall
-  function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+  function money(n) { return "$" + Math.round(n || 0).toLocaleString("en-US"); }
 
   var svg = shell(el, "Solvent vs liquid: the same balance sheet, two questions",
     '<label>Step <select data-k="step">' +
-    '<option value="1">1. Assets</option>' +
+    '<option value="1" selected>1. Assets</option>' +
     '<option value="2">2. Solvency</option>' +
-    '<option value="3" selected>3. Liquidity gap</option>' +
+    '<option value="3">3. Liquidity gap</option>' +
     '</select></label><span class="w-value" data-out></span>', 680, 340,
     "A balance sheet answers two different questions. Solvency: does net worth exceed zero? Liquidity: can it produce cash in time for what is due now? Step through to see both readings of the same figures.");
   var sel = el.querySelector('[data-k="step"]');
@@ -333,12 +333,13 @@ register("balancesheet", function (el) {
   function stack(x, items, side, colorFn) {
     var y = topY;
     items.forEach(function (it) {
-      var h = totalA > 0 ? (it.amount / totalA) * barH : 0;
+      var amt = it.amount || 0;
+      var h = totalA > 0 ? (amt / totalA) * barH : 0;
       svgEl("rect", { x: x, y: y, width: barW, height: Math.max(1, h), fill: colorFn(it), opacity: 0.85, stroke: "var(--bg)", "stroke-width": 1 }, svg);
       if (h >= 16) {
         var lx = side === "left" ? x - 8 : x + barW + 8;
         var t = svgEl("text", { x: lx, y: y + h / 2 + 4, "text-anchor": side === "left" ? "end" : "start", "font-size": 11, fill: "var(--text)" }, svg);
-        t.textContent = it.label + " " + money(it.amount);
+        t.textContent = it.label + " " + money(amt);
       }
       y += h;
     });
