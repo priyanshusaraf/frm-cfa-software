@@ -70,11 +70,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 33 | 2 | Netting, Close-Out, and Related Aspects | done | todo | 7 | - | |
 | 34 | 2 | Margin (Collateral) and Settlement | done | todo | 7 | - | |
 | 35 | 2 | Central Clearing | done | todo | 7 | - | |
-| 36 | 2 | Future Value and Exposure | todo | todo | - | - | |
-| 37 | 2 | CVA | todo | todo | - | - | |
-| 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | todo | todo | - | - | |
-| 39 | 2 | An Introduction to Securitization | todo | todo | - | - | |
-| 40 | 3 | Introduction to Operational Risk and Resilience | todo | todo | - | - | |
+| 36 | 2 | Future Value and Exposure | done | todo | 8 | - | |
+| 37 | 2 | CVA | done | todo | 8 | - | |
+| 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | done | todo | 8 | - | |
+| 39 | 2 | An Introduction to Securitization | done | todo | 8 | - | |
+| 40 | 3 | Introduction to Operational Risk and Resilience | done | todo | 8 | - | |
 | 41 | 3 | Risk Governance | todo | todo | - | - | |
 | 42 | 3 | Risk Identification | todo | todo | - | - | |
 | 43 | 3 | Risk Measurement and Assessment | todo | todo | - | - | |
