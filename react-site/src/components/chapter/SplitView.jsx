@@ -16,7 +16,7 @@ const DEFAULT_WIDTH = 460;
    between panes. The pane group docks left or right of the reading per
    `layout.split.side` (setSplitSide); panes keep source-then-condensed order
    regardless of dock side. */
-export default function SplitView({ source, condensed, bn, query, onClosePane, children }) {
+export default function SplitView({ source, condensed, bn, rn, sourceQueries, condensedQueries, onClosePane, children }) {
   const side = useStore((s) => s.layout && s.layout.split && s.layout.split.side) || "right";
   const widths = useStore((s) => s.layout && s.layout.split && s.layout.split.widths);
   const storedSourceWidth = widths && widths.source;
@@ -52,7 +52,7 @@ export default function SplitView({ source, condensed, bn, query, onClosePane, c
     <div className="split-panes">
       {source && (
         <div className="split-pane" ref={sourceRef} style={{ width: sourceWidth, flex: `0 0 ${sourceWidth}px` }}>
-          <SplitPdfPane kind="source" bn={bn} query={query} side={side} onClose={() => onClosePane("source")} />
+          <SplitPdfPane kind="source" bn={bn} rn={rn} queries={sourceQueries} side={side} onClose={() => onClosePane("source")} />
           <div
             className={handleClass}
             onPointerDown={sourceResize.onPointerDown}
@@ -63,7 +63,7 @@ export default function SplitView({ source, condensed, bn, query, onClosePane, c
       )}
       {condensed && (
         <div className="split-pane" ref={condensedRef} style={{ width: condensedWidth, flex: `0 0 ${condensedWidth}px` }}>
-          <SplitPdfPane kind="condensed" bn={bn} query={query} side={side} onClose={() => onClosePane("condensed")} />
+          <SplitPdfPane kind="condensed" bn={bn} rn={rn} queries={condensedQueries} side={side} onClose={() => onClosePane("condensed")} />
           <div
             className={handleClass}
             onPointerDown={condensedResize.onPointerDown}

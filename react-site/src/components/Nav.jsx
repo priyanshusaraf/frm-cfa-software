@@ -20,9 +20,11 @@ import {
   Timer,
   Settings as SettingsIcon,
   Boxes,
+  Maximize2,
 } from "lucide-react";
 import { META } from "../lib/meta.js";
 import { useStore, setFontScale } from "../lib/store.js";
+import { toggleFullscreen } from "../lib/fullscreen.js";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover.jsx";
 
 const STUDY_ITEMS = [
@@ -228,6 +230,16 @@ export default function Nav() {
         className="mr-1 flex cursor-pointer select-none items-center gap-1 rounded-el border border-line px-2 py-1 font-app text-[0.78rem] text-dim hover:bg-hovered hover:text-ink"
       >
         <CommandIcon size={12} />K
+      </NavButton>
+
+      {/* nav is unmounted while fullscreen is on, so this only ever shows "enter";
+          the exit affordance is the floating chip rendered by main.jsx's Shell */}
+      <NavButton
+        onClick={toggleFullscreen}
+        title="Fullscreen reading mode (f)"
+        className="mr-1 flex cursor-pointer select-none items-center justify-center rounded-el border border-line p-1.5 text-dim hover:bg-hovered hover:text-ink"
+      >
+        <Maximize2 size={14} />
       </NavButton>
 
       <NavButton

@@ -1,4 +1,5 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
+import { Minimize2 } from "lucide-react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import "@fontsource-variable/geist";
@@ -10,6 +11,7 @@ import Nav from "./components/Nav.jsx";
 import QuickNotes from "./components/QuickNotes.jsx";
 import CommandPalette from "./components/CommandPalette.jsx";
 import FontScaleSync from "./components/FontScaleSync.jsx";
+import { useFullscreen, toggleFullscreen, setFullscreen } from "./lib/fullscreen.js";
 import Home from "./pages/Home.jsx";
 import Book from "./pages/Book.jsx";
 import Chapter from "./pages/Chapter.jsx";
@@ -42,10 +44,38 @@ function PageLoading() {
   );
 }
 
-createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <HashRouter>
-      <Nav />
+/* Fullscreen is app-wide: the `f` shortcut is registered here rather than per-page,
+   and the exit chip stands in for the nav button while the nav is hidden. */
+function Shell() {
+  const fullscreen = useFullscreen();
+
+  useEffect(() => {
+    function onKey(e) {
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key !== "f" && e.key !== "F") return;
+      const t = e.target;
+      if (t && (t.tagName === "INPUT" || t.tagName === "TEXTAREA" || t.isContentEditable)) return;
+      e.preventDefault();
+      toggleFullscreen();
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  return (
+    <>
+      {!fullscreen && <Nav />}
+      {fullscreen && (
+        <button
+          type="button"
+          className="fs-exit"
+          onClick={() => setFullscreen(false)}
+          title="Exit fullscreen (f or Esc)"
+          aria-label="Exit fullscreen"
+        >
+          <Minimize2 size={13} /> Exit
+        </button>
+      )}
       <Suspense fallback={<PageLoading />}>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -74,6 +104,14 @@ createRoot(document.getElementById("root")).render(
       <QuickNotes />
       <CommandPalette />
       <FontScaleSync />
+    </>
+  );
+}
+
+createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <HashRouter>
+      <Shell />
     </HashRouter>
   </React.StrictMode>
 );

@@ -4,7 +4,70 @@ Single source of truth for **where development stands**, so work can resume even
 session dies or limits run out. Scope of all work: **`react-site/` only** — the vanilla
 `site/` app is frozen. Full design: `docs/superpowers/specs/2026-07-18-react-marketable-design.md`.
 
-> **⏭ ACTIVE RESUME POINT (2026-07-21, eleventh session):** the tenth session's feature work
+> **⏭ ACTIVE RESUME POINT (2026-07-24, thirteenth session):** implemented
+> `docs/superpowers/specs/2026-07-24-reading-focus-and-source-anchoring-design.md` in full
+> (four changes, all in `react-site/`). The content-quality pass (CLAUDE.md §8) is STILL the
+> top priority and is still not started; this session was the owner-requested reading-focus
+> work that preceded it.
+>
+> 1. **Scroll anchoring across reflows** — new `src/lib/scrollAnchor.js` (`useScrollAnchor(rootRef)`),
+>    wired into `Chapter.jsx`. Captures `{el, offset}` on scroll (it cannot be captured at
+>    reflow time: `resize`/`ResizeObserver` both fire after layout has already reflowed) and
+>    restores with `scrollBy` when a `ResizeObserver` on the reading root, a `window.resize`,
+>    or a `MutationObserver` on `<html>`'s `style` (font-scale) reports a reflow. Several
+>    non-obvious constraints are encoded in the file's comments and must not be "cleaned up":
+>    the capture is a TIMER not a rAF (rAF callbacks run before ResizeObserver callbacks in
+>    the same frame, so a rAF capture always beats the observer to the pre-reflow geometry);
+>    the restore uses `behavior: "instant"` because `html { scroll-behavior: smooth }` would
+>    otherwise animate the correction; the busy guard is a wall-clock timeout, not one rAF;
+>    and a split-pane open/close REMOUNTS `.page`, so the anchor is re-found by tag+text
+>    fingerprint rather than dropped.
+> 2. **PDF anchor ladder** — `PdfCore.jsx`'s `initialQuery: string` became
+>    `initialQueries: string[]` (bare string still accepted); `runSearch` split into
+>    `scanAll()` (populates the page-text cache once) + `findPages()` (pure cache lookup), so
+>    trying candidates 2..n is free. Source pane uses `[pdf.query, title]`, condensed pane
+>    `[title, pdf.query]`, `/pdf/:bn` uses `?q=` + a new `?q2=`. The run-once `autoRanRef` was
+>    replaced by an effect keyed on the joined ladder, so an open pane re-searches when the
+>    ladder changes — **callers must memoize the array**. Fixes the ~93% condensed-pane miss
+>    rate measured in the spec. TOC suppression additionally prefers, among post-cutoff hits,
+>    a page where the phrase appears in the first 160 chars (i.e. as a heading): measured
+>    against the real PDFs this moves R30-condensed from a session divider (p14) to the
+>    reading (p25) and R45-source from front matter (p11) to the reading (p107). That
+>    heading-preference is a deliberate addition beyond the spec's literal 3% rule, which on
+>    its own landed on divider pages.
+> 3. **Fullscreen mode** — `src/lib/fullscreen.js` (session-only singleton, **deliberately NOT
+>    in the persisted `layout` blob**: `requestFullscreen()` needs a user gesture, so a saved
+>    `true` would reload half-applied). `main.jsx` gained a `Shell` component that drops
+>    `<Nav />`, renders a `.fs-exit` chip and owns the global `f` hotkey; CSS zeroes `--nav-h`
+>    and hides `.rail-panel/.edge-tab/.corner-pill/.qn-fab` under `html[data-fullscreen]`.
+>    Nav button, command-palette "Toggle fullscreen", and Esc (via `fullscreenchange`).
+> 4. **"Read in source" opens the split pane** — `Highlighter.jsx` now sets
+>    `layout.split.q = {rn, text}` (new `setSplitQuery` mutator) and opens the source pane
+>    instead of navigating to `/pdf/:bn`, above 1100px; below that the old navigate stands.
+>    `Chapter.jsx` prepends the ad-hoc text to the source ladder only when `q.rn === rn`, and
+>    clears it when the pane closes or the reading changes. `SplitPdfPane` gained a
+>    "Full source ↗" escape hatch to the full-page reader.
+>
+> Also fixed this session (owner-reported): a permanent ~14px horizontal scrollbar in split
+> view. Cause was `.page-resize` (the reading-column drag handle) sitting at a negative
+> `right` offset, protruding past `.page`'s border box; with panes docked left `.page`'s right
+> edge IS the viewport edge, so the handle pushed `scrollWidth` past `clientWidth`. Now
+> `right: 0`, inside the column's own padding.
+>
+> **Verification actually run:** `npm run build` clean; headless render-check over
+> `http://localhost:4177` (dist does NOT work over `file://`) → 0 hits for
+> `widget failed|undefined<|>null<|tex-error` on home, R30, R41, `/pdf/2`, `/settings`;
+> horizontal overflow measured 0 in all four split states (none / source / both / docked
+> left); the anchor ladder simulated in Node against the real PDFs for R30/R41/R45/R71;
+> fullscreen and "Read in source" driven end-to-end in a scripted headless page.
+> **NOT verified and worth 60 seconds of manual checking in a real browser:** the scroll
+> anchor itself. Headless Chrome under `--virtual-time-budget` fires no scroll events and
+> schedules `ResizeObserver`/rAF unreliably, so the drift measurements there were bimodal
+> (perfect or entirely uncorrected) and cannot be trusted either way. Open a long reading,
+> scroll to the middle, then drag the reading-column handle, drag a split-pane handle, and hit
+> A+ in the navbar: the paragraph under the nav bar should stay put.
+>
+> Previous resume point (2026-07-21, eleventh session): the tenth session's feature work
 > (below) was reviewed, audited, and **MERGED to `main`** (fast-forward, commit `129be91`);
 > the `scoped-roadmap-2026-07` branch was deleted. Work now continues on a fresh branch
 > **`content-quality-2026-07`**. **The next priority is NOT a new feature: it is the

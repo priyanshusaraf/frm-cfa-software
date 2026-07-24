@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Command } from "cmdk";
 import { META, rpath } from "../lib/meta.js";
 import { useAllReadings } from "../lib/readings.js";
+import { toggleFullscreen } from "../lib/fullscreen.js";
 
 const PAGES = [
   { label: "Home", path: "/" },
@@ -124,6 +125,20 @@ export default function CommandPalette() {
               {p.label}
             </Command.Item>
           ))}
+        </Command.Group>
+
+        <Command.Group
+          heading="Actions"
+          className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-[0.7rem] [&_[cmdk-group-heading]]:font-semibold [&_[cmdk-group-heading]]:uppercase [&_[cmdk-group-heading]]:tracking-wide [&_[cmdk-group-heading]]:text-faint"
+        >
+          <Command.Item
+            value="Toggle fullscreen distraction-free reading mode"
+            onSelect={() => { setOpen(false); toggleFullscreen(); }}
+            className="flex cursor-pointer items-center justify-between gap-3 rounded-el px-2 py-2 text-sm text-ink data-[selected=true]:bg-accent-soft data-[selected=true]:text-accent"
+          >
+            <span>Toggle fullscreen</span>
+            <span className="shrink-0 font-mono text-xs text-faint">f</span>
+          </Command.Item>
         </Command.Group>
 
         <Command.Group

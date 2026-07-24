@@ -211,7 +211,10 @@ export function setFontScale(scale) {
    panes:  { source, condensed } — which side-by-side PDF panes are open.
    side:   'left' | 'right' — which side of the reading the pane group docks (default right).
    widths: { source, condensed } px — per-pane width (reading takes the rest).
-   zoom:   { source, condensed } — per-pane page-zoom multiplier (1 = fit-to-pane). */
+   zoom:   { source, condensed } — per-pane page-zoom multiplier (1 = fit-to-pane).
+   q:      { rn, text } | undefined — ad-hoc source anchor from a "Read in source"
+           selection; scoped to the reading it came from so a stale selection from
+           another reading can never anchor the pane. */
 export function setSplitPane(kind, open) {
   const s = load();
   const cur = (s.layout && s.layout.split) || {};
@@ -240,6 +243,19 @@ export function setSplitZoom(kind, zoom) {
   const z = { ...(cur.zoom || {}) };
   if (typeof zoom === "number" && zoom > 0) z[kind] = zoom; else delete z[kind];
   save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, zoom } } });
+}
+
+/* Ad-hoc source anchor from a "Read in source" text selection (Highlighter.jsx).
+   setSplitQuery(null) clears it — Chapter.jsx does that when the source pane
+   closes and when the reading changes. */
+const MAX_SPLIT_QUERY_LEN = 120;
+export function setSplitQuery(rn, text) {
+  const s = load();
+  const cur = (s.layout && s.layout.split) || {};
+  const t = typeof text === "string" ? text.replace(/\s+/g, " ").trim().slice(0, MAX_SPLIT_QUERY_LEN) : "";
+  const q = rn && t ? { rn, text: t } : undefined;
+  if (!q && !cur.q) return; // nothing to clear: don't churn localStorage or notify
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, q } } });
 }
 
 /* ---- study planner ---- */

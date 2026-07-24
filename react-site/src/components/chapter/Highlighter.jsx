@@ -8,7 +8,7 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { captureSelection, paint, unpaint } from "../../lib/highlights.js";
-import { useStore, addHighlight, removeHighlight, setHighlightColor, addNote, HL_COLORS, hlLabels } from "../../lib/store.js";
+import { useStore, addHighlight, removeHighlight, setHighlightColor, addNote, setSplitQuery, setSplitPane, HL_COLORS, hlLabels } from "../../lib/store.js";
 import { getReading } from "../../lib/readings.js";
 import { findRelated } from "../../lib/related.js";
 import Html from "../Html.jsx";
@@ -139,7 +139,17 @@ export default function Highlighter({ rn, book, containerRef }) {
     setToolbar(null);
     if (sel) sel.removeAllRanges();
     if (!book || !text) return;
-    navigate(`/pdf/${book}?q=${encodeURIComponent(text.slice(0, MAX_QUERY_LEN))}`, { state: { from: `/chapter/${rn}` } });
+    const q = text.slice(0, MAX_QUERY_LEN);
+    /* The split view already exists and is the better destination: staying in the
+       reading beats navigating away from it. Desktop-only, at the same 1100px
+       breakpoint Chapter.jsx's toggleSplit and the CSS backstop use; below it,
+       the old full-page navigate still applies. */
+    if (window.matchMedia && window.matchMedia("(min-width: 1100px)").matches) {
+      setSplitQuery(rn, q);
+      setSplitPane("source", true);
+      return;
+    }
+    navigate(`/pdf/${book}?q=${encodeURIComponent(q)}`, { state: { from: `/chapter/${rn}` } });
   }
 
   function recolor(color) {

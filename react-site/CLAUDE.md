@@ -433,7 +433,7 @@ CMO-vs-CDO/CLO distinction (cash-flow/prepayment tranching vs credit/default tra
 same word "tranche" for two unrelated risk dimensions) the explicit stage-6 comparison
 centerpiece.
 
-## 7. Roadmap: further ideas scoped 2026-07-21 (7.1/7.2/7.4 v1 BUILT, 7.3 deprioritized)
+## 7. Roadmap: further ideas scoped 2026-07-21 (7.1/7.2/7.4 v1 BUILT, 7.5 BUILT, 7.3 deprioritized)
 
 Four more requests from the same session, deliberately scoped here instead of built, so a
 future session with more usage budget can implement them without re-deriving requirements.
@@ -550,6 +550,49 @@ page with app-wide **font-size zoom** (A−/%/A+, wired to the existing `layout.
 `setFontScale`, clamped 0.8–1.6×) right underneath it, so the student can resize reading text
 without opening Settings. It's an absolutely-centered, `pointer-events-none` wrapper inside the
 sticky `.topnav` (children re-enable pointer events) so it never disturbs the nav flex layout.
+
+### 7.5 Reading focus + source anchoring (BUILT, thirteenth session, 2026-07-24)
+
+Spec: `docs/superpowers/specs/2026-07-24-reading-focus-and-source-anchoring-design.md`. Four
+changes, all shipped. Things a future agent must not undo:
+
+- **`src/lib/scrollAnchor.js`** keeps the paragraph under the nav bar pinned across every
+  reflow (window resize, reading-column drag, split-pane drag, font-scale change, split
+  open/close). `useScrollAnchor(rootRef)` from `Chapter.jsx`. The file's comments encode
+  constraints that look like over-engineering and are not: the capture is a **timer, not a
+  rAF** (rAF callbacks run before ResizeObserver callbacks in the same frame, so a rAF
+  capture always beats the observer to the pre-reflow geometry); the restore uses
+  `behavior: "instant"` because `html { scroll-behavior: smooth }` would otherwise animate
+  it; the busy guard is a wall-clock timeout because a programmatic scroll's own `scroll`
+  event can arrive more than a frame later; and opening a split pane **remounts** `.page`,
+  so the anchor is re-found by tag+text fingerprint instead of dropped. Not yet applied to
+  `Revision.jsx` / `ConceptPage.jsx` (one-line additions if wanted).
+- **`PdfCore` takes `initialQueries: string[]`, an anchor ladder**, not a single query
+  (a bare string is still accepted). Candidates are tried in order against a page-text cache
+  that is scanned once, so candidates 2..n are free. Source pane `[pdf.query, title]`,
+  condensed pane `[title, pdf.query]`, `/pdf/:bn` `[q, q2]`. **Callers MUST memoize the
+  array** — the auto-search effect is keyed on the joined ladder so an open pane re-searches
+  when it changes, and a fresh array every render would re-search every render. `pdf.query`
+  is authored against the FULL book and appears in the condensed companion only ~7% of the
+  time, which is why the condensed ladder leads with the title. Initial-jump TOC suppression
+  skips the leading 3% of pages AND prefers a post-cutoff page where the phrase appears in
+  the first 160 characters (a heading) over one that merely mentions it, which is what keeps
+  it off study-session divider pages; the full `matches` array is untouched so ↑/↓ still
+  reach every hit.
+- **Fullscreen state lives in `src/lib/fullscreen.js`, NOT in the `layout` blob.** It is
+  session-only on purpose: `requestFullscreen()` requires a user gesture, so a persisted
+  `true` reloads into a half-applied mode with no clean recovery. `main.jsx`'s `Shell` owns
+  the `f` hotkey and the `.fs-exit` chip; `html[data-fullscreen]` zeroes `--nav-h` and hides
+  `.rail-panel`, `.edge-tab`, `.corner-pill`, `.qn-fab`.
+- **The selection toolbar's "Read in source ↗" opens the source split pane** (≥1100px) via
+  `layout.split.q = {rn, text}` rather than navigating to `/pdf/:bn`. The `rn` scoping
+  matters: the ad-hoc anchor is only prepended to the ladder when it belongs to the reading
+  on screen, and is cleared when the pane closes or the reading changes. The chapter header's
+  "Open source PDF ↗" and "Split: Source" buttons deliberately keep their old behaviour.
+
+Follow-up logged by the spec and still open: **21 readings whose `pdf.query` is authored
+prose rather than verbatim source text** (r02, r18, r41, …) now rely on the title fallback.
+Rewriting those queries against the real source is a content task and belongs with section 8.
 
 ## 8. TOP PRIORITY: the content-quality pass (scoped 2026-07-21, eleventh session)
 

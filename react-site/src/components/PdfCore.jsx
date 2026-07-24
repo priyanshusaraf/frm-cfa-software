@@ -19,6 +19,16 @@ const PAGE_GAP = 14; // must match the wrapper's mb-3.5
 const WINDOW_BUFFER = 2; // pages beyond the visible range that keep a canvas
 const MAX_DPR = 2; // rendering above 2x costs 4x the memory for no visible gain
 const SEARCH_CONCURRENCY = 4; // keeps the worker responsive for page renders
+/* Every book repeats its section titles in a table of contents in the first few
+   pages, so a naive first-match on a title anchor lands on the TOC instead of the
+   section. Treat the leading 3% as TOC territory when picking the initial jump. */
+const TOC_FRACTION = 0.03;
+/* Within the post-TOC candidates, a page that opens with the phrase is the
+   section itself; one that merely mentions it further down is a study-session
+   divider or a cross-reference. Measured against the real PDFs, this is what
+   moves R30-condensed from the session divider (p14) to the reading (p25) and
+   R45-source from the learning-objective front matter (p11) to the reading (p107). */
+const HEADING_WINDOW = 160; // normalized chars from the top of a page
 
 function normalize(s) {
   return (s || "").replace(/\s+/g, " ").trim().toLowerCase();
@@ -155,7 +165,10 @@ export default function PdfCore({
   label,
   maxWidth = 900,
   mode = "window",
-  initialQuery = "",
+  /* Anchor ladder: candidates are tried in order and the first that matches at
+     least one page wins (a bare string is accepted and treated as a one-element
+     ladder). Callers MUST memoize the array or every render re-searches. */
+  initialQueries = "",
   initialPage = null,
   zoom = 1,
   onZoom, // optional: presence renders the zoom control group (panes only, not the /pdf/:bn route)
@@ -165,8 +178,14 @@ export default function PdfCore({
   const pdfDocRef = useRef(null);
   const textCacheRef = useRef(new Map());
   const pageRefs = useRef({});
-  const autoRanRef = useRef(false);
   const scrollElRef = useRef(null); // "pane" mode only: the div that actually scrolls
+
+  const ladder = (Array.isArray(initialQueries) ? initialQueries : [initialQueries])
+    .map((q) => (q == null ? "" : String(q)))
+    .filter(Boolean);
+  const ladderKey = ladder.join("\u0000"); // effect dep: re-search only when the candidates actually change
+  const ladderRef = useRef(ladder);
+  ladderRef.current = ladder;
 
   const [containerEl, setContainerEl] = useState(null);
   const [containerWidth, setContainerWidth] = useState(maxWidth);
@@ -178,7 +197,7 @@ export default function PdfCore({
   const [currentPage, setCurrentPage] = useState(1);
   const [pageInput, setPageInput] = useState("1");
   const [win, setWin] = useState([1, 4]); // first/last page with a live canvas
-  const [query, setQuery] = useState(initialQuery);
+  const [query, setQuery] = useState(ladder[0] || "");
   const [matches, setMatches] = useState([]);
   const [matchIndex, setMatchIndex] = useState(0);
   const [activeWords, setActiveWords] = useState([]);
@@ -192,7 +211,6 @@ export default function PdfCore({
       return undefined;
     }
     let cancelled = false;
-    autoRanRef.current = false;
     setLoading(true);
     setLoadPct(null);
     setError(null);
@@ -306,11 +324,53 @@ export default function PdfCore({
     });
   }, []);
 
-  const runSearch = useCallback(async (raw) => {
+  /* Populate textCacheRef for every page, once. Jump to the first page matching
+     `firstQ` AS SOON AS it's scanned, rather than waiting for the whole book —
+     so a split pane opens straight onto the reading's page instead of sitting on
+     page 1. Workers hand out pages in ascending order, so the earliest match
+     surfaces first; we still re-jump if a strictly earlier page matches later.
+     Only the FIRST ladder candidate gets this optimization; later candidates read
+     the (by then fully populated) cache and cost no extra text extraction. */
+  const scanAll = useCallback(async (firstQ) => {
+    const total = numPages;
+    if (!total) return;
+    let next = 1;
+    let jumped = null;
+    const worker = async () => {
+      while (next <= total) {
+        const n = next++;
+        const e = await getPageText(n);
+        setScanned((s) => s + 1);
+        if (firstQ && e && e.norm.includes(firstQ) && (jumped === null || n < jumped)) {
+          jumped = n;
+          jumpTo(n);
+        }
+      }
+    };
+    await Promise.all(Array.from({ length: Math.min(SEARCH_CONCURRENCY, total) }, worker));
+  }, [numPages, getPageText, jumpTo]);
+
+  /* pure lookup over the already-populated cache */
+  const findPages = useCallback((normQ) => {
+    const out = [];
+    if (!normQ) return out;
+    for (let n = 1; n <= numPages; n++) {
+      const e = textCacheRef.current.get(n);
+      if (e && e.norm.includes(normQ)) out.push(n);
+    }
+    return out;
+  }, [numPages]);
+
+  /* Try candidates in order; the first yielding >=1 page wins and search stops.
+     `suppressToc` is on only for the automatic open-the-pane search: a title
+     anchor's first hit is usually the book's table of contents, and landing there
+     is the whole defect this ladder exists to fix. The full `matches` array keeps
+     the TOC hit so the up/down match controls can still reach it. */
+  const runLadder = useCallback(async (rawList, suppressToc) => {
     const doc = pdfDocRef.current;
     const total = numPages;
-    const normQ = normalize(raw);
-    if (!doc || !total || !normQ) {
+    const cands = (rawList || []).map(normalize).filter(Boolean);
+    if (!doc || !total || !cands.length) {
       setMatches([]);
       setMatchIndex(0);
       setActiveWords([]);
@@ -319,61 +379,62 @@ export default function PdfCore({
     setSearching(true);
     setScanned(0);
     try {
-      // Jump to the first matching page AS SOON AS it's scanned, rather than
-      // waiting for the whole book to be scanned first — so a split pane opens
-      // straight onto the reading's page instead of sitting on page 1. Workers
-      // hand out pages in ascending order, so the earliest match surfaces first;
-      // we still re-jump if a strictly earlier page matches later.
-      let next = 1;
-      let jumped = null;
-      const worker = async () => {
-        while (next <= total) {
-          const n = next++;
-          const e = await getPageText(n);
-          setScanned((s) => s + 1);
-          if (e && e.norm.includes(normQ) && (jumped === null || n < jumped)) {
-            jumped = n;
-            jumpTo(n);
-          }
-        }
-      };
-      await Promise.all(Array.from({ length: Math.min(SEARCH_CONCURRENCY, total) }, worker));
+      await scanAll(cands[0]);
 
       let found = [];
-      for (let n = 1; n <= total; n++) {
-        const e = textCacheRef.current.get(n);
-        if (e && e.norm.includes(normQ)) found.push(n);
+      let used = "";
+      for (const c of cands) {
+        const hits = findPages(c);
+        if (hits.length) { found = hits; used = c; break; }
       }
-      let used = normQ;
-      if (found.length === 0) {
-        const loosened = normQ.split(" ").filter(Boolean).slice(0, 5).join(" ");
-        if (loosened && loosened !== normQ) {
-          for (let n = 1; n <= total; n++) {
-            const e = textCacheRef.current.get(n);
-            if (e && e.norm.includes(loosened)) found.push(n);
-          }
+      if (!found.length) {
+        const loosened = cands[0].split(" ").filter(Boolean).slice(0, 5).join(" ");
+        if (loosened && loosened !== cands[0]) {
+          found = findPages(loosened);
           used = loosened;
         }
       }
       setMatches(found);
       setMatchIndex(0);
       setActiveWords(used ? used.split(" ").filter((w) => w.length >= 3) : []);
-      if (found.length) jumpTo(found[0]);
+      if (found.length) {
+        let target = found[0];
+        if (suppressToc && found.length > 1) {
+          const tocCutoff = Math.max(2, Math.ceil(total * TOC_FRACTION));
+          if (found[0] <= tocCutoff) {
+            const later = found.filter((p) => p > tocCutoff);
+            const heading = later.find((p) => {
+              const e = textCacheRef.current.get(p);
+              const at = e ? e.norm.indexOf(used) : -1;
+              return at >= 0 && at <= HEADING_WINDOW;
+            });
+            if (heading) target = heading;
+            else if (later.length) target = later[0];
+          }
+        }
+        jumpTo(target);
+      }
     } finally {
       setSearching(false);
     }
-  }, [numPages, getPageText, jumpTo]);
+  }, [numPages, scanAll, findPages, jumpTo]);
 
+  const runSearch = useCallback((raw) => runLadder([raw], false), [runLadder]);
+
+  /* Keyed on the candidate list, not a run-once ref, so an already-open pane
+     re-searches when the ladder changes (a new "Read in source" selection). */
   useEffect(() => {
-    if (autoRanRef.current || !numPages) return;
-    autoRanRef.current = true;
-    if (initialQuery) {
-      runSearch(initialQuery);
+    if (!numPages) return;
+    if (ladderRef.current.length) {
+      runLadder(ladderRef.current, true);
     } else if (initialPage) {
       const n = Math.min(numPages, Math.max(1, parseInt(initialPage, 10) || 1));
       jumpTo(n);
     }
-  }, [numPages, initialQuery, initialPage, runSearch, jumpTo]);
+  }, [numPages, ladderKey, initialPage, runLadder, jumpTo]);
+
+  /* keep the visible search box showing whatever anchor the pane is on */
+  useEffect(() => { setQuery(ladderRef.current[0] || ""); }, [ladderKey]);
 
   function handlePageInputKey(e) {
     if (e.key !== "Enter") return;

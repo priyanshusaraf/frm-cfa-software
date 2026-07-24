@@ -78,12 +78,13 @@ export default function QuickNotes() {
 
   return (
     <>
+      {/* qn-fab is the stable class hook fullscreen mode hides this by (style.css) */}
       <button
         type="button"
         aria-label={saved ? "Note saved" : "Quick note (press n)"}
         title={saved ? "Saved" : "Quick note (n)"}
         onClick={captureAndOpen}
-        className="fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full
+        className="qn-fab fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full
           border border-linestrong bg-accent-soft text-accent shadow-card transition-transform
           hover:scale-105 hover:brightness-110 focus-visible:outline focus-visible:outline-2 focus-visible:outline-accent"
       >

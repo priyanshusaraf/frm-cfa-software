@@ -595,7 +595,13 @@ svg .axis line, svg .axis path { stroke: var(--border-strong); }
 .page-resize { display: none; }
 @media (min-width: 1100px) {
   .page-resize {
-    display: block; position: absolute; top: 0; right: -14px; width: 14px; height: 100%;
+    /* `right: 0` (not a negative offset) so the handle stays inside `.page`'s own
+       border box (there's a 1.4rem padding to sit in) instead of protruding past
+       it. In the split-view free-form layout (CLAUDE.md §7.4) `.page` is the last
+       flex child when docked left, so its right edge IS the viewport edge; a
+       protruding handle pushed the document's scrollWidth past clientWidth and
+       produced a permanent 14px horizontal scrollbar (user-reported). */
+    display: block; position: absolute; top: 0; right: 0; width: 14px; height: 100%;
     cursor: ew-resize; z-index: 30; touch-action: none;
   }
   .page-resize::before {
@@ -649,6 +655,26 @@ svg .axis line, svg .axis path { stroke: var(--border-strong); }
   .split-shell { display: block; }
   .split-panes { display: none; }
 }
+
+/* ---------- Fullscreen (distraction-free) reading ----------
+   `html[data-fullscreen]` (0,1,1) outranks the `:root` declaration (0,1,0), so
+   --nav-h can be zeroed without !important. Zeroing it is what lets the sticky
+   .split-panes column (top: var(--nav-h); height: calc(100vh - var(--nav-h)))
+   fill the viewport once the nav is gone. */
+html[data-fullscreen] { --nav-h: 0rem; }
+html[data-fullscreen] .rail-panel,
+html[data-fullscreen] .edge-tab,
+html[data-fullscreen] .corner-pill,
+html[data-fullscreen] .qn-fab { display: none; }
+.fs-exit {
+  position: fixed; top: 0.7rem; right: 0.9rem; z-index: 60;
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  padding: 0.28rem 0.6rem; border-radius: var(--radius-sm);
+  border: 1px solid var(--border); background: var(--bg-raised);
+  color: var(--text-faint); font-family: var(--font); font-size: 0.74rem;
+  cursor: pointer; opacity: 0.55; transition: opacity 0.15s, color 0.15s, border-color 0.15s;
+}
+.fs-exit:hover { opacity: 1; color: var(--text); border-color: var(--border-strong); }
 
 /* ---------- section-label bookmark toggle ---------- */
 .section-label { position: relative; }

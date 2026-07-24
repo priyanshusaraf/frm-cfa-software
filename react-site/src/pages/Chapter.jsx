@@ -18,16 +18,18 @@ import MatchPairs from "../components/chapter/MatchPairs.jsx";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
-import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, getState } from "../lib/store.js";
+import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, getState } from "../lib/store.js";
 import coreConceptsTable from "../data/coreConcepts.json";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
 import { keyPointAnchor } from "../lib/keyPointAnchor.js";
 import Resizable from "../components/chapter/Resizable.jsx";
 import SplitView from "../components/chapter/SplitView.jsx";
 import { useEdgeResize } from "../lib/useEdgeResize.js";
+import { useScrollAnchor } from "../lib/scrollAnchor.js";
 
 /* flat reading order across all books, for prev/next nav */
 const FLAT = META.books.flatMap((b) => b.readings.map((r) => r.n));
+const EMPTY_QUERIES = []; // stable identity, so an empty ladder never re-triggers a search
 
 export default function Chapter() {
   const { rn: rnParam } = useParams();
@@ -45,12 +47,21 @@ export default function Chapter() {
   const splitCondensed = useStore((s) => !!(s.layout && s.layout.split && s.layout.split.panes && s.layout.split.panes.condensed));
   const splitOpen = splitSource || splitCondensed;
   const splitSide = useStore((s) => s.layout && s.layout.split && s.layout.split.side) || "right";
+  /* raw slice — .q is an OBJECT, so a `|| {}` default inside the selector would
+     hand useSyncExternalStore a fresh identity every call (React #185) */
+  const splitQ = useStore((s) => s.layout && s.layout.split && s.layout.split.q);
+  const splitQRn = splitQ ? splitQ.rn : null;
+  const splitQText = splitQ ? splitQ.text : "";
   const { width: dragWidth, onPointerDown: onResizeDown, onDoubleClick: onResizeReset } = useEdgeResize({
     targetRef: rootRef, min: 720, factor: 2,
     onCommit: (px) => setPageWidth(px),
     onReset: () => setPageWidth(null),
   });
   const appliedWidth = dragWidth ?? pageWidth;
+
+  /* keeps the paragraph under the nav bar pinned across every reflow: window
+     resize, reading-column drag, split-pane drag, font-scale change */
+  useScrollAnchor(rootRef);
 
   const meta = rn ? readingMeta(rn) : null;
   const book = rn ? bookOf(rn) : null;
@@ -69,6 +80,9 @@ export default function Chapter() {
       scrollTo: (location.state && location.state.scrollTo) || null,
     };
     setOpenRecall({});
+    /* an ad-hoc "Read in source" anchor belongs to the reading it was selected
+       in; drop it the moment we move to another one */
+    setSplitQuery(null);
     if (rn) touchVisited(rn);
   }, [rn]);
 
@@ -105,6 +119,20 @@ export default function Chapter() {
     if (!d) return [];
     const names = new Set([...(d.formulas || []).map((f) => f.name), ...(d.concepts || []).map((c) => c.name)]);
     return coreConceptsTable.filter((c) => names.has(c.name));
+  }, [d]);
+
+  /* Anchor ladders for the two split panes (spec: PDF anchor ladder). `pdf.query`
+     is authored against the FULL book, so it is the right first guess there but
+     almost never appears in the condensed companion; the reading title does. Both
+     must be memoized or PdfCore re-searches on every render. */
+  const sourceQueries = useMemo(() => {
+    if (!d || !d.pdf) return EMPTY_QUERIES;
+    const base = [d.pdf.query, d.title].filter(Boolean);
+    return splitQText && splitQRn === rn ? [splitQText, ...base] : base;
+  }, [d, rn, splitQText, splitQRn]);
+  const condensedQueries = useMemo(() => {
+    if (!d || !d.pdf) return EMPTY_QUERIES;
+    return [d.title, d.pdf.query].filter(Boolean);
   }, [d]);
 
   /* section list for the sticky TOC — must mirror the conditions in the JSX below exactly.
@@ -211,7 +239,12 @@ export default function Chapter() {
       }
       return;
     }
-    setSplitPane(kind, !alreadyOpen);
+    if (alreadyOpen) closeSplitPane(kind); else setSplitPane(kind, true);
+  }
+
+  function closeSplitPane(kind) {
+    setSplitPane(kind, false);
+    if (kind === "source") setSplitQuery(null);
   }
 
   const readingContent = (
@@ -241,7 +274,10 @@ export default function Chapter() {
           {isDone ? "✓ Completed" : "Mark as done"}
         </Button>
         {d.pdf && (
-          <Link to={`/pdf/${d.pdf.book}?q=${encodeURIComponent(d.pdf.query)}`} state={{ from: `/chapter/${rn}` }}>
+          <Link
+            to={`/pdf/${d.pdf.book}?q=${encodeURIComponent(d.pdf.query)}&q2=${encodeURIComponent(d.title)}`}
+            state={{ from: `/chapter/${rn}` }}
+          >
             <Button size="sm" variant="outline">Open source PDF ↗</Button>
           </Link>
         )}
@@ -507,8 +543,10 @@ export default function Chapter() {
         source={splitSource}
         condensed={splitCondensed}
         bn={d.pdf.book}
-        query={d.pdf.query}
-        onClosePane={(kind) => setSplitPane(kind, false)}
+        rn={rn}
+        sourceQueries={sourceQueries}
+        condensedQueries={condensedQueries}
+        onClosePane={closeSplitPane}
       >
         {readingContent}
       </SplitView>
