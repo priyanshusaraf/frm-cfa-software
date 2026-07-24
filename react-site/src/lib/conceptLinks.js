@@ -155,6 +155,11 @@ function hasSkippedAncestor(node, root) {
    Returns the number of links created. */
 export function linkifyRoot(root, entries, rn) {
   if (!root || !root.ownerDocument) return 0;
+  /* One pass per reading. The "link each concept once" rule lives in the `used`
+     set below, which is per-call, so a second call on the same rendered chapter
+     would link every concept a second time further down the page. */
+  if (root.getAttribute("data-cref-rn") === String(rn)) return 0;
+  root.setAttribute("data-cref-rn", String(rn));
   const candidates = candidatesFor(entries, rn);
   if (!candidates.length) return 0;
 

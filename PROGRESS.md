@@ -25,16 +25,28 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > topic collapse, and a phrase-exclusion list for cross-book collisions (CSA, pass-through,
 > tranching, equity value). Durable naming rules are in `content-guidelines.md`.
 >
-> **UI SWEEP (now active) started, seventeenth session.** Done so far: (a) headless render
-> sweep over all 18 secondary surfaces (planner, block-review, case-study, consistency,
-> review, drills, glossary, formulas, mock, search, bookmarks, highlights, notes, progress,
-> mindmap, settings, revision, book) plus home and four chapters: zero failure markers,
-> real content present, empty states sane; (b) hardened the concept linker to rewrite text
-> only inside `[data-html]` subtrees (`<Html>`'s opaque innerHTML), so it can never split a
-> text node React owns. Link counts unchanged, so nothing was lost. **What is left needs a
-> real browser, not headless:** hover-card placement and flip behaviour, tap-to-open on
-> touch, split-pane drag, selection toolbar, and the visual pass over planner/block-review/
-> case-study/consistency.
+> **UI SWEEP (active), seventeenth session.** Landed:
+> 1. **Headless render sweep** over all 18 secondary surfaces plus home and four chapters:
+>    zero failure markers, real content present, every empty state teaches how to create the
+>    thing it is missing.
+> 2. **Every page load was fetching all 101 readings.** `CommandPalette` is mounted on every
+>    route and called `useAllReadings()` unconditionally. Measured on the built app: home
+>    requested 101 reading chunks; now 0 (the hook takes an `enabled` flag and the palette
+>    passes `open`). `/glossary` still loads all 101, as it must. This was the exact
+>    eager-loading regression CLAUDE.md §2 warns about.
+> 3. **Doctrine audit (§3).** `Formulas.jsx` used `var(--line, #333)` and `--line` does not
+>    exist here, so the filter input drew a hardcoded dark border, wrong in the light theme.
+>    Fixed, plus a dead `var(--amber, #d97706)` fallback in Planner. No keyboard-access
+>    violations: every clickable div/span already carries role/tabIndex/onKeyDown. No React
+>    #185 selector violations. Nav, palette and routes are consistent.
+> 4. **Concept linker hardening:** rewrites text only inside `[data-html]` (`<Html>`'s opaque
+>    innerHTML) so it can never split a node React owns, and is now one-pass-per-reading.
+>    Verified it does NOT break highlights: those anchor by quote plus context, not offsets,
+>    and `unpaint` preserves child elements.
+>
+> **What is left needs a real browser, not headless:** hover-card placement and flip
+> behaviour, tap-to-open on touch, split-pane drag, the selection toolbar, and the visual
+> pass over planner/block-review/case-study/consistency in both themes.
 >
 > Previous resume note follows.
 >
