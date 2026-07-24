@@ -40,11 +40,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 3 | 1 | Parametric Approaches (II): Extreme Value Theory | done | todo | 1 | - | |
 | 4 | 1 | Backtesting VaR | done | todo | 1 | - | |
 | 5 | 1 | VaR Mapping | done | todo | 1 | - | |
-| 6 | 1 | Messages From the Academic Literature | todo | todo | - | - | |
-| 7 | 1 | Correlation Basics | todo | todo | - | - | |
-| 8 | 1 | Empirical Properties of Correlation | todo | todo | - | - | |
-| 9 | 1 | Financial Correlation Modeling: Copulas | todo | todo | - | - | |
-| 10 | 1 | Empirical Approaches to Risk Metrics and Hedging | todo | todo | - | - | |
+| 6 | 1 | Messages From the Academic Literature | done | todo | 2 | - | |
+| 7 | 1 | Correlation Basics | done | todo | 2 | - | |
+| 8 | 1 | Empirical Properties of Correlation | done | todo | 2 | - | |
+| 9 | 1 | Financial Correlation Modeling: Copulas | done | todo | 2 | - | |
+| 10 | 1 | Empirical Approaches to Risk Metrics and Hedging | done | todo | 2 | - | |
 | 11 | 1 | The Science of Term Structure Models | todo | todo | - | - | |
 | 12 | 1 | Evolution of Short Rates and Shape of the Term Structure | todo | todo | - | - | |
 | 13 | 1 | The Art of Term Structure Models: Drift | todo | todo | - | - | |
