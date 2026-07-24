@@ -55,11 +55,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 18 | 2 | Governance | done | todo | 4 | - | |
 | 19 | 2 | Credit Risk Management | done | todo | 4 | - | |
 | 20 | 2 | Capital Structure in Banks | done | todo | 4 | - | |
-| 21 | 2 | Introduction to Credit Risk Modeling and Assessment | todo | todo | - | - | |
-| 22 | 2 | Credit Scoring and Rating | todo | todo | - | - | |
-| 23 | 2 | Credit Scoring and Retail Credit Risk Management | todo | todo | - | - | |
-| 24 | 2 | Country Risk: Determinants, Measures, and Implications | todo | todo | - | - | |
-| 25 | 2 | Estimating Default Probabilities | todo | todo | - | - | |
+| 21 | 2 | Introduction to Credit Risk Modeling and Assessment | done | todo | 5 | - | |
+| 22 | 2 | Credit Scoring and Rating | done | todo | 5 | - | |
+| 23 | 2 | Credit Scoring and Retail Credit Risk Management | done | todo | 5 | - | |
+| 24 | 2 | Country Risk: Determinants, Measures, and Implications | done | todo | 5 | - | |
+| 25 | 2 | Estimating Default Probabilities | done | todo | 5 | - | |
 | 26 | 2 | Credit Value at Risk | todo | todo | - | - | |
 | 27 | 2 | Portfolio Credit Risk | todo | todo | - | - | |
 | 28 | 2 | Structured Credit Risk | todo | todo | - | - | |

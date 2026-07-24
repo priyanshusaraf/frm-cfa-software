@@ -81,7 +81,7 @@ console.log(out.length + " core concepts written to src/data/coreConcepts.json")
    coreConcepts.json) because it is consumed on EVERY chapter render, so it must
    stay small: names, match phrases, one snippet, no sections. */
 const { authoredConcepts } = await import(new URL("authoredConcepts.js", dataDir));
-const { conceptPhrases } = await import(new URL("../src/lib/conceptLinks.js", import.meta.url));
+const { conceptPhrases, isAbbrev } = await import(new URL("../src/lib/conceptLinks.js", import.meta.url));
 
 function plainText(html, max = 220) {
   const s = String(html || "")
@@ -102,8 +102,7 @@ function plainText(html, max = 220) {
    `display` is what the hover card and page heading show. */
 function displayName(name) {
   let s = String(name).split(/\s+[—–]\s+/)[0].trim();
-  s = s.replace(/\s*\(([^)]*)\)/g, (full, inner) =>
-    /^[A-Za-z]{2,6}$/.test(inner) && inner !== inner.toLowerCase() ? full : " ");
+  s = s.replace(/\s*\(([^)]*)\)/g, (full, inner) => (isAbbrev(inner) ? full : " "));
   return s.replace(/\s+/g, " ").trim() || String(name);
 }
 

@@ -34,6 +34,14 @@ function byLengthDesc(a, b) {
 /* Derive the match phrases for a concept from its name, plus any authored
    `linkPhrases`. "Vasicek worst-case default rate (WCDR)" yields the full name,
    the name without its parenthetical, and the bare abbreviation. */
+/* An acronym, not a proper noun: at least two capitals in a short all-letter
+   token (VaR, LGD, CCP, WCDR). The two-capital bar is what keeps "Risk-neutral
+   PD (Merton)" from claiming the word "Merton", which in prose means the Merton
+   MODEL, a broader thing than that one page. */
+export function isAbbrev(s) {
+  return /^[A-Za-z]{2,6}$/.test(s) && (s.match(/[A-Z]/g) || []).length >= 2;
+}
+
 export function conceptPhrases(entry) {
   if (!entry || !entry.name) return [];
   const out = new Set();
@@ -49,7 +57,7 @@ export function conceptPhrases(entry) {
        also use parentheses to disambiguate ("Expected loss (single asset)",
        "Beta (factor exposure)"), and promoting that qualifier to a match phrase
        would link the word "single asset" all over the corpus. */
-    if (/^[A-Za-z]{2,6}$/.test(paren[1]) && paren[1] !== paren[1].toLowerCase()) add(paren[1]);
+    if (isAbbrev(paren[1])) add(paren[1]);
   }
   (entry.linkPhrases || []).forEach(add);
   return [...out].sort(byLengthDesc);

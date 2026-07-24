@@ -588,24 +588,6 @@ export const conceptLinkTable = [
     "snippet": "BHCs must have a process to identify all risk exposures — from stress conditions, changing economic/financial environments, and both on- and off-balance-sheet items — and their impact on capital adequacy. This includes..."
   },
   {
-    "slug": "risk-neutral-pd-merton",
-    "name": "Risk-neutral PD (Merton)",
-    "display": "Risk-neutral PD (Merton)",
-    "layer": "core",
-    "kind": "formula",
-    "homeReading": 21,
-    "refs": [
-      11,
-      15,
-      21,
-      25,
-      29,
-      30
-    ],
-    "linkPhrases": [],
-    "snippet": "N(−d2) is the risk-neutral probability that the option expires worthless — i.e. that firm assets end up below the debt's face value at maturity, so shareholders default rather than repay."
-  },
-  {
     "slug": "tracking-error",
     "name": "Tracking error",
     "display": "Tracking error",
@@ -1039,6 +1021,21 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "The risk that a service provider executes its tasks in a substandard manner, resulting in a negative public perception of the financial institution."
+  },
+  {
+    "slug": "risk-neutral-pd-merton",
+    "name": "Risk-neutral PD (Merton)",
+    "display": "Risk-neutral PD",
+    "layer": "core",
+    "kind": "formula",
+    "homeReading": 21,
+    "refs": [
+      21,
+      25,
+      30
+    ],
+    "linkPhrases": [],
+    "snippet": "N(−d2) is the risk-neutral probability that the option expires worthless — i.e. that firm assets end up below the debt's face value at maturity, so shareholders default rather than repay."
   },
   {
     "slug": "total-return-swaps-trs-vs-cds",
