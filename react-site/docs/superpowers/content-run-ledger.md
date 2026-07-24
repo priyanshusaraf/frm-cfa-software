@@ -95,11 +95,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 58 | 3 | Capital Planning at Large Bank Holding Companies | done | todo | 12 | - | |
 | 59 | 3 | Capital Regulation Before the Global Financial Crisis | done | todo | 12 | - | |
 | 60 | 3 | Solvency, Liquidity, and Other Regulation After the GFC | done | todo | 12 | - | |
-| 61 | 3 | High-Level Summary of Basel III Reforms | todo | todo | - | - | |
-| 62 | 3 | Basel III: Finalizing Post-Crisis Reforms | todo | todo | - | - | |
-| 63 | 4 | Liquidity Risk | todo | todo | - | - | |
-| 64 | 4 | Liquidity and Leverage | todo | todo | - | - | |
-| 65 | 4 | Early Warning Indicators | todo | todo | - | - | |
+| 61 | 3 | High-Level Summary of Basel III Reforms | done | todo | 13 | - | |
+| 62 | 3 | Basel III: Finalizing Post-Crisis Reforms | done | todo | 13 | - | |
+| 63 | 4 | Liquidity Risk | done | todo | 13 | - | |
+| 64 | 4 | Liquidity and Leverage | done | todo | 13 | - | |
+| 65 | 4 | Early Warning Indicators | done | todo | 13 | - | |
 | 66 | 4 | The Investment Function in Financial-Services Management | todo | todo | - | - | |
 | 67 | 4 | Liquidity and Reserves Management: Strategies and Policies | todo | todo | - | - | |
 | 68 | 4 | Intraday Liquidity Risk Management | todo | todo | - | - | |
