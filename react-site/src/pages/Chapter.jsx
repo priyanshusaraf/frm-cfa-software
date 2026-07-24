@@ -19,6 +19,8 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "..
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
 import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, setActiveReading, getState } from "../lib/store.js";
+import { buildBlocks } from "../lib/studyPath.js";
+import { blockEligibility, blockForReading } from "../lib/blockEligibility.js";
 import coreConceptsTable from "../data/coreConcepts.json";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
 import { keyPointAnchor } from "../lib/keyPointAnchor.js";
@@ -39,6 +41,18 @@ export default function Chapter() {
   const [openRecall, setOpenRecall] = useState({});
   const isDone = useStore((s) => !!s.done[rn]);
   const doneMap = useStore((s) => s.done); // raw slice (stable identity) — see CLAUDE.md #185 note
+  /* Block Review pilot (ADDITIVE, not a nav change): is `rn` the LAST reading of
+     its study-path block, and is every reading in that block done? buildBlocks()
+     is pure/cheap so recomputing it here is fine; blockForReading()/blockEligibility()
+     are pure too. This never touches prevRn/nextRn or the [/] handler below. */
+  const completedBlock = useMemo(() => {
+    if (!rn) return null;
+    const blocks = buildBlocks();
+    const block = blockForReading(blocks, rn);
+    if (!block) return null;
+    const { allDone, lastReading } = blockEligibility([block], doneMap)[0];
+    return allDone && lastReading === rn ? block : null;
+  }, [rn, doneMap]);
   const quizScore = useStore((s) => s.quiz[rn]);
   const pageWidth = useStore((s) => (s.layout && s.layout.pageWidth) || null);
   /* raw booleans (not an object) so the selector returns a stable primitive each
@@ -548,6 +562,14 @@ export default function Chapter() {
           </button>
         ) : <span style={{ flex: 1 }} />}
       </div>
+
+      {completedBlock && (
+        <div className="card accent" style={{ marginTop: "0.6rem", textAlign: "center" }}>
+          <Link to={"/block-review/" + completedBlock.id} style={{ fontSize: "0.88rem", fontWeight: 600 }}>
+            Block complete: review it → {completedBlock.name}
+          </Link>
+        </div>
+      )}
 
       <ChapterTOC sections={sections} rn={rn} />
       <KeyPoints items={d.highYield} color={book.color} resolve={(t) => keyPointAnchor(t, d.concepts, sections)} />

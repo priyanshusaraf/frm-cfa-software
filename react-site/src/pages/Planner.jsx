@@ -4,7 +4,8 @@ import { rpath } from "../lib/meta.js";
 import { useStore, setExamDate } from "../lib/store.js";
 import { stars } from "../lib/html.js";
 import Html from "../components/Html.jsx";
-import { orderedReadings } from "../lib/studyPath.js";
+import { orderedReadings, buildBlocks } from "../lib/studyPath.js";
+import { blockEligibility } from "../lib/blockEligibility.js";
 
 const DAY = 86400e3;
 
@@ -72,6 +73,13 @@ export default function Planner() {
     return { pace: (plan.remaining.length / Math.max(1, plan.daysToExam - plan.reviewDays)).toFixed(1) };
   }, [plan]);
 
+  /* Block Review pilot: surface a CTA for every block whose readings are all
+     marked done. buildBlocks() is pure/cheap; blockEligibility() is pure. */
+  const finishedBlocks = useMemo(
+    () => blockEligibility(buildBlocks(), done).filter((e) => e.allDone),
+    [done]
+  );
+
   return (
     <main className="page">
       <h1>Study planner</h1>
@@ -109,6 +117,22 @@ export default function Planner() {
           </span>
         )}
       </div>
+
+      {finishedBlocks.length > 0 && (
+        <div className="card" style={{ marginBottom: "1.25rem" }}>
+          <div className="section-label"><span className="dot" />Ready to review</div>
+          <p style={{ fontSize: "0.85rem", color: "var(--text-dim)", margin: "0.35rem 0 0.6rem" }}>
+            Every reading in these blocks is marked done. Run a Block Review to consolidate them.
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+            {finishedBlocks.map((e) => (
+              <Link key={e.block.id} className="chip" to={"/block-review/" + e.block.id}>
+                Review this block: {e.block.name} →
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
 
       {!examDate && (
         <div className="card" style={{ fontSize: "0.9rem", color: "var(--text-dim)" }}>
