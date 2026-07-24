@@ -275,6 +275,110 @@ register("lossdist", function (el) {
 });
 
 /* =====================================================================
+   4) Bow tie diagram (R43, Figure 43.1)
+   data-bowtie = {event, causes:[], preventive:[], impacts:[], corrective:[]}
+   Left wing = causes -> preventive controls (estimates FREQUENCY).
+   Right wing = impacts -> detective/corrective controls (estimates SEVERITY).
+   ===================================================================== */
+register("bowtie", function (el) {
+  var d;
+  try { d = JSON.parse(el.getAttribute("data-bowtie")); } catch (e) { d = null; }
+  d = d || {};
+  var event = (typeof d.event === "string" && d.event) ? d.event : "IT outage";
+  var causes = (Array.isArray(d.causes) && d.causes.length) ? d.causes : ["Failed software deployment"];
+  var preventive = (Array.isArray(d.preventive) && d.preventive.length) ? d.preventive : ["Change-management sign-off"];
+  var impacts = (Array.isArray(d.impacts) && d.impacts.length) ? d.impacts : ["Delayed customer transactions"];
+  var corrective = (Array.isArray(d.corrective) && d.corrective.length) ? d.corrective : ["Failover system", "Customer-communication plan"];
+
+  var svg = shell(el, "Bow-tie diagram: causes and preventive controls on the left (frequency), impacts and detective/corrective controls on the right (severity)", "",
+    720, 340,
+    "The risk event sits at the center knot. The left wing traces backward to its causes and the preventive controls meant to stop it before it happens, which is how an analyst estimates FREQUENCY. The right wing traces forward to its impacts and the detective/corrective controls meant to catch and limit the damage after it happens, which is how an analyst estimates SEVERITY."
+  );
+
+  function draw() {
+    svg.innerHTML = "";
+    var W = 720, midY = 170;
+    var knotW = 176, knotH = 64;
+    var knotX0 = W / 2 - knotW / 2, knotX1 = W / 2 + knotW / 2;
+    var wingTop = 56, wingBot = 284;
+    var farL = 46, farR = W - 46;
+    var colTopY = 92, rowH = 22;
+
+    /* left wing: wide at the far edge, tapering to a point at the knot */
+    svgEl("polygon", {
+      points: farL + "," + wingTop + " " + farL + "," + wingBot + " " + knotX0 + "," + midY,
+      fill: "var(--cyan-soft)", stroke: "var(--cyan)", "stroke-width": 1.5
+    }, svg);
+
+    /* right wing: mirror image */
+    svgEl("polygon", {
+      points: knotX1 + "," + midY + " " + farR + "," + wingTop + " " + farR + "," + wingBot,
+      fill: "var(--green-soft)", stroke: "var(--green)", "stroke-width": 1.5
+    }, svg);
+
+    /* preventive-control barrier tick (left wing, near the knot) */
+    svgEl("line", { x1: knotX0 - 46, x2: knotX0 - 46, y1: midY - 34, y2: midY + 34, stroke: "var(--cyan)", "stroke-width": 3 }, svg);
+    /* detective/corrective-control barrier tick (right wing, near the knot) */
+    svgEl("line", { x1: knotX1 + 46, x2: knotX1 + 46, y1: midY - 34, y2: midY + 34, stroke: "var(--green)", "stroke-width": 3 }, svg);
+
+    /* central knot: the risk event */
+    svgEl("rect", { x: knotX0, y: midY - knotH / 2, width: knotW, height: knotH, rx: 10, fill: "var(--amber-soft)", stroke: "var(--amber)", "stroke-width": 2 }, svg);
+    var knotLabel = svgEl("text", { x: W / 2, y: midY - 4, "text-anchor": "middle", "font-size": 13, "font-weight": 700, fill: "var(--text)" }, svg);
+    knotLabel.textContent = event;
+    var knotSub = svgEl("text", { x: W / 2, y: midY + 17, "text-anchor": "middle", "font-size": 10, fill: "var(--text-dim)" }, svg);
+    knotSub.textContent = "risk event";
+
+    /* frequency / severity headers */
+    var freqH = svgEl("text", { x: farL, y: 26, "font-size": 12, "font-weight": 700, fill: "var(--cyan)" }, svg);
+    freqH.textContent = "FREQUENCY";
+    var freqSub = svgEl("text", { x: farL, y: 40, "font-size": 10, fill: "var(--text-dim)" }, svg);
+    freqSub.textContent = "driven by preventive-control strength";
+
+    var sevH = svgEl("text", { x: farR, y: 26, "text-anchor": "end", "font-size": 12, "font-weight": 700, fill: "var(--green)" }, svg);
+    sevH.textContent = "SEVERITY";
+    var sevSub = svgEl("text", { x: farR, y: 40, "text-anchor": "end", "font-size": 10, fill: "var(--text-dim)" }, svg);
+    sevSub.textContent = "driven by detective/corrective-control strength";
+
+    /* causes column (far left, inside the wing) */
+    var causesX = farL + 14;
+    var t1 = svgEl("text", { x: causesX, y: colTopY, "font-size": 11, "font-weight": 700, fill: "var(--text)" }, svg);
+    t1.textContent = "Causes";
+    causes.forEach(function (c, i) {
+      var row = svgEl("text", { x: causesX, y: colTopY + (i + 1) * rowH, "font-size": 11, fill: "var(--text-dim)" }, svg);
+      row.textContent = "• " + c;
+    });
+
+    /* preventive controls column (left wing, closer to the knot) */
+    var prevX = knotX0 - 14;
+    var t2 = svgEl("text", { x: prevX, y: colTopY, "text-anchor": "end", "font-size": 11, "font-weight": 700, fill: "var(--cyan)" }, svg);
+    t2.textContent = "Preventive controls";
+    preventive.forEach(function (c, i) {
+      var row = svgEl("text", { x: prevX, y: colTopY + (i + 1) * rowH, "text-anchor": "end", "font-size": 11, fill: "var(--text)" }, svg);
+      row.textContent = c + " •";
+    });
+
+    /* impacts column (right wing, closer to the knot) */
+    var impX = knotX1 + 14;
+    var t3 = svgEl("text", { x: impX, y: colTopY, "font-size": 11, "font-weight": 700, fill: "var(--text)" }, svg);
+    t3.textContent = "Impacts";
+    impacts.forEach(function (c, i) {
+      var row = svgEl("text", { x: impX, y: colTopY + (i + 1) * rowH, "font-size": 11, fill: "var(--text-dim)" }, svg);
+      row.textContent = "• " + c;
+    });
+
+    /* detective / corrective controls column (far right, inside the wing) */
+    var corrX = farR - 14;
+    var t4 = svgEl("text", { x: corrX, y: colTopY, "text-anchor": "end", "font-size": 11, "font-weight": 700, fill: "var(--green)" }, svg);
+    t4.textContent = "Detective / corrective controls";
+    corrective.forEach(function (c, i) {
+      var row = svgEl("text", { x: corrX, y: colTopY + (i + 1) * rowH, "text-anchor": "end", "font-size": 11, fill: "var(--text)" }, svg);
+      row.textContent = c;
+    });
+  }
+  draw();
+});
+
+/* =====================================================================
    The "reporting cake" (R45) — three tiers of op-risk reporting.
    Click a tier to see who reads it, what it contains, how often.
    ===================================================================== */
