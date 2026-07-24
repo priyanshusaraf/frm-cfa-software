@@ -115,11 +115,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 78 | 4 | Covered Interest Parity Lost | done | todo | 16 | - | |
 | 79 | 4 | Risk Management for Changing Interest Rates: ALM & Duration | done | todo | 16 | - | |
 | 80 | 4 | Illiquid Assets | done | todo | 16 | - | |
-| 81 | 5 | Factor Theory | todo | todo | - | - | |
-| 82 | 5 | Factors | todo | todo | - | - | |
-| 83 | 5 | Alpha (and the Low-Risk Anomaly) | todo | todo | - | - | |
-| 84 | 5 | Portfolio Construction | todo | todo | - | - | |
-| 85 | 5 | Portfolio Risk: Analytical Methods | todo | todo | - | - | |
+| 81 | 5 | Factor Theory | done | todo | 17 | - | |
+| 82 | 5 | Factors | done | todo | 17 | - | |
+| 83 | 5 | Alpha (and the Low-Risk Anomaly) | done | todo | 17 | - | |
+| 84 | 5 | Portfolio Construction | done | todo | 17 | - | |
+| 85 | 5 | Portfolio Risk: Analytical Methods | done | todo | 17 | - | |
 | 86 | 5 | VaR and Risk Budgeting in Investment Management | todo | todo | - | - | |
 | 87 | 5 | Risk Monitoring and Performance Measurement | todo | todo | - | - | |
 | 88 | 5 | Portfolio Performance Evaluation | todo | todo | - | - | |

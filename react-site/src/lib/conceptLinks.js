@@ -82,7 +82,12 @@ function phraseRegex(phrase) {
      something else there (contribution to systemic risk, not the portfolio
      risk-contribution measure). A TRAILING hyphen still is one, so "VaR-based"
      links "VaR" as it should. */
-  return new RegExp("(^|[^A-Za-z0-9-])(" + escapeRe(phrase) + ")(?![A-Za-z0-9])", "i");
+  /* An ACRONYM matches case-sensitively: "VaR" must not fire on the variance
+     function "var(m)" in a formula note, and "CDO" must not fire on a stray
+     "cdo". Multi-word names stay case-insensitive, so prose that shouts
+     "RISK-NEUTRAL PD" for emphasis still links. */
+  const flags = isAbbrev(phrase) ? "" : "i";
+  return new RegExp("(^|[^A-Za-z0-9-])(" + escapeRe(phrase) + ")(?![A-Za-z0-9])", flags);
 }
 
 /* Build the ordered candidate list for one reading: every concept except the one

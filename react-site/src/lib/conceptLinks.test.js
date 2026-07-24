@@ -71,3 +71,10 @@ test("a leading hyphen is not a word boundary, a trailing one is", () => {
   const v = candidatesFor([{ slug: "v", name: "Value at Risk (VaR)", homeReading: 1 }], 9);
   assert.equal(findLinkMatches("a VaR-based limit", v, new Set()).length, 1);
 });
+
+test("an acronym matches case-sensitively, a multi-word name does not", () => {
+  const v = candidatesFor([{ slug: "v", name: "Value at Risk (VaR)", homeReading: 1 }], 9);
+  assert.equal(findLinkMatches("beta is cov(i,m)/var(m)", v, new Set()).length, 0, "variance is not VaR");
+  assert.equal(findLinkMatches("the VaR limit", v, new Set()).length, 1);
+  assert.equal(findLinkMatches("VALUE AT RISK is shouted here", v, new Set()).length, 1);
+});
