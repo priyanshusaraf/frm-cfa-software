@@ -25,7 +25,7 @@ const ENTRY_POINTS = [
 ];
 
 export default function Home() {
-  useEffect(() => { document.title = "FRM Part II — Interactive Curriculum"; }, []);
+  useEffect(() => { document.title = "FRM Part II: Interactive Curriculum"; }, []);
 
   const books = META.books;
   const allReadings = [];
@@ -54,7 +54,7 @@ export default function Home() {
       <div className="hero">
         <h1>FRM Part II</h1>
         <p className="lead">
-          The complete Part II curriculum — 5 books, {totalReadings} readings — rebuilt as an
+          The complete Part II curriculum (5 books, {totalReadings} readings) rebuilt as an
           interactive learning system. Not documentation: every page is built to transform the
           source material into intuition, connections, and exam-ready recall.
         </p>
@@ -112,15 +112,15 @@ export default function Home() {
       )}
 
       {/* ---- course overview ---- */}
-      <SectionLabel text="Course overview — why these 5 books exist, in this order" color="var(--accent)" />
+      <SectionLabel text="Course overview: why these 5 books exist, in this order" color="var(--accent)" />
       <p className="prose">
-        Books 1–4 build one risk-measurement toolkit each, in the order a bank actually needs them:
+        Books 1 to 4 build one risk-measurement toolkit each, in the order a bank actually needs them:
         first a general way to measure loss (Book 1: VaR/ES), then the largest single risk most
-        banks carry (Book 2: credit), then the risk of the firm itself failing operationally — plus
+        banks carry (Book 2: credit), then the risk of the firm itself failing operationally, plus
         the capital framework that prices every risk type onto one balance sheet (Book 3), then the
         dimension that turns solvent firms into failed ones anyway: timing and funding (Book 4:
-        liquidity). Book 5 changes seats — from the bank managing risk to the investor allocating
-        capital — then closes with GARP’s rolling window onto today’s risks. Each book explicitly
+        liquidity). Book 5 changes seats (from the bank managing risk to the investor allocating
+        capital) then closes with GARP’s rolling window onto today’s risks. Each book explicitly
         consumes the one(s) before it; the chips below trace that dependency chain using each book’s
         own "feeds forward" description.
       </p>
@@ -146,7 +146,7 @@ export default function Home() {
               <Progress value={p.pct} color={b.color} className="mb-2.5 mt-0.5" />
               <p style={{ fontSize: "0.88rem" }}><strong>Why it exists:</strong> <Html as="span" html={b.why} /></p>
               <p style={{ fontSize: "0.88rem", color: "var(--text-dim)" }}>
-                <strong>Feeds forward:</strong> <Html as="span" html={b.feeds || "Nothing downstream — terminal book."} />
+                <strong>Feeds forward:</strong> <Html as="span" html={b.feeds || "Nothing downstream. Terminal book."} />
               </p>
             </div>
           );
@@ -154,7 +154,7 @@ export default function Home() {
       </div>
 
       {/* ---- visual learning path ---- */}
-      <SectionLabel text="Visual learning path — read in this order" color="var(--green)" />
+      <SectionLabel text="Visual learning path: read in this order" color="var(--green)" />
       <p className="lead" style={{ fontSize: "0.92rem" }}>
         Every book both needs and is needed. Skipping ahead means hitting formulas and vocabulary
         from a book you haven’t read yet.
@@ -167,14 +167,14 @@ export default function Home() {
             <Html as="p" html={b.blurb} />
             <div className="path-why">
               <b>Needs:</b> <Html as="span" html={b.prereqs} /><br />
-              <b>Feeds:</b> <Html as="span" html={b.feeds || "Nothing downstream — this is the terminal book."} />
+              <b>Feeds:</b> <Html as="span" html={b.feeds || "Nothing downstream: this is the terminal book."} />
             </div>
           </div>
         </div>
       ))}
 
       {/* ---- interactive global mind map (preview) ---- */}
-      <SectionLabel text="Global mind map — every concept, clickable" color="var(--cyan)" />
+      <SectionLabel text="Global mind map: every concept, clickable" color="var(--cyan)" />
       <p className="lead" style={{ fontSize: "0.92rem" }}>
         Drag to pan, scroll to zoom, hover a node to trace its connections, click to jump to the
         chapter. <Link to="/mindmap">Open full-screen →</Link>
@@ -182,7 +182,7 @@ export default function Home() {
       <MindMapGraph compact />
 
       {/* ---- big picture ---- */}
-      <SectionLabel text="Big picture — the ideas that never go away" color="var(--purple)" />
+      <SectionLabel text="Big picture: the ideas that never go away" color="var(--purple)" />
       <p className="lead" style={{ fontSize: "0.92rem" }}>
         These threads resurface across every book. Recognizing the repeat is worth more than
         memorizing any one instance of it.
@@ -205,7 +205,7 @@ export default function Home() {
       <div className="grid2" style={{ marginTop: "1rem" }}>
         <div className="callout tip">
           <div className="callout-title">Foundation readings ({foundations.length})</div>
-          No prerequisites within their own book — safe starting points, and the readings
+          No prerequisites within their own book. These are safe starting points, and the readings
           everything else in that book builds on:{" "}
           {foundations.slice(0, 8).map((x, i) => (
             <span key={x.r.n}>{i > 0 && ", "}<Link to={rpath(x.r.n)}>R{x.r.n}</Link></span>
@@ -214,7 +214,7 @@ export default function Home() {
         </div>
         <div className="callout warn">
           <div className="callout-title">Combination readings ({combos.length})</div>
-          Depend on 3+ earlier readings — these are where the exam likes to combine ideas, and
+          Depend on 3+ earlier readings. These are where the exam likes to combine ideas, and
           where confusion compounds if an earlier reading was skimmed:{" "}
           {combos.slice(0, 8).map((x, i) => (
             <span key={x.r.n}>{i > 0 && ", "}<Link to={rpath(x.r.n)}>R{x.r.n}</Link></span>
@@ -224,7 +224,7 @@ export default function Home() {
       </div>
 
       {/* ---- global high-yield ---- */}
-      <SectionLabel text="Global high-yield — the 30 minutes before the exam" color="var(--amber)" />
+      <SectionLabel text="Global high-yield: the 30 minutes before the exam" color="var(--amber)" />
       <p className="lead" style={{ fontSize: "0.92rem" }}>
         Every 5-star reading across all five books, in one list. If you only have half an hour
         left, this is what to reread.
