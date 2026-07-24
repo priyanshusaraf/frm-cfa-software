@@ -1,7 +1,7 @@
 // Pure eligibility helper for the Block Review pilot: given the study-path
 // blocks (from buildBlocks(), src/lib/studyPath.js) and the store's `done` map,
 // decide which blocks are fully finished and which block a given reading
-// belongs to. No store, no React, no Date.now() — callers supply `done`.
+// belongs to. No store, no React, no Date.now(); callers supply `done`.
 
 export function blockEligibility(blocks, done) {
   const d = done || {};
