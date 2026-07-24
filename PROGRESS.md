@@ -67,6 +67,11 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 >    optional `{point, explain}` shape rendering `explain` as an always-visible dimmer sub-line
 >    (plain strings still work). Mechanism only; Phase 5 populates `explain` where list items are
 >    cryptic. Also fixed the two "At a glance" section-label em-dashes while in that file.
+> 5. **§4 consistency dashboard DONE** (commit `2c53c96`): new `/consistency` route with a
+>    GitHub-style 26-week activity heatmap + streak/pace tiles. `src/lib/consistency.js` (pure, 5
+>    tests) derives per-day activity from every existing store timestamp unioned with a new optional
+>    `activity` day-counter (bumped once per chapter open via `touchActivity`). Completes the study
+>    spine (planner blocks + block review + case study + consistency).
 >
 > **OWNER REVIEW + SELF-IMPROVING CONTENT SYSTEM (2026-07-25).** The owner reviewed the
 > counterparty cluster (R30-R35) and set a durable directive: maintain a **self-rectifying
