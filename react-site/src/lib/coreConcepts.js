@@ -7,6 +7,7 @@
    normalized form — exact-normalized-match only, deliberately conservative so
    distinct concepts never merge by accident). */
 import { slugify } from "./html.js";
+import { authoredConcepts as defaultAuthored } from "../data/authoredConcepts.js";
 
 function normalize(s) {
   return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -50,6 +51,7 @@ export function buildCoreConcepts(readingsMap) {
       slug: slugify(entry.name),
       name: entry.name,
       kind: entry.kind,
+      layer: "core",
       homeReading: entry.refs[0],
       refs: entry.refs,
     });
@@ -59,4 +61,47 @@ export function buildCoreConcepts(readingsMap) {
 
 export function findCoreConcept(readingsMap, slug) {
   return buildCoreConcepts(readingsMap).find((c) => c.slug === slug) || null;
+}
+
+function authoredSlug(a) {
+  return a.slug || slugify(a.name);
+}
+
+/* Unified lookup used by /concept/:slug. An authored entry (revision OR core, from
+   src/data/authoredConcepts.js) takes precedence over an auto-detected concept of
+   the same slug; otherwise the auto-detected core concept is returned (layer
+   "core"). `authored` is injectable for testing. Returns null if neither matches. */
+export function findConcept(readingsMap, slug, authored = defaultAuthored) {
+  const a = (authored || []).find((x) => authoredSlug(x) === slug);
+  if (a) {
+    return {
+      slug: authoredSlug(a),
+      name: a.name,
+      layer: a.layer || "revision",
+      kind: a.kind || null,
+      homeReading: a.homeReading != null ? a.homeReading : null,
+      refs: Array.isArray(a.refs) ? a.refs : [],
+      lead: a.lead || null,
+      sections: Array.isArray(a.sections) ? a.sections : [],
+      authored: true,
+    };
+  }
+  return findCoreConcept(readingsMap, slug);
+}
+
+/* Combined listing for the /concepts index: authored entries first (they are the
+   deliberately-curated ones), then auto-detected core concepts not shadowed by an
+   authored slug. Each carries a `layer`. `authored` is injectable for testing. */
+export function listConcepts(readingsMap, authored = defaultAuthored) {
+  const authoredList = (authored || []).map((a) => ({
+    slug: authoredSlug(a),
+    name: a.name,
+    layer: a.layer || "revision",
+    homeReading: a.homeReading != null ? a.homeReading : null,
+    refs: Array.isArray(a.refs) ? a.refs : [],
+    authored: true,
+  }));
+  const claimed = new Set(authoredList.map((a) => a.slug));
+  const auto = buildCoreConcepts(readingsMap).filter((c) => !claimed.has(c.slug));
+  return [...authoredList, ...auto];
 }

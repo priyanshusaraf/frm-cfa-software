@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAllReadings } from "../lib/readings.js";
-import { buildCoreConcepts } from "../lib/coreConcepts.js";
+import { listConcepts } from "../lib/coreConcepts.js";
 import { readingMeta } from "../lib/meta.js";
 
 /* Phase 1 of the cross-reading core-concept system (CLAUDE.md §6): an index of
@@ -12,7 +12,7 @@ export default function ConceptsIndex() {
   const readingsMap = useAllReadings();
   const [q, setQ] = useState("");
 
-  const concepts = useMemo(() => buildCoreConcepts(readingsMap), [readingsMap]);
+  const concepts = useMemo(() => listConcepts(readingsMap), [readingsMap]);
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
     if (!query) return concepts;
@@ -48,12 +48,20 @@ export default function ConceptsIndex() {
       ) : (
         <div className="grid2">
           {filtered.map((c) => {
-            const home = readingMeta(c.homeReading);
+            const home = c.homeReading != null ? readingMeta(c.homeReading) : null;
+            const isRevision = c.layer === "revision";
             return (
               <Link key={c.slug} to={`/concept/${c.slug}`} className="card" style={{ display: "block", textDecoration: "none" }}>
-                <h3 style={{ margin: 0 }}>{c.name}</h3>
+                <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem", flexWrap: "wrap" }}>
+                  <h3 style={{ margin: 0 }}>{c.name}</h3>
+                  <span className="chip" style={{ fontSize: "0.68rem", color: isRevision ? "var(--purple)" : "var(--accent)", borderColor: isRevision ? "var(--purple)" : "var(--accent)" }}>
+                    {isRevision ? "revision" : "core"}
+                  </span>
+                </div>
                 <p style={{ fontSize: "0.85rem", color: "var(--text-dim)", margin: "0.4rem 0 0" }}>
-                  First defined in R{c.homeReading}{home ? " · " + home.t : ""} · referenced in {c.refs.length} readings
+                  {c.homeReading != null
+                    ? <>{isRevision ? "Assumed from" : "First defined in"} R{c.homeReading}{home ? " · " + home.t : ""}{c.refs.length ? " · referenced in " + c.refs.length + " readings" : ""}</>
+                    : "Foundational prerequisite, re-taught from first principles"}
                 </p>
               </Link>
             );

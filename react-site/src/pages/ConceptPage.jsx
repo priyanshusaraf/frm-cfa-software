@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { useAllReadings } from "../lib/readings.js";
-import { findCoreConcept } from "../lib/coreConcepts.js";
+import { findConcept } from "../lib/coreConcepts.js";
 import { readingMeta, rpath, bookOf } from "../lib/meta.js";
 import { renderMath, isTex, fitMath } from "../lib/tex.js";
 import Html from "../components/Html.jsx";
@@ -16,11 +16,14 @@ export default function ConceptPage() {
   const { slug } = useParams();
   const readingsMap = useAllReadings();
 
-  const concept = useMemo(() => findCoreConcept(readingsMap, slug), [readingsMap, slug]);
+  const concept = useMemo(() => findConcept(readingsMap, slug), [readingsMap, slug]);
+  const isRevision = concept && concept.layer === "revision";
+  const layerLabel = isRevision ? "Revision" : "Core concept";
+  const layerColor = isRevision ? "var(--purple)" : "var(--accent)";
 
   useEffect(() => {
-    if (concept) document.title = concept.name + " — Core Concept — FRM Part II";
-  }, [concept]);
+    if (concept) document.title = concept.name + " — " + layerLabel + " — FRM Part II";
+  }, [concept, layerLabel]);
 
   useEffect(() => {
     if (concept) requestAnimationFrame(() => fitMath(document.body));
@@ -35,25 +38,45 @@ export default function ConceptPage() {
   }
   if (!concept) return <Navigate to="/concepts" replace />;
 
-  const homeMeta = readingMeta(concept.homeReading);
-  const homeBook = bookOf(concept.homeReading);
-  const homeD = readingsMap[concept.homeReading];
+  const hasHome = concept.homeReading != null;
+  const homeMeta = hasHome ? readingMeta(concept.homeReading) : null;
+  const homeBook = hasHome ? bookOf(concept.homeReading) : null;
+  const homeD = hasHome ? readingsMap[concept.homeReading] : null;
   const formula = concept.kind === "formula" && homeD && homeD.formulas
     ? homeD.formulas.find((f) => f.name === concept.name)
     : null;
   const conceptEntry = concept.kind === "concept" && homeD && homeD.concepts
     ? homeD.concepts.find((c) => c.name === concept.name)
     : null;
-  const otherRefs = concept.refs.filter((r) => r !== concept.homeReading);
+  const otherRefs = (concept.refs || []).filter((r) => r !== concept.homeReading);
+  const sections = concept.authored && Array.isArray(concept.sections) ? concept.sections : [];
 
   return (
     <main className="page">
-      <div className="crumbs"><Link to="/">Home</Link> / <Link to="/concepts">Core Concepts</Link> / {concept.name}</div>
+      <div className="crumbs"><Link to="/">Home</Link> / <Link to="/concepts">Concepts</Link> / {concept.name}</div>
 
-      <div className="kicker" style={{ color: homeBook ? homeBook.color : "var(--accent)" }}>
-        Core concept · first defined in R{concept.homeReading}{homeMeta ? " · " + homeMeta.t : ""}
+      <div className="kicker" style={{ color: layerColor }}>
+        {layerLabel}
+        {hasHome ? <> · {isRevision ? "assumed from" : "first defined in"} R{concept.homeReading}{homeMeta ? " · " + homeMeta.t : ""}</> : null}
       </div>
       <h1>{concept.name}</h1>
+      {concept.lead && <p className="lead"><Html as="span" html={concept.lead} /></p>}
+
+      {sections.length > 0 && (
+        <>
+          {isRevision && (
+            <p style={{ fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--purple)", margin: "0.2rem 0 0.6rem" }}>
+              Foundational refresher, re-taught from first principles
+            </p>
+          )}
+          {sections.map((s, i) => (
+            <div key={i}>
+              {s.label && <div className="section-label" style={{ color: layerColor }}>{s.label}</div>}
+              <div className="card"><Html html={s.html} /></div>
+            </div>
+          ))}
+        </>
+      )}
 
       {formula && (
         <>
@@ -133,7 +156,7 @@ export default function ConceptPage() {
         </>
       )}
 
-      {!formula && !conceptEntry && (
+      {!formula && !conceptEntry && sections.length === 0 && hasHome && (
         <div className="card" style={{ fontSize: "0.9rem", color: "var(--text-dim)" }}>
           This concept's home reading is still loading its content.
         </div>
