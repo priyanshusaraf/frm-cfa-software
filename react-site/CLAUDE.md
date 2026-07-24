@@ -401,10 +401,14 @@ Proposed build (not yet started, no code written):
    or tap (mobile — hover doesn't exist on touch, needs a tap-to-open fallback) shows a short
    auto-generated snippet via a Radix HoverCard/Popover, with a "Learn more →" link to
    `/concept/:slug`.
-4. **Back-to-reading button** — navigate to the concept page with router `state: {
-   fromReading: rn }` (same convention as the existing `state.resume`/`state.scrollTo` on
-   Chapter.jsx); the concept page shows "← Back to Reading {rn}" only when that state key is
-   present, so arriving via `/concepts` or a bare link shows no button.
+4. **Back-to-reading button** — ~~navigate to the concept page with router `state: {
+   fromReading: rn }`; the concept page shows "← Back to Reading {rn}" only when that state
+   key is present~~. **SUPERSEDED (Phase 0.5, 2026-07-24):** this per-page `fromReading` link
+   was REMOVED and replaced by the global top-left "Return to Reading {n}" button
+   (`src/components/ReturnToReading.jsx`, mounted in `main.jsx`'s `Shell`), driven by the new
+   optional store key `nav.activeReading`. That key is set when a not-done `/chapter/:rn`
+   mounts, survives navigating into concept pages (and concept-to-concept hops), and is cleared
+   when the reading is marked done. Do NOT reintroduce the `state.fromReading` mechanism.
 
 Sequencing, because this touches every reading that reuses any core concept (a large
 fan-out): **Phase 1** (BUILT, 2026-07-21 tenth session): `scripts/build-core-concepts.mjs`
