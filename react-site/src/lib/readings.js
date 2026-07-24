@@ -61,13 +61,21 @@ export function useReading(rn) {
   return d;
 }
 
-/* Returns the full readings map once every chunk has loaded, null before. */
-export function useAllReadings() {
+/* Returns the full readings map once every chunk has loaded, null before.
+
+   `enabled` exists for consumers mounted on EVERY route (the command palette):
+   calling this unconditionally there means every page load fetches all 101
+   chunks whether or not the feature is ever used, which is the eager-loading
+   regression CLAUDE.md §2 warns about. Pass the open/active flag so the fetch
+   starts on first use. Page-level consumers, which only mount when the user has
+   already navigated to a page that needs the whole corpus, leave it default. */
+export function useAllReadings(enabled = true) {
   const [all, setAll] = useState(() => (allDone ? readings : null));
   useEffect(() => {
+    if (!enabled) return undefined;
     let on = true;
     loadAll().then((r) => { if (on) setAll(r); });
     return () => { on = false; };
-  }, []);
+  }, [enabled]);
   return all;
 }

@@ -178,7 +178,7 @@ export default function Planner() {
               </div>
             );
           })}
-          <div className="card" style={{ marginTop: "0.75rem", borderLeft: "3px solid var(--amber, #d97706)" }}>
+          <div className="card" style={{ marginTop: "0.75rem", borderLeft: "3px solid var(--amber)" }}>
             <strong style={{ fontSize: "0.9rem" }}>Final {plan.reviewDays} day{plan.reviewDays === 1 ? "" : "s"}: revision block</strong>
             <p style={{ fontSize: "0.86rem", color: "var(--text-dim)", margin: "0.35rem 0 0" }}>
               No new readings. Work the <Link to="/review">spaced-repetition queue</Link>, retake the

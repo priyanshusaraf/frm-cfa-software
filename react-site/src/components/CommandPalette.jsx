@@ -34,7 +34,10 @@ function stripTags(html) {
 export default function CommandPalette() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
-  const allReadingsMap = useAllReadings();
+  /* Gated on `open`: this component is mounted on every route, so loading all
+     101 reading chunks unconditionally would make every page load pay for a
+     palette the reader may never open (CLAUDE.md §2's eager-loading rule). */
+  const allReadingsMap = useAllReadings(open);
 
   useEffect(() => {
     function onKeyDown(e) {
@@ -110,7 +113,7 @@ export default function CommandPalette() {
       </div>
       <Command.List className="max-h-[60vh] overflow-y-auto p-2">
         <Command.Empty className="px-3 py-6 text-center text-sm text-faint">
-          No results found.
+          {allReadingsMap ? "No results found." : "Loading concepts and formulas…"}
         </Command.Empty>
 
         <Command.Group

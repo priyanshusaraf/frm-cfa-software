@@ -94,9 +94,9 @@ export default function Formulas() {
           style={{
             flex: "1 1 220px",
             padding: "0.5rem 0.8rem",
-            borderRadius: "var(--radius, 10px)",
-            border: "1px solid var(--line, #333)",
-            background: "var(--bg-inset, transparent)",
+            borderRadius: "var(--radius)",
+            border: "1px solid var(--border)",
+            background: "var(--bg-inset)",
             color: "inherit",
             fontSize: "0.9rem",
           }}
