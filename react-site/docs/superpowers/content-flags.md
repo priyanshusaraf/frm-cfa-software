@@ -40,3 +40,10 @@ Format per entry: `- rNN (bookN/rNN.js) — <what to improve> — <why> — flag
     / AI-isms everywhere ("named in the source", "the exam candidate", "GARP tests", "as the source
     states"); (3) explain WHY entities/structures exist, not just what they are; (4) reuse examples
     across readings with explicit continuity phrasing + refresher links.
+
+- **Phase 3 inline links, borderline senses (not defects, judgement calls).** r90's
+  "hurdle rate" (a hedge-fund incentive-fee threshold) links to the RAROC after-tax
+  hurdle-rate page. Same word, adjacent but not identical idea; kept because the target
+  still explains what a hurdle rate is and the alternative was making the concept
+  unlinkable everywhere. If the Phase 5 pass renames either concept, re-check it.
+  Flagged Phase 3, 2026-07-25.

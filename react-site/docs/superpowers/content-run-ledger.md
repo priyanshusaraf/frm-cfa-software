@@ -120,11 +120,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 83 | 5 | Alpha (and the Low-Risk Anomaly) | done | todo | 17 | - | |
 | 84 | 5 | Portfolio Construction | done | todo | 17 | - | |
 | 85 | 5 | Portfolio Risk: Analytical Methods | done | todo | 17 | - | |
-| 86 | 5 | VaR and Risk Budgeting in Investment Management | todo | todo | - | - | |
-| 87 | 5 | Risk Monitoring and Performance Measurement | todo | todo | - | - | |
-| 88 | 5 | Portfolio Performance Evaluation | todo | todo | - | - | |
-| 89 | 5 | Hedge Funds | todo | todo | - | - | |
-| 90 | 5 | Performing Due Diligence on Specific Managers and Funds | todo | todo | - | - | |
+| 86 | 5 | VaR and Risk Budgeting in Investment Management | done | todo | 18 | - | |
+| 87 | 5 | Risk Monitoring and Performance Measurement | done | todo | 18 | - | |
+| 88 | 5 | Portfolio Performance Evaluation | done | todo | 18 | - | |
+| 89 | 5 | Hedge Funds | done | todo | 18 | - | |
+| 90 | 5 | Performing Due Diligence on Specific Managers and Funds | done | todo | 18 | - | |
 | 91 | 5 | Predicting Fraud by Investment Managers | todo | todo | - | - | |
 | 92 | 5 | Review of the Federal Reserve's Supervision of Silicon Valley Bank | todo | todo | - | - | |
 | 93 | 5 | The Credit Suisse CoCo Wipeout | todo | todo | - | - | |
