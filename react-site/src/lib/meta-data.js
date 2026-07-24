@@ -9,7 +9,7 @@ export const META = {
       color: "var(--accent)",
       colorSoft: "var(--accent-soft)",
       dir: "book1",
-      blurb: "How to put a number on 'how much could we lose?' — VaR, Expected Shortfall, extreme value theory, backtesting, correlation modeling, term-structure models, and the FRTB rules that turned all of it into regulation.",
+      blurb: "How to put a number on 'how much could we lose?' This book covers VaR, Expected Shortfall, extreme value theory, backtesting, correlation modeling, term-structure models, and the FRTB rules that turned all of it into regulation.",
       why: "Every other book consumes the machinery built here. Credit VaR (Book 2), operational risk capital (Book 3), liquidity-adjusted VaR (Book 4), and portfolio VaR / risk budgeting (Book 5) are all applications of the risk-measurement toolkit this book builds from scratch.",
       prereqs: "FRM Part I quantitative methods: normal distribution, hypothesis testing, regression, basic fixed income (duration, DV01), options basics (Black-Scholes-Merton, the Greeks).",
       feeds: "Book 2 (credit VaR, copulas for default correlation), Book 3 (economic capital, risk aggregation), Book 4 (liquidity-adjusted VaR, ALM rate risk), Book 5 (portfolio VaR, risk budgeting, performance measures).",
@@ -19,15 +19,15 @@ export const META = {
         { name: "Term Structures & Volatility", from: 10, to: 16 }
       ],
       readings: [
-        { n: 1,  t: "Estimating Market Risk Measures", hy: 5, deps: [], tag: "VaR and Expected Shortfall from scratch — the ruler everything else calibrates" },
+        { n: 1,  t: "Estimating Market Risk Measures", hy: 5, deps: [], tag: "VaR and Expected Shortfall from scratch: the ruler everything else calibrates" },
         { n: 2,  t: "Non-Parametric Approaches", hy: 4, deps: [1], tag: "Making historical simulation smarter: bootstrap, weighting, filtering" },
-        { n: 3,  t: "Parametric Approaches (II): Extreme Value Theory", hy: 4, deps: [1], tag: "Modeling the tail directly — GEV, POT, and the shape parameter ξ" },
+        { n: 3,  t: "Parametric Approaches (II): Extreme Value Theory", hy: 4, deps: [1], tag: "Modeling the tail directly: GEV, POT, and the shape parameter ξ" },
         { n: 4,  t: "Backtesting VaR", hy: 5, deps: [1], tag: "Auditing the risk number: exceptions, Kupiec, Basel traffic lights" },
         { n: 5,  t: "VaR Mapping", hy: 4, deps: [1], tag: "Collapsing thousands of positions onto a few risk factors" },
         { n: 6,  t: "Messages From the Academic Literature", hy: 2, deps: [1, 4], tag: "The research verdict: VaR is not subadditive; liquidity and integration matter" },
-        { n: 7,  t: "Correlation Basics", hy: 5, deps: [1], tag: "Correlation as a risk in itself — wrong-way risk, correlation products, 2008" },
+        { n: 7,  t: "Correlation Basics", hy: 5, deps: [1], tag: "Correlation as a risk in itself: wrong-way risk, correlation products, 2008" },
         { n: 8,  t: "Empirical Properties of Correlation", hy: 3, deps: [7], tag: "How correlation actually behaves: regimes, mean reversion, distributions" },
-        { n: 9,  t: "Financial Correlation Modeling — Copulas", hy: 4, deps: [7, 3], tag: "Building joint distributions from messy marginals — and why Gaussian copulas failed" },
+        { n: 9,  t: "Financial Correlation Modeling: Copulas", hy: 4, deps: [7, 3], tag: "Building joint distributions from messy marginals, and why Gaussian copulas failed" },
         { n: 10, t: "Empirical Approaches to Risk Metrics and Hedging", hy: 3, deps: [1], tag: "Regression hedging and PCA: level, slope, curvature" },
         { n: 11, t: "The Science of Term Structure Models", hy: 5, deps: [], tag: "Binomial trees, backward induction, risk-neutral pricing, OAS" },
         { n: 12, t: "Evolution of Short Rates and Shape of the Term Structure", hy: 3, deps: [11], tag: "Why the curve has its shape: expectations, convexity, risk premium" },
@@ -44,8 +44,8 @@ export const META = {
       color: "var(--green)",
       colorSoft: "var(--green-soft)",
       dir: "book2",
-      blurb: "Who might fail to pay you back, how likely, how bad, and what it costs to insure against it — from single-name default probability to portfolio credit VaR, counterparty exposure, CVA, central clearing, and securitization.",
-      why: "Credit risk is the largest risk most banks carry. This book takes the VaR/correlation machinery of Book 1 and rebuilds it for skewed, fat-tailed default losses — then adds the counterparty-risk layer (exposure, netting, margin, CVA) that dominates modern derivatives markets.",
+      blurb: "Who might fail to pay you back, how likely, how bad, and what it costs to insure against it: from single-name default probability to portfolio credit VaR, counterparty exposure, CVA, central clearing, and securitization.",
+      why: "Credit risk is the largest risk most banks carry. This book takes the VaR/correlation machinery of Book 1 and rebuilds it for skewed, fat-tailed default losses, then adds the counterparty-risk layer (exposure, netting, margin, CVA) that dominates modern derivatives markets.",
       prereqs: "Book 1's VaR machinery and copulas (Readings 1, 7, 9). Part I foundations: bond pricing, expected loss = PD × LGD × EAD, rating agencies basics.",
       feeds: "Book 3 (credit risk capital under Basel), Book 4 (margin/collateral liquidity strain), Book 5 (counterparty due diligence, structured product cases).",
       sessions: [
@@ -55,7 +55,7 @@ export const META = {
       ],
       readings: [
         { n: 17, t: "Fundamentals of Credit Risk", hy: 4, deps: [], tag: "The vocabulary: obligors, exposure, PD/LGD/EAD, expected vs unexpected loss" },
-        { n: 18, t: "Governance", hy: 2, deps: [17], tag: "Who owns credit risk inside a bank — policies, limits, committees" },
+        { n: 18, t: "Governance", hy: 2, deps: [17], tag: "Who owns credit risk inside a bank: policies, limits, committees" },
         { n: 19, t: "Credit Risk Management", hy: 3, deps: [17], tag: "The credit process: origination, monitoring, workout" },
         { n: 20, t: "Capital Structure in Banks", hy: 4, deps: [17], tag: "Expected vs unexpected loss and why capital exists" },
         { n: 21, t: "Introduction to Credit Risk Modeling and Assessment", hy: 4, deps: [17, 20], tag: "The modeling map: structural vs reduced-form vs empirical models" },
@@ -69,10 +69,10 @@ export const META = {
         { n: 29, t: "Credit Risk (Spread Risk & Default Intensity)", hy: 4, deps: [25], tag: "Spread measures, hazard rates, and risk-neutral default intensity" },
         { n: 30, t: "Credit Derivatives", hy: 4, deps: [25, 29], tag: "CDS mechanics, pricing, indices, and uses" },
         { n: 31, t: "Derivatives (Counterparty Risk Intro)", hy: 3, deps: [17], tag: "Where counterparty risk lives: OTC derivatives and SFTs" },
-        { n: 32, t: "Counterparty Risk and Beyond", hy: 4, deps: [31], tag: "Exposure, default probability, wrong-way risk — the counterparty triad" },
+        { n: 32, t: "Counterparty Risk and Beyond", hy: 4, deps: [31], tag: "Exposure, default probability, wrong-way risk: the counterparty triad" },
         { n: 33, t: "Netting, Close-Out, and Related Aspects", hy: 4, deps: [32], tag: "How netting sets compress exposure" },
         { n: 34, t: "Margin (Collateral) and Settlement", hy: 4, deps: [33], tag: "Collateral mechanics: thresholds, MTA, haircuts, disputes" },
-        { n: 35, t: "Central Clearing", hy: 4, deps: [34], tag: "CCPs: mutualizing counterparty risk — and concentrating it" },
+        { n: 35, t: "Central Clearing", hy: 4, deps: [34], tag: "CCPs: mutualizing counterparty risk, and concentrating it" },
         { n: 36, t: "Future Value and Exposure", hy: 5, deps: [32], tag: "EE, PFE, EPE, exposure profiles by product" },
         { n: 37, t: "CVA", hy: 5, deps: [36], tag: "Pricing counterparty risk into the trade: CVA, DVA, wrong-way effects" },
         { n: 38, t: "The Evolution of Stress Testing Counterparty Exposures", hy: 3, deps: [36, 37], tag: "Stressing exposures vs stressing CVA" },
@@ -86,9 +86,9 @@ export const META = {
       color: "var(--amber)",
       colorSoft: "var(--amber-soft)",
       dir: "book3",
-      blurb: "The risk of being wrong on the inside — failed processes, people, systems, cyber, fraud, third parties, and model risk — plus the capital frameworks (economic capital, RAROC, Basel III) that price all risks into one balance sheet.",
+      blurb: "The risk of being wrong on the inside: failed processes, people, systems, cyber, fraud, third parties, and model risk, plus the capital frameworks (economic capital, RAROC, Basel III) that price all risks into one balance sheet.",
       why: "Market and credit losses come from positions; operational losses come from how the firm itself works. This book covers the full op-risk toolkit (identification → measurement → mitigation → reporting), then zooms out to how banks attribute capital to ALL risk types and how Basel regulation evolved to its current form.",
-      prereqs: "Book 1's VaR/ES concepts (loss distributions, confidence levels). Book 2's expected/unexpected loss logic — op-risk capital reuses it.",
+      prereqs: "Book 1's VaR/ES concepts (loss distributions, confidence levels). Book 2's expected/unexpected loss logic: op-risk capital reuses it.",
       feeds: "Book 4 (liquidity regulation shares the Basel III framework), Book 5 (fraud prediction, AI risk, operational cases in investment management).",
       sessions: [
         { name: "Operational Risk Overview", from: 40, to: 46 },
@@ -109,7 +109,7 @@ export const META = {
         { n: 50, t: "Guidance on Managing Outsourcing Risk", hy: 3, deps: [40], tag: "You can outsource the activity, not the risk" },
         { n: 51, t: "Case Study: Third-Party Risk Management", hy: 2, deps: [50], tag: "When vendors become your biggest vulnerability" },
         { n: 52, t: "Case Study: Investor Protection and Compliance Risks", hy: 2, deps: [40], tag: "Mis-selling, suitability, and compliance failures" },
-        { n: 53, t: "Supervisory Guidance on Model Risk Management", hy: 4, deps: [40], tag: "SR 11-7: models as a risk class — validation, inventory, effective challenge" },
+        { n: 53, t: "Supervisory Guidance on Model Risk Management", hy: 4, deps: [40], tag: "SR 11-7: models as a risk class, with validation, inventory, and effective challenge" },
         { n: 54, t: "Case Study: Model Risk and Model Validation", hy: 3, deps: [53], tag: "When the model is the operational failure" },
         { n: 55, t: "Stress Testing Banks", hy: 4, deps: [43], tag: "Supervisory stress tests: scenarios, capital trajectories, CCAR logic" },
         { n: 56, t: "Risk Capital Attribution and RAPM", hy: 5, deps: [43], tag: "Economic capital, RAROC, and diversification attribution" },
@@ -128,8 +128,8 @@ export const META = {
       color: "var(--cyan)",
       colorSoft: "var(--cyan-soft)",
       dir: "book4",
-      blurb: "Solvency is about net worth; liquidity is about timing. This book covers how institutions fund themselves, how funding evaporates in stress, how to measure and price liquidity, and how treasury manages the balance sheet — deposits, repos, transfer pricing, ALM.",
-      why: "Institutions rarely die of insolvency alone — they die because cash runs out first. 2008's real killer was liquidity. This book explains both sides: market liquidity (can I sell without moving the price?) and funding liquidity (can I roll my debts?), and how they spiral together.",
+      blurb: "Solvency is about net worth; liquidity is about timing. This book covers how institutions fund themselves, how funding evaporates in stress, how to measure and price liquidity, and how treasury manages the balance sheet: deposits, repos, transfer pricing, and ALM.",
+      why: "Institutions rarely die of insolvency alone. They die because cash runs out first. 2008's real killer was liquidity. This book explains both sides: market liquidity (can I sell without moving the price?) and funding liquidity (can I roll my debts?), and how they spiral together.",
       prereqs: "Book 1 (VaR, for liquidity-adjusted VaR), Book 2 (margin/collateral mechanics feed liquidity strain), Book 3 (Basel III context for LCR/NSFR).",
       feeds: "Book 5 (illiquid asset return biases, hedge fund funding fragility, crypto runs).",
       sessions: [
@@ -139,7 +139,7 @@ export const META = {
       ],
       readings: [
         { n: 63, t: "Liquidity Risk", hy: 5, deps: [], tag: "Funding vs market liquidity, LVaR, and the liquidity spiral" },
-        { n: 64, t: "Liquidity and Leverage", hy: 5, deps: [63], tag: "How leverage manufactures liquidity risk — both sides of the balance sheet" },
+        { n: 64, t: "Liquidity and Leverage", hy: 5, deps: [63], tag: "How leverage manufactures liquidity risk: both sides of the balance sheet" },
         { n: 65, t: "Early Warning Indicators", hy: 3, deps: [63], tag: "Seeing the run coming: internal and market-based signals" },
         { n: 66, t: "The Investment Function in Financial-Services Management", hy: 3, deps: [], tag: "Why banks hold securities portfolios: income, liquidity, collateral" },
         { n: 67, t: "Liquidity and Reserves Management: Strategies and Policies", hy: 4, deps: [66], tag: "Asset vs liability liquidity management, estimating needs" },
@@ -154,7 +154,7 @@ export const META = {
         { n: 76, t: "Repurchase Agreements and Financing", hy: 4, deps: [63], tag: "Repo mechanics, collateral, and the 2008 repo run" },
         { n: 77, t: "Liquidity Transfer Pricing: A Guide to Better Practice", hy: 4, deps: [69], tag: "Charging businesses for the liquidity they consume" },
         { n: 78, t: "Covered Interest Parity Lost", hy: 3, deps: [], tag: "The cross-currency basis: why CIP broke after 2008" },
-        { n: 79, t: "Risk Management for Changing Interest Rates: ALM & Duration", hy: 4, deps: [66], tag: "Repricing gaps and duration gaps — NII vs equity value" },
+        { n: 79, t: "Risk Management for Changing Interest Rates: ALM & Duration", hy: 4, deps: [66], tag: "Repricing gaps and duration gaps: NII vs equity value" },
         { n: 80, t: "Illiquid Assets", hy: 4, deps: [63], tag: "Smoothed returns, biased alphas, and illiquidity premiums" }
       ]
     },
@@ -165,22 +165,22 @@ export const META = {
       color: "var(--purple)",
       colorSoft: "var(--purple-soft)",
       dir: "book5",
-      blurb: "Risk tools applied to portfolios: factor theory, alpha, portfolio construction, risk budgeting, performance evaluation, hedge funds, due diligence — then the frontier: CoCo bonds, AI risk, climate risk, crypto, and digital resilience.",
-      why: "Books 1–4 measured risk inside a bank. Book 5 flips the seat: you're the investor allocating capital. Factor models explain where returns come from; VaR becomes a budgeting tool; performance measures separate skill from luck. The Current Issues half is GARP's rolling window onto today's risks.",
+      blurb: "Risk tools applied to portfolios: factor theory, alpha, portfolio construction, risk budgeting, performance evaluation, hedge funds, due diligence. Then the frontier: CoCo bonds, AI risk, climate risk, crypto, and digital resilience.",
+      why: "Books 1 to 4 measured risk inside a bank. Book 5 flips the seat: you're the investor allocating capital. Factor models explain where returns come from; VaR becomes a budgeting tool; performance measures separate skill from luck. The Current Issues half is GARP's rolling window onto today's risks.",
       prereqs: "Book 1 (VaR, correlation, diversified/undiversified VaR reappear verbatim), Part I portfolio theory (CAPM, efficient frontier), Book 4 (illiquidity biases).",
-      feeds: "Nothing downstream — this is the terminal book. But its factor/alpha lens reframes everything earlier: risk premiums are the payment for bearing the bad times the earlier books measured.",
+      feeds: "Nothing downstream. This is the terminal book. But its factor/alpha lens reframes everything earlier: risk premiums are the payment for bearing the bad times the earlier books measured.",
       sessions: [
         { name: "Risk Management and Investment Management", from: 81, to: 91 },
         { name: "Current Issues in Financial Markets", from: 92, to: 101 }
       ],
       readings: [
         { n: 81, t: "Factor Theory", hy: 5, deps: [], tag: "Assets are bundles of factors; premiums pay for bad-times exposure" },
-        { n: 82, t: "Factors", hy: 5, deps: [81], tag: "The named factors: value, momentum, size, volatility — and macro factors" },
+        { n: 82, t: "Factors", hy: 5, deps: [81], tag: "The named factors: value, momentum, size, volatility, and macro factors" },
         { n: 83, t: "Alpha (and the Low-Risk Anomaly)", hy: 5, deps: [82], tag: "Alpha is benchmark-relative; the low-risk anomaly defies CAPM" },
         { n: 84, t: "Portfolio Construction", hy: 4, deps: [83], tag: "From signals to positions: refining alphas, transaction costs, portfolio revisions" },
-        { n: 85, t: "Portfolio Risk: Analytical Methods", hy: 5, deps: [1], tag: "Marginal, incremental, and component VaR — decomposing portfolio risk" },
+        { n: 85, t: "Portfolio Risk: Analytical Methods", hy: 5, deps: [1], tag: "Marginal, incremental, and component VaR: decomposing portfolio risk" },
         { n: 86, t: "VaR and Risk Budgeting in Investment Management", hy: 4, deps: [85], tag: "Allocating a risk budget across managers and asset classes" },
-        { n: 87, t: "Risk Monitoring and Performance Measurement", hy: 3, deps: [86], tag: "Risk planning, budgeting, monitoring — and the RMU" },
+        { n: 87, t: "Risk Monitoring and Performance Measurement", hy: 3, deps: [86], tag: "Risk planning, budgeting, monitoring, and the RMU" },
         { n: 88, t: "Portfolio Performance Evaluation", hy: 5, deps: [83], tag: "Sharpe, Treynor, Jensen, IR; time- vs dollar-weighted returns; attribution" },
         { n: 89, t: "Hedge Funds", hy: 4, deps: [82], tag: "Strategies, biases in databases, and what hedge fund returns really contain" },
         { n: 90, t: "Performing Due Diligence on Specific Managers and Funds", hy: 4, deps: [89], tag: "The checklist that catches frauds and failures before you invest" },
@@ -191,7 +191,7 @@ export const META = {
         { n: 95, t: "Explainable, Trustworthy, Responsible AI in Risk Management", hy: 3, deps: [94], tag: "Black-box models meet model-risk discipline" },
         { n: 96, t: "Artificial Intelligence Risk Management Framework", hy: 3, deps: [95], tag: "NIST AI RMF: govern, map, measure, manage" },
         { n: 97, t: "Climate-Related Risk Drivers and Transmission Channels", hy: 4, deps: [], tag: "Physical vs transition risk → traditional risk types" },
-        { n: 98, t: "Climate-Related Financial Risks — Measurement Methodologies", hy: 3, deps: [97], tag: "Measuring climate exposure: gaps, proxies, scenario analysis" },
+        { n: 98, t: "Climate-Related Financial Risks: Measurement Methodologies", hy: 3, deps: [97], tag: "Measuring climate exposure: gaps, proxies, scenario analysis" },
         { n: 99, t: "Principles for the Effective Management and Supervision of Climate-Related Financial Risks", hy: 3, deps: [97, 98], tag: "18 principles: governance, capital/liquidity, risk management, supervision" },
         { n: 100, t: "The Crypto Ecosystem: Key Elements and Risks", hy: 3, deps: [], tag: "Stablecoins, DeFi, and familiar risks in unfamiliar wrappers" },
         { n: 101, t: "Digital Resilience and Financial Stability", hy: 2, deps: [47], tag: "Policy tools for tech-driven fragility" }
@@ -199,7 +199,7 @@ export const META = {
     }
   ],
 
-  /* Cross-book threads — ideas that never go away. Used on homepage + mind map. */
+  /* Cross-book threads: ideas that never go away. Used on homepage + mind map. */
   threads: [
     {
       name: "Tail risk beats average risk",
