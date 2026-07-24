@@ -8,6 +8,7 @@ import "./styles/tailwind.css";
 import "./styles/style.css";
 import "./widgets/all.js";
 import Nav from "./components/Nav.jsx";
+import ReturnToReading from "./components/ReturnToReading.jsx";
 import QuickNotes from "./components/QuickNotes.jsx";
 import CommandPalette from "./components/CommandPalette.jsx";
 import FontScaleSync from "./components/FontScaleSync.jsx";
@@ -65,6 +66,7 @@ function Shell() {
   return (
     <>
       {!fullscreen && <Nav />}
+      {!fullscreen && <ReturnToReading />}
       {fullscreen && (
         <button
           type="button"

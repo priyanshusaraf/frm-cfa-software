@@ -18,7 +18,7 @@ import MatchPairs from "../components/chapter/MatchPairs.jsx";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
-import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, getState } from "../lib/store.js";
+import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, setActiveReading, getState } from "../lib/store.js";
 import coreConceptsTable from "../data/coreConcepts.json";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
 import { keyPointAnchor } from "../lib/keyPointAnchor.js";
@@ -84,6 +84,7 @@ export default function Chapter() {
        in; drop it the moment we move to another one */
     setSplitQuery(null);
     if (rn) touchVisited(rn);
+    if (rn && !getState().done[rn]) setActiveReading(rn);
   }, [rn]);
 
   /* [ / ] keyboard nav between readings (skipped while typing) */
@@ -416,7 +417,6 @@ export default function Chapter() {
             <Link
               key={c.slug}
               to={`/concept/${c.slug}`}
-              state={{ fromReading: rn }}
               className="chip"
               style={{ textDecoration: "none" }}
               title={`Reused in ${c.refs.length} readings — deep-dive page`}

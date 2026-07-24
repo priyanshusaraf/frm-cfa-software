@@ -1,5 +1,5 @@
 import { useEffect, useMemo } from "react";
-import { useParams, useLocation, Link, Navigate } from "react-router-dom";
+import { useParams, Link, Navigate } from "react-router-dom";
 import { useAllReadings } from "../lib/readings.js";
 import { findCoreConcept } from "../lib/coreConcepts.js";
 import { readingMeta, rpath, bookOf } from "../lib/meta.js";
@@ -14,8 +14,6 @@ import Html from "../components/Html.jsx";
    this page works for every core concept even before Phase 2 content lands. */
 export default function ConceptPage() {
   const { slug } = useParams();
-  const location = useLocation();
-  const fromReading = location.state && location.state.fromReading;
   const readingsMap = useAllReadings();
 
   const concept = useMemo(() => findCoreConcept(readingsMap, slug), [readingsMap, slug]);
@@ -51,12 +49,6 @@ export default function ConceptPage() {
   return (
     <main className="page">
       <div className="crumbs"><Link to="/">Home</Link> / <Link to="/concepts">Core Concepts</Link> / {concept.name}</div>
-
-      {fromReading && (
-        <Link to={rpath(fromReading)} className="text-dim hover:text-ink text-sm no-underline" style={{ display: "inline-block", marginBottom: "0.6rem" }}>
-          ← Back to Reading {fromReading}
-        </Link>
-      )}
 
       <div className="kicker" style={{ color: homeBook ? homeBook.color : "var(--accent)" }}>
         Core concept · first defined in R{concept.homeReading}{homeMeta ? " · " + homeMeta.t : ""}

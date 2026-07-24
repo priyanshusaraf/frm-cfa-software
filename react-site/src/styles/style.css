@@ -676,6 +676,15 @@ html[data-fullscreen] .qn-fab { display: none; }
 }
 .fs-exit:hover { opacity: 1; color: var(--text); border-color: var(--border-strong); }
 
+/* ---------- global "Return to Reading" button (nav.activeReading) ---------- */
+.return-to-reading {
+  position: fixed; left: 12px; top: calc(var(--nav-h) + 10px); z-index: 40;
+  font-size: 0.78rem; padding: 0.3rem 0.6rem; border-radius: var(--radius-sm);
+  color: var(--text-dim); background: var(--bg-raised); border: 1px solid var(--border);
+  cursor: pointer; transition: color .15s, border-color .15s, background .15s;
+}
+.return-to-reading:hover { color: var(--text); border-color: var(--border-strong); background: var(--bg-hover); }
+
 /* ---------- section-label bookmark toggle ---------- */
 .section-label { position: relative; }
 .bookmark-toggle {

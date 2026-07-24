@@ -20,6 +20,9 @@
               // + split: { panes:{source,condensed}, side:'left'|'right', widths:{source,condensed}px,
               //            zoom:{source,condensed} } — free-form split-view source panes (Chapter.jsx §7.4)
      mocks:  [ { ts, total, correct, perBook, minutes } ], // mock-exam history (newest first)
+     nav:    { activeReading },                       // global "Return to Reading" target: reading number
+                                                      // or null; set on chapter mount (if not done), cleared
+                                                      // when that reading is marked done or explicitly cleared
    }
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
 import { useSyncExternalStore } from "react";
@@ -52,7 +55,19 @@ export function toggleDone(rn) {
   const s = load();
   const done = { ...s.done };
   if (done[rn]) delete done[rn]; else done[rn] = true;
-  save({ ...s, done });
+  const nav = s.nav || {};
+  const nextNav = done[rn] && nav.activeReading === rn ? { ...nav, activeReading: null } : nav;
+  save({ ...s, done, nav: nextNav });
+}
+
+/* ---- global "Return to Reading" target ---- */
+export function setActiveReading(rn) {
+  const s = load();
+  save({ ...s, nav: { ...(s.nav || {}), activeReading: rn } });
+}
+export function clearActiveReading() {
+  const s = load();
+  save({ ...s, nav: { ...(s.nav || {}), activeReading: null } });
 }
 
 export function recordQuiz(rn, pct) {
