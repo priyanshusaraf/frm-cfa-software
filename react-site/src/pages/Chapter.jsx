@@ -13,6 +13,9 @@ import ChapterTOC from "../components/chapter/ChapterTOC.jsx";
 import Quiz from "../components/chapter/Quiz.jsx";
 import MiniMap from "../components/chapter/MiniMap.jsx";
 import Highlighter from "../components/chapter/Highlighter.jsx";
+import ConceptHover from "../components/chapter/ConceptHover.jsx";
+import { linkifyRoot } from "../lib/conceptLinks.js";
+import { conceptLinkTable } from "../data/conceptLinkTable.js";
 import ListBuilder from "../components/chapter/ListBuilder.jsx";
 import MatchPairs from "../components/chapter/MatchPairs.jsx";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
@@ -195,6 +198,9 @@ export default function Chapter() {
     resetScrollAnchor();
     initWidgets(rootRef.current);
     fitMath(rootRef.current);
+    /* Inline core-concept links run AFTER fitMath so the math subtrees they must
+       not touch are already built and carry their .katex/.f-tex markers. */
+    linkifyRoot(rootRef.current, conceptLinkTable, rn);
     requestAnimationFrame(() => {
       const r = resumeRef.current;
       if (r.scrollTo) {
@@ -608,6 +614,7 @@ export default function Chapter() {
       <ChapterTOC sections={sections} rn={rn} />
       <KeyPoints items={d.highYield} color={book.color} resolve={(t) => keyPointAnchor(t, d.concepts, sections)} />
       <Highlighter rn={rn} book={book.n} containerRef={rootRef} />
+      <ConceptHover containerRef={rootRef} />
     </main>
   );
 

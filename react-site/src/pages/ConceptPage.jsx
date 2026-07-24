@@ -22,7 +22,7 @@ export default function ConceptPage() {
   const layerColor = isRevision ? "var(--purple)" : "var(--accent)";
 
   useEffect(() => {
-    if (concept) document.title = concept.name + " — " + layerLabel + " — FRM Part II";
+    if (concept) document.title = (concept.display || concept.name) + " — " + layerLabel + " — FRM Part II";
   }, [concept, layerLabel]);
 
   useEffect(() => {
@@ -53,13 +53,13 @@ export default function ConceptPage() {
 
   return (
     <main className="page">
-      <div className="crumbs"><Link to="/">Home</Link> / <Link to="/concepts">Concepts</Link> / {concept.name}</div>
+      <div className="crumbs"><Link to="/">Home</Link> / <Link to="/concepts">Concepts</Link> / {concept.display || concept.name}</div>
 
       <div className="kicker" style={{ color: layerColor }}>
         {layerLabel}
         {hasHome ? <> · {isRevision ? "assumed from" : "first defined in"} R{concept.homeReading}{homeMeta ? " · " + homeMeta.t : ""}</> : null}
       </div>
-      <h1>{concept.name}</h1>
+      <h1>{concept.display || concept.name}</h1>
       {concept.lead && <p className="lead"><Html as="span" html={concept.lead} /></p>}
 
       {sections.length > 0 && (

@@ -8,6 +8,21 @@
    distinct concepts never merge by accident). */
 import { slugify } from "./html.js";
 import { authoredConcepts as defaultAuthored } from "../data/authoredConcepts.js";
+import { conceptLinkTable as defaultLinkTable } from "../data/conceptLinkTable.js";
+
+/* Concepts the Phase 3 generator promoted on PROSE mentions: named once in a
+   reading's formulas[]/concepts[], then referred to by name in the running text
+   of 2+ other readings (see scripts/build-core-concepts.mjs). They are link
+   targets, so /concept/:slug must resolve them, but they are NOT
+   exact-name-recurring, so buildCoreConcepts above cannot see them. */
+function promotedFrom(linkTable) {
+  return (linkTable || [])
+    .filter((r) => r && r.kind && Array.isArray(r.refs) && r.refs.length)
+    .map((r) => ({
+      slug: r.slug, name: r.name, display: r.display || r.name, kind: r.kind,
+      layer: "core", homeReading: r.homeReading, refs: r.refs,
+    }));
+}
 
 function normalize(s) {
   return String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
@@ -71,7 +86,7 @@ function authoredSlug(a) {
    src/data/authoredConcepts.js) takes precedence over an auto-detected concept of
    the same slug; otherwise the auto-detected core concept is returned (layer
    "core"). `authored` is injectable for testing. Returns null if neither matches. */
-export function findConcept(readingsMap, slug, authored = defaultAuthored) {
+export function findConcept(readingsMap, slug, authored = defaultAuthored, linkTable = defaultLinkTable) {
   const a = (authored || []).find((x) => authoredSlug(x) === slug);
   if (a) {
     return {
@@ -86,13 +101,13 @@ export function findConcept(readingsMap, slug, authored = defaultAuthored) {
       authored: true,
     };
   }
-  return findCoreConcept(readingsMap, slug);
+  return findCoreConcept(readingsMap, slug) || promotedFrom(linkTable).find((c) => c.slug === slug) || null;
 }
 
 /* Combined listing for the /concepts index: authored entries first (they are the
    deliberately-curated ones), then auto-detected core concepts not shadowed by an
    authored slug. Each carries a `layer`. `authored` is injectable for testing. */
-export function listConcepts(readingsMap, authored = defaultAuthored) {
+export function listConcepts(readingsMap, authored = defaultAuthored, linkTable = defaultLinkTable) {
   const authoredList = (authored || []).map((a) => ({
     slug: authoredSlug(a),
     name: a.name,
@@ -103,5 +118,10 @@ export function listConcepts(readingsMap, authored = defaultAuthored) {
   }));
   const claimed = new Set(authoredList.map((a) => a.slug));
   const auto = buildCoreConcepts(readingsMap).filter((c) => !claimed.has(c.slug));
-  return [...authoredList, ...auto];
+  auto.forEach((c) => claimed.add(c.slug));
+  /* Prose-promoted concepts belong in the index too: they are linked from
+     chapter prose, so an index that omitted them would list fewer concepts than
+     the reader can actually reach. */
+  const promoted = promotedFrom(linkTable).filter((c) => !claimed.has(c.slug));
+  return [...authoredList, ...auto, ...promoted];
 }

@@ -16,7 +16,7 @@ export default function ConceptsIndex() {
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
     if (!query) return concepts;
-    return concepts.filter((c) => c.name.toLowerCase().includes(query));
+    return concepts.filter((c) => ((c.display || "") + " " + c.name).toLowerCase().includes(query));
   }, [concepts, q]);
 
   return (
@@ -53,7 +53,7 @@ export default function ConceptsIndex() {
             return (
               <Link key={c.slug} to={`/concept/${c.slug}`} className="card" style={{ display: "block", textDecoration: "none" }}>
                 <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem", flexWrap: "wrap" }}>
-                  <h3 style={{ margin: 0 }}>{c.name}</h3>
+                  <h3 style={{ margin: 0 }}>{c.display || c.name}</h3>
                   <span className="chip" style={{ fontSize: "0.68rem", color: isRevision ? "var(--purple)" : "var(--accent)", borderColor: isRevision ? "var(--purple)" : "var(--accent)" }}>
                     {isRevision ? "revision" : "core"}
                   </span>

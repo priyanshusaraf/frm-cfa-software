@@ -15,6 +15,9 @@
        lead,                       // one-line HTML summary under the title
        homeReading,                // reading this most belongs to (crumb + base layer)
        refs: [rn, ...],            // readings this concept surfaces in
+       linkPhrases: ["..."],       // extra prose spellings the Phase 3 inline
+                                   // linker should catch beyond `name` itself
+                                   // (see src/lib/conceptLinks.js)
        sections: [{ label, html, tone }],   // ordered, problem-first (section 1a)
      }
 
@@ -30,6 +33,11 @@ export const authoredConcepts = [
     layer: "revision",
     homeReading: 39,
     refs: [28, 39, 30],
+    linkPhrases: [
+      "securitization", "securitisation", "structured finance",
+      "special purpose vehicle", "credit enhancement",
+      "overcollateralization", "excess spread", "pass-through",
+    ],
     lead: "Covered bonds to pass-through MBS to CMOs to CDO/CLO credit tranching, built one step at a time as the answer to one problem: a bank with illiquid loans that wants cash and risk transfer today.",
     sections: [
       {
@@ -68,6 +76,11 @@ export const authoredConcepts = [
     layer: "core",
     homeReading: 28,
     refs: [28, 39, 30],
+    linkPhrases: [
+      "collateralized mortgage obligation", "collateralized debt obligation",
+      "collateralized loan obligation", "sequential-pay", "tranching",
+      "CMO", "CDO", "CLO",
+    ],
     lead: "A CMO and a CDO both pool debt, slice it into tranches, and pay them in a waterfall, and they share the word tranche. But they divide two unrelated risks. Confusing them is one of the most common structured-finance mistakes.",
     sections: [
       {

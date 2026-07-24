@@ -22,18 +22,41 @@ per-reading status. This file holds the procedure. Neither is useful alone.
 
 ## 1. ACTIVE PHASE = "phase-3-hover-linking"
 
-Per-reading fan-out adding inline hover-snippet links for reused core concepts
-(root `react-site/CLAUDE.md` section 6, Phase 3). Wave = 5 readings.
+Inline hover-snippet links for reused core concepts (root `react-site/CLAUDE.md`
+section 6, Phase 3). Wave = 5 readings.
 
-Per reading, the agent may ONLY:
-- Wrap occurrences of an established core-concept name in the linking component.
-- Add nothing else. No prose edits in this phase. Prose belongs to the content run.
+**The linking is AUTOMATIC, and the data files are never edited in this phase.**
+Built 2026-07-25 (seventeenth session), per CLAUDE.md section 6 item 3
+("auto-detected, not manually authored"):
 
-Anchors attach to stable concept names, so the later content run can rewrite the
-surrounding sentence without breaking a link. If a concept name itself must change
-for correctness, flag it in `content-flags.md` rather than renaming it here.
+- `scripts/build-core-concepts.mjs` also emits `src/data/conceptLinkTable.js`:
+  every linkable concept with its match phrases and a hover snippet. Re-run it
+  after any change to a `formulas[]`/`concepts[]` NAME or to
+  `authoredConcepts.js`.
+- `src/lib/conceptLinks.js` `linkifyRoot()` runs after render in `Chapter.jsx`
+  and wraps the first occurrence of each concept name in `<a class="cref">`.
+  A concept is never linked inside its own home reading, math/widget/heading
+  subtrees are skipped, and each concept links at most once per page.
+- `ConceptHover.jsx` renders the snippet card (hover on desktop, first tap on
+  touch) with "Learn more" into `/concept/:slug`.
 
-Mark the `p3` column `done` per reading. Verification is section 3.
+This satisfies the anchoring requirement more strongly than hand-wrapping would:
+the anchor is the concept NAME at render time, so the content run can rewrite any
+surrounding sentence and the link follows it. Nothing to break, nothing to merge.
+
+**So the per-reading wave work is VERIFICATION, not editing:**
+
+```bash
+node scripts/preview-concept-links.mjs 1 2 3 4 5   # phrase + surrounding sentence
+```
+
+Judge each match: does the linked phrase actually mean that concept here, and is
+the target page the one a confused student would want? Record a bad match in
+`content-flags.md` and fix it at the source (a `linkPhrases` entry, a tighter
+concept name, or the generator's guards) rather than in the reading. A reading
+with zero matches is a legitimate `done`: it reuses nothing.
+
+Mark the `p3` column `done` per reading. Verification is section 4.
 
 ---
 
