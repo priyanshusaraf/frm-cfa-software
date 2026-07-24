@@ -40,6 +40,7 @@ const STUDY_ITEMS = [
   ["/highlights", "Highlights", Highlighter],
   ["/bookmarks", "Bookmarks", Bookmark],
   ["/concepts", "Core Concepts", Boxes],
+  ["/case-study", "Case study", Boxes],
   ["/settings", "Settings", SettingsIcon],
 ];
 

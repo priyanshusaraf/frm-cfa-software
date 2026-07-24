@@ -21,6 +21,7 @@ const PAGES = [
   { label: "Highlights", path: "/highlights" },
   { label: "Bookmarks", path: "/bookmarks" },
   { label: "Core Concepts", path: "/concepts" },
+  { label: "Case study", path: "/case-study" },
   { label: "Settings", path: "/settings" },
 ];
 
