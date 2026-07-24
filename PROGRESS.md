@@ -52,8 +52,36 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > - Hydration toast: fires after 45 min of foreground time, dismiss re-arms, pauses when tab
 >   hidden; Settings On/Off toggle works.
 >
-> **NEXT: Phase 0 — studyPath planner slice** (`docs/superpowers/plans/2026-07-24-studypath-planner-slice.md`),
-> then Phase 1 infra. See the roadmap spec for full phase order.
+> **PHASE 0 (studyPath planner slice) COMPLETE** — commits `f5c64fa..dc21876`. The pure planner
+> core now exists and the Planner uses it.
+> - **`src/lib/studyPath.js`** (pure, deterministic, unit-tested with `node --test`, 12/12):
+>   `orderedReadings(meta?, moves?)` (book -> session -> stable intra-session topo-sort by `deps`,
+>   then authored `move` overrides), `buildBlocks(meta?, moves?)` (one block per Schweser session,
+>   curated clusters lifted out into their own blocks, every reading covered once),
+>   `scheduleBlocks({startDate, examDate, done})` (star-weighted spans packed into the window with
+>   a reserved ~15% review tail; hardened so an over-subscribed short window never emits an
+>   inverted span or bleeds into the review tail).
+> - **`src/data/studyPath.js`** authored override table (R27/28/29 "Portfolio credit and copulas"
+>   cluster + move-29-near-37). Small on purpose; the single place a human tunes ordering.
+> - **`scripts/preview-blocks.mjs`** prints Book 1 blocks + a sample schedule (the owner
+>   bar-approval artifact). **`src/pages/Planner.jsx`** now orders the plan via `orderedReadings()`
+>   instead of raw `r.n`.
+> - Deferred to Phase 1 (by the plan's own design): `planner.startDate` store key + the two-date
+>   UI, the block-based Planner UI, and the "Next in your plan" Chapter CTA. `scheduleBlocks`
+>   already accepts `startDate`, so Phase 1 is a wiring job.
+>
+> **⚠️ EXECUTION NOTE:** a Sonnet subagent session limit (reset ~17:50 IST, 2026-07-24) was hit
+> mid-way through Phase 0. The studyPath review-finding fix (`870d859`) and Task 5 (`dc21876`)
+> were therefore applied and committed by the orchestrator directly; both implement exactly the
+> Opus-reviewer prescription / plan spec and are test-verified (12/12) and render-clean. The SDD
+> **final whole-branch review is still PENDING** (needs a fresh subagent budget). Ledger:
+> `.superpowers/sdd/progress.md`.
+>
+> **NEXT: Phase 1 infra** (roadmap spec order: F diagram-fidelity widgets -> G planner UI + Block
+> Review -> §9-B ReadingArc -> §7.1 v2 concept `layer`). These do NOT yet have task-level
+> implementation plans; write them (superpowers:writing-plans) from the roadmap + expansion
+> specs before subagent execution. Owner should also run the Phase 0.5 manual-verify checklist
+> above and approve the planner/preview bar (run `node scripts/preview-blocks.mjs`).
 >
 > ---
 >
