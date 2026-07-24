@@ -81,7 +81,34 @@ export const banks = [
     domain: "Operational and resilience",
     bank: "Barings, Societe Generale, and Knight Capital",
     why: "Rogue trading and a runaway deployment: front-office control failures and a missing kill switch are the home of the bow-tie and three-lines-of-defense material.",
-    status: "planned",
+    status: "authored",
+    narrative: [
+      {
+        label: "Three collapses, one control failure",
+        html: "<p>Book 3's operational-risk framework was built from post-mortems, and three of the most famous are Barings (1995), Societe Generale (2008), and Knight Capital (2012). Different decades and different mechanics, but the same root: a control that was supposed to be independent was not there, or could be bypassed. These are the case studies the three-lines-of-defense, risk-identification, and bow-tie material is written to prevent.</p>",
+      },
+      {
+        label: "Barings: the trader who checked his own trades",
+        html: "<p>Nick Leeson ran both the trading desk in Singapore and the back office that was meant to settle and check it. Because he controlled both, he could hide mounting losses in a concealed error account while reporting profits upstairs. That is the three-lines-of-defense failure in its purest form: Line 1, the risk-taker, was also his own Line 2, the independent check. The losses reached hundreds of millions of pounds and the bank, more than two centuries old, collapsed. The lesson is exactly Book 3's: the value of a second line comes entirely from its independence, and merging it into the first destroys the point.</p>",
+      },
+      {
+        label: "Societe Generale: controls a knowledgeable insider can game",
+        html: "<p>Jerome Kerviel built enormous unauthorized directional positions and, using his back-office knowledge, faked the offsetting hedges that would otherwise have tripped the bank's alarms. The eventual loss was about five billion euros. The lesson sharpens Barings: risk identification has to assume an adversary who knows what the check looks for, not just an honest mistake. A control that only confirms a matching hedge exists can be satisfied with a fabricated one.</p>",
+      },
+      {
+        label: "Knight Capital: the control that did not exist",
+        html: "<p>Knight was not a rogue trader at all. In 2012 a botched software deployment left obsolete code active in production, and the firm's systems fired millions of erroneous orders into the market. With no kill switch to halt it, Knight lost roughly four hundred and forty million dollars in about forty-five minutes and was effectively wiped out. This is operational risk as a technology-and-process failure, and it is why Book 3 treats resilience, a tested ability to detect and stop a failure fast, as more important than trying to prevent every possible bug.</p>",
+      },
+      {
+        label: "Each one is a bow-tie",
+        html: "<p>Line all three up against the bow-tie diagram: on the left, causes and the preventive controls that should have stopped them (segregation of duties, position reconciliation, deployment sign-off); the risk event in the center; and on the right, the impacts and the detective and corrective controls that were missing or too slow (the concealed account uncovered too late, the absent kill switch). The op-risk framework you are learning is, quite literally, the generalization of these failures.</p>",
+      },
+    ],
+    hooks: [
+      { rn: 40, oneLiner: "Knight Capital shows why a tested kill switch (resilience) beats trying to prevent every deployment bug." },
+      { rn: 41, oneLiner: "Barings collapsed because one person was both Line 1 and his own Line 2: the independence of the second line is the whole point." },
+      { rn: 43, oneLiner: "Each of these collapses is a textbook bow-tie of causes, preventive controls, the event, and missing detective controls." },
+    ],
   },
   {
     book: 4,
@@ -150,6 +177,24 @@ export const banks = [
     domain: "Current issues",
     bank: "SVB and Credit Suisse (2023)",
     why: "Two recent, well-documented collapses that anchor the current-issues material on liquidity runs, contagion, and the speed of a digital-age bank run.",
-    status: "planned",
+    status: "authored",
+    narrative: [
+      {
+        label: "Two 2023 failures the current-issues book dissects",
+        html: "<p>The current-issues material is built around recent, well-documented events, and March 2023 supplied two: Silicon Valley Bank and Credit Suisse. SVB is covered in depth under Book 4 (the liquidity and interest-rate-risk failure); here the current-issues angle is the supervisory review of how it was allowed to happen. Credit Suisse adds a second, different lesson about the capital structure.</p>",
+      },
+      {
+        label: "Credit Suisse: seniority turned upside down",
+        html: "<p>As part of the emergency rescue by UBS, Credit Suisse's Additional Tier 1 bonds, the contingent convertible or CoCo instruments, were written down to zero while shareholders still received value in the deal. That inverts the intuitive capital hierarchy, where common equity is supposed to absorb losses before subordinated debt. The write-down was permitted by the specific contractual and regulatory triggers on those instruments, and it repriced the entire AT1 market overnight. The lesson the current-issues reading wants: a capital instrument's actual loss-absorbing behavior is set by its terms and by regulatory discretion, not by where its label sits on the usual seniority ladder.</p>",
+      },
+      {
+        label: "Why these are current-issues canon",
+        html: "<p>Both failures stress-test the whole curriculum at once, which is why they anchor this book. SVB exercises deposit stability, held-to-maturity accounting, and interest-rate risk (Book 4). Credit Suisse exercises capital-instrument seniority, contingent capital, and contagion across the AT1 market. Recent, thoroughly documented, and each a live demonstration that the frameworks earlier in the curriculum are the tools regulators reach for after the fact.</p>",
+      },
+    ],
+    hooks: [
+      { rn: 92, oneLiner: "This reading IS the SVB post-mortem; the full liquidity/IRRBB mechanics are in the Book 4 case-study deep-dive." },
+      { rn: 93, oneLiner: "Credit Suisse's AT1 (CoCo) bonds were zeroed while equity survived: the seniority inversion this reading covers." },
+    ],
   },
 ];
