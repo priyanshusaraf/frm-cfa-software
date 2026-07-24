@@ -36,7 +36,10 @@ export const authoredConcepts = [
     linkPhrases: [
       "securitization", "securitisation", "structured finance",
       "special purpose vehicle", "credit enhancement",
-      "overcollateralization", "excess spread", "pass-through",
+      "overcollateralization", "excess spread",
+      /* "pass-through" alone is not safe: R43 uses it for a control's
+         failure-pass-through probability, nothing to do with MBS. */
+      "pass-through MBS", "mortgage pass-through",
     ],
     lead: "Covered bonds to pass-through MBS to CMOs to CDO/CLO credit tranching, built one step at a time as the answer to one problem: a bank with illiquid loans that wants cash and risk transfer today.",
     sections: [

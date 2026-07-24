@@ -17,7 +17,8 @@ export const conceptLinkTable = [
       "credit enhancement",
       "overcollateralization",
       "excess spread",
-      "pass-through"
+      "pass-through MBS",
+      "mortgage pass-through"
     ],
     "snippet": "Covered bonds to pass-through MBS to CMOs to CDO/CLO credit tranching, built one step at a time as the answer to one problem: a bank with illiquid loans that wants cash and risk transfer today."
   },

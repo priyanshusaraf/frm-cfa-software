@@ -75,11 +75,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | done | todo | 8 | - | |
 | 39 | 2 | An Introduction to Securitization | done | todo | 8 | - | |
 | 40 | 3 | Introduction to Operational Risk and Resilience | done | todo | 8 | - | |
-| 41 | 3 | Risk Governance | todo | todo | - | - | |
-| 42 | 3 | Risk Identification | todo | todo | - | - | |
-| 43 | 3 | Risk Measurement and Assessment | todo | todo | - | - | |
-| 44 | 3 | Risk Mitigation | todo | todo | - | - | |
-| 45 | 3 | Risk Reporting | todo | todo | - | - | |
+| 41 | 3 | Risk Governance | done | todo | 9 | - | |
+| 42 | 3 | Risk Identification | done | todo | 9 | - | |
+| 43 | 3 | Risk Measurement and Assessment | done | todo | 9 | - | |
+| 44 | 3 | Risk Mitigation | done | todo | 9 | - | |
+| 45 | 3 | Risk Reporting | done | todo | 9 | - | |
 | 46 | 3 | Integrated Risk Management | todo | todo | - | - | |
 | 47 | 3 | Cyber-Resilience: Range of Practices | todo | todo | - | - | |
 | 48 | 3 | Case Study: Cyberthreats and Information Security Risks | todo | todo | - | - | |
