@@ -9,6 +9,7 @@ import "./styles/style.css";
 import "./widgets/all.js";
 import Nav from "./components/Nav.jsx";
 import ReturnToReading from "./components/ReturnToReading.jsx";
+import HydrationReminder from "./components/HydrationReminder.jsx";
 import QuickNotes from "./components/QuickNotes.jsx";
 import CommandPalette from "./components/CommandPalette.jsx";
 import FontScaleSync from "./components/FontScaleSync.jsx";
@@ -67,6 +68,7 @@ function Shell() {
     <>
       {!fullscreen && <Nav />}
       {!fullscreen && <ReturnToReading />}
+      <HydrationReminder />
       {fullscreen && (
         <button
           type="button"

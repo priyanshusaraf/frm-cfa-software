@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useStore, setFontScale } from "../lib/store.js";
+import { useStore, setFontScale, setHydrationReminder } from "../lib/store.js";
 
 /* Layout designed to accommodate more controls later (font family, background) —
    each preference gets its own labeled section, not a one-off single field. */
@@ -14,6 +14,7 @@ const TEXT_SIZES = [
 export default function Settings() {
   useEffect(() => { document.title = "Settings — FRM Part II"; }, []);
   const fontScale = useStore((s) => (s.layout && s.layout.fontScale) || 1);
+  const hydrationOn = useStore((s) => (s.prefs ? s.prefs.hydrationReminder !== false : true));
 
   return (
     <main className="page">
@@ -39,6 +40,30 @@ export default function Settings() {
                 {t.label}
               </button>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ marginTop: "1.75rem" }}>
+        <div className="section-label" style={{ color: "var(--accent)" }}>Study reminders</div>
+        <div className="card">
+          <p style={{ fontSize: "0.88rem", color: "var(--text-dim)", marginTop: 0 }}>
+            A gentle, dismissible toast every 45 minutes of active study time. It never
+            interrupts or blocks the page, just a nudge to stretch and hydrate.
+          </p>
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            <button
+              className={"chip" + (hydrationOn ? " active" : "")}
+              onClick={() => setHydrationReminder(true)}
+            >
+              On
+            </button>
+            <button
+              className={"chip" + (!hydrationOn ? " active" : "")}
+              onClick={() => setHydrationReminder(false)}
+            >
+              Off
+            </button>
           </div>
         </div>
       </section>

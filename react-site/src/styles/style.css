@@ -703,6 +703,29 @@ html[data-fullscreen] .qn-fab { display: none; }
 .bookmark-toggle:hover { color: var(--amber); }
 .bookmark-toggle.on { color: var(--amber); }
 
+/* ---------- 45-minute hydration reminder toast ----------
+   Fixed, bottom-center, auto-width: must never cover the page or capture
+   clicks outside itself, hence position:fixed + width:auto (no full-bleed bar). */
+.hydration-toast {
+  position: fixed; left: 50%; bottom: 1.4rem; transform: translateX(-50%); z-index: 70;
+  display: inline-flex; align-items: center; gap: 0.7rem; max-width: calc(100% - 2rem);
+  background: var(--bg-raised); color: var(--text); border: 1px solid var(--border);
+  border-radius: var(--radius); box-shadow: var(--shadow);
+  padding: 0.6rem 0.7rem 0.6rem 0.9rem; font-size: 0.84rem;
+  animation: hydration-rise 0.18s ease-out;
+}
+.hydration-toast span { color: var(--text-dim); }
+.hydration-toast button {
+  flex: none; background: none; border: none; cursor: pointer; color: var(--text-faint);
+  font-size: 0.9rem; line-height: 1; padding: 0.2rem 0.3rem; border-radius: var(--radius-sm);
+  transition: color 0.15s, background 0.15s;
+}
+.hydration-toast button:hover { color: var(--text); background: var(--bg-hover); }
+@keyframes hydration-rise {
+  from { opacity: 0; transform: translate(-50%, 8px); }
+  to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
 /* ---------- misc ---------- */
 .footer-note { margin-top: 4rem; font-size: 0.8rem; color: var(--text-faint); border-top: 1px solid var(--border); padding-top: 1rem; }
 .pill-row { margin: 0.5rem 0 1.5rem; }

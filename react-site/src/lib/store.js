@@ -23,6 +23,8 @@
      nav:    { activeReading },                       // global "Return to Reading" target: reading number
                                                       // or null; set on chapter mount (if not done), cleared
                                                       // when that reading is marked done or explicitly cleared
+     prefs:  { hydrationReminder },                    // hydrationReminder: bool, default true (on unless
+                                                      // explicitly false) — 45-min foreground-time water-break toast
    }
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
 import { useSyncExternalStore } from "react";
@@ -271,6 +273,12 @@ export function setSplitQuery(rn, text) {
   const q = rn && t ? { rn, text: t } : undefined;
   if (!q && !cur.q) return; // nothing to clear: don't churn localStorage or notify
   save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, q } } });
+}
+
+/* ---- misc preferences ---- */
+export function setHydrationReminder(on) {
+  const s = load();
+  save({ ...s, prefs: { ...(s.prefs || {}), hydrationReminder: !!on } });
 }
 
 /* ---- study planner ---- */
