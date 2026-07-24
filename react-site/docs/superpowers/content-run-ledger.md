@@ -22,7 +22,11 @@ Advance this header only when every row for the active phase is `done`, then com
 
 ## How to read a row
 
-`p3` = phase-3 hover linking status. `content` = Sonnet clearance status.
+`p3` = phase-3 hover linking status. Linking is AUTOMATIC (built 2026-07-25, see
+the protocol's section 1), so `p3: done` means **this reading's generated links
+were reviewed and are right**, not that its data file was edited. No reading is
+edited in this phase. A reading with no links is still a legitimate `done`.
+`content` = Sonnet clearance status.
 Values: `todo` | `wip` | `done` | `blocked`. `wave` = the wave number that cleared it.
 `opusA` = `pass` once the gate certified that wave. Put anything a human needs to know
 in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
@@ -31,11 +35,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 
 | rn | bk | title | p3 | content | wave | opusA | notes |
 |----|----|-------|----|---------|------|-------|-------|
-| 1 | 1 | Estimating Market Risk Measures | todo | todo | - | - | |
-| 2 | 1 | Non-Parametric Approaches | todo | todo | - | - | |
-| 3 | 1 | Parametric Approaches (II): Extreme Value Theory | todo | todo | - | - | |
-| 4 | 1 | Backtesting VaR | todo | todo | - | - | |
-| 5 | 1 | VaR Mapping | todo | todo | - | - | |
+| 1 | 1 | Estimating Market Risk Measures | done | todo | 1 | - | |
+| 2 | 1 | Non-Parametric Approaches | done | todo | 1 | - | |
+| 3 | 1 | Parametric Approaches (II): Extreme Value Theory | done | todo | 1 | - | |
+| 4 | 1 | Backtesting VaR | done | todo | 1 | - | |
+| 5 | 1 | VaR Mapping | done | todo | 1 | - | |
 | 6 | 1 | Messages From the Academic Literature | todo | todo | - | - | |
 | 7 | 1 | Correlation Basics | todo | todo | - | - | |
 | 8 | 1 | Empirical Properties of Correlation | todo | todo | - | - | |
