@@ -139,7 +139,22 @@ export function useScrollAnchor(rootRef) {
 
     function restore() {
       reflowAt = Date.now();
-      if (Date.now() - contentToggleAtRef.current < CONTENT_TOGGLE_GUARD) return;
+      if (Date.now() - contentToggleAtRef.current < CONTENT_TOGGLE_GUARD) {
+        // The expand/collapse itself is suppressed above, but the anchor's ON-SCREEN
+        // position genuinely moved (content above it grew/shrank) and no scroll event will
+        // ever fire to let capture() refresh it (the viewport top didn't scroll, only
+        // reflowed). If we leave the stale pre-toggle offset in anchorRef, the NEXT reflow
+        // that isn't suppressed (a resize, font-scale change, or split-pane open, with no
+        // scroll in between) will see a large delta against the stale offset and reintroduce
+        // the exact jump this guard exists to remove. Refresh the offset to the anchor's new
+        // position (no scroll, just re-recording "where it is now") so that a subsequent
+        // passive reflow has a correct baseline to diff against.
+        const a = anchorRef.current;
+        if (a && a.el && a.el.isConnected) {
+          a.offset = a.el.getBoundingClientRect().top - anchorLine();
+        }
+        return;
+      }
       let a = anchorRef.current;
       if (!a) return;
       // reading navigation / a split-pane open-close remount detaches the anchor
