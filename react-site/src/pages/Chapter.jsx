@@ -228,6 +228,18 @@ export default function Chapter() {
   const prevRn = idx > 0 ? FLAT[idx - 1] : null;
   const nextRn = idx >= 0 && idx < FLAT.length - 1 ? FLAT[idx + 1] : null;
 
+  /* bottom "Next" clears the reading just finished (toggleDone, so progress/
+     streaks/planner all update consistently) before advancing; the done-guard
+     on setActiveReading mirrors the mount effect above (only a NOT-done
+     reading is ever "active") so landing on an already-completed next
+     reading doesn't mark it active. */
+  function goNext() {
+    if (nextRn == null) return;
+    if (!getState().done[rn]) toggleDone(rn);
+    if (!getState().done[nextRn]) setActiveReading(nextRn);
+    navigate(rpath(nextRn));
+  }
+
   function toggleRecall(i) {
     setOpenRecall((s) => ({ ...s, [i]: !s[i] }));
   }
@@ -530,10 +542,10 @@ export default function Chapter() {
           </Link>
         ) : <span style={{ flex: 1 }} />}
         {nextRn ? (
-          <Link className="next" to={rpath(nextRn)}>
+          <button className="next" onClick={goNext}>
             <div className="dir">Next →</div>
             <div className="t">R{nextRn} · {readingMeta(nextRn).t}</div>
-          </Link>
+          </button>
         ) : <span style={{ flex: 1 }} />}
       </div>
 

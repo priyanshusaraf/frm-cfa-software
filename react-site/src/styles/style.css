@@ -394,14 +394,21 @@ a.chip:hover { border-color: var(--accent); color: var(--accent); text-decoratio
 
 /* ---------- Prev/next chapter nav ---------- */
 .chapter-nav { display: flex; gap: 1rem; margin-top: 3rem; }
-.chapter-nav a {
+.chapter-nav a, .chapter-nav button.next {
   flex: 1; border: 1px solid var(--border); border-radius: var(--radius);
   padding: 0.8rem 1rem; background: var(--bg-raised); color: var(--text);
 }
-.chapter-nav a:hover { border-color: var(--accent); text-decoration: none; }
+.chapter-nav a:hover, .chapter-nav button.next:hover { border-color: var(--accent); text-decoration: none; }
 .chapter-nav .dir { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint); }
 .chapter-nav .next { text-align: right; }
 .chapter-nav .t { font-size: 0.9rem; font-weight: 600; margin-top: 0.15rem; }
+/* button reset: .next is now also a <button> (Task 4, goNext), so it needs the
+   parts a plain <a> never had, font inheritance, no default button chrome,
+   and a pointer cursor to keep it reading as a link-styled control. */
+.chapter-nav button.next {
+  font: inherit; text-align: right; cursor: pointer; width: 100%;
+  display: block; box-sizing: border-box;
+}
 
 /* ---------- Widgets ---------- */
 .widget {
