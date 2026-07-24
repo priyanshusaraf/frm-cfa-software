@@ -9,10 +9,31 @@
 // field (`title`/`tagline`/`summary`), must never throw. Missing atoms are simply
 // skipped for that reading; nothing is invented.
 
+import { readingArc } from "./readingArc.js";
+
 const QUIZ_TOTAL_CAP = 6;
+const PREREQ_CAP = 5;
 
 function safeArr(v) {
   return Array.isArray(v) ? v : [];
+}
+
+/* External prerequisites of a block: readings some block reading builds on (its
+   deps) that are NOT themselves in the block. Same ReadingArc/deps machinery as
+   9-B, so an arbitrary planner block with no authored through-line still gets a
+   real, metadata-composed orientation. readingArc() returns null for reading
+   numbers not in META (e.g. synthetic test data), which is skipped safely. */
+function externalPrereqs(rns) {
+  const inBlock = new Set(rns);
+  const prereqs = new Set();
+  rns.forEach((rn) => {
+    const arc = readingArc(rn);
+    if (!arc) return;
+    arc.buildsOn.forEach((x) => {
+      if (!inBlock.has(x.n)) prereqs.add(x.n);
+    });
+  });
+  return [...prereqs].sort((a, b) => a - b);
 }
 
 function composeThroughLine(block, readings, throughlines) {
@@ -23,10 +44,17 @@ function composeThroughLine(block, readings, throughlines) {
   const firstTitle = (readings[rns[0]] && readings[rns[0]].title) || "";
   const lastTitle = (readings[rns[rns.length - 1]] && readings[rns[rns.length - 1]].title) || "";
   const n = rns.length;
-  const text =
+  let text =
     firstTitle && lastTitle && firstTitle !== lastTitle
       ? `${block.name}: ${n} readings, from ${firstTitle} to ${lastTitle}.`
       : `${block.name}: ${n} readings.`;
+
+  const prereqs = externalPrereqs(rns);
+  if (prereqs.length) {
+    const shown = prereqs.slice(0, PREREQ_CAP);
+    const suffix = prereqs.length > PREREQ_CAP ? " and earlier readings" : "";
+    text += ` It assumes R${shown.join(", R")}${suffix}.`;
+  }
   return { text, source: "composed" };
 }
 
