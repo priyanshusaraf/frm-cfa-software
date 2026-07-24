@@ -63,6 +63,26 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 >    fields carry the "Beyond exam scope" label (§6 exception). Other four banks carry mapping +
 >    rationale, status `"planned"`.
 >
+> **OWNER REVIEW + SELF-IMPROVING CONTENT SYSTEM (2026-07-25).** The owner reviewed the
+> counterparty cluster (R30-R35) and set a durable directive: maintain a **self-rectifying
+> per-reading content-review ledger** so later, cheaper models approach every reading correctly on
+> the first pass (the token-efficiency mechanism for scaling to all FRM+CFA levels, ~20+ books).
+> - **New `react-site/docs/superpowers/content-guidelines.md`** (durable, roadmap §5.1): the style
+>   playbook (8 owner-learned rules) + a per-reading Good/Weak/Guidance ledger, populated for
+>   R30-R35. Future agents READ it before editing content and UPDATE it as they go. `CLAUDE.md`
+>   (react-site) now has a "Where work is tracked" section pointing every future agent at
+>   PROGRESS.md / the roadmap / the SDD ledger / content-guidelines.md / content-flags.md, with a
+>   token-efficiency contract (do not re-derive what is recorded; write durable learnings down).
+> - **Fixed immediately** (functional + factual): the **Quiz-repeat bug** (Chapter.jsx now mounts
+>   `<Quiz key={rn}>`; the `useState` round initializer only ran on mount, so navigating readings
+>   reused the prior reading's questions + answers), the R31 counterparty-direction inversion
+>   ("moves in my favour and the counterparty owes me", not "against me"), R32 "exam candidate" x2,
+>   and R33 "named in the source" AI-ism. Build green; edited readings import-clean; no new dashes.
+> - **Flagged for Phase 5** in content-flags.md + content-guidelines.md: monolines/CDPCs "why",
+>   R32 zero-sum framing + continuity phrasing + CVA-vs-credit-limits + Ondine refresher, R33
+>   condense-repetition + naked-call-vs-spread margin example, richer go-deeper, and GLOBAL:
+>   tricky-quiz-wording, AI-ism purge, explain-why, cross-reading example continuity.
+>
 > **REMAINING (all fleet-scale per the roadmap's own execution model, ≤5 concurrent):**
 > - Phase 2 tail: the four remaining bank narratives (JPMorgan/London Whale, CS/Archegos,
 >   Barings+SocGen+Knight, CS current-issues), Books 2-5 session through-lines, and the case-study

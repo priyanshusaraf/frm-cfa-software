@@ -9,6 +9,36 @@ student's experience depends on them staying coherent.
 session by updating it. The vanilla `../site/` app is frozen — never edit it; it exists only
 as the reference implementation the widgets and renderers were ported from.
 
+## Where work is tracked (read these first, in this order)
+
+This codebase is a multi-session, multi-phase build that will eventually scale to **all levels
+of FRM and CFA (~20+ books)**. Token efficiency across that scale depends on NOT re-deriving
+what has already been decided. Before doing anything, orient via these files:
+
+1. **`../PROGRESS.md`** — the single resume point: exactly where development stands, what the
+   active phase is, and what is next. Read first, update before ending any session.
+2. **`docs/superpowers/specs/2026-07-24-react-site-roadmap.md`** — the master phased roadmap
+   (Phase 0..5) every session executes against. `2026-07-24-source-diagram-audit.md` and the
+   other specs in that folder are companions.
+3. **`.superpowers/sdd/progress.md`** — the per-task SDD ledger (gitignored scratch): granular
+   task status and review findings, more detailed than PROGRESS.md.
+4. **`docs/superpowers/content-guidelines.md`** — **READ BEFORE EDITING ANY CONTENT.** The
+   DURABLE, self-improving style playbook + per-reading review ledger (good points / weak
+   points / guidance). This is the mechanism that lets cheaper, later models get a reading
+   right on the first pass without re-deriving the owner's teaching style or repeating past
+   mistakes. **Update it as you work a reading:** record what is genuinely good (so nobody
+   rewrites it), what is weak (with the concrete fix), and any guidance for the next model.
+   Owner-caught issues recorded there are authoritative.
+5. **`docs/superpowers/content-flags.md`** — the TRANSIENT per-item worklist the final Phase 5
+   content pass consumes. Append improvable spots here as you go (flag-as-you-go); fold the
+   lasting lesson into `content-guidelines.md` before dropping a flag.
+
+**Token-efficiency contract for future (including smaller) models:** the expensive thinking is
+written down once in the files above and reused. Do not re-explore or re-decide what is already
+recorded there; read the relevant entry, then act. When you learn something durable (a style
+rule, a per-reading good/weak note, a recurring correctness trap), write it into
+`content-guidelines.md` so the next model inherits it instead of paying to rediscover it.
+
 ---
 
 ## 1. Who you are writing for, and how to teach

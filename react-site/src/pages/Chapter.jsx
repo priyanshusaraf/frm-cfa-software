@@ -506,7 +506,7 @@ export default function Chapter() {
 
       {d.quiz && d.quiz.length > 0 && (<>
         <SectionLabel txt="Test yourself" color={book.color} rn={rn} />
-        <Quiz rn={rn} quiz={d.quiz} />
+        <Quiz key={rn} rn={rn} quiz={d.quiz} />
       </>)}
 
       {d.recall && d.recall.length > 0 && (<>
