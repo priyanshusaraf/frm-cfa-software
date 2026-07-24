@@ -85,11 +85,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 48 | 3 | Case Study: Cyberthreats and Information Security Risks | done | todo | 10 | - | |
 | 49 | 3 | Case Study: Financial Crime and Fraud | done | todo | 10 | - | |
 | 50 | 3 | Guidance on Managing Outsourcing Risk | done | todo | 10 | - | |
-| 51 | 3 | Case Study: Third-Party Risk Management | todo | todo | - | - | |
-| 52 | 3 | Case Study: Investor Protection and Compliance Risks | todo | todo | - | - | |
-| 53 | 3 | Supervisory Guidance on Model Risk Management | todo | todo | - | - | |
-| 54 | 3 | Case Study: Model Risk and Model Validation | todo | todo | - | - | |
-| 55 | 3 | Stress Testing Banks | todo | todo | - | - | |
+| 51 | 3 | Case Study: Third-Party Risk Management | done | todo | 11 | - | |
+| 52 | 3 | Case Study: Investor Protection and Compliance Risks | done | todo | 11 | - | |
+| 53 | 3 | Supervisory Guidance on Model Risk Management | done | todo | 11 | - | |
+| 54 | 3 | Case Study: Model Risk and Model Validation | done | todo | 11 | - | |
+| 55 | 3 | Stress Testing Banks | done | todo | 11 | - | |
 | 56 | 3 | Risk Capital Attribution and RAPM | todo | todo | - | - | |
 | 57 | 3 | Range of Practices in Economic Capital Frameworks | todo | todo | - | - | |
 | 58 | 3 | Capital Planning at Large Bank Holding Companies | todo | todo | - | - | |
