@@ -102,3 +102,57 @@ export function buildBlocks(meta = META, moves = defaultOverrides) {
   nonEmpty.forEach((b) => delete b._sort);
   return nonEmpty;
 }
+
+const DAY = 86400e3;
+function dayNum(s) {
+  const d = new Date(s + "T00:00:00");
+  d.setHours(0, 0, 0, 0);
+  return d.getTime();
+}
+// star weight for a reading number, from META (no store).
+function readingMetaWeight(n) {
+  for (const b of META.books) {
+    const r = b.readings.find((x) => x.n === n);
+    if (r) return r.hy || 3;
+  }
+  return 3;
+}
+function blockWeight(block, done) {
+  return block.readings.reduce(
+    (sum, n) => sum + (done[n] ? 0 : readingMetaWeight(n) || 3),
+    0
+  );
+}
+
+export function scheduleBlocks({ startDate, examDate, done = {}, meta = META, moves = defaultOverrides }) {
+  const start = dayNum(startDate);
+  const exam = dayNum(examDate);
+  const daysToExam = Math.round((exam - start) / DAY);
+  if (isNaN(daysToExam) || daysToExam <= 0)
+    return { daysToExam: isNaN(daysToExam) ? 0 : daysToExam, reviewDays: 0, studyDays: 0, scheduled: [] };
+
+  const reviewDays = Math.min(10, Math.max(1, Math.floor(daysToExam * 0.15)));
+  const studyDays = Math.max(1, daysToExam - reviewDays);
+
+  const blocks = buildBlocks(meta, moves).filter(
+    (b) => !b.readings.every((n) => done[n])
+  );
+  const totalW = blocks.reduce((s, b) => s + blockWeight(b, done), 0) || 1;
+
+  const scheduled = [];
+  let cursor = 0;
+  blocks.forEach((block, i) => {
+    const w = blockWeight(block, done);
+    let span = Math.max(1, Math.round((w / totalW) * studyDays));
+    // never overflow the study window; leave at least one day per remaining block.
+    const remainingBlocks = blocks.length - i - 1;
+    const maxSpan = studyDays - cursor - remainingBlocks;
+    span = Math.max(1, Math.min(span, maxSpan));
+    const startDay = cursor;
+    const endDay = Math.min(studyDays - 1, cursor + span - 1);
+    scheduled.push({ block, startDay, endDay });
+    cursor = endDay + 1;
+  });
+
+  return { daysToExam, reviewDays, studyDays, scheduled };
+}

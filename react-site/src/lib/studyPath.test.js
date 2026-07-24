@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orderedReadings, buildBlocks } from "./studyPath.js";
+import { orderedReadings, buildBlocks, scheduleBlocks } from "./studyPath.js";
 import { overrides } from "../data/studyPath.js";
 
 test("orderedReadings returns every reading exactly once", () => {
@@ -75,4 +75,33 @@ test("buildBlocks covers every reading exactly once", () => {
   const all = buildBlocks().flatMap((b) => b.readings);
   assert.equal(new Set(all).size, all.length);
   assert.equal(all.length, orderedReadings().length);
+});
+
+test("scheduleBlocks reserves a review tail and schedules blocks in order", () => {
+  const s = scheduleBlocks({ startDate: "2026-01-01", examDate: "2026-04-11" }); // 100 days
+  assert.equal(s.daysToExam, 100);
+  assert.equal(s.reviewDays, 10); // floor(100*0.15)=15 -> clamped to 10
+  assert.equal(s.studyDays, 90);
+  assert.ok(s.scheduled.length > 0);
+  // day offsets are ordered, within [0, studyDays), and non-overlapping.
+  let prevEnd = -1;
+  for (const it of s.scheduled) {
+    assert.ok(it.startDay > prevEnd, "blocks do not overlap and advance");
+    assert.ok(it.endDay >= it.startDay);
+    assert.ok(it.endDay < s.studyDays, "never runs into the review tail");
+    prevEnd = it.endDay;
+  }
+});
+
+test("scheduleBlocks drops fully-done blocks", () => {
+  const done = {};
+  for (let n = 1; n <= 6; n++) done[n] = true; // finish Book 1 session 1
+  const s = scheduleBlocks({ startDate: "2026-01-01", examDate: "2026-04-11", done });
+  assert.ok(!s.scheduled.some((it) => it.block.readings.every((n) => done[n])));
+});
+
+test("scheduleBlocks handles a past/zero window without throwing", () => {
+  const s = scheduleBlocks({ startDate: "2026-04-11", examDate: "2026-01-01" });
+  assert.ok(s.daysToExam <= 0);
+  assert.deepEqual(s.scheduled, []);
 });
