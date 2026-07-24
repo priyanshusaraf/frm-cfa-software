@@ -90,15 +90,39 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 >   only, orphan-safe. First primitive of the Phase 1 F library. **Manual-verify:** bow-tie
 >   legibility in both themes at `#/chapter/43`.
 >
-> **⏸ OWNER CHECKPOINT (roadmap Phase 0 gate).** Two of the three Phase 0 bars now have concrete,
-> reviewed samples ready to approve: the **planner** (`node react-site/scripts/preview-blocks.mjs`)
-> and the **visual-fidelity** bar (the R43 bow-tie). The roadmap gates Phase 1 SCALING on owner
-> approval of all three bars (planner, visual-fidelity, Block Review) plus the manual-verify
-> checklist above. **NEXT builds (each its own task, not yet done):** the balance-sheet stepper on
-> r63 (completes the visual bar) and the dynamic Block Review pilot (a runtime-composition engine +
-> SRS graduation, the largest remaining Phase 0 piece); then Phase 1 scales (F widget library ->
-> G planner UI/Block Review -> §9-B ReadingArc -> §7.1 v2 concept `layer`), which still need
-> task-level plans written from the roadmap/expansion specs before subagent execution.
+> **PHASE 0 PILOT GATE COMPLETE.** All three roadmap Phase 0 bars now have built, Opus-reviewed
+> samples:
+> - **Planner bar:** `node react-site/scripts/preview-blocks.mjs` (dep/session-ordered blocks + schedule).
+> - **Visual-fidelity bar:** the R43 **bow-tie** widget + the r63 **balance-sheet stepper** (a
+>   two-column solvency-vs-liquidity stepper; both reusable, data-driven, CSS-var, theme-aware).
+> - **Block Review bar:** the dynamic **Block Review pilot** (`/block-review/:blockId`), piloted on
+>   the `c27` "Portfolio credit and copulas" cluster (R27/28/29). Composed at runtime from
+>   per-reading atoms (`src/lib/blockReview.js`, pure, 8 tests): an overview (authored through-line
+>   + per-reading tagline/summary + top highYield) and an active-recall round (recall + quiz +
+>   trap-checks) whose recall cards **graduate into the existing SRS queue** via `gradeCard` with the
+>   same `"rn:i"` ids Review.jsx reads (no new engine). Surfaced by additive CTAs on Planner and at
+>   the end of a block's last reading (Chapter), gated on all block readings being done
+>   (`src/lib/blockEligibility.js`). Store: optional `blockReview.{[id]:{seenTs}}` key. Plan:
+>   `docs/superpowers/plans/2026-07-24-block-review-pilot.md`.
+> - Also built: the Phase 1 **F.1 source-diagram audit** (`docs/superpowers/specs/2026-07-24-source-diagram-audit.md`,
+>   25 findings, 5 recommended primitives) that scoped the visual work.
+>
+> **⏸ OWNER CHECKPOINT (roadmap Phase 0 gate).** Phase 1 SCALING is gated on owner approval of these
+> three bars + the manual-verify checklist above (interactive scroll/nav/toast, the two widgets'
+> legibility in both themes, and the Block Review end-to-end: mark R27/28/29 done -> CTA -> review ->
+> self-grade -> a `27:0`-style card appears due in `/review`). Everything is committed and the branch
+> is mergeable; 32/32 unit tests pass; every touched page render-checks clean (0 markers, real DOM).
+>
+> **NEXT (Phase 1 scaling, each needs a task-level plan written from the roadmap/expansion specs):**
+> the rest of the F widget library (nested-rings, annotated-table, waterfall-flow, party-flow per the
+> audit), G planner UI (two-date UI + block-based Planner + "Next in your plan" CTA, wiring the built
+> `scheduleBlocks`), §9-B ReadingArc breadcrumb, §7.1 v2 concept `layer`, then Phase 2 feature builds.
+>
+> **EXECUTION NOTE:** the account hit rolling subagent session limits several times this session; a
+> few small, well-specified fixes/widgets (studyPath span fix, Planner crash fix, the balance-sheet
+> stepper, dash cleanups) were applied directly by the orchestrator as atomic edits when the channel
+> was down, each build/render/test-verified and (where code) Opus-reviewed once the channel recovered.
+> A final whole-branch review re-run before merge is advisable (the earlier one caught a real crash).
 >
 > ---
 >
