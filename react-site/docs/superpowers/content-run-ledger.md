@@ -60,11 +60,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 23 | 2 | Credit Scoring and Retail Credit Risk Management | done | todo | 5 | - | |
 | 24 | 2 | Country Risk: Determinants, Measures, and Implications | done | todo | 5 | - | |
 | 25 | 2 | Estimating Default Probabilities | done | todo | 5 | - | |
-| 26 | 2 | Credit Value at Risk | todo | todo | - | - | |
-| 27 | 2 | Portfolio Credit Risk | todo | todo | - | - | |
-| 28 | 2 | Structured Credit Risk | todo | todo | - | - | |
-| 29 | 2 | Credit Risk (Spread Risk & Default Intensity) | todo | todo | - | - | |
-| 30 | 2 | Credit Derivatives | todo | todo | - | - | |
+| 26 | 2 | Credit Value at Risk | done | todo | 6 | - | |
+| 27 | 2 | Portfolio Credit Risk | done | todo | 6 | - | |
+| 28 | 2 | Structured Credit Risk | done | todo | 6 | - | |
+| 29 | 2 | Credit Risk (Spread Risk & Default Intensity) | done | todo | 6 | - | |
+| 30 | 2 | Credit Derivatives | done | todo | 6 | - | |
 | 31 | 2 | Derivatives (Counterparty Risk Intro) | todo | todo | - | - | |
 | 32 | 2 | Counterparty Risk and Beyond | todo | todo | - | - | |
 | 33 | 2 | Netting, Close-Out, and Related Aspects | todo | todo | - | - | |
