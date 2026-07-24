@@ -4,7 +4,60 @@ Single source of truth for **where development stands**, so work can resume even
 session dies or limits run out. Scope of all work: **`react-site/` only** — the vanilla
 `site/` app is frozen. Full design: `docs/superpowers/specs/2026-07-18-react-marketable-design.md`.
 
-> **⏭ ACTIVE RESUME POINT (2026-07-24, thirteenth session):** implemented
+> **⏭ ACTIVE RESUME POINT (2026-07-24, fifteenth session, ORCHESTRATED build):** executing the
+> committed master roadmap (`docs/superpowers/specs/2026-07-24-react-site-roadmap.md`) via
+> subagent-driven development (Sonnet implementers, Opus review between tasks, <=5 concurrent).
+> Branch `roadmap-2026-07`. Ledger: `.superpowers/sdd/progress.md` (gitignored scratch).
+> Content is flagged-not-fixed to `react-site/docs/superpowers/content-flags.md` for the final
+> Phase 5 Opus polish.
+>
+> **PHASE 0.5 (reading-flow fixes) COMPLETE** — commits `c942658..85fdbcd`. All 6 tasks +
+> a §1.6 follow-up landed, each Opus-reviewed clean. Build green; headless render-check 0
+> failure markers on home/ch28/ch63/settings/book4/planner/concept.
+> 1. **Scroll-jump on concept expand fixed** (`scrollAnchor.js`): a pointerdown-origin guard
+>    (`CONTENT_TOGGLE_SELECTOR = "summary, [aria-expanded]"`, 400ms window) suppresses the
+>    anchor restore for in-content expand/collapse, so the clicked card stays put and content
+>    grows below it; the suppressed path refreshes the stored anchor offset so a later passive
+>    reflow (resize/font-scale/split-open) does not reintroduce the jump. Passive reflows
+>    (resize, drag, font-scale, split remount) still pin.
+> 2. **Discovery links open at the top** (`Chapter.jsx` + `scrollAnchor.js`): root cause was
+>    that cached readings (CommandPalette prefetches all) make `useReading` resolve
+>    synchronously, so the anchor captured the stale pre-navigation scrollY before the mount
+>    `scrollTo(0,0)`; fix exposes `resetAnchor()` from `useScrollAnchor`, called in the
+>    mount-scroll effect. Continue-studying still resumes (opt-in via `state.resume`).
+> 3. **Global "Return to Reading N" button** (`nav.activeReading` store key +
+>    `ReturnToReading.jsx` mounted in Shell): top-left, survives concept-page hops, cleared
+>    when the reading is marked done. REPLACES the §6 per-page ConceptPage back link (removed).
+> 4. **"Next reading" marks the finished reading DONE** (`toggleDone`) and advances active
+>    (guarded to keep active = a not-done reading). Uses existing curriculum-order `nextRn`.
+> 5. **45-minute hydration reminder** (`HydrationReminder.jsx` + `prefs.hydrationReminder`
+>    store key, default ON, Settings On/Off toggle): non-blocking `role="status"` toast,
+>    foreground-time only (pauses on `document.hidden`), re-arms on dismiss.
+> 6. **Em-dash / formatting purge of META** (`meta-data.js`, 25 dashes) **+ Home.jsx (16) +
+>    index.html (3)** — user-facing structural/shell strings only, context-appropriate
+>    rewrites, no structural fields touched.
+>
+> **⚠️ NEEDS MANUAL BROWSER VERIFICATION (cannot be verified headless — the Chrome-automation
+> extension was not connected this session):**
+> - Scroll: open a long reading (e.g. R28), scroll to middle, expand the first/middle/last
+>   concept card — the clicked summary must not move; then expand-a-concept-then-open-a-split-
+>   pane-without-scrolling must also not jump; and resize / font-scale (A+) / reading-column
+>   drag / split open-close must still keep the anchored paragraph pinned.
+> - Discovery-to-top: from the homepage 5-star list, a book page, and search, readings open at
+>   the top; Continue-studying still resumes the saved position.
+> - Return button: open R28 (not done) -> concept page -> a second concept page; the top-left
+>   button reads "Return to Reading 28" throughout and returns there; after marking R28 done it
+>   disappears; the concept page shows no duplicate back link.
+> - Next: on R28, bottom "Next" marks R28 done, advances, and the Return button retracks.
+> - Hydration toast: fires after 45 min of foreground time, dismiss re-arms, pauses when tab
+>   hidden; Settings On/Off toggle works.
+>
+> **NEXT: Phase 0 — studyPath planner slice** (`docs/superpowers/plans/2026-07-24-studypath-planner-slice.md`),
+> then Phase 1 infra. See the roadmap spec for full phase order.
+>
+> ---
+>
+> Previous resume point (2026-07-24, thirteenth session): implemented
 > `docs/superpowers/specs/2026-07-24-reading-focus-and-source-anchoring-design.md` in full
 > (four changes, all in `react-site/`). The content-quality pass (CLAUDE.md §8) is STILL the
 > top priority and is still not started; this session was the owner-requested reading-focus
