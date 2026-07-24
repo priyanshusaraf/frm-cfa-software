@@ -85,6 +85,26 @@ export function useScrollAnchor(rootRef) {
   const contentToggleAtRef = useRef(0); // timestamp of the last pointerdown on an in-content toggle
   const restoreRef = useRef(null); // lets the identity-change effect below call the same restore() the RO uses
 
+  /* Exposed so a caller can discard the anchor right before it enforces its own
+     deliberate scroll position (Chapter.jsx does this on every reading mount).
+     Why this is needed: when the reading data is already cached (the common case
+     app-wide, since CommandPalette prefetches every reading in the background),
+     Chapter's `<main ref={rootRef}>` is present on its very FIRST commit, so the
+     mount effect below runs its synchronous capture() immediately, against
+     whatever stale window.scrollY carried over from the PREVIOUS page (HashRouter
+     never resets it) or reading, before the caller's own requestAnimationFrame
+     gets a chance to scroll to the real target. ro.observe()'s unconditional
+     initial ResizeObserver notification then debounce-fires restore() against
+     that stale anchor moments later and yanks the viewport back to the old
+     position, overriding the caller's own scrollTo. Calling this right before
+     the caller enforces its target defuses that race; the normal onScroll ->
+     capture() flow (already triggered by the caller's own scrollTo, since that
+     fires a real "scroll" event when the position actually changes) re-populates
+     a correct, fresh anchor afterward. */
+  function resetAnchor() {
+    anchorRef.current = null;
+  }
+
   useEffect(() => {
     let timer = null;
     let reflowAt = 0;
@@ -262,4 +282,6 @@ export function useScrollAnchor(rootRef) {
     ro.observe(el);
     if (hadPrevious && restoreRef.current) restoreRef.current();
   });
+
+  return resetAnchor;
 }

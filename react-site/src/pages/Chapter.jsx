@@ -61,7 +61,7 @@ export default function Chapter() {
 
   /* keeps the paragraph under the nav bar pinned across every reflow: window
      resize, reading-column drag, split-pane drag, font-scale change */
-  useScrollAnchor(rootRef);
+  const resetScrollAnchor = useScrollAnchor(rootRef);
 
   const meta = rn ? readingMeta(rn) : null;
   const book = rn ? bookOf(rn) : null;
@@ -164,6 +164,12 @@ export default function Chapter() {
 
   useEffect(() => {
     if (!rootRef.current || !d) return;
+    /* Discard any anchor useScrollAnchor's own mount effect may have just
+       captured synchronously against a stale (pre-navigation) scrollY — see the
+       resetAnchor() comment in scrollAnchor.js. Without this, the ResizeObserver's
+       unconditional initial notification can restore that stale anchor moments
+       after the rAF below sets the real position, yanking the reader back down. */
+    resetScrollAnchor();
     initWidgets(rootRef.current);
     fitMath(rootRef.current);
     requestAnimationFrame(() => {
