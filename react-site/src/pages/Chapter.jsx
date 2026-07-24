@@ -169,7 +169,7 @@ export default function Chapter() {
     if (d.eli5) pushSec("Explain it simply");
     if (d.thinkLike) pushSec("Think like a risk manager");
     if (d.visual) pushSec("See it");
-    if (d.breakdown && d.breakdown.length) pushSec("At a glance — the lists that matter");
+    if (d.breakdown && d.breakdown.length) pushSec("At a glance: the lists that matter");
     if (d.lists && d.lists.length) pushSec("Build the list — memorize the order");
     if (d.pairs && d.pairs.length) pushSec("Match names to scope");
     if (d.formulas && d.formulas.length) pushSec("Formula box");
@@ -389,15 +389,30 @@ export default function Chapter() {
         <div className="prose" dangerouslySetInnerHTML={{ __html: d.visual }} />
       </>)}
       {d.breakdown && d.breakdown.length > 0 && (<>
-        <SectionLabel txt="At a glance — the lists that matter" color={book.color} rn={rn} />
+        <SectionLabel txt="At a glance: the lists that matter" color={book.color} rn={rn} />
         <div className="breakdown-grid">
           {d.breakdown.map((b, i) => (
             <Resizable key={i} blockKey={`${rn}:bd:${i}`} className="card">
               <h3><Html as="span" html={b.title} /></h3>
               <ol style={{ margin: "0.4rem 0 0", paddingLeft: "1.2rem" }}>
-                {(b.points || []).map((p, j) => (
-                  <li key={j} style={{ fontSize: "0.92rem", margin: "0.25rem 0" }}><Html as="span" html={p} /></li>
-                ))}
+                {(b.points || []).map((p, j) => {
+                  // §9-C list exposition: a point may be a plain string or
+                  // { point, explain }, where explain renders as an always-visible
+                  // dimmer sub-line. Plain strings stay backward-compatible.
+                  const isObj = p && typeof p === "object";
+                  const text = isObj ? p.point : p;
+                  const explain = isObj ? p.explain : null;
+                  return (
+                    <li key={j} style={{ fontSize: "0.92rem", margin: "0.25rem 0" }}>
+                      <Html as="span" html={text} />
+                      {explain && (
+                        <div style={{ fontSize: "0.82rem", color: "var(--text-dim)", marginTop: "0.15rem" }}>
+                          <Html as="span" html={explain} />
+                        </div>
+                      )}
+                    </li>
+                  );
+                })}
               </ol>
             </Resizable>
           ))}

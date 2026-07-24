@@ -60,8 +60,13 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 >    problem-first Mar-2023 liquidity/IRRBB narrative tied to LCR/deposit-stability/HTM-AFS/IRRBB
 >    mechanics, a financial-statement deep-dive via the F `annotated-table` widget (approximate
 >    public figures, clearly labeled), and R63/R69/R79 "where this shows up" links. All real-world
->    fields carry the "Beyond exam scope" label (§6 exception). Other four banks carry mapping +
->    rationale, status `"planned"`.
+>    fields carry the "Beyond exam scope" label (§6 exception). **All five banks now authored**
+>    (commit `9bb4523` added Book 3 Barings/SocGen/Knight + Book 5 CS-CoCo/SVB); inline
+>    "How <bank> handled this" hooks fire on R1/R4/R30/R34/R40/R41/R43/R63/R69/R79/R92/R93.
+> 4. **§9-C list exposition mechanism DONE** (Chapter.jsx): `breakdown[].points` now accepts an
+>    optional `{point, explain}` shape rendering `explain` as an always-visible dimmer sub-line
+>    (plain strings still work). Mechanism only; Phase 5 populates `explain` where list items are
+>    cryptic. Also fixed the two "At a glance" section-label em-dashes while in that file.
 >
 > **OWNER REVIEW + SELF-IMPROVING CONTENT SYSTEM (2026-07-25).** The owner reviewed the
 > counterparty cluster (R30-R35) and set a durable directive: maintain a **self-rectifying
