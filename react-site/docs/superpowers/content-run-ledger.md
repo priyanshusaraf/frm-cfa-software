@@ -90,11 +90,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 53 | 3 | Supervisory Guidance on Model Risk Management | done | todo | 11 | - | |
 | 54 | 3 | Case Study: Model Risk and Model Validation | done | todo | 11 | - | |
 | 55 | 3 | Stress Testing Banks | done | todo | 11 | - | |
-| 56 | 3 | Risk Capital Attribution and RAPM | todo | todo | - | - | |
-| 57 | 3 | Range of Practices in Economic Capital Frameworks | todo | todo | - | - | |
-| 58 | 3 | Capital Planning at Large Bank Holding Companies | todo | todo | - | - | |
-| 59 | 3 | Capital Regulation Before the Global Financial Crisis | todo | todo | - | - | |
-| 60 | 3 | Solvency, Liquidity, and Other Regulation After the GFC | todo | todo | - | - | |
+| 56 | 3 | Risk Capital Attribution and RAPM | done | todo | 12 | - | |
+| 57 | 3 | Range of Practices in Economic Capital Frameworks | done | todo | 12 | - | |
+| 58 | 3 | Capital Planning at Large Bank Holding Companies | done | todo | 12 | - | |
+| 59 | 3 | Capital Regulation Before the Global Financial Crisis | done | todo | 12 | - | |
+| 60 | 3 | Solvency, Liquidity, and Other Regulation After the GFC | done | todo | 12 | - | |
 | 61 | 3 | High-Level Summary of Basel III Reforms | todo | todo | - | - | |
 | 62 | 3 | Basel III: Finalizing Post-Crisis Reforms | todo | todo | - | - | |
 | 63 | 4 | Liquidity Risk | todo | todo | - | - | |
