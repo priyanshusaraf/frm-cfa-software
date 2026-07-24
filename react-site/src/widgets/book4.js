@@ -286,3 +286,111 @@ register("ladder", function (el) {
     lv.textContent = (v >= 0 ? "+" : "") + v;
   });
 });
+
+/* =====================================================================
+   balancesheet — progressive two-column balance-sheet stepper. Teaches
+   r63's solvency-vs-liquidity split: a balance sheet can be strongly
+   solvent (equity far above zero) yet illiquid (too little cash for an
+   obligation due now). Data-driven and reusable (generalizes to bank
+   leverage / capital / repo): equity and the liquidity gap are COMPUTED,
+   never authored. Optional data-bs='{"assets":[{"label","amount","liquid"}],
+   "liabilities":[{"label","amount","nearTerm"}]}'. Defaults are r63's own
+   house/tuition example; nothing invented. Proportional stacks make the
+   dominant items (house, equity) visible and the tiny cash/bill slivers
+   are read properly in the step-3 liquidity zoom.
+   ===================================================================== */
+register("balancesheet", function (el) {
+  var d = {};
+  try { d = JSON.parse(el.getAttribute("data-bs") || "{}") || {}; } catch (e) { d = {}; }
+  var assets = Array.isArray(d.assets) && d.assets.length ? d.assets : [
+    { label: "House", amount: 500000, liquid: false },
+    { label: "Cash", amount: 200, liquid: true }
+  ];
+  var liabilities = Array.isArray(d.liabilities) && d.liabilities.length ? d.liabilities : [
+    { label: "Bill due tomorrow", amount: 5000, nearTerm: true }
+  ];
+  function sum(arr, f) { return arr.reduce(function (s, x) { return s + (f ? f(x) : (x.amount || 0)); }, 0); }
+  var totalA = sum(assets);
+  var totalL = sum(liabilities);
+  var equity = totalA - totalL;                                   // positive => solvent
+  var liquidA = sum(assets, function (x) { return x.liquid ? (x.amount || 0) : 0; });
+  var nearTermL = sum(liabilities, function (x) { return x.nearTerm ? (x.amount || 0) : 0; });
+  var gap = nearTermL - liquidA;                                  // positive => illiquid shortfall
+  function money(n) { return "$" + Math.round(n).toLocaleString("en-US"); }
+
+  var svg = shell(el, "Solvent vs liquid: the same balance sheet, two questions",
+    '<label>Step <select data-k="step">' +
+    '<option value="1">1. Assets</option>' +
+    '<option value="2">2. Solvency</option>' +
+    '<option value="3" selected>3. Liquidity gap</option>' +
+    '</select></label><span class="w-value" data-out></span>', 680, 340,
+    "A balance sheet answers two different questions. Solvency: does net worth exceed zero? Liquidity: can it produce cash in time for what is due now? Step through to see both readings of the same figures.");
+  var sel = el.querySelector('[data-k="step"]');
+  var out = el.querySelector("[data-out]");
+
+  var W = 680, topY = 34, barW = 120, barH = 180, leftX = 156, rightX = 404;
+
+  function stack(x, items, side, colorFn) {
+    var y = topY;
+    items.forEach(function (it) {
+      var h = totalA > 0 ? (it.amount / totalA) * barH : 0;
+      svgEl("rect", { x: x, y: y, width: barW, height: Math.max(1, h), fill: colorFn(it), opacity: 0.85, stroke: "var(--bg)", "stroke-width": 1 }, svg);
+      if (h >= 16) {
+        var lx = side === "left" ? x - 8 : x + barW + 8;
+        var t = svgEl("text", { x: lx, y: y + h / 2 + 4, "text-anchor": side === "left" ? "end" : "start", "font-size": 11, fill: "var(--text)" }, svg);
+        t.textContent = it.label + " " + money(it.amount);
+      }
+      y += h;
+    });
+  }
+
+  function draw() {
+    var step = parseInt(sel.value, 10) || 1;
+    svg.innerHTML = "";
+
+    var ha = svgEl("text", { x: leftX + barW / 2, y: topY - 12, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: "var(--text-dim)" }, svg);
+    ha.textContent = "Assets";
+    stack(leftX, assets, "left", function (it) { return it.liquid ? "var(--cyan)" : "var(--accent)"; });
+    var ta = svgEl("text", { x: leftX + barW / 2, y: topY + barH + 18, "text-anchor": "middle", "font-size": 11, fill: "var(--text-dim)" }, svg);
+    ta.textContent = "Total " + money(totalA);
+
+    if (step >= 2) {
+      var hr = svgEl("text", { x: rightX + barW / 2, y: topY - 12, "text-anchor": "middle", "font-size": 12, "font-weight": 700, fill: "var(--text-dim)" }, svg);
+      hr.textContent = "Liabilities + Equity";
+      var rightItems = liabilities.map(function (x) { return { label: x.label, amount: x.amount, kind: "liab" }; });
+      rightItems.push({ label: "Equity", amount: Math.max(0, equity), kind: "equity" });
+      stack(rightX, rightItems, "right", function (it) { return it.kind === "equity" ? "var(--green)" : "var(--amber)"; });
+      var tr = svgEl("text", { x: rightX + barW / 2, y: topY + barH + 18, "text-anchor": "middle", "font-size": 11, "font-weight": 700, fill: equity >= 0 ? "var(--green)" : "var(--red)" }, svg);
+      tr.textContent = (equity >= 0 ? "SOLVENT: equity " + money(equity) : "INSOLVENT");
+      var eq = svgEl("text", { x: (leftX + barW + rightX) / 2, y: topY + barH / 2 + 6, "text-anchor": "middle", "font-size": 20, fill: "var(--text-faint)" }, svg);
+      eq.textContent = "=";
+    }
+
+    if (step >= 3) {
+      var zx = 156, zy = topY + barH + 60, zbh = 24, zw = 320, lblX = zx + 120;
+      var zmax = Math.max(liquidA, nearTermL, 1);
+      function ZW(v) { return Math.max(2, (v / zmax) * zw); }
+      var zt = svgEl("text", { x: zx, y: zy - 10, "font-size": 11, "font-weight": 700, fill: "var(--text-dim)" }, svg);
+      zt.textContent = "Cash on hand vs cash due now";
+      svgEl("rect", { x: lblX, y: zy, width: ZW(liquidA), height: zbh, rx: 4, fill: "var(--cyan)", opacity: 0.85 }, svg);
+      var la = svgEl("text", { x: lblX - 6, y: zy + zbh / 2 + 4, "text-anchor": "end", "font-size": 11, fill: "var(--text-dim)" }, svg);
+      la.textContent = "Liquid assets";
+      var lav = svgEl("text", { x: lblX + ZW(liquidA) + 6, y: zy + zbh / 2 + 4, "font-size": 11, fill: "var(--text)" }, svg);
+      lav.textContent = money(liquidA);
+      var y2 = zy + zbh + 12;
+      svgEl("rect", { x: lblX, y: y2, width: ZW(nearTermL), height: zbh, rx: 4, fill: "var(--red)", opacity: 0.8 }, svg);
+      var na = svgEl("text", { x: lblX - 6, y: y2 + zbh / 2 + 4, "text-anchor": "end", "font-size": 11, fill: "var(--text-dim)" }, svg);
+      na.textContent = "Due now";
+      var nav = svgEl("text", { x: lblX + ZW(nearTermL) + 6, y: y2 + zbh / 2 + 4, "font-size": 11, "font-weight": 700, fill: "var(--red)" }, svg);
+      nav.textContent = money(nearTermL);
+    }
+
+    if (step === 1) out.textContent = "Total assets " + money(totalA);
+    else if (step === 2) out.textContent = equity >= 0 ? "Solvent: net worth " + money(equity) : "Insolvent";
+    else out.textContent = gap > 0
+      ? "Illiquid: short " + money(gap) + " of cash for what is due now, despite net worth of " + money(equity)
+      : "Liquid: cash on hand covers what is due now";
+  }
+  sel.addEventListener("change", draw);
+  draw();
+});
