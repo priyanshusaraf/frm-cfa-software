@@ -25,6 +25,11 @@
                                                       // when that reading is marked done or explicitly cleared
      prefs:  { hydrationReminder },                    // hydrationReminder: bool, default true (on unless
                                                       // explicitly false) — 45-min foreground-time water-break toast
+     blockReview: { [blockId]: { seenTs } },           // OPTIONAL: set when a Block Review page has been
+                                                      // opened/completed for that block; seenTs is a caller-
+                                                      // supplied timestamp (Date.now()) so the mutator stays
+                                                      // pure/testable. Graduation into the SRS queue reuses
+                                                      // the existing gradeCard, no second SRS engine.
    }
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
 import { useSyncExternalStore } from "react";
@@ -279,6 +284,13 @@ export function setSplitQuery(rn, text) {
 export function setHydrationReminder(on) {
   const s = load();
   save({ ...s, prefs: { ...(s.prefs || {}), hydrationReminder: !!on } });
+}
+
+/* ---- block review (Block Review pilot) ----
+   ts is passed IN by the caller (Date.now()) so this mutator stays pure/testable. */
+export function markBlockReviewSeen(blockId, ts) {
+  const s = load();
+  save({ ...s, blockReview: { ...(s.blockReview || {}), [blockId]: { seenTs: ts } } });
 }
 
 /* ---- study planner ---- */
