@@ -4,5 +4,8 @@ import { renderProse } from "../lib/tex.js";
    All reading content is authored in this repo, so innerHTML is safe here. */
 export default function Html({ as: Tag = "div", html, ...rest }) {
   if (html == null) return null;
-  return <Tag dangerouslySetInnerHTML={{ __html: renderProse(html) }} {...rest} />;
+  /* data-html marks a subtree React renders as opaque innerHTML. The Phase 3
+     concept linker only rewrites text inside these, because splitting a text
+     node React itself owns would break reconciliation on the next re-render. */
+  return <Tag data-html="" dangerouslySetInnerHTML={{ __html: renderProse(html) }} {...rest} />;
 }

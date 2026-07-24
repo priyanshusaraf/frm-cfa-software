@@ -160,10 +160,18 @@ export function linkifyRoot(root, entries, rn) {
 
   const doc = root.ownerDocument;
   const used = new Set();
-  const walker = doc.createTreeWalker(root, 4 /* SHOW_TEXT */);
+  /* Only inside [data-html], the subtrees <Html> renders as opaque innerHTML.
+     Splitting a text node React itself created would leave React's fiber tree
+     pointing at nodes that are no longer where it put them, and the next
+     re-render of that element throws NotFoundError. Every curriculum prose field
+     goes through <Html>, so nothing worth linking is lost. */
   const textNodes = [];
-  for (let n = walker.nextNode(); n; n = walker.nextNode()) {
-    if (n.nodeValue && n.nodeValue.trim().length >= 3) textNodes.push(n);
+  for (const host of root.querySelectorAll("[data-html]")) {
+    if (host.parentElement && host.parentElement.closest("[data-html]")) continue; // already walked by its ancestor
+    const walker = doc.createTreeWalker(host, 4 /* SHOW_TEXT */);
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (n.nodeValue && n.nodeValue.trim().length >= 3) textNodes.push(n);
+    }
   }
 
   let made = 0;

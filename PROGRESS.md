@@ -25,6 +25,17 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > topic collapse, and a phrase-exclusion list for cross-book collisions (CSA, pass-through,
 > tranching, equity value). Durable naming rules are in `content-guidelines.md`.
 >
+> **UI SWEEP (now active) started, seventeenth session.** Done so far: (a) headless render
+> sweep over all 18 secondary surfaces (planner, block-review, case-study, consistency,
+> review, drills, glossary, formulas, mock, search, bookmarks, highlights, notes, progress,
+> mindmap, settings, revision, book) plus home and four chapters: zero failure markers,
+> real content present, empty states sane; (b) hardened the concept linker to rewrite text
+> only inside `[data-html]` subtrees (`<Html>`'s opaque innerHTML), so it can never split a
+> text node React owns. Link counts unchanged, so nothing was lost. **What is left needs a
+> real browser, not headless:** hover-card placement and flip behaviour, tap-to-open on
+> touch, split-pane drag, selection toolbar, and the visual pass over planner/block-review/
+> case-study/consistency.
+>
 > Previous resume note follows.
 >
 > **(historical, fifteenth session, ORCHESTRATED build):** executing the
