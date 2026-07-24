@@ -50,11 +50,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 13 | 1 | The Art of Term Structure Models: Drift | done | todo | 3 | - | |
 | 14 | 1 | The Art of Term Structure Models: Volatility and Distribution | done | todo | 3 | - | |
 | 15 | 1 | Volatility Smiles | done | todo | 3 | - | |
-| 16 | 1 | Fundamental Review of the Trading Book (FRTB) | todo | todo | - | - | |
-| 17 | 2 | Fundamentals of Credit Risk | todo | todo | - | - | |
-| 18 | 2 | Governance | todo | todo | - | - | |
-| 19 | 2 | Credit Risk Management | todo | todo | - | - | |
-| 20 | 2 | Capital Structure in Banks | todo | todo | - | - | |
+| 16 | 1 | Fundamental Review of the Trading Book (FRTB) | done | todo | 4 | - | |
+| 17 | 2 | Fundamentals of Credit Risk | done | todo | 4 | - | |
+| 18 | 2 | Governance | done | todo | 4 | - | |
+| 19 | 2 | Credit Risk Management | done | todo | 4 | - | |
+| 20 | 2 | Capital Structure in Banks | done | todo | 4 | - | |
 | 21 | 2 | Introduction to Credit Risk Modeling and Assessment | todo | todo | - | - | |
 | 22 | 2 | Credit Scoring and Rating | todo | todo | - | - | |
 | 23 | 2 | Credit Scoring and Retail Credit Risk Management | todo | todo | - | - | |
