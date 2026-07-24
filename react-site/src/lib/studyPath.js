@@ -103,6 +103,20 @@ export function buildBlocks(meta = META, moves = defaultOverrides) {
   return nonEmpty;
 }
 
+/* The next reading to study in PLAN order (study order, not curriculum order):
+   the first not-done reading after `rn` in orderedReadings(). Returns a number or
+   null. Deliberately independent of dates so a Chapter CTA can use it without a
+   schedule, and additive to the curriculum-order prev/next (never replaces it). */
+export function nextInPlan(rn, done = {}, meta = META, moves = defaultOverrides) {
+  const ordered = orderedReadings(meta, moves);
+  const idx = ordered.findIndex((r) => r.n === rn);
+  if (idx === -1) return null;
+  for (let i = idx + 1; i < ordered.length; i++) {
+    if (!done[ordered[i].n]) return ordered[i].n;
+  }
+  return null;
+}
+
 const DAY = 86400e3;
 function dayNum(s) {
   const d = new Date(s + "T00:00:00");

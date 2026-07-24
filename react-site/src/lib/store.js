@@ -7,7 +7,7 @@
      notes:  [ { id, rn, section, quote, text, ts, kind } ], // kind: "note" (default) | "error"
      srs:    { [cardId]: { ease, ivl, due, reps } },  // SM-2-lite, cardId is id-agnostic:
                                                       // "rn:i" recall, "rn:hy:i" highYield, "rn:list:id" lists (Review.jsx)
-     planner:{ examDate },                            // "YYYY-MM-DD" or absent
+     planner:{ examDate, startDate },                 // "YYYY-MM-DD" or absent (startDate defaults to today)
      highlights: { [rn]: [ { id, color, text, prefix, suffix, section, ts } ] },
                                                       // color: 'y'|'g'|'b'|'r'; text/prefix/suffix are
                                                       // whitespace-normalized anchors (see lib/highlights.js)
@@ -297,6 +297,13 @@ export function markBlockReviewSeen(blockId, ts) {
 export function setExamDate(dateStr) {
   const s = load();
   save({ ...s, planner: { ...(s.planner || {}), examDate: dateStr || undefined } });
+}
+
+/* Optional plan-window start (default: today, applied in the Planner). Clearing
+   it removes the key so old blobs and a blank input both fall back to today. */
+export function setStartDate(dateStr) {
+  const s = load();
+  save({ ...s, planner: { ...(s.planner || {}), startDate: dateStr || undefined } });
 }
 
 /* ---- mock exams ---- */

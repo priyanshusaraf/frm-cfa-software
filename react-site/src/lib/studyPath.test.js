@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orderedReadings, buildBlocks, scheduleBlocks } from "./studyPath.js";
+import { orderedReadings, buildBlocks, scheduleBlocks, nextInPlan } from "./studyPath.js";
 import { overrides } from "../data/studyPath.js";
 
 test("orderedReadings returns every reading exactly once", () => {
@@ -120,4 +120,23 @@ test("scheduleBlocks emits valid spans for an over-subscribed short window", () 
     assert.ok(it.startDay < s.studyDays, "startDay never enters the review tail");
     assert.ok(it.endDay < s.studyDays, "endDay never enters the review tail");
   }
+});
+
+test("nextInPlan returns the next not-done reading in study order", () => {
+  const ordered = orderedReadings().map((r) => r.n);
+  const first = ordered[0], second = ordered[1], third = ordered[2];
+  // nothing done: the immediate successor.
+  assert.equal(nextInPlan(first, {}), second);
+  // successor done: skip to the next not-done.
+  assert.equal(nextInPlan(first, { [second]: true }), third);
+});
+
+test("nextInPlan returns null past the last plan reading and for unknown rn", () => {
+  const ordered = orderedReadings().map((r) => r.n);
+  const last = ordered[ordered.length - 1];
+  assert.equal(nextInPlan(last, {}), null, "nothing after the last reading");
+  assert.equal(nextInPlan(99999, {}), null, "unknown reading number");
+  // every remaining reading done: null.
+  const allDone = Object.fromEntries(ordered.map((n) => [n, true]));
+  assert.equal(nextInPlan(ordered[0], allDone), null);
 });

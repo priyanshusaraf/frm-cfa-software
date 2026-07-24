@@ -19,7 +19,7 @@ import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "..
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
 import { useStore, toggleDone, touchVisited, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, setActiveReading, getState } from "../lib/store.js";
-import { buildBlocks } from "../lib/studyPath.js";
+import { buildBlocks, nextInPlan } from "../lib/studyPath.js";
 import { blockEligibility, blockForReading } from "../lib/blockEligibility.js";
 import coreConceptsTable from "../data/coreConcepts.json";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
@@ -53,6 +53,11 @@ export default function Chapter() {
     const { allDone, lastReading } = blockEligibility([block], doneMap)[0];
     return allDone && lastReading === rn ? block : null;
   }, [rn, doneMap]);
+
+  /* "Next in your plan": the next not-done reading in PLAN (study) order. Purely
+     additive, only shown when it differs from the curriculum-order Next so it
+     never duplicates or hijacks the prev/next nav or the [/] shortcuts. */
+  const planNextRn = useMemo(() => (rn ? nextInPlan(rn, doneMap) : null), [rn, doneMap]);
   const quizScore = useStore((s) => s.quiz[rn]);
   const pageWidth = useStore((s) => (s.layout && s.layout.pageWidth) || null);
   /* raw booleans (not an object) so the selector returns a stable primitive each
@@ -562,6 +567,14 @@ export default function Chapter() {
           </button>
         ) : <span style={{ flex: 1 }} />}
       </div>
+
+      {planNextRn != null && planNextRn !== nextRn && (
+        <div style={{ marginTop: "0.6rem", textAlign: "center" }}>
+          <Link to={rpath(planNextRn)} state={{ resume: false }} style={{ fontSize: "0.82rem", color: "var(--text-dim)" }}>
+            Next in your plan: R{planNextRn} · {readingMeta(planNextRn).t} →
+          </Link>
+        </div>
+      )}
 
       {completedBlock && (
         <div className="card accent" style={{ marginTop: "0.6rem", textAlign: "center" }}>
