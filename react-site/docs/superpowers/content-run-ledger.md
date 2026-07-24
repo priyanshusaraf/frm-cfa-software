@@ -45,11 +45,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 8 | 1 | Empirical Properties of Correlation | done | todo | 2 | - | |
 | 9 | 1 | Financial Correlation Modeling: Copulas | done | todo | 2 | - | |
 | 10 | 1 | Empirical Approaches to Risk Metrics and Hedging | done | todo | 2 | - | |
-| 11 | 1 | The Science of Term Structure Models | todo | todo | - | - | |
-| 12 | 1 | Evolution of Short Rates and Shape of the Term Structure | todo | todo | - | - | |
-| 13 | 1 | The Art of Term Structure Models: Drift | todo | todo | - | - | |
-| 14 | 1 | The Art of Term Structure Models: Volatility and Distribution | todo | todo | - | - | |
-| 15 | 1 | Volatility Smiles | todo | todo | - | - | |
+| 11 | 1 | The Science of Term Structure Models | done | todo | 3 | - | |
+| 12 | 1 | Evolution of Short Rates and Shape of the Term Structure | done | todo | 3 | - | |
+| 13 | 1 | The Art of Term Structure Models: Drift | done | todo | 3 | - | |
+| 14 | 1 | The Art of Term Structure Models: Volatility and Distribution | done | todo | 3 | - | |
+| 15 | 1 | Volatility Smiles | done | todo | 3 | - | |
 | 16 | 1 | Fundamental Review of the Trading Book (FRTB) | todo | todo | - | - | |
 | 17 | 2 | Fundamentals of Credit Risk | todo | todo | - | - | |
 | 18 | 2 | Governance | todo | todo | - | - | |
