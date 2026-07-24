@@ -11,6 +11,46 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > Content is flagged-not-fixed to `react-site/docs/superpowers/content-flags.md` for the final
 > Phase 5 Opus polish.
 >
+> **PHASE 1 (infra build) COMPLETE** (commits `472e0e9..53d264a`, orchestrator-built directly,
+> each build+test+render-verified). All five roadmap Phase 1 items landed:
+> 1. **F diagram-fidelity library** (`src/widgets/fidelity.js`, imported in `all.js`): the four
+>    remaining primitives from the F.1 audit, `nested-rings` / `annotated-table` / `waterfall-flow`
+>    / `party-flow` (bow-tie + balance-stepper shipped in Phase 0). Each orphan-safe, CSS-var,
+>    data-* JSON payload with sourced defaults. Wired one sourced reading each: R41 (three lines of
+>    defense rings), R35 (CCP loss waterfall), R39 (securitization SPV party-flow), R26 (B-rated
+>    marginal-vs-cumulative PD table, real Figure 25.1 numbers, no invented transition-matrix cells).
+> 2. **G planner** (`Planner.jsx` rewrite): schedules whole cohesive BLOCKS via the Phase 0
+>    `scheduleBlocks` into `[startDate..examDate]`; new optional `planner.startDate` store key +
+>    `setStartDate`; a Start-date input; block cards with date spans, cluster chips, done strike-
+>    through, inline Block-Review link. Additive "Next in your plan" CTA on `Chapter.jsx`
+>    (`studyPath.nextInPlan`, pure, tested) shown only when it differs from curriculum-order Next,
+>    so it never hijacks prev/next or `[`/`]`.
+> 3. **G Block Review** composed-fallback completed: `blockReview.composeThroughLine` now appends a
+>    block's external prerequisites (deps outside the block) via the ReadingArc/deps machinery when
+>    no authored through-line exists. Engine was already general over any block.
+> 4. **§9-B ReadingArc**: `src/lib/readingArc.js` (pure, META-only: session position + builds-on
+>    deps + sets-up reverse-deps) + `src/components/chapter/ReadingArc.jsx`, mounted under the
+>    chapter tagline. Reused by the Block Review fallback.
+> 5. **§7.1 v2 layer mechanism**: `/concept/:slug` now renders `layer: "revision" | "core"`. New
+>    `src/data/authoredConcepts.js` (curated registry, EMPTY until Phase 2 fills it), `findConcept`
+>    /`listConcepts` in `coreConcepts.js` (authored shadows auto, injectable), layer-tinted
+>    ConceptPage + ConceptsIndex chips. This is the mechanism the Phase 2 securitization flagship
+>    (Revision + Core pages) plugs into.
+>
+> Tests 39/39 pass (studyPath +6, coreConcepts +5 new). Build green; render-checked R41/R35/R39/R26
+> (widgets), /planner, /chapter/26 (ReadingArc), /concepts + /concept/information-ratio, and
+> /block-review/c27, all 0 failure markers with distinctive content asserted present. Every new
+> string em-dash-free. **MANUAL-VERIFY:** all four new widgets' legibility in both themes; set an
+> exam date and confirm the block schedule + Next-in-plan CTA; ReadingArc links.
+>
+> **NEXT (Phase 2, feature builds with functional Sonnet-grade prose, flagged for Phase 5):**
+> 1. flagship securitization build (uses the new §7.1 v2 layer: a Revision page + Core-Concept
+>    family with the CMO-vs-CDO/CLO tranche distinction as the stage-6 centerpiece; research Book
+>    2/3/4 source first, invent nothing); 2. case-study system (workstream E, `/case-study` route +
+>    financial-statement deep-dive consuming F widgets); 3. session-summary through-lines (piece c);
+>    4. case-study inline hooks. Then Phase 3 hover-linking, Phase 4 flag consolidation, Phase 5
+>    Opus content pass over the whole corpus.
+>
 > **PHASE 0.5 (reading-flow fixes) COMPLETE** — commits `c942658..85fdbcd`. All 6 tasks +
 > a §1.6 follow-up landed, each Opus-reviewed clean. Build green; headless render-check 0
 > failure markers on home/ch28/ch63/settings/book4/planner/concept.
