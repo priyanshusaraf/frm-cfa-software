@@ -16,20 +16,65 @@
 
 export const BEYOND_EXAM = "Beyond exam scope: real-world illustration";
 
+/* Inline-hook lookup: every case-study hook that names reading `rn`, tagged with
+   its bank + book so a Chapter callout can say "How <bank> handled this" and link
+   into /case-study. Pure, derived from `banks` below. */
+export function hooksForReading(rn) {
+  const out = [];
+  for (const b of banks) {
+    for (const h of b.hooks || []) {
+      if (h.rn === rn) out.push({ bank: b.bank, book: b.book, oneLiner: h.oneLiner });
+    }
+  }
+  return out;
+}
+
 export const banks = [
   {
     book: 1,
     domain: "Market risk",
     bank: "JPMorgan and the London Whale (CIO)",
     why: "A synthetic credit book grew so large it moved the market against itself; VaR was quietly re-modeled to keep reported risk low. The textbook case for VaR limits, model risk, and backtesting.",
-    status: "planned",
+    status: "authored",
+    narrative: [
+      {
+        label: "The position that moved its own market",
+        html: "<p>In 2012 the Chief Investment Office of JPMorgan, meant to manage the bank's surplus cash conservatively, instead built an enormous book of synthetic credit derivatives (positions on credit-default-swap indices). One trader's book grew so large that the position itself moved the very index it was priced against, which is why the trader was nicknamed the London Whale. Book 1 is about putting a number on how much you could lose; this is what happens when that number is both huge and quietly managed.</p>",
+      },
+      {
+        label: "Re-modeling VaR to fit under the limit",
+        html: "<p>As the risk grew, the reported Value at Risk pushed against internal limits. Rather than cut the position, the desk adopted a new VaR model that roughly halved the reported figure, so the book looked to be within limits while the real exposure kept climbing. This is the model-risk lesson stated plainly: VaR is only as trustworthy as the model behind it, and a limit you can dodge by swapping models is not a limit. Losses eventually reached about six billion dollars.</p>",
+      },
+      {
+        label: "Why backtesting was supposed to catch it",
+        html: "<p>Book 1's backtesting material is the antidote here. Counting how often actual losses breach the VaR estimate, against Kupiec and the Basel traffic-light zones, is precisely the independent check that flags a model understating risk. A model that suddenly halves reported VaR should draw scrutiny, not relief. The episode is why VaR limits, model validation, and backtesting are taught together rather than separately.</p>",
+      },
+    ],
+    hooks: [
+      { rn: 1, oneLiner: "The London Whale is what an unmanaged, model-gamed VaR number looks like in practice." },
+      { rn: 4, oneLiner: "Halving reported VaR by swapping models is exactly what backtesting exceptions are meant to expose." },
+    ],
   },
   {
     book: 2,
     domain: "Credit risk",
     bank: "Credit Suisse and Archegos",
     why: "A single family office built enormous concentrated, leveraged single-name exposure through total return swaps; weak counterparty-credit and concentration controls turned its default into billions of loss.",
-    status: "planned",
+    status: "authored",
+    narrative: [
+      {
+        label: "Concentrated leverage hidden in swaps",
+        html: "<p>Archegos Capital Management, the family office of Bill Hwang, built enormous positions in a handful of stocks, but held them through total return swaps with prime brokers rather than buying the shares outright. The swap let Archegos take the economic exposure with a fraction of the cash, and it kept the size hidden from each broker, who saw only their own slice. Book 2's counterparty-credit material is exactly this: your exposure is to the party on the other side of the swap, and here that exposure was concentrated and heavily leveraged.</p>",
+      },
+      {
+        label: "The default that hit Credit Suisse hardest",
+        html: "<p>When the underlying stocks fell in March 2021, the swaps moved against Archegos and the margin calls exceeded what it could pay, so it defaulted. Several banks unwound quickly; Credit Suisse was slow and under-collateralized, and lost roughly five and a half billion dollars, far more than its peers. The difference was risk management: inadequate initial margin, poor visibility into the concentration, and a delayed close-out. That maps straight onto Book 2's counterparty tools, netting, collateral and margin, and wrong-way risk, and onto why the exposure a total return swap creates has to be measured and collateralized like any other credit exposure.</p>",
+      },
+    ],
+    hooks: [
+      { rn: 30, oneLiner: "Archegos took its concentrated exposure through total return swaps, the structure this reading covers." },
+      { rn: 34, oneLiner: "Credit Suisse's loss was a collateral and margin failure: under-margined, slow to close out." },
+    ],
   },
   {
     book: 3,

@@ -24,6 +24,7 @@ import { blockEligibility, blockForReading } from "../lib/blockEligibility.js";
 import coreConceptsTable from "../data/coreConcepts.json";
 import KeyPoints from "../components/chapter/KeyPoints.jsx";
 import ReadingArc from "../components/chapter/ReadingArc.jsx";
+import CaseStudyHook from "../components/chapter/CaseStudyHook.jsx";
 import { keyPointAnchor } from "../lib/keyPointAnchor.js";
 import Resizable from "../components/chapter/Resizable.jsx";
 import SplitView from "../components/chapter/SplitView.jsx";
@@ -554,6 +555,8 @@ export default function Chapter() {
         <SectionLabel txt="One-page summary" color={book.color} rn={rn} />
         <div className="card accent"><Html html={d.summary} /></div>
       </>)}
+
+      <CaseStudyHook rn={rn} />
 
       <div className="chapter-nav">
         {prevRn ? (
