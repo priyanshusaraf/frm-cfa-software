@@ -64,7 +64,7 @@ export default function Planner() {
 
   const plan = useMemo(() => (examDate ? buildPlan({ examDate, done }) : null), [examDate, done]);
 
-  const total = useMemo(() => allReadingsOrdered().length, []);
+  const total = useMemo(() => orderedReadings().length, []);
   const doneCount = Object.keys(done).length;
 
   const status = useMemo(() => {
