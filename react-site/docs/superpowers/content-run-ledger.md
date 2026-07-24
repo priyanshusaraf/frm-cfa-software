@@ -125,11 +125,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 88 | 5 | Portfolio Performance Evaluation | done | todo | 18 | - | |
 | 89 | 5 | Hedge Funds | done | todo | 18 | - | |
 | 90 | 5 | Performing Due Diligence on Specific Managers and Funds | done | todo | 18 | - | |
-| 91 | 5 | Predicting Fraud by Investment Managers | todo | todo | - | - | |
-| 92 | 5 | Review of the Federal Reserve's Supervision of Silicon Valley Bank | todo | todo | - | - | |
-| 93 | 5 | The Credit Suisse CoCo Wipeout | todo | todo | - | - | |
-| 94 | 5 | Artificial Intelligence and Bank Supervision | todo | todo | - | - | |
-| 95 | 5 | Explainable, Trustworthy, Responsible AI in Risk Management | todo | todo | - | - | |
+| 91 | 5 | Predicting Fraud by Investment Managers | done | todo | 19 | - | |
+| 92 | 5 | Review of the Federal Reserve's Supervision of Silicon Valley Bank | done | todo | 19 | - | |
+| 93 | 5 | The Credit Suisse CoCo Wipeout | done | todo | 19 | - | |
+| 94 | 5 | Artificial Intelligence and Bank Supervision | done | todo | 19 | - | |
+| 95 | 5 | Explainable, Trustworthy, Responsible AI in Risk Management | done | todo | 19 | - | |
 | 96 | 5 | Artificial Intelligence Risk Management Framework | todo | todo | - | - | |
 | 97 | 5 | Climate-Related Risk Drivers and Transmission Channels | todo | todo | - | - | |
 | 98 | 5 | Climate-Related Financial Risks: Measurement Methodologies | todo | todo | - | - | |
