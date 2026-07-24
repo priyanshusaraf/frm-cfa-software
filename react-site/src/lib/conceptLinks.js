@@ -77,7 +77,12 @@ function escapeRe(s) {
    boundary is spelled out rather than using \b because phrases can start or end
    with a non-word character (e.g. an abbreviation in parentheses). */
 function phraseRegex(phrase) {
-  return new RegExp("(^|[^A-Za-z0-9])(" + escapeRe(phrase) + ")(?![A-Za-z0-9])", "i");
+  /* A LEADING hyphen is not a boundary: in "systemic-risk contribution" the
+     hyphen binds "risk" to "systemic", and the phrase "risk contribution" means
+     something else there (contribution to systemic risk, not the portfolio
+     risk-contribution measure). A TRAILING hyphen still is one, so "VaR-based"
+     links "VaR" as it should. */
+  return new RegExp("(^|[^A-Za-z0-9-])(" + escapeRe(phrase) + ")(?![A-Za-z0-9])", "i");
 }
 
 /* Build the ordered candidate list for one reading: every concept except the one

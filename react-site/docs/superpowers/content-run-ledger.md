@@ -100,11 +100,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 63 | 4 | Liquidity Risk | done | todo | 13 | - | |
 | 64 | 4 | Liquidity and Leverage | done | todo | 13 | - | |
 | 65 | 4 | Early Warning Indicators | done | todo | 13 | - | |
-| 66 | 4 | The Investment Function in Financial-Services Management | todo | todo | - | - | |
-| 67 | 4 | Liquidity and Reserves Management: Strategies and Policies | todo | todo | - | - | |
-| 68 | 4 | Intraday Liquidity Risk Management | todo | todo | - | - | |
-| 69 | 4 | Monitoring Liquidity | todo | todo | - | - | |
-| 70 | 4 | The Failure Mechanics of Dealer Banks | todo | todo | - | - | |
+| 66 | 4 | The Investment Function in Financial-Services Management | done | todo | 14 | - | |
+| 67 | 4 | Liquidity and Reserves Management: Strategies and Policies | done | todo | 14 | - | |
+| 68 | 4 | Intraday Liquidity Risk Management | done | todo | 14 | - | |
+| 69 | 4 | Monitoring Liquidity | done | todo | 14 | - | |
+| 70 | 4 | The Failure Mechanics of Dealer Banks | done | todo | 14 | - | |
 | 71 | 4 | Liquidity Stress Testing | todo | todo | - | - | |
 | 72 | 4 | Liquidity Risk Reporting and Stress Testing | todo | todo | - | - | |
 | 73 | 4 | Contingency Funding Planning | todo | todo | - | - | |

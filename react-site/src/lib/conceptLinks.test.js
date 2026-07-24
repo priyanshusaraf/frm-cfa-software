@@ -63,3 +63,11 @@ test("findLinkMatches returns non-overlapping ranges in document order", () => {
   assert.equal(hits.length, 1, "the overlapping shorter match is dropped");
   assert.equal(hits[0].slug, "a");
 });
+
+test("a leading hyphen is not a word boundary, a trailing one is", () => {
+  const rc = candidatesFor([{ slug: "rc", name: "risk contribution", homeReading: 1 }], 9);
+  assert.equal(findLinkMatches("the bank's systemic-risk contribution", rc, new Set()).length, 0);
+  assert.equal(findLinkMatches("its risk contribution is large", rc, new Set()).length, 1);
+  const v = candidatesFor([{ slug: "v", name: "Value at Risk (VaR)", homeReading: 1 }], 9);
+  assert.equal(findLinkMatches("a VaR-based limit", v, new Set()).length, 1);
+});
