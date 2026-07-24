@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { orderedReadings } from "./studyPath.js";
+import { orderedReadings, buildBlocks } from "./studyPath.js";
 import { overrides } from "../data/studyPath.js";
 
 test("orderedReadings returns every reading exactly once", () => {
@@ -48,4 +48,31 @@ test("orderedReadings applies a move override", () => {
   const moves = [{ move: 3, near: 1, why: "study 3 right after 1" }];
   const out = orderedReadings({ books: [book] }, moves).map((r) => r.n);
   assert.deepEqual(out, [1, 3, 2]);
+});
+
+test("buildBlocks makes one block per Book 1 session", () => {
+  const b1 = buildBlocks().filter((b) => b.bookN === 1);
+  assert.deepEqual(
+    b1.map((b) => b.readings),
+    [[1, 2, 3, 4, 5, 6], [7, 8, 9], [10, 11, 12, 13, 14, 15, 16]]
+  );
+  assert.ok(b1.every((b) => b.kind === "schweser-session"));
+  assert.ok(b1.every((b) => !/[—–]/.test(b.name)), "no dashes in block names");
+});
+
+test("buildBlocks lifts a curated cluster out of its sessions", () => {
+  const cluster = buildBlocks().find((b) => b.kind === "curated-cluster");
+  assert.ok(cluster, "a curated cluster block exists");
+  assert.deepEqual(cluster.readings, [27, 28, 29]);
+  // Those readings no longer appear in any schweser-session block.
+  const sessionNums = buildBlocks()
+    .filter((b) => b.kind === "schweser-session")
+    .flatMap((b) => b.readings);
+  assert.ok(![27, 28, 29].some((n) => sessionNums.includes(n)));
+});
+
+test("buildBlocks covers every reading exactly once", () => {
+  const all = buildBlocks().flatMap((b) => b.readings);
+  assert.equal(new Set(all).size, all.length);
+  assert.equal(all.length, orderedReadings().length);
 });
