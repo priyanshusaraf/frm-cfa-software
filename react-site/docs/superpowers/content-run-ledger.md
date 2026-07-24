@@ -105,11 +105,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 68 | 4 | Intraday Liquidity Risk Management | done | todo | 14 | - | |
 | 69 | 4 | Monitoring Liquidity | done | todo | 14 | - | |
 | 70 | 4 | The Failure Mechanics of Dealer Banks | done | todo | 14 | - | |
-| 71 | 4 | Liquidity Stress Testing | todo | todo | - | - | |
-| 72 | 4 | Liquidity Risk Reporting and Stress Testing | todo | todo | - | - | |
-| 73 | 4 | Contingency Funding Planning | todo | todo | - | - | |
-| 74 | 4 | Managing and Pricing Deposit Services | todo | todo | - | - | |
-| 75 | 4 | Managing Nondeposit Liabilities | todo | todo | - | - | |
+| 71 | 4 | Liquidity Stress Testing | done | todo | 15 | - | |
+| 72 | 4 | Liquidity Risk Reporting and Stress Testing | done | todo | 15 | - | |
+| 73 | 4 | Contingency Funding Planning | done | todo | 15 | - | |
+| 74 | 4 | Managing and Pricing Deposit Services | done | todo | 15 | - | |
+| 75 | 4 | Managing Nondeposit Liabilities | done | todo | 15 | - | |
 | 76 | 4 | Repurchase Agreements and Financing | todo | todo | - | - | |
 | 77 | 4 | Liquidity Transfer Pricing: A Guide to Better Practice | todo | todo | - | - | |
 | 78 | 4 | Covered Interest Parity Lost | todo | todo | - | - | |
