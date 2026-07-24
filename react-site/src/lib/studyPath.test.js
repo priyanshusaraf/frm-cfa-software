@@ -29,6 +29,7 @@ test("orderedReadings honors intra-session deps over ascending n", () => {
 
 test("override table is small and well-formed", () => {
   assert.ok(Array.isArray(overrides));
+  assert.ok(overrides.length <= 8, "override table stays small");
   overrides.forEach((o) => {
     assert.ok(o.why && typeof o.why === "string", "every override has a reason");
     assert.ok(!/[—–]/.test(o.why), "no em/en dashes in reason copy");
@@ -104,4 +105,19 @@ test("scheduleBlocks handles a past/zero window without throwing", () => {
   const s = scheduleBlocks({ startDate: "2026-04-11", examDate: "2026-01-01" });
   assert.ok(s.daysToExam <= 0);
   assert.deepEqual(s.scheduled, []);
+});
+
+test("scheduleBlocks emits valid spans for an over-subscribed short window", () => {
+  // 15 days out: fewer study days than the ~15 blocks, so an unclamped
+  // scheduler would emit inverted spans (endDay < startDay) and bleed into the
+  // reserved review tail. Every emitted span must stay valid regardless.
+  const s = scheduleBlocks({ startDate: "2026-01-01", examDate: "2026-01-16" });
+  assert.ok(s.scheduled.length > 0, "still schedules the blocks");
+  assert.ok(s.studyDays < s.scheduled.length, "window is genuinely over-subscribed");
+  for (const it of s.scheduled) {
+    assert.ok(it.endDay >= it.startDay, "no inverted span");
+    assert.ok(it.startDay >= 0, "startDay is non-negative");
+    assert.ok(it.startDay < s.studyDays, "startDay never enters the review tail");
+    assert.ok(it.endDay < s.studyDays, "endDay never enters the review tail");
+  }
 });

@@ -109,17 +109,17 @@ function dayNum(s) {
   d.setHours(0, 0, 0, 0);
   return d.getTime();
 }
-// star weight for a reading number, from META (no store).
-function readingMetaWeight(n) {
-  for (const b of META.books) {
+// star weight for a reading number, from the injected meta (no store).
+function readingMetaWeight(n, meta = META) {
+  for (const b of meta.books) {
     const r = b.readings.find((x) => x.n === n);
     if (r) return r.hy || 3;
   }
   return 3;
 }
-function blockWeight(block, done) {
+function blockWeight(block, done, meta = META) {
   return block.readings.reduce(
-    (sum, n) => sum + (done[n] ? 0 : readingMetaWeight(n) || 3),
+    (sum, n) => sum + (done[n] ? 0 : readingMetaWeight(n, meta) || 3),
     0
   );
 }
@@ -137,19 +137,23 @@ export function scheduleBlocks({ startDate, examDate, done = {}, meta = META, mo
   const blocks = buildBlocks(meta, moves).filter(
     (b) => !b.readings.every((n) => done[n])
   );
-  const totalW = blocks.reduce((s, b) => s + blockWeight(b, done), 0) || 1;
+  const totalW = blocks.reduce((s, b) => s + blockWeight(b, done, meta), 0) || 1;
 
   const scheduled = [];
   let cursor = 0;
   blocks.forEach((block, i) => {
-    const w = blockWeight(block, done);
+    const w = blockWeight(block, done, meta);
     let span = Math.max(1, Math.round((w / totalW) * studyDays));
     // never overflow the study window; leave at least one day per remaining block.
     const remainingBlocks = blocks.length - i - 1;
     const maxSpan = studyDays - cursor - remainingBlocks;
     span = Math.max(1, Math.min(span, maxSpan));
-    const startDay = cursor;
-    const endDay = Math.min(studyDays - 1, cursor + span - 1);
+    // Clamp both offsets so an over-subscribed window (more blocks than
+    // studyDays) can never emit an inverted span (endDay < startDay) or bleed
+    // into the reserved review tail: later blocks collapse onto the final study
+    // day instead. All blocks are kept, never dropped.
+    const startDay = Math.min(cursor, studyDays - 1);
+    const endDay = Math.max(startDay, Math.min(studyDays - 1, cursor + span - 1));
     scheduled.push({ block, startDay, endDay });
     cursor = endDay + 1;
   });
