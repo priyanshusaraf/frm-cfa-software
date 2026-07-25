@@ -128,6 +128,18 @@ smart, targeted adjustments; it is explicitly NOT another full sweep, and it is
 NOT the most important run. Re-writing adequate prose is a defect in this phase,
 not diligence.
 
+**Owner-scheduled into this phase (2026-07-25): external `sources` curation.**
+283 of 404 source links pointed at Wikipedia or Investopedia and were stripped in
+one pass; `validate-reading.mjs` now rejects those hosts. 21 readings are left with
+no `sources` at all (r02, r03, r11, r12, r13, r17, r19, r25, r29, r39, r44, r64,
+r81-r85, r87-r89, r95), and the case-study page renders a `links` array that no
+case populates yet. Curate replacements HERE, not earlier, and only where a link
+genuinely earns its place: regulators (BIS, Fed, ECB, IMF, OCC, FDIC, SEC, FINMA),
+standard-setters, exchanges, GARP, or the original paper. **Every URL must be
+fetched and confirmed live before it ships** - a 404 is worse than no link, and
+padding a list to hit a count is the exact failure that produced the encyclopedia
+links in the first place. Zero sources is an acceptable final answer for a reading.
+
 ---
 
 ## 4. Verification, checkpoint, and stopping (ALL phases)
