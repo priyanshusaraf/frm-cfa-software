@@ -72,7 +72,7 @@ export default ({
       memory: "The arbitrage is 'free money' on paper, but actually capturing it requires balance-sheet expansion that regulators and shareholders now punish — that's why the gap persists."
     },
     {
-      name: "How banks funded USD asset growth (three channels)",
+      name: "How banks funded USD asset growth",
       def: "Borrow domestic currency → convert spot → buy the USD asset; convert domestic liabilities to USD via FX swap; borrow USD directly in the interbank market.",
       pitfall: "A funding gap exists whenever the USD asset investment horizon EXCEEDS the maturity of the USD liabilities/swaps funding it — domestic-currency mismatches are backstopped by the home central bank (lender of last resort in its own currency), but NO central bank outside the Fed can create USD, so foreign-currency funding gaps are structurally MORE dangerous.",
       related: [{ r: 64, label: "R64 — the generic funding-gap/rollover-risk concept this scales up globally" }],

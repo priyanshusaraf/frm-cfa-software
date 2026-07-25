@@ -53,7 +53,7 @@ export default ({
       ]
     },
     {
-      title: "What guidelines must be (four traits)",
+      title: "What guidelines must be",
       points: [
         "Understandable: written in plain language, avoiding legal jargon and unnecessary complexity.",
         "Concise: reasonably short; nobody reads a 300-page policy document in practice.",

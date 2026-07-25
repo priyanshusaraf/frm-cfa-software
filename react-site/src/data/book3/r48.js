@@ -132,7 +132,7 @@ export default ({
       ]
     },
     {
-      title: "Equifax's five failure points (2017 breach)",
+      title: "Equifax's five failure points in the 2017 breach",
       points: [
         "1. Insufficient IT asset inventory: didn't fully know what systems it had, so couldn't patch quickly.",
         "2. Failed to enforce its own patch management policy: the vulnerable Apache Struts flaw went unpatched.",

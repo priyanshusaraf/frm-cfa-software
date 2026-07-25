@@ -97,6 +97,19 @@ reads as AI-generated or wrong and costs customer trust.
    concentration tradeoff, reached through the frame rather than asserted.
    **Diagnostic: if the ELI5 is one paragraph and one sentence, it is almost
    certainly asserting rather than teaching.**
+11. **Never append a bare count to a title or heading in brackets.** Owner-reported
+   2026-07-26 against R35's "The CCP loss waterfall (six stages, in strict order)":
+   the bracketed enumeration is a clear AI tell, and the count is redundant because
+   the list underneath it is right there and countable. A parenthetical is fine when
+   it carries information the title cannot ("(order is always strictly maintained)",
+   "(2021 report)", "(1996 amendment)", "(38 banks, 9 countries)", "(both conditions
+   must hold)"), and a formula-name disambiguator is fine ("Risk contribution
+   (2-asset)"). What is banned is "(three reasons)", "(five types)", "(4 frequencies)",
+   "(6 items)", "(3)". Nineteen files were swept the same day. Grep:
+   `grep -rno '"[^"]*(\(two\|three\|four\|five\|six\|seven\|[0-9]\+\)[^")]*)"' src/data`
+   and keep only the parentheticals that say something a count does not. Titles and
+   concept NAMES are link targets, so rerun `node scripts/build-core-concepts.mjs`
+   after any rename.
 
 ## Per-reading review ledger
 

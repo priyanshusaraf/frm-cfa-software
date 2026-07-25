@@ -135,7 +135,7 @@ export default ({
 
   breakdown: [
     {
-      title: "ERM's four pillars (three universal + one financial-firm-specific)",
+      title: "ERM's four pillars, the last one only for financial firms",
       points: [
         "Governance: sets roles/responsibilities across the three lines of defense, plus the committees responsible for reporting and decision-making.",
         "Culture: the behaviors and values, of executives, senior leadership, and employees, around managing risk; often used interchangeably with 'corporate culture.'",

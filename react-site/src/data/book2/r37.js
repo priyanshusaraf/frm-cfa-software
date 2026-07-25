@@ -35,7 +35,7 @@ export default ({
       ]
     },
     {
-      title: "WWR modeling approaches (4)",
+      title: "WWR modeling approaches",
       points: [
         "Hazard rate (intensity) approach: simulate credit spreads stochastically, then compute conditional EPE along paths where default occurred (usually paths with wider spreads). Easiest to implement, but tends to understate the true dependence between exposure and default, so it UNDERESTIMATES WWR.",
         "Structural approach: maps a joint (bivariate) distribution of default time and exposure directly; WWR shows up as a positive correlation between early default and higher exposure. Simpler than hazard-rate but leans on a pre-existing exposure distribution that may not be representative of the current regime.",

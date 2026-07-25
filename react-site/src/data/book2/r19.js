@@ -71,7 +71,7 @@ export default ({
       example: "Loan-loss-allowance policy reviews separately check: a survey of the existing allowance policy, an overview of the asset classification process, an assessment of current risk factors (with emphasis on what's DIFFERENT from history, not just historical loss rates), a trend analysis of historical losses, and a statement on the adequacy of the current policy."
     },
     {
-      name: "Loan workout procedure (four steps, any order)",
+      name: "Loan workout procedure (the steps have no fixed order)",
       def: "A structured process a bank runs when a loan has gone bad: (1) reduce exposure by collecting additional capital, collateral, or guarantees; (2) work with the borrower to identify operational improvements (advice, cost-cutting plans, asset sales, restructuring), bordering on consulting; (3) introduce a third party as a possible joint-venture partner or takeover; (4) liquidation through an out-of-court settlement (foreclosure, liquidating collateral, or calling guarantees).",
       intuition: "The steps are not a strict escalation ladder: the standard explicitly says they 'can be applied in any order.' A bank chooses based on the specific borrower: a temporarily distressed but fundamentally sound business gets step 2 (consulting-style help); a business with no viable path gets step 4 (liquidation) regardless of how the other steps might have played out.",
       example: "XYZ Manufacturing lost its largest customer and stopped debt service. ABC Bank seized some collateral (step 1) while working with XYZ on a plan to find new customers (step 2), a real example of the first two workout steps running in parallel on the same loan.",

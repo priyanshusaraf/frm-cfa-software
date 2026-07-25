@@ -80,7 +80,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The CCP loss waterfall (six stages, in strict order)",
+      title: "The CCP loss waterfall (order is always strictly maintained)",
       points: [
         "Stage 1: Defaulter's initial margin: the defaulting member's own posted collateral is used first to cover macro-hedging and auction costs.",
         "Stage 2: Defaulter's default-fund contribution: once the defaulter's initial margin is exhausted, its own contribution to the shared default fund is used next.",
@@ -103,7 +103,7 @@ export default ({
       ]
     },
     {
-      title: "Advantages of central clearing (six)",
+      title: "Advantages of central clearing",
       points: [
         "Transparency: the CCP can see aggregate risk concentrations across its membership and act on early warning signs.",
         "Multilateral offset: netting across the whole cleared market lowers margin costs and removes the need for members to monitor every other member's creditworthiness.",
@@ -114,7 +114,7 @@ export default ({
       ]
     },
     {
-      title: "Disadvantages of central clearing (four)",
+      title: "Disadvantages of central clearing",
       points: [
         "Moral hazard: members have less incentive to vet each other's creditworthiness because netting, collateralization, and loss mutualization absorb the consequences collectively.",
         "Adverse selection: specialist dealer members may have superior pricing/risk knowledge and route trades to whichever CCP is mispricing risk given its more limited information.",

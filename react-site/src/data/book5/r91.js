@@ -45,7 +45,7 @@ export default ({
       ]
     },
     {
-      title: "Barriers to implementing fraud prediction (four distinct obstacles)",
+      title: "Barriers to implementing fraud prediction",
       points: [
         "Cost-benefit ceiling: 100% fraud eradication would almost certainly cost more than the fraud it prevents, so some residual fraud risk is economically rational to tolerate.",
         "Lost 'fraud risk premium': some investors knowingly accept fraud risk in exchange for lower fees or higher expected returns; aggressive fraud prevention removes that trade-off option from investors who wanted it.",

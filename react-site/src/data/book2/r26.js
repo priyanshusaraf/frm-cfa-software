@@ -38,7 +38,7 @@ export default ({
       ]
     },
     {
-      title: "Rating transition matrix: multi-period math (3 rules)",
+      title: "Rating transition matrix: multi-period math",
       points: [
         "Longer than 1 year: raise the 1-year matrix to the Nth power (matrix multiplication in general; for a single diagonal 'stay-the-same-rating' entry, just raise that probability to the Nth power). Example from the source: a AAA firm's one-year 'stay AAA' probability of 89.85% becomes 0.8985³ = 72.54% over three years.",
         "Shorter than 1 year: take the fractional root. Example: that same 89.85% one-year probability becomes a 3-month probability of 0.8985^(1/4) = 97.36% (3 months = one-fourth of a year, so take the 4th root).",

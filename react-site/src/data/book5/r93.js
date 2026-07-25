@@ -30,7 +30,7 @@ export default ({
       ]
     },
     {
-      title: "Why CoCos qualify as Basel III regulatory capital (two conditions, both required)",
+      title: "Why CoCos qualify as Basel III regulatory capital (both conditions must hold)",
       points: [
         "Must include a discretionary (PONV) trigger — a mechanical-trigger-only CoCo does not qualify, regardless of how conservative the ratio threshold is.",
         "Must satisfy a minimum regulatory-capital-to-RWA ratio (the 'going concern' rule) — this keeps the instrument aimed at recapitalizing a still-viable bank, not a bank already in liquidation."

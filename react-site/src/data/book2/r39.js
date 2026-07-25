@@ -172,7 +172,7 @@ export default ({
       ]
     },
     {
-      title: "Why financial institutions securitize (three reasons)",
+      title: "Why financial institutions securitize",
       points: [
         "Funding: diversifies the funding mix, matches asset/liability duration (avoiding the classic short-liability/long-asset mismatch), and often accesses a lower cost of funds because the SPV's rating can exceed the originator's own.",
         "Balance sheet / capital management: since SPVs aren't banks, moving assets off-balance-sheet reduces the regulatory capital a bank must hold against them (though not entirely, since the originator often retains the first-loss piece), which raises return on equity (ROE).",
@@ -180,7 +180,7 @@ export default ({
       ]
     },
     {
-      title: "Credit enhancements (five types)",
+      title: "Credit enhancements",
       points: [
         "Overcollateralization: notes issued are worth less than the underlying collateral pool, so the extra collateral absorbs initial losses with zero impact to investors.",
         "Pool insurance: a third-party (composite) insurance company covers loss of principal in the collateral pool if the SPV defaults.",

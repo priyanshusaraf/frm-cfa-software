@@ -82,7 +82,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Uses of intraday liquidity (5 items)",
+      title: "Uses of intraday liquidity",
       points: [
         "Outgoing wire transfers — the single biggest use; for the bank itself (predictable, ~1-2 days' lead time) or for clients (often unpredictable, steady all day); must be monitored to stay within the intraday credit limit.",
         "Settlements at Payment Clearing and Settlement (PCS) systems — often settle once daily near day's end; same-day settlement amounts are hard to forecast, multi-day ones easier.",
@@ -92,7 +92,7 @@ export default ({
       ]
     },
     {
-      title: "Sources of intraday liquidity (6 items)",
+      title: "Sources of intraday liquidity",
       points: [
         "Cash balances — held at the central bank and correspondent banks; own-operations-driven balances are easier to forecast than client-activity-driven ones.",
         "Incoming funds flow — the single biggest source; payment inflows and FMU settlements, arriving instantaneously or in batches.",
@@ -112,7 +112,7 @@ export default ({
       ]
     },
     {
-      title: "Tracking intraday flows (6 items)",
+      title: "Tracking intraday flows",
       points: [
         "Total payments — amount, time, payer, payee for every electronic payment; rolls up into totals sent/received, net settlement position, volume trends.",
         "Other cash transactions — intraday/ending settlement positions across all FMUs the bank participates in.",
@@ -123,7 +123,7 @@ export default ({
       ]
     },
     {
-      title: "Monitoring risk levels (4 items)",
+      title: "Monitoring risk levels",
       points: [
         "Daily maximum intraday liquidity usage — the day's most-negative balance divided by the credit line limit; calculated after the fact, viewed across all cash accounts combined; measures the bank's OWN exposure.",
         "Intraday credit relative to Tier 1 capital — ratio of UNSECURED, AVAILABLE (not used) intraday credit to Tier 1 capital; the key SYSTEMIC-risk metric, since collateral pledging already reduces settlement risk.",

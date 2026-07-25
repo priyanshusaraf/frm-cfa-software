@@ -140,7 +140,7 @@ export default ({
       ]
     },
     {
-      title: "Capital structure (three tiers, in payment priority order)",
+      title: "Capital structure, in payment priority order",
       points: [
         "Senior: largest, safest, lowest coupon; paid first.",
         "Mezzanine/junior: smaller, higher coupon, absorbs losses only after equity is wiped out; kept purposefully thin.",

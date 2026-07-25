@@ -132,7 +132,7 @@ export default ({
 
   breakdown: [
     {
-      title: "FSA-style reporting cadence (4 frequencies)",
+      title: "FSA-style reporting cadence",
       points: [
         "Daily — cash flows and maturity mismatch for market-wide stress tests: the fastest-moving risk gets the fastest reporting.",
         "Weekly — cash flows and maturity mismatch for firm-specific stress tests, plus the wholesale liability report: firm-specific problems build more slowly than market-wide ones.",

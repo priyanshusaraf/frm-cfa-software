@@ -117,7 +117,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Credit risk mitigants (3)",
+      title: "Credit risk mitigants",
       points: [
         "Netting: sum ALL trades with a counterparty, positive and negative, into one net exposure figure instead of only adding up the winning trades; shrinks exposure purely through contract law, at close-out.",
         "Collateral agreements: cash or marketable securities posted as trades gain value; on default, the non-defaulting party keeps the collateral, shrinking uncollateralized exposure directly.",

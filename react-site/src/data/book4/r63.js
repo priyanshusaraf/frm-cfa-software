@@ -167,7 +167,7 @@ export default ({
       ]
     },
     {
-      title: "17 BIS principles for sound liquidity risk management (five buckets)",
+      title: "17 BIS principles for sound liquidity risk management",
       points: [
         "Fundamental principle — a comprehensive liquidity risk management framework with sufficient HQLA, overseen by supervisors.",
         "Governance (3 principles) — risk tolerance aligned to the bank's role/strategy; board-approved policies with ongoing senior-management reporting; liquidity costs/benefits priced into new products and performance measurement.",

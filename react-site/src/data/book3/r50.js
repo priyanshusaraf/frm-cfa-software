@@ -156,7 +156,7 @@ export default ({
       ]
     },
     {
-      title: "Contract provisions (the long, testable list)",
+      title: "Contract provisions, clause by clause",
       points: [
         "Scope: duration, support/maintenance/customer service, employee training, subcontracting policy, insurance coverage, use of the institution's assets/employees.",
         "Cost and compensation: who pays equipment, legal, and audit fees; all forms of provider compensation.",
@@ -218,7 +218,7 @@ export default ({
     },
     {
       id: "contract-provisions",
-      title: "Contract provisions (the long, testable list)",
+      title: "Contract provisions, clause by clause",
       axis: "Every clause is the contractual answer to a specific upstream risk: read the list as the risks named earlier in the reading, one by one turned into an enforceable obligation.",
       items: [
         "Scope.",

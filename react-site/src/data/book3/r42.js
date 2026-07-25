@@ -20,7 +20,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Top-down risk identification tools (3)",
+      title: "Top-down risk identification tools",
       points: [
         "<strong>Exposures and vulnerabilities analysis</strong>: exposures are what the bank has at stake (major clients, key revenue sources, distribution channels, suppliers, key persons, IT systems, regulations); vulnerabilities are weak spots (obsolete processes, control weaknesses, overdue maintenance/testing, neglected oversight of peripheral units). The dangerous case is where a vulnerability lines up with a significant exposure, for example an unmonitored rogue trader, because that combination can produce very large losses or even bankruptcy.",
         "<strong>Risk wheel</strong>: a circular diagram of interconnected risk 'cogs' (business objectives, labor market, reputation, technology, regulation, economy, natural events, data/information, business continuity) used in brainstorming sessions to trace causal chains. A weather event (natural events cog) causes a multi-day outage (business continuity cog) which, if prolonged, damages the bank's reputation (reputation cog). This causal, root-cause view is proactive rather than merely reactive to symptoms.",
@@ -28,7 +28,7 @@ export default ({
       ]
     },
     {
-      title: "Bottom-up risk identification tools (3)",
+      title: "Bottom-up risk identification tools",
       points: [
         "<strong>Event and loss data analysis</strong>: internal losses (which cluster by transaction volume and size, typically starting in the back office, then financial markets, then retail, then IT) reveal concentration; external losses (via consortia like ORX) show what happened at other banks and prompt a 'could this happen to us' review; <strong>near misses</strong>, incidents that had the potential to become a loss but didn't, purely due to luck rather than a working control, cost nothing in dollars but are cheap, valuable early-warning signals and should always be logged and reported.",
         "<strong>Risk and control self-assessment (RCSA)</strong>: a self-evaluation (by the entire bank, a business unit, or a department) of key operational risks, the controls addressing them, and control strength, typically run by the second line of defense looking at first-line risks, usually annually and after major risk-profile changes. It measures both inherent risk (before controls) and residual risk (after controls); running it too often turns it into a rote checklist rather than an insightful exercise.",
