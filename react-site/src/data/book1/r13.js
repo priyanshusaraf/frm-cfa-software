@@ -261,12 +261,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Vasicek model — Wikipedia", url: "https://en.wikipedia.org/wiki/Vasicek_model", note: "The formal stochastic differential equation, mean-reversion intuition, and closed-form bond pricing under the Vasicek model." },
-    { title: "Ho–Lee model — Wikipedia", url: "https://en.wikipedia.org/wiki/Ho%E2%80%93Lee_model", note: "Background on the arbitrage-free, time-dependent-drift construction and how it's calibrated to the observed term structure." },
-    { title: "Vasicek Interest Rate Model Definition — Investopedia", url: "https://www.investopedia.com/terms/v/vasicek-interest-rate-model.asp", note: "A plain-English walkthrough of the Vasicek model's mean-reversion mechanics and typical uses in practice." },
-    { title: "Mean Reversion — Investopedia", url: "https://www.investopedia.com/terms/m/meanreversion.asp", note: "General intuition for mean-reverting processes, useful background before digging into Vasicek's k(θ−r) term specifically." }
-  ],
 
   pdf: { book: 1, query: "term structure models for estimating short-term interest rates" },
 

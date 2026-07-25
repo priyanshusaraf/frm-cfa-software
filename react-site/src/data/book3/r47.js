@@ -202,10 +202,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Cyber-resilience: Range of practices (Basel Committee on Banking Supervision, Dec 2018)", url: "https://www.bis.org/bcbs/publ/d454.htm", note: "The original BIS/BCBS report this reading condenses — the primary source for every jurisdictional example cited." },
-    { title: "Distributed denial-of-service attack — Wikipedia", url: "https://en.wikipedia.org/wiki/Denial-of-service_attack", note: "Background on DDoS attacks, referenced in the reading's discussion of evolving threats that backward-looking metrics fail to capture." },
-    { title: "Three lines of defense (risk management model) — Wikipedia", url: "https://en.wikipedia.org/wiki/Three_lines_of_defence", note: "The governance model regulators often expect (but do not mandate) banks to apply to cyber-risk oversight; ties back to R41." },
-    { title: "Cybersecurity — Investopedia", url: "https://www.investopedia.com/terms/c/cybersecurity.asp", note: "Plain-language overview of cybersecurity concepts and terminology used throughout this reading." }
+    { title: "Cyber-resilience: Range of practices (Basel Committee on Banking Supervision, Dec 2018)", url: "https://www.bis.org/bcbs/publ/d454.htm", note: "The original BIS/BCBS report this reading condenses — the primary source for every jurisdictional example cited." }
   ],
 
   pdf: { book: 3, query: "Increasing automation and connectedness with third-party service providers" },

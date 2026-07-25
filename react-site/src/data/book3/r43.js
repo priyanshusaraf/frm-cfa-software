@@ -337,10 +337,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Operational risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Operational_risk", note: "General background on operational risk categories and management approaches." },
-    { title: "Basel Committee on Banking Supervision — BIS", url: "https://www.bis.org/bcbs/index.htm", note: "The BCBS's home page for the standards (including loss-data and operational-resilience guidance) referenced throughout this reading." },
-    { title: "Swiss cheese model — Wikipedia", url: "https://en.wikipedia.org/wiki/Swiss_cheese_model", note: "Background on James Reason's original accident-causation model that operational risk borrows for control-layer thinking." },
-    { title: "Monte Carlo method — Wikipedia", url: "https://en.wikipedia.org/wiki/Monte_Carlo_method", note: "The simulation technique used to convolute frequency and severity distributions in LDA and in the FAIR model." }
+    { title: "Basel Committee on Banking Supervision — BIS", url: "https://www.bis.org/bcbs/index.htm", note: "The BCBS's home page for the standards (including loss-data and operational-resilience guidance) referenced throughout this reading." }
   ],
 
   pdf: { book: 3, query: "After the identification stage, operational risk must be assessed" }

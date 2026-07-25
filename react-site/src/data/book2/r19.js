@@ -253,12 +253,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "IFRS 9 Financial Instruments — Wikipedia", url: "https://en.wikipedia.org/wiki/IFRS_9", note: "Background on the 2018 shift from IAS 39's incurred-loss model to IFRS 9's forward-looking expected-credit-loss model and its three-stage structure." },
-    { title: "Loan Loss Provision — Investopedia", url: "https://www.investopedia.com/terms/l/loanlossprovision.asp", note: "Plain-language explanation of loan loss provisions and reserves and why banks set them aside." },
-    { title: "Nonperforming Loan (NPL) — Investopedia", url: "https://www.investopedia.com/terms/n/nonperformingloan.asp", note: "Definition and thresholds for nonperforming loans, useful context for the 90/180/365-day classification triggers." },
-    { title: "Probability of Default — Investopedia", url: "https://www.investopedia.com/terms/p/probability-of-default.asp", note: "Overview of PD as a credit risk input, complementing this reading's PD/LGD/EAD breakdown." }
-  ],
 
   pdf: { book: 2, query: "This topic focuses on how banks manage credit risk exposures" },
 

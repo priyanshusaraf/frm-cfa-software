@@ -119,10 +119,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Backtesting (Wikipedia)", url: "https://en.wikipedia.org/wiki/Backtesting", note: "General background on backtesting methodology and its use in validating quantitative models, including risk models." },
-    { title: "Value at Risk (Investopedia)", url: "https://www.investopedia.com/terms/v/var.asp", note: "Refresher on VaR itself — the confidence level, holding period, and what the number is meant to predict — useful context before auditing it." },
-    { title: "Basel Committee on Banking Supervision — Amendment to the Capital Accord to Incorporate Market Risks", url: "https://www.bis.org/publ/bcbs24.htm", note: "The original BIS document introducing the traffic-light backtesting framework and capital multiplier zones referenced in this reading." },
-    { title: "Type I and type II errors (Wikipedia)", url: "https://en.wikipedia.org/wiki/Type_I_and_type_II_errors", note: "Formal statistical definitions of the error taxonomy this reading applies to regulatory model validation." }
+    { title: "Basel Committee on Banking Supervision — Amendment to the Capital Accord to Incorporate Market Risks", url: "https://www.bis.org/publ/bcbs24.htm", note: "The original BIS document introducing the traffic-light backtesting framework and capital multiplier zones referenced in this reading." }
   ],
 
   formulas: [

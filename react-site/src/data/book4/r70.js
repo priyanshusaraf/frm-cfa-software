@@ -220,8 +220,6 @@ export default ({
 
   sources: [
     { title: "Duffie, \"The Failure Mechanics of Dealer Banks\" (Journal of Economic Perspectives, 2010)", url: "https://www.aeaweb.org/articles?id=10.1257/jep.24.1.51", note: "The original source paper this reading condenses — the full academic treatment of the mechanism, business lines, and policy proposals." },
-    { title: "Lehman Brothers — Wikipedia", url: "https://en.wikipedia.org/wiki/Lehman_Brothers", note: "Background on Lehman's collapse, including the JPMorgan Chase clearing relationship and the September 2008 bankruptcy filing." },
-    { title: "Bear Stearns — Wikipedia", url: "https://en.wikipedia.org/wiki/Bear_Stearns", note: "Background on Bear Stearns' March 2008 collapse and its acquisition by JPMorgan Chase." },
     { title: "Troubled Asset Relief Program (TARP) — U.S. Department of the Treasury", url: "https://home.treasury.gov/data/troubled-assets-relief-program", note: "Official Treasury summary of TARP's programs, including the Public-Private Investment Program referenced in this reading." }
   ],
 

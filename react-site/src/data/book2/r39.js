@@ -269,12 +269,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Securitization — Wikipedia", url: "https://en.wikipedia.org/wiki/Securitization", note: "Background on the general securitization process, participants, and asset classes beyond the FRM curriculum's scope." },
-    { title: "Special Purpose Vehicle (SPV) — Investopedia", url: "https://www.investopedia.com/terms/s/spv.asp", note: "Plain-language explanation of why SPVs exist and how bankruptcy-remoteness works in practice." },
-    { title: "Mortgage-Backed Security (MBS) — Investopedia", url: "https://www.investopedia.com/terms/m/mbs.asp", note: "Good refresher on WAC/WAM/WAL and prepayment concepts as applied to real MBS deals." },
-    { title: "Constant Prepayment Rate (CPR) — Investopedia", url: "https://www.investopedia.com/terms/c/cpr.asp", note: "Alternate worked examples of the SMM-to-CPR compounding calculation and PSA benchmark." }
-  ],
 
   pdf: { book: 2, query: "Securitization is the process of transforming the illiquid assets" },
 

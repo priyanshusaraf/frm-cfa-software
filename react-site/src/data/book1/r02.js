@@ -228,12 +228,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Historical simulation approach to VaR — Wikipedia", url: "https://en.wikipedia.org/wiki/Historical_simulation_(finance)", note: "Background on the historical simulation family this reading's weighting schemes all modify." },
-    { title: "GARCH model — Wikipedia", url: "https://en.wikipedia.org/wiki/Autoregressive_conditional_heteroskedasticity", note: "The conditional volatility model underlying volatility-weighted and filtered historical simulation's rescaling step." },
-    { title: "Value at Risk — Investopedia", url: "https://www.investopedia.com/terms/v/var.asp", note: "Plain-language refresher on VaR mechanics before layering on the non-parametric weighting variants." },
-    { title: "Bootstrapping (statistics) — Wikipedia", url: "https://en.wikipedia.org/wiki/Bootstrapping_(statistics)", note: "The resampling-with-replacement technique behind bootstrap HS and the residual-resampling step inside FHS." }
-  ],
 
   pdf: { book: 1, query: "Reading 1 gave you two extremes" }
 });

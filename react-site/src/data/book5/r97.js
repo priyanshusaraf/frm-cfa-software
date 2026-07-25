@@ -227,8 +227,6 @@ export default ({
 
   sources: [
     { title: "Climate-related risk drivers and their transmission channels (BCBS, April 2021)", url: "https://www.bis.org/bcbs/publ/d517.htm", note: "The primary source document this reading is drawn from — the Basel Committee's full taxonomy of physical/transition drivers and transmission channels." },
-    { title: "Physical risk vs. transition risk — Wikipedia: Climate risk", url: "https://en.wikipedia.org/wiki/Climate_risk", note: "General background on how acute/chronic physical risk and transition risk are defined and discussed outside the BCBS framework." },
-    { title: "Catastrophe bond", url: "https://en.wikipedia.org/wiki/Catastrophe_bond", note: "Background on parametric triggers and the insurance-linked securities market referenced under mitigants/hedging." },
     { title: "Climate Change and Financial Stability", url: "https://www.federalreserve.gov/econres/notes/feds-notes/climate-change-and-financial-stability-20210319.html", note: "A Federal Reserve staff note covering how climate risk propagates through the financial system, complementing the microeconomic/macroeconomic channel framework here." }
   ],
 

@@ -272,8 +272,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Interest rate parity", url: "https://en.wikipedia.org/wiki/Interest_rate_parity", note: "Background on the covered/uncovered interest parity conditions and the no-arbitrage logic behind CIP." },
-    { title: "Covered Interest Rate Parity Definition", url: "https://www.investopedia.com/terms/c/covered-interest-arbitrage.asp", note: "A plain-language walkthrough of the covered interest arbitrage trade and formula." },
     { title: "Covered interest parity lost: understanding the cross-currency basis", url: "https://www.bis.org/publ/qtrpdf/r_qt1609e.htm", note: "The original BIS Quarterly Review article (Borio, McCauley, McGuire, Sushko, 2016) this reading is based on." },
     { title: "Central bank liquidity swaps", url: "https://www.federalreserve.gov/monetarypolicy/bst_liquidityswaps.htm", note: "The Federal Reserve's own description of the reciprocal currency (swap) line program discussed in this reading." }
   ],

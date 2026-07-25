@@ -168,12 +168,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Jensen's inequality — Wikipedia", url: "https://en.wikipedia.org/wiki/Jensen%27s_inequality", note: "The general mathematical statement (E[f(X)] ≥ f(E[X]) for convex f) underlying the convexity-effect calculation in this reading." },
-    { title: "Expectations Theory — Investopedia", url: "https://www.investopedia.com/terms/e/expectationstheory.asp", note: "Plain-language explanation of how expected future short rates are said to determine the shape of the yield curve." },
-    { title: "Yield curve — Wikipedia", url: "https://en.wikipedia.org/wiki/Yield_curve", note: "Background on term-structure shapes (flat, upward, downward/inverted) and the competing theories (expectations, liquidity premium, market segmentation) that explain them." },
-    { title: "Term structure of interest rates — Investopedia", url: "https://www.investopedia.com/terms/t/termstructure.asp", note: "Overview of how spot rates across maturities are built up and interpreted, useful context for the multi-period spot-rate formula in this reading." }
-  ],
 
   pdf: { book: 1, query: "This reading discusses how the decision tree framework" },
 

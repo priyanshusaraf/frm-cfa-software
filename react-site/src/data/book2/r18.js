@@ -228,8 +228,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Three Lines of Defense model — Wikipedia", url: "https://en.wikipedia.org/wiki/Three_lines_of_defence", note: "Background on the origin and general application of the three-lines-of-defense governance model across risk functions." },
-    { title: "Corporate Governance — Investopedia", url: "https://www.investopedia.com/terms/c/corporategovernance.asp", note: "Plain-language grounding in governance, oversight, and independence concepts that underpin the GSLO framework." },
     { title: "Principles for the Sound Management of Operational Risk — BIS", url: "https://www.bis.org/publ/bcbs195.htm", note: "Basel Committee guidance on governance and the lines-of-defense concept as applied by banking regulators." },
     { title: "GARP — Global Association of Risk Professionals", url: "https://www.garp.org/", note: "Exam-setting body for the FRM; useful for checking current curriculum readings and learning objectives." }
   ],

@@ -218,12 +218,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Leverage (finance) — Wikipedia", url: "https://en.wikipedia.org/wiki/Leverage_(finance)", note: "Background on financial leverage, the leverage ratio, and how borrowing amplifies both gains and losses." },
-    { title: "Repurchase Agreement (Repo) — Investopedia", url: "https://www.investopedia.com/terms/r/repurchaseagreement.asp", note: "Plain-language walkthrough of repo mechanics, haircuts, and collateral, complementing this reading's collateral-market section." },
-    { title: "Rehypothecation — Investopedia", url: "https://www.investopedia.com/terms/r/rehypothecation.asp", note: "Explains how pledged collateral gets re-loaned through the system, the mechanism behind this reading's rehypothecation concept." },
-    { title: "Total Return Swap — Investopedia", url: "https://www.investopedia.com/terms/t/totalreturnswap.asp", note: "Covers TRS mechanics used in this reading's economic-balance-sheet derivatives example." }
-  ],
 
   pdf: { book: 4, query: "This reading analyzes the effects of liquidity and leverage on firm risk" },
 

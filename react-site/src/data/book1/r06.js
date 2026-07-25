@@ -217,10 +217,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Basel Committee on Banking Supervision (BCBS)", url: "https://www.bis.org/bcbs/index.htm", note: "The regulator that published the working paper this reading condenses; browse its full library of standards and working papers." },
-    { title: "Expected shortfall — Wikipedia", url: "https://en.wikipedia.org/wiki/Expected_shortfall", note: "Explains the coherence/subadditivity property that makes ES the theoretical fix for VaR's core flaw discussed in this reading." },
-    { title: "Value at risk — Investopedia", url: "https://www.investopedia.com/terms/v/var.asp", note: "A refresher on the VaR definition and its well-known limitations, including the tail-severity and subadditivity gaps covered here." },
-    { title: "Procyclicality — Wikipedia", url: "https://en.wikipedia.org/wiki/Procyclicality", note: "Background on how financial regulation and leverage can amplify booms and busts — the mechanism behind LO 6.f." }
+    { title: "Basel Committee on Banking Supervision (BCBS)", url: "https://www.bis.org/bcbs/index.htm", note: "The regulator that published the working paper this reading condenses; browse its full library of standards and working papers." }
   ],
 
   pdf: { book: 1, query: "no consensus regarding the proper time horizon for risk measurement" }

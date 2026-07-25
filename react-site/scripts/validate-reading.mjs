@@ -133,8 +133,22 @@ else for (const q of d.quiz) {
   }
 }
 
-if (!Array.isArray(d.sources) || d.sources.length < 2) fail("sources needs >=2");
-else for (const s of d.sources) if (!s.title || !/^https?:\/\//.test(s.url || "")) fail("source url malformed");
+/* Sources are a QUALITY signal, not a quota. The owner's rule (2026-07-25): never
+   link Wikipedia or Investopedia, and never pad the list just to have entries.
+   Zero sources is therefore legal; a cheap source is not. Prefer regulators
+   (BIS, Fed, ECB, IMF, OCC, FDIC, SEC), standard-setters, exchanges, GARP, and
+   original papers. 283 encyclopedia links were stripped in one pass on the date
+   above; this check is what stops them coming back. */
+const BANNED_SOURCE_HOSTS = [/(^|\.)wikipedia\.org$/i, /(^|\.)investopedia\.com$/i];
+if (d.sources !== undefined && !Array.isArray(d.sources)) fail("sources must be an array when present");
+else for (const s of d.sources || []) {
+  if (!s.title || !/^https?:\/\//.test(s.url || "")) { fail("source url malformed"); continue; }
+  let host = "";
+  try { host = new URL(s.url).hostname; } catch { fail("source url unparseable: " + s.url); continue; }
+  if (BANNED_SOURCE_HOSTS.some((re) => re.test(host))) {
+    fail(`source host not allowed (${host}) — use a regulator, standard-setter, exchange, or original paper`);
+  }
+}
 
 if (!d.pdf || !d.pdf.book || !d.pdf.query || d.pdf.query.split(/\s+/).length < 4) fail("pdf locator missing/short");
 

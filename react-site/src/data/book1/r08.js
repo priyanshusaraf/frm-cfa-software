@@ -177,9 +177,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Autocorrelation - Wikipedia", url: "https://en.wikipedia.org/wiki/Autocorrelation", note: "Background on how autocorrelation is defined and computed, including the ARCH/GARCH context referenced in the reading." },
-    { title: "Mean Reversion - Investopedia", url: "https://www.investopedia.com/terms/m/meanreversion.asp", note: "Accessible explanation of mean reversion as a general concept, applicable beyond correlation to prices, spreads, and volatility." },
-    { title: "Generalized Extreme Value Distribution - Wikipedia", url: "https://en.wikipedia.org/wiki/Generalized_extreme_value_distribution", note: "The GEV distribution identified as the best fit for bond correlations; connects back to the EVT material in Reading 3." },
     { title: "Correlation Risk Modeling and Management - GARP", url: "https://www.garp.org/", note: "GARP's FRM curriculum page, source organization for this reading's underlying text (Meissner, Correlation Risk Modeling and Management, 2nd Edition)." }
   ],
 

@@ -219,10 +219,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Merton model — Wikipedia", url: "https://en.wikipedia.org/wiki/Merton_model", note: "Overview of the structural credit-risk model treating equity as a call option on firm assets." },
-    { title: "CAMELS rating system — Wikipedia", url: "https://en.wikipedia.org/wiki/CAMELS_rating_system", note: "Background on the bank-supervision rating framework (CAMEL plus the later 'S' for sensitivity to market risk)." },
-    { title: "Basel III: international regulatory framework for banks — BIS", url: "https://www.bis.org/bcbs/basel3.htm", note: "Primary-source summary of the Basel III capital, liquidity, and leverage requirements referenced in the CAR discussion." },
-    { title: "Capital Adequacy Ratio (CAR) — Investopedia", url: "https://www.investopedia.com/terms/c/capitaladequacyratio.asp", note: "Plain-language walkthrough of CAR, Tier 1/Tier 2 capital, and risk-weighted assets." }
+    { title: "Basel III: international regulatory framework for banks — BIS", url: "https://www.bis.org/bcbs/basel3.htm", note: "Primary-source summary of the Basel III capital, liquidity, and leverage requirements referenced in the CAR discussion." }
   ],
 
   pdf: { book: 2, query: "This topic focuses on modeling credit risk and credit risk assessment approaches" }

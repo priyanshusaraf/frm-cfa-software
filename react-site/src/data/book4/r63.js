@@ -258,8 +258,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Northern Rock (bank) — Wikipedia", url: "https://en.wikipedia.org/wiki/Northern_Rock", note: "Background on the 2007 bank run and nationalization referenced as the funding-liquidity case study." },
-    { title: "Bid–ask spread — Investopedia", url: "https://www.investopedia.com/terms/b/bid-askspread.asp", note: "Plain-language refresher on bid, offer, and mid-market price, the building blocks of the cost-of-liquidation formula." },
     { title: "Basel III: The Liquidity Coverage Ratio and liquidity risk monitoring tools — BIS", url: "https://www.bis.org/publ/bcbs238.pdf", note: "The primary source document for the LCR and its 30-day stress assumptions referenced in this reading." },
     { title: "Principles for Sound Liquidity Risk Management and Supervision — BIS", url: "https://www.bis.org/publ/bcbs144.pdf", note: "The original 17-principle BIS framework this reading summarizes across governance, measurement, disclosure, and supervision." }
   ],

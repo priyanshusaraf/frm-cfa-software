@@ -219,10 +219,7 @@ export default ({
   ],
 
   sources: [
-    { title: "ISDA Master Agreement — Wikipedia", url: "https://en.wikipedia.org/wiki/ISDA_Master_Agreement", note: "Background on the standardized legal contract that underpins netting and close-out enforceability across OTC derivatives." },
-    { title: "Netting — Investopedia", url: "https://www.investopedia.com/terms/n/netting.asp", note: "Plain-language overview of payment netting and close-out netting with basic examples." },
-    { title: "Close-out netting — BIS", url: "https://www.bis.org/publ/cgfs76.htm", note: "Bank for International Settlements committee material touching on close-out netting's role in reducing counterparty credit risk in derivatives markets." },
-    { title: "Trade compression services (TriOptima background) — Wikipedia", url: "https://en.wikipedia.org/wiki/Portfolio_compression", note: "Overview of portfolio/trade compression mechanics referenced in the reading's CDS compression example." }
+    { title: "Close-out netting — BIS", url: "https://www.bis.org/publ/cgfs76.htm", note: "Bank for International Settlements committee material touching on close-out netting's role in reducing counterparty credit risk in derivatives markets." }
   ],
 
   pdf: { book: 2, query: "In this reading, we further discuss ways to mitigate counterparty risk" },

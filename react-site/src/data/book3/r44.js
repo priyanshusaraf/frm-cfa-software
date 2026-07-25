@@ -260,12 +260,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Operational risk management (overview)", url: "https://en.wikipedia.org/wiki/Operational_risk_management", note: "Background on the internal-controls and risk-response vocabulary this reading builds on." },
-    { title: "Internal control: Investopedia", url: "https://www.investopedia.com/terms/i/internalcontrols.asp", note: "Plain-language explanation of preventive/detective/corrective control concepts used across accounting and risk management." },
-    { title: "Business continuity planning: Investopedia", url: "https://www.investopedia.com/terms/b/business-continuity-planning.asp", note: "Context for BCM/BCP, disaster recovery, and the crisis-response phases covered in this reading." },
-    { title: "Lean Six Sigma: Wikipedia", url: "https://en.wikipedia.org/wiki/Lean_Six_Sigma", note: "Background on the DMAIC cycle referenced as a process-improvement framework for reducing operational error." }
-  ],
 
   pdf: { book: 3, query: "There are four ways to respond to risk: (1) tolerate" }
 });

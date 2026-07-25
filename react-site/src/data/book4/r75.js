@@ -211,10 +211,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Federal Home Loan Banks — overview", url: "https://en.wikipedia.org/wiki/Federal_Home_Loan_Banks", note: "Background on the FHLB system's 1932 origin, structure, and role as a stable, senior-secured funding source for member banks." },
-    { title: "Federal funds", url: "https://en.wikipedia.org/wiki/Federal_funds", note: "Explains the fed funds market mechanics — overnight interbank lending settled through reserve balances at the Federal Reserve." },
-    { title: "Discount window", url: "https://www.federalreserve.gov/regreform/discount-window.htm", note: "The Federal Reserve's own explanation of primary, secondary, and seasonal credit at the discount window." },
-    { title: "Eurodollar", url: "https://en.wikipedia.org/wiki/Eurodollar", note: "Covers Eurocurrency/Eurodollar deposit mechanics and their development in 1950s Western Europe." }
+    { title: "Discount window", url: "https://www.federalreserve.gov/regreform/discount-window.htm", note: "The Federal Reserve's own explanation of primary, secondary, and seasonal credit at the discount window." }
   ],
 
   pdf: { book: 4, query: "Financial institutions borrow in money and capital markets to cover funding gaps" },

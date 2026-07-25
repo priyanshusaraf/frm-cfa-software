@@ -235,10 +235,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Treasury Inflation-Protected Securities (TIPS) — TreasuryDirect", url: "https://www.treasurydirect.gov/marketable-securities/tips/", note: "Official U.S. Treasury description of how TIPS' inflation-adjusted principal and real yield work, underlying the nominal-vs-real yield distinction central to this reading's main worked example." },
-    { title: "Principal component analysis — Wikipedia", url: "https://en.wikipedia.org/wiki/Principal_component_analysis", note: "General mathematical background on how PCA decomposes correlated variables into uncorrelated, variance-ranked components, applicable beyond the yield-curve case in this reading." },
-    { title: "Interest rate swap — Wikipedia", url: "https://en.wikipedia.org/wiki/Interest_rate_swap", note: "Background on how fixed-for-floating swaps at different maturities (e.g., the 10-, 20-, and 30-year euro swaps in the two-variable hedge example) are structured and quoted." },
-    { title: "Autocorrelation — Wikipedia", url: "https://en.wikipedia.org/wiki/Autocorrelation", note: "Background on serial correlation in error terms, the statistical property that makes both level and change regressions inefficient in this reading." }
+    { title: "Treasury Inflation-Protected Securities (TIPS) — TreasuryDirect", url: "https://www.treasurydirect.gov/marketable-securities/tips/", note: "Official U.S. Treasury description of how TIPS' inflation-adjusted principal and real yield work, underlying the nominal-vs-real yield distinction central to this reading's main worked example." }
   ],
 
   pdf: { book: 1, query: "A standard DV01-neutral hedge assumes that the yield" },

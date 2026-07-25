@@ -250,8 +250,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Central counterparty clearing house — Wikipedia", url: "https://en.wikipedia.org/wiki/Central_counterparty_clearing", note: "Background on how CCPs interpose themselves as buyer-to-every-seller/seller-to-every-buyer and the historical push toward mandatory clearing." },
-    { title: "Novation — Investopedia", url: "https://www.investopedia.com/terms/n/novation.asp", note: "Plain-language definition of novation, the legal substitution mechanism central to how a CCP replaces original counterparties." },
     { title: "OTC derivatives statistics and central clearing — Bank for International Settlements", url: "https://www.bis.org/statistics/derstats.htm", note: "BIS data and commentary on the scale of central clearing in global OTC derivatives markets, useful for grounding the systemic-risk motivation." },
     { title: "GARP — Global Association of Risk Professionals", url: "https://www.garp.org/", note: "Home page of the body that administers the FRM exam this reading is drawn from; useful for official curriculum and study materials context." }
   ],

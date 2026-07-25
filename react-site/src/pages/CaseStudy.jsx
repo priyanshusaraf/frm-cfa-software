@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { banks, BEYOND_EXAM } from "../data/caseStudy.js";
 import { readingMeta, rpath, bookOf } from "../lib/meta.js";
 import { initWidgets } from "../widgets/index.js";
@@ -13,8 +13,13 @@ function BeyondExamBadge() {
   );
 }
 
+/* Stable per-case anchor id. Derived from the book number rather than the bank
+   name so renaming a case never breaks an inbound link. */
+export const caseId = (bookNum) => "case-book" + bookNum;
+
 export default function CaseStudy() {
   const rootRef = useRef(null);
+  const location = useLocation();
 
   useEffect(() => {
     document.title = "Case study · real banks · FRM Part II";
@@ -23,6 +28,26 @@ export default function CaseStudy() {
   useEffect(() => {
     if (rootRef.current) initWidgets(rootRef.current);
   }, []);
+
+  /* Arriving from a reading's "In the real world" card used to dump you at the
+     top of a five-case page and leave you hunting. `?case=` scrolls to the one
+     you asked for. The rAF waits for widgets and math to settle first, or the
+     measured offset is taken against a layout that is about to change. */
+  useEffect(() => {
+    const want = new URLSearchParams(location.search).get("case");
+    if (!want) return;
+    let raf2 = 0;
+    const raf1 = requestAnimationFrame(() => {
+      raf2 = requestAnimationFrame(() => {
+        const el = document.getElementById(want);
+        if (!el) return;
+        const navH = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 0;
+        const top = el.getBoundingClientRect().top + window.scrollY - (navH * 16 + 16);
+        window.scrollTo({ top, behavior: "instant" });
+      });
+    });
+    return () => { cancelAnimationFrame(raf1); cancelAnimationFrame(raf2); };
+  }, [location.search]);
 
   return (
     <main className="page wide" ref={rootRef}>
@@ -35,13 +60,32 @@ export default function CaseStudy() {
         illustration layer on top, and everything drawn from the real world rather than the source text
         is labeled so you never mistake it for something GARP will test.
       </p>
-      <div style={{ margin: "0.4rem 0 1.2rem" }}><BeyondExamBadge /></div>
+      <div style={{ margin: "0.4rem 0 0" }}><BeyondExamBadge /></div>
+
+      {/* Jump list: five long cases on one page is a scroll hunt without it. */}
+      <div className="case-index">
+        {banks.map((b) => (
+          <a key={b.book} className="chip" href={"#" + caseId(b.book)}
+             onClick={(e) => {
+               e.preventDefault();
+               const el = document.getElementById(caseId(b.book));
+               if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+             }}>
+            Book {b.book} · {b.domain}
+          </a>
+        ))}
+      </div>
 
       {banks.map((b) => {
         const book = bookOf(b.book === 5 ? 96 : b.book === 4 ? 63 : b.book === 3 ? 41 : b.book === 2 ? 26 : 1);
         const color = book ? book.color : "var(--accent)";
         return (
-          <section key={b.book} className="card" style={{ marginBottom: "0.9rem", borderLeft: "3px solid " + color }}>
+          <section
+            key={b.book}
+            id={caseId(b.book)}
+            className="card case-card"
+            style={{ borderLeft: "3px solid " + color }}
+          >
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "0.75rem", flexWrap: "wrap" }}>
               <strong style={{ fontSize: "0.95rem" }}>
                 Book {b.book} · {b.domain}: {b.bank}
@@ -79,6 +123,20 @@ export default function CaseStudy() {
                         caption: b.statements.note,
                       })}
                     />
+                  </div>
+                )}
+
+                {b.links && b.links.length > 0 && (
+                  <div style={{ marginTop: "0.9rem" }}>
+                    <div className="section-label" style={{ color: "var(--text-faint)" }}>Read the primary record</div>
+                    <div className="case-links">
+                      {b.links.map((l) => (
+                        <a key={l.url} className="case-link" href={l.url} target="_blank" rel="noopener noreferrer">
+                          <span className="cl-title">{l.title} ↗</span>
+                          {l.note && <span className="cl-note">{l.note}</span>}
+                        </a>
+                      ))}
+                    </div>
                   </div>
                 )}
 

@@ -235,9 +235,7 @@ export default ({
 
   sources: [
     { title: "Liquidity Coverage Ratio — Bank for International Settlements", url: "https://www.bis.org/publ/bcbs238.htm", note: "The BIS's own standard defining HQLA, haircuts, and the 30-day stress scenario behind the LCR." },
-    { title: "Net Stable Funding Ratio — Bank for International Settlements", url: "https://www.bis.org/bcbs/publ/d295.htm", note: "The BIS standard defining ASF/RSF factors and the one-year structural funding requirement." },
-    { title: "Contingent convertible bond — Wikipedia", url: "https://en.wikipedia.org/wiki/Contingent_convertible_bond", note: "Background on CoCo mechanics, trigger types, and issuance history, including the Credit Suisse case." },
-    { title: "Dodd-Frank Wall Street Reform and Consumer Protection Act — Wikipedia", url: "https://en.wikipedia.org/wiki/Dodd%E2%80%93Frank_Wall_Street_Reform_and_Consumer_Protection_Act", note: "Overview of the full 2010 statute, including the Volcker Rule, CFPB, and FSOC provisions summarized in this reading." }
+    { title: "Net Stable Funding Ratio — Bank for International Settlements", url: "https://www.bis.org/bcbs/publ/d295.htm", note: "The BIS standard defining ASF/RSF factors and the one-year structural funding requirement." }
   ],
 
   pdf: { book: 3, query: "Following the 2007–2009 financial crisis, the Basel Committee on Banking Supervision implemented reforms" }

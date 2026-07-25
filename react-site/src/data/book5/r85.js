@@ -201,12 +201,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Value at risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Value_at_risk", note: "Background on VaR mechanics, confidence levels, and the diversification/aggregation issues this reading builds on." },
-    { title: "Value at Risk (VaR) — Investopedia", url: "https://www.investopedia.com/terms/v/var.asp", note: "Plain-language walkthrough of VaR calculation methods, useful as a refresher before the marginal/incremental/component decomposition." },
-    { title: "Efficient Frontier — Investopedia", url: "https://www.investopedia.com/terms/e/efficientfrontier.asp", note: "Explains the mean-variance efficient frontier and tangency portfolio that the excess-return-to-marginal-VaR optimality condition is directly modeled on." },
-    { title: "Sharpe Ratio — Investopedia", url: "https://www.investopedia.com/terms/s/sharperatio.asp", note: "The excess-return-over-risk ratio whose VaR-based analogue (excess return / marginal VaR) defines the optimal portfolio condition in this reading." }
-  ],
 
   pdf: { book: 5, query: "Diversified VaR is simply the VaR of the portfolio" },
 

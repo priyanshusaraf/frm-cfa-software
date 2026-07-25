@@ -220,9 +220,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Gaussian copula", url: "https://en.wikipedia.org/wiki/Copula_(statistics)", note: "Background on the copula functions (normal/Gaussian copula) used to simulate correlated default times in the Credit VaR simulation method." },
-    { title: "Vasicek model", url: "https://en.wikipedia.org/wiki/Vasicek_model", note: "The original single-factor asset-value model that this reading's a_i = β_i·m + √(1−β_i²)·ε_i equation generalizes; useful for seeing the same math in R26's notation." },
-    { title: "Value at Risk (VaR)", url: "https://www.investopedia.com/terms/v/var.asp", note: "General VaR concept refresher — Credit VaR in this reading applies the same quantile-of-loss-distribution idea specifically to default losses." },
     { title: "An Explanatory Note on the Basel II IRB Risk Weight Functions", url: "https://www.bis.org/bcbs/irbriskweight.pdf", note: "The Basel Committee's own derivation of the single-factor (Vasicek-style) portfolio credit risk model that underlies regulatory capital formulas." }
   ],
 

@@ -280,9 +280,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Money laundering: Wikipedia", url: "https://en.wikipedia.org/wiki/Money_laundering", note: "Background on the placement/layering/integration model and common laundering techniques, including structuring/smurfing." },
     { title: "Financial Crimes Enforcement Network (FinCEN)", url: "https://www.fincen.gov/", note: "The U.S. Treasury bureau that, alongside the OCC, fined USAA FSB: see its enforcement actions page for BSA/AML case details." },
-    { title: "Bank Secrecy Act: Investopedia", url: "https://www.investopedia.com/terms/b/bank-secrecy-act.asp", note: "Plain-language explainer of the BSA requirements USAA was found to have violated." },
     { title: "FATF Recommendations: Financial Action Task Force", url: "https://www.fatf-gafi.org/en/topics/fatf-recommendations.html", note: "The source standards (including Recommendation 10 on customer due diligence and Recommendation 26 on supervision) referenced throughout this reading." }
   ],
 

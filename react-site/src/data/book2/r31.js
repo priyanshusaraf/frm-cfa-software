@@ -289,9 +289,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Central counterparty clearing (Wikipedia)", url: "https://en.wikipedia.org/wiki/Central_counterparty_clearing", note: "Overview of how CCPs interpose themselves between counterparties, novation, and margin/default-fund mechanics." },
-    { title: "ISDA Master Agreement (Investopedia)", url: "https://www.investopedia.com/terms/i/isda.asp", note: "Plain-language walkthrough of what the ISDA Master Agreement standardizes and why it matters for OTC derivatives." },
-    { title: "Value at Risk (VaR) (Investopedia)", url: "https://www.investopedia.com/terms/v/var.asp", note: "Definition, interpretation, and common pitfalls of VaR — useful for correctly reading VaR statements like the ones tested here." },
     { title: "OTC derivatives statistics (BIS)", url: "https://www.bis.org/statistics/derstats.htm", note: "Bank for International Settlements data on the scale and composition of the global OTC derivatives market referenced by the large-player/medium-player/end-user breakdown." }
   ],
 

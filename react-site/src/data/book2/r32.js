@@ -307,9 +307,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Counterparty credit risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Counterparty_risk", note: "General overview of counterparty risk, presettlement vs. settlement risk, and how it differs from ordinary credit risk." },
-    { title: "Wrong-Way Risk Definition — Investopedia", url: "https://www.investopedia.com/terms/w/wrong-way-risk.asp", note: "Accessible explanation of wrong-way risk with additional examples beyond the Greek sovereign CDS case in this reading." },
-    { title: "Repurchase agreement (Repo) — Investopedia", url: "https://www.investopedia.com/terms/r/repurchaseagreement.asp", note: "Background on repo mechanics, haircuts, and the collateral relationship underlying the worked example in this reading." },
     { title: "OTC derivatives statistics — Bank for International Settlements", url: "https://www.bis.org/statistics/derstats.htm", note: "Source-quality data on the scale of the OTC derivatives market referenced when comparing interest rate swaps, FX forwards, and CDS by notional." }
   ],
 

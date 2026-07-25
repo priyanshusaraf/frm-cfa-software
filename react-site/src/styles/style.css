@@ -207,7 +207,7 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
    loses on source order. The doubled class buys specificity (0,2,0) and wins
    wherever it lands in the bundle. */
 .katex.katex { font-size: calc(1.12em * var(--math-scale, 1)); }
-.katex-display > .katex.katex { font-size: calc(1.34em * var(--math-scale, 1)); }
+.katex-display > .katex.katex { font-size: calc(1.45em * var(--math-scale, 1)); }
 /* Nested math inside a formula block is already scaled by .f-tex below; a second
    multiplier there would overshoot and force fitMath to shrink it straight back. */
 .formula-block .katex.katex { font-size: 1em; }
@@ -384,7 +384,7 @@ details.concept .concept-body { padding: 0 0 1.5rem 1.27rem; }
 /* legacy HTML math (un-converted readings) */
 .formula-block .f-math { font-family: var(--mono); font-size: calc(1.15rem * var(--math-scale, 1)); text-align: center; white-space: nowrap; overflow-x: auto; }
 /* KaTeX-typeset math: the visual centre of the block, generous vertical air */
-.formula-block .f-tex { font-size: calc(1.5rem * var(--math-scale, 1)); overflow-x: auto; overflow-y: hidden; padding: 0.55rem 0; }
+.formula-block .f-tex { font-size: calc(1.72rem * var(--math-scale, 1)); overflow-x: auto; overflow-y: hidden; padding: 0.55rem 0; }
 .formula-block .f-tex .katex-display { margin: 0; }
 /* Centre the MATH, left-align the PROSE about it. Centred ragged text is fine
    for a one-line caption and actively harder to read once it wraps, which the
@@ -804,16 +804,19 @@ html[data-fullscreen] .pomo-fab { display: none; }
 /* A parked nav with no affordance is an invisible feature. This handle is the
    only always-visible hint that the chrome is one hover away. */
 .nav-peek-handle {
-  position: fixed; top: 0; left: 50%; transform: translateX(-50%); z-index: 53;
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%); z-index: 56;
   display: flex; align-items: center; gap: 0.35rem;
-  padding: 0.1rem 0.7rem 0.2rem; border-radius: 0 0 8px 8px;
+  padding: 0.15rem 0.75rem 0.25rem; border-radius: 0 0 8px 8px;
   background: var(--bg-raised); border: 1px solid var(--border); border-top: none;
   color: var(--text-faint); font-size: 0.66rem; letter-spacing: 0.08em;
-  text-transform: uppercase; pointer-events: none;
-  opacity: 0.55; transition: opacity 0.18s;
+  text-transform: uppercase; font-family: inherit; cursor: pointer;
+  opacity: 0.6; transition: opacity 0.18s, color 0.18s;
 }
-.nav-peek-trigger:hover ~ .nav-peek-handle,
-.nav-peek:hover ~ .nav-peek-handle { opacity: 0; }
+.nav-peek-handle:hover { opacity: 1; color: var(--text); }
+.nav-peek-handle:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; opacity: 1; }
+/* Once the nav is down it would cover the handle, so the handle rides below it. */
+.nav-peek[data-open="1"] ~ .nav-peek-handle,
+.nav-peek:hover ~ .nav-peek-handle { top: auto; }
 .nav-peek {
   position: fixed; top: 0; left: 0; right: 0; z-index: 55;
   transform: translateY(-100%);
@@ -1016,3 +1019,65 @@ mark.hl.hl-r { background: color-mix(in srgb, var(--red) 26%, transparent); box-
   100% { background: transparent; box-shadow: 0 0 0 3px transparent; }
 }
 .jump-flash { animation: jump-flash-kf 1.3s ease-out; border-radius: var(--radius-sm); scroll-margin-top: calc(var(--nav-h) + 0.75rem); }
+
+/* ---------- consistency dashboard ----------
+   Equal-width tiles on a grid: flex + min-width sized each tile to its own label,
+   so four tiles of different label lengths came out visibly ragged. */
+.consistency-tiles {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.7rem; margin: 1.2rem 0 1.8rem;
+}
+.consistency-tile { text-align: center; padding: 1rem 0.75rem; }
+.consistency-tile .ct-n {
+  font-size: 1.75rem; font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+  font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text);
+}
+.consistency-tile .ct-l {
+  font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.07em;
+  color: var(--text-faint); margin-top: 0.35rem;
+}
+@media (max-width: 620px) { .consistency-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.heat-legend {
+  display: flex; align-items: center; gap: 0.3rem; justify-content: flex-end;
+  margin-top: 0.7rem; font-size: 0.72rem; color: var(--text-faint);
+}
+.heat-legend .hl-sq {
+  width: 11px; height: 11px; border-radius: 2px; border: 0.5px solid var(--border);
+}
+
+/* ---------- home momentum (consistency + progress summary) ---------- */
+.momentum { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 0.8rem; margin-top: 1.6rem; }
+@media (max-width: 780px) { .momentum { grid-template-columns: minmax(0, 1fr); } }
+.momentum .card { padding: 1rem 1.15rem 1.1rem; }
+.momentum-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.85rem; }
+.momentum-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
+.momentum-more { font-size: 0.75rem; color: var(--text-faint); text-decoration: none; }
+.momentum-more:hover { color: var(--accent); text-decoration: none; }
+.momentum-nums { display: flex; gap: 1.6rem; margin-bottom: 0.9rem; }
+.momentum-nums > div { display: flex; flex-direction: column; }
+.momentum-nums .mn { font-size: 1.5rem; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.momentum-nums .ml { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); margin-top: 0.25rem; }
+.momentum-heat { display: block; max-width: 100%; height: auto; }
+.momentum-note { font-size: 0.78rem; color: var(--text-faint); margin: 0.8rem 0 0; }
+.momentum-books { display: flex; flex-direction: column; gap: 0.72rem; }
+.momentum-book { display: block; text-decoration: none; }
+.momentum-book:hover { text-decoration: none; }
+.momentum-book:hover .mb-name { filter: brightness(1.2); }
+.mb-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.3rem; }
+.mb-name { font-size: 0.8rem; font-weight: 600; }
+.mb-count { font-size: 0.74rem; font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-faint); }
+
+
+/* ---------- case-study cards ---------- */
+.case-card { margin-bottom: 1.1rem; scroll-margin-top: calc(var(--nav-h) + 1rem); }
+.case-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0.5rem; margin-top: 0.45rem; }
+.case-link {
+  display: flex; flex-direction: column; gap: 0.15rem; text-decoration: none;
+  border: 1px solid var(--border); border-radius: var(--radius-sm);
+  background: var(--bg-inset); padding: 0.55rem 0.7rem;
+  transition: border-color 0.15s, background 0.15s;
+}
+.case-link:hover { border-color: var(--border-strong); background: var(--bg-hover); text-decoration: none; }
+.case-link .cl-title { font-size: 0.83rem; font-weight: 600; color: var(--text); }
+.case-link .cl-note { font-size: 0.76rem; color: var(--text-faint); line-height: 1.4; }
+.case-index { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.9rem 0 1.4rem; }

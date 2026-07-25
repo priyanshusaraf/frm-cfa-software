@@ -106,10 +106,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Digital Operational Resilience Act (DORA) — Wikipedia", url: "https://en.wikipedia.org/wiki/Digital_Operational_Resilience_Act", note: "Background on the EU framework policy this reading cites for ICT third-party/cloud risk and penetration stress testing." },
-    { title: "Circuit Breaker — Investopedia", url: "https://www.investopedia.com/terms/c/circuitbreaker.asp", note: "General explainer on circuit breakers as temporary trading/regulatory pauses, useful context for the bank-specific application in this reading." },
-    { title: "Macroprudential Policy — Bank for International Settlements", url: "https://www.bis.org/topic/macropru.htm", note: "BIS hub page on macroprudential tools, the regulatory family circuit breakers, cooperative arrangements, and structural measures all belong to." },
-    { title: "Bank Run — Wikipedia", url: "https://en.wikipedia.org/wiki/Bank_run", note: "Background on the confidence-driven run mechanism that cyber/ICT shocks are shown in this reading to trigger." }
+    { title: "Macroprudential Policy — Bank for International Settlements", url: "https://www.bis.org/topic/macropru.htm", note: "BIS hub page on macroprudential tools, the regulatory family circuit breakers, cooperative arrangements, and structural measures all belong to." }
   ],
 
   pdf: { book: 5, query: "loss of confidentiality, integrity, and availability (CIA) of data" },

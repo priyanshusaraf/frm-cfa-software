@@ -248,9 +248,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Liquidity risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Liquidity_risk", note: "General background on funding vs. market liquidity risk and how institutions monitor cash-flow mismatches." },
-    { title: "Repurchase agreement (repo) — Wikipedia", url: "https://en.wikipedia.org/wiki/Repurchase_agreement", note: "Explains why a repo is structured and treated as a secured loan rather than an outright sale, the mechanics underlying the TSAA-vs-TSECF distinction." },
-    { title: "Haircut (finance) — Investopedia", url: "https://www.investopedia.com/terms/h/haircut.asp", note: "Defines the collateral haircut concept referenced in how repo/reverse-repo cash amounts are calculated." },
     { title: "Basel Committee — Principles for Sound Liquidity Risk Management and Supervision", url: "https://www.bis.org/publ/bcbs144.htm", note: "BIS supervisory guidance on the cash-flow projection and monitoring practices this reading's term-structure vocabulary formalizes." }
   ],
 

@@ -64,6 +64,7 @@ function PageLoading() {
 function Shell() {
   const fullscreen = useFullscreen();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [navPinned, setNavPinned] = useState(false);
 
   useEffect(() => {
     function onKey(e) {
@@ -77,6 +78,9 @@ function Shell() {
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, []);
+
+  // Leaving fullscreen must not strand a pinned nav in the normal layout.
+  useEffect(() => { if (!fullscreen) setNavPinned(false); }, [fullscreen]);
 
   /* A finished Pomodoro phase surfaces as a nudge toast, not a browser
      notification: no permission prompt, and it keeps the "never blocks the
@@ -106,7 +110,21 @@ function Shell() {
       {fullscreen ? (
         <>
           <div className="nav-peek-trigger" aria-hidden="true" />
-          <div className="nav-peek" data-open={menuOpen ? "1" : undefined}>
+          {/* A CLICKABLE handle, not just the hover strip. Hovering an invisible
+              band at the very top of the screen is unreliable in native
+              fullscreen (the browser's own toolbar auto-reveals there and eats
+              the pointer), so the nav needs a control that cannot silently fail.
+              Pinned open via navPinned; hover still works as a shortcut. */}
+          <button
+            type="button"
+            className="nav-peek-handle"
+            aria-expanded={navPinned}
+            aria-label={navPinned ? "Hide menu" : "Show menu"}
+            onClick={() => setNavPinned((v) => !v)}
+          >
+            {navPinned ? "▲" : "▼"} Menu
+          </button>
+          <div className="nav-peek" data-open={menuOpen || navPinned ? "1" : undefined}>
             <Nav onMenuOpenChange={setMenuOpen} />
           </div>
         </>

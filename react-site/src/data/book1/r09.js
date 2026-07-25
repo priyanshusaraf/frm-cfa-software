@@ -211,10 +211,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Copula (probability theory) — Wikipedia", url: "https://en.wikipedia.org/wiki/Copula_(probability_theory)", note: "General mathematical background on copula functions, Sklar's theorem, and how marginals and dependence structures are separated." },
-    { title: "Gaussian copula — Wikipedia", url: "https://en.wikipedia.org/wiki/Copula_(probability_theory)#Gaussian_copula", note: "Formal definition of the Gaussian copula and its known limitation of near-zero tail dependence." },
-    { title: "Recipe for Disaster: The Formula That Killed Wall Street (Wired)", url: "https://www.wired.com/2009/02/wp-quant/", note: "Accessible narrative history of how the Gaussian copula (David X. Li's formula) was used to price CDOs and contributed to the 2008 financial crisis." },
-    { title: "Collateralized debt obligation — Wikipedia", url: "https://en.wikipedia.org/wiki/Collateralized_debt_obligation", note: "Background on CDO structure, tranches (equity/mezzanine/senior), and how correlation across tranches matters." }
+    { title: "Recipe for Disaster: The Formula That Killed Wall Street (Wired)", url: "https://www.wired.com/2009/02/wp-quant/", note: "Accessible narrative history of how the Gaussian copula (David X. Li's formula) was used to price CDOs and contributed to the 2008 financial crisis." }
   ],
 
   pdf: { book: 1, query: "Copulas gained popularity in the financial industry around" }

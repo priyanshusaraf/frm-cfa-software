@@ -228,8 +228,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Repurchase agreement — Wikipedia", url: "https://en.wikipedia.org/wiki/Repurchase_agreement", note: "General overview of repo mechanics, day-count conventions, and market participants." },
-    { title: "Repurchase Agreement (Repo) — Investopedia", url: "https://www.investopedia.com/terms/r/repurchaseagreement.asp", note: "Plain-language explainer of repo/reverse repo, haircuts, and typical uses." },
     { title: "The Lehman Brothers Bankruptcy — Federal Reserve Bank of San Francisco / Federal Reserve", url: "https://www.federalreserve.gov", note: "Federal Reserve materials and speeches covering the Lehman collapse and tri-party repo market reforms that followed." },
     { title: "Tri-Party Repo Infrastructure Reform — Federal Reserve Bank of New York", url: "https://www.newyorkfed.org/tripartyrepo", note: "Background on the tri-party repo market structure referenced in the Lehman case study, and post-crisis reforms." }
   ],

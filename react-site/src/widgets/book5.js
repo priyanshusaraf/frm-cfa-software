@@ -66,21 +66,48 @@ register("frontier", function (el) {
     var call = svgEl("text", { x: X(calEndRisk) - 4, y: Y(calEndRet) - 8, "text-anchor": "end", "font-size": 10.5, fill: "var(--amber)" }, svg);
     call.textContent = "CAL";
 
-    /* individual assets, dominated by the frontier */
+    /* Individual assets, dominated by the frontier.
+       Every label used to be pinned to the RIGHT of its dot, so the crowded
+       upper-right corner overlapped itself ("Small caps" over "EM equities")
+       and ran past the plot edge. Labels on the right half now hang to the LEFT
+       of their dot, and any label landing too close to one already placed gets
+       nudged vertically instead of being drawn on top of it. */
+    var placed = [];
+    function placeLabel(px, py, text, fill, weight, size) {
+      var flip = px > (x0 + x1) / 2;          // right half: hang the label leftward
+      var ty = py + 4;
+      for (var g = 0; g < 8; g++) {
+        var clash = placed.some(function (q) {
+          return Math.abs(q.y - ty) < 13 && Math.abs(q.x - px) < 118 && q.flip === flip;
+        });
+        if (!clash) break;
+        ty += 14;
+      }
+      placed.push({ x: px, y: ty, flip: flip });
+      var t = svgEl("text", {
+        x: flip ? px - 8 : px + 8, y: ty,
+        "text-anchor": flip ? "end" : "start",
+        "font-size": size || 10.5, fill: fill,
+        "font-weight": weight || 400
+      }, svg);
+      t.textContent = text;
+      return t;
+    }
+
     assets.forEach(function (a) {
       svgEl("circle", { cx: X(a.risk), cy: Y(a.ret), r: 4.5, fill: "var(--text-faint)" }, svg);
-      var lt = svgEl("text", { x: X(a.risk) + 7, y: Y(a.ret) + 4, "font-size": 10.5, fill: "var(--text-dim)" }, svg);
-      lt.textContent = a.label;
+      placeLabel(X(a.risk), Y(a.ret), a.label, "var(--text-dim)");
     });
 
-    /* risk-free point */
+    /* risk-free point: sits on the y-axis, so its label must clear the axis line */
     svgEl("circle", { cx: X(0), cy: Y(rf), r: 4.5, fill: "var(--green)" }, svg);
-    var rfl = svgEl("text", { x: X(0) + 7, y: Y(rf) - 6, "font-size": 10.5, fill: "var(--green)" }, svg);
+    var rfl = svgEl("text", { x: X(0) + 9, y: Y(rf) - 9, "font-size": 10.5, fill: "var(--green)" }, svg);
     rfl.textContent = "R_F = " + rf.toFixed(1) + "%";
 
-    /* tangency (max-Sharpe) portfolio */
+    /* tangency (max-Sharpe) portfolio: labelled ABOVE its dot rather than to the
+       right, where it used to collide with the asset cloud */
     svgEl("circle", { cx: X(tanRisk), cy: Y(tanRet), r: 6, fill: "var(--red)" }, svg);
-    var tl = svgEl("text", { x: X(tanRisk) + 8, y: Y(tanRet) - 8, "font-size": 11, fill: "var(--red)", "font-weight": 700 }, svg);
+    var tl = svgEl("text", { x: X(tanRisk) - 2, y: Y(tanRet) - 14, "text-anchor": "end", "font-size": 11, fill: "var(--red)", "font-weight": 700 }, svg);
     tl.textContent = "Tangency (max Sharpe)";
 
     /* investor's chosen complete portfolio along the CAL */

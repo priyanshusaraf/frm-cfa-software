@@ -198,12 +198,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Credit risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Credit_risk", note: "General overview of credit risk definitions, sources, and measurement approaches." },
-    { title: "Insolvency — Wikipedia", url: "https://en.wikipedia.org/wiki/Insolvency", note: "Background on the balance-sheet and cash-flow tests for insolvency, and how it differs from bankruptcy across jurisdictions." },
-    { title: "Chapter 7 vs. Chapter 11 Bankruptcy — Investopedia", url: "https://www.investopedia.com/ask/answers/100314/what-difference-between-chapter-7-and-chapter-11-bankruptcy.asp", note: "Plain-language comparison of liquidation (Chapter 7) vs. reorganization (Chapter 11) bankruptcy." },
-    { title: "Reinsurance — Investopedia", url: "https://www.investopedia.com/terms/r/reinsurance.asp", note: "Explains how reinsurance contracts work and why reinsurance recoverables are a credit exposure for the ceding insurer." }
-  ],
 
   pdf: { book: 2, query: "credit risk is the probability that one party" }
 });

@@ -244,8 +244,6 @@ export default ({
 
   sources: [
     { title: "Review of the Federal Reserve's Supervision and Regulation of Silicon Valley Bank (Barr Report)", url: "https://www.federalreserve.gov/publications/files/svb-review-20230428.pdf", note: "The original Federal Reserve report this entire reading is based on — primary source for every fact, date, and rating cited above." },
-    { title: "Collapse of Silicon Valley Bank", url: "https://en.wikipedia.org/wiki/Collapse_of_Silicon_Valley_Bank", note: "A readable narrative timeline of the March 2023 run and closure, useful for cross-checking the sequence of events." },
-    { title: "Silicon Valley Bank Collapse: What Happened and Its Effects", url: "https://www.investopedia.com/what-caused-silicon-valley-bank-collapse-7370790", note: "A plain-English explainer of the deposit-concentration and duration-mismatch mechanics, good for a first-pass overview before the exam-detail version above." },
     { title: "FDIC: Silicon Valley Bank, Santa Clara, CA", url: "https://www.fdic.gov/bank-failures/failed-bank-list", note: "The FDIC's official failed-bank record confirming the receivership date and resolution details." }
   ],
 

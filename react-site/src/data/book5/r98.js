@@ -409,7 +409,6 @@ export default ({
   sources: [
     { title: "Basel Committee on Banking Supervision — Climate-related risk drivers and their transmission channels (BIS)", url: "https://www.bis.org/bcbs/publ/d517.htm", note: "The companion 2021 BIS publication (this reading's sister report) laying out the transmission-channel taxonomy that R98's measurement methodologies build on." },
     { title: "Bank for International Settlements — homepage", url: "https://www.bis.org/", note: "Starting point for locating the Basel Committee's climate-risk publications and follow-up guidance." },
-    { title: "Investopedia — Value at Risk (VaR)", url: "https://www.investopedia.com/terms/v/var.asp", note: "Background on the standard VaR framework that 'climate VaR' repurposes for climate-related balance-sheet impacts." },
     { title: "NGFS (Network for Greening the Financial System) — Scenarios Portal", url: "https://www.ngfs.net/ngfs-scenarios-portal/", note: "The external scenario source referenced in the reading (e.g., Net Zero 2050 vs. Delayed Transition) used by banks and supervisors for climate scenario analysis." }
   ],
 

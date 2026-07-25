@@ -45,7 +45,15 @@ register("nested-rings", function (el) {
   var caption = (typeof d.caption === "string" && d.caption) ? d.caption
     : "Read from the center out: the raw loss database is the foundation, and each outer ring is a broader layer of processing built on the one inside it. Nothing on the outside works without the data at the core.";
 
-  var W = 460, H = 460;
+  /* Compact rings on the LEFT, legend on the RIGHT. The old version was a
+     460x460 board with every label typeset INSIDE its own ring, so the labels
+     dictated the radius: four layers forced a circle wide enough to fit the
+     longest sentence, and the graphic swallowed the page while the text still
+     sat awkwardly across the bands. Nesting is the only thing the circles need
+     to convey; the words belong in a legend where they can be read. */
+  var W = 640, RING_R = 104, PAD = 18;
+  var rowH = 34;
+  var H = Math.max(RING_R * 2 + PAD * 2, rings.length * rowH + PAD * 2 + (stages.length ? 28 : 0));
   var svg = shell(el, title, "", W, H, caption);
   var readout = document.createElement("div");
   readout.className = "w-caption";
@@ -53,74 +61,70 @@ register("nested-rings", function (el) {
   readout.style.minHeight = "1.2em";
   el.appendChild(readout);
 
-  var cx = W / 2, cy = H / 2 - (stages.length ? 6 : 0);
-  var outerR = stages.length ? 168 : 196;
+  var cx = PAD + RING_R, cy = H / 2;
   var n = rings.length;
-  /* palette cycles through theme semantic soft fills, core = accent. */
   var fills = ["var(--accent-soft)", "var(--cyan-soft)", "var(--green-soft)", "var(--amber-soft)", "var(--purple-soft)"];
   var strokes = ["var(--accent)", "var(--cyan)", "var(--green)", "var(--amber)", "var(--purple)"];
 
   function draw(active) {
     svg.innerHTML = "";
 
-    /* optional lifecycle stage ring, drawn behind the layer circles */
-    if (stages.length) {
-      var stageR = outerR + 46;
-      svgEl("circle", { cx: cx, cy: cy, r: stageR, fill: "none", stroke: "var(--border)", "stroke-width": 1 }, svg);
-      stages.forEach(function (s, i) {
-        /* clockwise from the top (12 o'clock) */
-        var ang = -Math.PI / 2 + (i / stages.length) * 2 * Math.PI;
-        var lx = cx + Math.cos(ang) * stageR;
-        var ly = cy + Math.sin(ang) * stageR;
-        svgEl("circle", { cx: lx, cy: ly, r: 4, fill: "var(--accent)" }, svg);
-        var t = svgEl("text", {
-          x: lx, y: ly - 8, "text-anchor": "middle", "font-size": 10, "font-weight": 600, fill: "var(--text-dim)"
-        }, svg);
-        t.textContent = s;
-      });
-    }
-
-    /* draw outermost first so inner rings sit on top */
+    /* outermost first, so inner rings sit on top */
     for (var i = n - 1; i >= 0; i--) {
-      var r = outerR * (i + 1) / n;
-      var isActive = active === i;
+      var r = RING_R * (i + 1) / n;
       var c = svgEl("circle", {
         cx: cx, cy: cy, r: r,
         fill: fills[i % fills.length],
         stroke: strokes[i % strokes.length],
-        "stroke-width": isActive ? 3 : 1.5,
-        style: "cursor:pointer",
+        "stroke-width": active === i ? 3 : 1.5,
+        style: "cursor:pointer"
       }, svg);
       (function (idx) {
         c.addEventListener("mouseenter", function () { draw(idx); showReadout(idx); });
       })(i);
+      /* just the layer number inside its band: one glyph always fits */
+      var rInner = RING_R * i / n;
+      var numY = i === 0 ? cy + 4 : cy - (r + rInner) / 2 + 4;
+      var num = svgEl("text", {
+        x: cx, y: numY, "text-anchor": "middle", "font-size": 11, "font-weight": 700,
+        fill: strokes[i % strokes.length], style: "pointer-events:none"
+      }, svg);
+      num.textContent = String(i + 1);
     }
 
-    /* labels: innermost centered, each outer ring labeled near the top of its band */
-    for (var j = 0; j < n; j++) {
-      var rj = outerR * (j + 1) / n;
-      var rInner = outerR * j / n;
-      var labelY = j === 0 ? cy - 4 : cy - (rj + rInner) / 2;
-      var lbl = svgEl("text", {
-        x: cx, y: labelY, "text-anchor": "middle", "font-size": 11,
-        "font-weight": 700, fill: "var(--text)",
-      }, svg);
-      lbl.textContent = (j + 1) + ". " + rings[j].label;
-      if (rings[j].sub) {
-        var sub = svgEl("text", {
-          x: cx, y: labelY + 14, "text-anchor": "middle", "font-size": 9, fill: "var(--text-dim)",
-        }, svg);
-        sub.textContent = rings[j].sub;
+    /* legend: one row per layer, innermost at the top so it reads outward */
+    var lx = PAD + RING_R * 2 + 34;
+    var top = cy - (n * rowH) / 2 + 12;
+    rings.forEach(function (ring, j) {
+      var y = top + j * rowH;
+      var g = svgEl("g", { style: "cursor:pointer" }, svg);
+      g.addEventListener("mouseenter", function () { draw(j); showReadout(j); });
+      svgEl("rect", { x: lx, y: y - 9, width: 11, height: 11, rx: 2,
+        fill: fills[j % fills.length], stroke: strokes[j % strokes.length], "stroke-width": 1.5 }, g);
+      /* a wide invisible hit area so the whole row is hoverable, not just the text */
+      svgEl("rect", { x: lx, y: y - 14, width: W - lx - PAD, height: rowH - 4, fill: "transparent" }, g);
+      var t = svgEl("text", { x: lx + 20, y: y, "font-size": 11.5, "font-weight": 700,
+        fill: active === j ? strokes[j % strokes.length] : "var(--text)" }, g);
+      t.textContent = (j + 1) + ". " + ring.label;
+      if (ring.sub) {
+        var sub = svgEl("text", { x: lx + 20, y: y + 13, "font-size": 10, fill: "var(--text-dim)" }, g);
+        sub.textContent = ring.sub;
       }
+    });
+
+    /* optional lifecycle stages: a quiet caption strip under the legend */
+    if (stages.length) {
+      var st = svgEl("text", { x: lx, y: H - PAD + 2, "font-size": 10, fill: "var(--text-faint)" }, svg);
+      st.textContent = "Lifecycle: " + stages.join(" \u2192 ");
     }
   }
 
   function showReadout(i) {
     readout.textContent = "Layer " + (i + 1) + ": " + rings[i].label +
-      (rings[i].sub ? " (" + rings[i].sub + ")" : "") + ". Hover a ring to trace the layers.";
+      (rings[i].sub ? " (" + rings[i].sub + ")" : "") + ". Hover a layer to trace the stack.";
   }
 
-  draw(-1);
+    draw(-1);
 });
 
 /* =====================================================================

@@ -241,9 +241,7 @@ export default ({
 
   sources: [
     { title: "Basel Committee on Banking Supervision — history and mandate", url: "https://www.bis.org/bcbs/history.htm", note: "BIS's own account of why the Basel Committee was formed in 1974 and how its standards evolved." },
-    { title: "Basel Accords — overview (Wikipedia)", url: "https://en.wikipedia.org/wiki/Basel_Accords", note: "A readable summary tracing Basel I through Basel III, useful for seeing this reading's framework in the context of what came after." },
-    { title: "Basel II: International Convergence of Capital Measurement and Capital Standards", url: "https://www.bis.org/publ/bcbs128.htm", note: "The actual 2006 BCBS text this reading condenses — the primary source for the three pillars, IRB formula, and operational risk approaches." },
-    { title: "Solvency II Directive overview", url: "https://en.wikipedia.org/wiki/Solvency_II_Directive", note: "Background on the EU insurance capital framework this reading compares against Basel II, including the SCR/MCR structure." }
+    { title: "Basel II: International Convergence of Capital Measurement and Capital Standards", url: "https://www.bis.org/publ/bcbs128.htm", note: "The actual 2006 BCBS text this reading condenses — the primary source for the three pillars, IRB formula, and operational risk approaches." }
   ],
 
   pdf: { book: 3, query: "Basel I (1988) recommended a minimum capital level" },

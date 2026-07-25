@@ -147,9 +147,7 @@ export default ({
 
   sources: [
     { title: "Basel III: Finalising post-crisis reforms (Basel Committee, Dec 2017)", url: "https://www.bis.org/bcbs/publ/d424.htm", note: "The primary regulatory text defining the Business Indicator, BIC buckets, ILM, and the SMA operational risk capital formula covered in this reading." },
-    { title: "Operational risk — Standardised Measurement Approach, Basel Framework", url: "https://www.bis.org/basel_framework/chapter/OPE/25.htm", note: "The consolidated Basel Framework chapter with the current, official SMA calculation text and worked definitions." },
-    { title: "Advanced Measurement Approach (AMA)", url: "https://en.wikipedia.org/wiki/Advanced_measurement_approach", note: "Background on the AMA framework the SMA replaced, useful for contrasting the model-based vs. non-model-based philosophies." },
-    { title: "Basel III explained", url: "https://www.investopedia.com/terms/b/basel_iii.asp", note: "A plain-language overview of the broader Basel III capital and liquidity reform package this reading's SMA formula sits inside." }
+    { title: "Operational risk — Standardised Measurement Approach, Basel Framework", url: "https://www.bis.org/basel_framework/chapter/OPE/25.htm", note: "The consolidated Basel Framework chapter with the current, official SMA calculation text and worked definitions." }
   ],
 
   pdf: { book: 3, query: "standardized approach for measuring operational risk represents a combination" },

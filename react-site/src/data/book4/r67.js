@@ -193,10 +193,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Reserve requirements (Federal Reserve)", url: "https://www.federalreserve.gov/monetarypolicy/reservereq.htm", note: "Federal Reserve's own page on how reserve requirements work and their history, including the shift to zero reserve requirements in 2020 — useful context for how the tiered-ratio mechanics described in this reading have evolved." },
-    { title: "Bank liquidity", url: "https://en.wikipedia.org/wiki/Bank_liquidity", note: "Overview of bank liquidity concepts, the liquidity-solvency distinction, and common bank liquidity management tools." },
-    { title: "Federal funds", url: "https://en.wikipedia.org/wiki/Federal_funds", note: "Background on the federal funds market referenced repeatedly in this reading as the cheap-but-volatile go-to source for covering reserve deficits." },
-    { title: "Certificate of deposit", url: "https://www.investopedia.com/terms/c/certificateofdeposit.asp", note: "Explains negotiable/jumbo CDs, one of the named liability-management funding sources in this reading." }
+    { title: "Reserve requirements (Federal Reserve)", url: "https://www.federalreserve.gov/monetarypolicy/reservereq.htm", note: "Federal Reserve's own page on how reserve requirements work and their history, including the shift to zero reserve requirements in 2020 — useful context for how the tiered-ratio mechanics described in this reading have evolved." }
   ],
 
   pdf: { book: 4, query: "Liquidity represents a financial institution's access to funds" },

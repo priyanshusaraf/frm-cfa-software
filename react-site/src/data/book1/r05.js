@@ -216,9 +216,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Value at risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Value_at_risk", note: "Background on VaR mechanics and its limitations, including subadditivity, that underpin why mapping and diversified/undiversified VaR matter." },
-    { title: "Tracking error — Wikipedia", url: "https://en.wikipedia.org/wiki/Tracking_error", note: "General definition and calculation of tracking error, the concept extended here to 'tracking error VaR' relative to a benchmark portfolio." },
-    { title: "Bond duration — Investopedia", url: "https://www.investopedia.com/terms/d/duration.asp", note: "Explains Macaulay duration, the concept duration mapping uses to collapse a bond portfolio to a single zero-coupon-equivalent maturity." },
     { title: "Fundamental Review of the Trading Book (FRTB) — BIS", url: "https://www.bis.org/bcbs/publ/d457.htm", note: "The regulatory framework (covered in Reading 16) that responds directly to delta-normal VaR's limitations for options, referenced in this reading's derivatives section." }
   ],
 

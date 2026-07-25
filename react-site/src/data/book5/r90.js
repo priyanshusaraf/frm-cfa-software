@@ -144,9 +144,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Hedge fund due diligence — Wikipedia", url: "https://en.wikipedia.org/wiki/Hedge_fund", note: "General background on hedge fund structures, fees, and the operational risks investors must diligence before committing capital." },
     { title: "Form ADV — U.S. Securities and Exchange Commission", url: "https://www.sec.gov/about/forms/formadv.pdf", note: "The actual regulatory filing referenced in the reading's background-check process; shows what information (fees, conflicts of interest, disciplinary history) it discloses." },
-    { title: "Operational due diligence — Investopedia", url: "https://www.investopedia.com/terms/o/operational-risk.asp", note: "Accessible overview of operational risk assessment, useful context for the internal-controls and business-model-risk sections of this reading." },
     { title: "GARP — Global Association of Risk Professionals", url: "https://www.garp.org/", note: "The FRM program's home organization; useful for confirming current exam curriculum weighting on this topic." }
   ],
 

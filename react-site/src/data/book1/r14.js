@@ -211,9 +211,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Cox–Ingersoll–Ross model — Wikipedia", url: "https://en.wikipedia.org/wiki/Cox%E2%80%93Ingersoll%E2%80%93Ross_model", note: "Background on the CIR short-rate model, its square-root diffusion term, and the Feller condition for staying strictly positive." },
-    { title: "Short-rate model — Wikipedia", url: "https://en.wikipedia.org/wiki/Short-rate_model", note: "Overview of the family of one-factor short-rate models, including Black-Karasinski and lognormal specifications, for cross-reference against this reading's four models." },
-    { title: "Interest rate cap and floor — Wikipedia", url: "https://en.wikipedia.org/wiki/Interest_rate_cap_and_floor", note: "Explains caplets/floorlets and why their pricing depends on the forecast volatility term structure — the practical motivation for Model 3." },
     { title: "GARP — FRM Program", url: "https://www.garp.org/frm", note: "Official FRM exam body; useful for confirming current learning objectives and syllabus weighting for this topic." }
   ],
 

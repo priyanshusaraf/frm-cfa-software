@@ -296,7 +296,6 @@ export default ({
 
   sources: [
     { title: "Basel Committee — Principles for the Sound Management of Operational Risk", url: "https://www.bis.org/publ/bcbs195.htm", note: "The BCBS source document behind the 12 Pillar-1 principles referenced in this reading." },
-    { title: "Three lines of defense model — Wikipedia", url: "https://en.wikipedia.org/wiki/Three_lines_of_defence", note: "General background on the governance model, useful for cross-checking terminology against other risk domains (e.g., credit risk in Book 2)." },
     { title: "Basel III: Finalising post-crisis reforms (operational risk standardized approach)", url: "https://www.bis.org/bcbs/publ/d424.htm", note: "The BIS text introducing the standardized approach (BI, BIC, ILM) used for the Pillar 1 capital calculation." },
     { title: "Federal Reserve — Supervisory guidance on governance and risk management", url: "https://www.federalreserve.gov/supervisionreg/topics/risk-management.htm", note: "A regulator's-eye view of board and committee risk-governance expectations, complementary to the BCBS material in this reading." }
   ],

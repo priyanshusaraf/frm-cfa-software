@@ -224,9 +224,7 @@ export default ({
 
   sources: [
     { title: "Liquidity Coverage Ratio (LCR) — Bank for International Settlements", url: "https://www.bis.org/bcbs/publ/d238.htm", note: "The BIS standard requiring banks to hold high-quality liquid assets (cash, government securities) to cover 30-day net cash outflows under stress — the regulatory basis for the liquidity cushion this reading's contingent pricing charges for." },
-    { title: "Net Stable Funding Ratio (NSFR) — Bank for International Settlements", url: "https://www.bis.org/bcbs/publ/d295.htm", note: "The companion Basel III standard requiring longer-term, stable funding for illiquid long-term assets — the structural fix for exactly the 'illiquid assets funded on cheap overnight money' failure mode described in this reading." },
-    { title: "Transfer pricing — Wikipedia", url: "https://en.wikipedia.org/wiki/Transfer_pricing", note: "General background on the transfer-pricing concept LTP applies internally to bank funding — useful for readers new to the idea of an internal price between business units of the same firm." },
-    { title: "LIBOR — Investopedia", url: "https://www.investopedia.com/terms/l/libor.asp", note: "Background on the LIBOR/swap curve referenced throughout as the base curve for LTP spreads, and on its ongoing transition to SOFR-based reference rates." }
+    { title: "Net Stable Funding Ratio (NSFR) — Bank for International Settlements", url: "https://www.bis.org/bcbs/publ/d295.htm", note: "The companion Basel III standard requiring longer-term, stable funding for illiquid long-term assets — the structural fix for exactly the 'illiquid assets funded on cheap overnight money' failure mode described in this reading." }
   ],
 
   pdf: { book: 4, query: "prudential regulators surveyed 38 banks from 9 different countries" }

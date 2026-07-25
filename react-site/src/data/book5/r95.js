@@ -238,12 +238,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Explainable artificial intelligence (Wikipedia)", url: "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence", note: "Background on interpretable-by-design vs. post-hoc XAI methods, including LIME and SHAP." },
-    { title: "Fairness (machine learning) (Wikipedia)", url: "https://en.wikipedia.org/wiki/Fairness_(machine_learning)", note: "Overview of fairness definitions and metrics in ML, useful context for the 'influenceable vs. non-influenceable' distinction." },
-    { title: "Differential privacy (Wikipedia)", url: "https://en.wikipedia.org/wiki/Differential_privacy", note: "Explains the formal privacy guarantee referenced in the trustworthy-AI privacy section." },
-    { title: "Federated learning (Wikipedia)", url: "https://en.wikipedia.org/wiki/Federated_learning", note: "Explains how multiple parties can train a shared model without pooling raw data." }
-  ],
 
   pdf: { book: 5, query: "proposed the first major regulation targeting artificial intelligence" }
 });

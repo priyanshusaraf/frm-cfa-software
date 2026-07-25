@@ -129,12 +129,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Sharpe Ratio — Investopedia", url: "https://www.investopedia.com/terms/s/sharperatio.asp", note: "Plain-language walkthrough of the Sharpe ratio's formula, interpretation, and limitations." },
-    { title: "Treynor Ratio — Investopedia", url: "https://www.investopedia.com/terms/t/treynorratio.asp", note: "Explains the Treynor measure and contrasts it with the Sharpe ratio's total-risk basis." },
-    { title: "Jensen's Alpha — Wikipedia", url: "https://en.wikipedia.org/wiki/Jensen%27s_alpha", note: "Background on Michael Jensen's CAPM-based alpha measure and its use in evaluating manager skill." },
-    { title: "Modigliani Risk-Adjusted Performance — Wikipedia", url: "https://en.wikipedia.org/wiki/Modigliani_risk-adjusted_performance", note: "Covers the M² measure's construction, the Leah/Franco Modigliani origin of the name, and its equivalence to Sharpe-ratio rankings." }
-  ],
 
   pdf: { book: 5, query: "Professional money managers are routinely evaluated using a wide array of metrics" },
 

@@ -183,12 +183,6 @@ export default ({
       why: "For independent 1-in-100 events, joint occurrence is 100×100 = 1-in-10,000, the curse-of-dimensionality arithmetic the reading tests directly. Adding frequencies misapplies probability rules for independent joint events; 1-in-1,000,000 is the three-variable case, not two; and assuming correlation rather than independence changes the calculation entirely." }
   ],
 
-  sources: [
-    { title: "Extreme value theory", url: "https://en.wikipedia.org/wiki/Extreme_value_theory", note: "Background on the Fisher-Tippett-Gnedenko theorem, GEV, and the generalized Pareto distribution underlying this reading." },
-    { title: "Peaks over threshold", url: "https://en.wikipedia.org/wiki/Peaks_over_threshold", note: "Overview of the POT method and the threshold-selection trade-off tested in this reading." },
-    { title: "Generalized Pareto distribution", url: "https://en.wikipedia.org/wiki/Generalized_Pareto_distribution", note: "Formal definition and properties of the GP distribution used for POT VaR/ES." },
-    { title: "Fisher–Tippett–Gnedenko theorem", url: "https://en.wikipedia.org/wiki/Fisher%E2%80%93Tippett%E2%80%93Gnedenko_theorem", note: "The theorem behind GEV convergence for block maxima — the 'CLT for maxima' analogy used in this reading." }
-  ],
 
   pdf: { book: 1, query: "Extreme values are important for risk management because they are associated with catastrophic events" }
 });

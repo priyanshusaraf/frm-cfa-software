@@ -305,10 +305,7 @@ export default ({
   ],
 
   sources: [
-    { title: "ISDA Master Agreement — Wikipedia", url: "https://en.wikipedia.org/wiki/ISDA_Master_Agreement", note: "Background on the four-part structure (agreement, schedule, credit support, confirmation) that the CSA sits within." },
-    { title: "Rehypothecation — Wikipedia", url: "https://en.wikipedia.org/wiki/Rehypothecation", note: "Deeper background on how rehypothecation works and why it became less common after the 2007–2009 crisis." },
-    { title: "Margin requirements for non-centrally cleared derivatives — BIS/BCBS-IOSCO", url: "https://www.bis.org/bcbs/publ/d499.htm", note: "The regulatory framework (referenced in this reading's LO 34.k) requiring bilateral variation and initial margin on non-cleared OTC derivatives." },
-    { title: "Collateral (finance) — Investopedia", url: "https://www.investopedia.com/terms/c/collateral.asp", note: "A plain-language primer on collateral concepts before diving into CSA-specific mechanics." }
+    { title: "Margin requirements for non-centrally cleared derivatives — BIS/BCBS-IOSCO", url: "https://www.bis.org/bcbs/publ/d499.htm", note: "The regulatory framework (referenced in this reading's LO 34.k) requiring bilateral variation and initial margin on non-cleared OTC derivatives." }
   ],
 
   pdf: { book: 2, query: "collateral management is often bilateral, where either side" },

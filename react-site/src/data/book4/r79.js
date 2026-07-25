@@ -260,9 +260,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Asset and liability management", url: "https://en.wikipedia.org/wiki/Asset_and_liability_management", note: "Overview of ALM as an integrated discipline, including the role of the ALCO." },
-    { title: "Net Interest Margin (NIM) Definition", url: "https://www.investopedia.com/terms/n/netinterestmargin.asp", note: "Plain-language walkthrough of the NIM formula with worked bank examples." },
-    { title: "Bond duration", url: "https://en.wikipedia.org/wiki/Bond_duration", note: "Background on duration as a linear price-sensitivity measure and its convexity limitation for large rate moves." },
     { title: "Interest rate risk in the banking book (IRRBB)", url: "https://www.bis.org/bcbs/publ/d368.htm", note: "BIS standards on managing net-worth (economic value) and earnings exposure to rate changes — the regulatory counterpart to this reading's duration gap and IS gap." }
   ],
 

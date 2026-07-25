@@ -234,12 +234,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Hedge fund — Wikipedia", url: "https://en.wikipedia.org/wiki/Hedge_fund", note: "Background on hedge fund structure, fee conventions (2-and-20), and regulatory status relative to mutual funds." },
-    { title: "Long-Term Capital Management — Wikipedia", url: "https://en.wikipedia.org/wiki/Long-Term_Capital_Management", note: "Detailed account of the 1998 LTCM collapse referenced as the industry's watershed leverage event." },
-    { title: "Merger Arbitrage — Investopedia", url: "https://www.investopedia.com/terms/m/mergerarbitrage.asp", note: "Plain-language explanation of deal risk and how risk arbitrageurs price pending M&A transactions." },
-    { title: "Convertible Arbitrage — Investopedia", url: "https://www.investopedia.com/terms/c/convertiblearbitrage.asp", note: "Explains the long-convertible/short-stock delta-neutral construction and the liquidity-premium return source." }
-  ],
 
   pdf: { book: 5, query: "important distinctions between hedge funds and mutual funds" }
 });

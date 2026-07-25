@@ -253,10 +253,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Value at risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Value_at_risk", note: "General VaR background, including the distinction between parametric/historical approaches used in market risk and the more model-driven approaches credit risk requires." },
-    { title: "Vasicek model — Wikipedia", url: "https://en.wikipedia.org/wiki/Vasicek_model", note: "Background on Oldrich Vasicek's single-factor Gaussian copula framework and its adoption as the basis for Basel's IRB capital formula." },
-    { title: "Basel II: Internal Ratings-Based Approach — Bank for International Settlements", url: "https://www.bis.org/publ/bcbsca.htm", note: "The regulatory source for the IRB capital formula that reuses Vasicek's WCDR equation under different notation — see R21 for the direct comparison." },
-    { title: "CreditMetrics — Investopedia", url: "https://www.investopedia.com/terms/c/creditmetrics.asp", note: "Plain-language overview of JPMorgan's CreditMetrics methodology and its rating-migration Monte Carlo approach." }
+    { title: "Basel II: Internal Ratings-Based Approach — Bank for International Settlements", url: "https://www.bis.org/publ/bcbsca.htm", note: "The regulatory source for the IRB capital formula that reuses Vasicek's WCDR equation under different notation — see R21 for the direct comparison." }
   ],
 
   pdf: { book: 2, query: "Credit value at risk (VaR) represents the credit loss over a certain time horizon" },

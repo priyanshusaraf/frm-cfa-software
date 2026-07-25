@@ -211,7 +211,6 @@ export default ({
   sources: [
     { title: "Supervisory Capital Assessment Program (SCAP) — Federal Reserve", url: "https://www.federalreserve.gov/bankinforeg/bcreg20090507a1.pdf", note: "The Federal Reserve's original 2009 SCAP overview and results document." },
     { title: "Comprehensive Capital Analysis and Review (CCAR) — Federal Reserve", url: "https://www.federalreserve.gov/supervisionreg/ccar.htm", note: "The Fed's current CCAR program page, useful for seeing how the disclosure and scenario-submission requirements evolved after the reading's 2011/2012 rounds." },
-    { title: "Stress test (financial) — Wikipedia", url: "https://en.wikipedia.org/wiki/Stress_test_(financial)", note: "Background on stress testing as a risk-management tool, including the SCAP/CCAR/EBA history and the coherence and scenario-design issues covered in this reading." },
     { title: "EU-wide stress testing — European Banking Authority", url: "https://www.eba.europa.eu/risk-and-data-analysis/risk-analysis/eu-wide-stress-testing", note: "The EBA's own page on its Europe-wide stress-testing exercises, for comparison against the U.S. SCAP/CCAR programs discussed here." }
   ],
 

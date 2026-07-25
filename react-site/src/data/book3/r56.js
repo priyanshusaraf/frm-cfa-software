@@ -255,9 +255,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Risk-adjusted return on capital (RAROC) — Wikipedia", url: "https://en.wikipedia.org/wiki/Risk-adjusted_return_on_capital", note: "Overview of the RAROC concept, its formula variants, and its role in bank capital allocation." },
-    { title: "Economic capital — Wikipedia", url: "https://en.wikipedia.org/wiki/Economic_capital", note: "Background on economic capital as distinct from regulatory capital, including confidence-level and time-horizon choices." },
-    { title: "Capital asset pricing model (CAPM) — Wikipedia", url: "https://en.wikipedia.org/wiki/Capital_asset_pricing_model", note: "The systematic-risk framework (beta, market return, risk-free rate) that Adjusted RAROC borrows directly." },
     { title: "Basel III: international regulatory framework for banks — BIS", url: "https://www.bis.org/bcbs/basel3.htm", note: "The regulatory capital rules referenced when comparing regulatory capital to risk/economic capital." }
   ],
 

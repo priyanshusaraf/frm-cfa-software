@@ -305,10 +305,7 @@ export default ({
   ],
 
   sources: [
-    { title: "The crypto ecosystem: key elements and risks", url: "https://www.bis.org/publ/othp72.htm", note: "The original BIS paper this reading is drawn from — covers unbacked crypto, stablecoins, smart contracts, DeFi, and the structural flaws/risks taxonomy directly." },
-    { title: "Stablecoin", url: "https://en.wikipedia.org/wiki/Stablecoin", note: "Background on asset-backed vs. algorithmic stablecoin designs and the TerraUSD/Luna collapse mechanics." },
-    { title: "Decentralized finance (DeFi)", url: "https://en.wikipedia.org/wiki/Decentralized_finance", note: "Overview of smart-contract-based lending/trading/borrowing protocols and the security/composability tradeoffs." },
-    { title: "Blockchain oracle", url: "https://en.wikipedia.org/wiki/Blockchain_oracle", note: "Deeper explanation of how oracles bring off-chain data on-chain and why compromised oracles are hard to remedy." }
+    { title: "The crypto ecosystem: key elements and risks", url: "https://www.bis.org/publ/othp72.htm", note: "The original BIS paper this reading is drawn from — covers unbacked crypto, stablecoins, smart contracts, DeFi, and the structural flaws/risks taxonomy directly." }
   ],
 
   pdf: { book: 5, query: "keeps track of transactions in an open yet unalterable manner" }

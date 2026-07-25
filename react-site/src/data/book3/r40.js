@@ -277,7 +277,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Operational risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Operational_risk", note: "General background on the definition, scope, and Basel treatment of operational risk." },
     { title: "BIS — Principles for the Sound Management of Operational Risk", url: "https://www.bis.org/publ/bcbs195.htm", note: "The BCBS source publication behind the operational risk definition and the event-type taxonomy referenced in this reading." },
     { title: "BIS — Principles for Operational Resilience", url: "https://www.bis.org/bcbs/publ/d516.htm", note: "The 2021 BCBS document containing the seven principles of operational resilience covered in this reading." },
     { title: "Federal Reserve — Supervision and Regulation guidance", url: "https://www.federalreserve.gov/supervisionreg.htm", note: "Portal to Federal Reserve supervisory guidance, including the 2020 operational-resilience guidance referenced in this reading." }

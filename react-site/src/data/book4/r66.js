@@ -252,9 +252,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Money market — Wikipedia", url: "https://en.wikipedia.org/wiki/Money_market", note: "Background on the short-term instruments (T-bills, CDs, commercial paper, banker's acceptances) that make up the money-market half of the classification." },
-    { title: "Tax-equivalent yield — Investopedia", url: "https://www.investopedia.com/terms/t/taxequivalentyield.asp", note: "Worked explanation of the tax-equivalent yield formula used to compare taxable and tax-exempt bonds on a common basis." },
-    { title: "Collateralized mortgage obligation (CMO) — Investopedia", url: "https://www.investopedia.com/terms/c/cmo.asp", note: "Plain-language walkthrough of how CMOs slice mortgage pass-through cash flows into tranches." },
     { title: "Treasury Inflation-Protected Securities (TIPS) — U.S. Treasury / TreasuryDirect", url: "https://www.treasurydirect.gov/marketable-securities/tips/", note: "Official description of how TIPS principal adjusts for inflation, referenced as the inflation-risk hedge in this reading." }
   ],
 

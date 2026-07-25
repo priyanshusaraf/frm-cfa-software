@@ -254,10 +254,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Credit valuation adjustment — Wikipedia", url: "https://en.wikipedia.org/wiki/Credit_valuation_adjustment", note: "Overview of CVA, DVA, and bilateral CVA with the standard formula notation." },
-    { title: "Counterparty Credit Risk — BIS", url: "https://www.bis.org/publ/bcbs279.htm", note: "Basel Committee standard on measuring counterparty credit risk exposure (SA-CCR), useful background on how regulators formalize exposure inputs to CVA." },
-    { title: "Wrong-way risk — Investopedia", url: "https://www.investopedia.com/terms/w/wrong-way-risk.asp", note: "Plain-language definition and examples of wrong-way risk, a good companion to the reading's worked scenarios." },
-    { title: "Central counterparty clearing house — Wikipedia", url: "https://en.wikipedia.org/wiki/Central_counterparty_clearing", note: "Background on CCP mechanics — novation, margin, and loss mutualization — referenced in the WWR-and-CCPs section." }
+    { title: "Counterparty Credit Risk — BIS", url: "https://www.bis.org/publ/bcbs279.htm", note: "Basel Committee standard on measuring counterparty credit risk exposure (SA-CCR), useful background on how regulators formalize exposure inputs to CVA." }
   ],
 
   pdf: { book: 2, query: "pricing of counterparty risk is a function of the credit exposure" },

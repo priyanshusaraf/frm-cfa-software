@@ -283,9 +283,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Three lines of defense (risk management model)", url: "https://en.wikipedia.org/wiki/Three_lines_of_defence", note: "Background on the first/second/third line structure that underlies the committee roles and combined assurance in this reading." },
     { title: "Basel III: Finalising post-crisis reforms (operational risk, Pillar 3 disclosure)", url: "https://www.bis.org/bcbs/publ/d424.htm", note: "The BIS text establishing the standardized approach and the Pillar 3 disclosure requirements referenced here." },
-    { title: "Key risk indicator (KRI)", url: "https://en.wikipedia.org/wiki/Key_risk_indicator", note: "General background on how KRIs are defined and used in risk dashboards." },
     { title: "GARP: Financial Risk Manager (FRM) Program", url: "https://www.garp.org/frm", note: "Official FRM program page for exam structure and learning objectives." }
   ],
 

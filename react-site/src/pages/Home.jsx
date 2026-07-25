@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ListChecks, BarChart3, Sigma, ArrowUpRight } from "lucide-react";
+import HomeMomentum from "../components/HomeMomentum.jsx";
 import { META, rpath, bpath, readingMeta, bookOf } from "../lib/meta.js";
 import Html from "../components/Html.jsx";
 import { slugify } from "../lib/html.js";
@@ -85,6 +86,8 @@ export default function Home() {
           ))}
         </div>
       </div>
+
+      <HomeMomentum />
 
       {/* ---- continue studying ---- */}
       {lastRead && lastBook && (

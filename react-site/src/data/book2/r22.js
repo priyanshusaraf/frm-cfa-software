@@ -243,10 +243,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Credit rating - Wikipedia", url: "https://en.wikipedia.org/wiki/Credit_rating", note: "Background on credit rating scales, agencies, and how letter grades map to default risk." },
-    { title: "Through-the-Cycle (TTC) vs. Point-in-Time (PIT) ratings — BIS working papers", url: "https://www.bis.org/publ/work395.pdf", note: "BIS discussion of the two rating philosophies referenced by the Basel Committee." },
-    { title: "Credit Score - Investopedia", url: "https://www.investopedia.com/terms/c/credit_score.asp", note: "Plain-language explainer of the 300-850 consumer credit score scale and what drives it." },
-    { title: "Credit Rating Agency - Investopedia", url: "https://www.investopedia.com/terms/c/creditrating.asp", note: "Overview of how CRAs like S&P, Moody's, and Fitch assign issuer/issue ratings and the issuer-pays model." }
+    { title: "Through-the-Cycle (TTC) vs. Point-in-Time (PIT) ratings — BIS working papers", url: "https://www.bis.org/publ/work395.pdf", note: "BIS discussion of the two rating philosophies referenced by the Basel Committee." }
   ],
 
   pdf: { book: 2, query: "Lenders, investors, and regulators all need a way to quantify" },

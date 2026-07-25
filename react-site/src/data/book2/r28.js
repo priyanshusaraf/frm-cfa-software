@@ -256,9 +256,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Collateralized Debt Obligation (CDO) — Wikipedia", url: "https://en.wikipedia.org/wiki/Collateralized_debt_obligation", note: "Background on tranching, the waterfall, and how CDOs (and the equity/mezzanine/senior structure) relate to the 2008 crisis." },
-    { title: "Asset-Backed Security (ABS) — Investopedia", url: "https://www.investopedia.com/terms/a/asset-backedsecurity.asp", note: "Plain-language overview of pooling, tranching, and credit enhancement mechanics for ABS/MBS generally." },
-    { title: "Mortgage-Backed Security (MBS) — Investopedia", url: "https://www.investopedia.com/terms/m/mbs.asp", note: "Covers pass-through structures and CMOs, useful for contrasting prepayment risk (MBS) against credit-tranching risk (structured credit products)." },
     { title: "Credit derivatives — BIS", url: "https://www.bis.org/publ/qtrpdf/r_qt0312.htm", note: "BIS background on the growth and mechanics of structured credit and correlation products from the regulator's perspective." }
   ],
 

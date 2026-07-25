@@ -227,9 +227,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Market liquidity — Wikipedia", url: "https://en.wikipedia.org/wiki/Market_liquidity", note: "General background on liquidity, bid-ask spreads, and market depth referenced throughout this reading." },
-    { title: "Survivorship bias — Wikipedia", url: "https://en.wikipedia.org/wiki/Survivorship_bias", note: "Deeper background on the statistical mechanism behind one of the three reported-return biases." },
-    { title: "Illiquidity premium — Investopedia", url: "https://www.investopedia.com/terms/i/illiquidity-premium.asp", note: "Accessible explanation of the illiquidity risk premium concept and how it's estimated in practice." },
     { title: "Auction rate securities — SEC investor bulletin", url: "https://www.sec.gov/investor/pubs/aucratesec.htm", note: "Background on the auction-rate securities market cited in the reading as an example of a market that froze during 2007-09 and stayed frozen for years." }
   ],
 

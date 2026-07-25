@@ -236,10 +236,7 @@ export default ({
   ],
 
   sources: [
-    { title: "AI Risk Management Framework (AI RMF 1.0) — NIST", url: "https://www.nist.gov/itl/ai-risk-management-framework", note: "The original NIST publication this reading condenses — the primary source for the govern/map/measure/manage structure and the seven trustworthy-AI characteristics." },
-    { title: "Explainable artificial intelligence", url: "https://en.wikipedia.org/wiki/Explainable_artificial_intelligence", note: "Background on the transparency/explainability/interpretability distinction and why black-box AI models raise governance concerns." },
-    { title: "Algorithmic bias", url: "https://en.wikipedia.org/wiki/Algorithmic_bias", note: "Context on how systemic, statistical, and human-cognitive biases arise in automated decision systems." },
-    { title: "Model risk management", url: "https://en.wikipedia.org/wiki/Model_risk", note: "The traditional model-validation discipline (parallel to R53) that the AI RMF's TEVV and govern/map/measure/manage structure builds on." }
+    { title: "AI Risk Management Framework (AI RMF 1.0) — NIST", url: "https://www.nist.gov/itl/ai-risk-management-framework", note: "The original NIST publication this reading condenses — the primary source for the govern/map/measure/manage structure and the seven trustworthy-AI characteristics." }
   ],
 
   pdf: { book: 5, query: "views AI systems as having both positive and negative impacts" }

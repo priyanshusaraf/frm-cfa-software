@@ -235,9 +235,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Expected loss — Wikipedia", url: "https://en.wikipedia.org/wiki/Expected_loss", note: "Background on the EL = PD×LGD×EAD decomposition used across banking risk management, not just this one reading." },
-    { title: "Economic capital — Wikipedia", url: "https://en.wikipedia.org/wiki/Economic_capital", note: "Overview of economic capital as a buffer against unexpected losses, including the confidence-level/capital-multiplier framing used here." },
-    { title: "Loss given default — Investopedia", url: "https://www.investopedia.com/terms/l/loss_given_default.asp", note: "Plain-language explanation of loss given default (loss rate) and its relationship to recovery rate." },
     { title: "Basel Committee on Banking Supervision — publications", url: "https://www.bis.org/bcbs/index.htm", note: "BIS/Basel Committee's own materials on credit risk capital frameworks, useful background for how EL/UL/economic capital connect to regulatory capital in R21 and beyond." }
   ],
 

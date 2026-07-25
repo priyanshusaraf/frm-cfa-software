@@ -229,9 +229,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Credit default swap — Wikipedia", url: "https://en.wikipedia.org/wiki/Credit_default_swap", note: "Background on CDS mechanics, history, and the role of CDS in the 2008 financial crisis, beyond the exam-focused scope of this reading." },
-    { title: "Credit Default Swap (CDS) — Investopedia", url: "https://www.investopedia.com/terms/c/creditdefaultswap.asp", note: "An accessible walkthrough of protection buyer/seller roles and a plain-language recap of premium and payoff mechanics." },
-    { title: "Collateralized debt obligation — Wikipedia", url: "https://en.wikipedia.org/wiki/Collateralized_debt_obligation", note: "More detail on tranching and the waterfall structure that synthetic CDOs replicate using CDS instead of cash bonds." },
     { title: "BIS statistics on OTC derivatives", url: "https://www.bis.org/statistics/derstats.htm", note: "Official market-size data for CDS and other OTC credit derivatives, useful for grounding how large this market actually is." }
   ],
 

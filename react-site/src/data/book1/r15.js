@@ -212,9 +212,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Volatility smile — Wikipedia", url: "https://en.wikipedia.org/wiki/Volatility_smile", note: "Overview of smile/skew shapes across asset classes, with the leverage-effect and crash-fear explanations for equity skew." },
-    { title: "Put-Call Parity — Investopedia", url: "https://www.investopedia.com/terms/p/putcallparity.asp", note: "Walks through the no-arbitrage derivation of put-call parity used here to show implied vols must match at a given strike." },
-    { title: "Implied Volatility — Investopedia", url: "https://www.investopedia.com/terms/i/iv.asp", note: "Explains how implied volatility is backed out of an option pricing model from the observed market price." },
     { title: "Fundamental Review of the Trading Book (FRTB) — BIS", url: "https://www.bis.org/bcbs/publ/d352.htm", note: "The regulatory reading (R16) that follows this one, for context on why mispriced tail risk matters to capital requirements." }
   ],
 

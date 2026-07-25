@@ -209,12 +209,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Credit valuation adjustment — Wikipedia", url: "https://en.wikipedia.org/wiki/Credit_valuation_adjustment", note: "Overview of CVA/DVA mechanics, wrong-way risk, and how they fit into derivatives pricing." },
-    { title: "ISDA Master Agreement — Wikipedia", url: "https://en.wikipedia.org/wiki/ISDA_Master_Agreement", note: "Background on the standard legal contract governing bilaterally cleared OTC derivatives, including close-out and netting provisions." },
-    { title: "Gaussian copula — Wikipedia", url: "https://en.wikipedia.org/wiki/Copula_(statistics)#Gaussian_copula", note: "The general Gaussian copula construction underlying the one-factor time-to-default model used here and Vasicek's WCDR in R26." },
-    { title: "Merton model — Investopedia", url: "https://www.investopedia.com/terms/m/mertonmodel.asp", note: "Explains the structural (Merton-style) approach to default that this reading contrasts with reduced-form models." }
-  ],
 
   pdf: { book: 2, query: "credit risk is the exposure faced by an individual" },
 

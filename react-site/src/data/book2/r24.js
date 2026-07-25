@@ -289,9 +289,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Sovereign Default (Investopedia)", url: "https://www.investopedia.com/terms/s/sovereign-default.asp", note: "Plain-language overview of what a sovereign default is and historical examples, complementing the reading's foreign-vs-local-currency framing." },
-    { title: "Credit default swap (Wikipedia)", url: "https://en.wikipedia.org/wiki/Credit_default_swap", note: "Background on CDS mechanics (protection buyer/seller, credit events, settlement types) referenced in the sovereign CDS spread discussion." },
-    { title: "Country risk (Wikipedia)", url: "https://en.wikipedia.org/wiki/Country_risk", note: "General reference on the components of country risk (political, economic, legal) that this reading breaks down in depth." },
     { title: "IMF: Sovereign Debt", url: "https://www.imf.org/en/Topics/sovereign-debt", note: "IMF's own resource hub on sovereign debt and default dynamics, useful for real-world data on debt-to-GDP levels referenced in the reading's indebtedness discussion." }
   ],
 

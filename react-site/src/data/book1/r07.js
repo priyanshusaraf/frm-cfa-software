@@ -293,9 +293,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Correlation (statistics) — Wikipedia", url: "https://en.wikipedia.org/wiki/Correlation", note: "Background on covariance, the correlation coefficient, and why it is bounded between −1 and +1." },
-    { title: "Wrong-Way Risk — Investopedia", url: "https://www.investopedia.com/terms/w/wrong-way-risk.asp", note: "Plain-language explanation of wrong-way risk in derivatives and counterparty exposure, the concept underlying the CDS/Deutsche Bank example." },
-    { title: "Collateralized Debt Obligation (CDO) — Investopedia", url: "https://www.investopedia.com/terms/c/cdo.asp", note: "Overview of CDO structure and tranching (equity, mezzanine, senior) that underlies the 2008 tranche-trade mechanism." },
     { title: "Basel III: international regulatory framework for banks — Bank for International Settlements", url: "https://www.bis.org/bcbs/basel3.htm", note: "Primary source on the Basel capital framework, including the trading-book VaR-based capital multiplier discussed in this reading." }
   ],
 

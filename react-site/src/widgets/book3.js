@@ -291,16 +291,16 @@ register("bowtie", function (el) {
   var corrective = (Array.isArray(d.corrective) && d.corrective.length) ? d.corrective : ["Failover system", "Customer-communication plan"];
 
   var svg = shell(el, "Bow-tie diagram: causes and preventive controls on the left (frequency), impacts and detective/corrective controls on the right (severity)", "",
-    720, 340,
+    720, 400,
     "The risk event sits at the center knot. The left wing traces backward to its causes and the preventive controls meant to stop it before it happens, which is how an analyst estimates FREQUENCY. The right wing traces forward to its impacts and the detective/corrective controls meant to catch and limit the damage after it happens, which is how an analyst estimates SEVERITY."
   );
 
   function draw() {
     svg.innerHTML = "";
-    var W = 720, midY = 170;
+    var W = 720, midY = 132;
     var knotW = 176, knotH = 64;
     var knotX0 = W / 2 - knotW / 2, knotX1 = W / 2 + knotW / 2;
-    var wingTop = 56, wingBot = 284;
+    var wingTop = 58, wingBot = 206;
     var farL = 46, farR = W - 46;
     var colTopY = 92, rowH = 22;
 
@@ -339,18 +339,22 @@ register("bowtie", function (el) {
     var sevSub = svgEl("text", { x: farR, y: 40, "text-anchor": "end", "font-size": 10, fill: "var(--text-dim)" }, svg);
     sevSub.textContent = "driven by detective/corrective-control strength";
 
-    /* Labels: two STACKED groups per wing, never two columns sharing one line.
-       The old layout put "Causes" left-anchored at farL+14 and "Preventive
-       controls" end-anchored at knotX0-14 on the SAME baseline, so as soon as
-       either string was longer than half the wing they overlapped, which is
-       exactly what shipped. SVG text does not wrap, so we wrap it ourselves and
-       give each wing one x-band that cannot collide with the other wing. */
-    var padX = 16;
-    var leftX = farL + padX;
-    var rightX = farR - padX;
-    var bandW = (knotX0 - 20) - leftX;      // usable width inside a wing
-    var CHAR_W = 5.4;                        // ~advance of 11px sans at this size
-    var maxChars = Math.max(12, Math.floor(bandW / CHAR_W));
+    /* Labels live in a LEGEND under the graphic, not inside the wings. Text
+       crammed into a triangle fights the shape at every width: the wings taper,
+       so the room available depends on the y you happen to be at, and any label
+       longer than the band overlapped its neighbour. The bow-tie only has to
+       convey "causes funnel in, impacts fan out"; the words read better in
+       columns beneath it. */
+    var legendTop = wingBot + 34;
+    var colW = (W - 92) / 4;
+    var cols = [
+      { x: 46, title: "Causes", color: "var(--text-dim)", items: causes },
+      { x: 46 + colW, title: "Preventive controls", color: "var(--cyan)", items: preventive },
+      { x: 46 + colW * 2, title: "Impacts", color: "var(--text-dim)", items: impacts },
+      { x: 46 + colW * 3, title: "Detective / corrective", color: "var(--green)", items: corrective },
+    ];
+    var CHAR_W = 5.3;
+    var maxChars = Math.max(14, Math.floor((colW - 12) / CHAR_W));
 
     function wrap(str, limit) {
       var words = String(str).split(/\s+/), lines = [], cur = "";
@@ -362,30 +366,20 @@ register("bowtie", function (el) {
       return lines;
     }
 
-    /* Draws a header plus its bullets down the page, returning the next free y. */
-    function group(x, y, anchor, title, titleFill, items, itemFill, bullet) {
-      var t = svgEl("text", { x: x, y: y, "text-anchor": anchor, "font-size": 11, "font-weight": 700, fill: titleFill }, svg);
-      t.textContent = title;
-      var yy = y + rowH;
-      items.forEach(function (c) {
-        wrap((bullet ? "\u2022 " : "") + c, maxChars).forEach(function (line, li) {
-          var row = svgEl("text", {
-            x: anchor === "end" ? x : x + (li ? 9 : 0),
-            y: yy, "text-anchor": anchor, "font-size": 11, fill: itemFill
-          }, svg);
-          row.textContent = line;
-          yy += 15;
+    cols.forEach(function (c) {
+      svgEl("rect", { x: c.x, y: legendTop - 9, width: 9, height: 9, rx: 2, fill: c.color }, svg);
+      var h = svgEl("text", { x: c.x + 15, y: legendTop, "font-size": 10.5, "font-weight": 700, fill: c.color }, svg);
+      h.textContent = c.title;
+      var yy = legendTop + 17;
+      c.items.forEach(function (it) {
+        wrap(it, maxChars).forEach(function (line, li) {
+          var t = svgEl("text", { x: c.x + (li ? 8 : 0), y: yy, "font-size": 10.5, fill: "var(--text)" }, svg);
+          t.textContent = (li ? "" : "\u2022 ") + line;
+          yy += 14;
         });
         yy += 3;
       });
-      return yy + 8;
-    }
-
-    var ly = group(leftX, colTopY, "start", "Causes", "var(--text)", causes, "var(--text-dim)", true);
-    group(leftX, ly, "start", "Preventive controls", "var(--cyan)", preventive, "var(--text)", true);
-
-    var ry = group(rightX, colTopY, "end", "Impacts", "var(--text)", impacts, "var(--text-dim)", true);
-    group(rightX, ry, "end", "Detective / corrective controls", "var(--green)", corrective, "var(--text)", true);
+    });
   }
   draw();
 });

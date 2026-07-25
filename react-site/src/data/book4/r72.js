@@ -255,8 +255,6 @@ export default ({
 
   sources: [
     { title: "Basel III: Liquidity Coverage Ratio and liquidity risk monitoring tools", url: "https://www.bis.org/publ/bcbs238.htm", note: "The BIS standard defining the Basel III 30-day survival horizon that the cash flow survival report is built to track." },
-    { title: "Asset/liability management (ALM) — Wikipedia", url: "https://en.wikipedia.org/wiki/Asset/liability_management", note: "Background on the ALCO function and the broader asset-liability management context this reporting suite sits within." },
-    { title: "Liquidity risk — Investopedia", url: "https://www.investopedia.com/terms/l/liquidityrisk.asp", note: "A plain-language refresher on liquidity risk concepts, useful context for interpreting these named reports." },
     { title: "Federal Reserve: Liquidity risk management guidance", url: "https://www.federalreserve.gov/supervisionreg/topics/liquidity_risk.htm", note: "A US regulator's perspective on liquidity risk reporting and stress testing expectations, complementary to the FSA (UK) framework this reading centers on." }
   ],
 

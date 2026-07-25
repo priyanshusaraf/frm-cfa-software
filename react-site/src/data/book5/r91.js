@@ -128,10 +128,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Form ADV — U.S. Securities and Exchange Commission (Investment Adviser Registration Depository)", url: "https://www.sec.gov/investment/investment-adviser-public-disclosure-iapd", note: "The SEC's public disclosure system where investors can pull a firm's current and historical Form ADV filings directly — the practical version of the reading's 'standardized format' improvement." },
-    { title: "Investment Advisers Act of 1940 — Wikipedia", url: "https://en.wikipedia.org/wiki/Investment_Advisers_Act_of_1940", note: "Background on the federal law that created the Form ADV disclosure requirement and defines the disclosure-not-restriction regulatory philosophy this reading is built on." },
-    { title: "Bernie Madoff — Wikipedia", url: "https://en.wikipedia.org/wiki/Bernie_Madoff", note: "Context for the reading's reference to the 'post-Bernie-Madoff environment' shifting regulatory emphasis from disclosure alone toward securities-law enforcement." },
-    { title: "Ponzi scheme — Investopedia", url: "https://www.investopedia.com/terms/p/ponzischeme.asp", note: "Explains the mechanics of the classic theft-type fraud (Ponzi scheme) the reading cites as an example of what past-violations and referral-fee variables predict." }
+    { title: "Form ADV — U.S. Securities and Exchange Commission (Investment Adviser Registration Depository)", url: "https://www.sec.gov/investment/investment-adviser-public-disclosure-iapd", note: "The SEC's public disclosure system where investors can pull a firm's current and historical Form ADV filings directly — the practical version of the reading's 'standardized format' improvement." }
   ],
 
   pdf: { book: 5, query: "It is important that investors be able to predict fraud" },

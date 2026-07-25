@@ -211,9 +211,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Value at Risk (VaR) — Investopedia", url: "https://www.investopedia.com/terms/v/var.asp", note: "Plain-language walkthrough of VaR's definition, the three estimation methods, and its main criticisms — a good pre-read before the formulas." },
-    { title: "Expected Shortfall — Wikipedia", url: "https://en.wikipedia.org/wiki/Expected_shortfall", note: "Formal definition of ES as a conditional tail expectation, with the coherence (subadditivity) proof sketch referenced in this reading." },
-    { title: "Coherent risk measure — Wikipedia", url: "https://en.wikipedia.org/wiki/Coherent_risk_measure", note: "The four axioms (monotonicity, subadditivity, homogeneity, translation invariance) that define coherence — useful background for why VaR fails and ES passes." },
     { title: "Minimum capital requirements for market risk (FRTB) — BIS", url: "https://www.bis.org/bcbs/publ/d457.htm", note: "The regulatory document that later replaces VaR with 97.5% ES as the standard capital measure — the destination this reading's ruler is built for (see R16)." }
   ],
 

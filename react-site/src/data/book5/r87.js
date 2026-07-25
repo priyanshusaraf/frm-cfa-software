@@ -248,12 +248,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Value at risk (VaR) — overview", url: "https://en.wikipedia.org/wiki/Value_at_risk", note: "Background on the VaR concept this reading uses to define risk planning targets." },
-    { title: "Tracking error", url: "https://www.investopedia.com/terms/t/trackingerror.asp", note: "Plain-language explanation of tracking error as the standard deviation of excess returns." },
-    { title: "Survivorship bias", url: "https://en.wikipedia.org/wiki/Survivorship_bias", note: "The general statistical bias underlying why peer-group performance comparisons overstate average results." },
-    { title: "Sharpe ratio", url: "https://www.investopedia.com/terms/s/sharperatio.asp", note: "Reference on the risk-adjusted return measure covered in this reading's formulas." }
-  ],
 
   pdf: { book: 5, query: "Value at risk (VaR) is defined to be the" }
 });

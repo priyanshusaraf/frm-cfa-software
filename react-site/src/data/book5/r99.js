@@ -89,9 +89,7 @@ export default ({
 
   sources: [
     { title: "Principles for the effective management and supervision of climate-related financial risks (BCBS, June 2022)", url: "https://www.bis.org/bcbs/publ/d532.htm", note: "The original Basel Committee publication this entire reading summarizes — read it directly for the full text of all 18 principles." },
-    { title: "Three lines of defense model — Wikipedia", url: "https://en.wikipedia.org/wiki/Three_lines_of_defence", note: "Background on the three-lines-of-defense internal control architecture that Principle 4 applies specifically to climate risk." },
-    { title: "Climate-related risk drivers and their transmission channels (BCBS, April 2021)", url: "https://www.bis.org/bcbs/publ/d517.htm", note: "The companion BIS publication behind R97's driver taxonomy that these governance principles are meant to act on." },
-    { title: "Concentration risk — Investopedia", url: "https://www.investopedia.com/terms/c/concentration_risk.asp", note: "Explains why concentration risk (sector/geography/counterparty clustering) is the risk type most directly tied to climate exposure." }
+    { title: "Climate-related risk drivers and their transmission channels (BCBS, April 2021)", url: "https://www.bis.org/bcbs/publ/d517.htm", note: "The companion BIS publication behind R97's driver taxonomy that these governance principles are meant to act on." }
   ],
 
   pdf: { book: 5, query: "The effects of climate change could include physical and transition risks" },

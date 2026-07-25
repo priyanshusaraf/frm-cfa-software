@@ -159,7 +159,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Early warning system (economics)", url: "https://en.wikipedia.org/wiki/Early-warning_system", note: "General background on early warning systems as a concept, useful context for why 'leading vs. lagging' matters across risk domains, not just banking liquidity." },
     { title: "Basel Committee on Banking Supervision (BCBS)", url: "https://www.bis.org/bcbs/", note: "Home page of the standard-setting body behind the BCBS 2008 and 2012 guidance documents referenced in this reading." },
     { title: "Federal Reserve Supervisory Letters (SR letters)", url: "https://www.federalreserve.gov/supervisionreg/srletters/srletters.htm", note: "Index of Federal Reserve Supervision and Regulation (SR) letters, the series that includes SR 10-6 on liquidity EWIs and event triggers." },
     { title: "Office of the Comptroller of the Currency (OCC)", url: "https://www.occ.gov/", note: "Home page of the U.S. bank regulator behind the OCC 2012 guidance on embedded-option EWIs cited in this reading." }

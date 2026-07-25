@@ -1,3 +1,3 @@
-DONE: Book-colour accents on concept/formula labels, adjustable formula size (Settings + layout.mathScale), Glossary/Formulas search made O(1) per keystroke, bow-tie widget label collision fixed, split toggles restored to the chapter action row, fullscreen nav peek made reachable, and the TOC anchors resynced after the section rename.
-NEXT: Rebuild the Consistency heatmap (the >=8 and >=4 tiers return the same colour so there is no intensity ramp; copy says "green square" over blue cells) and centre/space its stat tiles.
+DONE: Consistency heatmap rebuilt (4 real intensity levels, month/weekday scales, legend, green cells matching the copy), momentum card on Home, fullscreen nav given a clickable handle, 283 Wikipedia/Investopedia source links stripped + banned in the validator, case-study deep links + jump index, nested-rings and bow-tie widgets rebuilt around legends, frontier label collisions fixed, math base size raised.
+NEXT: Curate premium replacement sources for the 21 readings now left with zero (regulators, standard-setters, original papers) as part of the content run.
 BLOCKERS: none.

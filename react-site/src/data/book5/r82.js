@@ -223,12 +223,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Value investing (book-to-market and the value premium)", url: "https://en.wikipedia.org/wiki/Value_investing", note: "Background on the value-investing tradition (Graham & Dodd) that underlies the book-to-market strategy discussed in this reading." },
-    { title: "Fama-French three-factor model", url: "https://en.wikipedia.org/wiki/Fama%E2%80%93French_three-factor_model", note: "Reference on the MKT/SMB/HML model, its construction, and its extensions (including the momentum factor)." },
-    { title: "Momentum (finance)", url: "https://en.wikipedia.org/wiki/Momentum_(finance)", note: "Overview of the Jegadeesh-Titman momentum effect, its historical performance, and its crash risk." },
-    { title: "CBOE Volatility Index (VIX)", url: "https://en.wikipedia.org/wiki/VIX", note: "Background on the VIX, used in this reading as the measure of equity market volatility and the leverage-effect discussion." }
-  ],
 
   pdf: { book: 5, query: "Historically, value stocks have significantly outperformed growth stocks" },
 

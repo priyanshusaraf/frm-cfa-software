@@ -225,8 +225,6 @@ export default ({
 
   sources: [
     { title: "SR 11-7: Guidance on Model Risk Management (Federal Reserve)", url: "https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm", note: "The original supervisory letter this reading is built on — the formal definition of a model and the framework for model risk management." },
-    { title: "Model risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Model_risk", note: "A concise overview of model risk, its sources, and mitigation approaches, with links to related regulatory guidance." },
-    { title: "Backtesting — Investopedia", url: "https://www.investopedia.com/terms/b/backtesting.asp", note: "Plain-language explanation of backtesting mechanics, useful for grounding the out-of-sample/forecast-horizon requirement in this reading." },
     { title: "Federal Deposit Insurance Corporation — Model Risk Management guidance", url: "https://www.fdic.gov/", note: "The FDIC (this reading's GARP-assigned source institution) publishes complementary model risk supervisory material for FDIC-supervised institutions." }
   ],
 

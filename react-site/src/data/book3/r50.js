@@ -299,8 +299,6 @@ export default ({
 
   sources: [
     { title: "Guidance on Managing Outsourcing Risk — Board of Governors of the Federal Reserve System (Dec. 2013)", url: "https://www.federalreserve.gov/supervisionreg/srletters/sr1319a1.pdf", note: "The primary regulatory guidance this reading is built on — the original source for the six risks, the six-part program, and the full contract-provisions list." },
-    { title: "Third-party risk management — Wikipedia", url: "https://en.wikipedia.org/wiki/Vendor_risk_management", note: "General background on vendor/third-party risk management concepts and terminology referenced throughout this reading." },
-    { title: "Outsourcing — Investopedia", url: "https://www.investopedia.com/terms/o/outsourcing.asp", note: "Plain-language overview of what outsourcing is and the tradeoffs (cost savings vs. loss of direct control) that motivate this reading's risk framework." },
     { title: "Gramm-Leach-Bliley Act — Federal Trade Commission", url: "https://www.ftc.gov/business-guidance/privacy-security/gramm-leach-bliley-act", note: "Background on the U.S. privacy law (specifically section 501(b), cited in the confidentiality/security contract provision) governing financial institutions' handling of nonpublic personal information." }
   ],
 

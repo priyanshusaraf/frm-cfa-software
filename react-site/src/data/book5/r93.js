@@ -245,10 +245,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Additional Tier 1 capital (Wikipedia)", url: "https://en.wikipedia.org/wiki/Additional_Tier_1_capital", note: "Background on AT1/CoCo instruments, their loss-absorption design, and their role in bank regulatory capital." },
-    { title: "Contingent convertible bond (Wikipedia)", url: "https://en.wikipedia.org/wiki/Contingent_convertible_bond", note: "General overview of CoCo mechanics, triggers, and history, complementary to this reading's Credit Suisse case study." },
-    { title: "Basel III: international regulatory framework for banks (BIS)", url: "https://www.bis.org/bcbs/basel3.htm", note: "Primary source for the Basel III capital rules that require a discretionary (PONV) trigger for CoCos to count as regulatory capital." },
-    { title: "Point of non-viability (Investopedia)", url: "https://www.investopedia.com/terms/p/point-of-non-viability.asp", note: "Plain-language explanation of the PONV concept central to this reading's Credit Suisse trigger mechanism." }
+    { title: "Basel III: international regulatory framework for banks (BIS)", url: "https://www.bis.org/bcbs/basel3.htm", note: "Primary source for the Basel III capital rules that require a discretionary (PONV) trigger for CoCos to count as regulatory capital." }
   ],
 
   pdf: { book: 5, query: "Contingent convertible bonds (CoCos) are a type of fixed income security" }

@@ -244,12 +244,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Altman Z-Score — Investopedia", url: "https://www.investopedia.com/terms/a/altman.asp", note: "Plain-language walkthrough of the five Z-score ratios, the cutoff bands, and its history and limitations." },
-    { title: "Credit Default Swap (CDS) — Investopedia", url: "https://www.investopedia.com/terms/c/creditdefaultswap.asp", note: "Overview of CDS mechanics, protection buyer/seller roles, and settlement types (physical vs. cash)." },
-    { title: "Merton Model — Wikipedia", url: "https://en.wikipedia.org/wiki/Merton_model", note: "Background on treating firm equity as a call option on assets, and the origins of the distance-to-default concept." },
-    { title: "Hazard Function — Wikipedia", url: "https://en.wikipedia.org/wiki/Failure_rate", note: "General mathematical background on hazard/failure rates and their link to exponential survival distributions, underlying the constant-hazard-rate PD formula." }
-  ],
 
   pdf: { book: 2, query: "This topic discusses various approaches for estimating default probabilities" },
 

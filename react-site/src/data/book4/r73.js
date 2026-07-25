@@ -228,8 +228,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Contingency Funding Plan — Wikipedia", url: "https://en.wikipedia.org/wiki/Contingency_funding_plan", note: "Background on what a CFP is and why regulators expect banks to maintain one." },
-    { title: "Liquidity Risk — Investopedia", url: "https://www.investopedia.com/terms/l/liquidityrisk.asp", note: "Plain-language refresher on liquidity risk generally, the risk category a CFP is designed to manage in extreme scenarios." },
     { title: "Federal Reserve — Supervisory guidance on liquidity risk management", url: "https://www.federalreserve.gov/supervisionreg/topics/liquidity_risk.htm", note: "U.S. regulatory framing of contingency funding plans and liquidity stress testing expectations for banks." },
     { title: "BIS — Basel Committee principles for sound liquidity risk management", url: "https://www.bis.org/publ/bcbs144.htm", note: "The Basel Committee's foundational principles document, which discusses contingency funding planning as part of sound liquidity risk management." }
   ],

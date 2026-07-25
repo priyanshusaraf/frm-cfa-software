@@ -233,10 +233,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Markets in Financial Instruments Directive (MiFID) — Wikipedia", url: "https://en.wikipedia.org/wiki/Markets_in_Financial_Instruments_Directive_2004", note: "Background on the original 2004/2007 MiFID and its scope." },
-    { title: "Dodd-Frank Wall Street Reform and Consumer Protection Act — Wikipedia", url: "https://en.wikipedia.org/wiki/Dodd%E2%80%93Frank_Wall_Street_Reform_and_Consumer_Protection_Act", note: "Overview of Dodd-Frank, including the Investor Protection Act provisions and the Volcker Rule." },
-    { title: "Volcker Rule — Federal Reserve", url: "https://www.federalreserve.gov/supervisionreg/volcker-rule.htm", note: "Official Federal Reserve summary of the Volcker Rule's proprietary-trading restrictions." },
-    { title: "Spoofing (finance) — Wikipedia", url: "https://en.wikipedia.org/wiki/Spoofing_(finance)", note: "Explains the spoofing mechanic underlying the JPMorgan enforcement case." }
+    { title: "Volcker Rule — Federal Reserve", url: "https://www.federalreserve.gov/supervisionreg/volcker-rule.htm", note: "Official Federal Reserve summary of the Volcker Rule's proprietary-trading restrictions." }
   ],
 
   pdf: { book: 3, query: "Two key regulations discussed are the European Union" },

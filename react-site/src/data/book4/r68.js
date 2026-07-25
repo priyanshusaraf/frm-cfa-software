@@ -175,7 +175,6 @@ export default ({
   sources: [
     { title: "Bank for International Settlements — Monitoring tools for intraday liquidity management", url: "https://www.bis.org/publ/bcbs225.htm", note: "The Basel Committee framework behind the intraday liquidity monitoring metrics discussed in this reading, including intraday credit usage measures." },
     { title: "Federal Reserve — Daylight Overdrafts and Payment System Risk", url: "https://www.federalreserve.gov/paymentsystems/psr_about.htm", note: "The Fed's own description of intraday (daylight) credit/overdraft policy — the real-world analog of the 'intraday credit' source discussed in this reading." },
-    { title: "Investopedia — Nostro Account", url: "https://www.investopedia.com/terms/n/nostroaccount.asp", note: "Plain-language explainer of nostro accounts, one of the uses of intraday liquidity covered here." },
     { title: "GARP — FRM Program", url: "https://www.garp.org/frm", note: "Official FRM curriculum page, for the reading's place within Part II Liquidity and Treasury Risk Measurement and Management." }
   ],
 

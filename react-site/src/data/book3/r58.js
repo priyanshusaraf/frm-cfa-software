@@ -259,10 +259,8 @@ export default ({
   ],
 
   sources: [
-    { title: "Bank Holding Company Act — Federal Reserve supervision overview", url: "https://en.wikipedia.org/wiki/Bank_holding_company", note: "Background on what a bank holding company is and why the Federal Reserve supervises BHCs specifically." },
     { title: "Comprehensive Capital Analysis and Review (CCAR)", url: "https://www.federalreserve.gov/supervisionreg/ccar.htm", note: "The Federal Reserve's own page on CCAR, the annual supervisory program that evaluates BHC capital plans under the Capital Plan Rule." },
-    { title: "Dodd-Frank Act Stress Testing (DFAST)", url: "https://www.federalreserve.gov/supervisionreg/dfast-archive.htm", note: "The related Fed stress-testing program that shares much of the same stress-scenario and loss-estimation machinery described in this reading." },
-    { title: "Pre-provision net revenue", url: "https://en.wikipedia.org/wiki/Pre-provision_net_revenue", note: "A concise definition and context for the PPNR metric central to this reading's formula." }
+    { title: "Dodd-Frank Act Stress Testing (DFAST)", url: "https://www.federalreserve.gov/supervisionreg/dfast-archive.htm", note: "The related Fed stress-testing program that shares much of the same stress-scenario and loss-estimation machinery described in this reading." }
   ],
 
   pdf: { book: 3, query: "Bank holding companies (BHCs) must have adequate and sufficient capital" }

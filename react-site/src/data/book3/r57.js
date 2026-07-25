@@ -233,10 +233,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Basel Committee on Banking Supervision — Range of Practices and Issues in Economic Capital Frameworks (March 2009)", url: "https://www.bis.org/publ/bcbs152.htm", note: "The original BIS survey this entire reading is based on — the primary source for the 10 recommendations and the validation/aggregation taxonomy." },
-    { title: "Investopedia — Economic Capital", url: "https://www.investopedia.com/terms/e/economic-capital.asp", note: "A plain-language definition of economic capital and how it differs from regulatory capital, useful before diving into the reading's challenges." },
-    { title: "Investopedia — Coherent Risk Measure", url: "https://www.investopedia.com/terms/c/coherent-risk-measure.asp", note: "Refresher on the four coherence properties (monotonicity, subadditivity, positive homogeneity, translation invariance) this reading assumes you already know." },
-    { title: "Wikipedia — Copula (probability theory)", url: "https://en.wikipedia.org/wiki/Copula_(probability_theory)", note: "Background on how copulas construct a joint distribution from marginals, relevant to the copula aggregation methodology and the ASRF/Gaussian-copula dependency discussion." }
+    { title: "Basel Committee on Banking Supervision — Range of Practices and Issues in Economic Capital Frameworks (March 2009)", url: "https://www.bis.org/publ/bcbs152.htm", note: "The original BIS survey this entire reading is based on — the primary source for the 10 recommendations and the validation/aggregation taxonomy." }
   ],
 
   pdf: { book: 3, query: "This reading requires an understanding of many risk management concepts" },

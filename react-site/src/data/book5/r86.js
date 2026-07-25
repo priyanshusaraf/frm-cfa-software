@@ -280,9 +280,6 @@ export default ({
   ],
 
   sources: [
-    { title: "Value at Risk (VaR) — Investopedia", url: "https://www.investopedia.com/terms/v/var.asp", note: "Plain-language refresher on VaR mechanics and confidence-level interpretation underlying every calculation in this reading." },
-    { title: "Information ratio — Wikipedia", url: "https://en.wikipedia.org/wiki/Information_ratio", note: "Background on the excess-return-to-tracking-error measure used to derive optimal manager allocation weights." },
-    { title: "Defined benefit pension plan — Wikipedia", url: "https://en.wikipedia.org/wiki/Defined_benefit_pension_plan", note: "Context on why defined-benefit pension funds carry the highest funding risk and why surplus/liability duration matching matters." },
     { title: "GARP — Global Association of Risk Professionals", url: "https://www.garp.org/", note: "FRM exam administrator; useful for official curriculum scope and learning-objective wording for this reading." }
   ],
 

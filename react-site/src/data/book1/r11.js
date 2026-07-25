@@ -261,12 +261,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Binomial options pricing model — Wikipedia", url: "https://en.wikipedia.org/wiki/Binomial_options_pricing_model", note: "Background on the binomial tree framework this reading applies specifically to fixed-income instruments." },
-    { title: "Option-Adjusted Spread (OAS) — Investopedia", url: "https://www.investopedia.com/terms/o/optionadjustedspread.asp", note: "A plain-language explainer of OAS, including the cheap/rich interpretation used in this reading's worked example." },
-    { title: "Black-Scholes Model — Investopedia", url: "https://www.investopedia.com/terms/b/blackscholes.asp", note: "Reviews BSM's core assumptions, useful for seeing exactly which ones this reading argues break down for bonds." },
-    { title: "Callable Bond — Investopedia", url: "https://www.investopedia.com/terms/c/callablebond.asp", note: "Covers the price-yield behavior and reinvestment-risk consequence of callable bonds discussed in this reading." }
-  ],
 
   pdf: { book: 1, query: "A binomial model is a model that assumes" },
 

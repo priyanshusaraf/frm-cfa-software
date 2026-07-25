@@ -281,10 +281,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Credit valuation adjustment (Wikipedia)", url: "https://en.wikipedia.org/wiki/Credit_valuation_adjustment", note: "Background on how expected exposure (EE) and expected positive exposure (EPE) feed into CVA — useful bridge to R37." },
-    { title: "Netting (Wikipedia)", url: "https://en.wikipedia.org/wiki/Netting", note: "General background on netting agreements and close-out netting mechanics referenced by the netting factor formula." },
-    { title: "Basel Committee — The standardised approach for measuring counterparty credit risk exposures (BCBS 279)", url: "https://www.bis.org/publ/bcbs279.pdf", note: "The regulatory (SA-CCR) treatment of exposure and margin period of risk that this reading's academic framework underpins." },
-    { title: "Counterparty Risk (Investopedia)", url: "https://www.investopedia.com/terms/c/counterpartyrisk.asp", note: "Plain-language refresher on counterparty risk before diving into the exposure metrics." }
+    { title: "Basel Committee — The standardised approach for measuring counterparty credit risk exposures (BCBS 279)", url: "https://www.bis.org/publ/bcbs279.pdf", note: "The regulatory (SA-CCR) treatment of exposure and margin period of risk that this reading's academic framework underpins." }
   ],
 
   pdf: { book: 2, query: "we describe credit exposures for various security positions" },

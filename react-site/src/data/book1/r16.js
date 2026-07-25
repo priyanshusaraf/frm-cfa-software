@@ -264,9 +264,7 @@ export default ({
 
   sources: [
     { title: "Fundamental review of the trading book (Basel Committee, BIS)", url: "https://www.bis.org/bcbs/publ/d457.htm", note: "The actual 2019 finalized FRTB standard text — liquidity horizons, the internal models approach, backtesting, and P&L attribution rules in full regulatory detail." },
-    { title: "Expected shortfall — Wikipedia", url: "https://en.wikipedia.org/wiki/Expected_shortfall", note: "Background on the ES statistic itself, including the closed-form normal-distribution formula used in the VaR-vs-ES equivalence formula on this page." },
-    { title: "Basel III: international regulatory framework for banks — Bank for International Settlements", url: "https://www.bis.org/bcbs/basel3.htm", note: "Where FRTB sits within the broader Basel III capital framework, for context on how the trading-book rules interact with overall bank capital requirements." },
-    { title: "Value at risk — Investopedia", url: "https://www.investopedia.com/terms/v/var.asp", note: "A refresher on VaR itself before contrasting it with FRTB's shift to Expected Shortfall." }
+    { title: "Basel III: international regulatory framework for banks — Bank for International Settlements", url: "https://www.bis.org/bcbs/basel3.htm", note: "Where FRTB sits within the broader Basel III capital framework, for context on how the trading-book rules interact with overall bank capital requirements." }
   ],
 
   pdf: { book: 1, query: "In May 2012, the Basel Committee on Banking Supervision began considering" },

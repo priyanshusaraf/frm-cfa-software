@@ -242,10 +242,8 @@ export default ({
   ],
 
   sources: [
-    { title: "Enterprise risk management — Wikipedia", url: "https://en.wikipedia.org/wiki/Enterprise_risk_management", note: "Background on the ERM framework and its governance/culture/appetite components referenced in this reading." },
     { title: "Basel III: international regulatory framework for banks — BIS", url: "https://www.bis.org/bcbs/basel3.htm", note: "The Basel Committee's own materials on the three-pillar capital framework this reading builds on." },
-    { title: "Comprehensive Capital Analysis and Review (CCAR) — Federal Reserve", url: "https://www.federalreserve.gov/supervisionreg/ccar.htm", note: "The Fed's stress-testing program cited in the reading as the benchmark for operational risk stress testing expectations." },
-    { title: "Risk-adjusted return on capital (RAROC) — Investopedia", url: "https://www.investopedia.com/terms/r/raroc.asp", note: "An accessible primer on the RAROC formula previewed here and fully developed in R56/R57." }
+    { title: "Comprehensive Capital Analysis and Review (CCAR) — Federal Reserve", url: "https://www.federalreserve.gov/supervisionreg/ccar.htm", note: "The Fed's stress-testing program cited in the reading as the benchmark for operational risk stress testing expectations." }
   ],
 
   pdf: { book: 3, query: "The enterprise risk management (ERM) framework serves as the foundation" },

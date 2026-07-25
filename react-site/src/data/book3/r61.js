@@ -167,9 +167,7 @@ export default ({
 
   sources: [
     { title: "Basel Committee on Banking Supervision — High-level summary of Basel III reforms (Dec. 2017)", url: "https://www.bis.org/bcbs/publ/d424_hlsummary.pdf", note: "The original BIS publication this entire reading summarizes — the primary source for the four reform goals and the output floor rule." },
-    { title: "Basel III: Finalising post-crisis reforms", url: "https://www.bis.org/bcbs/publ/d424.htm", note: "The full 2017 Basel III finalization document, including the detailed SMA text that R62 draws its formula from." },
-    { title: "Internal ratings-based approach (Wikipedia)", url: "https://en.wikipedia.org/wiki/Internal_ratings-based_approach", note: "Background on how A-IRB and F-IRB differ, useful context for why F-IRB fixing LGD/EAD reduces RWA variability." },
-    { title: "Basel III (Wikipedia)", url: "https://en.wikipedia.org/wiki/Basel_III", note: "General overview of the broader Basel III framework this reading's 2017 reforms sit inside." }
+    { title: "Basel III: Finalising post-crisis reforms", url: "https://www.bis.org/bcbs/publ/d424.htm", note: "The full 2017 Basel III finalization document, including the detailed SMA text that R62 draws its formula from." }
   ],
 
   pdf: { book: 3, query: "goals and impacts of the December 2017 Basel III reforms" },

@@ -162,10 +162,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Federal Reserve, OCC, CFPB, FDIC, NCUA — Request for Information on AI (March 2021)", url: "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20210329a.htm", note: "The original joint regulatory RFI referenced in the reading, showing the five agencies' proactive interest in AI's financial-sector implications." },
-    { title: "Equal Credit Opportunity Act", url: "https://en.wikipedia.org/wiki/Equal_Credit_Opportunity_Act", note: "Background on the existing consumer-protection law the reading cites as relevant to algorithmic bias in credit decisions." },
-    { title: "Algorithmic bias", url: "https://en.wikipedia.org/wiki/Algorithmic_bias", note: "Deeper background on how bias can enter automated decision systems unintentionally through training data, extending the reading's core regulatory concern." },
-    { title: "Artificial Intelligence (AI) — Investopedia", url: "https://www.investopedia.com/terms/a/artificial-intelligence-ai.asp", note: "Accessible primer on machine learning and neural networks for readers who want the underlying technology explained further." }
+    { title: "Federal Reserve, OCC, CFPB, FDIC, NCUA — Request for Information on AI (March 2021)", url: "https://www.federalreserve.gov/newsevents/pressreleases/bcreg20210329a.htm", note: "The original joint regulatory RFI referenced in the reading, showing the five agencies' proactive interest in AI's financial-sector implications." }
   ],
 
   pdf: { book: 5, query: "Artificial intelligence (AI) is a form of intelligence" }

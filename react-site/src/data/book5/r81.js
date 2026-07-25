@@ -225,12 +225,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Capital asset pricing model (CAPM) — Wikipedia", url: "https://en.wikipedia.org/wiki/Capital_asset_pricing_model", note: "Background on the CAPM's derivation, assumptions, and the security market line formula used in this reading." },
-    { title: "Arbitrage pricing theory — Wikipedia", url: "https://en.wikipedia.org/wiki/Arbitrage_pricing_theory", note: "Overview of APT, the multifactor model referenced as an early generalization of the CAPM and an early efficient market theory." },
-    { title: "Stochastic discount factor — Wikipedia", url: "https://en.wikipedia.org/wiki/Stochastic_discount_factor", note: "Explains the pricing kernel / SDF concept (the m variable) used to generalize CAPM to nonlinear, multi-factor 'bad times' indexing." },
-    { title: "Efficient-market hypothesis — Wikipedia", url: "https://en.wikipedia.org/wiki/Efficient-market_hypothesis", note: "Background on EMH and the Grossman-Stiglitz critique of costless information discussed in this reading's final section." }
-  ],
 
   pdf: { book: 5, query: "it is easiest to think of assets as bundles of" },
 

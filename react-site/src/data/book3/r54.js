@@ -191,10 +191,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Federal Reserve SR 11-7: Guidance on Model Risk Management", url: "https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm", note: "The original supervisory letter defining a 'model' and setting expectations for model risk management — the source of this reading's core definition." },
-    { title: "Wikipedia: Gaussian copula", url: "https://en.wikipedia.org/wiki/Gaussian_copula", note: "Background on David X. Li's copula function and its role in CDO pricing and the 2008 financial crisis." },
-    { title: "Wikipedia: Mars Climate Orbiter", url: "https://en.wikipedia.org/wiki/Mars_Climate_Orbiter", note: "Full account of the 1999 unit-conversion failure (pound-force seconds vs. newton-seconds) that destroyed the $125 million spacecraft." },
-    { title: "Investopedia: Model Risk", url: "https://www.investopedia.com/terms/m/model-risk.asp", note: "A concise overview of model risk and why financial institutions build dedicated model risk management functions." }
+    { title: "Federal Reserve SR 11-7: Guidance on Model Risk Management", url: "https://www.federalreserve.gov/supervisionreg/srletters/sr1107.htm", note: "The original supervisory letter defining a 'model' and setting expectations for model risk management — the source of this reading's core definition." }
   ],
 
   pdf: { book: 3, query: "Models are sophisticated tools used widely in finance" },

@@ -241,12 +241,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Information coefficient — Wikipedia", url: "https://en.wikipedia.org/wiki/Information_coefficient", note: "Background on the IC measure that scales alpha forecasts in this reading's alpha-decomposition formula." },
-    { title: "Information ratio — Investopedia", url: "https://www.investopedia.com/terms/i/informationratio.asp", note: "Explains the IR used to back out active risk aversion, and how it relates to active return and active risk." },
-    { title: "Quadratic programming — Wikipedia", url: "https://en.wikipedia.org/wiki/Quadratic_programming", note: "General background on the optimization technique used as the most sophisticated (and most estimation-error-sensitive) portfolio construction method here." },
-    { title: "Tracking error — Investopedia", url: "https://www.investopedia.com/terms/t/trackingerror.asp", note: "Tracking error is synonymous with active risk in this reading's risk-aversion formula and no-trade-region discussion." }
-  ],
 
   pdf: { book: 5, query: "The process of constructing an optimal investment portfolio requires" },
 

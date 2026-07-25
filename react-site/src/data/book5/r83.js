@@ -213,12 +213,6 @@ export default ({
     }
   ],
 
-  sources: [
-    { title: "Information ratio", url: "https://en.wikipedia.org/wiki/Information_ratio", note: "Background on the alpha-to-tracking-error ratio used to rank active managers." },
-    { title: "Low-volatility anomaly", url: "https://en.wikipedia.org/wiki/Low-volatility_anomaly", note: "Overview of the CAPM-defying finding that lower-risk stocks have historically delivered higher risk-adjusted returns." },
-    { title: "Fama-French three-factor model", url: "https://en.wikipedia.org/wiki/Fama%E2%80%93French_three-factor_model", note: "Explains the SMB and HML factors used to build multi-factor benchmarks." },
-    { title: "Alpha (investment)", url: "https://www.investopedia.com/terms/a/alpha.asp", note: "Plain-language walkthrough of alpha as benchmark-relative excess return." }
-  ],
 
   pdf: { book: 5, query: "The capital asset pricing model (CAPM) from traditional finance" },
 

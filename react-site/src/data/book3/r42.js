@@ -239,9 +239,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Operational risk — Wikipedia", url: "https://en.wikipedia.org/wiki/Operational_risk", note: "Background on the definition of operational risk and how identification fits into the broader risk-management framework." },
     { title: "Basel II: International Convergence of Capital Measurement and Capital Standards (BCBS, Annex 9)", url: "https://www.bis.org/publ/bcbs128.htm", note: "The original source of the 7-category, Level 1/2 Basel operational risk event-type taxonomy referenced throughout this reading." },
-    { title: "Risk register — Wikipedia", url: "https://en.wikipedia.org/wiki/Risk_register", note: "Explains the risk inventory/risk register/risk universe concept that top-down and bottom-up identification tools feed into." },
     { title: "GARP — Global Association of Risk Professionals", url: "https://www.garp.org/", note: "Publisher of the FRM curriculum and the GARP Operational Risk and Resilience text this reading is drawn from." }
   ],
 

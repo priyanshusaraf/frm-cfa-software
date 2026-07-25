@@ -196,9 +196,7 @@ export default ({
 
   sources: [
     { title: "Bank for International Settlements — Principles for Sound Liquidity Risk Management and Supervision", url: "https://www.bis.org/publ/bcbs144.htm", note: "The Basel Committee's foundational supervisory guidance on liquidity risk management, including stress testing expectations, that this reading's framework builds on." },
-    { title: "Federal Reserve — Supervisory Guidance on Liquidity Risk Management", url: "https://www.federalreserve.gov", note: "US regulatory expectations for how banks should structure liquidity stress testing, scenario design, and contingency funding planning." },
-    { title: "Investopedia — Stress Testing", url: "https://www.investopedia.com/terms/s/stresstesting.asp", note: "A plain-language overview of stress testing concepts, useful as a refresher on the general mechanics before the liquidity-specific detail here." },
-    { title: "Wikipedia — Bank run", url: "https://en.wikipedia.org/wiki/Bank_run", note: "Background on the deposit-outflow dynamics (retail withdrawals, confidence-driven acceleration) that liquidity stress test scenarios are built to model." }
+    { title: "Federal Reserve — Supervisory Guidance on Liquidity Risk Management", url: "https://www.federalreserve.gov", note: "US regulatory expectations for how banks should structure liquidity stress testing, scenario design, and contingency funding planning." }
   ],
 
   pdf: { book: 4, query: "This reading defines various types of liquidity and follows" },

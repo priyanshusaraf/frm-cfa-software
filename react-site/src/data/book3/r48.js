@@ -252,7 +252,6 @@ export default ({
   sources: [
     { title: "NIST Cybersecurity Framework", url: "https://www.nist.gov/cyberframework", note: "The official NIST source for the five-function (Identify, Protect, Detect, Respond, Recover) voluntary framework referenced in this reading." },
     { title: "ISO/IEC 27001: Information security management", url: "https://www.iso.org/standard/27001", note: "ISO's own overview of the certifiable information security management system (ISMS) standard." },
-    { title: "2017 Equifax data breach", url: "https://en.wikipedia.org/wiki/2017_Equifax_data_breach", note: "Background and timeline on the breach used as this reading's case study, including the Apache Struts vulnerability and regulatory aftermath." },
     { title: "CIS Critical Security Controls", url: "https://www.cisecurity.org/controls", note: "The Center for Internet Security's page describing the continuously updated technical control checklist discussed in this reading." }
   ],
 

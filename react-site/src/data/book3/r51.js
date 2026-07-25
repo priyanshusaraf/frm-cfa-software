@@ -182,8 +182,6 @@ export default ({
   ],
 
   sources: [
-    { title: "OCC enforcement action against Capital One (2020) — Wikipedia summary of the breach", url: "https://en.wikipedia.org/wiki/Capital_One#2019_data_breach", note: "Background on the 2019 breach, the AWS connection, and the subsequent $80 million OCC fine." },
-    { title: "Third-Party Risk Management — Investopedia", url: "https://www.investopedia.com/terms/t/third-party-risk-management-tprm.asp", note: "Plain-language overview of TPRM concepts, useful as a refresher on why firms outsource and what risks follow." },
     { title: "Office of the Comptroller of the Currency (OCC)", url: "https://www.occ.gov", note: "The U.S. banking regulator that fined both Capital One and Morgan Stanley; browse enforcement actions for primary-source context." },
     { title: "Bank for International Settlements (BIS) — operational resilience and outsourcing principles", url: "https://www.bis.org", note: "Home of the Basel Committee's broader guidance on operational risk and third-party/outsourcing risk that this case study operationalizes." }
   ],

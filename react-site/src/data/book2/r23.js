@@ -303,10 +303,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Consumer Financial Protection Bureau — Ability-to-Repay and Qualified Mortgage Rule", url: "https://www.consumerfinance.gov/rules-policy/regulations/1026/43/", note: "The actual regulatory text behind the 'qualified mortgage' and 'ability to repay' requirements discussed in this reading." },
-    { title: "Investopedia — FICO Score", url: "https://www.investopedia.com/terms/f/ficoscore.asp", note: "Background on the 300–850 credit bureau scoring scale used as the baseline retail credit scoring model." },
-    { title: "Investopedia — Loan-to-Value (LTV) Ratio", url: "https://www.investopedia.com/terms/l/loantovalue.asp", note: "Definition and worked examples of LTV, one of the core mortgage underwriting variables in this reading." },
-    { title: "Investopedia — Risk-Based Pricing", url: "https://www.investopedia.com/terms/r/riskbasedpricing.asp", note: "Overview of risk-based pricing and how it counters adverse selection in lending." }
+    { title: "Consumer Financial Protection Bureau — Ability-to-Repay and Qualified Mortgage Rule", url: "https://www.consumerfinance.gov/rules-policy/regulations/1026/43/", note: "The actual regulatory text behind the 'qualified mortgage' and 'ability to repay' requirements discussed in this reading." }
   ],
 
   pdf: { book: 2, query: "This reading examines credit risk management, primarily from the perspective" },

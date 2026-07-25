@@ -235,10 +235,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Counterparty Credit Risk — overview", url: "https://en.wikipedia.org/wiki/Counterparty_risk", note: "Background on counterparty credit risk concepts including exposure measures." },
-    { title: "Credit Valuation Adjustment (CVA)", url: "https://www.investopedia.com/terms/c/cva.asp", note: "Plain-language explanation of CVA as the market price of counterparty default risk, useful context before the stress-testing extension." },
-    { title: "Basel Committee — The standardised approach for measuring counterparty credit risk exposures", url: "https://www.bis.org/publ/bcbs279.htm", note: "Regulatory framework document showing how current/peak/expected exposure concepts are used in bank capital rules." },
-    { title: "Wrong-way risk", url: "https://en.wikipedia.org/wiki/Wrong-way_risk", note: "Definition and examples of the exposure-PD correlation problem this reading says static stress tests cannot capture." }
+    { title: "Basel Committee — The standardised approach for measuring counterparty credit risk exposures", url: "https://www.bis.org/publ/bcbs279.htm", note: "Regulatory framework document showing how current/peak/expected exposure concepts are used in bank capital rules." }
   ],
 
   pdf: { book: 2, query: "we take a detailed look at counterparty credit risk measurement" },
