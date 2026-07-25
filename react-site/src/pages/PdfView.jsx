@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useParams, useSearchParams, useLocation, Link } from "react-router-dom";
 import PdfCore from "../components/PdfCore.jsx";
+import { useStore, setPdfZoom } from "../lib/store.js";
 
 export default function PdfView() {
   const { bn: bnParam } = useParams();
@@ -15,6 +16,9 @@ export default function PdfView() {
   const queries = useMemo(() => [qParam, q2Param].filter(Boolean), [qParam, q2Param]);
   const location = useLocation();
   const backTo = (location.state && location.state.from) || "/";
+  /* passing onZoom is what makes PdfCore render its zoom control group; the route
+     had none until now, which left fullscreen PDF reading stuck at fit-to-width */
+  const zoom = useStore((s) => s.layout && s.layout.pdfZoom) || 1;
 
   if (!validBook) {
     return (
@@ -36,6 +40,8 @@ export default function PdfView() {
       mode="window"
       initialQueries={queries}
       initialPage={pageParam}
+      zoom={zoom}
+      onZoom={setPdfZoom}
       toolbarLeft={<Link to={backTo} className="text-dim hover:text-ink text-sm no-underline">← Back</Link>}
     />
   );

@@ -14,7 +14,8 @@
      hlLabels:   { y, g, b, r },                      // user-editable color legend
      lastVisited:{ rn, ts, y, section },              // most recently opened chapter (+ scroll y, section label left off in)
      bookmarks:  { [rn]: [ { id, txt, ts } ] },       // section bookmarks; id = slugify(section title)
-     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, split },
+     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, split, pdfZoom },
+              // + pdfZoom: page zoom for the full-page /pdf/:bn reader (0.5-3, absent = 1)
               // reading-column width (px) + rail open states + per-block widths { [`${rn}:key`]: px }
               // + fontScale: app-wide text size multiplier (Settings page), applied as --font-scale
               // + split: { panes:{source,condensed}, side:'left'|'right', widths:{source,condensed}px,
@@ -261,6 +262,14 @@ export function setSplitSide(side) {
   const v = side === "left" ? "left" : "right";
   save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, side: v } } });
 }
+/* Matches the −/+ steps in PdfCore's toolbar; enforced here too so a hand-edited
+   or imported blob can't restore an unusable zoom. */
+export const MIN_PDF_ZOOM = 0.5;
+export const MAX_PDF_ZOOM = 3;
+function clampZoom(z) {
+  return Math.min(MAX_PDF_ZOOM, Math.max(MIN_PDF_ZOOM, z));
+}
+
 export function setSplitPaneWidth(kind, px) {
   if (kind !== "source" && kind !== "condensed") return;
   const s = load();
@@ -269,13 +278,25 @@ export function setSplitPaneWidth(kind, px) {
   if (typeof px === "number" && px > 0) widths[kind] = Math.round(px); else delete widths[kind];
   save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, widths } } });
 }
+/* `zoom` is the per-pane MAP; the numeric argument goes inside it. Writing the
+   argument straight onto split.zoom (as this once did) leaves zoom[kind]
+   undefined forever, so every pane silently snaps back to 1. */
 export function setSplitZoom(kind, zoom) {
   if (kind !== "source" && kind !== "condensed") return;
   const s = load();
   const cur = (s.layout && s.layout.split) || {};
   const z = { ...(cur.zoom || {}) };
-  if (typeof zoom === "number" && zoom > 0) z[kind] = zoom; else delete z[kind];
-  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, zoom } } });
+  if (typeof zoom === "number" && zoom > 0) z[kind] = clampZoom(zoom); else delete z[kind];
+  save({ ...s, layout: { ...(s.layout || {}), split: { ...cur, zoom: z } } });
+}
+
+/* Page zoom for the full-page /pdf/:bn reader. Its own key rather than a third
+   entry in split.zoom: that map is keyed by pane kind and the route has no pane. */
+export function setPdfZoom(zoom) {
+  const s = load();
+  const layout = { ...(s.layout || {}) };
+  if (typeof zoom === "number" && zoom > 0) layout.pdfZoom = clampZoom(zoom); else delete layout.pdfZoom;
+  save({ ...s, layout });
 }
 
 /* Ad-hoc source anchor from a "Read in source" text selection (Highlighter.jsx).

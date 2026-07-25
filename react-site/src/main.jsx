@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 import { Minimize2 } from "lucide-react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -50,9 +50,17 @@ function PageLoading() {
 }
 
 /* Fullscreen is app-wide: the `f` shortcut is registered here rather than per-page,
-   and the exit chip stands in for the nav button while the nav is hidden. */
+   and the exit chip stands in for the nav button while the nav is hidden.
+   The nav is no longer unmounted in fullscreen — it hides off-screen and peeks on
+   hover (or focus, for keyboard users), so split/dock/zoom stay reachable without
+   leaving the mode. `menuOpen` exists because Radix renders the Study popover in a
+   PORTAL outside .nav-peek: hover and :focus-within both go false the moment it
+   opens, and the nav would slide away under its own open menu. A CSS
+   `:has([data-radix-popper-content-wrapper])` rule would fix that case and wrongly
+   pin the nav open for every other popover in the app (concept hover cards). */
 function Shell() {
   const fullscreen = useFullscreen();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     function onKey(e) {
@@ -69,7 +77,16 @@ function Shell() {
 
   return (
     <>
-      {!fullscreen && <Nav />}
+      {fullscreen ? (
+        <>
+          <div className="nav-peek-trigger" aria-hidden="true" />
+          <div className="nav-peek" data-open={menuOpen ? "1" : undefined}>
+            <Nav onMenuOpenChange={setMenuOpen} />
+          </div>
+        </>
+      ) : (
+        <Nav />
+      )}
       {!fullscreen && <ReturnToReading />}
       <HydrationReminder />
       {fullscreen && (

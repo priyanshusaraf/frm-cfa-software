@@ -21,7 +21,7 @@ import MatchPairs from "../components/chapter/MatchPairs.jsx";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
 import Button from "../components/ui/button.jsx";
 import Badge from "../components/ui/badge.jsx";
-import { useStore, toggleDone, touchVisited, touchActivity, setPageWidth, setSplitPane, setSplitSide, setSplitQuery, setActiveReading, getState } from "../lib/store.js";
+import { useStore, toggleDone, touchVisited, touchActivity, setPageWidth, setSplitPane, setSplitQuery, setActiveReading, getState } from "../lib/store.js";
 import { buildBlocks, nextInPlan } from "../lib/studyPath.js";
 import { blockEligibility, blockForReading } from "../lib/blockEligibility.js";
 import coreConceptsTable from "../data/coreConcepts.json";
@@ -70,7 +70,6 @@ export default function Chapter() {
   const splitSource = useStore((s) => !!(s.layout && s.layout.split && s.layout.split.panes && s.layout.split.panes.source));
   const splitCondensed = useStore((s) => !!(s.layout && s.layout.split && s.layout.split.panes && s.layout.split.panes.condensed));
   const splitOpen = splitSource || splitCondensed;
-  const splitSide = useStore((s) => s.layout && s.layout.split && s.layout.split.side) || "right";
   /* raw slice — .q is an OBJECT, so a `|| {}` default inside the selector would
      hand useSyncExternalStore a fresh identity every call (React #185) */
   const splitQ = useStore((s) => s.layout && s.layout.split && s.layout.split.q);
@@ -272,23 +271,10 @@ export default function Chapter() {
     setOpenRecall((s) => ({ ...s, [i]: !s[i] }));
   }
 
-  /* Split view is desktop-only (a true side-by-side layout doesn't fit narrow
-     viewports); below the breakpoint, fall back to the existing full-screen
-     /pdf/:bn route instead (CLAUDE.md §7.4). */
-  function toggleSplit(kind) {
-    const isNarrow = !(window.matchMedia && window.matchMedia("(min-width: 1100px)").matches);
-    const alreadyOpen = kind === "source" ? splitSource : splitCondensed;
-    if (isNarrow) {
-      if (kind === "source" && d.pdf) {
-        navigate(`/pdf/${d.pdf.book}?q=${encodeURIComponent(d.pdf.query)}`, { state: { from: `/chapter/${rn}` } });
-      } else if (kind === "condensed" && d.pdf) {
-        navigate(`/pdf/${d.pdf.book}`, { state: { from: `/chapter/${rn}` } });
-      }
-      return;
-    }
-    if (alreadyOpen) closeSplitPane(kind); else setSplitPane(kind, true);
-  }
-
+  /* Split view is desktop-only and its toggles now live in the navbar
+     (NavSplitControls), which is itself hidden below the breakpoint. Narrow
+     viewports reach the source material through the "Open source PDF ↗" link in
+     the action row, which is always visible (CLAUDE.md §7.4). */
   function closeSplitPane(kind) {
     setSplitPane(kind, false);
     if (kind === "source") setSplitQuery(null);
@@ -329,27 +315,8 @@ export default function Chapter() {
             <Button size="sm" variant="outline">Open source PDF ↗</Button>
           </Link>
         )}
-        {d.pdf && (
-          <Button size="sm" variant={splitSource ? "default" : "outline"} onClick={() => toggleSplit("source")} className="hidden lg:inline-flex">
-            {splitSource ? "✓ Source split" : "Split: Source"}
-          </Button>
-        )}
-        {d.pdf && d.pdf.book <= 4 && (
-          <Button size="sm" variant={splitCondensed ? "default" : "outline"} onClick={() => toggleSplit("condensed")} className="hidden lg:inline-flex">
-            {splitCondensed ? "✓ Condensed split" : "Split: Condensed"}
-          </Button>
-        )}
-        {splitOpen && (
-          <span className="hidden lg:inline-flex items-center gap-1.5">
-            <span className="text-[0.72rem] text-faint">Books on</span>
-            <Button size="sm" variant={splitSide === "left" ? "default" : "outline"} onClick={() => setSplitSide("left")} title="Dock the source panes to the left of the reading">
-              ◧ Left
-            </Button>
-            <Button size="sm" variant={splitSide === "right" ? "default" : "outline"} onClick={() => setSplitSide("right")} title="Dock the source panes to the right of the reading">
-              Right ◨
-            </Button>
-          </span>
-        )}
+        {/* Split/dock toggles moved to the navbar (NavSplitControls) so they stay
+            reachable in fullscreen and live in one place — CLAUDE.md §7.4. */}
         {quizScore && <Badge tone={quizScore.best >= 70 ? "green" : "amber"}>Quiz best {quizScore.best}%</Badge>}
       </div>
 

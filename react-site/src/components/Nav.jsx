@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Waypoints,
@@ -21,11 +21,13 @@ import {
   Settings as SettingsIcon,
   Boxes,
   Maximize2,
+  Minimize2,
 } from "lucide-react";
 import { META } from "../lib/meta.js";
 import { useStore, setFontScale } from "../lib/store.js";
-import { toggleFullscreen } from "../lib/fullscreen.js";
+import { toggleFullscreen, useFullscreen } from "../lib/fullscreen.js";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover.jsx";
+import NavSplitControls from "./NavSplitControls.jsx";
 
 const STUDY_ITEMS = [
   ["/planner", "Study planner", CalendarDays],
@@ -74,10 +76,13 @@ const NavButton = forwardRef(function NavButton({ className, onClick, children, 
   );
 });
 
-export default function Nav() {
+/* onMenuOpenChange: main.jsx's Shell needs to know a portal-rendered menu is open
+   so the fullscreen peek-nav stays down while you use it (see Shell's comment). */
+export default function Nav({ onMenuOpenChange }) {
   const location = useLocation();
   const [theme, setTheme] = useState(currentTheme);
-  const [studyOpen, setStudyOpen] = useState(false);
+  const [studyOpen, setStudyOpenState] = useState(false);
+  const fullscreen = useFullscreen();
   const done = useStore((s) => s.done);
   const examDate = useStore((s) => (s.planner && s.planner.examDate) || "");
   const fontScale = useStore((s) => s.layout && s.layout.fontScale) || 1;
@@ -98,7 +103,12 @@ export default function Nav() {
 
   const studyActive = STUDY_ITEMS.some(([to]) => location.pathname === to);
 
-  useEffect(() => setStudyOpen(false), [location.pathname]);
+  const setStudyOpen = useCallback((v) => {
+    setStudyOpenState(v);
+    if (onMenuOpenChange) onMenuOpenChange(v);
+  }, [onMenuOpenChange]);
+
+  useEffect(() => setStudyOpen(false), [location.pathname, setStudyOpen]);
 
   return (
     <nav className="topnav">
@@ -201,6 +211,8 @@ export default function Nav() {
         </div>
       )}
 
+      {currentReading && <NavSplitControls rn={parseInt(currentReading, 10)} />}
+
       <span className="spacer" />
 
       {daysToExam != null && (
@@ -234,14 +246,15 @@ export default function Nav() {
         <CommandIcon size={12} />K
       </NavButton>
 
-      {/* nav is unmounted while fullscreen is on, so this only ever shows "enter";
-          the exit affordance is the floating chip rendered by main.jsx's Shell */}
+      {/* the nav now peeks in fullscreen instead of unmounting, so this button has
+          to reflect both states; the .fs-exit chip stays as the exit affordance
+          for when the nav is hidden */}
       <NavButton
         onClick={toggleFullscreen}
-        title="Fullscreen reading mode (f)"
+        title={fullscreen ? "Exit fullscreen (f)" : "Fullscreen reading mode (f)"}
         className="mr-1 flex cursor-pointer select-none items-center justify-center rounded-el border border-line p-1.5 text-dim hover:bg-hovered hover:text-ink"
       >
-        <Maximize2 size={14} />
+        {fullscreen ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
       </NavButton>
 
       <NavButton

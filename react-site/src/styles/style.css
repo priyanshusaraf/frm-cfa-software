@@ -694,6 +694,35 @@ html[data-fullscreen] .qn-fab { display: none; }
 }
 .fs-exit:hover { opacity: 1; color: var(--text); border-color: var(--border-strong); }
 
+/* Peek nav: in fullscreen the navbar is parked off the top edge instead of
+   unmounted, so split/dock/zoom stay reachable without leaving the mode. It
+   OVERLAYS — --nav-h stays 0rem above, or the sticky .split-panes column would
+   stop filling the viewport.
+   Reveal triggers, in order: pointer on the top edge strip, pointer on the nav
+   itself (once down it covers the strip, which is what keeps it open), keyboard
+   focus anywhere inside it, and data-open, which main.jsx sets while the Study
+   menu is open — that menu is portalled OUTSIDE .nav-peek, so hover and
+   :focus-within both go false and the nav would otherwise slide away under it. */
+.nav-peek-trigger {
+  position: fixed; top: 0; left: 0; right: 0; height: 10px; z-index: 54;
+}
+.nav-peek {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 55;
+  transform: translateY(-100%);
+  transition: transform 0.18s ease;
+  box-shadow: var(--shadow-card, 0 8px 24px rgba(0, 0, 0, 0.25));
+}
+.nav-peek-trigger:hover + .nav-peek,
+.nav-peek:hover,
+.nav-peek:focus-within,
+.nav-peek[data-open="1"] { transform: translateY(0); }
+/* No pointer-events:none on the parked nav: it sits fully above the viewport, so
+   it intercepts nothing, and disabling pointer events would make .nav-peek:hover
+   unreachable the moment the pointer left the trigger strip. */
+@media (prefers-reduced-motion: reduce) {
+  .nav-peek { transition: none; }
+}
+
 /* ---------- global "Return to Reading" button (nav.activeReading) ---------- */
 .return-to-reading {
   position: fixed; left: 12px; top: calc(var(--nav-h) + 10px); z-index: 40;

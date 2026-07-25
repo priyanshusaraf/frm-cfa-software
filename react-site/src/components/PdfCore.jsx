@@ -8,10 +8,11 @@
    whatever scrolls the page (used by the /pdf/:bn route). `mode="pane"` makes the
    page-list container itself the scrolling element (own overflow-y:auto), so it
    works self-contained inside a fixed-height side pane. */
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import workerUrl from "pdfjs-dist/build/pdf.worker.min.js?url";
 import Button from "./ui/button.jsx";
+import { anchorFrom, offsetFor, isAtStart } from "../lib/pdfAnchor.js";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
 
@@ -179,6 +180,9 @@ export default function PdfCore({
   const textCacheRef = useRef(new Map());
   const pageRefs = useRef({});
   const scrollElRef = useRef(null); // "pane" mode only: the div that actually scrolls
+  const anchorRef = useRef({ page: 1, frac: 0 }); // where to land after pages change size
+  const lastUnitRef = useRef(null);
+  const restoringRef = useRef(false);
 
   const ladder = (Array.isArray(initialQueries) ? initialQueries : [initialQueries])
     .map((q) => (q == null ? "" : String(q)))
@@ -265,12 +269,31 @@ export default function PdfCore({
   const cssWidth = zoomedWidth;
   const cssHeight = pageBase ? Math.round(zoomedWidth * (pageBase.height / pageBase.width)) : 640;
 
+  /* The one place that knows which element scrolls. In "pane" mode a separate
+     wrapper (scrollElRef) owns the scrollbar and containerEl's offset within it is
+     measured directly (robust to the pane's own padding); in "window" mode the
+     document scrolls and containerEl's page offset is measured against the
+     viewport. Returns null until both are mounted. */
+  const readGeometry = useCallback(() => {
+    if (!containerEl) return null;
+    const contRect = containerEl.getBoundingClientRect();
+    if (mode === "pane") {
+      const scroller = scrollElRef.current;
+      if (!scroller) return null;
+      return {
+        scroller,
+        contTop: contRect.top - scroller.getBoundingClientRect().top + scroller.scrollTop,
+        viewTop: scroller.scrollTop,
+        vh: scroller.clientHeight,
+      };
+    }
+    return { scroller: null, contTop: contRect.top + window.scrollY, viewTop: window.scrollY, vh: window.innerHeight };
+  }, [containerEl, mode]);
+
   /* Scroll → visible page range, computed arithmetically (all pages share one
-     height), so no per-page observers and no layout reads in a loop. In "pane"
-     mode a separate wrapper (scrollElRef) owns the scrollbar and containerEl's
-     offset within it is measured directly (robust to the pane's own padding);
-     in "window" mode the document scrolls and containerEl's page offset is
-     measured against the viewport. */
+     height), so no per-page observers and no layout reads in a loop. The same
+     pass records where we are as a {page, frac} anchor, which is what the resize
+     restore below replays once the pages change size. */
   useEffect(() => {
     if (!numPages || !containerEl) return undefined;
     const unit = cssHeight + PAGE_GAP;
@@ -279,12 +302,9 @@ export default function PdfCore({
     let raf = null;
     const update = () => {
       raf = null;
-      const contRect = containerEl.getBoundingClientRect();
-      const contTop = mode === "pane"
-        ? (contRect.top - scrollElRef.current.getBoundingClientRect().top) + scrollElRef.current.scrollTop
-        : contRect.top + window.scrollY;
-      const viewTop = mode === "pane" ? scrollElRef.current.scrollTop : window.scrollY;
-      const vh = mode === "pane" ? scrollElRef.current.clientHeight : window.innerHeight;
+      const g = readGeometry();
+      if (!g) return;
+      const { contTop, viewTop, vh } = g;
       const clamp = (n) => Math.max(1, Math.min(numPages, n));
       const first = clamp(Math.floor((viewTop - contTop) / unit) + 1);
       const last = clamp(Math.ceil((viewTop + vh - contTop) / unit));
@@ -292,6 +312,8 @@ export default function PdfCore({
       const cur = clamp(Math.round((viewTop + 80 - contTop) / unit) + 1);
       setCurrentPage(cur);
       setPageInput(String(cur));
+      // a restore's own scroll event must not overwrite the anchor it just replayed
+      if (!restoringRef.current) anchorRef.current = anchorFrom(viewTop, contTop, unit, numPages);
     };
     const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
     scrollTarget.addEventListener("scroll", onScroll, { passive: true });
@@ -302,7 +324,34 @@ export default function PdfCore({
       window.removeEventListener("resize", onScroll);
       if (raf) cancelAnimationFrame(raf);
     };
-  }, [numPages, containerEl, cssHeight, mode]);
+  }, [numPages, containerEl, cssHeight, mode, readGeometry]);
+
+  /* Page-stable zoom/resize: every page's height just changed, so the old scrollTop
+     points at a different page. Replay the anchor against the new unit.
+     A LAYOUT effect, not an effect: it must land before paint or the jump is visible.
+     `behavior: "instant"` is mandatory — html { scroll-behavior: smooth } is set
+     globally and would otherwise animate every zoom step. */
+  useLayoutEffect(() => {
+    if (!numPages || !containerEl) {
+      lastUnitRef.current = null;
+      return undefined;
+    }
+    const unit = cssHeight + PAGE_GAP;
+    const prev = lastUnitRef.current;
+    lastUnitRef.current = unit;
+    // prev == null is the load-time transition off the placeholder height, where
+    // restoring would fight the anchor ladder's initial jump for no benefit
+    if (prev === null || prev === unit || isAtStart(anchorRef.current)) return undefined;
+    const g = readGeometry();
+    if (!g) return undefined;
+    const top = offsetFor(anchorRef.current, g.contTop, unit, numPages);
+    restoringRef.current = true;
+    (g.scroller || window).scrollTo({ top, behavior: "instant" });
+    // wall-clock, not a rAF: a programmatic scroll's own event can arrive more
+    // than a frame later (the lesson scrollAnchor.js encodes)
+    const t = setTimeout(() => { restoringRef.current = false; }, 150);
+    return () => clearTimeout(t);
+  }, [cssHeight, numPages, containerEl, readGeometry]);
 
   const getPageText = useCallback(async (pageNum) => {
     const doc = pdfDocRef.current;
