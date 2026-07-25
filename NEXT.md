@@ -1,3 +1,3 @@
-DONE: Wave 8 of content-sonnet-clearance (r37-r40) cleared and Opus-A gated; 40 of 101 readings now done.
-NEXT: Run wave 9 (r41-r45, Book 3: risk governance, identification, measurement, mitigation, reporting).
+DONE: Wave 9 of content-sonnet-clearance (r41-r45) cleared and Opus-A gated; 45 of 101 readings now done.
+NEXT: Run wave 10 (r46-r50, Book 3: integrated risk management, cyber-resilience, two case studies, outsourcing risk).
 BLOCKERS: none.
