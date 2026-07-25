@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Minimize2 } from "lucide-react";
 import { createRoot } from "react-dom/client";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -65,6 +65,20 @@ function Shell() {
   const fullscreen = useFullscreen();
   const [menuOpen, setMenuOpen] = useState(false);
   const [navPinned, setNavPinned] = useState(false);
+  const peekRef = useRef(null);
+
+  /* The parked nav's height drives where the handle sits once the nav is down.
+     Measured rather than hardcoded: it changes with font-scale and with the
+     per-reading split controls, so a fixed offset would drift out of line. */
+  useEffect(() => {
+    const el = peekRef.current;
+    if (!fullscreen || !el) return;
+    const apply = () => document.documentElement.style.setProperty("--peek-h", el.offsetHeight + "px");
+    apply();
+    const ro = new ResizeObserver(apply);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [fullscreen]);
 
   useEffect(() => {
     function onKey(e) {
@@ -120,11 +134,12 @@ function Shell() {
             className="nav-peek-handle"
             aria-expanded={navPinned}
             aria-label={navPinned ? "Hide menu" : "Show menu"}
+            data-open={navPinned ? "1" : undefined}
             onClick={() => setNavPinned((v) => !v)}
           >
             {navPinned ? "▲" : "▼"} Menu
           </button>
-          <div className="nav-peek" data-open={menuOpen || navPinned ? "1" : undefined}>
+          <div ref={peekRef} className="nav-peek" data-open={menuOpen || navPinned ? "1" : undefined}>
             <Nav onMenuOpenChange={setMenuOpen} />
           </div>
         </>
