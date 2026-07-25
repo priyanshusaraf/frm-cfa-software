@@ -277,6 +277,7 @@ export const conceptLinkTable = [
       25,
       29,
       40,
+      41,
       42,
       43,
       45,
@@ -841,7 +842,7 @@ export const conceptLinkTable = [
       62
     ],
     "linkPhrases": [],
-    "snippet": "Splits losses into frequency (discrete, usually Poisson — one parameter \\lambda equals both the mean and the variance) and severity (continuous, fat-tailed, usually lognormal), modeled independently then convoluted..."
+    "snippet": "Splits losses into frequency (discrete, usually Poisson, whose one parameter \\lambda equals both the mean and the variance) and severity (continuous, fat-tailed, usually lognormal), modeled independently then..."
   },
   {
     "slug": "recovery-rates",
@@ -948,7 +949,7 @@ export const conceptLinkTable = [
       45
     ],
     "linkPhrases": [],
-    "snippet": "Incidents that had the potential to become an operational loss but did not — the key point is that luck, not a working control, is what prevented the loss."
+    "snippet": "Incidents that had the potential to become an operational loss but did not. The key point is that luck, not a working control, is what prevented the loss."
   },
   {
     "slug": "net-stable-funding-ratio-nsfr",

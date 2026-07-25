@@ -78,11 +78,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | done | done | 8 | pass | Three defs trimmed; a first pass invented four pitfalls and was corrected against the real four. |
 | 39 | 2 | An Introduction to Securitization | done | done | 8 | pass | Clean apart from dashes and two source references. |
 | 40 | 3 | Introduction to Operational Risk and Resilience | done | done | 8 | pass | Five defs trimmed; two new breakdown blocks added so no enumeration was lost. |
-| 41 | 3 | Risk Governance | done | todo | 9 | - | |
-| 42 | 3 | Risk Identification | done | todo | 9 | - | |
-| 43 | 3 | Risk Measurement and Assessment | done | todo | 9 | - | |
-| 44 | 3 | Risk Mitigation | done | todo | 9 | - | |
-| 45 | 3 | Risk Reporting | done | todo | 9 | - | |
+| 41 | 3 | Risk Governance | done | done | 9 | pass | Three defs trimmed into real definitions; new breakdown blocks for board duties and risk appetite. pdf.query was authored prose, now verbatim. |
+| 42 | 3 | Risk Identification | done | done | 9 | pass | Clean apart from dashes and AI-isms; a padding GARP source link replaced with a live BIS one. |
+| 43 | 3 | Risk Measurement and Assessment | done | done | 9 | pass | Fixed a 10x decimal error in the FTA product and a wrong forward reference (SMA is R62, not R63). |
+| 44 | 3 | Risk Mitigation | done | done | 9 | pass | Already dash-clean; only AI-isms and one loose RPO/RTO quiz stem. |
+| 45 | 3 | Risk Reporting | done | done | 9 | pass | Already dash-clean; four defs trimmed after enriching breakdown so no enumeration detail was lost. |
 | 46 | 3 | Integrated Risk Management | done | todo | 10 | - | |
 | 47 | 3 | Cyber-Resilience: Range of Practices | done | todo | 10 | - | |
 | 48 | 3 | Case Study: Cyberthreats and Information Security Risks | done | todo | 10 | - | |

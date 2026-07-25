@@ -468,3 +468,58 @@ delete.** R40 needed two new blocks (the four risk types operational risk pulls 
 five jurisdictions' resilience guidance) before its defs could be trimmed. That is the honest
 version of "move the enumeration to breakdown", which is what the validator message literally
 asks for.
+
+### Wave 9 (R41-R45, Book 3, 2026-07-26): dash density collapses, cross-reference errors appear
+
+**Book 3's op-risk core is NOT uniformly dashed, and two of five files needed no dash work at all.**
+R41/R42/R43 carried 76/95/101 dashes; R44 and R45 carried zero. A wave can therefore be
+front-loaded: budget the hand-rewriting for the first files and spend the saved effort on the
+clean ones' quiz and cross-reference audit, which is where their defects actually were.
+
+**The new defect class this wave adds: a forward reference to the wrong reading number.** R43's
+`why` said the standardized measurement approach "closes the book in R63" and its highYield said
+"R62/R63", while its own `related` entries correctly pointed at R62. R63 is Book 4 (Liquidity
+Risk); the SMA reading is R62. The cause is that Schweser's own text numbers that reading 63
+(the LO strings in Book 3 read "LO 63.a"), so a content pass that reads the source will import
+the source's numbering. **Rule: any reading number written into prose must be checked against
+`src/lib/meta-data.js`, not against the LO numbers in the Schweser text, because Book 3's
+internal reading numbers run ahead of the app's.**
+
+**Second defect: a decimal place lost inside a correct chain.** R43's fault-tree derivation
+printed \(0.99\times0.05\times0.10\times0.03\times0.01 = 0.0000001485 = 0.0001485\%\). The
+percentage is right and matches the source's answer key; the decimal is off by 10x
+(0.0001485% is 0.000001485, not 0.0000001485). The two forms sit in the same equation, so
+this is only visible if you convert one to the other. **Whenever a file prints a value in both
+decimal and percentage form, convert one into the other before shipping.**
+
+**Third: a scaling illustration attached to the wrong base figure.** The same derivation scaled
+the phishing example's 0.0001485% across 50,000 employees to get 7.4%. The arithmetic is right,
+but Book 3 line 1995 scales the *generic* four-control figure (0.000625% x 50,000 = 31.25%),
+and 31.25% is the number that makes the teaching point. The app now uses the source's own pair.
+**When the source supplies a worked scaling, use its figures rather than re-deriving the same
+lesson from a different example in the file.**
+
+**The def-trim audit from wave 8 works and should now be routine.** R45 needed four defs trimmed
+(186/328/298/150 words). Running the pre-trim-word-diff caught three real losses that the
+validator cannot see: the ExCo's "elected board members", the zero objective's actual definition
+(no overdue action plans, no overdue audit recommendations, tracked by "discipline indicators"),
+and emerging-risk scanning's "particular attention to the regulatory and compliance environment".
+As in R40, two of R45's four trims required ENRICHING an existing breakdown point first (the KRI
+sources with their HR/audit/compliance examples, and the three qualitative-aggregation methods),
+not just deleting from the def.
+
+**`pdf.query` can be fixed for free while a file is open.** R41's query was authored prose
+("R41 answers "who's in charge of operational risk?" at three levels"), one of the 21 files
+CLAUDE.md §7.5 flags as relying on the title fallback. It is now "The Three Lines of Defense
+Model", which appears verbatim as a heading in Book 3. Checking a candidate costs one grep
+(`grep -n "<phrase>" "Book 3 (1).md"`, with `**` stripped), so do it whenever the current query
+is obviously prose.
+
+**Verified correct, leave alone:** R41's Pillar 1 chain (BI = ILDC + SC + FC, the 12/15/18%
+bands, LC = 15 x average annual losses, ILM = ln(e - 1 + LC/BIC), and the SC worked example
+giving EUR 185m + EUR 45m = EUR 230m), R43's LDA Poisson/lognormal pairing and 99.9th-percentile
+capital reading, R44's whole human-error taxonomy and its RPO/RTO pair, R45's Pillar 3 numbers
+(10 years of losses, 3 years for the business indicator) and the four notification triggers.
+
+**Still open for Opus-B:** R44 has no `sources` array at all, and R45's second source is a
+generic GARP program link that does not earn its place.
