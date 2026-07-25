@@ -628,6 +628,67 @@ Follow-up logged by the spec and still open: **21 readings whose `pdf.query` is 
 prose rather than verbatim source text** (r02, r18, r41, …) now rely on the title fallback.
 Rewriting those queries against the real source is a content task and belongs with section 8.
 
+**Superseded by 7.6:** the chapter action row's "Split: Source" / "Split: Condensed" / dock
+buttons no longer exist. "Open source PDF ↗" is unchanged.
+
+### 7.6 PDF viewer: page-stable zoom, fullscreen chrome, navbar split controls (BUILT, 2026-07-25)
+
+Spec: `docs/superpowers/specs/2026-07-25-pdf-viewer-zoom-and-chrome-design.md`. Owner-reported
+defects. Things a future agent must not undo:
+
+- **`src/lib/pdfAnchor.js` keeps the page you are on pinned when page height changes**
+  (zoom step, pane drag, window resize, fullscreen toggle). Pages are laid out
+  arithmetically, so the anchor is just `{page, frac}` and needs none of `scrollAnchor.js`'s
+  DOM-fingerprint machinery. `PdfCore` records it in the existing scroll pass and replays it
+  in a **layout** effect (an ordinary effect paints the wrong position first). Three
+  constraints that look removable and are not: `behavior: "instant"` is required because
+  `html { scroll-behavior: smooth }` would animate every zoom step; the restore is skipped
+  when the anchor `isAtStart`, because `unit` also changes once at load when the real page
+  height replaces the placeholder and restoring there fights the anchor ladder's initial jump;
+  and the post-restore busy flag is a wall-clock timeout, not a rAF, because a programmatic
+  scroll's own event can arrive more than a frame later.
+- **`setSplitZoom` had been saving its numeric argument as `split.zoom`** instead of writing
+  it into the per-pane map, so `split.zoom[kind]` was permanently undefined and per-pane zoom
+  silently snapped back to 1 on every render. Fixed and regression-tested
+  (`src/lib/store.pdfZoom.test.js`). Zoom values are clamped in the store now, not just in
+  the toolbar, so an imported blob cannot restore an unusable zoom.
+- **`/pdf/:bn` has a zoom control**, backed by a new optional `layout.pdfZoom` key. It gets
+  its own key rather than a third entry in `split.zoom`, which is keyed by pane kind.
+  `PdfCore` renders its zoom group only when an `onZoom` prop is passed; that is the switch.
+- **Fullscreen does NOT unmount the nav any more.** It parks off-screen (`.nav-peek`) and
+  peeks on hover, on `:focus-within` (keyboard access without a new hotkey — `f`, `n`, `[`,
+  `]`, `1-4`, `a-d`, `space`, `⌘K` are all taken), and on `data-open`, which `main.jsx`'s
+  `Shell` sets while the Study menu is open. That last one is not optional: Radix portals the
+  menu OUTSIDE `.nav-peek`, so hover and `:focus-within` both go false and the nav slides away
+  under its own open menu. Do not "simplify" it to a CSS
+  `:has([data-radix-popper-content-wrapper])` rule — that would also pin the nav open for
+  concept hover-cards and every other popover in the app. `--nav-h` stays `0rem` in
+  fullscreen: the peeked nav overlays, and reserving space would stop the sticky
+  `.split-panes` column filling the viewport.
+- **Split/dock toggles live in `src/components/NavSplitControls.jsx`**, rendered by `Nav` on
+  `/chapter/:rn` only. Desktop-only via `hidden lg:flex`, so it needs none of the old
+  `toggleSplit`'s narrow-viewport fallback; narrow viewports use the always-visible "Open
+  source PDF ↗" link. It reads `useReading(rn)` (a cache hit, Chapter already loaded it) and
+  renders nothing when `d.pdf` is absent, because `SplitView` only mounts when `d.pdf` exists
+  and a toggle would otherwise set state nothing reads. Closing the source pane clears
+  `setSplitQuery(null)`, mirroring `Chapter.closeSplitPane`.
+- **Persistent PDF highlighting/annotation was CUT by the owner** from this pass as
+  unnecessary for now. Its worked-out design (pdf.js `renderTextLayer`, normalized-rect
+  anchoring rather than the quote+context anchoring reading highlights use, the `pdfMarks`
+  store shape, surfacing in `/highlights` and `/notes`) is in the spec's appendix. If it is
+  ever picked up, read that instead of re-deriving it.
+- **Not headless-verifiable:** the PDF never finishes loading under Chrome's virtual time
+  (checked to a 60s budget), so zoom anchoring, the peek nav and the split cluster's live
+  behaviour need a real browser. The route shell, toolbar, zoom control and the nav toggles
+  do render and are marker-clean.
+
+Known rough edge, left deliberately: in `window` mode (`/pdf/:bn`, `maxWidth` 900) a zoom
+above 1 makes pages wider than the centred column, so the document scrolls horizontally and
+content extends rightward rather than growing symmetrically. Giving the container
+`overflow-x: auto` is NOT the fix: per CSS, a non-`visible` overflow on one axis computes the
+other to `auto`, which would turn the container into a vertical scroller and break window-mode
+scrolling outright.
+
 ## 8. TOP PRIORITY: the content-quality pass (scoped 2026-07-21, eleventh session)
 
 The product owner's explicit direction after reviewing the tenth session's feature work:

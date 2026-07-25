@@ -44,9 +44,25 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 >    Verified it does NOT break highlights: those anchor by quote plus context, not offsets,
 >    and `unpaint` preserves child elements.
 >
+> 5. **PDF viewer, owner-reported (2026-07-25).** Spec:
+>    `specs/2026-07-25-pdf-viewer-zoom-and-chrome-design.md`. (a) Zoom/resize threw you tens of
+>    pages away: new `src/lib/pdfAnchor.js` records a `{page, frac}` anchor on scroll and
+>    `PdfCore` replays it in a layout effect whenever page height changes. (b) **`setSplitZoom`
+>    was writing its numeric argument as `split.zoom` instead of into the per-pane map, so
+>    `zoom[kind]` was always undefined and per-pane zoom never persisted at all** —
+>    regression-tested in `store.pdfZoom.test.js`. (c) `/pdf/:bn` had no zoom control; added,
+>    backed by a new optional `layout.pdfZoom` key. (d) Fullscreen no longer unmounts the nav:
+>    it parks off-screen and peeks on hover/focus (`.nav-peek`), with `Shell` tracking the
+>    portalled Study menu so the nav does not slide away under it. (e) Split/dock toggles moved
+>    from Chapter's action row into the navbar (`NavSplitControls.jsx`).
+>    The owner CUT persistent PDF highlighting/annotation from this pass; its worked-out design
+>    (normalized-rect anchoring, `pdfMarks` store shape) is preserved in the spec's appendix.
+>
 > **What is left needs a real browser, not headless:** hover-card placement and flip
-> behaviour, tap-to-open on touch, split-pane drag, the selection toolbar, and the visual
-> pass over planner/block-review/case-study/consistency in both themes.
+> behaviour, tap-to-open on touch, split-pane drag, the selection toolbar, the visual
+> pass over planner/block-review/case-study/consistency in both themes, and **everything in
+> item 5 above** — the PDF never finishes loading under headless virtual time (verified at a
+> 60s budget), so zoom anchoring and the peek navbar are owner-verify-only.
 >
 > Previous resume note follows.
 >
