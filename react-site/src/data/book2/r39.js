@@ -127,7 +127,7 @@ export default ({
   highYield: [
     { stars: 4, what: "Overcollateralization protects the senior tranche via the JUNIOR class absorbing excess risk, not the reverse.", why: "A frequently reversed, high-value tested fact." },
     { stars: 4, what: "Full performance ratio calculation fluency: delinquency ratio, default ratio, MPR, DSCR, WAC, WAM, WAL, CPR, PSA.", why: "Explicitly flagged as plug-and-chug calculation material: practice every one, not just definitions." },
-    { stars: 3, what: "Three SPV structures (amortizing/revolving/master trust) and typical assets for each.", why: "A clean three-way classification, good matching-question material." },
+    { stars: 3, what: "Three SPV structures (amortizing/revolving/master trust) and typical assets for each.", why: "A clean three-way classification, good material for 'which of these describes X' questions." },
     { stars: 3, what: "SPV liability side cheaper than asset side: the excess spread gap.", why: "A precise, easily-flipped directional fact." },
     { stars: 3, what: "A true sale requires the SPV to be a legally distinct entity from the originator, with no recourse.", why: "This is the legal foundation for off-balance-sheet treatment: tested as the reason securitization actually removes risk from the originator." }
   ],

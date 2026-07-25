@@ -200,7 +200,7 @@ export default ({
     { stars: 5, what: "LDA: frequency (Poisson) × severity (lognormal) convoluted to the 99.9th percentile for capital.", why: "The core quantitative model of operational risk, and the direct ancestor of the SMA capital formula in R62." },
     { stars: 4, what: "Fault tree analysis mechanics and the independence-assumption trap.", why: "A calculation-based question type with a clear conceptual pitfall (real controls aren't independent), and the phishing-email worked example is the standard template for it." },
     { stars: 4, what: "Boundary events: credit-linked stays credit (no double-count), market-linked stays operational.", why: "A precise, frequently tested classification rule." },
-    { stars: 3, what: "KRI vs KPI vs KCI definitions and examples.", why: "A clean three-way distinction, good matching-question material." },
+    { stars: 3, what: "KRI vs KPI vs KCI definitions and examples.", why: "A clean three-way distinction, good material for 'which of these describes X' questions." },
     { stars: 3, what: "The seven-step operational resilience process, and resilience vs. BCM.", why: "Connects R40's vocabulary to concrete mechanics, which makes it a valuable synthesis area." },
     { stars: 2, what: "EVT's limited fit for op risk (needs one dominant cause).", why: "A useful contrast with Book 1's EVT treatment." }
   ],

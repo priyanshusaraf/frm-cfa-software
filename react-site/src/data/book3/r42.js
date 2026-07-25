@@ -158,7 +158,7 @@ export default ({
   ],
 
   highYield: [
-    { stars: 3, what: "Top-down vs. bottom-up identification methods and why combining both matters.", why: "A clean two-way comparison, frequently tested as matching or 'which approach catches X' questions, including scenario-based CRO questions." },
+    { stars: 3, what: "Top-down vs. bottom-up identification methods and why combining both matters.", why: "A clean two-way comparison, frequently tested as 'which approach catches X' questions, including scenario-based CRO questions." },
     { stars: 3, what: "ORX taxonomy's promotion of cyber and model risk (and 4 other risks) to Level-1 status, and why.", why: "Directly explains the existence of later dedicated readings, and the exact list of 6 promoted risks is testable recall." },
     { stars: 2, what: "Three-level Basel taxonomy structure (7 broad → 20 specific → concrete examples) and worked examples (EDPM, CPBP, BDSF).", why: "Straightforward structural recall, plus the qualitative frequency/severity pattern (EDPM high-frequency and low-severity, CPBP low-frequency and high-severity) is a recurring distinction." },
     { stars: 2, what: "Scenario workshop's generation → selection phase structure and the role of neutrality/documentation.", why: "Tests whether you understand WHY the process is structured this way (regulatory demand for consistent, reproducible results) rather than just memorizing the two phase names." }

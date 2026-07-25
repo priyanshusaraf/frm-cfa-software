@@ -98,7 +98,7 @@ export default ({
   highYield: [
     { stars: 4, what: "CVA/DVA definitions, the f=f_nd−CVA+DVA identity, and wrong-way/right-way risk direction.", why: "First appearance of the reading's most important formula: R37 assumes fluency here." },
     { stars: 4, what: "V(T,X) = Vasicek's WCDR(T,X), same formula different notation.", why: "A guaranteed efficiency point: recognizing the identity saves real study time." },
-    { stars: 3, what: "Reduced-form vs structural: speed, achievable correlation, economic-cycle capture.", why: "A clean three-attribute comparison table, good matching-question material." },
+    { stars: 3, what: "Reduced-form vs structural: speed, achievable correlation, economic-cycle capture.", why: "A clean three-attribute comparison table, good material for 'which of these describes X' questions." },
     { stars: 3, what: "Netting example mechanics (gross vs netted exposure).", why: "A simple, frequently-plugged-with-new-numbers calculation." },
     { stars: 3, what: "Risk-neutral vs real-world PD: which to use for pricing vs. scenario analysis.", why: "A recurring practical-guidance question, and a common source of subtle wrong-answer traps." }
   ],

@@ -132,7 +132,7 @@ export default ({
 
   highYield: [
     { stars: 4, what: "Liquidity indicator ratios: which direction (higher=more liquid vs. higher=less liquid) each named ratio falls into.", why: "Explicitly flagged as a memorization trap — 'higher is always safer' is the wrong instinct." },
-    { stars: 3, what: "Four approaches to estimating liquidity requirements and their distinct logics.", why: "A clean four-way classification, good for matching-style questions." },
+    { stars: 3, what: "Four approaches to estimating liquidity requirements and their distinct logics.", why: "A clean four-way classification, good for the 'which of these is X' question shape." },
     { stars: 2, what: "Net liquidity position formula and legal reserves formula.", why: "Simple, direct calculation fluency." },
     { stars: 2, what: "Lagged Reserve Accounting timeline: 14-day computation period, then maintenance period beginning 30 days after computation starts.", why: "A specific, calculable timeline the exam can test directly (e.g. 'which day is the start of the maintenance period')." }
   ],

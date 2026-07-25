@@ -80,7 +80,7 @@ export default ({
 
   highYield: [
     { stars: 4, what: "Equifax's five failure points, especially the patch-management-policy-existed-but-wasn't-executed lesson.", why: "The signature case study lesson of this reading: directly tests understanding of directive vs. operating controls from R44." },
-    { stars: 3, what: "Three cybersecurity frameworks (NIST CSF voluntary 5-step, CIS technical checklist, ISO 27001 certifiable).", why: "A clean three-way classification, good for matching-style questions." },
+    { stars: 3, what: "Three cybersecurity frameworks (NIST CSF voluntary 5-step, CIS technical checklist, ISO 27001 certifiable).", why: "A clean three-way classification, good for the 'which of these is X' question shape." },
     { stars: 3, what: "The four-quadrant information security risk typology (internal/external x intentional/unintentional).", why: "A simple classification, tested by giving a one-line scenario and asking which quadrant it belongs in." },
     { stars: 2, what: "CIA triad and behavioral vs. technical control split (with technical further split into preventive/detective/mitigating).", why: "Foundational vocabulary, straightforward recall, and reusable for other op-risk readings on controls." }
   ],

@@ -264,6 +264,18 @@ register("waterfall-flow", function (el) {
 
   function rowY(i) { return top + i * (boxH + gap); }
 
+  /* Colour carries one meaning only: depth. The header is neutral (it is the
+     loss entering the structure, not a layer), and each layer's left edge
+     ramps from accent to red as the loss eats further down, because reaching
+     a lower layer is strictly worse news. Nothing here is interactive, so no
+     colour implies "click me". */
+  var depthColors = ["var(--accent)", "var(--cyan)", "var(--amber)", "var(--red)"];
+  function depthColor(idx, total) {
+    if (total <= 1) return depthColors[0];
+    var k = Math.round((idx / (total - 1)) * (depthColors.length - 1));
+    return depthColors[k];
+  }
+
   function box(i, label, note, amount, opts) {
     opts = opts || {};
     var y = rowY(i);
@@ -273,6 +285,9 @@ register("waterfall-flow", function (el) {
       stroke: opts.stroke || "var(--border-strong)",
       "stroke-width": opts.strong ? 2 : 1.2,
     }, svg);
+    if (opts.edge) {
+      svgEl("rect", { x: boxX, y: y + 6, width: 3, height: boxH - 12, rx: 1.5, fill: opts.edge }, svg);
+    }
     var t = svgEl("text", { x: boxX + 14, y: y + (note ? 20 : 28), "font-size": 12, "font-weight": 700, fill: "var(--text)" }, svg);
     t.textContent = (opts.strong ? "" : (i) + ". ") + label;
     if (note) {
@@ -286,7 +301,7 @@ register("waterfall-flow", function (el) {
   }
 
   /* inflow header */
-  box(0, inflow.label, inflow.note || "", inflow.amount, { strong: true, fill: "var(--amber-soft)", stroke: "var(--amber)", amountColor: "var(--amber)" });
+  box(0, inflow.label, inflow.note || "", inflow.amount, { strong: true, fill: "var(--bg-raised)", stroke: "var(--border-strong)", amountColor: "var(--text)" });
 
   stages.forEach(function (st, idx) {
     var i = idx + 1;
@@ -297,7 +312,7 @@ register("waterfall-flow", function (el) {
       var gt = svgEl("text", { x: W / 2 + 10, y: (yPrev + yThis) / 2 + 4, "font-size": 10, "font-style": "italic", fill: "var(--text-dim)" }, svg);
       gt.textContent = st.gate;
     }
-    box(i, st.label, st.note || "", st.amount, {});
+    box(i, st.label, st.note || "", st.amount, { edge: depthColor(idx, stages.length) });
   });
 
   readout.textContent = stages.length + " loss-absorbing layers, consumed top to bottom.";

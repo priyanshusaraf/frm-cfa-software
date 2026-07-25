@@ -72,7 +72,7 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 32 | 2 | Counterparty Risk and Beyond | done | done | 7 | pass | Four enumerated defs trimmed; CVA-as-price vs limit-as-cap now stated in the def itself. |
 | 33 | 2 | Netting, Close-Out, and Related Aspects | done | done | 7 | pass | Fixed a quiz why the validator read as an option-letter reference; two related refs re-shaped. |
 | 34 | 2 | Margin (Collateral) and Settlement | done | done | 7 | pass | Clean apart from dashes and three source references. |
-| 35 | 2 | Central Clearing | done | done | 7 | pass | Two defs trimmed; one related ref re-shaped. |
+| 35 | 2 | Central Clearing | done | done | 7 | pass | Two defs trimmed; one related ref re-shaped. eli5 REWRITTEN 2026-07-26 after the owner called it mediocre. |
 | 36 | 2 | Future Value and Exposure | done | done | pilot | pass | 2026-07-25 pilot, full rewrite. Template + lessons in content-guidelines.md. |
 | 37 | 2 | CVA | done | done | 8 | pass | Clean apart from dashes; CVA formula prose verified against R36's definitions. |
 | 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | done | done | 8 | pass | Three defs trimmed; a first pass invented four pitfalls and was corrected against the real four. |
@@ -88,11 +88,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 48 | 3 | Case Study: Cyberthreats and Information Security Risks | done | done | 10 | pass | Dash-clean; pdf.query was the app's own tagline, now verbatim source text. |
 | 49 | 3 | Case Study: Financial Crime and Fraud | done | done | 10 | pass | Dash-clean but full of colon artifacts from an earlier purge; regrammared. USAA facts verified. |
 | 50 | 3 | Guidance on Managing Outsourcing Risk | done | done | 10 | pass | Dash purge; replaced a 'None of these' quiz option, which is position-dependent under shuffling. |
-| 51 | 3 | Case Study: Third-Party Risk Management | done | todo | 11 | - | |
-| 52 | 3 | Case Study: Investor Protection and Compliance Risks | done | todo | 11 | - | |
-| 53 | 3 | Supervisory Guidance on Model Risk Management | done | todo | 11 | - | |
-| 54 | 3 | Case Study: Model Risk and Model Validation | done | todo | 11 | - | |
-| 55 | 3 | Stress Testing Banks | done | todo | 11 | - | |
+| 51 | 3 | Case Study: Third-Party Risk Management | done | done | 11 | pass | Dash purge and meta-reference cleanup; case facts (OCC, $80m/$60m) verified. |
+| 52 | 3 | Case Study: Investor Protection and Compliance Risks | done | done | 11 | pass | Light dash pass; AI-isms in thinkLike and quiz whys removed. |
+| 53 | 3 | Supervisory Guidance on Model Risk Management | done | done | 11 | pass | Light dash pass; the two-condition backtest rule and SR 11-7 definition verified. |
+| 54 | 3 | Case Study: Model Risk and Model Validation | done | done | 11 | pass | Dash purge; replaced a 'None of the three' quiz option with a mechanism question on the copula. |
+| 55 | 3 | Stress Testing Banks | done | done | 11 | pass | Dash purge; rewrote a recall answer that had said 'the reading doesn't specify' instead of answering. |
 | 56 | 3 | Risk Capital Attribution and RAPM | done | todo | 12 | - | |
 | 57 | 3 | Range of Practices in Economic Capital Frameworks | done | todo | 12 | - | |
 | 58 | 3 | Capital Planning at Large Bank Holding Companies | done | todo | 12 | - | |

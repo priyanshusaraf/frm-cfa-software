@@ -69,6 +69,35 @@ reads as AI-generated or wrong and costs customer trust.
 8. **Richer "Go deeper"/sources where thin.** Flagged where a reading's external
    depth is sparse (R30, R32).
 
+9. **The FRM exam is ENTIRELY multiple choice. Never describe a question format
+   that does not exist.** Owner-reported 2026-07-26 against R35, which told the
+   student to expect "sequencing questions, 'put these loss-waterfall stages in
+   order'". There is no ordering task, no matching grid, no fill-in. Everything
+   is a stem plus four options. An ordered list is still testable, but only in
+   MCQ form: "which resource is drawn on FIRST", "which stage does this activity
+   belong to", "which of these is NOT one of the four". Swept corpus-wide the same
+   day: "matching-style questions", "matching-question material", "good for
+   sequencing/matching questions" all rewritten into the question shape that
+   actually appears. Grep before shipping:
+   `grep -rn "sequencing\|matching[- ]style\|matching question\|put these\|in the correct order" src/data`.
+10. **An `eli5` has to EARN its punchline, not narrate the answer in one breath.**
+   Owner-reported 2026-07-26 against R35 ("very mediocre, not up to the mark"),
+   whose ELI5 was a single 200-word sentence that introduced the lunchroom, the
+   monitor, the deposit, the shared jar and the waterfall all at once, then
+   asserted "this is exactly how a CCP works". The rewrite follows the R28
+   exemplar's shape (CLAUDE.md section 1): start in the SIMPLER system the reader
+   already understands (kids swapping food directly, and the question "is this kid
+   good for it?"), change exactly ONE thing (a monitor steps into the middle),
+   then let the consequences fall out one at a time, in separate paragraphs, each
+   earning the next: the question you wake up asking changes, so promises can be
+   netted, so the monitor is now short when someone defaults, so the money has to
+   be queued in advance, and the order of that queue is what makes the defaulter
+   pay first. It closes on what the reader has actually BOUGHT (you stopped
+   worrying about Ravi and started worrying about the monitor), which is the
+   concentration tradeoff, reached through the frame rather than asserted.
+   **Diagnostic: if the ELI5 is one paragraph and one sentence, it is almost
+   certainly asserting rather than teaching.**
+
 ## Per-reading review ledger
 
 Format per reading: **Good** (keep), **Weak** (fix), **Guidance** (for the next
@@ -571,3 +600,46 @@ R48's Equifax chronology including the counterintuitive detail that the attack c
 Equifax applied an Apache Struts patch and exploited a flaw in that patch (Book 3 line 3925,
 which differs from popular accounts and is what the source says), R49's USAA facts ($140m,
 FinCEN and OCC, 2016-2021, ~90,000 unreviewed alerts), R50's six risks and 17 contract clauses.
+
+### Wave 11 (R51-R55, Book 3, 2026-07-26) plus two owner interventions
+
+**Owner intervention 1 (R35, ELI5 quality):** see durable style rule 10 above. The
+R35 ELI5 was rewritten from one 200-word sentence into five paragraphs that build the
+CCP from the bilateral case. Nothing else in R35 changed, and the reading stays wave-7
+`done`; the ledger row records the rework.
+
+**Owner intervention 2 (non-existent question formats):** see durable style rule 9. R35
+claimed the exam asks you to "put these loss-waterfall stages in order". It does not:
+the FRM is entirely MCQ. Fixed in R35 and swept across ten other files that used
+"matching-style"/"matching-question"/"sequencing" framings.
+
+**The wave itself was light on substance and heavy on framing.** R51-R55 are
+case-study and guidance readings whose facts held up under checking (Capital One's $80m
+and Morgan Stanley's $60m OCC fines, the UBS/JPMorgan/Deutsche Bank trio and their
+regulators, SR 11-7's model definition, the two-condition backtest rule, SCAP's
+non-monotonic disclosure path, the Nevada 12.9% versus North Dakota 3.3% spread). The
+defects were all in how the material was framed:
+
+1. **A recall answer that refuses to answer.** R55 asked why disclosure moved from SCAP
+   to CCAR and back, and answered "the reading doesn't specify the exact motivations".
+   That is a meta-reference AND a wasted card. The same file already contains the real
+   answer (disclosure restores trust in a crisis but invites window dressing and crowds
+   out private information production in calm times), so the card now gives it.
+   **If a recall answer says the source is silent, either the answer is elsewhere in the
+   file, or the question should not exist.**
+2. **"None of the above" keeps appearing.** R54 had "None of the three, all are
+   implementation errors" (wave 10 found the same shape in R50). Both are now concrete
+   questions. Add this to the standing quiz grep alongside the option-letter check.
+3. **Second-person exam-coaching is where the AI tells cluster.** In these five files
+   nearly every "GARP loves testing", "the examiner tests this by", "on the exam this
+   reading is tested" sat in `thinkLike` or a quiz `why`. Keep the strategic content,
+   drop the attribution: "Two question shapes recur here" says the same thing.
+
+**Widget fix shipped alongside (owner-reported):** `waterfall-flow` painted its header
+box in amber with an amber border, which reads as an interactive or selected element in
+a widget that has no interaction at all. The header is now neutral (`--bg-raised` on
+`--border-strong`) and colour instead carries one honest meaning: a 3px left edge on each
+layer ramping accent → cyan → amber → red with depth, because reaching a lower layer is
+strictly worse news. **Rule: in a static widget, never spend a saturated accent colour on
+something that is not conveying data. A reader reasonably reads colour as either meaning
+or affordance.**
