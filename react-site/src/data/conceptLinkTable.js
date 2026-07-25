@@ -903,7 +903,7 @@ export const conceptLinkTable = [
       27
     ],
     "linkPhrases": [],
-    "snippet": "Distance to default measures, in standard-deviation units of asset volatility, how far the firm's current asset value sits above the debt it owes — a bigger DD means a safer firm."
+    "snippet": "Distance to default measures, in standard-deviation units of asset volatility, how far the firm's current asset value sits above the debt it owes, a bigger DD means a safer firm."
   },
   {
     "slug": "liquidity-gap-daily-liquidity-report",
@@ -1008,7 +1008,7 @@ export const conceptLinkTable = [
       30
     ],
     "linkPhrases": [],
-    "snippet": "N(−d2) is the risk-neutral probability that the option expires worthless — i.e. that firm assets end up below the debt's face value at maturity, so shareholders default rather than repay."
+    "snippet": "N(−d2) is the risk-neutral probability that the option expires worthless, i.e. that firm assets end up below the debt's face value at maturity, so shareholders default rather than repay."
   },
   {
     "slug": "total-return-swaps-trs-vs-cds",

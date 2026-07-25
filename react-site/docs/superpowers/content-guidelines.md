@@ -361,3 +361,32 @@ company can default", "you don't just shrug, you follow steps".
 backtesting exception limits). R20's EL/UL algebra and its \(\rho=1\) boundary quiz are also
 right: portfolio UL equals the simple sum ONLY at perfect correlation, so "always strictly
 less" is the trap answer, not the key.
+
+### Wave 5 (R21-R25, 2026-07-26): the validator failures the dash purge uncovers
+
+**These five files were already failing `validate-reading.mjs` before this run touched them,
+and the dash purge is what makes that visible.** The dash count itself is a FAIL line, so it
+masks everything under it; clear the dashes and four to five real structural failures surface
+per file. Budget for this on every Book 2-5 wave: the dash purge is the cheap half.
+
+**The failures were all one shape, and R36 already told us the fix:** a `concepts[].def`
+carrying a 120-to-240-word enumeration that `breakdown` ALREADY holds, verbatim. Check
+`breakdown`'s titles first (`grep 'title: "'` inside the breakdown block); in wave 5 every
+single long def had its list sitting in breakdown under an obvious title ("Six factors
+influencing sovereign default risk", "Five common criticisms of credit rating agencies",
+"Merton's three 'cousin' models"). The def then gets rewritten as an actual DEFINITION, which
+is what the field is for, and the enumeration keeps its one home. Before shipping the trim,
+diff the dropped text against breakdown and re-add anything that lived ONLY in the def
+(caught here: R24's "an analyst drafts, a committee of 5 to 10 votes").
+
+**Mechanical warning on trimming a def by script:** find the closing quote by scanning for an
+unescaped `"`, not by searching for the next `",\n`. The naive version deleted the fields
+between `def` and `related` in R21 and dropped the trailing comma, producing a syntax error
+the validator reports only as "import error: Unexpected identifier". The import sweep is what
+catches this; run it before the validator, not after.
+
+**Also fixed this wave:** R23 cited "Module Quiz 23.1, Q2 in the source" inside a `pitfall`
+(the reader has no such quiz in front of them), and R25 had a `related` entry using the
+`{r, why}` shape that `connections` uses instead of the `{r, label}` shape `concepts[].related`
+requires. Both are worth grepping for corpus-wide: `grep -n "Module Quiz" src/data` and
+`related: \[\{ r: [0-9]*, why:`.

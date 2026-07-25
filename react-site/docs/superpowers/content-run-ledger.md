@@ -58,11 +58,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 18 | 2 | Governance | done | done | 4 | pass | Repaired a garbled three-lines-of-defense summary and the origination/assessment/approval def. |
 | 19 | 2 | Credit Risk Management | done | done | 4 | pass | Concentration limits 10% to 25%; IFRS 9 stage horizons left as written (correct). |
 | 20 | 2 | Capital Structure in Banks | done | done | 4 | pass | EL/UL algebra and the rho=1 boundary quiz verified correct. |
-| 21 | 2 | Introduction to Credit Risk Modeling and Assessment | done | todo | 5 | - | |
-| 22 | 2 | Credit Scoring and Rating | done | todo | 5 | - | |
-| 23 | 2 | Credit Scoring and Retail Credit Risk Management | done | todo | 5 | - | |
-| 24 | 2 | Country Risk: Determinants, Measures, and Implications | done | todo | 5 | - | |
-| 25 | 2 | Estimating Default Probabilities | done | todo | 5 | - | |
+| 21 | 2 | Introduction to Credit Risk Modeling and Assessment | done | done | 5 | pass | Trimmed two enumerated defs (breakdown already carried both lists). |
+| 22 | 2 | Credit Scoring and Rating | done | done | 5 | pass | Trimmed the two CRA defs; five-step process and five criticisms live in breakdown. |
+| 23 | 2 | Credit Scoring and Retail Credit Risk Management | done | done | 5 | pass | Fixed a Module Quiz source leak; trimmed the retail-risks and CAP/AR defs. |
+| 24 | 2 | Country Risk: Determinants, Measures, and Implications | done | done | 5 | pass | Trimmed four enumerated defs; kept the committee-vote detail inline. |
+| 25 | 2 | Estimating Default Probabilities | done | done | 5 | pass | Fixed a related ref that used {r,why} where the schema wants a label. |
 | 26 | 2 | Credit Value at Risk | done | todo | 6 | - | |
 | 27 | 2 | Portfolio Credit Risk | done | todo | 6 | - | |
 | 28 | 2 | Structured Credit Risk | done | todo | 6 | - | |
