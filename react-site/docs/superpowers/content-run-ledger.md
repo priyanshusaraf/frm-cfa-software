@@ -53,11 +53,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 13 | 1 | The Art of Term Structure Models: Drift | done | done | 3 | pass | Vasicek theta=18%, 10-yr forecast 9.26%, half-life 23.1yr all check out. |
 | 14 | 1 | The Art of Term Structure Models: Volatility and Distribution | done | done | 3 | pass | Fixed lognormal up-node rounded to 1.20 when e^0.20=1.2214; clarified CIR yield vol. |
 | 15 | 1 | Volatility Smiles | done | done | 3 | pass | Min-variance delta below BSM delta confirmed at source line 4789. |
-| 16 | 1 | Fundamental Review of the Trading Book (FRTB) | done | todo | 4 | - | |
-| 17 | 2 | Fundamentals of Credit Risk | done | todo | 4 | - | |
-| 18 | 2 | Governance | done | todo | 4 | - | |
-| 19 | 2 | Credit Risk Management | done | todo | 4 | - | |
-| 20 | 2 | Capital Structure in Banks | done | todo | 4 | - | |
+| 16 | 1 | Fundamental Review of the Trading Book (FRTB) | done | done | 4 | pass | FRTB numbers verified: 2.326 vs 2.338 sigma, 10/20/40/60/120 LH, 12/30 exceptions. |
+| 17 | 2 | Fundamentals of Credit Risk | done | done | 4 | pass | Repaired two cross-string parenthesis breaks from the bulk dash pass. |
+| 18 | 2 | Governance | done | done | 4 | pass | Repaired a garbled three-lines-of-defense summary and the origination/assessment/approval def. |
+| 19 | 2 | Credit Risk Management | done | done | 4 | pass | Concentration limits 10% to 25%; IFRS 9 stage horizons left as written (correct). |
+| 20 | 2 | Capital Structure in Banks | done | done | 4 | pass | EL/UL algebra and the rho=1 boundary quiz verified correct. |
 | 21 | 2 | Introduction to Credit Risk Modeling and Assessment | done | todo | 5 | - | |
 | 22 | 2 | Credit Scoring and Rating | done | todo | 5 | - | |
 | 23 | 2 | Credit Scoring and Retail Credit Risk Management | done | todo | 5 | - | |

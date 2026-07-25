@@ -330,3 +330,34 @@ by two dashes becomes parentheses; a trailing dash clause becomes a full stop pl
 connective ("so", "and", "which"). Concept NAMES containing dashes ("Model 2 — constant
 drift") are link targets: rename them to colons and re-run
 `node scripts/build-core-concepts.mjs` in the same commit.
+
+### Wave 4 (R16-R20, 2026-07-26): the bulk dash pass, and why it needs a paren audit
+
+Book 2 starts here and the dash density triples: 302 across five files versus 125 in wave 3.
+A per-instance hand rewrite at that density is not affordable, so this wave used a
+pattern-assisted pass, then reviewed every rewritten site. **The pattern rules that are safe**
+(and should be reused, in this order): a paired aside `X — clause — Y` becomes parentheses;
+a leading label `"Setup — text` becomes `"Setup: text`; a numeric range `3–7%` becomes
+`3% to 7%`; whatever is left of a standalone ` — ` becomes a comma.
+
+**The failure mode this introduced, and the audit that catches it: the paired-dash rule can
+match ACROSS a string boundary.** Two `related` arrays came out as
+`label: "R30 (protection buyers..." }, { r: 28, label: "R28) reinsurance..."`, and R18's
+summary turned `1st (business owners — originate/manage), 2nd (...)` into nested garbage.
+Both are invisible to the validator and to the dash grep. **Always run this after a bulk
+pass:** count `(` versus `)` per double-quoted string, and diff the total paren count against
+`git show HEAD:<file>`. A per-string imbalance is a guaranteed break; a large total delta is
+worth eyeballing. Then re-read every inserted parenthetical span (list them by finding
+`\([^()]{3,95}\)` matches present in the new file and absent from the old).
+
+**Comma splices are the second cost of the mechanical pass.** ` — ` joining two independent
+clauses becomes a splice when replaced by a comma. Fix those to a colon (when the second
+clause explains the first) or a full stop. Caught here: "Neither implies the other, a solvent
+company can default", "you don't just shrug, you follow steps".
+
+**Verified correct against Book 1, do not re-check:** R16's FRTB arithmetic (99% VaR
+\(\mu+2.326\sigma\) versus 97.5% ES \(\mu+2.338\sigma\), the five liquidity horizons
+10/20/40/60/120 days, the \(ES_1\) to \(ES_5\) nested waterfall, the 12-at-99% / 30-at-97.5%
+backtesting exception limits). R20's EL/UL algebra and its \(\rho=1\) boundary quiz are also
+right: portfolio UL equals the simple sum ONLY at perfect correlation, so "always strictly
+less" is the trap answer, not the key.

@@ -233,7 +233,7 @@ export const conceptLinkTable = [
       98
     ],
     "linkPhrases": [],
-    "snippet": "Expected loss is the probability the borrower defaults, multiplied by the fraction of the exposure the bank loses if that default happens, multiplied by the dollar amount actually outstanding at the moment of default —..."
+    "snippet": "Expected loss is the probability the borrower defaults, multiplied by the fraction of the exposure the bank loses if that default happens, multiplied by the dollar amount actually outstanding at the moment of default,..."
   },
   {
     "slug": "loss-given-default-lgd",
@@ -357,7 +357,7 @@ export const conceptLinkTable = [
       58
     ],
     "linkPhrases": [],
-    "snippet": "Economic capital is portfolio UL scaled up by a multiplier that reaches deep into the tail of the loss distribution — it is the size of the buffer a bank must hold, beyond its reserve for EL, to survive an extreme (e.g...."
+    "snippet": "Economic capital is portfolio UL scaled up by a multiplier that reaches deep into the tail of the loss distribution, it is the size of the buffer a bank must hold, beyond its reserve for EL, to survive an extreme (e.g...."
   },
   {
     "slug": "expected-shortfall",
@@ -437,7 +437,7 @@ export const conceptLinkTable = [
       99
     ],
     "linkPhrases": [],
-    "snippet": "1st line — business owners: own and manage risk day to day (originate, price, monitor). 2nd line — enterprise risk management/compliance/legal: independent monitoring and oversight, sets guidelines and limits, oversees..."
+    "snippet": "1st line, business owners: own and manage risk day to day (originate, price, monitor). 2nd line, enterprise risk management/compliance/legal: independent monitoring and oversight, sets guidelines and limits, oversees..."
   },
   {
     "slug": "wrong-way-risk-introduced-via-the-cds-example",
@@ -727,7 +727,7 @@ export const conceptLinkTable = [
       87
     ],
     "linkPhrases": [],
-    "snippet": "Each asset's slice of portfolio UL: RC_{1} = (UL_{1}^{2} + \\rho_{12}UL_{1}UL_{2})/UL_P (two-asset case), with RC_{1}+RC_{2}=UL_P. Formally it's the partial derivative of UL_P with respect to that asset's own UL — also..."
+    "snippet": "Each asset's slice of portfolio UL: RC_{1} = (UL_{1}^{2} + \\rho_{12}UL_{1}UL_{2})/UL_P (two-asset case), with RC_{1}+RC_{2}=UL_P. Formally it's the partial derivative of UL_P with respect to that asset's own UL, also..."
   },
   {
     "slug": "transaction-costs",
@@ -761,7 +761,7 @@ export const conceptLinkTable = [
       59
     ],
     "linkPhrases": [],
-    "snippet": "Unexpected loss is the standard deviation of that same loss variable — it measures how far a bad year's actual loss could plausibly swing away from the average (EL), driven jointly by uncertainty in whether default..."
+    "snippet": "Unexpected loss is the standard deviation of that same loss variable, it measures how far a bad year's actual loss could plausibly swing away from the average (EL), driven jointly by uncertainty in whether default..."
   },
   {
     "slug": "business-indicator",
