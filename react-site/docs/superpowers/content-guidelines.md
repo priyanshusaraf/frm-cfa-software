@@ -438,3 +438,33 @@ actioned here** (monolines and CDPCs still lack their motive, R32 still lacks th
 framing, R33 is still repetitive). Those are Opus-B improvements, outside this phase's closed
 mandate. They remain open, and the trims done here do not conflict with them: R32's CVA def
 now states the price-versus-cap distinction the open item asks for, so that part is closed.
+
+### Wave 8 (R37-R40, 2026-07-26): the def-trim has a content-loss failure mode
+
+**A def trim is a rewrite, and a rewrite can invent.** Twice this wave the trim went wrong in
+a way the validator cannot see, and both are now standing checks:
+
+1. **R38's "four named pitfalls" was rewritten from memory of what such pitfalls usually are**
+   (correlations assumed, collateral assumed available, wrong-way risk omitted, results
+   aggregated) rather than from the four the file actually named (results not aggregated with
+   loan/trading stress at all; current exposure used instead of EE/EPE when they are combined;
+   current exposure unstable for at-the-money trades; delta linearization breaking down over
+   large moves). Plausible, well-written, and entirely fabricated. **Never write a numbered
+   list from the concept NAME. Read the old def, then compress it.**
+2. **R22's trim silently dropped three of seven input categories** (market conditions,
+   corporate governance, corporate news) and invented a "four buckets" framing. The old def
+   listed seven; breakdown named them only in passing, so the detail (which ratios, which
+   governance items) left the corpus entirely.
+
+**The mechanical audit that catches both**, run after any trim: pull the pre-trim def from
+git, take every content word of 4+ characters, and list the ones absent from the whole new
+file. Prose filler dominates the output and is ignorable; what matters is proper nouns,
+numbers, and category names. It is how the R22 loss, R23's dropped product list (HELOCs,
+installment loans, small business loans), R24's dropped country examples and committee
+factors, and R35's dropped auction incentive were all found and restored.
+
+**When breakdown does NOT already carry the enumeration, ADD a breakdown block, do not
+delete.** R40 needed two new blocks (the four risk types operational risk pulls in, and the
+five jurisdictions' resilience guidance) before its defs could be trimmed. That is the honest
+version of "move the enumeration to breakdown", which is what the validator message literally
+asks for.

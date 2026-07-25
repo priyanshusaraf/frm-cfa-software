@@ -74,10 +74,10 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 34 | 2 | Margin (Collateral) and Settlement | done | done | 7 | pass | Clean apart from dashes and three source references. |
 | 35 | 2 | Central Clearing | done | done | 7 | pass | Two defs trimmed; one related ref re-shaped. |
 | 36 | 2 | Future Value and Exposure | done | done | pilot | pass | 2026-07-25 pilot, full rewrite. Template + lessons in content-guidelines.md. |
-| 37 | 2 | CVA | done | todo | 8 | - | |
-| 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | done | todo | 8 | - | |
-| 39 | 2 | An Introduction to Securitization | done | todo | 8 | - | |
-| 40 | 3 | Introduction to Operational Risk and Resilience | done | todo | 8 | - | |
+| 37 | 2 | CVA | done | done | 8 | pass | Clean apart from dashes; CVA formula prose verified against R36's definitions. |
+| 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | done | done | 8 | pass | Three defs trimmed; a first pass invented four pitfalls and was corrected against the real four. |
+| 39 | 2 | An Introduction to Securitization | done | done | 8 | pass | Clean apart from dashes and two source references. |
+| 40 | 3 | Introduction to Operational Risk and Resilience | done | done | 8 | pass | Five defs trimmed; two new breakdown blocks added so no enumeration was lost. |
 | 41 | 3 | Risk Governance | done | todo | 9 | - | |
 | 42 | 3 | Risk Identification | done | todo | 9 | - | |
 | 43 | 3 | Risk Measurement and Assessment | done | todo | 9 | - | |

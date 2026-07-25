@@ -68,7 +68,7 @@ export default ({
     },
     {
       name: "CRA rating development process (5 steps) and corporate borrower data inputs",
-      def: "How a rating agency actually builds a rating, and what it feeds in. The build runs five steps: data collection and preprocessing, model fitting, model validation, translation of the fitted score into a risk rating, then implementation with ongoing monitoring and review. The inputs for a corporate borrower fall into four buckets: financial statement data, transaction data, size and age, and qualitative judgment about management and industry position.",
+      def: "How a rating agency actually builds a rating, and what it feeds in. The build runs five steps: data collection and preprocessing, model fitting, model validation, translation of the fitted score into a risk rating, then implementation with ongoing monitoring and review. For a corporate borrower, step 1 pulls in seven kinds of input: financial data (profitability, solvency, liquidity, efficiency ratios), transaction data, size and age, market conditions and competitive position, financial market data such as stock price and volatility, corporate governance, and corporate news.",
       intuition: "Steps 1-3 (collection, fitting, validation) are often iterated multiple times before the model is good enough; only once validation succeeds does the process move on to defining risk-rating classes and then implementing.",
       pitfall: "Model validation uses out-of-sample AND out-of-time data (walk-forward testing: test on period t using data from t-1, t-2, then roll the window forward), this is distinct from benchmarking, which is qualitative and compares the new model's output against an external existing rating to understand (not replicate) any deviation.",
       memory: "Collect → Fit → Validate → Define/validate the rating classes → Implement (then monitor, which loops back)."
@@ -146,7 +146,7 @@ export default ({
     {
       title: "Five-step CRA rating development process",
       points: [
-        "Data collection and preprocessing: gather quantitative/qualitative inputs (financial data, transaction data, size/age, market conditions, market data, governance, news) and clean/transform them.",
+        "Data collection and preprocessing: gather quantitative and qualitative inputs, then clean and transform them. For a corporate borrower that means financial ratios (profitability such as ROA/ROE, solvency such as debt-to-equity and interest coverage, liquidity such as current and quick ratios, efficiency such as inventory and receivables turnover), transaction data (business payments, delinquencies, credit limits, all more current than static ratios), size and age, market conditions and competitive position, financial market data (stock price, volatility, P/E, for listed firms only and best over short horizons), corporate governance (board independence, executive quality, shareholder protections), and corporate news and analytics.",
         "Model fitting: estimate the coefficients of a scoring model (e.g., a linear score function) that best separate defaulters from non-defaulters in the training data.",
         "Model validation: test the fitted model out-of-sample and out-of-time (backtesting, walk-forward testing); repeat steps 1-2 if results are unsatisfactory.",
         "Definition and validation of the risk rating: map scores to risk-rating classes, each tied to an empirical PD estimate, checked for adequate diversification (no excess concentration in one grade) and stability over time.",
