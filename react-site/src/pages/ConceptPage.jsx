@@ -5,6 +5,8 @@ import { findConcept } from "../lib/coreConcepts.js";
 import { readingMeta, rpath, bookOf } from "../lib/meta.js";
 import { renderMath, isTex, fitMath } from "../lib/tex.js";
 import Html from "../components/Html.jsx";
+import SectionLabel from "../components/chapter/SectionLabel.jsx";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "../components/ui/accordion.jsx";
 
 /* Phase 1+2 of the cross-reading core-concept system (CLAUDE.md §6). The base
    layer renders the home reading's own formula/concept entry (already-sourced
@@ -69,10 +71,12 @@ export default function ConceptPage() {
               Foundational refresher, re-taught from first principles
             </p>
           )}
+          {/* .prose in the column, not a stack of cards: this is the same body
+              treatment Chapter.jsx gives teaches/why/intuition. */}
           {sections.map((s, i) => (
             <div key={i}>
-              {s.label && <div className="section-label" style={{ color: layerColor }}>{s.label}</div>}
-              <div className="card"><Html html={s.html} /></div>
+              {s.label && <SectionLabel txt={s.label} color={layerColor} />}
+              <div className="prose"><Html html={s.html} /></div>
             </div>
           ))}
         </>
@@ -80,47 +84,52 @@ export default function ConceptPage() {
 
       {formula && (
         <>
+          {/* Same shape as Chapter.jsx's formula box, down to the f-name kicker and
+              the derivation accordion, so a concept page reads as a reading rather
+              than as a separate boxed layout. renderMath returns an HTML STRING:
+              as a React child it prints as escaped markup. The f-tex class is what
+              fitMath() queries to shrink over-wide formulas. */}
           <div className="formula-block">
-            {/* renderMath returns an HTML STRING: as a React child it prints as
-                escaped markup. Same shape as Chapter.jsx, including the f-tex
-                class fitMath() queries to shrink over-wide formulas. */}
+            <div className="f-name">{formula.name}</div>
             <div
               className={"f-math" + (isTex(formula.math) ? " f-tex" : "")}
               dangerouslySetInnerHTML={{ __html: renderMath(formula.math, true) }}
             />
-            {formula.plain && <p style={{ fontSize: "0.95rem", margin: "0.7rem 0 0" }}><Html as="span" html={formula.plain} /></p>}
-            {formula.note && <p className="f-note"><Html as="span" html={formula.note} /></p>}
+            {formula.plain && <p style={{ fontStyle: "italic", fontSize: "0.86rem", margin: "0.4rem 0 0" }}><Html as="span" html={formula.plain} /></p>}
+            {formula.note && <div className="f-note"><Html as="span" html={formula.note} /></div>}
+            {formula.derivation && (
+              <Accordion type="single" collapsible style={{ marginTop: "0.5rem" }}>
+                <AccordionItem value="derivation">
+                  <AccordionTrigger>Show the math</AccordionTrigger>
+                  <AccordionContent>
+                    <Html html={formula.derivation} />
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            )}
           </div>
 
           {formula.terms && formula.terms.length > 0 && (
             <>
-              <div className="section-label" style={{ color: "var(--accent)" }}>Every symbol, explained</div>
-              <div className="card">
-                {formula.terms.map((t, i) => (
-                  <div key={i} style={{ marginBottom: i === formula.terms.length - 1 ? 0 : "0.9rem", paddingBottom: i === formula.terms.length - 1 ? 0 : "0.9rem", borderBottom: i === formula.terms.length - 1 ? "none" : "1px solid var(--border)" }}>
-                    <div style={{ fontFamily: "var(--mono)", fontWeight: 700, fontSize: "0.95rem" }}>
-                      {isTex(t.symbol)
-                        ? <span dangerouslySetInnerHTML={{ __html: renderMath(t.symbol, false) }} />
-                        : t.symbol}
-                    </div>
-                    <div style={{ fontSize: "0.9rem", margin: "0.25rem 0 0" }}><Html as="span" html={t.meaning} /></div>
-                    {t.why && <div style={{ fontSize: "0.85rem", color: "var(--text-dim)", marginTop: "0.25rem" }}><Html as="span" html={t.why} /></div>}
-                  </div>
-                ))}
-              </div>
-            </>
-          )}
-
-          {formula.derivation && (
-            <>
-              <div className="section-label" style={{ color: "var(--accent)" }}>Show the math</div>
-              <div className="card"><Html html={formula.derivation} /></div>
+              <SectionLabel txt="Every symbol, explained" color="var(--cyan)" />
+              {formula.terms.map((t, i) => (
+                <div className="term-row" key={i}>
+                  <span className="term-symbol">
+                    {isTex(t.symbol)
+                      ? <span dangerouslySetInnerHTML={{ __html: renderMath(t.symbol, false) }} />
+                      : t.symbol}
+                  </span>
+                  <div className="term-meaning"><Html as="span" html={t.meaning} /></div>
+                  {t.why && <div className="term-why"><Html as="span" html={t.why} /></div>}
+                </div>
+              ))}
             </>
           )}
 
           {formula.deepDive && (
             <>
-              <div className="section-label" style={{ color: "var(--purple)" }}>Extra depth — beyond the exam</div>
+              {/* no em-dash: the owner treats them as the product's clearest "AI wrote this" tell */}
+              <SectionLabel txt="Extra depth: beyond the exam" color="var(--purple)" />
               <div className="card accent" style={{ borderColor: "var(--purple)" }}>
                 <p style={{ fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--purple)", marginTop: 0 }}>
                   General finance background, not required for the FRM exam
@@ -132,35 +141,40 @@ export default function ConceptPage() {
         </>
       )}
 
+      {/* The real field vocabulary from ConceptCard (tag pill + body), not
+          .section-label shrunk with an inline font-size — that class owns a
+          coloured dot and section-start semantics and was never meant to label a
+          field. Same tags and colours a reading shows, so the two read alike. */}
       {conceptEntry && (
         <>
-          <div className="card">
-            <div className="concept-field def"><div><Html as="span" html={conceptEntry.def} /></div></div>
-            {conceptEntry.intuition && (
-              <div className="concept-field" style={{ marginTop: "0.7rem" }}>
-                <div className="section-label" style={{ color: "var(--accent)", fontSize: "0.7rem" }}>Intuition</div>
-                <div><Html as="span" html={conceptEntry.intuition} /></div>
-              </div>
-            )}
-            {conceptEntry.example && (
-              <div className="concept-field" style={{ marginTop: "0.7rem" }}>
-                <div className="section-label" style={{ color: "var(--green)", fontSize: "0.7rem" }}>Example</div>
-                <div><Html as="span" html={conceptEntry.example} /></div>
-              </div>
-            )}
-            {conceptEntry.counter && (
-              <div className="concept-field" style={{ marginTop: "0.7rem" }}>
-                <div className="section-label" style={{ color: "var(--red)", fontSize: "0.7rem" }}>Where it breaks</div>
-                <div><Html as="span" html={conceptEntry.counter} /></div>
-              </div>
-            )}
-            {conceptEntry.pitfall && (
-              <div className="concept-field" style={{ marginTop: "0.7rem" }}>
-                <div className="section-label" style={{ color: "var(--amber)", fontSize: "0.7rem" }}>Exam pitfall</div>
-                <div><Html as="span" html={conceptEntry.pitfall} /></div>
-              </div>
-            )}
+          <div className="concept-field def">
+            <span className="field-tag def">Definition</span>
+            <div><Html as="span" html={conceptEntry.def} /></div>
           </div>
+          {conceptEntry.intuition && (
+            <div className="concept-field">
+              <span className="field-tag int">Intuition</span>
+              <div><Html as="span" html={conceptEntry.intuition} /></div>
+            </div>
+          )}
+          {conceptEntry.example && (
+            <div className="concept-field">
+              <span className="field-tag ex">Example</span>
+              <div><Html as="span" html={conceptEntry.example} /></div>
+            </div>
+          )}
+          {conceptEntry.counter && (
+            <div className="concept-field">
+              <span className="field-tag cex">Counterexample</span>
+              <div><Html as="span" html={conceptEntry.counter} /></div>
+            </div>
+          )}
+          {conceptEntry.pitfall && (
+            <div className="concept-field">
+              <span className="field-tag pit">Pitfall</span>
+              <div><Html as="span" html={conceptEntry.pitfall} /></div>
+            </div>
+          )}
         </>
       )}
 
@@ -170,7 +184,7 @@ export default function ConceptPage() {
         </div>
       )}
 
-      <div className="section-label" style={{ color: "var(--text-faint)" }}>Also referenced in</div>
+      <SectionLabel txt="Also referenced in" color="var(--text-faint)" />
       <div className="card">
         {otherRefs.length === 0 ? (
           <p style={{ fontSize: "0.88rem", color: "var(--text-dim)", margin: 0 }}>No other readings reuse this concept yet.</p>
