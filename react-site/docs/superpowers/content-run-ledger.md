@@ -68,11 +68,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 28 | 2 | Structured Credit Risk | done | done | 6 | pass | Exemplar eli5 dashes rewritten by hand, not mechanically; types-of-products def trimmed. |
 | 29 | 2 | Credit Risk (Spread Risk & Default Intensity) | done | done | 6 | pass | Repaired a wrong-way/right-way paren break from the bulk pass. |
 | 30 | 2 | Credit Derivatives | done | done | 6 | pass | Accrual and settlement worked example left as written (correct). |
-| 31 | 2 | Derivatives (Counterparty Risk Intro) | done | todo | 7 | - | |
-| 32 | 2 | Counterparty Risk and Beyond | done | todo | 7 | - | |
-| 33 | 2 | Netting, Close-Out, and Related Aspects | done | todo | 7 | - | |
-| 34 | 2 | Margin (Collateral) and Settlement | done | todo | 7 | - | |
-| 35 | 2 | Central Clearing | done | todo | 7 | - | |
+| 31 | 2 | Derivatives (Counterparty Risk Intro) | done | done | 7 | pass | Trimmed the legacy-entities def; the guidelines' OPEN monoline/CDPC why-item stays for Opus-B. |
+| 32 | 2 | Counterparty Risk and Beyond | done | done | 7 | pass | Four enumerated defs trimmed; CVA-as-price vs limit-as-cap now stated in the def itself. |
+| 33 | 2 | Netting, Close-Out, and Related Aspects | done | done | 7 | pass | Fixed a quiz why the validator read as an option-letter reference; two related refs re-shaped. |
+| 34 | 2 | Margin (Collateral) and Settlement | done | done | 7 | pass | Clean apart from dashes and three source references. |
+| 35 | 2 | Central Clearing | done | done | 7 | pass | Two defs trimmed; one related ref re-shaped. |
 | 36 | 2 | Future Value and Exposure | done | done | pilot | pass | 2026-07-25 pilot, full rewrite. Template + lessons in content-guidelines.md. |
 | 37 | 2 | CVA | done | todo | 8 | - | |
 | 38 | 2 | The Evolution of Stress Testing Counterparty Exposures | done | todo | 8 | - | |

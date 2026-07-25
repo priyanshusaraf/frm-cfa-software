@@ -416,3 +416,25 @@ negatives cancel) and its credit VaR figures ($589.00 above 99.9%, $56.81 betwee
 \(0.00015-0.002\times0.003=0.000144\), \(SD_1=\sqrt{0.002\times0.998}=0.04468\)) and its
 credit-VaR-as-excess-over-EL convention ($60,000 loss minus $20,000 EL = $40,000 VaR), which
 is consistent across every example in that file.
+
+### Wave 7 (R31-R35, 2026-07-26)
+
+**Two new validator failure shapes, both worth grepping for corpus-wide:**
+
+1. **`concepts[].related` written with `connections`' `{r, why}` shape.** The two fields look
+   alike and take different keys: `connections.from/to` wants `{r, why}`, `concepts[].related`
+   wants `{r, label}`. Hit R33 twice and R35 once. Grep:
+   `grep -n 'related: \[.*{ r: [0-9]*, why:' src/data`.
+2. **A quiz `why` that names its parties A and B trips the option-letter check.** R33's
+   walkaway question calls the counterparties A and B in the stem, so the `why`'s
+   "only the non-defaulting party (B) benefits" reads to the validator exactly like a
+   reference to option B. The validator is right to be strict here, and the fix is better
+   prose anyway: "only the solvent, non-defaulting side benefits". **Never letter your
+   counterparties in a quiz;** name them (Bank A/Bank B is fine in a stem, a bare "(B)" in a
+   `why` is not).
+
+**The OPEN Phase 5 items recorded for R31-R33 earlier in this file were deliberately NOT
+actioned here** (monolines and CDPCs still lack their motive, R32 still lacks the zero-sum
+framing, R33 is still repetitive). Those are Opus-B improvements, outside this phase's closed
+mandate. They remain open, and the trims done here do not conflict with them: R32's CVA def
+now states the price-versus-cap distinction the open item asks for, so that part is closed.

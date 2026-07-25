@@ -160,7 +160,7 @@ export const conceptLinkTable = [
       99
     ],
     "linkPhrases": [],
-    "snippet": "VaR answers: 'over this holding period, what loss will I not exceed with (say) 99% probability?' — equivalently, there is only a 1% chance the loss is worse than the VaR number."
+    "snippet": "VaR answers: 'over this holding period, what loss will I not exceed with (say) 99% probability?', equivalently, there is only a 1% chance the loss is worse than the VaR number."
   },
   {
     "slug": "operational-risk-as-an-outsourcing-risk",
@@ -397,7 +397,7 @@ export const conceptLinkTable = [
       64
     ],
     "linkPhrases": [],
-    "snippet": "Extra collateral posted upfront, independent of the ongoing exposure calculation, that pre-funds against future adverse moves — a form of overcollateralization also called the 'independent amount' in bilateral markets."
+    "snippet": "Extra collateral posted upfront, independent of the ongoing exposure calculation, that pre-funds against future adverse moves, a form of overcollateralization also called the 'independent amount' in bilateral markets."
   },
   {
     "slug": "risk-premium",
@@ -457,7 +457,7 @@ export const conceptLinkTable = [
       57
     ],
     "linkPhrases": [],
-    "snippet": "Wrong-way risk is an increase in exposure to a counterparty that happens AT THE SAME TIME the counterparty's own credit quality is worsening — the two move together in the worst possible direction."
+    "snippet": "Wrong-way risk is an increase in exposure to a counterparty that happens AT THE SAME TIME the counterparty's own credit quality is worsening, the two move together in the worst possible direction."
   },
   {
     "slug": "credit-derivatives",
@@ -592,8 +592,8 @@ export const conceptLinkTable = [
   },
   {
     "slug": "central-counterparty-ccp-roles-benefits-shortfalls",
-    "name": "Central counterparty (CCP) — roles, benefits, shortfalls",
-    "display": "Central counterparty (CCP)",
+    "name": "Central counterparty (CCP): roles, benefits, shortfalls",
+    "display": "Central counterparty (CCP): roles, benefits, shortfalls",
     "layer": "core",
     "kind": "concept",
     "homeReading": 31,
