@@ -83,11 +83,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 43 | 3 | Risk Measurement and Assessment | done | done | 9 | pass | Fixed a 10x decimal error in the FTA product and a wrong forward reference (SMA is R62, not R63). |
 | 44 | 3 | Risk Mitigation | done | done | 9 | pass | Already dash-clean; only AI-isms and one loose RPO/RTO quiz stem. |
 | 45 | 3 | Risk Reporting | done | done | 9 | pass | Already dash-clean; four defs trimmed after enriching breakdown so no enumeration detail was lost. |
-| 46 | 3 | Integrated Risk Management | done | todo | 10 | - | |
-| 47 | 3 | Cyber-Resilience: Range of Practices | done | todo | 10 | - | |
-| 48 | 3 | Case Study: Cyberthreats and Information Security Risks | done | todo | 10 | - | |
-| 49 | 3 | Case Study: Financial Crime and Fraud | done | todo | 10 | - | |
-| 50 | 3 | Guidance on Managing Outsourcing Risk | done | todo | 10 | - | |
+| 46 | 3 | Integrated Risk Management | done | done | 10 | pass | Dashes plus AI-isms; fixed a wrong related ref (R56 labelled 'stress testing at banks', which is R55). |
+| 47 | 3 | Cyber-Resilience: Range of Practices | done | done | 10 | pass | Dash purge on breakdown labels; heavy meta-reference cleanup. Facts spot-checked against the BCBS survey. |
+| 48 | 3 | Case Study: Cyberthreats and Information Security Risks | done | done | 10 | pass | Dash-clean; pdf.query was the app's own tagline, now verbatim source text. |
+| 49 | 3 | Case Study: Financial Crime and Fraud | done | done | 10 | pass | Dash-clean but full of colon artifacts from an earlier purge; regrammared. USAA facts verified. |
+| 50 | 3 | Guidance on Managing Outsourcing Risk | done | done | 10 | pass | Dash purge; replaced a 'None of these' quiz option, which is position-dependent under shuffling. |
 | 51 | 3 | Case Study: Third-Party Risk Management | done | todo | 11 | - | |
 | 52 | 3 | Case Study: Investor Protection and Compliance Risks | done | todo | 11 | - | |
 | 53 | 3 | Supervisory Guidance on Model Risk Management | done | todo | 11 | - | |

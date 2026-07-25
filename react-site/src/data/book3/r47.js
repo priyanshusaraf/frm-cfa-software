@@ -2,13 +2,13 @@ export default ({
   book: 3, reading: 47,
   session: "Operational Risk Focus Areas",
   title: "Cyber-Resilience: Range of Practices",
-  tagline: "A survey of how regulators globally approach cyber risk, deliberately non-prescriptive, so the exam tests the categories of practice rather than one 'correct' standard.",
+  tagline: "A survey of how regulators globally approach cyber risk. It is deliberately non-prescriptive, so what matters is the categories of practice, not one 'correct' standard.",
 
   teaches: `<p>This reading is based on a December 2018 Basel Committee on Banking Supervision report that surveyed how banking regulators around the world actually handle cyber risk. The Committee did not write a single global rulebook. Instead it compared what dozens of jurisdictions (the U.S., EU, U.K., Japan, Singapore, Hong Kong, Australia, Brazil, and others) each require, and grouped their practices into recurring categories. You need four groupings: <strong>five areas of cyber-governance</strong> (strategy, roles &amp; responsibilities, awareness, architecture &amp; standards, workforce: who is responsible and how the organization is set up to manage cyber risk), <strong>four areas of cyber risk management &amp; response</strong> (supervision, information security controls, incident response &amp; recovery, metrics: what the institution and its regulator actually <em>do</em> day to day), <strong>five information-sharing channels</strong> (bank-to-bank, bank-to-regulator, regulator-to-regulator, regulator-to-bank, and bank/regulator-to-security-agency: how threat intelligence flows between parties), and the <strong>governance dimensions of third-party cyber risk</strong> (because banks now outsource so much IT infrastructure, cloud hosting, payment processors, software vendors, that a bank's own cyber-resilience is only as strong as its weakest vendor).</p>`,
 
-  why: `<p>Cyber risk was promoted to Level-1 status under the ORX operational risk taxonomy (see R42), meaning regulators stopped treating it as a sub-bullet under "external fraud" or "business disruption" and gave it its own top-level category. That promotion is exactly why this reading exists as a dedicated chapter: cyber risk doesn't behave like a generic operational risk. Losses can be sudden, systemic (one vulnerability can hit thousands of institutions simultaneously, as happened with several supply-chain software attacks), and adversarial: a fraud model or a broken process doesn't actively adapt to your defenses, but a hacker does. Regulators responded with a wave of new supervisory expectations post-2015, and the exam wants you to recognize the recurring shape of those expectations even though no two countries wrote identical rules.</p>`,
+  why: `<p>Cyber risk was promoted to Level-1 status under the ORX operational risk taxonomy (see R42), meaning regulators stopped treating it as a sub-bullet under "external fraud" or "business disruption" and gave it its own top-level category. That promotion is exactly why this reading exists as a dedicated chapter: cyber risk doesn't behave like a generic operational risk. Losses can be sudden, systemic (one vulnerability can hit thousands of institutions simultaneously, as happened with several supply-chain software attacks), and adversarial: a fraud model or a broken process doesn't actively adapt to your defenses, but a hacker does. Regulators responded with a wave of new supervisory expectations post-2015, and what you need is the recurring shape of those expectations, even though no two countries wrote identical rules.</p>`,
 
-  intuition: `<p>Because practices vary so widely by jurisdiction (Hong Kong's guidance emphasizes effective risk management, Singapore's emphasizes detecting attacks, Brazil's emphasizes having a written cybersecurity policy, the EU's emphasizes common procedures and methodologies), there is no single correct answer to "what does cyber regulation require?" So the exam instead tests whether you know the <em>categories</em> regulators look at. Treat this reading like a checklist with four buckets: (1) <strong>governance</strong>: who inside the bank is accountable, from the board down to IT staff; (2) <strong>risk management &amp; response</strong>: what the bank and its supervisor actually do to detect, test, and recover from attacks; (3) <strong>information sharing</strong>: how threat intelligence moves between banks, regulators, and security agencies, and which of those flows are legally required versus purely voluntary; (4) <strong>third-party risk</strong>: because a bank rarely runs all its own IT anymore, what obligations exist around vendors, cloud providers, and sub-outsourcers. Almost every exam question is really just asking "which bucket, and which item within it, does this fact pattern describe?"</p>`,
+  intuition: `<p>Because practices vary so widely by jurisdiction (Hong Kong's guidance emphasizes effective risk management, Singapore's emphasizes detecting attacks, Brazil's emphasizes having a written cybersecurity policy, the EU's emphasizes common procedures and methodologies), there is no single correct answer to "what does cyber regulation require?" What is worth carrying instead are the <em>categories</em> regulators look at. Treat this reading like a checklist with four buckets: (1) <strong>governance</strong>: who inside the bank is accountable, from the board down to IT staff; (2) <strong>risk management &amp; response</strong>: what the bank and its supervisor actually do to detect, test, and recover from attacks; (3) <strong>information sharing</strong>: how threat intelligence moves between banks, regulators, and security agencies, and which of those flows are legally required versus purely voluntary; (4) <strong>third-party risk</strong>: because a bank rarely runs all its own IT anymore, what obligations exist around vendors, cloud providers, and sub-outsourcers. Almost every question here is really just asking "which bucket, and which item within it, does this fact pattern describe?"</p>`,
 
   formulas: [],
 
@@ -19,7 +19,7 @@ export default ({
       intuition: "Governance answers 'who is responsible and how is the organization set up' before any technical control is even discussed. Regulators check the org chart and the policy documents first, because a bank with no clear ownership of cyber risk will fail at execution regardless of how good its firewalls are.",
       example: "Three distinct regulatory approaches to cybersecurity strategy specifically: (1) the regulator itself sets sector-wide cybersecurity requirements, common in emerging markets with a homogeneous banking system; (2) the bank writes its own strategy, which the regulator then reviews as part of broader risk-management supervision, the dominant U.S./Mexico model; (3) the regulator checks whether the bank's general IT strategy adequately covers cyber risk, without requiring a stand-alone cyber strategy document, common in Europe. Germany's BAIT (Banking Supervisory Requirements for IT) is a concrete named example covering IT strategy/governance, information risk and security management, user access agreements, and IT project management.",
       pitfall: "Do not assume every jurisdiction mandates a stand-alone cybersecurity strategy document. Neither U.S. nor Mexican regulation specifically requires one; both instead review cyber risk as embedded within the institution's broader information security framework.",
-      related: [{ r: 41, label: "R41 — the three lines of defense model reapplied here" }]
+      related: [{ r: 41, label: "R41: the three lines of defense model reapplied here" }]
     },
     {
       name: "Four areas of cyber risk management & response",
@@ -33,7 +33,7 @@ export default ({
       def: "The five directions cybersecurity information can flow: bank-to-bank, bank-to-regulator, regulator-to-regulator, regulator-to-bank, and banks/regulators-to-security-agencies. The channels differ sharply in how mandated, common, or systematic each one is: bank-to-regulator is usually mandated and one of the three most common; regulator-to-regulator is the least frequent, ad hoc rather than systematic; regulator-to-bank is uncommon with little formal guidance; the full profile of each direction is in the breakdown below.",
       intuition: "The flow of information is asymmetric, not a two-way street with matching obligations on each side. Regulation is far more comfortable compelling banks to report upward to supervisors than compelling supervisors or peer banks to report information back down or sideways. That asymmetry itself is a testable idea.",
       example: "Singapore illustrates that voluntary and mandatory sharing can coexist within one jurisdiction: the Monetary Authority of Singapore (MAS) mandates that banks report cybersecurity incidents to it, but the exchange of cyber risk information between MAS and Singapore's Cyber Security Agency (CSA) is voluntary. In the U.S., banks and regulators can submit cybersecurity information voluntarily through an online portal run by U.S. CERT and the National Cybersecurity and Communications Integration Center; Luxembourg has an analogous voluntary portal, the Computer Incident Response Center.",
-      pitfall: "Know all five: a frequently tested list where the exam asks which channel is 'usually mandated' vs. 'mostly voluntary' vs. 'rare.' The three MOST COMMON channels are bank-to-bank, bank-to-regulator, and bank/regulator-to-security-agency; regulator-to-regulator and regulator-to-bank are both less frequent because their sharing arrangements are less systematic (ad hoc rather than routine).",
+      pitfall: "Know all five, and know which channel is 'usually mandated' versus 'mostly voluntary' versus 'rare', because that is the distinction questions turn on. The three MOST COMMON channels are bank-to-bank, bank-to-regulator, and bank/regulator-to-security-agency; regulator-to-regulator and regulator-to-bank are both less frequent because their sharing arrangements are less systematic (ad hoc rather than routine).",
       related: [],
       memory: "Mandated: bank→regulator. Rare (least frequent, ad hoc): regulator↔regulator. Voluntary (mostly, some mandates): bank/regulator→security agencies."
     },
@@ -42,7 +42,7 @@ export default ({
       def: "The six lenses regulators use to assess a bank's exposure to its vendors and interconnected counterparties: governance of third-party interconnections, business continuity and availability, information confidentiality and integrity, visibility into third-party (and sub-outsourcing) relationships, auditing/testing rights, and resources and skills. Each lens asks a different question about the vendor relationship, from whether an outsourcing framework exists at all down to whether the bank has qualified staff to oversee it; the breakdown below gives the full description of each.",
       intuition: "'Third parties' is broader than just outsourced IT functions. The source explicitly includes cloud computing, but also non-outsourcing dependencies like power supply and telecom lines, plus financial-market interconnections like payment/settlement systems, trading platforms, and central counterparties (CCPs). A bank can be cyber-exposed through a counterparty it never formally 'hired.'",
       example: "The EU's MiFID II directive gives supervisory authority over interactions between institutions, supervisors, and third-party providers, and EU rules may require banks to disclose the physical location of cloud data centers. Germany, Switzerland, and Singapore go further and require the bank retain a contractual right to intervene directly with the vendor if problems emerge, not just a right to audit after the fact.",
-      related: [{ r: 50, label: "R50 — outsourcing risk generally, this cyber-specific lens applied there too" }]
+      related: [{ r: 50, label: "R50: outsourcing risk generally, with this cyber-specific lens applied there too" }]
     }
   ],
 
@@ -55,7 +55,7 @@ export default ({
       { r: 48, why: "The Equifax case study concretely illustrates these framework categories failing in practice." }
     ],
     confused: [
-      { what: "Bank-to-regulator vs regulator-to-bank information sharing", how: "Bank-to-regulator is usually MANDATED; regulator-to-bank is uncommon with little formal guidance — the flow of information is asymmetric, not a two-way street with equal obligations." }
+      { what: "Bank-to-regulator vs regulator-to-bank information sharing", how: "Bank-to-regulator is usually MANDATED; regulator-to-bank is uncommon with little formal guidance. The flow of information is asymmetric, not a two-way street with equal obligations." }
     ]
   },
 
@@ -74,9 +74,9 @@ export default ({
   ],
 
   recall: [
-    { q: "Why does this reading emphasize categories of cyber risk practice rather than a single prescriptive standard?", a: "Cyber regulatory practices vary significantly by jurisdiction, with no single global standard — the framework is deliberately non-prescriptive, so understanding the CATEGORIES (governance areas, risk management areas, information-sharing channels) matters more than memorizing one specific regulatory regime's exact rules." },
+    { q: "Why does this reading emphasize categories of cyber risk practice rather than a single prescriptive standard?", a: "Cyber regulatory practices vary significantly by jurisdiction, with no single global standard, and the framework is deliberately non-prescriptive, so understanding the CATEGORIES (governance areas, risk management areas, information-sharing channels) matters more than memorizing one specific regulatory regime's exact rules." },
     { q: "Which information-sharing channel is usually mandated, and which is typically voluntary?", a: "Bank-to-regulator sharing is usually MANDATED (banks must report to their supervisors). Banks/regulators-to-security-agencies sharing is mostly VOLUNTARY. Regulator-to-regulator sharing is rare and cross-border-dependent; regulator-to-bank sharing is uncommon with little formal guidance." },
-    { q: "Country X's regulator sets sector-wide cybersecurity requirements that apply uniformly across all banks. What kind of banking system does this most likely indicate, and why?", a: "An emerging economy with a homogeneous banking system — sector-wide, regulator-imposed requirements work best where banks are structurally similar to each other; in more developed, fragmented systems regulators instead tend to review each institution's own strategy or its general IT strategy rather than impose one uniform rulebook." },
+    { q: "Country X's regulator sets sector-wide cybersecurity requirements that apply uniformly across all banks. What kind of banking system does this most likely indicate, and why?", a: "An emerging economy with a homogeneous banking system. Sector-wide, regulator-imposed requirements work best where banks are structurally similar to each other; in more developed, fragmented systems, regulators instead tend to review each institution's own strategy or its general IT strategy rather than impose one uniform rulebook." },
     { q: "Name the four areas of cyber risk management and incident response and recovery.", a: "(1) Supervision of cyber-resilience, (2) information security controls, (3) incident response and recovery, (4) cybersecurity and resilience metrics." }
   ],
 
@@ -87,47 +87,47 @@ export default ({
 
   eli5: `<p>Imagine every school in a city has its own rules about fire drills: some schools are told exactly how often to run one by the city fire department, some schools write their own fire-safety plan and just show it to an inspector, and some schools are only checked to see if their general safety plan happens to cover fires too. There's no single citywide fire-drill rulebook, but every school's approach falls into one of those three patterns. That's exactly how cybersecurity strategy works across countries: regulators either (1) mandate the requirements directly, (2) let the bank write its own plan and review it, or (3) just check that the bank's broader IT plan happens to cover cyber risk. There is no single global standard, but a small number of repeating patterns you can recognize.</p>`,
 
-  thinkLike: `<p>A risk manager reading this Basel Committee survey isn't looking for "the rule": there isn't one. They're building a comparison matrix: for the jurisdictions their bank operates in, which of the five governance areas are prescriptive versus principles-based, which information-sharing obligations are mandatory versus voluntary, and where are the third-party oversight gaps. A bank operating across the EU, U.S., and Singapore has to satisfy all three regimes simultaneously, and the fragmentation itself (different reporting timeframes, 2, 4, or 72 hours; different taxonomies; different templates) is a real operational cost the risk manager has to budget for, not just a compliance footnote.</p><p>The examiner tests this by giving you a short fact pattern about one jurisdiction ("Country X mandates sector-wide requirements," "the MAS requires banks to report incidents but sharing with the CSA is voluntary") and asking you to classify it into the right bucket: which governance area, which of the four risk-management areas, which of the five sharing channels, or which third-party dimension. You are almost never asked to recall a country-specific rule from memory; you're asked to recognize which category a described practice belongs to.</p>`,
+  thinkLike: `<p>A risk manager reading this Basel Committee survey isn't looking for "the rule": there isn't one. They're building a comparison matrix: for the jurisdictions their bank operates in, which of the five governance areas are prescriptive versus principles-based, which information-sharing obligations are mandatory versus voluntary, and where are the third-party oversight gaps. A bank operating across the EU, U.S., and Singapore has to satisfy all three regimes simultaneously, and the fragmentation itself (different reporting timeframes, 2, 4, or 72 hours; different taxonomies; different templates) is a real operational cost the risk manager has to budget for, not just a compliance footnote.</p><p>Questions here work the same way: a short fact pattern about one jurisdiction ("Country X mandates sector-wide requirements", "the MAS requires banks to report incidents but sharing with the CSA is voluntary") and a demand that you place it in the right bucket, whether that is a governance area, one of the four risk-management areas, one of the five sharing channels, or a third-party dimension. You are almost never asked to recall a country-specific rule from memory. You are asked to recognize which category a described practice belongs to.</p>`,
 
   breakdown: [
     {
       title: "Five areas of cyber governance",
       points: [
-        "Cybersecurity strategy — whether a defined, board-reviewed strategy exists and aligns with overall business strategy; three regulatory approaches exist (regulator sets requirements / bank writes its own / regulator reviews existing IT strategy).",
-        "Management roles & responsibilities — board and senior-management accountability, often (but not mandatorily) organized around the three-lines-of-defense model; supervision tends to focus on lines 1 and 2, which can weaken the model's effectiveness.",
-        "Awareness — staff training, screening/background checks and NDAs for new hires, periodic reverification for existing staff, and building a common risk culture.",
-        "Architecture & standards — technical controls such as content storage requirements and periodic self-assessments; few countries have detailed rules here.",
-        "Workforce — skills and competencies of IT/cyber staff, assessed via on-site inspections of training, qualifications, and defined roles."
+        "Cybersecurity strategy: whether a defined, board-reviewed strategy exists and aligns with overall business strategy; three regulatory approaches exist (regulator sets requirements / bank writes its own / regulator reviews existing IT strategy).",
+        "Management roles and responsibilities: board and senior-management accountability, often (but not mandatorily) organized around the three-lines-of-defense model; supervision tends to focus on lines 1 and 2, which can weaken the model's effectiveness.",
+        "Awareness: staff training, screening/background checks and NDAs for new hires, periodic reverification for existing staff, and building a common risk culture.",
+        "Architecture and standards: technical controls such as content storage requirements and periodic self-assessments; few countries have detailed rules here.",
+        "Workforce: skills and competencies of IT/cyber staff, assessed via on-site inspections of training, qualifications, and defined roles."
       ]
     },
     {
       title: "Four areas of cyber risk management & response",
       points: [
-        "Supervision of cyber-resilience — reviews triggered by a bank's own risk assessments, inspection findings, or actual incidents; jurisdictions increasingly engage industry via conferences and discussion papers to influence behavior.",
-        "Information security controls — mapping/classifying assets, real-time threat detection, penetration testing (simulated attacks to find weaknesses), often voluntarily funded by the institutions themselves.",
-        "Incident response and recovery — policies for detection, escalation, and recovery; supplemented by joint public-private training exercises (e.g., G7, U.S.-U.K.).",
-        "Cybersecurity & resilience metrics — no standardized quantitative metrics exist; forward-looking indicators are increasingly valued over backward-looking data because attackers adapt to defenses."
+        "Supervision of cyber-resilience: reviews triggered by a bank's own risk assessments, inspection findings, or actual incidents; jurisdictions increasingly engage industry via conferences and discussion papers to influence behavior.",
+        "Information security controls: mapping and classifying assets, real-time threat detection, penetration testing (simulated attacks to find weaknesses), often voluntarily funded by the institutions themselves.",
+        "Incident response and recovery: policies for detection, escalation, and recovery; supplemented by joint public-private training exercises (e.g., G7, U.S.-U.K.).",
+        "Cybersecurity and resilience metrics: no standardized quantitative metrics exist; forward-looking indicators are increasingly valued over backward-looking data because attackers adapt to defenses."
       ]
     },
     {
       title: "Five information-sharing channels",
       points: [
-        "Bank-to-bank — trust-dependent, built incrementally (small group first, then wider); only Brazil, Japan, and Saudi Arabia mandate it.",
-        "Bank-to-regulator — usually mandated; one of the three most common channels; purposes include systemic risk monitoring and improving regulatory oversight.",
-        "Regulator-to-regulator — least frequent channel; domestic or cross-border (e.g., the 2018 Hong Kong Monetary Authority–MAS bilateral agreement).",
-        "Regulator-to-bank — uncommon, little formal guidance; only China mandates it; Singapore and the U.K. do it voluntarily.",
-        "Bank/regulator-to-security-agencies — mostly voluntary; mandatory in Canada, Singapore, France, and Spain; agencies include CERTs (Computer Emergency Readiness Teams)."
+        "Bank-to-bank: trust-dependent, built incrementally (small group first, then wider); only Brazil, Japan, and Saudi Arabia mandate it.",
+        "Bank-to-regulator: usually mandated; one of the three most common channels; purposes include systemic risk monitoring and improving regulatory oversight.",
+        "Regulator-to-regulator: least frequent channel; domestic or cross-border (for example the 2018 bilateral agreement between the Hong Kong Monetary Authority and MAS).",
+        "Regulator-to-bank: uncommon, little formal guidance; only China mandates it; Singapore and the U.K. do it voluntarily.",
+        "Bank/regulator-to-security-agencies: mostly voluntary; mandatory in Canada, Singapore, France, and Spain; agencies include CERTs (Computer Emergency Readiness Teams)."
       ]
     },
     {
       title: "Third-party cyber risk dimensions",
       points: [
-        "Governance of third-party interconnections — outsourcing framework covering roles, scope, and risk analysis (strategic, compliance, security, continuity, vendor lock-in, counterparty, access risks).",
-        "Business continuity and availability — recovery plans for critical activities, alignment of vendor continuity policies with the bank's own; tested via annual scenario analysis.",
-        "Information confidentiality and integrity — data protection agreements, encryption, access-limitation, and cloud data-location rules.",
-        "Visibility into third-party (and sub-outsourcing) relationships — inventories of outsourced functions and insight into vendors' own sub-outsourcing.",
-        "Auditing and testing — contractual rights to audit/inspect vendors, sometimes extended directly to the supervisor (France, Switzerland, Singapore).",
-        "Resources and skills — adequate, qualified staff (e.g., CISSP-certified) to oversee outsourcing, plus succession planning for key personnel."
+        "Governance of third-party interconnections: outsourcing framework covering roles, scope, and risk analysis (strategic, compliance, security, continuity, vendor lock-in, counterparty, access risks).",
+        "Business continuity and availability: recovery plans for critical activities, alignment of vendor continuity policies with the bank's own; tested via annual scenario analysis.",
+        "Information confidentiality and integrity: data protection agreements, encryption, access-limitation, and cloud data-location rules.",
+        "Visibility into third-party (and sub-outsourcing) relationships: inventories of outsourced functions and insight into vendors' own sub-outsourcing.",
+        "Auditing and testing: contractual rights to audit/inspect vendors, sometimes extended directly to the supervisor (France, Switzerland, Singapore).",
+        "Resources and skills: adequate, qualified staff (e.g., CISSP-certified) to oversee outsourcing, plus succession planning for key personnel."
       ]
     }
   ],
@@ -167,7 +167,7 @@ export default ({
       why: "Sharing among regulators is the least frequent channel because these arrangements are less systematic (ad hoc bilateral deals rather than routine flows). Bank-to-bank, bank-to-regulator, and bank/regulator-to-security-agency are explicitly identified as the three MOST common channels, making them the tempting-but-wrong choices."
     },
     {
-      q: "Which of the following risks would LEAST likely be covered in the risk analysis section of a bank's outsourcing framework, per the reading's list of covered risks?",
+      q: "Which of the following risks would LEAST likely be covered in the risk analysis section of a bank's outsourcing framework?",
       options: [
         "Vendor lock-in risk",
         "Strategic risk",
@@ -175,7 +175,7 @@ export default ({
         "Compliance risk"
       ],
       answer: 2,
-      why: "The reading's explicit list of risks covered in an outsourcing risk analysis is: strategic, compliance, security, business continuity, vendor lock-in, counterparty, and access risks. Liquidity risk is not on that list. It belongs to a different risk domain (funding/market liquidity) entirely, even though it sounds like a plausible generic 'bank risk' to include."
+      why: "The risks covered in an outsourcing risk analysis are strategic, compliance, security, business continuity, vendor lock-in, counterparty, and access risks. Liquidity risk is not on that list. It belongs to a different risk domain (funding/market liquidity) entirely, even though it sounds like a plausible generic 'bank risk' to include."
     },
     {
       q: "Singapore's Monetary Authority (MAS) requires banks to report cybersecurity incidents to it, but information exchange between MAS and Singapore's Cyber Security Agency (CSA) is not required by law. This scenario best illustrates which point about information sharing?",
@@ -189,7 +189,7 @@ export default ({
       why: "The Singapore example directly shows that mandatory and voluntary sharing coexist within one jurisdiction depending on the specific channel (bank-to-regulator is mandated here, while the regulator-to-security-agency link is voluntary). The 'sharing among regulators is always mandatory' answer overgeneralizes from one bilateral MAS-CSA relationship to all regulator sharing; the 'bank-to-regulator sharing is always voluntary unless a security agency is involved' answer inverts the actual (mandated) status of bank-to-regulator sharing; the 'regulator-to-bank sharing is more common in Asia' answer has no support in the text."
     },
     {
-      q: "Why are forward-looking indicators increasingly valued over backward-looking data in cybersecurity and resilience metrics, according to the reading?",
+      q: "Why are forward-looking indicators increasingly valued over backward-looking data in cybersecurity and resilience metrics?",
       options: [
         "Backward-looking data is illegal to collect in most jurisdictions under data-protection law",
         "Standardized quantitative cybersecurity metrics comparable to financial risk metrics exist, but backward-looking ones are more expensive to compute",
@@ -197,12 +197,12 @@ export default ({
         "Regulators have banned the use of incident-report data in supervisory reviews"
       ],
       answer: 2,
-      why: "The reading explains that 'adversaries' continuously adapt to institutions' changing defenses (e.g., coordinated DDoS attacks from multiple sources), so backward-looking indicators, useful only in a stable threat environment, lose predictive value; forward-looking indicators better capture emerging risk. The 'standardized metrics exist but backward-looking ones are more expensive' answer is the trap: the reading explicitly says standardized quantitative cybersecurity metrics do NOT yet exist, unlike financial risk metrics."
+      why: "Adversaries continuously adapt to institutions' changing defenses (e.g., coordinated DDoS attacks from multiple sources), so backward-looking indicators, useful only in a stable threat environment, lose predictive value; forward-looking indicators better capture emerging risk. The 'standardized metrics exist but backward-looking ones are more expensive' answer is the trap: standardized quantitative cybersecurity metrics do NOT yet exist, unlike the financial risk metrics banks have had for decades."
     }
   ],
 
   sources: [
-    { title: "Cyber-resilience: Range of practices (Basel Committee on Banking Supervision, Dec 2018)", url: "https://www.bis.org/bcbs/publ/d454.htm", note: "The original BIS/BCBS report this reading condenses — the primary source for every jurisdictional example cited." }
+    { title: "Cyber-resilience: Range of practices (Basel Committee on Banking Supervision, Dec 2018)", url: "https://www.bis.org/bcbs/publ/d454.htm", note: "The original BIS/BCBS report behind this material, and the primary source for every jurisdictional example cited." }
   ],
 
   pdf: { book: 3, query: "Increasing automation and connectedness with third-party service providers" },

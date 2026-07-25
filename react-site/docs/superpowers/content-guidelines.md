@@ -523,3 +523,51 @@ capital reading, R44's whole human-error taxonomy and its RPO/RTO pair, R45's Pi
 
 **Still open for Opus-B:** R44 has no `sources` array at all, and R45's second source is a
 generic GARP program link that does not earn its place.
+
+### Wave 10 (R46-R50, Book 3, 2026-07-26): the colon artifact, and two more wrong cross-references
+
+**The new defect class: a previous dash purge left colons doing work a colon cannot do.** R49
+was already dash-free and validator-clean, and read badly anyway: "USAA Federal Savings Bank:
+the banking arm of USAA, a Texas-based group founded in 1922: was fined $140 million", "for
+politically exposed persons (PEPs): especially foreign PEPs: because their public profile...",
+"placement, layering, integration: with the actual techniques". A mechanical dash-to-colon pass
+produces sentences with two or three colons and no main clause. **A dash-clean file is not a
+purged file. Grep any Book 3-5 file for a line with two colons inside one string
+(`grep -n '": [^"]*: [^"]*: ' file`) before marking it done**, and rewrite those to
+parentheses, commas, or a full stop, which is what the original dash was doing.
+
+**Wrong cross-references keep appearing, one per wave now.** Wave 9 found R43 pointing at R63
+for the SMA (it is R62). This wave: R46's stress-testing concept carried
+`{ r: 56, label: "R56: stress testing at banks" }`, but R56 is Risk Capital Attribution and
+RAPM; the stress-testing reading is R55, which the same array already cited. **Check the LABEL
+text against `src/lib/meta-data.js`, not just the number: a label that describes a different
+reading than the number points to is invisible to every automated check we run.**
+
+**`pdf.query` can be the app's own tagline, which is worse than prose.** R48's query was
+"Pairs a framework overview with the 2017 Equifax breach", a sentence that exists only in this
+codebase, so the source jump could never hit. It is now "Equifax experienced a major cyber
+breach in March 2017" (Book 3 line 3925). When a query reads like marketing copy rather than
+textbook prose, it was written by an agent, not lifted from the source.
+
+**Quiz repair: "None of these" options are a live defect, not a style nit.** R50 had
+"None of these, all three are standard contract provisions" as an option. `Quiz.jsx` shuffles
+options every round, so a none-of-the-above option lands in a random position and reads as
+nonsense next to its neighbours. It was replaced with a determinate question (which named
+provision is NOT in the Fed's list; exclusivity is not, and demanding it would worsen
+concentration risk). **Grep for `None of\|All of the above\|Both of the above` when opening any
+quiz.**
+
+**Where a whole reading is a checklist, the AI-isms cluster in `thinkLike`.** R47 and R50 are
+both pure taxonomy readings, and in both the substantive content was fine while nearly every
+"the exam tests X" sentence sat in `thinkLike` and the quiz `why`s. The fix that preserves the
+value: keep the strategic point (which question shapes recur, which distractor tempts) and drop
+the framing that attributes it to an examiner. "Two question shapes dominate here" carries the
+same information as "GARP tends to test this reading in two ways" without the AI tell.
+
+**Verified correct, leave alone:** R46's Basel pillar structure and the AAA/0.01% to 99.99%
+confidence-level mapping, R47's jurisdiction facts (only Brazil, Japan and Saudi Arabia mandate
+bank-to-bank sharing; only China mandates regulator-to-bank; the MAS/CSA voluntary split),
+R48's Equifax chronology including the counterintuitive detail that the attack came days AFTER
+Equifax applied an Apache Struts patch and exploited a flaw in that patch (Book 3 line 3925,
+which differs from popular accounts and is what the source says), R49's USAA facts ($140m,
+FinCEN and OCC, 2016-2021, ~90,000 unreviewed alerts), R50's six risks and 17 contract clauses.
