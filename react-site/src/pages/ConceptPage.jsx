@@ -84,13 +84,14 @@ export default function ConceptPage() {
 
       {formula && (
         <>
-          {/* Same shape as Chapter.jsx's formula box, down to the f-name kicker and
-              the derivation accordion, so a concept page reads as a reading rather
-              than as a separate boxed layout. renderMath returns an HTML STRING:
-              as a React child it prints as escaped markup. The f-tex class is what
-              fitMath() queries to shrink over-wide formulas. */}
+          {/* Chapter.jsx's formula box, minus the .f-name kicker: `formula` is
+              looked up BY the concept's name, so that kicker is always a verbatim
+              duplicate of the <h1> right above it. It earns its place in a reading,
+              where one box holds several named formulas; here the formula is the
+              page. renderMath returns an HTML STRING: as a React child it prints as
+              escaped markup. The f-tex class is what fitMath() queries to shrink
+              over-wide formulas. */}
           <div className="formula-block">
-            <div className="f-name">{formula.name}</div>
             <div
               className={"f-math" + (isTex(formula.math) ? " f-tex" : "")}
               dangerouslySetInnerHTML={{ __html: renderMath(formula.math, true) }}
@@ -112,17 +113,21 @@ export default function ConceptPage() {
           {formula.terms && formula.terms.length > 0 && (
             <>
               <SectionLabel txt="Every symbol, explained" color="var(--cyan)" />
-              {formula.terms.map((t, i) => (
-                <div className="term-row" key={i}>
-                  <span className="term-symbol">
-                    {isTex(t.symbol)
-                      ? <span dangerouslySetInnerHTML={{ __html: renderMath(t.symbol, false) }} />
-                      : t.symbol}
-                  </span>
-                  <div className="term-meaning"><Html as="span" html={t.meaning} /></div>
-                  {t.why && <div className="term-why"><Html as="span" html={t.why} /></div>}
-                </div>
-              ))}
+              <dl className="term-list">
+                {formula.terms.map((t, i) => (
+                  <div key={i}>
+                    <dt>
+                      {isTex(t.symbol)
+                        ? <span dangerouslySetInnerHTML={{ __html: renderMath(t.symbol, false) }} />
+                        : t.symbol}
+                    </dt>
+                    <dd>
+                      <Html as="span" html={t.meaning} />
+                      {t.why && <div className="term-why"><Html as="span" html={t.why} /></div>}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
             </>
           )}
 
@@ -131,8 +136,13 @@ export default function ConceptPage() {
               {/* no em-dash: the owner treats them as the product's clearest "AI wrote this" tell */}
               <SectionLabel txt="Extra depth: beyond the exam" color="var(--purple)" />
               <div className="card accent" style={{ borderColor: "var(--purple)" }}>
-                <p style={{ fontSize: "0.78rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--purple)", marginTop: 0 }}>
-                  General finance background, not required for the FRM exam
+                {/* normal case, not a second uppercase kicker: the SectionLabel above
+                    already announces this section, and two stacked all-caps labels
+                    saying the same thing is what makes a page look generated. The
+                    sentence stays because §6 requires beyond-exam depth to be
+                    unmistakably marked. */}
+                <p style={{ fontSize: "0.84rem", color: "var(--text-dim)", marginTop: 0, marginBottom: "0.8rem" }}>
+                  General finance background, not required for the FRM exam.
                 </p>
                 <Html html={formula.deepDive} />
               </div>
@@ -184,21 +194,24 @@ export default function ConceptPage() {
         </div>
       )}
 
+      {/* A list of links, not a card: wrapping one or two links in a full card is
+          most of a box for none of the content. Chips are the app's existing
+          affordance for a row of navigable references (concepts[].related). */}
       <SectionLabel txt="Also referenced in" color="var(--text-faint)" />
-      <div className="card">
-        {otherRefs.length === 0 ? (
-          <p style={{ fontSize: "0.88rem", color: "var(--text-dim)", margin: 0 }}>No other readings reuse this concept yet.</p>
-        ) : (
-          otherRefs.map((r) => {
+      {otherRefs.length === 0 ? (
+        <p style={{ fontSize: "0.88rem", color: "var(--text-dim)", margin: "0.2rem 0 0" }}>
+          No other readings reuse this concept yet.
+        </p>
+      ) : (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem", margin: "0.2rem 0 0" }}>
+          {otherRefs.map((r) => {
             const m = readingMeta(r);
             return (
-              <p key={r} style={{ margin: "0.3rem 0" }}>
-                <Link to={rpath(r)}>R{r}{m ? " · " + m.t : ""}</Link>
-              </p>
+              <Link key={r} className="chip" to={rpath(r)}>R{r}{m ? " · " + m.t : ""}</Link>
             );
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
     </main>
   );
 }

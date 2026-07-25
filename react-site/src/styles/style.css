@@ -343,22 +343,28 @@ details.concept .concept-body { padding: 0.2rem 1.15rem 1rem; border-top: 1px so
 .formula-block sub, .formula-block sup { font-size: 0.7em; }
 .tex-error { font-family: var(--mono); color: var(--red); }
 
-/* Piecewise symbol breakdown on core-concept pages (CLAUDE.md §6). Deliberately
-   built from the reading's own field vocabulary — a tag pill, a body line, and a
-   dimmer supporting line, on a coloured left rule, exactly like .concept-field.def
-   — instead of a generic card of hairline-separated rows, which read as a
-   dashboard rather than as the rest of the app. Cyan because these are parts of a
-   formula, matching .formula-block's identity colour.
-   NOT text-transform: uppercase like .field-tag: a symbol's case carries meaning
-   (N vs n, X vs x), so uppercasing it would state something false. */
-.term-row { margin: 0.95rem 0; border-left: 2px solid var(--cyan); padding-left: 0.8rem; }
-.term-row .term-symbol {
-  display: inline-block; font-family: var(--mono); font-size: 0.78rem; font-weight: 750;
-  padding: 0.14em 0.6em; border-radius: 99px; margin-bottom: 0.3rem;
-  background: var(--cyan-soft); color: var(--cyan);
+/* Symbol glossary on core-concept pages (CLAUDE.md §6): a definition list set the
+   way a textbook sets one. The symbol sits in its own column in math type, right
+   against the explanation it labels; whitespace separates the rows.
+   Explicitly NOT a pill on a coloured rule per row: a pill is a category
+   affordance and a math symbol is not a category, and a column of identical rules
+   reads as a generated dashboard, which is the exact complaint this replaced.
+   Case is never transformed: a symbol's case carries meaning (N vs n, X vs x). */
+.term-list { margin: 0.5rem 0 1.5rem; }
+.term-list > div { margin-bottom: 1.3rem; }
+.term-list > div:last-child { margin-bottom: 0; }
+.term-list dt {
+  font-family: var(--mono); font-size: 0.98rem; font-weight: 700;
+  color: var(--cyan); margin-bottom: 0.3rem;
 }
-.term-row .term-meaning { font-size: 0.95rem; }
-.term-row .term-why { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.3rem; }
+.term-list dd { margin: 0; font-size: 0.95rem; }
+.term-list .term-why { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.35rem; }
+/* Two columns only when there's room for the symbol to sit beside its prose
+   without squeezing the measure; below that it stacks. */
+@media (min-width: 900px) {
+  .term-list > div { display: grid; grid-template-columns: 6rem 1fr; column-gap: 1.5rem; }
+  .term-list dt { margin-bottom: 0; text-align: right; padding-top: 0.05rem; }
+}
 
 /* ---------- Chips / links ---------- */
 .chip {
