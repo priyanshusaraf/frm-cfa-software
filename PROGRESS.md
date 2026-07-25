@@ -11,6 +11,18 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > hover-linking -> UI sweep -> Sonnet content clearance (waves of 5 + Opus-A gate) -> Opus-B
 > improvement. PROGRESS.md is now PHASE-LEVEL ONLY; reading-level truth lives in the ledger.
 >
+> **CONTENT-SONNET-CLEARANCE (active), eighteenth session 2026-07-26.** Waves 2 through 5
+> landed this session: r06-r25 cleared and Opus-A gated, so **25 of 101 readings are done**
+> (waves 1 and the r36 pilot preceded it). Real defects caught, not just dashes: r07 dated the
+> CDO tranche blowup to 2008 in ten places when it was May 2005; r08 called recession
+> correlation "stable" against its own 80.5%-vs-83.0% numbers; r14 printed e^0.20 as 1.20.
+> From wave 4 the dash purge is pattern-assisted (Book 2 runs 60-100 dashes per file), which
+> made two new failure classes visible and both are now written up in `content-guidelines.md`:
+> the paired-dash rule can match ACROSS string boundaries (always run the paren-balance audit
+> after a bulk pass), and clearing the dash FAIL line uncovers pre-existing validator failures
+> underneath it, almost always a concepts[].def carrying an enumeration that breakdown already
+> holds. Per-reading truth is in the ledger; do not re-derive it here.
+>
 > **PHASE 3 (hover linking) COMPLETE, seventeenth session 2026-07-25.** Active phase is now
 > `ui-sweep`. Linking is AUTOMATIC, no reading was edited: `scripts/build-core-concepts.mjs`
 > also emits `src/data/conceptLinkTable.js` (54 linkable concepts, up from the 5 the
