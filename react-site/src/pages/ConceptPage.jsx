@@ -81,7 +81,13 @@ export default function ConceptPage() {
       {formula && (
         <>
           <div className="formula-block">
-            <div className="f-math">{renderMath(formula.math, true)}</div>
+            {/* renderMath returns an HTML STRING: as a React child it prints as
+                escaped markup. Same shape as Chapter.jsx, including the f-tex
+                class fitMath() queries to shrink over-wide formulas. */}
+            <div
+              className={"f-math" + (isTex(formula.math) ? " f-tex" : "")}
+              dangerouslySetInnerHTML={{ __html: renderMath(formula.math, true) }}
+            />
             {formula.plain && <p style={{ fontSize: "0.95rem", margin: "0.7rem 0 0" }}><Html as="span" html={formula.plain} /></p>}
             {formula.note && <p className="f-note"><Html as="span" html={formula.note} /></p>}
           </div>
@@ -93,7 +99,9 @@ export default function ConceptPage() {
                 {formula.terms.map((t, i) => (
                   <div key={i} style={{ marginBottom: i === formula.terms.length - 1 ? 0 : "0.9rem", paddingBottom: i === formula.terms.length - 1 ? 0 : "0.9rem", borderBottom: i === formula.terms.length - 1 ? "none" : "1px solid var(--border)" }}>
                     <div style={{ fontFamily: "var(--mono)", fontWeight: 700, fontSize: "0.95rem" }}>
-                      {isTex(t.symbol) ? renderMath(t.symbol, false) : t.symbol}
+                      {isTex(t.symbol)
+                        ? <span dangerouslySetInnerHTML={{ __html: renderMath(t.symbol, false) }} />
+                        : t.symbol}
                     </div>
                     <div style={{ fontSize: "0.9rem", margin: "0.25rem 0 0" }}><Html as="span" html={t.meaning} /></div>
                     {t.why && <div style={{ fontSize: "0.85rem", color: "var(--text-dim)", marginTop: "0.25rem" }}><Html as="span" html={t.why} /></div>}
