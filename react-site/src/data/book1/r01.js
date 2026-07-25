@@ -2,12 +2,12 @@ export default ({
   book: 1, reading: 1,
   session: "Risk Measurement",
   title: "Estimating Market Risk Measures",
-  tagline: "How to turn a pile of P&L data into one defensible number: 'this is how much we could lose.' Everything else in Part II calibrates, stress-tests, or regulates this number.",
+  tagline: "How to turn a pile of P&L (profit and loss) data into one defensible number: 'this is how much we could lose.' Everything else in Part II calibrates, stress-tests, or regulates this number.",
 
-  teaches: `<p>This is the foundation reading for the whole curriculum. It teaches you to compute <strong>Value at Risk (VaR)</strong> three ways: directly from sorted historical data, from a normal distribution, and from a lognormal distribution. Then it fixes VaR's biggest blind spot with <strong>Expected Shortfall (ES)</strong>. It closes with two honesty tools: standard errors (how precise is my risk number, really?) and QQ plots (is my distributional assumption even right?).</p>
+  teaches: `<p>This is the foundation reading for the whole curriculum. It teaches you to compute <strong>Value at Risk (VaR)</strong> three ways: directly from sorted historical data, from a normal distribution, and from a lognormal distribution. Then it fixes VaR's biggest blind spot with <strong>Expected Shortfall (ES)</strong>. It closes with two honesty tools: standard errors (how precise is my risk number, really?) and quantile-quantile (QQ) plots (is my distributional assumption even right?).</p>
   <p>Picture this reading as building a ruler. The rest of Book 1 calibrates that ruler (R2), stretches it out to catastrophes (R3), audits it (R4), and eventually has regulation replace its markings entirely (R16).</p>`,
 
-  why: `<p>Every risk management decision, how much capital to hold, whether a trade is too risky, whether a bank's model can be trusted, comes down to one question: <strong>"how much could we lose, and how confident are we in that number?"</strong> Before VaR existed, firms described risk position by position, in Greeks and notionals that couldn't be added up. VaR was invented to give one firm-wide, probability-based loss number that a CEO or regulator could actually act on. ES came about roughly a decade later, because VaR turned out to answer the wrong question about tails. That gap between the two measures is now written directly into bank regulation (FRTB, R16).</p>`,
+  why: `<p>Every risk management decision, how much capital to hold, whether a trade is too risky, whether a bank's model can be trusted, comes down to one question: <strong>"how much could we lose, and how confident are we in that number?"</strong> Before VaR existed, firms described risk position by position, in Greeks and notionals that couldn't be added up. VaR was invented to give one firm-wide, probability-based loss number that a CEO or regulator could actually act on. ES came about roughly a decade later, because VaR turned out to answer the wrong question about tails. That gap between the two measures is now written directly into bank regulation: the Fundamental Review of the Trading Book (FRTB, R16).</p>`,
 
   intuition: `<p>Line up your last 1,000 daily P&L outcomes from worst to best. Walk in 5% of the way from the worst end. The loss you're standing on is your 95% VaR: <em>"on 95% of days we do better than this."</em></p>
   <p>Now notice what VaR ignores: everything to your left. Whether the worst 5% of days lose a little more than VaR or ten times VaR, VaR reports the same number either way. <strong>ES walks into that left tail and takes the average.</strong> That's the whole conceptual difference: VaR is a threshold, ES is the average severity beyond it. Two portfolios can share identical VaR and have wildly different ES, and that difference is often what actually sinks an institution.</p>
@@ -21,10 +21,10 @@ export default ({
   visual: `<div class="widget" data-widget="quantile"></div>`,
 
   formulas: [
-    { name: "Historical simulation VaR — rank", math: "\\text{rank} = (\\alpha \\times n) + 1", note: "1,000 obs at 95% → 0.05×1000+1 = 51st worst observation. Some past exams use \\(\\alpha \\times n\\) = 50th. Follow the question's convention; \\((\\alpha n)+1\\) is the book answer.", plain: "Sort your n historical P&L or return observations from worst to best; the rank formula tells you which position in that sorted list is the VaR cutoff: the first observation that falls outside the α-tail." },
-    { name: "Normal VaR (P&L form)", math: "\\text{VaR} = -\\mu_{\\text{P\\&L}} + \\sigma_{\\text{P\\&L}} \\times z_\\alpha", note: "z = 1.65 (95%), 2.33 (99%). Mean profit reduces VaR, so don't drop the \\(- \\mu\\) term.", plain: "The loss you're 95%/99% confident of not exceeding equals minus the average P&L plus a multiple (the z-score) of the P&L's standard deviation. A positive mean shrinks the loss; a wider spread of outcomes grows it.", derivation: "<p>Start from the normal quantile itself. If \\(X \\sim N(\\mu, \\sigma^2)\\) is P&L, the \\(\\alpha\\)-quantile of \\(X\\) (the point with \\(\\alpha\\) probability below it) is \\[ x_\\alpha = \\mu + \\sigma z_\\alpha \\] where \\(z_\\alpha\\) is the (negative, left-tail) standard normal critical value — e.g. \\(z_{0.05} = -1.65\\). VaR is defined as the positive loss number, i.e. \\(\\text{VaR} = -x_\\alpha\\), so \\[ \\text{VaR} = -(\\mu + \\sigma z_\\alpha) = -\\mu - \\sigma z_\\alpha \\] Substituting the convention that \\(z_\\alpha\\) is already reported as the positive critical value (1.65, 2.33, …) flips the sign on the second term, giving the working formula \\(\\text{VaR} = -\\mu + \\sigma z_\\alpha\\).</p>" },
-    { name: "Lognormal VaR", math: "\\text{VaR} = P_0\\left[\\,1 - e^{\\,\\mu_R - \\sigma_R\\, z_\\alpha}\\right]", note: "Guarantees the implied worst-case price stays positive. For small \\(\\sigma\\) and short horizons it converges to normal VaR (e^x ≈ 1+x).", plain: "The dollar loss equals today's price times the fraction of value you'd lose if the price fell to its worst-case (lognormal) level, and that worst-case price can never fall below zero.", derivation: "<p>Assume the continuously-compounded return \\(R = \\ln(P_1/P_0)\\) is normal: \\(R \\sim N(\\mu_R, \\sigma_R^2)\\). The worst-case return at significance \\(\\alpha\\) is the normal quantile \\(R_\\alpha = \\mu_R - \\sigma_R z_\\alpha\\) (using the positive convention for \\(z_\\alpha\\)). Because \\(P_1 = P_0 e^{R}\\), the worst-case price is \\[ P_1^{\\alpha} = P_0\\, e^{\\,\\mu_R - \\sigma_R z_\\alpha} \\] which is always strictly positive no matter how bad \\(R_\\alpha\\) is — this is exactly why the lognormal model is chosen. The dollar VaR is the drop from today's price to that worst-case price: \\[ \\text{VaR} = P_0 - P_1^{\\alpha} = P_0\\left[\\,1 - e^{\\,\\mu_R - \\sigma_R z_\\alpha}\\right] \\]</p>" },
-    { name: "Expected Shortfall", math: "\\text{ES} = E\\!\\left[\\,L \\mid L > \\text{VaR}\\,\\right] = \\text{average of tail VaRs}", note: "Slice the tail into n equal-probability pieces, average the slice VaRs; as n→∞ this converges to true ES.", plain: "ES is the average size of a loss on the days that are already worse than VaR: the expected severity once you're already in the bad-outcome region.", derivation: "<p>Divide the \\(\\alpha\\)-tail into \\(n\\) equal-probability slices (e.g. \\(n=5\\) slices of a 5% tail gives boundaries at 1%, 2%, 3%, 4%). Compute the VaR at each of the \\(n-1\\) interior boundaries, then average: \\[ \\text{ES} \\approx \\dfrac{1}{n-1}\\sum_{i=1}^{n-1} \\text{VaR}_{\\,i/n \\cdot \\alpha} \\] Worked example from the source: at \\(n=5\\), the four boundary VaRs average to 2.003; increasing \\(n\\) drives the estimate toward the true value of 2.063 (the exact conditional tail mean). As \\(n \\to \\infty\\), the sum becomes the integral \\(E[L \\mid L > \\text{VaR}]\\), the formal definition of ES.</p>" },
+    { name: "Historical simulation VaR: rank", math: "\\text{rank} = (\\alpha \\times n) + 1", note: "1,000 obs at 95% → 0.05×1000+1 = 51st worst observation. Some past exams use \\(\\alpha \\times n\\) = 50th. Follow the question's convention; \\((\\alpha n)+1\\) is the default convention used here.", plain: "Sort your n historical P&L or return observations from worst to best; the rank formula tells you which position in that sorted list is the VaR cutoff: the first observation that falls outside the α-tail." },
+    { name: "Normal VaR (P&L form)", math: "\\text{VaR} = -\\mu_{\\text{P\\&L}} + \\sigma_{\\text{P\\&L}} \\times z_\\alpha", note: "z = 1.65 (95%), 2.33 (99%). Mean profit reduces VaR, so don't drop the \\(- \\mu\\) term.", plain: "The loss you're 95%/99% confident of not exceeding equals minus the average P&L plus a multiple (the z-score) of the P&L's standard deviation. A positive mean shrinks the loss; a wider spread of outcomes grows it.", derivation: "<p>Start from the normal quantile itself. If \\(X \\sim N(\\mu, \\sigma^2)\\) is P&L, the \\(\\alpha\\)-quantile of \\(X\\) (the point with \\(\\alpha\\) probability below it) is \\[ x_\\alpha = \\mu + \\sigma z_\\alpha \\] where \\(z_\\alpha\\) is the (negative, left-tail) standard normal critical value: for example \\(z_{0.05} = -1.65\\). VaR is defined as the positive loss number, i.e. \\(\\text{VaR} = -x_\\alpha\\), so \\[ \\text{VaR} = -(\\mu + \\sigma z_\\alpha) = -\\mu - \\sigma z_\\alpha \\] Substituting the convention that \\(z_\\alpha\\) is already reported as the positive critical value (1.65, 2.33, …) flips the sign on the second term, giving the working formula \\(\\text{VaR} = -\\mu + \\sigma z_\\alpha\\).</p>" },
+    { name: "Lognormal VaR", math: "\\text{VaR} = P_0\\left[\\,1 - e^{\\,\\mu_R - \\sigma_R\\, z_\\alpha}\\right]", note: "Guarantees the implied worst-case price stays positive. For small \\(\\sigma\\) and short horizons it converges to normal VaR (e^x ≈ 1+x).", plain: "The dollar loss equals today's price times the fraction of value you'd lose if the price fell to its worst-case (lognormal) level, and that worst-case price can never fall below zero.", derivation: "<p>Assume the continuously-compounded return \\(R = \\ln(P_1/P_0)\\) is normal: \\(R \\sim N(\\mu_R, \\sigma_R^2)\\). The worst-case return at significance \\(\\alpha\\) is the normal quantile \\(R_\\alpha = \\mu_R - \\sigma_R z_\\alpha\\) (using the positive convention for \\(z_\\alpha\\)). Because \\(P_1 = P_0 e^{R}\\), the worst-case price is \\[ P_1^{\\alpha} = P_0\\, e^{\\,\\mu_R - \\sigma_R z_\\alpha} \\] which is always strictly positive no matter how bad \\(R_\\alpha\\) is. That is exactly why the lognormal model is chosen. The dollar VaR is the drop from today's price to that worst-case price: \\[ \\text{VaR} = P_0 - P_1^{\\alpha} = P_0\\left[\\,1 - e^{\\,\\mu_R - \\sigma_R z_\\alpha}\\right] \\]</p>" },
+    { name: "Expected Shortfall", math: "\\text{ES} = E\\!\\left[\\,L \\mid L > \\text{VaR}\\,\\right] = \\text{average of tail VaRs}", note: "Slice the tail into n equal-probability pieces, average the slice VaRs; as n→∞ this converges to true ES.", plain: "ES is the average size of a loss on the days that are already worse than VaR: the expected severity once you're already in the bad-outcome region.", derivation: "<p>Divide the \\(\\alpha\\)-tail into \\(n\\) equal-probability slices (e.g. \\(n=5\\) slices of a 5% tail gives boundaries at 1%, 2%, 3%, 4%). Compute the VaR at each of the \\(n-1\\) interior boundaries, then average: \\[ \\text{ES} \\approx \\dfrac{1}{n-1}\\sum_{i=1}^{n-1} \\text{VaR}_{\\,i/n \\cdot \\alpha} \\] For example, at \\(n=5\\), the four boundary VaRs average to 2.003; increasing \\(n\\) drives the estimate toward the true value of 2.063 (the exact conditional tail mean). As \\(n \\to \\infty\\), the sum becomes the integral \\(E[L \\mid L > \\text{VaR}]\\), the formal definition of ES.</p>" },
     { name: "Standard error of a quantile", math: "\\text{SE}(q) = \\dfrac{\\sqrt{p(1-p)/n}}{f(q)}", note: "More data (n↑) → tighter. Wider bins (f(q)↑) → tighter. Drives the 'how much can I trust this VaR' confidence interval.", plain: "The precision of an estimated quantile depends on how much data you have (n), how likely that tail probability is (p), and how much probability mass is packed around that point on the density (f(q)). More data and a fatter local density both shrink the error." }
   ],
 
@@ -35,7 +35,7 @@ export default ({
       intuition: "Arithmetic is fine when the horizon is short and moves are small. Geometric is the honest choice for longer horizons, and it's the mathematical cousin of the lognormal VaR model.",
       example: "For small returns the two are nearly identical (ln(1.02) ≈ 0.0198). The gap widens with big moves and long horizons.",
       pitfall: "Sign convention: FRM quotes VaR and losses as positive numbers even though the quantile is mathematically negative. An answer choice with the wrong sign is automatically wrong, an easy point if you catch it.",
-      related: ["Lognormal VaR", { r: 12, label: "R12 — convexity of 1/(1+r)" }],
+      related: ["Lognormal VaR", { r: 12, label: "R12: convexity of 1/(1+r)" }],
       memory: "Geometric = 'growth': can't grow below zero."
     },
     {
@@ -43,19 +43,19 @@ export default ({
       def: "Sort the n historical returns worst-to-best; VaR is the observation at rank \\((\\alpha \\times n)+1\\), the loss that cuts the worst \\(\\alpha\\)% off.",
       intuition: "Zero distributional assumptions: the data IS the distribution. That's its strength (handles skew and fat tails automatically) and its weakness (it can't imagine anything worse than what already happened).",
       example: "1,000 monthly returns, 95% → 51st worst. If that return is −15.5% on a $1,000,000 position, monthly VaR = $155,000.",
-      counter: "An IPO with three months of history, or a market that just shifted regimes: HS has nothing valid to sort. That failure motivates mapping (R5) and weighting (R2).",
+      counter: "A stock that just did its initial public offering, with only three months of trading history, or a market that just shifted regimes: HS has nothing valid to sort. That failure motivates mapping (R5) and weighting (R2).",
       pitfall: "The 50th-vs-51st observation ambiguity has genuinely been tested both ways. Know both conventions and follow the question.",
-      related: [{ r: 2, label: "R2 — weighted HS fixes equal weighting" }, { r: 3, label: "R3 — EVT fixes the unseen-tail problem" }],
+      related: [{ r: 2, label: "R2: weighted HS fixes equal weighting" }, { r: 3, label: "R3: Extreme Value Theory (EVT) fixes the unseen-tail problem" }],
       memory: "HS = 'History Sorted.'"
     },
     {
       name: "Parametric VaR (normal / lognormal)",
       def: "Assume a distribution for P&L (normal) or returns (lognormal); VaR falls out of the distribution's quantile formula instead of the empirical ranking.",
       intuition: "You trade data-hunger for assumption-risk. The formula needs only \\(\\mu\\) and \\(\\sigma\\), but if the true tail is fatter than normal, your VaR ends up systematically too small in exactly the states that matter.",
-      example: "XYZ's annual P&L is normal with mean $15M, SD $10M. VaR(5%) = −$15M + $10M×1.65 = $1.5M; VaR(1%) = −$15M + $10M×2.33 = $8.3M. Deeper confidence ⇒ larger VaR, always. Same formula on arithmetic returns instead of dollar P&L: a $100 portfolio whose return is normal with mean 10%, SD 20% gives VaR(5%) = −[0.10 − 0.20×1.65]×$100 = $23, i.e. 23% of the position at risk at 95% confidence.",
+      example: "XYZ's annual P&L is normal with mean $15M and a standard deviation (SD) of $10M. VaR(5%) = −$15M + $10M×1.65 = $1.5M; VaR(1%) = −$15M + $10M×2.33 = $8.3M. Deeper confidence ⇒ larger VaR, always. Same formula on arithmetic returns instead of dollar P&L: a $100 portfolio whose return is normal with mean 10%, SD 20% gives VaR(5%) = −[0.10 − 0.20×1.65]×$100 = $23, i.e. 23% of the position at risk at 95% confidence.",
       counter: "If a question shows VaR(99%) < VaR(95%), that's an impossibility being tested, not a computation.",
       pitfall: "Normal and lognormal VaR converge for small \\(\\sigma\\) and short horizons (e^x ≈ 1+x). Don't be surprised when the two 'agree': recognizing the convergence is itself the question.",
-      related: ["QQ plots — checking the assumption", { r: 15, label: "R15 — the market itself rejects lognormal (smiles)" }]
+      related: ["QQ plots: checking the assumption", { r: 15, label: "R15: the market itself rejects lognormal (smiles)" }]
     },
     {
       name: "Expected Shortfall",
@@ -63,7 +63,7 @@ export default ({
       intuition: "VaR asks 'where does the tail start?'; ES asks 'how bad is it in there, on average?' Computed as the average of VaRs at deeper and deeper confidence levels within the tail.",
       example: "Slice the 5% tail into 5 equal slices, read the VaR at each boundary, average them. More slices → converges to true ES.",
       pitfall: "ES ≥ VaR at the same confidence level, always, for any distribution: an average of losses each at least as bad as VaR cannot be smaller than VaR.",
-      related: [{ r: 16, label: "R16 — FRTB makes 97.5% ES the law" }, "Coherent risk measures"],
+      related: [{ r: 16, label: "R16: FRTB makes 97.5% ES the law" }, "Coherent risk measures"],
       memory: "VaR is the door to the tail; ES is the average temperature inside."
     },
     {
@@ -71,17 +71,17 @@ export default ({
       def: "A weighted average of quantiles across the ENTIRE distribution, with weights given by a chosen risk-aversion function. ES is the special case where the weight is 1/(1−c) inside the tail and zero elsewhere.",
       intuition: "The general recipe says: express how much you dislike each part of the loss distribution, then average with those dislikes as weights. ES's 'dislike function' is an indicator: only the tail counts, equally.",
       pitfall: "'Coherent risk measure' ≠ 'ES.' ES is ONE example. The general coherent measure weights every quantile, not just tail quantiles. The exam treats them as interchangeable to catch you out.",
-      example: "Worked illustration from the source with n=10: split the whole loss distribution (not just the tail) into 9 equal-probability slices at the 10%, 20%, …, 90% quantiles. Under a standard normal, the 10% quantile is −1.2816, the 20% quantile is −0.8416, …, the 90% quantile is +1.2816. Multiply each quantile by the analyst's own risk-aversion weight (not equal weights, unlike ES) and average; that average is the coherent risk measure. To decide how many slices (n) is enough, start small and keep doubling n. Each doubling halves the slice width, and you track the resulting change in the estimate (the 'halving error'). Once the halving error is near zero, the estimate has converged and you can stop.",
-      related: [{ r: 6, label: "R6 — spectral measures & subadditivity" }],
+      example: "For example, with n=10: split the whole loss distribution (not just the tail) into 9 equal-probability slices at the 10%, 20%, …, 90% quantiles. Under a standard normal, the 10% quantile is −1.2816, the 20% quantile is −0.8416, …, the 90% quantile is +1.2816. Multiply each quantile by the analyst's own risk-aversion weight (not equal weights, unlike ES) and average; that average is the coherent risk measure. To decide how many slices (n) is enough, start small and keep doubling n. Each doubling halves the slice width, and you track the resulting change in the estimate (the 'halving error'). Once the halving error is near zero, the estimate has converged and you can stop.",
+      related: [{ r: 6, label: "R6: spectral measures and subadditivity" }],
       memory: "Coherent = whole distribution, chosen weights; ES = tail only, flat weights."
     },
     {
       name: "Standard errors & confidence intervals for risk estimates",
       def: "An estimated VaR/ES is a statistic with sampling error: SE(q) = \\(\\sqrt{p(1- p)/n}/f(q)\\), giving a confidence band around the risk number itself.",
       intuition: "A VaR of $10M estimated from 100 observations and one estimated from 10,000 are not equally trustworthy, and the SE quantifies exactly how much. Note that the confidence interval around the quantile is a two-tailed construction (a critical value on each side), even though VaR itself is a one-tailed concept. A 90% CI leaves 5% probability in each tail of the CI, which is why it happens to reuse the same z=1.65 critical value as the 5% VaR in the worked example below (a coincidence of the numbers chosen, not a rule).",
-      example: "Worked example from the source: build a 90% CI for the 5% VaR (the 95% quantile) of a standard normal, with bin width h=0.1 and n=500 observations. The quantile itself is q=1.65. The bin sits at q±h/2, i.e. between 1.60 and 1.70. From the z-table, P(Z>1.70)=0.045 and P(Z<1.60)=0.945, so the probability mass inside the bin is f(q)=1−0.045−0.945=0.01. Plug p=0.05 (the tail probability), n=500, and f(q)=0.01 into SE(q)=√[p(1−p)/n]/f(q) to get the standard error, then build the CI as q±1.65×SE(q). Comparative statics the exam tests: n↑ → SE↓. Bin width h↑ → f(q)↑ → SE↓. p toward 0.5 → p(1−p)↑ → SE↑ (maximized exactly at p=0.5).",
+      example: "Build a 90% CI for the 5% VaR (the 95% quantile) of a standard normal, with bin width h=0.1 and n=500 observations. The quantile itself is q=1.65. The bin sits at q±h/2, i.e. between 1.60 and 1.70. From the z-table, P(Z>1.70)=0.045 and P(Z<1.60)=0.945, so the probability mass inside the bin is f(q)=1−0.045−0.945=0.01. Plug p=0.05 (the tail probability), n=500, and f(q)=0.01 into SE(q)=√[p(1−p)/n]/f(q) to get the standard error, then build the CI as q±1.65×SE(q). Comparative statics the exam tests: n↑ → SE↓. Bin width h↑ → f(q)↑ → SE↓. p toward 0.5 → p(1−p)↑ → SE↑ (maximized exactly at p=0.5).",
       pitfall: "Deep-tail quantiles have few data points supporting them, which is the tension that motivates EVT (R3). Don't confuse this with the SE formula's own behavior: the formula says SE can actually be *smaller* at extreme p, because p(1−p) shrinks as p moves away from 0.5. The real problem with deep tails is data scarcity, not the formula.",
-      related: [{ r: 3, label: "R3 — EVT for data-starved tails" }]
+      related: [{ r: 3, label: "R3: EVT for data-starved tails" }]
     },
     {
       name: "QQ plots",
@@ -89,7 +89,7 @@ export default ({
       intuition: "It's a face-to-face lineup of 'what my data did' vs 'what the model says it should have done', quantile by quantile. The divergence pattern in the tails is the visual signature of crash risk the normal understates.",
       example: "Comparing a standard normal (theoretical) to a fat-tailed t-distribution (empirical): at 95% confidence the normal critical value is z=−1.65 while the t-distribution (≈40 degrees of freedom) sits further out at ≈−1.68; at 97.5% confidence the gap widens further, normal z=−1.96 vs t≈−2.02. Near the median (50% quantile) both plot almost exactly at zero, so the QQ line is straight in the middle and bends away from the 45° line only at the ends. That bend is the diagnostic signature of fat tails.",
       pitfall: "QQ plots are a visual, diagnostic tool only: they 'identify' or 'inspect', not 'test' or 'prove', a distributional assumption. That verb distinction is a tested trap.",
-      related: [{ r: 3, label: "R3 — what to do once you see fat tails" }]
+      related: [{ r: 3, label: "R3: what to do once you see fat tails" }]
     }
   ],
 
@@ -132,7 +132,7 @@ export default ({
 
   recall: [
     { q: "Explain to a non-quant colleague why two portfolios with identical 95% VaR can have very different risk.", a: "VaR only marks the threshold where the worst 5% begins. One portfolio's tail might lose 1.1× VaR on bad days, another's 10× VaR. ES exposes this because it averages the tail; VaR is blind to it by construction." },
-    { q: "You have 500 daily returns and want 99% HS VaR. Which observation do you take, and what's the ambiguity?", a: "0.01×500 = 5 tail observations; book convention takes the (5+1) = 6th worst. Some exams use the 5th worst \\((\\alpha n)\\). Follow the stated convention; default to \\((\\alpha n)+1\\)." },
+    { q: "You have 500 daily returns and want 99% HS VaR. Which observation do you take, and what's the ambiguity?", a: "0.01×500 = 5 tail observations; the \\((\\alpha n)+1\\) convention takes the (5+1) = 6th worst. Some exams use the 5th worst \\((\\alpha n)\\). Follow the stated convention; default to \\((\\alpha n)+1\\)." },
     { q: "Why does the lognormal model guarantee prices can't go negative, and when does that guarantee stop mattering numerically?", a: "Returns are modeled as \\(ln(P_{1}/P_{0})\\), so the implied price is \\(P_{0}\\cdot e^r\\) > 0 always. For small \\(\\sigma /short\\) horizons e^x ≈ 1+x, so lognormal and normal VaR converge: the guarantee is there but the numbers barely differ." },
     { q: "What happens to the SE of a quantile estimate if you increase the bin width h?", a: "Wider bins capture more probability mass, raising f(q), which sits in the denominator, so SE falls and the confidence interval narrows." },
     { q: "Why is ES described as 'the average of VaRs'? What limit makes this exact?", a: "Slice the tail into n equal-probability slices and average the VaR at each slice boundary; as n→∞ the average converges to E[L | L > VaR], the true ES." }
@@ -173,10 +173,10 @@ export default ({
 
   quiz: [
     {
-      q: "You have 1,000 sorted daily P&L observations (worst to best) and want 95% historical simulation VaR using the book's rank convention. Which observation is VaR?",
+      q: "You have 1,000 sorted daily P&L observations (worst to best) and want 95% historical simulation VaR using the (α×n)+1 rank convention. Which observation is VaR?",
       options: ["The 50th worst observation", "The 51st worst observation", "The 500th worst observation", "The 950th worst observation"],
       answer: 1,
-      why: "Rank = (α×n)+1 = (0.05×1000)+1 = 51. The 50th-worst answer is the other convention that has also appeared on past exams, not wrong knowledge, but not the book's default; know both and follow whichever the question specifies."
+      why: "Rank = (α×n)+1 = (0.05×1000)+1 = 51. The 50th-worst answer is the other convention that has also appeared on past exams, not wrong knowledge, but not the default used here; know both and follow whichever the question specifies."
     },
     {
       q: "XYZ's annual P&L is normally distributed with mean $15M and SD $10M. What is the 99% VaR?",
@@ -186,7 +186,7 @@ export default ({
     },
     {
       q: "Portfolio A and Portfolio B report identical 95% VaR. What can you conclude about their risk?",
-      options: ["They have identical risk in every respect", "They have identical tail severity beyond the 95% threshold", "Nothing about tail severity — ES could differ enormously even though VaR matches", "Portfolio B must have a fatter tail than Portfolio A"],
+      options: ["They have identical risk in every respect", "They have identical tail severity beyond the 95% threshold", "Nothing about tail severity: ES could differ enormously even though VaR matches", "Portfolio B must have a fatter tail than Portfolio A"],
       answer: 2,
       why: "VaR only marks where the tail begins; it is blind to everything beyond it. Two portfolios can share a VaR while one's tail losses average 1.1×VaR and the other's average 10×VaR, and that gap only shows up in ES. The 'identical risk in every respect' and 'identical tail severity' answers wrongly assume VaR captures severity; the 'B must have a fatter tail' answer assumes a difference the question gives no basis for."
     },
@@ -211,7 +211,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Minimum capital requirements for market risk (FRTB) — BIS", url: "https://www.bis.org/bcbs/publ/d457.htm", note: "The regulatory document that later replaces VaR with 97.5% ES as the standard capital measure — the destination this reading's ruler is built for (see R16)." }
+    { title: "BIS: Minimum capital requirements for market risk (FRTB)", url: "https://www.bis.org/bcbs/publ/d457.htm", note: "The regulatory document that later replaces VaR with 97.5% ES as the standard capital measure. It is the destination this reading's ruler is built for (see R16)." }
   ],
 
   pdf: { book: 1, query: "the focus is on the estimation of market risk measures" },

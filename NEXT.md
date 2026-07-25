@@ -1,3 +1,3 @@
-DONE: R36 cleared as the content-run pilot (full rewrite: 96 dashes to 0, enumerations out of three defs, problem-first intuition, abbreviations expanded, indeterminate quiz Q1 replaced, 3.27% arithmetic error fixed). Validator/tests/build/render all green.
-NEXT: Await owner sign-off on the R36 diff, then run wave 1 (r01-r05) of content-sonnet-clearance.
+DONE: Wave 1 of content-sonnet-clearance (r01-r05, Book 1) cleared and Opus-A gated. Two real math/directional defects caught and independently verified: r03's reciprocal peaks-over-threshold ratio, r04's inverted eli5 direction plus a 97/97.5 confidence-level contradiction.
+NEXT: Run wave 2 (r06-r10, Book 1 source lines 1969-3314).
 BLOCKERS: none.

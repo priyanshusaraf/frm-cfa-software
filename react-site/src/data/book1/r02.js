@@ -4,20 +4,20 @@ export default ({
   title: "Non-Parametric Approaches",
   tagline: "Historical simulation, upgraded. You keep the 'let the data speak' philosophy, but stop treating a 3-year-old observation like yesterday's news.",
 
-  teaches: `<p>Reading 1 left you with two extremes: assume nothing (historical simulation) or assume everything (a full parametric distribution). This reading builds the middle ground, four upgrades that keep HS's assumption-free character while fixing its two structural flaws. First, every observation in the window gets equal weight regardless of age or regime. Second, you can only read VaR at confidence levels your data happens to support.</p>
+  teaches: `<p>Reading 1 left you with two extremes: assume nothing (historical simulation, HS) or assume everything (a full parametric distribution). This reading builds the middle ground, four upgrades that keep HS's assumption-free character while fixing its two structural flaws. First, every observation in the window gets equal weight regardless of age or regime. Second, you can only read Value at Risk (VaR) at confidence levels your data happens to support.</p>
   <p>You'll learn <strong>bootstrapping</strong> (precision through resampling), <strong>density smoothing</strong> (VaR at any confidence level), and the four <strong>weighting schemes</strong>: age-weighted, volatility-weighted, correlation-weighted, and filtered historical simulation.</p>`,
 
   why: `<p>Plain HS has a failure mode called the <strong>ghost effect</strong>. A single crash day dominates VaR for exactly n days, then vanishes overnight the moment it rolls out of the window, even though nothing changed in the market that day. Risk numbers that jump for administrative reasons destroy credibility with traders and regulators alike. The weighting schemes exist to make HS's memory fade gradually, and to make its inputs reflect today's volatility regime rather than an average of stale ones.</p>`,
 
   intuition: `<p>Think of your historical window as a committee voting on today's risk. Plain HS gives every member an equal vote, including the member who joined 4 years ago in a different regime, then expels members abruptly on their n-th day. The fixes are all re-weightings of that committee.</p>
-  <p><strong>Age-weighting</strong>: recent members get louder votes, fading geometrically \\((\\lambda )\\). <strong>Volatility-weighting</strong>: every member's testimony gets restated in today's units. That return happened when vol was 2x, so scale it down. <strong>Correlation-weighting</strong>: same restatement, applied to how assets co-move, not just how much each moves. <strong>Filtered HS</strong>: the full treatment. Strip each return down to its standardized shock, bootstrap the shocks, re-dress them in today's (GARCH-forecast) volatility. Only FHS can generate losses worse than anything in the historical record, because recombined shocks can land in configurations history never produced.</p>`,
+  <p><strong>Age-weighting</strong>: recent members get louder votes, fading geometrically \\((\\lambda )\\). <strong>Volatility-weighting</strong>: every member's testimony gets restated in today's units. That return happened when vol was 2x, so scale it down. <strong>Correlation-weighting</strong>: same restatement, applied to how assets co-move, not just how much each moves. <strong>Filtered historical simulation (FHS)</strong>: the full treatment. Strip each return down to its standardized shock, bootstrap the shocks, re-dress them in today's volatility forecast from a GARCH (Generalized Autoregressive Conditional Heteroskedasticity) model. Only FHS can generate losses worse than anything in the historical record, because recombined shocks can land in configurations history never produced.</p>`,
 
   visual: `<div class="widget" data-widget="decay"></div>`,
 
-  eli5: `<p>Picture a jury of 250 witnesses, one for each of the last 250 trading days, each testifying about how bad tomorrow could get. Plain historical simulation treats every witness's opinion as equally credible. The witness from 249 days ago, back when the market was in a totally different mood, gets exactly as loud a voice as the witness from yesterday. And the moment a witness's 250-day term expires, they're marched out of the room and never heard from again, even if nothing in the world actually changed that day. The fixes in this reading are all about running a fairer jury. <strong>Age-weighting</strong> lets older witnesses speak more softly the further back they testified from, instead of at full volume until they're suddenly evicted. <strong>Volatility-weighting</strong> asks each witness to restate their testimony in today's terms (a crash witnessed during a calm year should count for less than the same-size crash witnessed during a wild one). <strong>Bootstrapping</strong> polls the same jury thousands of times and averages the verdicts to smooth out noise from any one particular polling. Mapped to finance: the witnesses are historical daily P&L observations, the verdict is the VaR/ES estimate, and the reweighting schemes are ways of fixing which observations get how much say in that estimate.</p>`,
+  eli5: `<p>Picture a jury of 250 witnesses, one for each of the last 250 trading days, each testifying about how bad tomorrow could get. Plain historical simulation treats every witness's opinion as equally credible. The witness from 249 days ago, back when the market was in a totally different mood, gets exactly as loud a voice as the witness from yesterday. And the moment a witness's 250-day term expires, they're marched out of the room and never heard from again, even if nothing in the world actually changed that day. The fixes in this reading are all about running a fairer jury. <strong>Age-weighting</strong> lets older witnesses speak more softly the further back they testified from, instead of at full volume until they're suddenly evicted. <strong>Volatility-weighting</strong> asks each witness to restate their testimony in today's terms (a crash witnessed during a calm year should count for less than the same-size crash witnessed during a wild one). <strong>Bootstrapping</strong> polls the same jury thousands of times and averages the verdicts to smooth out noise from any one particular polling. Mapped to finance: the witnesses are historical daily profit-and-loss observations, the verdict is the VaR or ES (Expected Shortfall) estimate, and the reweighting schemes are ways of fixing which observations get how much say in that estimate.</p>`,
 
   thinkLike: `<p>A risk manager rolling weighted HS into production isn't choosing "the best" method in the abstract. They're choosing which flaw of plain HS they can least tolerate this quarter. If the desk just lived through a violent regime and the risk committee is worried that a 3-year-old crash observation is still propping up VaR, age-weighting is the natural fix, because it targets staleness directly. If the desk's real complaint is that markets have gotten calmer (or wilder) recently and the historical window hasn't caught up, volatility-weighting is the fix, since it targets the wrong-regime problem rather than the wrong-age problem, a distinction the exam leans on constantly. Filtered HS is the give-me-everything answer: a trading desk running FX or rates books with known volatility clustering (calm spells followed by clusters of turbulence) wants a method that can generate tail losses beyond anything literally observed, because plain and even volatility-weighted HS are mechanically bounded by history's worst day.</p>
-  <p>On the exam, GARP tests this reading almost entirely as a matching exercise: given a described flaw (ghost effect, discrete confidence levels, stale correlations, regime mismatch, clustering), pick the one weighting scheme built to fix exactly that flaw, and reject the tempting "it also fixes X" distractor, because none of these schemes fix more than the specific weakness they target. The other recurring test pattern is the boundary case: what happens as \\(\\lambda\\to 1\\) or \\(\\lambda\\to 0\\), and whether a given method's calculated VaR can exceed the historical maximum loss (no for plain and volatility-weighted HS in the general case that GARP tests; yes for FHS).</p>`,
+  <p>On the exam, this reading is tested almost entirely as a matching exercise: given a described flaw (ghost effect, discrete confidence levels, stale correlations, regime mismatch, clustering), pick the one weighting scheme built to fix exactly that flaw, and reject the tempting "it also fixes X" distractor, because none of these schemes fix more than the specific weakness they target. The other recurring test pattern is the boundary case: what happens as \\(\\lambda\\to 1\\) or \\(\\lambda\\to 0\\), and whether a given method's calculated VaR can exceed the historical maximum loss (no for plain and volatility-weighted HS in the general case tested here; yes for FHS).</p>`,
 
   formulas: [
     {
@@ -34,7 +34,7 @@ export default ({
     {
       name: "Volatility-weighted return adjustment",
       math: "r^{*}_{t} = \\dfrac{\\sigma_{T}}{\\sigma_{t}} \\times r_{t}",
-      note: "\\(\\sigma_T\\) = current (GARCH/EWMA) forecast, \\(\\sigma_t\\) = vol on the day the return occurred. The data changes; the VaR procedure doesn't.",
+      note: "\\(\\sigma_T\\) = current (GARCH or EWMA, Exponentially Weighted Moving Average) forecast, \\(\\sigma_t\\) = vol on the day the return occurred. The data changes; the VaR procedure doesn't.",
       plain: "Rescale a historical return by the ratio of today's forecast volatility to the volatility that actually prevailed on the day that return happened, so every return gets re-expressed in today's units before ordinary historical simulation runs on the adjusted numbers.",
       derivation: `<p>Take a historical return \\(r_{t}\\) observed on day \\(t\\), when the prevailing (GARCH- or EWMA-estimated) volatility was \\(\\sigma_{t}\\). Hull and White's insight is that the "shock size in standard-deviation units" is the economically meaningful, regime-independent quantity, not the raw percentage return:</p>
       \\[ z_{t} = \\dfrac{r_{t}}{\\sigma_{t}} \\]
@@ -51,7 +51,7 @@ export default ({
       intuition: "It's like polling: instead of trusting one sample of 1,000 voters, you draw thousands of resamples from that same pool and average. You get a more stable estimate with no new data collected.",
       example: "Averaging 5,000 resampled VaRs smooths out the sampling noise a single sorted-list pass inherits from whichever observations happened to land near the quantile.",
       pitfall: "Bootstrapping improves precision (lower variance of the estimate). It does NOT fix stale data, regime changes, or unseen tails.",
-      related: [{ r: 1, label: "R1: SE of quantile estimators (what bootstrapping shrinks)" }],
+      related: [{ r: 1, label: "R1: standard error of quantile estimators (what bootstrapping shrinks)" }],
       memory: "Bootstrap = 'ask the same crowd a thousand times.'"
     },
     {
@@ -86,7 +86,7 @@ export default ({
     },
     {
       name: "Filtered historical simulation (FHS)",
-      def: "Standardize returns by conditional (GARCH-type) volatility, bootstrap the standardized residuals, then rescale by current volatility forecasts to simulate P&L paths.",
+      def: "Standardize returns by conditional (GARCH-type) volatility, bootstrap the standardized residuals, then rescale by current volatility forecasts to simulate profit-and-loss paths.",
       intuition: "Disassemble history into pure shocks, shuffle them, reassemble in today's volatility clothing. Captures volatility clustering and asymmetric shocks.",
       example: "Because bootstrapped shocks recombine freely, FHS can produce losses OUTSIDE the historical range. It's the only HS variant that can.",
       pitfall: "'HS can never exceed the historical maximum loss' is true for PLAIN HS, mostly false for FHS. The exam tests this exact nuance.",
@@ -120,7 +120,7 @@ export default ({
   ],
 
   highYield: [
-    { stars: 5, what: "The four weighting approaches and exactly which flaw each one fixes.", why: "GARP's favorite format here is matching the method to the weakness: ghost effects to age, regime mismatch to volatility, co-movement staleness to correlation, everything plus clustering to FHS." },
+    { stars: 5, what: "The four weighting approaches and exactly which flaw each one fixes.", why: "The favorite exam format here is matching the method to the weakness: ghost effects to age, regime mismatch to volatility, co-movement staleness to correlation, everything plus clustering to FHS." },
     { stars: 4, what: "\\(\\lambda\\) extreme cases: \\(\\lambda\\)→1 = plain HS; \\(\\lambda\\)→0 = only-recent-data.", why: "Boundary-value questions are the standard trap format in this reading." },
     { stars: 4, what: "'Data adjusted, procedure unchanged' for Hull-White vol weighting.", why: "A verbatim tested distinction." },
     { stars: 3, what: "Advantages/disadvantages table of non-parametric methods.", why: "Conceptual multiple-choice fodder: no distribution assumed, handles skew, but window-dependent and understated after quiet periods." },
@@ -154,7 +154,7 @@ export default ({
       ]
     },
     {
-      title: "Advantages and disadvantages of non-parametric methods (Reading's LO 2.d table)",
+      title: "Advantages and disadvantages of non-parametric methods",
       points: [
         "Advantage: intuitive and computationally simple, even on a spreadsheet, with no distributional assumption required.",
         "Advantage: handles skewness and fat tails naturally, without any adjustment for non-normality.",
@@ -191,7 +191,7 @@ export default ({
         "The adjusted return is −1.6%, but a new GARCH-based VaR formula must replace the historical simulation ranking step"
       ],
       answer: 1,
-      why: "r* = (σ_T/σ_t) × r = (12/30) × (−4%) = −1.6%. GARP's exact tested distinction is that only the input data is rescaled; the VaR calculation procedure (sort the adjusted returns and read off the quantile, exactly as in plain HS) is unchanged. Inverting the ratio to get −10% and claiming a method change misreads the formula both ways, claiming a new GARCH-based formula replaces the ranking step wrongly assumes the ranking step gets replaced, and leaving the return at −4% ignores that the adjustment applies to historical, not future, data."
+      why: "r* = (σ_T/σ_t) × r = (12/30) × (−4%) = −1.6%. The exact tested distinction is that only the input data is rescaled; the VaR calculation procedure (sort the adjusted returns and read off the quantile, exactly as in plain HS) is unchanged. Inverting the ratio to get −10% and claiming a method change misreads the formula both ways, claiming a new GARCH-based formula replaces the ranking step wrongly assumes the ranking step gets replaced, and leaving the return at −4% ignores that the adjustment applies to historical, not future, data."
     },
     {
       q: "Which statement correctly distinguishes correlation-weighted HS from volatility-weighted HS?",
@@ -219,7 +219,7 @@ export default ({
       q: "A trading desk restricts its historical simulation window to the unusually calm three-year period from 2017 to 2019, then applies bootstrapping to improve precision. What is the most likely consequence, and does bootstrapping fix it?",
       options: [
         "VaR/ES will be overstated because bootstrapping amplifies extreme resamples, and this is a real bias bootstrapping cannot fix",
-        "VaR/ES will be understated because the window lacks stress observations, and bootstrapping does not fix this — it only reduces the variance of the estimate, not the bias from an unrepresentative window",
+        "VaR/ES will be understated because the window lacks stress observations, and bootstrapping does not fix this: it only reduces the variance of the estimate, not the bias from an unrepresentative window",
         "VaR/ES will be accurate because bootstrapping introduces new information by resampling with replacement",
         "VaR/ES will be understated, but bootstrapping fully corrects it by simulating stress scenarios the window never contained"
       ],

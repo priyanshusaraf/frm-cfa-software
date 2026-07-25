@@ -130,6 +130,55 @@ rest.
   margin example if it does not fit R33. R35's CCP loss-waterfall now has the
   `waterfall-flow` widget (Phase 1).
 
+### Wave 1 (R01-R05, Book 1, 2026-07-25) and what the gate learned
+
+**Book 1 is in much better shape than CLAUDE.md §8.1 claims.** All five files already
+passed the validator and carried only 1 to 13 dashes each. The stale 7,614-dash figure
+should not set expectations: the live count is 7,293 across 97 files and it is
+concentrated in Books 2 through 5. Wave 1 was mostly abbreviations, meta-references and
+two real math defects. Budget accordingly, and do not assume a reading is broken because
+the backlog says the corpus is.
+
+**Two defect classes the gate caught that a Sonnet pass will keep producing:**
+
+1. **A directional fix can introduce a NEW inversion one clause later.** R04's `eli5`
+   smoke-detector analogy had "too many exceptions" mapped to overstating risk, which is
+   backwards. The agent fixed that half correctly and then wrote that a detector which
+   "almost never goes off" is "set to trigger on the faintest wisp of smoke", which would
+   make it go off constantly. **When an agent reports a directional fix, re-read the whole
+   surrounding passage, not the clause it changed.** Both halves of a comparison have to
+   be re-derived, because the writer's mental model was wrong when they wrote both.
+2. **An `example` field can contradict the formula it sits under.** R03's peaks-over-
+   threshold concept told students to compute \((N_u/n)/(1-c)\), the reciprocal of the
+   \((n/N_u)\times(1-c)\) used by the formula, the derivation and the quiz in the same
+   file. It read fine. The only way to catch it is to plug numbers in.
+
+**How to verify a formula orientation cheaply:** Schweser's own module-quiz answer keys
+are worked numbers with known results. Reproducing one settles an orientation question in
+a minute. The POT VaR orientation was confirmed by reproducing the source's
+\(\beta=0.9, \xi=0.15, u=2\%, N_u/n=4\%, c=95\% \to 1.8025\%\) exactly; the wrong
+orientation does not land anywhere near it. Do this rather than reasoning about it.
+
+**Source-internal inconsistency is real and needs a stated rule.** R04's 1.24x capital
+ratio is tied to a 97% confidence level at Book 1 lines 1331 and 1489, and to 97.5% at
+line 1493. The file had shipped both. Rule applied, and to apply again: **pick the reading
+where the figure is actually derived (here 1489, the passage that states the 1.24x), use
+it everywhere in the file, and flag the discrepancy rather than silently averaging.**
+
+**Per reading, briefly:**
+- **R01 (Estimating Market Risk Measures):** clean going in. All 12 dashes were in
+  `related` labels ("R# : label" now). Math was already right throughout.
+- **R02 (Non-Parametric Approaches):** genuinely good as written, ghost-effect mechanism
+  and the filtered-historical-simulation explanation both already carry their why. Only
+  abbreviations and three GARP attributions needed work. Do not rewrite this one.
+- **R03 (Extreme Value Theory):** the reciprocal defect above. Also standardized GP/GPD,
+  which had been floating as three different names for one distribution.
+- **R04 (Backtesting VaR):** the two defects above. Everything else (z-tests, Kupiec
+  3.84 = 1.96 squared, Basel zone boundaries) recomputed correct.
+- **R05 (VaR Mapping):** every worked number matches the source, and the counterintuitive
+  claims (more mapping precision usually LOWERS VaR; a low-VaR barbell can carry the
+  highest tracking error) already carry their mechanism. Leave the substance alone.
+
 ### R36 — Future Value and Exposure (PILOT of the content-sonnet-clearance run, 2026-07-25)
 
 Owner called this one "horribly written" and picked it as the pilot precisely because

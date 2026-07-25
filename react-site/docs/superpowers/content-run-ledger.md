@@ -38,11 +38,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 
 | rn | bk | title | p3 | content | wave | opusA | notes |
 |----|----|-------|----|---------|------|-------|-------|
-| 1 | 1 | Estimating Market Risk Measures | done | todo | 1 | - | |
-| 2 | 1 | Non-Parametric Approaches | done | todo | 1 | - | |
-| 3 | 1 | Parametric Approaches (II): Extreme Value Theory | done | todo | 1 | - | |
-| 4 | 1 | Backtesting VaR | done | todo | 1 | - | |
-| 5 | 1 | VaR Mapping | done | todo | 1 | - | |
+| 1 | 1 | Estimating Market Risk Measures | done | done | 1 | pass |  |
+| 2 | 1 | Non-Parametric Approaches | done | done | 1 | pass | Good as written; only abbreviations + GARP attributions. |
+| 3 | 1 | Parametric Approaches (II): Extreme Value Theory | done | done | 1 | pass | Fixed reciprocal POT ratio in concepts example. |
+| 4 | 1 | Backtesting VaR | done | done | 1 | pass | Fixed inverted eli5 direction + 97/97.5 contradiction. |
+| 5 | 1 | VaR Mapping | done | done | 1 | pass |  |
 | 6 | 1 | Messages From the Academic Literature | done | todo | 2 | - | |
 | 7 | 1 | Correlation Basics | done | todo | 2 | - | |
 | 8 | 1 | Empirical Properties of Correlation | done | todo | 2 | - | |

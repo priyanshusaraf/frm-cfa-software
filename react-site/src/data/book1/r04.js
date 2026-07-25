@@ -4,7 +4,7 @@ export default ({
   title: "Backtesting VaR",
   tagline: "Three readings gave you ways to produce a risk number. This one answers the only question a regulator cares about: how do you know it can be trusted?",
 
-  teaches: `<p>Backtesting compares predicted VaR against realized losses. You learn the vocabulary (<strong>exceptions</strong>, failure rates), the statistics (z-test, <strong>Kupiec unconditional coverage LR test</strong>, Christoffersen conditional coverage), the error taxonomy (Type I vs Type II and who bears each cost), and the regulatory implementation (<strong>Basel traffic-light zones</strong> with capital multipliers).</p>
+  teaches: `<p>Backtesting compares predicted value at risk (VaR) against realized losses. You learn the vocabulary (<strong>exceptions</strong>, failure rates), the statistics (z-test, <strong>Kupiec unconditional coverage likelihood-ratio (LR) test</strong>, Christoffersen conditional coverage), the error taxonomy (Type I vs Type II and who bears each cost), and the regulatory implementation (<strong>Basel traffic-light zones</strong> with capital multipliers).</p>
   <p>This is the reading most likely to appear as a 'which statistic tests what' conceptual question. The map of tests matters more than any single formula.</p>`,
 
   why: `<p>A VaR model that never gets audited is a story, not a measurement. Banks hold capital as a multiple of VaR, so a bank whose model understates risk holds too little capital while looking compliant. Basel's answer: count the days actual losses exceeded 99% VaR over 250 days; more than 4 and the capital multiplier starts rising. The statistics exist because randomness is noisy. Even a perfect model produces bad-luck exception streaks, and even a broken model can get lucky. The tests separate luck from defect, imperfectly, which is exactly what the Type I/II framework quantifies.</p>`,
@@ -12,7 +12,7 @@ export default ({
   intuition: `<p>Your VaR model is a weather forecaster claiming '5% chance of a storm-level loss each day.' Over 252 days you expect ≈12.6 storms. If you observe 22, is the forecaster broken or unlucky? That's a coin-flip question in disguise, a binomial test on the exception count. The z-statistic and Kupiec LR are two dress codes for the same binomial logic.</p>
   <p>But counting storms isn't enough. Twelve storms scattered randomly is consistent with a good model. Twelve storms in one month means the model failed to adapt when the climate shifted, even though the COUNT looks fine. That's why conditional coverage (independence of exceptions over time) exists as a separate test.</p>`,
 
-  eli5: `<p>Imagine a smoke detector that is supposed to sound roughly once for every 20 times you seriously burn toast (a "5% chance of a beep per burn"). If it goes off way more than that, it's an oversensitive, annoying detector that will get ignored: the electronics equivalent of a VaR model that cries wolf and gets its warnings dismissed. If it almost never goes off, even when the kitchen is genuinely smoky, it's a broken, dangerously under-sensitive detector, the equivalent of a VaR model that understates risk. Now imagine it also stays silent for months and then beeps ten times in one smoky week. The total beep-count over the year might look "about right," but the pattern reveals the detector failed to react when conditions actually changed. Counting beeps is the <strong>unconditional</strong> test (did it go off the right number of times?); checking whether the beeps cluster around real danger is the <strong>conditional</strong> test (did it go off at the right times?). A bank's VaR model is graded on both.</p>`,
+  eli5: `<p>Imagine a smoke detector that is supposed to sound roughly once for every 20 times you seriously burn toast (a "5% chance of a beep per burn"). If it goes off way more than that, burnt toast is happening more often than the detector's own 5% promise: it was calibrated to trigger too easily, the equivalent of a VaR model that understates risk because real losses are breaching the line more often than the model claimed. If it almost never goes off, even though you burn toast just as often, its threshold has been set so high that only a real blaze would trip it: the equivalent of a VaR model that overstates risk, tying up capital as a cushion against losses that were never going to happen. Now imagine it also stays silent for months and then beeps ten times in one smoky week. The total beep count over the year might look "about right," but the pattern reveals the detector failed to react when conditions actually changed. Counting beeps is the <strong>unconditional</strong> test (did it go off the right number of times?); checking whether the beeps cluster around real danger is the <strong>conditional</strong> test (did it go off at the right times?). A bank's VaR model is graded on both.</p>`,
 
   thinkLike: `<p>A market-risk backtesting analyst does not ask "did my model produce exactly the textbook number of exceptions?" Noise guarantees it usually won't. The real question is a hypothesis test: given the number of exceptions actually observed, is it more consistent with "the model is fine and this is ordinary sampling variation" or with "the model is miscalibrated"? That reframing is why every tool in this reading, the z-test, Kupiec's LR, Christoffersen's LR, is a formal statistical test with a null hypothesis (the model is correctly calibrated) and a rejection rule, not a simple threshold count.</p>
   <p>The exam tests this reading almost entirely as a "which statistic catches what" map, not as heavy computation. You should be able to instantly answer: does this test see the exception count, the timing, or both? Which error type (Type I or Type II) is the question describing? Which of the four Basel yellow-zone causes is being hinted at, and is "small sample size" being planted as bait? A practitioner internalizes that regulators are asymmetric. They would rather occasionally punish an unlucky-but-correct model (Type I) than let a genuinely broken one keep operating with too little capital behind it (Type II), because the systemic cost of the latter is much larger. Every design choice in the Basel framework (penalties starting at just 5 exceptions, the 99% confidence mandate) follows from that asymmetry, so when a question asks "why does Basel do X," the answer is almost always "to guard against Type II risk."</p>`,
@@ -31,7 +31,7 @@ export default ({
       ]
     },
     {
-      title: "The four official Basel yellow-zone causes (5–9 exceptions, 250 days, 99% VaR)",
+      title: "The four official Basel yellow-zone causes (5-9 exceptions, 250 days, 99% VaR)",
       points: [
         "Basic integrity of the model is lacking: the model is poorly specified, or the data/code feeding it is flawed; a penalty applies.",
         "Model accuracy needs to be improved: the approximations used are simply not precise enough for the risk taken; a penalty applies.",
@@ -42,8 +42,8 @@ export default ({
     {
       title: "Basel traffic-light zones: boundaries and capital multipliers",
       points: [
-        "Green zone: 0–4 exceptions out of 250 days at 99% VaR. Multiplier k stays at its floor of 3.00; the regulator treats this range as consistent with a correctly calibrated model.",
-        "Yellow zone: 5–9 exceptions. Multiplier k rises on a sliding scale from 3.40 to 3.85, and supervisors use discretion (informed by the four causes above) about whether to penalize.",
+        "Green zone: 0-4 exceptions out of 250 days at 99% VaR. Multiplier k stays at its floor of 3.00; the regulator treats this range as consistent with a correctly calibrated model.",
+        "Yellow zone: 5-9 exceptions. Multiplier k rises on a sliding scale from 3.40 to 3.85, and supervisors use discretion (informed by the four causes above) about whether to penalize.",
         "Red zone: 10+ exceptions. Multiplier k jumps to 4.00 automatically. At this point the regulator presumes the model is broken, not merely unlucky."
       ]
     }
@@ -59,7 +59,7 @@ export default ({
         "The z-test cannot be run because 35 exceptions exceeds the Basel red-zone threshold"
       ],
       answer: 0,
-      why: "Expected exceptions = 0.05 × 500 = 25; SE = √(0.05×0.95×500) ≈ 4.87; z = (35−25)/4.87 ≈ 2.05, which exceeds the 1.96 critical value at 95% test confidence, so the model is rejected as understating risk. The tempting wrong answer, the 'fail to reject' conclusion, comes from misreading which side of 1.96 counts as rejection. The 'test cannot be run' answer wrongly imports the Basel 99%/250-day framework into a problem that uses different parameters (95%/500 days)."
+      why: "Expected exceptions = 0.05 × 500 = 25; standard error = √(0.05×0.95×500) ≈ 4.87; z = (35−25)/4.87 ≈ 2.05, which exceeds the 1.96 critical value at 95% test confidence, so the model is rejected as understating risk. The tempting wrong answer, the 'fail to reject' conclusion, comes from misreading which side of 1.96 counts as rejection. The 'test cannot be run' answer wrongly imports the Basel 99%/250-day framework into a problem that uses different parameters (95%/500 days)."
     },
     {
       q: "A VaR model produces exactly the expected number of exceptions over a year, but all of them occur in a single volatile month. Which statement is correct?",
@@ -76,7 +76,7 @@ export default ({
       q: "Why do bank regulators structurally accept a meaningful false-alarm (Type I) rate on genuinely good VaR models rather than setting a much higher exception trigger?",
       options: [
         "Because Type I errors are statistically impossible to reduce below 10%",
-        "Because a higher trigger would make Type II errors — letting a truly miscalibrated model pass undetected — more likely, and regulators view the systemic cost of that as larger",
+        "Because a higher trigger would make Type II errors (letting a truly miscalibrated model pass undetected) more likely, and regulators view the systemic cost of that as larger",
         "Because Basel requires exactly 5 exceptions regardless of model quality",
         "Because banks prefer more false alarms since it lowers their capital requirement"
       ],
@@ -98,12 +98,12 @@ export default ({
       q: "A bank's 99% VaR model over 250 days lands in the Basel red zone with 11 exceptions. What capital multiplier applies, and what does the red zone signify about the model?",
       options: [
         "k = 3.00; the model is presumed correctly calibrated",
-        "k = 3.40–3.85; supervisors use discretion on whether to penalize",
+        "k = 3.40-3.85; supervisors use discretion on whether to penalize",
         "k = 4.00; the regulator presumes the model itself is defective, not merely unlucky",
         "No multiplier applies; red-zone models are simply shut down with no capital calculation"
       ],
       answer: 2,
-      why: "10 or more exceptions out of 250 days at 99% VaR puts the model in the red zone, where the scaling factor k is fixed at 4.00 and applied automatically. The regulator no longer entertains 'bad luck' as an explanation. The '3.40–3.85, discretion' answer describes the yellow zone (5–9 exceptions), and the 'k = 3.00, presumed correctly calibrated' answer describes the green zone (0–4)."
+      why: "10 or more exceptions out of 250 days at 99% VaR puts the model in the red zone, where the scaling factor k is fixed at 4.00 and applied automatically. The regulator no longer entertains 'bad luck' as an explanation. The '3.40-3.85, discretion' answer describes the yellow zone (5-9 exceptions), and the 'k = 3.00, presumed correctly calibrated' answer describes the green zone (0-4)."
     },
     {
       q: "Why is the Kupiec test's rejection threshold of 3.84 described as 'the same test in different dress' as the z-test's 1.96 critical value?",
@@ -119,7 +119,7 @@ export default ({
   ],
 
   sources: [
-    { title: "Basel Committee on Banking Supervision — Amendment to the Capital Accord to Incorporate Market Risks", url: "https://www.bis.org/publ/bcbs24.htm", note: "The original BIS document introducing the traffic-light backtesting framework and capital multiplier zones referenced in this reading." }
+    { title: "Basel Committee on Banking Supervision: Amendment to the Capital Accord to Incorporate Market Risks", url: "https://www.bis.org/publ/bcbs24.htm", note: "The original BIS document introducing the traffic-light backtesting framework and capital multiplier zones referenced in this reading." }
   ],
 
   formulas: [
@@ -127,14 +127,14 @@ export default ({
       plain: "This is an ordinary standardized-score (z-score) test: it measures how many standard deviations the observed exception count x sits away from the number pT you'd expect if the model's stated failure probability p were exactly correct.",
       derivation: `<p>Each day is a Bernoulli trial: an exception happens with probability \\(p = 1 - \\text{confidence}\\), or it doesn't. Over \\(T\\) independent days, the total exception count \\(x\\) is Binomial\\((T, p)\\), which has:</p>
       \\[ E[x] = pT, \\qquad \\text{Var}(x) = p(1-p)T \\]
-      <p>For large \\(T\\) the binomial is well approximated by a normal distribution (the Central Limit Theorem), so standardizing \\(x\\) the usual way — subtract its mean, divide by its standard deviation — gives:</p>
+      <p>For large \\(T\\) the binomial is well approximated by a normal distribution (the Central Limit Theorem), so standardizing \\(x\\) the usual way (subtract its mean, divide by its standard deviation) gives:</p>
       \\[ z = \\dfrac{x - pT}{\\sqrt{p(1-p)T}} \\sim N(0,1) \\text{ under the null that the model is correctly calibrated} \\]
       <p>Compare \\(|z|\\) to the normal critical value (1.96 at 95% test confidence) to decide whether the deviation is too large to be explained by ordinary sampling noise.</p>` },
     { name: "Kupiec unconditional coverage", math: "LR_{uc} \\sim \\chi^{2}(1); \\text{ reject if } LR_{uc} > 3.84", note: "3.84 = \\(1.96^{2}\\); the \\(\\chi^{2}\\) threshold is literally the squared normal critical value. The exam likes this 'aha.'",
       plain: "This is a likelihood-ratio statistic: it compares how likely the observed exception count is under the model's stated failure probability p versus under the failure rate that was actually observed (N/T); a big gap between those two likelihoods signals miscalibration.",
       derivation: `<p>Kupiec's statistic is the standard likelihood-ratio form, comparing the likelihood of the data under the null (true failure probability equals the model's stated \\(p\\)) against the likelihood under the unconstrained maximum-likelihood estimate of the failure rate, \\(\\hat p = N/T\\):</p>
       \\[ LR_{uc} = -2\\ln\\!\\left[(1-p)^{\\,T-N}\\,p^{\\,N}\\right] + 2\\ln\\!\\left[\\left(1-\\dfrac{N}{T}\\right)^{T-N}\\left(\\dfrac{N}{T}\\right)^{N}\\right] \\]
-      <p>The first bracket is the likelihood of seeing \\(N\\) exceptions in \\(T\\) days if the true failure probability really is the model's \\(p\\). The second bracket is the likelihood using the best-fitting failure rate given the data itself, \\(N/T\\). If the model is well calibrated the two likelihoods are close and \\(LR_{uc}\\) is small; if they diverge, \\(LR_{uc}\\) grows. Under the null, \\(-2\\) times this log-likelihood ratio is asymptotically \\(\\chi^{2}\\) with 1 degree of freedom — and since a \\(\\chi^{2}(1)\\) variable is just a squared standard normal, the 3.84 rejection threshold is exactly \\(1.96^{2}\\), the same critical value used by the z-test above. Same binomial logic, different dress code.</p>` },
+      <p>The first bracket is the likelihood of seeing \\(N\\) exceptions in \\(T\\) days if the true failure probability really is the model's \\(p\\). The second bracket is the likelihood using the best-fitting failure rate given the data itself, \\(N/T\\). If the model is well calibrated the two likelihoods are close and \\(LR_{uc}\\) is small; if they diverge, \\(LR_{uc}\\) grows. Under the null, \\(-2\\) times this log-likelihood ratio is asymptotically \\(\\chi^{2}\\) with 1 degree of freedom. Since a \\(\\chi^{2}(1)\\) variable is just a squared standard normal, the 3.84 rejection threshold is exactly \\(1.96^{2}\\), the same critical value used by the z-test above: same binomial logic, different dress code.</p>` },
     { name: "Christoffersen conditional coverage", math: "LR_{cc} = LR_{uc} + LR_{ind}; \\text{ reject if } LR_{cc} > 5.99 \\ (\\chi^{2}, 2\\,\\text{df})", note: "LR_ind alone: reject independence if > 3.84 \\((\\chi^{2}\\), 1df). You need what each tests, not hand computation.",
       plain: "This statistic bolts a second likelihood-ratio test onto Kupiec's: LRind separately tests whether exceptions are independent over time (not clustered), and LRcc simply adds that independence test to the count test so that a model can only pass if it gets both the total number of exceptions AND their timing right." }
   ],
@@ -167,7 +167,7 @@ export default ({
       def: "Type I: reject a CORRECT model (bank penalized unfairly). Type II: fail to reject a BAD model (regulator misses systemic danger).",
       intuition: "Regulators structurally fear Type II more. A dangerous model slipping through beats an unlucky bank in their nightmare ranking. That's why penalties start at just 5 exceptions even though a correct model lands there ≈10.8% of the time.",
       example: "Numbers worth recognizing: ≈10.8% Type I at 5+ exceptions (99% VaR); ≈12.8% Type II in the standard illustration (evaluated at 97% coverage).",
-      pitfall: "Also know: 99% VaR requires ≈1.24× the capital of 97.5%. Banks have an incentive to game confidence levels downward, which is why Basel mandates 99%.",
+      pitfall: "Also know: 99% VaR requires ≈1.24× the capital of 97% VaR. Banks have an incentive to game confidence levels downward, which is why Basel mandates 99%.",
       related: [{ r: 53, label: "R53, model risk management generalizes this audit mindset" }],
       memory: "Type I = Innocent punished. Type II = Threat missed. Regulators dread II."
     },
@@ -188,7 +188,7 @@ export default ({
     },
     {
       name: "Basel traffic-light zones",
-      def: "250 days, 99% VaR. Green 0–4 exceptions: k = 3.00. Yellow 5–9: k = 3.40–3.85, supervisor discretion. Red 10+: k = 4.00, automatic penalty.",
+      def: "250 days, 99% VaR. Green 0-4 exceptions: k = 3.00. Yellow 5-9: k = 3.40-3.85, supervisor discretion. Red 10+: k = 4.00, automatic penalty.",
       intuition: "A regulatory implementation of the Type I/II compromise: green tolerates bad luck, red presumes defect, yellow is the judgment zone.",
       example: "The FOUR named yellow-zone causes: (1) basic integrity lacking (bad data/code, penalty applies), (2) accuracy needs improvement (penalty applies), (3) intraday trading effects (penalty considered), (4) bad luck (no penalty guidance).",
       pitfall: "'Small sample size' is a classic WRONG distractor. It is NOT one of the four official causes.",
@@ -223,26 +223,26 @@ export default ({
   ],
 
   highYield: [
-    { stars: 5, what: "z-test computation start to finish (expected exceptions, SE, compare 1.96).", why: "The standard calculation question in this reading: fast, mechanical, frequently placed." },
-    { stars: 5, what: "Traffic-light zones: boundaries (0–4/5–9/10+), multipliers (3.00/3.40–3.85/4.00), and the four yellow-zone causes.", why: "Pure memorization with a planted distractor ('small sample'); reliable points." },
+    { stars: 5, what: "z-test computation start to finish (expected exceptions, standard error, compare to 1.96).", why: "The standard calculation question in this reading: fast, mechanical, frequently placed." },
+    { stars: 5, what: "Traffic-light zones: boundaries (0-4/5-9/10+), multipliers (3.00/3.40-3.85/4.00), and the four yellow-zone causes.", why: "Pure memorization with a planted distractor ('small sample'); reliable points." },
     { stars: 4, what: "What LRuc vs LRind vs LRcc each test, with thresholds 3.84/3.84/5.99.", why: "'Which statistic detects clustering?' is a recurring one-liner." },
     { stars: 4, what: "Type I/II definitions, who bears each cost, and the ≈10.8%/12.8% illustrative rates.", why: "Conceptual staple; the regulator-fears-Type-II asymmetry is the tested insight." },
     { stars: 3, what: "Dirty P&L problem and its fixes (cleaned returns, hypothetical returns, daily horizon).", why: "Feeds both a direct question and the FRTB P&L attribution story." }
   ],
 
   recall: [
-    { q: "95% VaR, 500 days, 35 exceptions. Run the z-test and conclude.", a: "Expected = 25, SE = \\(\\sqrt{0.05\\cdot 0.95\\cdot 500}\\) ≈ 4.87, z = (35−25)/4.87 ≈ 2.05 > 1.96 → reject: too many exceptions, model understates risk." },
+    { q: "95% VaR, 500 days, 35 exceptions. Run the z-test and conclude.", a: "Expected = 25, standard error = \\(\\sqrt{0.05\\cdot 0.95\\cdot 500}\\) ≈ 4.87, z = (35−25)/4.87 ≈ 2.05 > 1.96 → reject: too many exceptions, model understates risk." },
     { q: "Why do regulators accept a 10.8% false-alarm rate on good models?", a: "Because the alternative, loosening the trigger, raises Type II risk: flawed models slipping through with too little capital behind them. Regulators price systemic misses as costlier than unfair penalties." },
     { q: "A model shows exactly the expected number of exceptions, but all in one quarter. Which tests pass and fail, and what does it mean?", a: "Kupiec (count) passes; independence (LRind) fails, so conditional coverage fails. The model didn't adapt to a regime shift. The count is fine, the timing is damning." },
     { q: "Name the four Basel yellow-zone causes and the classic non-cause distractor.", a: "Integrity lacking; accuracy needs improvement; intraday trading; bad luck. Distractor: 'small sample size.'" },
-    { q: "Why does Basel mandate 99% VaR rather than letting banks choose?", a: "Capital at 99% ≈ 1.24× capital at 97.5%. Banks would game the confidence level down to save capital, so mandating removes the dial." }
+    { q: "Why does Basel mandate 99% VaR rather than letting banks choose?", a: "Capital at 99% ≈ 1.24× capital at 97%. Banks would game the confidence level down to save capital, so mandating removes the dial." }
   ],
 
   hooks: [
     { title: "The storm forecaster", text: "A VaR model claims '5% storm chance daily.' Count the storms: ≈13 in a year is honest, 22 is a broken forecaster, 0 is a forecaster crying storm-danger to inflate their budget. Clustered storms mean the climate changed and the forecast didn't." },
     { title: "1.96² = 3.84", text: "The Kupiec threshold is the z-critical squared: the \\(\\chi^{2}(1)\\) is a squared normal. Two tests, one geometry. If you remember 1.96, you already remember 3.84." },
-    { title: "Traffic lights", text: "GREEN 0–4 drive on (k=3). YELLOW 5–9 pull over, officer's discretion (k up to 3.85). RED 10+ license suspended (k=4). And 'small sample size' is never a valid excuse to the officer." }
+    { title: "Traffic lights", text: "GREEN 0-4 drive on (k=3). YELLOW 5-9 pull over, officer's discretion (k up to 3.85). RED 10+ license suspended (k=4). And 'small sample size' is never a valid excuse to the officer." }
   ],
 
-  summary: `<p>Backtesting audits VaR by counting <strong>exceptions</strong> (loss > VaR). Binomial logic gives the <strong>z-test</strong>: \\(z=(x- pT)/\\sqrt{p(1- p)T}\\) vs 1.96. <strong>Kupiec LRuc</strong> \\((\\chi^{2}(1)\\), reject >3.84) tests the count; <strong>Christoffersen</strong> adds independence: LRcc = LRuc + LRind, reject >5.99; clustering fails independence even when the count passes. <strong>Type I</strong> (punish good model) vs <strong>Type II</strong> (miss bad model, regulators' bigger fear). <strong>Basel</strong>: 250 days, 99% VaR: green 0–4 (k=3.00), yellow 5–9 (k=3.40–3.85, four named causes, 'small sample' is a distractor), red 10+ (k=4.00). Dirty-P&L problem: static-portfolio VaR vs traded-portfolio reality, fixed by using cleaned/hypothetical returns. Two confidence levels (VaR's and the test's) are separate dials.</p>`
+  summary: `<p>Backtesting audits VaR by counting <strong>exceptions</strong> (loss > VaR). Binomial logic gives the <strong>z-test</strong>: \\(z=(x- pT)/\\sqrt{p(1- p)T}\\) vs 1.96. <strong>Kupiec LRuc</strong> \\((\\chi^{2}(1)\\), reject >3.84) tests the count; <strong>Christoffersen</strong> adds independence: LRcc = LRuc + LRind, reject >5.99; clustering fails independence even when the count passes. <strong>Type I</strong> (punish good model) vs <strong>Type II</strong> (miss bad model, regulators' bigger fear). <strong>Basel</strong>: 250 days, 99% VaR: green 0-4 (k=3.00), yellow 5-9 (k=3.40-3.85, four named causes, 'small sample' is a distractor), red 10+ (k=4.00). Dirty-P&L problem: static-portfolio VaR vs traded-portfolio reality, fixed by using cleaned/hypothetical returns. Two confidence levels (VaR's and the test's) are separate dials.</p>`
 });
