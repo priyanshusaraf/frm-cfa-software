@@ -6,17 +6,19 @@ this file, finds its place, and continues. Procedure lives in
 
 ## ACTIVE PHASE
 
-    ui-sweep
+    content-sonnet-clearance
 
 Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality first):
 
 1. `phase-3-hover-linking` .......... DONE 2026-07-25 (waves 1-20, all 101 rows verified).
                                       Linking is automatic; see the protocol section 1.
-2. `ui-sweep` ....................... ACTIVE. Polish/bug pass over built surfaces (planner,
-                                      block review, case study, consistency). Not
-                                      per-reading, so it has no rows here; record it
-                                      in PROGRESS.md and flip the phase when done.
-3. `content-sonnet-clearance` ....... The important run. Waves of 5 + Opus-A gate.
+2. `ui-sweep` ....................... DONE 2026-07-25. All four named surfaces (planner,
+                                      block review, case study, consistency) render
+                                      marker-clean with teaching empty states; the pass
+                                      also shipped the PDF viewer fixes, the eager-loading
+                                      regression fix, the doctrine audit, and study
+                                      nudges + Pomodoro. Detail in PROGRESS.md.
+3. `content-sonnet-clearance` ....... ACTIVE. The important run. Waves of 5 + Opus-A gate.
 4. `content-opus-improvement` ....... Opus-B. "Leave it alone" is a valid verdict.
 
 Advance this header only when every row for the active phase is `done`, then commit.

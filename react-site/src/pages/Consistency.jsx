@@ -109,9 +109,11 @@ export default function Consistency() {
         )}
       </div>
 
+      {/* The pace sentence reads as broken at zero ("About 0 readings per active day"),
+          so with no activity yet only the encouragement half is worth showing. */}
       <p style={{ fontSize: "0.82rem", color: "var(--text-faint)", marginTop: "0.6rem" }}>
-        About {pace} readings marked done per active day. Aim for a green square every day; consistency
-        compounds far better than a weekend of cramming.
+        {pace > 0 && <>About {pace} readings marked done per active day. </>}
+        Aim for a green square every day; consistency compounds far better than a weekend of cramming.
       </p>
     </main>
   );

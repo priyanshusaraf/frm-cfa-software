@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { rpath } from "../lib/meta.js";
 import { useStore, setExamDate, setStartDate } from "../lib/store.js";
@@ -38,6 +38,7 @@ const inputStyle = {
 const monoNote = { fontSize: "0.85rem", color: "var(--text-dim)", fontFamily: "var(--font-mono, monospace)" };
 
 export default function Planner() {
+  useEffect(() => { document.title = "Study planner · FRM Part II"; }, []);
   const examDate = useStore((s) => (s.planner && s.planner.examDate) || "");
   const startDate = useStore((s) => (s.planner && s.planner.startDate) || "");
   const done = useStore((s) => s.done);
