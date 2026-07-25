@@ -689,6 +689,37 @@ content extends rightward rather than growing symmetrically. Giving the containe
 other to `auto`, which would turn the container into a vertical scroller and break window-mode
 scrolling outright.
 
+### 7.7 Study nudges + Pomodoro (BUILT, 2026-07-25)
+
+Spec: `docs/superpowers/specs/2026-07-25-study-nudges-and-pomodoro-design.md`. Owner-reported
+("study reminders button doesn't work"). Things a future agent must not undo:
+
+- **`.chip.active` and `button.chip` now exist in `style.css`.** They never did, which is the
+  entire reported bug: a selected chip rendered pixel-identical to an unselected one, and a
+  `button.chip` had no pointer cursor, so the toggles on Settings, Bookmarks, Drills,
+  Highlights and Glossary all looked dead while working perfectly underneath. If you add a new
+  chip-style control, it inherits this now; do not re-implement the active state inline.
+- **`src/lib/nudges.js` holds the copy and the draw, React-free on purpose** so the rotation
+  rules stay unit-testable. `pickNudge(ctx, recentIds, rand)` takes `rand` injected for
+  determinism, skips `recentIds` so a line does not repeat, and **falls back to repeating
+  rather than returning null when the pool is exhausted** (a stale exclusion list must never
+  silence the toast). Feature-discovery lines are weighted 0.5 deliberately.
+- **`BrainMascot.jsx` animates in CSS keyframes only** (`bm-*` classes in style.css), never a
+  JS loop, so an open toast costs nothing on the main thread and one
+  `prefers-reduced-motion` media query freezes all of it. Colors are CSS variables, both themes.
+- **The Pomodoro's RUNNING state is session-only** (`src/lib/pomodoro.js`), for the same
+  reason `lib/fullscreen.js` is: a persisted `endsAt` reloads into a timer that expired hours
+  ago with no honest recovery. Only durations and the lifetime completed count persist, on
+  `prefs.pomodoro`. `advance()` is pure so phase sequencing is tested without timers, and
+  `skip()` deliberately does NOT credit a completed block.
+- **`setReminderMinutes` clamps in the store, not only in the UI** (5..240), the lesson from
+  the `setSplitZoom` regression: an imported blob must not be able to restore an interval that
+  never fires. Same for `setPomodoroPrefs`, per key.
+- **`.pomo-fab` is the stable class hook fullscreen hides the pill by**, alongside `.qn-fab`.
+  It sits above the QuickNotes FAB rather than on top of it.
+- **Not headless-verifiable:** the toast's timed appearance, the mascot animation, and the
+  pill's live countdown need a real browser.
+
 ## 8. TOP PRIORITY: the content-quality pass (scoped 2026-07-21, eleventh session)
 
 The product owner's explicit direction after reviewing the tenth session's feature work:

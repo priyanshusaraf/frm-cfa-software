@@ -58,6 +58,27 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 >    The owner CUT persistent PDF highlighting/annotation from this pass; its worked-out design
 >    (normalized-rect anchoring, `pdfMarks` store shape) is preserved in the spec's appendix.
 >
+> 6. **Study nudges + Pomodoro, owner-reported (2026-07-25).** Spec:
+>    `specs/2026-07-25-study-nudges-and-pomodoro-design.md`. (a) "Study reminders button doesn't
+>    work": the store was fine, but **`.chip.active` was never defined in any stylesheet**, so a
+>    selected chip was pixel-identical to an unselected one and `button.chip` had no pointer
+>    cursor. That one missing rule made the toggles on Settings, Bookmarks, Drills, Highlights
+>    and Glossary all look dead. (b) `HydrationReminder` became `StudyNudge`: ~26 rotating lines
+>    of encouragement, study tips, real keyboard shortcuts, feature discovery and two contextual
+>    nudges, each with an animated inline-SVG `BrainMascot` (breathe/blink idle plus a swappable
+>    prop: water, coffee, chocolate, dumbbell, headphones, bulb, target, heart, spark). Pure
+>    `lib/nudges.js` holds the copy and the weighted no-repeat draw. (c) Interval is now
+>    customisable: presets 20/30/45/60/90 plus a free field, clamped 5..240 **in the store**, and
+>    a "Preview a nudge" button so the control gives feedback without a 45-minute wait.
+>    (d) Pomodoro shipped: session-only runtime state in `lib/pomodoro.js` (a persisted `endsAt`
+>    would reload into a timer that expired hours ago, same reasoning as `lib/fullscreen.js`),
+>    persisted durations plus a completed count on `prefs.pomodoro`, a `/pomodoro` page, and a
+>    `.pomo-fab` corner countdown that follows you across routes and hides in fullscreen like
+>    `.qn-fab`. Phase ends surface as a nudge toast, never a browser notification.
+>    New tests: `nudges.test.js`, `pomodoro.test.js`, `store.prefs.test.js` (94 total, all green).
+>    **Not headless-verifiable, flagged rather than claimed:** the toast's timed appearance, the
+>    mascot animation, and the pill's live countdown.
+>
 > **What is left needs a real browser, not headless:** hover-card placement and flip
 > behaviour, tap-to-open on touch, split-pane drag, the selection toolbar, the visual
 > pass over planner/block-review/case-study/consistency in both themes, and **everything in

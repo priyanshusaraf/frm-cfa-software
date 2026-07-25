@@ -24,8 +24,15 @@
      nav:    { activeReading },                       // global "Return to Reading" target: reading number
                                                       // or null; set on chapter mount (if not done), cleared
                                                       // when that reading is marked done or explicitly cleared
-     prefs:  { hydrationReminder },                    // hydrationReminder: bool, default true (on unless
-                                                      // explicitly false) — 45-min foreground-time water-break toast
+     prefs:  { hydrationReminder, reminderMinutes, pomodoro },
+                                                      // hydrationReminder: bool, default true (on unless
+                                                      // explicitly false) — foreground-time study-nudge toast
+                                                      // reminderMinutes: int 5..240, absent = 45 (nudge interval)
+                                                      // pomodoro: { focus, brk, longBrk, cycles, completed }
+                                                      // — durations in minutes + lifetime completed focus blocks.
+                                                      // The RUNNING timer is NOT here: it is session-only state in
+                                                      // lib/pomodoro.js, because a persisted endsAt reloads into a
+                                                      // timer that expired hours ago.
      blockReview: { [blockId]: { seenTs } },           // OPTIONAL: set when a Block Review page has been
                                                       // opened/completed for that block; seenTs is a caller-
                                                       // supplied timestamp (Date.now()) so the mutator stays
@@ -316,6 +323,47 @@ export function setSplitQuery(rn, text) {
 export function setHydrationReminder(on) {
   const s = load();
   save({ ...s, prefs: { ...(s.prefs || {}), hydrationReminder: !!on } });
+}
+
+/* Nudge cadence. Clamped HERE, not only in the Settings UI: an imported or
+   hand-edited blob must not be able to restore an interval that never fires
+   (the lesson from the split-zoom regression). */
+export const REMINDER_MIN = 5;
+export const REMINDER_MAX = 240;
+export const REMINDER_DEFAULT = 45;
+export function setReminderMinutes(mins) {
+  const s = load();
+  const prefs = { ...(s.prefs || {}) };
+  const n = Math.round(Number(mins));
+  if (Number.isFinite(n) && n > 0) {
+    prefs.reminderMinutes = Math.min(REMINDER_MAX, Math.max(REMINDER_MIN, n));
+  } else {
+    delete prefs.reminderMinutes; // falls back to REMINDER_DEFAULT on read
+  }
+  save({ ...s, prefs });
+}
+
+/* Pomodoro durations + lifetime count. Only settings live here; the running
+   timer is session-only (lib/pomodoro.js). */
+export const POMODORO_DEFAULTS = { focus: 25, brk: 5, longBrk: 15, cycles: 4 };
+const POMODORO_LIMITS = { focus: [5, 90], brk: [1, 30], longBrk: [5, 60], cycles: [2, 8] };
+export function setPomodoroPrefs(patch) {
+  const s = load();
+  const cur = (s.prefs && s.prefs.pomodoro) || {};
+  const next = { ...cur };
+  Object.keys(patch || {}).forEach((k) => {
+    const lim = POMODORO_LIMITS[k];
+    if (!lim) return; // unknown key: ignore rather than persist junk
+    const n = Math.round(Number(patch[k]));
+    if (Number.isFinite(n)) next[k] = Math.min(lim[1], Math.max(lim[0], n));
+  });
+  save({ ...s, prefs: { ...(s.prefs || {}), pomodoro: next } });
+}
+
+export function incPomodoroCompleted() {
+  const s = load();
+  const cur = (s.prefs && s.prefs.pomodoro) || {};
+  save({ ...s, prefs: { ...(s.prefs || {}), pomodoro: { ...cur, completed: (cur.completed || 0) + 1 } } });
 }
 
 /* ---- block review (Block Review pilot) ----

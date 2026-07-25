@@ -11,6 +11,7 @@ const PAGES = [
   { label: "Search", path: "/search" },
   { label: "Study planner", path: "/planner" },
   { label: "Mock exam", path: "/mock" },
+  { label: "Pomodoro", path: "/pomodoro" },
   { label: "Revision", path: "/revision" },
   { label: "Review queue", path: "/review" },
   { label: "Calculation drills", path: "/drills" },

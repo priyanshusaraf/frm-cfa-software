@@ -373,6 +373,14 @@ details.concept .concept-body { padding: 0.2rem 1.15rem 1rem; border-top: 1px so
   margin: 0.15rem 0.25rem 0.15rem 0;
 }
 a.chip:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+/* Chips used as toggles/filters (Settings, Bookmarks, Drills, Highlights, Glossary).
+   `.chip.active` was never defined, so a selected chip was pixel-identical to an
+   unselected one and every one of those controls looked broken. */
+button.chip { font: inherit; font-size: 0.8rem; cursor: pointer; transition: color .15s, border-color .15s, background .15s; }
+button.chip:hover { border-color: var(--border-strong); color: var(--text); }
+.chip.active { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); font-weight: 600; }
+button.chip.active:hover { border-color: var(--accent); color: var(--accent); }
+.chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
 
 /* ---------- Book cards on homepage ---------- */
 .book-card {
@@ -706,7 +714,8 @@ html[data-fullscreen] { --nav-h: 0rem; }
 html[data-fullscreen] .rail-panel,
 html[data-fullscreen] .edge-tab,
 html[data-fullscreen] .corner-pill,
-html[data-fullscreen] .qn-fab { display: none; }
+html[data-fullscreen] .qn-fab,
+html[data-fullscreen] .pomo-fab { display: none; }
 .fs-exit {
   position: fixed; top: 0.7rem; right: 0.9rem; z-index: 60;
   display: inline-flex; align-items: center; gap: 0.35rem;
@@ -744,6 +753,9 @@ html[data-fullscreen] .qn-fab { display: none; }
    unreachable the moment the pointer left the trigger strip. */
 @media (prefers-reduced-motion: reduce) {
   .nav-peek { transition: none; }
+  /* The mascot is decorative: freeze every loop rather than dial it down. */
+  .brain-mascot * { animation: none !important; }
+  .nudge-toast { animation: none; }
 }
 
 /* ---------- global "Return to Reading" button (nav.activeReading) ---------- */
@@ -766,28 +778,111 @@ html[data-fullscreen] .qn-fab { display: none; }
 .bookmark-toggle:hover { color: var(--amber); }
 .bookmark-toggle.on { color: var(--amber); }
 
-/* ---------- 45-minute hydration reminder toast ----------
+/* ---------- study nudge toast (StudyNudge.jsx) ----------
    Fixed, bottom-center, auto-width: must never cover the page or capture
    clicks outside itself, hence position:fixed + width:auto (no full-bleed bar). */
-.hydration-toast {
+.nudge-toast {
   position: fixed; left: 50%; bottom: 1.4rem; transform: translateX(-50%); z-index: 70;
-  display: inline-flex; align-items: center; gap: 0.7rem; max-width: calc(100% - 2rem);
+  display: flex; align-items: center; gap: 0.55rem; width: max-content; max-width: min(30rem, calc(100% - 2rem));
   background: var(--bg-raised); color: var(--text); border: 1px solid var(--border);
   border-radius: var(--radius); box-shadow: var(--shadow);
-  padding: 0.6rem 0.7rem 0.6rem 0.9rem; font-size: 0.84rem;
-  animation: hydration-rise 0.18s ease-out;
+  padding: 0.55rem 0.55rem 0.55rem 0.5rem; font-size: 0.84rem;
+  animation: nudge-rise 0.22s ease-out;
 }
-.hydration-toast span { color: var(--text-dim); }
-.hydration-toast button {
-  flex: none; background: none; border: none; cursor: pointer; color: var(--text-faint);
-  font-size: 0.9rem; line-height: 1; padding: 0.2rem 0.3rem; border-radius: var(--radius-sm);
-  transition: color 0.15s, background 0.15s;
+.nudge-toast .nudge-body { display: flex; flex-direction: column; gap: 0.4rem; min-width: 0; }
+.nudge-toast .nudge-text { color: var(--text-dim); line-height: 1.45; }
+.nudge-toast .nudge-action {
+  align-self: flex-start; font-size: 0.78rem; padding: 0.22rem 0.6rem; border-radius: 99px;
+  background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent);
+  cursor: pointer; text-decoration: none; font-weight: 600; font-family: inherit;
+  transition: filter .15s;
 }
-.hydration-toast button:hover { color: var(--text); background: var(--bg-hover); }
-@keyframes hydration-rise {
+.nudge-toast .nudge-action:hover { filter: brightness(1.15); text-decoration: none; }
+.nudge-toast .nudge-close {
+  flex: none; align-self: flex-start; background: none; border: none; cursor: pointer;
+  color: var(--text-faint); font-size: 0.9rem; line-height: 1; padding: 0.2rem 0.3rem;
+  border-radius: var(--radius-sm); transition: color 0.15s, background 0.15s;
+}
+.nudge-toast .nudge-close:hover { color: var(--text); background: var(--bg-hover); }
+@keyframes nudge-rise {
   from { opacity: 0; transform: translate(-50%, 8px); }
   to   { opacity: 1; transform: translate(-50%, 0); }
 }
+
+/* ---------- brain mascot (BrainMascot.jsx) ----------
+   All motion lives here as keyframes so an open toast never runs a JS animation
+   loop, and one media query at the bottom can freeze the lot. */
+.brain-mascot { flex: none; overflow: visible; }
+.brain-mascot .bm-brain-fill { fill: var(--purple-soft, var(--accent-soft)); stroke: var(--purple, var(--accent)); stroke-width: 2; stroke-linejoin: round; }
+.brain-mascot .bm-brain-lines { fill: none; stroke: var(--purple, var(--accent)); stroke-width: 1.3; stroke-linecap: round; opacity: 0.55; }
+.brain-mascot .bm-eye { fill: var(--text); }
+.brain-mascot .bm-smile { fill: none; stroke: var(--text); stroke-width: 1.5; stroke-linecap: round; }
+.brain-mascot .bm-glass { fill: var(--bg-inset); stroke: var(--cyan); stroke-width: 1.5; stroke-linejoin: round; }
+.brain-mascot .bm-glass-rim { fill: none; stroke: var(--cyan); stroke-width: 1.8; stroke-linecap: round; }
+.brain-mascot .bm-water { fill: var(--cyan); opacity: 0.75; animation: bm-fill 2.6s ease-in-out infinite; transform-origin: 56px 60px; }
+.brain-mascot .bm-cup { fill: var(--bg-inset); stroke: var(--amber); stroke-width: 1.6; stroke-linejoin: round; }
+.brain-mascot .bm-cup-handle { fill: none; stroke: var(--amber); stroke-width: 1.6; }
+.brain-mascot .bm-steam { fill: none; stroke: var(--amber); stroke-width: 1.4; stroke-linecap: round; opacity: 0; animation: bm-steam 2.4s ease-out infinite; }
+.brain-mascot .bm-steam-2 { animation-delay: 1.2s; }
+.brain-mascot .bm-choc { fill: var(--amber-soft, var(--bg-inset)); stroke: var(--amber); stroke-width: 1.6; }
+.brain-mascot .bm-choc-score { fill: none; stroke: var(--amber); stroke-width: 1.1; opacity: 0.7; }
+.brain-mascot .bm-choc-bite { fill: var(--bg-raised); }
+.brain-mascot .bm-bar { fill: none; stroke: var(--green); stroke-width: 2.2; stroke-linecap: round; }
+.brain-mascot .bm-weight { fill: var(--green); }
+.brain-mascot .bm-note-stem { fill: none; stroke: var(--pink); stroke-width: 1.8; stroke-linecap: round; }
+.brain-mascot .bm-note-head { fill: var(--pink); }
+.brain-mascot .bm-ring { fill: none; stroke: var(--pink); stroke-width: 1.4; opacity: 0; animation: bm-ripple 2.8s ease-out infinite; transform-origin: 55px 49px; }
+.brain-mascot .bm-bulb { fill: var(--amber-soft, var(--bg-inset)); stroke: var(--amber); stroke-width: 1.6; stroke-linejoin: round; }
+.brain-mascot .bm-bulb-base { fill: none; stroke: var(--amber); stroke-width: 1.5; stroke-linecap: round; }
+.brain-mascot .bm-target-ring { fill: none; stroke: var(--accent); stroke-width: 1.6; opacity: 0.7; animation: bm-pulse 2.4s ease-in-out infinite; transform-origin: 56px 49px; }
+.brain-mascot .bm-target-dot { fill: var(--accent); }
+.brain-mascot .bm-heart { fill: var(--red-soft, var(--bg-inset)); stroke: var(--red); stroke-width: 1.6; stroke-linejoin: round; }
+.brain-mascot .bm-spark { fill: var(--amber); }
+.brain-mascot .bm-delay { animation-delay: 0.9s; }
+.brain-mascot .bm-breathe { animation: bm-breathe 3.6s ease-in-out infinite; transform-origin: 39px 40px; }
+.brain-mascot .bm-blink { animation: bm-blink 5.2s ease-in-out infinite; transform-origin: center; }
+.brain-mascot .bm-bob { animation: bm-bob 2.4s ease-in-out infinite; }
+.brain-mascot .bm-lift { animation: bm-lift 1.4s ease-in-out infinite; }
+.brain-mascot .bm-beat { animation: bm-beat 1.6s ease-in-out infinite; transform-origin: 56px 50px; }
+.brain-mascot .bm-glow { animation: bm-glow 2.2s ease-in-out infinite; }
+.brain-mascot .bm-twinkle { animation: bm-twinkle 2.2s ease-in-out infinite; transform-origin: 56px 47px; }
+@keyframes bm-breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.045); } }
+@keyframes bm-blink { 0%,92%,100% { transform: scaleY(1); } 96% { transform: scaleY(0.1); } }
+@keyframes bm-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
+@keyframes bm-lift { 0%,100% { transform: translateY(2px); } 50% { transform: translateY(-3px); } }
+@keyframes bm-beat { 0%,100% { transform: scale(1); } 22% { transform: scale(1.16); } 44% { transform: scale(1); } }
+@keyframes bm-fill { 0%,100% { transform: scaleY(1); } 50% { transform: scaleY(0.55); } }
+@keyframes bm-steam { 0% { opacity: 0; transform: translateY(2px); } 30% { opacity: 0.8; } 100% { opacity: 0; transform: translateY(-6px); } }
+@keyframes bm-ripple { 0% { opacity: 0.55; transform: scale(0.45); } 100% { opacity: 0; transform: scale(1.05); } }
+@keyframes bm-pulse { 0%,100% { opacity: 0.35; transform: scale(0.92); } 50% { opacity: 0.85; transform: scale(1.06); } }
+@keyframes bm-glow { 0%,100% { opacity: 0.75; } 50% { opacity: 1; } }
+@keyframes bm-twinkle { 0%,100% { opacity: 0.5; transform: scale(0.85) rotate(0deg); } 50% { opacity: 1; transform: scale(1.1) rotate(20deg); } }
+
+/* ---------- pomodoro pill (PomodoroPill.jsx) ----------
+   Sits ABOVE the QuickNotes FAB (bottom 5 + h-11 + gap), same right edge. */
+.pomo-fab {
+  position: fixed; right: 1.25rem; bottom: 4.6rem; z-index: 40;
+  display: flex; align-items: center; gap: 0.45rem;
+  background: var(--bg-raised); border: 1px solid var(--border); border-radius: 99px;
+  box-shadow: var(--shadow); padding: 0.3rem 0.55rem 0.3rem 0.65rem;
+}
+.pomo-fab .pomo-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex: none; }
+.pomo-fab[data-phase="break"] .pomo-dot, .pomo-fab[data-phase="longBreak"] .pomo-dot { background: var(--green); }
+.pomo-fab[data-running="0"] .pomo-dot { background: var(--text-faint); }
+.pomo-fab .pomo-clock { font-family: var(--font-mono, monospace); font-size: 0.82rem; font-variant-numeric: tabular-nums; color: var(--text); }
+.pomo-fab button {
+  background: none; border: none; cursor: pointer; color: var(--text-faint); padding: 0.2rem;
+  border-radius: var(--radius-sm); display: flex; align-items: center; transition: color .15s, background .15s;
+}
+.pomo-fab button:hover { color: var(--text); background: var(--bg-hover); }
+.pomo-fab .pomo-link { color: var(--text-faint); display: flex; align-items: center; }
+.pomo-fab .pomo-link:hover { color: var(--accent); }
+
+/* ---------- pomodoro page dial ---------- */
+.pomo-dial { display: flex; flex-direction: column; align-items: center; gap: 0.4rem; padding: 0.5rem 0 0.2rem; }
+.pomo-dial .pomo-phase { font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.09em; color: var(--text-faint); }
+.pomo-dial .pomo-time { font-family: var(--font-mono, monospace); font-size: 3.4rem; font-weight: 700; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; line-height: 1.05; }
+.pomo-dial .pomo-controls { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
 
 /* ---------- misc ---------- */
 .footer-note { margin-top: 4rem; font-size: 0.8rem; color: var(--text-faint); border-top: 1px solid var(--border); padding-top: 1rem; }

@@ -18,6 +18,7 @@ import {
   Highlighter,
   Bookmark,
   Timer,
+  TimerReset,
   Settings as SettingsIcon,
   Boxes,
   Maximize2,
@@ -32,6 +33,7 @@ import NavSplitControls from "./NavSplitControls.jsx";
 const STUDY_ITEMS = [
   ["/planner", "Study planner", CalendarDays],
   ["/mock", "Mock exam", Timer],
+  ["/pomodoro", "Pomodoro", TimerReset],
   ["/revision", "Revision", RotateCcw],
   ["/review", "Review queue", ListChecks],
   ["/drills", "Calculation drills", Calculator],

@@ -9,11 +9,13 @@ import "./styles/style.css";
 import "./widgets/all.js";
 import Nav from "./components/Nav.jsx";
 import ReturnToReading from "./components/ReturnToReading.jsx";
-import HydrationReminder from "./components/HydrationReminder.jsx";
+import StudyNudge, { showNudge } from "./components/StudyNudge.jsx";
+import PomodoroPill from "./components/PomodoroPill.jsx";
 import QuickNotes from "./components/QuickNotes.jsx";
 import CommandPalette from "./components/CommandPalette.jsx";
 import FontScaleSync from "./components/FontScaleSync.jsx";
 import { useFullscreen, toggleFullscreen, setFullscreen } from "./lib/fullscreen.js";
+import { setPhaseEndHandler, phaseLabel, FOCUS } from "./lib/pomodoro.js";
 import Home from "./pages/Home.jsx";
 import Book from "./pages/Book.jsx";
 import Chapter from "./pages/Chapter.jsx";
@@ -40,6 +42,7 @@ const ConceptPage = lazy(() => import("./pages/ConceptPage.jsx"));
 const BlockReview = lazy(() => import("./pages/BlockReview.jsx"));
 const CaseStudy = lazy(() => import("./pages/CaseStudy.jsx"));
 const Consistency = lazy(() => import("./pages/Consistency.jsx"));
+const Pomodoro = lazy(() => import("./pages/Pomodoro.jsx"));
 
 function PageLoading() {
   return (
@@ -75,6 +78,29 @@ function Shell() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  /* A finished Pomodoro phase surfaces as a nudge toast, not a browser
+     notification: no permission prompt, and it keeps the "never blocks the
+     page" rule the toast was built around. Registered once, app-wide, because
+     the timer keeps running after you navigate away from /pomodoro. */
+  useEffect(() => {
+    setPhaseEndHandler((ended, next) => {
+      showNudge(
+        ended === FOCUS
+          ? {
+              id: "pomo-focus-done",
+              prop: "water",
+              text: phaseLabel(next) + " time. Stand up, get some water, look away from the screen.",
+            }
+          : {
+              id: "pomo-break-done",
+              prop: "focus",
+              text: "Break is over. One more focus block, you have got this.",
+            }
+      );
+    });
+    return () => setPhaseEndHandler(null);
+  }, []);
+
   return (
     <>
       {fullscreen ? (
@@ -88,7 +114,8 @@ function Shell() {
         <Nav />
       )}
       {!fullscreen && <ReturnToReading />}
-      <HydrationReminder />
+      <StudyNudge />
+      <PomodoroPill />
       {fullscreen && (
         <button
           type="button"
@@ -118,6 +145,7 @@ function Shell() {
           <Route path="/drills" element={<Drills />} />
           <Route path="/highlights" element={<Highlights />} />
           <Route path="/mock" element={<MockExam />} />
+          <Route path="/pomodoro" element={<Pomodoro />} />
           <Route path="/bookmarks" element={<Bookmarks />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/concepts" element={<ConceptsIndex />} />
