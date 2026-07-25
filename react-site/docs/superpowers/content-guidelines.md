@@ -130,6 +130,56 @@ rest.
   margin example if it does not fit R33. R35's CCP loss-waterfall now has the
   `waterfall-flow` widget (Phase 1).
 
+### R36 — Future Value and Exposure (PILOT of the content-sonnet-clearance run, 2026-07-25)
+
+Owner called this one "horribly written" and picked it as the pilot precisely because
+it was the sharpest test. Full rewrite pass, per the flag. What the rewrite did, and
+why, is the template for the rest of the run:
+
+- **Good (keep):** the fantasy-football `eli5` (it earns the "only the weeks you are
+  ahead can hurt you" asymmetry rather than asserting it, and reaches EE/PFE/EPE
+  through the frame). The four-silhouettes framing. The netting-factor derivation,
+  which is genuinely correct including the \(-1/(n-1)\) floor.
+- **Weak (FIXED):** (a) `intuition` opened on a roster of definitions. It now opens on
+  the loan-versus-swap problem ("a loan tells you your exposure, a swap does not"), so
+  every metric arrives as the answer to a question already asked. §1a stage 1.
+  (b) Three `def`s were enumerations wearing a definition's clothes, and the SAME
+  enumerations already sat in `breakdown`. Deleting the list from `def` fixed the
+  validator AND the duplication in one move. **This is the single highest-yield edit
+  shape in the corpus: check `breakdown` before rewriting a long `def`, the list is
+  usually already there.** (c) `concepts[6].example` held the funding-vs-credit
+  material, unrelated to its own concept; it became its own concept.
+  (d) Meta-references purged: "tested visually and verbally", "a question format GARP
+  favors", "the source's Figure 36.7", "worked example from the source", "the standard
+  tested answer". (e) 96 em/en-dashes to 0.
+- **Math correctness (FIXED, and this is the class of defect §8.4 exists for):**
+  the PFE worked example printed `2.33 × 0.07 × 0.2 = 3.27%`. That arithmetic gives
+  **3.26%**; 3.27% is the number Schweser's own worked version prints. The app now
+  says "about 3.3% of notional" throughout, so a student who checks the multiplication
+  is not told they got it wrong. **Rule: when a source's rounded figure disagrees with
+  the arithmetic you just showed, do not print the source's figure at the end of your
+  own equation chain.** Also: the EE(MPoR) and PFE(MPoR) formulas have different units
+  (EE scales a money amount, PFE returns a percentage), and the old `plain` glossed
+  both as the same operation. A `plain` must match its own equation term by term.
+- **Quiz (FIXED):** Q1 was indeterminate. It asked for EE given expected MtM of
+  −$2m, keyed $0, and the `why` itself admitted the answer was not determinate
+  ("$0 reflects that a negative-mean position typically has EE close to zero"). A quiz
+  whose `why` argues with its own key is worse than no quiz. Replaced with a
+  determinate version (EE is non-negative, and strictly positive whenever the positive
+  tail is non-empty) whose distractors are the three real misreadings. A seventh
+  question was added on collateral volatility, where the counterintuitive result
+  (9.43% > either input) had no assessment attached to it.
+- **Abbreviations (§1 rule):** expanded on first use in this FILE: value at risk (VaR),
+  credit default swap (CDS), credit value adjustment (CVA), minimum transfer amount.
+  Dropped "RR", "ITM" and "WWR", each used two or three times, per the "do not
+  abbreviate the harder object" rule. The PFE/EPE look-alike pair now names the
+  distinguishing word (FUTURE vs POSITIVE) in the sentence that introduces it, in
+  `intuition`, in `connections.confused`, and in a hook.
+- **Guidance for the next wave:** budget for a `breakdown`-versus-`def` reconciliation
+  on every reading, not just the flagged ones. And read `concepts[].example` fields
+  suspiciously: the enrichment run parked overflow content in them, so an `example`
+  that does not exemplify its own concept is a recurring defect, not a one-off.
+
 ## Durable learnings from the Phase 3 linking run (2026-07-25)
 
 Phase 3 turns concept NAMES into links automatically, which made one thing

@@ -222,7 +222,6 @@ export const conceptLinkTable = [
       32,
       34,
       35,
-      36,
       37,
       38,
       39,
@@ -501,24 +500,6 @@ export const conceptLinkTable = [
     "snippet": "ES is the average size of a loss on the days that are already worse than VaR: the expected severity once you're already in the bad-outcome region."
   },
   {
-    "slug": "central-counterparty-ccp-roles-benefits-shortfalls",
-    "name": "Central counterparty (CCP) — roles, benefits, shortfalls",
-    "display": "Central counterparty (CCP)",
-    "layer": "core",
-    "kind": "concept",
-    "homeReading": 31,
-    "refs": [
-      31,
-      32,
-      33,
-      35,
-      36,
-      37
-    ],
-    "linkPhrases": [],
-    "snippet": "A CCP inserts itself between counterparties as the buyer to every seller and the seller to every buyer, becoming the new counterparty to both sides after a trade (novation). Its core roles: setting standards/rules for..."
-  },
-  {
     "slug": "compliance-risk",
     "name": "Compliance risk",
     "display": "Compliance risk",
@@ -607,6 +588,23 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "Tracking error measures how much the investment's return wanders away from its benchmark's return, period to period — the volatility of the excess-return series itself."
+  },
+  {
+    "slug": "central-counterparty-ccp-roles-benefits-shortfalls",
+    "name": "Central counterparty (CCP) — roles, benefits, shortfalls",
+    "display": "Central counterparty (CCP)",
+    "layer": "core",
+    "kind": "concept",
+    "homeReading": 31,
+    "refs": [
+      31,
+      32,
+      33,
+      35,
+      37
+    ],
+    "linkPhrases": [],
+    "snippet": "A CCP inserts itself between counterparties as the buyer to every seller and the seller to every buyer, becoming the new counterparty to both sides after a trade (novation). Its core roles: setting standards/rules for..."
   },
   {
     "slug": "credit-support-annex-csa",
