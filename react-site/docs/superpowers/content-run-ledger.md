@@ -63,11 +63,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 23 | 2 | Credit Scoring and Retail Credit Risk Management | done | done | 5 | pass | Fixed a Module Quiz source leak; trimmed the retail-risks and CAP/AR defs. |
 | 24 | 2 | Country Risk: Determinants, Measures, and Implications | done | done | 5 | pass | Trimmed four enumerated defs; kept the committee-vote detail inline. |
 | 25 | 2 | Estimating Default Probabilities | done | done | 5 | pass | Fixed a related ref that used {r,why} where the schema wants a label. |
-| 26 | 2 | Credit Value at Risk | done | todo | 6 | - | |
-| 27 | 2 | Portfolio Credit Risk | done | todo | 6 | - | |
-| 28 | 2 | Structured Credit Risk | done | todo | 6 | - | |
-| 29 | 2 | Credit Risk (Spread Risk & Default Intensity) | done | todo | 6 | - | |
-| 30 | 2 | Credit Derivatives | done | todo | 6 | - | |
+| 26 | 2 | Credit Value at Risk | done | done | 6 | pass | WCDR sign trap (N-1(X) = +3.09) and the $589.00/$56.81 credit VaR figures verified. |
+| 27 | 2 | Portfolio Credit Risk | done | done | 6 | pass | Covariance and SD arithmetic in the two-credit example reproduced. |
+| 28 | 2 | Structured Credit Risk | done | done | 6 | pass | Exemplar eli5 dashes rewritten by hand, not mechanically; types-of-products def trimmed. |
+| 29 | 2 | Credit Risk (Spread Risk & Default Intensity) | done | done | 6 | pass | Repaired a wrong-way/right-way paren break from the bulk pass. |
+| 30 | 2 | Credit Derivatives | done | done | 6 | pass | Accrual and settlement worked example left as written (correct). |
 | 31 | 2 | Derivatives (Counterparty Risk Intro) | done | todo | 7 | - | |
 | 32 | 2 | Counterparty Risk and Beyond | done | todo | 7 | - | |
 | 33 | 2 | Netting, Close-Out, and Related Aspects | done | todo | 7 | - | |

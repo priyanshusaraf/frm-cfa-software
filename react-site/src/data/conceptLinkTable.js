@@ -109,7 +109,7 @@ export const conceptLinkTable = [
       29
     ],
     "linkPhrases": [],
-    "snippet": "This says: over horizon T, the worst default rate you'd expect at confidence level X — i.e., the default rate so bad it's only exceeded (1−X)% of the time — is a function of the average one-year probability of default..."
+    "snippet": "This says: over horizon T, the worst default rate you'd expect at confidence level X, i.e., the default rate so bad it's only exceeded (1−X)% of the time, is a function of the average one-year probability of default..."
   },
   {
     "slug": "value-at-risk-var",

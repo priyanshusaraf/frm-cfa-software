@@ -390,3 +390,29 @@ catches this; run it before the validator, not after.
 `{r, why}` shape that `connections` uses instead of the `{r, label}` shape `concepts[].related`
 requires. Both are worth grepping for corpus-wide: `grep -n "Module Quiz" src/data` and
 `related: \[\{ r: [0-9]*, why:`.
+
+### Wave 6 (R26-R30, 2026-07-26)
+
+**R28's `eli5` is the app's exemplar (CLAUDE.md §1) and its dashes were rewritten BY HAND
+before the mechanical pass ran.** Do the same for any passage the guide names as exemplary:
+the apartment-ticket tranche explanation earns its punchline through rhythm (a claim, then
+the turn, then the payoff), and a blind comma substitution flattens exactly that. The
+hand-written versions use a full stop where the dash marked a beat and a comma only where the
+clause is genuinely parenthetical. Everything else in that file went through the normal pass.
+
+**The paired-dash rule's third failure mode: it eats an existing parenthesis.** R29 had
+`Wrong-way risk (PD positively correlated with exposure — bad) and right-way risk (negatively
+correlated — good) determine...`; the rule matched from the first dash to the second, ACROSS
+the intervening `)` and `(`, producing `(PD positively correlated with exposure (bad) and
+right-way risk (negatively correlated) good)`. Per-string paren counts stay balanced, so the
+wave-5 audit does NOT catch it. The check that does: list `\([^()]{3,95}\)` spans present in
+the new file and absent from the old, and read each one. Do this every bulk wave. Same
+mechanism produced nested parens in R28 and R30.
+
+**Verified correct, leave alone:** R26's Vasicek WCDR `terms[]` (the \(N^{-1}(X)=+3.09\) sign
+trap that CLAUDE.md §8.4 was written about is explained correctly, including WHY the two
+negatives cancel) and its credit VaR figures ($589.00 above 99.9%, $56.81 between 99.9% and
+99.467%, matching Book 2 line 4215). R27's two-credit example (covariance
+\(0.00015-0.002\times0.003=0.000144\), \(SD_1=\sqrt{0.002\times0.998}=0.04468\)) and its
+credit-VaR-as-excess-over-EL convention ($60,000 loss minus $20,000 EL = $40,000 VaR), which
+is consistent across every example in that file.
