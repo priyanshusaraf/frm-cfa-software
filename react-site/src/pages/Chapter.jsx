@@ -7,6 +7,7 @@ import { stars, slugify } from "../lib/html.js";
 import { initWidgets } from "../widgets/index.js";
 import Html from "../components/Html.jsx";
 import SectionLabel from "../components/chapter/SectionLabel.jsx";
+import NavSplitControls from "../components/NavSplitControls.jsx";
 import ConceptCard from "../components/chapter/ConceptCard.jsx";
 import ConnList from "../components/chapter/ConnList.jsx";
 import ChapterTOC from "../components/chapter/ChapterTOC.jsx";
@@ -175,8 +176,8 @@ export default function Chapter() {
     if (d.breakdown && d.breakdown.length) pushSec("At a glance: the lists that matter");
     if (d.lists && d.lists.length) pushSec("Build the list — memorize the order");
     if (d.pairs && d.pairs.length) pushSec("Match names to scope");
-    if (d.formulas && d.formulas.length) pushSec("Formula box");
-    if (d.concepts && d.concepts.length) pushSec("Concept hierarchy — click to expand");
+    if (d.formulas && d.formulas.length) pushSec("Formulas");
+    if (d.concepts && d.concepts.length) pushSec("Concepts");
     if (d.connections) pushSec("Connections");
     if (d.misconceptions && d.misconceptions.length) pushSec("Common misconceptions & exam traps");
     if (d.highYield && d.highYield.length) pushSec("High yield — what to prioritize");
@@ -281,7 +282,17 @@ export default function Chapter() {
   }
 
   const readingContent = (
-    <main className="page" ref={rootRef} style={!splitOpen && appliedWidth ? { maxWidth: appliedWidth } : undefined}>
+    /* --book carries this book's identity colour down to everything inside the
+       reading (concept run-in labels, formula names) so the page reads as one
+       book rather than a spread of unrelated accents. CLAUDE.md §3. */
+    <main
+      className="page"
+      ref={rootRef}
+      style={{
+        ...(!splitOpen && appliedWidth ? { maxWidth: appliedWidth } : null),
+        "--book": book.color,
+      }}
+    >
       <div
         className="page-resize"
         onPointerDown={onResizeDown}
@@ -315,8 +326,11 @@ export default function Chapter() {
             <Button size="sm" variant="outline">Open source PDF ↗</Button>
           </Link>
         )}
-        {/* Split/dock toggles moved to the navbar (NavSplitControls) so they stay
-            reachable in fullscreen and live in one place — CLAUDE.md §7.4. */}
+        {/* Also rendered in the navbar (Nav -> NavSplitControls) so the toggles stay
+            reachable while scrolled deep into a reading or in fullscreen. Kept here
+            too because the navbar cluster is easy to miss: this is where the owner
+            looks for them when opening a reading. Same component, one behaviour. */}
+        <NavSplitControls rn={rn} />
         {quizScore && <Badge tone={quizScore.best >= 70 ? "green" : "amber"}>Quiz best {quizScore.best}%</Badge>}
       </div>
 

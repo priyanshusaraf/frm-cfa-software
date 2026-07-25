@@ -23,6 +23,8 @@
     var st = raw ? JSON.parse(raw) : null;
     var fs = st && st.layout && st.layout.fontScale;
     if (typeof fs === "number" && fs > 0) document.documentElement.style.setProperty("--font-scale", fs);
+    var ms = st && st.layout && st.layout.mathScale;
+    if (typeof ms === "number" && ms > 0) document.documentElement.style.setProperty("--math-scale", ms);
   } catch (e) {}
 })();
 </script>

@@ -4,10 +4,13 @@ import { useAllReadings } from "../lib/readings.js";
 import { META, bookOf, rpath } from "../lib/meta.js";
 import Html from "../components/Html.jsx";
 
+/* Reuses one detached node instead of allocating a div per call: this runs once
+   per glossary entry at build time and used to run per entry per keystroke. */
+const scratch = typeof document !== "undefined" ? document.createElement("div") : null;
 function strip(html) {
-  const d = document.createElement("div");
-  d.innerHTML = html || "";
-  return d.textContent || "";
+  if (!scratch) return String(html || "");
+  scratch.innerHTML = html || "";
+  return scratch.textContent || "";
 }
 
 function buildGlossary(readings) {
@@ -19,7 +22,14 @@ function buildGlossary(readings) {
     (d.concepts || []).forEach((c) => {
       const term = strip(c.name).trim();
       if (!term) return;
-      entries.push({ term, def: c.def || "", rn: n, title: d.title, book: b });
+      /* `search` is precomputed ONCE here. It used to be derived inside the
+         filter, so every keystroke re-parsed every definition as HTML through
+         strip() and lower-cased it again: O(entries) DOM parses per character. */
+      const def = c.def || "";
+      entries.push({
+        term, def, rn: n, title: d.title, book: b,
+        search: (term + " " + strip(def)).toLowerCase(),
+      });
     });
   });
   entries.sort((a, b) => a.term.localeCompare(b.term) || a.rn - b.rn);
@@ -43,7 +53,7 @@ export default function Glossary() {
     let list = all;
     if (book !== "all") list = list.filter((e) => e.book && String(e.book.n) === book);
     const s = q.trim().toLowerCase();
-    if (s) list = list.filter((e) => e.term.toLowerCase().includes(s) || strip(e.def).toLowerCase().includes(s));
+    if (s) list = list.filter((e) => e.search.includes(s));
     return list;
   }, [all, q, book]);
 

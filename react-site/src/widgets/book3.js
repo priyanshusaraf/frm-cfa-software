@@ -339,41 +339,53 @@ register("bowtie", function (el) {
     var sevSub = svgEl("text", { x: farR, y: 40, "text-anchor": "end", "font-size": 10, fill: "var(--text-dim)" }, svg);
     sevSub.textContent = "driven by detective/corrective-control strength";
 
-    /* causes column (far left, inside the wing) */
-    var causesX = farL + 14;
-    var t1 = svgEl("text", { x: causesX, y: colTopY, "font-size": 11, "font-weight": 700, fill: "var(--text)" }, svg);
-    t1.textContent = "Causes";
-    causes.forEach(function (c, i) {
-      var row = svgEl("text", { x: causesX, y: colTopY + (i + 1) * rowH, "font-size": 11, fill: "var(--text-dim)" }, svg);
-      row.textContent = "• " + c;
-    });
+    /* Labels: two STACKED groups per wing, never two columns sharing one line.
+       The old layout put "Causes" left-anchored at farL+14 and "Preventive
+       controls" end-anchored at knotX0-14 on the SAME baseline, so as soon as
+       either string was longer than half the wing they overlapped, which is
+       exactly what shipped. SVG text does not wrap, so we wrap it ourselves and
+       give each wing one x-band that cannot collide with the other wing. */
+    var padX = 16;
+    var leftX = farL + padX;
+    var rightX = farR - padX;
+    var bandW = (knotX0 - 20) - leftX;      // usable width inside a wing
+    var CHAR_W = 5.4;                        // ~advance of 11px sans at this size
+    var maxChars = Math.max(12, Math.floor(bandW / CHAR_W));
 
-    /* preventive controls column (left wing, closer to the knot) */
-    var prevX = knotX0 - 14;
-    var t2 = svgEl("text", { x: prevX, y: colTopY, "text-anchor": "end", "font-size": 11, "font-weight": 700, fill: "var(--cyan)" }, svg);
-    t2.textContent = "Preventive controls";
-    preventive.forEach(function (c, i) {
-      var row = svgEl("text", { x: prevX, y: colTopY + (i + 1) * rowH, "text-anchor": "end", "font-size": 11, fill: "var(--text)" }, svg);
-      row.textContent = c + " •";
-    });
+    function wrap(str, limit) {
+      var words = String(str).split(/\s+/), lines = [], cur = "";
+      words.forEach(function (w) {
+        var next = cur ? cur + " " + w : w;
+        if (next.length > limit && cur) { lines.push(cur); cur = w; } else { cur = next; }
+      });
+      if (cur) lines.push(cur);
+      return lines;
+    }
 
-    /* impacts column (right wing, closer to the knot) */
-    var impX = knotX1 + 14;
-    var t3 = svgEl("text", { x: impX, y: colTopY, "font-size": 11, "font-weight": 700, fill: "var(--text)" }, svg);
-    t3.textContent = "Impacts";
-    impacts.forEach(function (c, i) {
-      var row = svgEl("text", { x: impX, y: colTopY + (i + 1) * rowH, "font-size": 11, fill: "var(--text-dim)" }, svg);
-      row.textContent = "• " + c;
-    });
+    /* Draws a header plus its bullets down the page, returning the next free y. */
+    function group(x, y, anchor, title, titleFill, items, itemFill, bullet) {
+      var t = svgEl("text", { x: x, y: y, "text-anchor": anchor, "font-size": 11, "font-weight": 700, fill: titleFill }, svg);
+      t.textContent = title;
+      var yy = y + rowH;
+      items.forEach(function (c) {
+        wrap((bullet ? "\u2022 " : "") + c, maxChars).forEach(function (line, li) {
+          var row = svgEl("text", {
+            x: anchor === "end" ? x : x + (li ? 9 : 0),
+            y: yy, "text-anchor": anchor, "font-size": 11, fill: itemFill
+          }, svg);
+          row.textContent = line;
+          yy += 15;
+        });
+        yy += 3;
+      });
+      return yy + 8;
+    }
 
-    /* detective / corrective controls column (far right, inside the wing) */
-    var corrX = farR - 14;
-    var t4 = svgEl("text", { x: corrX, y: colTopY, "text-anchor": "end", "font-size": 11, "font-weight": 700, fill: "var(--green)" }, svg);
-    t4.textContent = "Detective / corrective controls";
-    corrective.forEach(function (c, i) {
-      var row = svgEl("text", { x: corrX, y: colTopY + (i + 1) * rowH, "text-anchor": "end", "font-size": 11, fill: "var(--text)" }, svg);
-      row.textContent = c;
-    });
+    var ly = group(leftX, colTopY, "start", "Causes", "var(--text)", causes, "var(--text-dim)", true);
+    group(leftX, ly, "start", "Preventive controls", "var(--cyan)", preventive, "var(--text)", true);
+
+    var ry = group(rightX, colTopY, "end", "Impacts", "var(--text)", impacts, "var(--text-dim)", true);
+    group(rightX, ry, "end", "Detective / corrective controls", "var(--green)", corrective, "var(--text)", true);
   }
   draw();
 });

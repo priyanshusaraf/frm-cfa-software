@@ -14,7 +14,8 @@
      hlLabels:   { y, g, b, r },                      // user-editable color legend
      lastVisited:{ rn, ts, y, section },              // most recently opened chapter (+ scroll y, section label left off in)
      bookmarks:  { [rn]: [ { id, txt, ts } ] },       // section bookmarks; id = slugify(section title)
-     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, split, pdfZoom },
+     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, mathScale, split, pdfZoom },
+              // + mathScale: formula size multiplier, independent of fontScale (0.7-1.8, absent = 1)
               // + pdfZoom: page zoom for the full-page /pdf/:bn reader (0.5-3, absent = 1)
               // reading-column width (px) + rail open states + per-block widths { [`${rn}:key`]: px }
               // + fontScale: app-wide text size multiplier (Settings page), applied as --font-scale
@@ -244,6 +245,22 @@ export function setFontScale(scale) {
   const s = load();
   const fontScale = typeof scale === "number" && scale > 0 ? scale : undefined;
   save({ ...s, layout: { ...(s.layout || {}), fontScale } });
+}
+
+/* Math size is independent of body text: readers who want big formulas usually
+   do NOT want the whole page inflated with them. Clamped in the store, not just
+   the UI, so an imported blob cannot restore an unreadable scale. */
+export const MATH_SCALE_MIN = 0.7;
+export const MATH_SCALE_MAX = 1.8;
+export function setMathScale(scale) {
+  const s = load();
+  const layout = { ...(s.layout || {}) };
+  if (typeof scale === "number" && scale > 0) {
+    layout.mathScale = Math.min(MATH_SCALE_MAX, Math.max(MATH_SCALE_MIN, scale));
+  } else {
+    delete layout.mathScale; // absent = 1
+  }
+  save({ ...s, layout });
 }
 
 /* ---- split-view source material alongside a reading (Chapter.jsx §7.4) ----

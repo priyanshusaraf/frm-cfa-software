@@ -1,3 +1,3 @@
-DONE: Recomposed reading typography. Formulas lost six layers of chrome and now sit as centred math with left-aligned prose beneath; concepts lost the card + 7-colour badge rainbow and render as dictionary entries with quiet run-in labels. Fixed fitMath's hardcoded 1.22rem that silently overrode the stylesheet.
-NEXT: Rebuild the Consistency heatmap (the >=8 and >=4 tiers return the same colour, so there is no intensity ramp) and fix the "green square" copy against blue cells.
-BLOCKERS: Light theme for the new reading CSS was token-audited (no hardcoded colours) but not visually confirmed; headless light capture timed out.
+DONE: Book-colour accents on concept/formula labels, adjustable formula size (Settings + layout.mathScale), Glossary/Formulas search made O(1) per keystroke, bow-tie widget label collision fixed, split toggles restored to the chapter action row, fullscreen nav peek made reachable, and the TOC anchors resynced after the section rename.
+NEXT: Rebuild the Consistency heatmap (the >=8 and >=4 tiers return the same colour so there is no intensity ramp; copy says "green square" over blue cells) and centre/space its stat tiles.
+BLOCKERS: none.

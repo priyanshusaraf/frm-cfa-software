@@ -28,6 +28,22 @@ export default function Formulas() {
 
   useEffect(() => { document.title = "Formulas — FRM Part II"; }, []);
 
+  /* Search keys are built ONCE per readings load, not per keystroke. The filter
+     below used to lower-case every formula's name, plain and note on every
+     character typed, which is what made this page feel laggy to query. */
+  const searchKeys = useMemo(() => {
+    const m = new Map();
+    if (!readings) return m;
+    for (const rn of Object.keys(readings)) {
+      const d = readings[rn];
+      if (!d || !d.formulas) continue;
+      m.set(String(rn), d.formulas.map((f) =>
+        ((f.name || "") + " " + (f.plain || "") + " " + (f.note || "")).toLowerCase()
+      ));
+    }
+    return m;
+  }, [readings]);
+
   const grouped = useMemo(() => {
     if (!readings) return [];
     const needle = q.trim().toLowerCase();
@@ -41,12 +57,9 @@ export default function Formulas() {
         if (minStars === "5" && !(meta.hy >= 5)) continue;
         const d = readings[r.n];
         if (!d || !d.formulas || !d.formulas.length) continue;
+        const keys = searchKeys.get(String(r.n));
         const fs = needle
-          ? d.formulas.filter((f) =>
-              (f.name || "").toLowerCase().includes(needle) ||
-              (f.plain || "").toLowerCase().includes(needle) ||
-              (f.note || "").toLowerCase().includes(needle)
-            )
+          ? d.formulas.filter((f, i) => (keys ? keys[i] : "").includes(needle))
           : d.formulas;
         if (!fs.length) continue;
         bookReadings.push({ r, meta, d, fs });
@@ -54,7 +67,7 @@ export default function Formulas() {
       if (bookReadings.length) out.push({ book: b, bookReadings });
     }
     return out;
-  }, [readings, q, bookFilter, minStars]);
+  }, [readings, searchKeys, q, bookFilter, minStars]);
 
   useEffect(() => {
     if (rootRef.current) fitMath(rootRef.current);

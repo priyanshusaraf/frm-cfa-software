@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  useStore, setFontScale, setHydrationReminder, setReminderMinutes,
+  useStore, setFontScale, setMathScale, setHydrationReminder, setReminderMinutes,
   REMINDER_MIN, REMINDER_MAX, REMINDER_DEFAULT,
 } from "../lib/store.js";
 import { pickNudge } from "../lib/nudges.js";
@@ -16,12 +16,20 @@ const TEXT_SIZES = [
   { v: 1.3, label: "Extra large" },
 ];
 
+const MATH_SIZES = [
+  { v: 0.85, label: "Compact" },
+  { v: 1, label: "Default" },
+  { v: 1.2, label: "Large" },
+  { v: 1.45, label: "Extra large" },
+];
+
 const INTERVALS = [20, 30, 45, 60, 90];
 
 export default function Settings() {
   useEffect(() => { document.title = "Settings — FRM Part II"; }, []);
   const fontScale = useStore((s) => (s.layout && s.layout.fontScale) || 1);
   const hydrationOn = useStore((s) => (s.prefs ? s.prefs.hydrationReminder !== false : true));
+  const mathScale = useStore((s) => (s.layout && s.layout.mathScale) || 1);
   const reminderMins = useStore((s) => (s.prefs && s.prefs.reminderMinutes) || REMINDER_DEFAULT);
   // Local draft so the field doesn't fight you mid-typing: the store only sees a
   // committed value (blur or Enter), where it gets clamped.
@@ -53,6 +61,29 @@ export default function Settings() {
                 key={t.v}
                 className={"chip" + (fontScale === t.v ? " active" : "")}
                 onClick={() => setFontScale(t.v)}
+              >
+                {t.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section style={{ marginTop: "1.75rem" }}>
+        <div className="section-label" style={{ color: "var(--cyan)" }}>Formula size</div>
+        <div className="card">
+          <p style={{ fontSize: "0.88rem", color: "var(--text-dim)", marginTop: 0 }}>
+            Scales typeset math only, separately from body text, because wanting big formulas
+            usually does not mean wanting a bigger page. Very wide formulas still shrink to fit
+            their column.
+          </p>
+          <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+            {MATH_SIZES.map((t) => (
+              <button
+                key={t.v}
+                className={"chip" + (mathScale === t.v ? " active" : "")}
+                aria-pressed={mathScale === t.v}
+                onClick={() => setMathScale(t.v)}
               >
                 {t.label}
               </button>

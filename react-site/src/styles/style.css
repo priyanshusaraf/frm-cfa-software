@@ -195,6 +195,22 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
 .prose, .card, .hy-item .hy-body, .misc-row .wrong, .misc-row .right { overflow-wrap: break-word; min-width: 0; }
 .prose code, .card code { white-space: normal; overflow-wrap: break-word; }
 .katex-display { overflow-x: auto; overflow-y: hidden; max-width: 100%; }
+/* ---------- math size, everywhere math appears ----------
+   Sized in `em`, not `rem`, so math stays in proportion to whatever text
+   surrounds it and still tracks the Settings font-scale. Prose math had no rule
+   at all, so a \[ … \] inside a paragraph rendered at body size and read as an
+   afterthought; symbols also need more height than letters to stay legible.
+   Display math is the emphasis of its own line, so it outranks the inline case.
+
+   KaTeX sets its own size via the "font" SHORTHAND in .katex (0,1,0), and its
+   stylesheet is bundled after this one, so a plain .katex rule here silently
+   loses on source order. The doubled class buys specificity (0,2,0) and wins
+   wherever it lands in the bundle. */
+.katex.katex { font-size: calc(1.12em * var(--math-scale, 1)); }
+.katex-display > .katex.katex { font-size: calc(1.34em * var(--math-scale, 1)); }
+/* Nested math inside a formula block is already scaled by .f-tex below; a second
+   multiplier there would overshoot and force fitMath to shrink it straight back. */
+.formula-block .katex.katex { font-size: 1em; }
 /* touch devices have no hover: keep the section bookmark toggle tappable */
 @media (hover: none) { .bookmark-toggle { opacity: 1; } }
 
@@ -275,17 +291,25 @@ details.concept > summary:focus-visible { outline: 2px solid var(--accent); outl
 details.concept .concept-body { padding: 0 0 1.5rem 1.27rem; }
 
 .concept-field { margin: 0.85rem 0 0; font-size: 0.95rem; line-height: 1.6; }
+/* The old badges mapped each field to a hue, which was the one good idea buried
+   under the pill treatment: the colour told you what KIND of thing you were about
+   to read. Keep the mapping, drop the fills. Colour on the label text alone is
+   quiet enough to sit in a paragraph and still gives the page its pulse. */
 .concept-field .field-tag {
   font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
-  color: var(--text-faint); margin-right: 0.5em; white-space: nowrap;
+  margin-right: 0.5em; white-space: nowrap; color: var(--text-faint);
 }
+/* One accent per book, not one per field: the labels take the book's own colour
+   (--book, set on <main> in Chapter.jsx) so a reading reads as a single work.
+   Trap is the sole exception, because red there means "warning", not "identity". */
+.concept-field .field-tag { color: var(--book, var(--accent)); }
+.concept-field.pit .field-tag { color: var(--red); }
 /* Run-in: the label sits on the first line of its own paragraph, not above it.
    Content fields are trusted HTML and may open with a <p>; that first paragraph
    has to go inline or the label is orphaned on its own line. */
 .concept-field > div { display: inline; }
 .concept-field > div > p:first-child { display: inline; }
 .concept-field > div > p:last-child { margin-bottom: 0; }
-.concept-field.pit .field-tag { color: var(--red); }
 /* The definition is the testable core of a term: it leads, at full strength,
    with no label at all — its position says what it is. */
 .concept-field.def { margin-top: 0.15rem; font-size: 1.06rem; line-height: 1.55; color: var(--text); }
@@ -351,21 +375,21 @@ details.concept .concept-body { padding: 0 0 1.5rem 1.27rem; }
    caps label); six of those down a reading read as a pile of boxes rather than
    one document. Everything below is type and space: the only rule is a hairline
    BETWEEN formulas, which separates without enclosing. */
-.formula-block { margin: 2.1rem 0; }
-.formula-block + .formula-block { border-top: 1px solid var(--border); padding-top: 2.1rem; }
+.formula-block { margin: 2.9rem 0; }
+.formula-block + .formula-block { border-top: 1px solid var(--border); padding-top: 2.9rem; }
 .formula-block .f-name {
   font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.11em;
-  color: var(--text-faint); text-align: center; margin-bottom: 0.9rem;
+  color: var(--book, var(--cyan)); text-align: center; margin-bottom: 1.15rem;
 }
 /* legacy HTML math (un-converted readings) */
-.formula-block .f-math { font-family: var(--mono); font-size: 1.02rem; text-align: center; white-space: nowrap; overflow-x: auto; }
+.formula-block .f-math { font-family: var(--mono); font-size: calc(1.15rem * var(--math-scale, 1)); text-align: center; white-space: nowrap; overflow-x: auto; }
 /* KaTeX-typeset math: the visual centre of the block, generous vertical air */
-.formula-block .f-tex { font-size: 1.5rem; overflow-x: auto; overflow-y: hidden; padding: 0.2rem 0; }
+.formula-block .f-tex { font-size: calc(1.5rem * var(--math-scale, 1)); overflow-x: auto; overflow-y: hidden; padding: 0.55rem 0; }
 .formula-block .f-tex .katex-display { margin: 0; }
 /* Centre the MATH, left-align the PROSE about it. Centred ragged text is fine
    for a one-line caption and actively harder to read once it wraps, which the
    plain-language gloss always does. */
-.formula-block .f-plain { font-size: 0.96rem; line-height: 1.6; color: var(--text); margin: 1.3rem 0 0; text-align: left; }
+.formula-block .f-plain { font-size: 0.96rem; line-height: 1.6; color: var(--text); margin: 1.7rem 0 0; text-align: left; }
 .formula-block .f-note { font-size: 0.87rem; line-height: 1.55; color: var(--text-dim); margin: 0.6rem 0 0; text-align: left; }
 /* The derivation is optional depth: it must not out-weigh the formula above it,
    so it drops the accordion's card treatment down to a single quiet rule. */
@@ -771,9 +795,25 @@ html[data-fullscreen] .pomo-fab { display: none; }
    focus anywhere inside it, and data-open, which main.jsx sets while the Study
    menu is open — that menu is portalled OUTSIDE .nav-peek, so hover and
    :focus-within both go false and the nav would otherwise slide away under it. */
+/* 10px at the very top of the screen was effectively unreachable in native
+   fullscreen: the browser's own toolbar auto-reveals on the top edge, so the
+   pointer never landed on the strip. A deeper band is hit well before the edge. */
 .nav-peek-trigger {
-  position: fixed; top: 0; left: 0; right: 0; height: 10px; z-index: 54;
+  position: fixed; top: 0; left: 0; right: 0; height: 52px; z-index: 54;
 }
+/* A parked nav with no affordance is an invisible feature. This handle is the
+   only always-visible hint that the chrome is one hover away. */
+.nav-peek-handle {
+  position: fixed; top: 0; left: 50%; transform: translateX(-50%); z-index: 53;
+  display: flex; align-items: center; gap: 0.35rem;
+  padding: 0.1rem 0.7rem 0.2rem; border-radius: 0 0 8px 8px;
+  background: var(--bg-raised); border: 1px solid var(--border); border-top: none;
+  color: var(--text-faint); font-size: 0.66rem; letter-spacing: 0.08em;
+  text-transform: uppercase; pointer-events: none;
+  opacity: 0.55; transition: opacity 0.18s;
+}
+.nav-peek-trigger:hover ~ .nav-peek-handle,
+.nav-peek:hover ~ .nav-peek-handle { opacity: 0; }
 .nav-peek {
   position: fixed; top: 0; left: 0; right: 0; z-index: 55;
   transform: translateY(-100%);
