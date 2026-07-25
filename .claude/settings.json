@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "statusMessage": "Verifying the edit",
+            "timeout": 120,
+            "command": "jq -r \".tool_input.file_path // .tool_response.filePath // \\\"\\\"\" | { read -r f; case \"$f\" in *\"/react-site/src/data/\"*) n=$(basename \"$f\" .js | sed \"s/^r0*//\"); b=$(echo \"$f\" | sed -n \"s#.*/src/data/\\(book[0-9]*\\)/.*#\\1#p\"); cd \"$CLAUDE_PROJECT_DIR/react-site\" && node scripts/validate-reading.mjs \"$b/$(basename \"$f\")\" \"$n\" 2>&1 | grep -E \"^(FAIL|ERROR)\" | head -10;; *\"/react-site/src/\"*|*\"/react-site/scripts/\"*) cd \"$CLAUDE_PROJECT_DIR/react-site\" && npm run build --silent 2>&1 | grep -iE \"error|failed\" | head -20;; esac; } 2>/dev/null; exit 0"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "timeout": 20,
+            "command": "s=$(git -C \"$CLAUDE_PROJECT_DIR\" status --porcelain | head -20); if [ -n \"$s\" ]; then n=$(git -C \"$CLAUDE_PROJECT_DIR\" status --porcelain | wc -l | tr -d \" \"); jq -cn --arg s \"$s\" --arg n \"$n\" \"{systemMessage: (\\\"Uncommitted: \\\" + \\$n + \\\" file(s). Commit if the build is green, and refresh NEXT.md.\\\\n\\\" + \\$s)}\"; fi; exit 0"
+          }
+        ]
+      }
+    ]
+  }
+}

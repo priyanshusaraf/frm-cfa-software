@@ -22,6 +22,25 @@ This project is worked across many sessions with full context clears between the
 ledger plus the per-wave commit ARE the memory. Never leave a wave uncommitted, and never
 record a reading as done that you have not verified.
 
+## AFTER EVERY COMPLETED UNIT OF WORK (owner directive, 2026-07-25)
+
+Do both of these **without being asked, every time**, not just at the end of a session:
+
+1. **Commit if the build is green.** Run the build; if it passes, commit. Do not leave a
+   completed unit uncommitted, because the session can hit a usage limit at any moment and
+   uncommitted work is the thing that gets lost.
+2. **Overwrite `NEXT.md` at the repo root with exactly three lines:**
+
+   ```
+   DONE: <what just landed>
+   NEXT: <the single next action>
+   BLOCKERS: <anything unresolved, or "none">
+   ```
+
+   Overwrite it, never append. It is a checkpoint, not a log; git history is the log. Three
+   lines, one action in `NEXT` (not a list). A fresh session reads `NEXT.md` first, then
+   `PROGRESS.md`, then the run ledger.
+
 ## What this is — READ THIS FIRST
 
 An **interactive learning website for the FRM Part II exam** (5 books, 101 readings). There

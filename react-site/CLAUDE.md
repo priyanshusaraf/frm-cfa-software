@@ -111,6 +111,30 @@ it — that's the bar.
   sign in math (`a-b`) or a hyphen in a compound word (`risk-weighted`) is fine; the banned
   characters are specifically the long dashes. Grep check before shipping any content edit:
   `grep -Rn '—\|–' src/data/<file>` must return nothing.
+- **ABBREVIATIONS: one name per concept, expanded on first use, and only when they earn their
+  keep.** Owner-reported 2026-07-25 against R36/R37, and it cost real study time. Three rules:
+  1. **Expand on first use in every reading.** A reading is entered directly from search, the
+     planner, or a cross-reference, so "first use" means first use *in that file*, not first
+     use in the book. Never open a `teaches`/`why`/`intuition` with a parenthetical pile of
+     bare acronyms (R36's `teaches` listed seven cold: `expected MtM, EE, PFE, maximum PFE,
+     EPE, ENE, effective EE/EPE`).
+  2. **One expansion, everywhere.** If the Schweser source itself uses two names for one
+     abbreviation, PICK THE DOMINANT ONE and use it consistently, then say once, explicitly,
+     that the other name means the same thing so the student is not thrown when the exam
+     prints it. **Never let two expansions float interchangeably.** The live case: the source
+     writes CVA as both "credit value adjustment" (21x) and "credit valuation adjustment" (9x);
+     the app now standardizes on the first and flags the synonym in R37's CVA concept.
+  3. **Do not abbreviate when the abbreviation is the harder object.** If a term appears two or
+     three times in a reading, write it out. Abbreviate only what recurs constantly or is
+     itself examinable vocabulary. Be most careful where two abbreviations in the same family
+     look alike and mean different things: **EPE (expected POSITIVE exposure) vs PFE
+     (potential FUTURE exposure)** is the exact pair that broke R37, which had propagated a
+     one-off typo in the source ("expected potential exposure") into its prose AND a quiz stem,
+     contradicting R36's correct definition. When a family has look-alike members, name the
+     distinguishing word in the sentence that introduces them.
+
+  Grep check before shipping a content edit that introduces an abbreviation: confirm the
+  expansion appears in the file, and that the file uses exactly one expansion for it.
 - **Human, plain tone.** Write the way a sharp tutor talks, not the way a textbook is printed.
   The tone-humanization + em-dash removal has NOT been done across the 101 readings: as of
   2026-07-21, `src/data` still holds **7,614 em/en-dashes and 100 of 101 readings fail the

@@ -1,0 +1,3 @@
+DONE: Fixed R37's EPE expansion (said "expected potential exposure", a source typo that contradicted R36 and collided with PFE), standardized the CVA naming trap, expanded R36's cold acronyms, wrote the abbreviation rule into CLAUDE.md §1, added the after-every-unit commit + NEXT.md contract, and installed the PostToolUse validate/build and Stop uncommitted-work hooks.
+NEXT: Resume the ui-sweep phase per react-site/docs/superpowers/content-run-ledger.md.
+BLOCKERS: R36 still fails validate-reading.mjs on three over-long concept defs (165/148/158 words) and a 63 em-dash count; logged in content-flags.md for the content run, not fixed here.

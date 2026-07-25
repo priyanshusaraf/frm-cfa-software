@@ -47,3 +47,27 @@ Format per entry: `- rNN (bookN/rNN.js) — <what to improve> — <why> — flag
   still explains what a hurdle rate is and the alternative was making the concept
   unlinkable everywhere. If the Phase 5 pass renames either concept, re-check it.
   Flagged Phase 3, 2026-07-25.
+
+- **R36 (Future Value and Exposure): owner-reported as "horribly written", 2026-07-25.** The
+  abbreviation defects were fixed on the spot (see below); the prose problems below are OPEN
+  and should be handled when R36 comes up in the content run. Give it a full rewrite pass,
+  not a touch-up.
+  - `validate-reading.mjs` fails three definitions as smuggled enumerations: `concepts[2]`
+    (Credit exposure profile factors, 165 words), `concepts[5]` (Margin period of risk, 148),
+    `concepts[7]` (Collateral, segregation, and rehypothecation, 158). Each is a list wearing
+    a definition's clothes: move the enumeration into `breakdown` and leave a real definition.
+  - Three more definitions are over the warn threshold: `concepts[0]` (97), `concepts[3]`
+    (109), `concepts[6]` (83).
+  - The reading front-loads vocabulary before it has motivated any of it. Under the section 1a
+    doctrine, the exposure metric family should arrive as answers to a question the reader is
+    already asking ("I know what I am owed today, but what could I be owed in a year?"), not
+    as a roster to memorize.
+  - FIXED already (do not redo): `teaches` opened with seven bare acronyms and now expands the
+    family and warns that PFE and EPE look alike; R37 expanded EPE as "expected POTENTIAL
+    exposure" twice, in prose and in a quiz stem, propagating a one-off typo in the Schweser
+    source and contradicting R36's correct "expected positive exposure"; R37's CVA concept now
+    states once that "credit value adjustment" and "credit valuation adjustment" are the same
+    thing, because the source uses both. Durable rule written into CLAUDE.md section 1.
+  - GLOBAL follow-up for the content run: every reading that introduces an abbreviation must
+    expand it in that file, use exactly one expansion for it, and skip the abbreviation
+    entirely when the term appears only two or three times.
