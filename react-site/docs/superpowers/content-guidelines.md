@@ -295,3 +295,38 @@ lines 3111-3131; R06's BCBS Working Paper No. 19 (Jan 2011) attribution matches 
 tranche mechanism" became "The CDO tranche trade of May 2005", which changes a link target.
 `node scripts/build-core-concepts.mjs` after any concept rename, and commit the regenerated
 `conceptLinkTable.js` in the same commit.
+
+### Wave 3 (R11-R15, Book 1, 2026-07-26) and what the gate learned
+
+**The term-structure cluster is mathematically sound. Do not go looking for defects here.**
+Every worked number was reproduced: R11's backward induction and OAS direction (market below
+model implies positive OAS implies trading cheap), R12's convexity example (0.92624 vs
+0.92593, \(z_2=7.9816\%\), the 1.84bp gap), R13's Vasicek chain (\(\theta=18\%\) from
+\(6\%+0.36\%/0.03\), the 10-year forecast of 9.26%, the 23.1-year half-life), R14's CIR step
+(0.06% drift + 0.07% shock = 0.13%), R15's minimum variance delta sitting BELOW the
+Black-Scholes-Merton delta (Book 1 line 4789). This wave was almost entirely dashes: 125 of
+them across five files, plus a scattering of GARP attributions.
+
+**The one real defect: an approximation printed as if it were the exact value.** R14 wrote
+the lognormal up-node as \(r_0e^{0.20}\approx r_0(1.20)\) in two places. \(e^{0.20}=1.2214\),
+so a student checking it on a calculator gets a different number than the app prints. The
+\(1+\sigma\) approximation is legitimate teaching (it is what makes "multiplicative" click),
+but it has to be LABELLED as the approximation and shown next to the exact value. **Same rule
+as R36's 3.26/3.27: never print a rounded figure at the end of your own equation chain
+without showing what the arithmetic actually gives.**
+
+**Where the source's own wording will make a correct app statement look wrong.** Schweser's
+LO 14.e wrap-up says "the CIR mean-reverting model has constant volatility (σ)", which reads
+as if CIR's yield volatility were constant. It is not: σ is a fixed parameter, but CIR yield
+volatility works out to \(\sigma/\sqrt r\) and falls as rates rise, which is exactly why the
+lognormal model (constant yield volatility σ) is the contrast case. R14's pitfall now says
+this explicitly rather than just asserting "CIR has NEITHER constant". **When the app is
+right and a source summary line is loose, spell out the reconciliation in the file. A student
+comparing the two will otherwise assume the app is wrong.**
+
+**Dash-purge shapes that recur, so reach for them first:** a leading label ("Step 1 —",
+"Setup —", "Model 1 — no drift") becomes a colon or a comma; a mid-sentence aside bracketed
+by two dashes becomes parentheses; a trailing dash clause becomes a full stop plus a
+connective ("so", "and", "which"). Concept NAMES containing dashes ("Model 2 — constant
+drift") are link targets: rename them to colons and re-run
+`node scripts/build-core-concepts.mjs` in the same commit.

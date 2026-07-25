@@ -1,3 +1,3 @@
-DONE: Wave 1 of content-sonnet-clearance (r01-r05, Book 1) cleared and Opus-A gated. Two real math/directional defects caught and independently verified: r03's reciprocal peaks-over-threshold ratio, r04's inverted eli5 direction plus a 97/97.5 confidence-level contradiction.
-NEXT: Run wave 2 (r06-r10, Book 1 source lines 1969-3314).
+DONE: Wave 2 of content-sonnet-clearance (r06-r10, Book 1) cleared and Opus-A gated. Two real defects caught and verified: r07's CDO tranche trade misdated as 2008 in ten places (it is May 2005), r08's thinkLike calling recession correlation "stable" against its own 80.5% vs 83.0% numbers.
+NEXT: Run wave 3 (r11-r15, Book 1: term structure models and volatility smiles).
 BLOCKERS: none.

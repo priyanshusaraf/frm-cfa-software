@@ -48,11 +48,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 8 | 1 | Empirical Properties of Correlation | done | done | 2 | pass | Fixed thinkLike overstating recession correlation as stable (80.5% vs 83.0%). |
 | 9 | 1 | Financial Correlation Modeling: Copulas | done | done | 2 | pass | Copula math and derivations verified correct. |
 | 10 | 1 | Empirical Approaches to Risk Metrics and Hedging | done | done | 2 | pass | Regression-hedge direction (dep=nominal, indep=real) verified against Tuckman. |
-| 11 | 1 | The Science of Term Structure Models | done | todo | 3 | - | |
-| 12 | 1 | Evolution of Short Rates and Shape of the Term Structure | done | todo | 3 | - | |
-| 13 | 1 | The Art of Term Structure Models: Drift | done | todo | 3 | - | |
-| 14 | 1 | The Art of Term Structure Models: Volatility and Distribution | done | todo | 3 | - | |
-| 15 | 1 | Volatility Smiles | done | todo | 3 | - | |
+| 11 | 1 | The Science of Term Structure Models | done | done | 3 | pass | Backward induction, OAS direction and BSM-for-bonds trio all verified correct. |
+| 12 | 1 | Evolution of Short Rates and Shape of the Term Structure | done | done | 3 | pass | Convexity arithmetic (1.84bp, z2=7.9816%) reproduced exactly. |
+| 13 | 1 | The Art of Term Structure Models: Drift | done | done | 3 | pass | Vasicek theta=18%, 10-yr forecast 9.26%, half-life 23.1yr all check out. |
+| 14 | 1 | The Art of Term Structure Models: Volatility and Distribution | done | done | 3 | pass | Fixed lognormal up-node rounded to 1.20 when e^0.20=1.2214; clarified CIR yield vol. |
+| 15 | 1 | Volatility Smiles | done | done | 3 | pass | Min-variance delta below BSM delta confirmed at source line 4789. |
 | 16 | 1 | Fundamental Review of the Trading Book (FRTB) | done | todo | 4 | - | |
 | 17 | 2 | Fundamentals of Credit Risk | done | todo | 4 | - | |
 | 18 | 2 | Governance | done | todo | 4 | - | |

@@ -38,11 +38,11 @@ export default ({
       related: ["Smile, skew, and frown shapes"]
     },
     {
-      name: "Smile, skew, and frown — three shapes, three stories",
+      name: "Smile, skew, and frown: three shapes, three stories",
       def: "The shape of the implied-volatility curve is a direct readout of the distribution the market is actually pricing, and the three named shapes belong to three different markets with three different causes (enumerated in the breakdown above).",
       example: "Take an underlying whose empirical distribution has a fatter RIGHT tail than lognormal. Backing implied vol out strike by strike then gives the HIGHEST implied volatility at HIGH strike prices, so in-the-money calls and out-of-the-money puts look 'expensive' relative to a flat-vol BSM price. Flip the logic for a left-skewed distribution such as the S&P 500's: the fat tail sits on the low-strike side instead, which is exactly the equity skew.",
       pitfall: "'Crashophobia' is about the PRICE of protection: deep OTM puts carry a fear premium because everyone remembers October 1987. It is NOT a claim that actual realized volatility rises when prices fall. Don't conflate the leverage effect's story (volatility genuinely does rise, mechanically, as leverage rises) with crashophobia's story (a risk-aversion premium baked into pricing, independent of whether volatility itself changes).",
-      related: [{ r: 11, label: "R11 — BSM's constant-volatility assumption failing, the root cause" }],
+      related: [{ r: 11, label: "R11: BSM's constant-volatility assumption failing, the root cause" }],
       memory: "Smile = FX fears both directions. Skew = equities fear down more (leverage + crashophobia). Frown = a coin-flip news event."
     },
     {
@@ -52,9 +52,9 @@ export default ({
       related: ["Impact on the Greeks"]
     },
     {
-      name: "Impact on the Greeks — minimum variance delta",
+      name: "Impact on the Greeks: minimum variance delta",
       def: "Standard BSM delta assumes implied volatility stays fixed as the equity price changes, so it captures only the option's movement along the existing smile curve and ignores the second effect entirely: the whole curve shifting, because equity price and volatility are typically negatively correlated (the skew's own leverage-and-crashophobia story, viewed dynamically rather than as a static snapshot).",
-      pitfall: "The whole-curve shift DOMINATES the along-the-curve movement in practice, per the source text. The minimum variance delta is the delta measure that incorporates this shift; it comes out LOWER than the standard BSM delta, which ignores the shift entirely. A common trap is assuming standard BSM delta already captures it, or assuming the minimum variance delta is HIGHER than BSM delta. It is not; it is lower.",
+      pitfall: "The whole-curve shift DOMINATES the along-the-curve movement in practice. The minimum variance delta is the delta measure that incorporates this shift; it comes out LOWER than the standard BSM delta, which ignores the shift entirely. A common trap is assuming standard BSM delta already captures it, or assuming the minimum variance delta is HIGHER than BSM delta. It is not; it is lower.",
       related: ["Smile, skew, and frown"],
       memory: "Standard delta only walks along the smile; minimum variance delta also accounts for the smile itself moving. That whole-curve move is the bigger effect, which is why minimum variance delta comes out lower."
     },
@@ -84,7 +84,7 @@ export default ({
   misconceptions: [
     { wrong: "\"A call and put at the same strike can have meaningfully different implied volatilities.\"", right: "Put-call parity mechanically forces them to be equal: this is a no-arbitrage fact independent of the true distribution, not an empirical claim that can be violated." },
     { wrong: "\"Crashophobia means realized volatility spikes whenever prices fall.\"", right: "Crashophobia is about the PRICE of protection (a risk-aversion premium on deep OTM puts), a separate story from the leverage effect, where volatility genuinely does rise as leverage increases." },
-    { wrong: "\"The standard BSM delta already accounts for the smile shifting as the underlying price moves.\"", right: "Standard delta only captures movement ALONG the existing smile curve. The dominant effect — the whole curve shifting because vol and price are negatively correlated — requires the minimum variance delta, which is systematically lower." },
+    { wrong: "\"The standard BSM delta already accounts for the smile shifting as the underlying price moves.\"", right: "Standard delta only captures movement ALONG the existing smile curve. The dominant effect, the whole curve shifting because vol and price are negatively correlated, requires the minimum variance delta, which is systematically lower." },
     { wrong: "\"A frown pattern is just a weaker version of a smile.\"", right: "It's the opposite shape: ATM implied vol is HIGHER than the wings, reflecting an anticipated bimodal outcome (e.g., a binary news event) rather than fat tails on both sides." }
   ],
 
@@ -104,7 +104,7 @@ export default ({
 
   hooks: [
     { title: "Three faces, three moods", text: "Smile: nervous about both directions (FX). Skew/smirk: nervous specifically about falling (equities: leverage + crashophobia). Frown: expecting a coin-flip verdict (binary news event), the opposite curvature of a smile." },
-    { title: "Parity's iron law", text: "Put-call parity is the law that says a call and put at the same strike must quote the same implied vol — no exceptions, no empirical wiggle room, because it's arbitrage, not opinion." },
+    { title: "Parity's iron law", text: "Put-call parity is the law that says a call and put at the same strike must quote the same implied vol: no exceptions, no empirical wiggle room, because it's arbitrage, not opinion." },
     { title: "The whole smile moves", text: "Standard delta watches you walk along a hallway (the smile curve). Minimum variance delta notices the whole hallway is also sliding sideways, and that sliding is usually the bigger effect." }
   ],
 
@@ -112,7 +112,7 @@ export default ({
 
   eli5: `<p>Imagine a single vending machine (Black-Scholes-Merton) that is supposed to sell every flavor of candy bar at a price set by one universal "candy riskiness" dial. In reality, shoppers keep paying more for the flavors at the far ends of the shelf (the deep in-the-money and deep out-of-the-money strikes) than the machine's one dial says they should, because shoppers privately believe those far-end flavors are more likely to sell out unexpectedly than the machine assumes. If you back-calculate what "riskiness" setting would make the machine's price match what people actually pay for each flavor, you get a different number for each flavor. Plot those numbers across the shelf and you get a smile-shaped or skew-shaped curve, not a flat line. A currency shopper worries equally about both ends of the shelf (a symmetric smile); a stock shopper worries mostly about the cheap-and-crashing end (a lopsided skew); and if a big announcement is coming that will send prices sharply one way or the other, shoppers pay MOST for the middle-shelf item because that's the one whose fate is truly a coin flip (a frown). Mapping back to finance: the "riskiness dial" reading is implied volatility, the shelf position is the strike price relative to the underlying price, and the curve you get instead of a flat line is the volatility smile, skew, or frown.</p>`,
 
-  thinkLike: `<p>A derivatives trader or market-risk manager never treats "the" implied volatility as a single number for an underlying. They treat it as a whole curve (a smile) or, once maturity is added, a whole surface, and they read it the way an equity analyst reads a yield curve: the SHAPE is the signal, not any one point on it. Before quoting or hedging an option at a given strike, the practitioner's first move is to look up where that strike sits on today's smile, because pricing it off a single flat "at-the-money" volatility would misprice it relative to every other trader in the market and hand a competitor a free arbitrage. When the shape of the smile itself changes — steepens, flattens, or flips from smile to frown — the practitioner reads that as new information about market sentiment (has fear of a crash gone up? is a binary event now priced in?) separate from whether volatility LEVELS have moved.</p>
+  thinkLike: `<p>A derivatives trader or market-risk manager never treats "the" implied volatility as a single number for an underlying. They treat it as a whole curve (a smile) or, once maturity is added, a whole surface, and they read it the way an equity analyst reads a yield curve: the SHAPE is the signal, not any one point on it. Before quoting or hedging an option at a given strike, the practitioner's first move is to look up where that strike sits on today's smile, because pricing it off a single flat "at-the-money" volatility would misprice it relative to every other trader in the market and hand a competitor a free arbitrage. When the shape of the smile itself changes (steepens, flattens, or flips from smile to frown) the practitioner reads that as new information about market sentiment (has fear of a crash gone up? is a binary event now priced in?) separate from whether volatility LEVELS have moved.</p>
   <p>The exam tends to test this reading in three recurring ways: (1) a pure logic/no-arbitrage question about why call and put implied vols must match at the same strike (test whether you can explain the put-call-parity mechanism, not just recite the conclusion); (2) a "match the shape to the market and the cause" question that requires you to correctly pair smile/FX/vol-jumps, skew/equity/leverage+crashophobia, and frown/binary-event/bimodal, and specifically to catch the crashophobia-vs-leverage conflation trap; and (3) a Greeks question asking which delta is higher or lower and why, where the standard wrong answer swaps the direction (claims minimum variance delta is higher than BSM delta, when the source is explicit it is lower).</p>`,
 
   breakdown: [
@@ -120,24 +120,24 @@ export default ({
       title: "The three volatility-curve shapes",
       points: [
         "Smile (currency/FX options): implied vol higher at BOTH deep ITM and deep OTM strikes than ATM; caused by exchange-rate volatility jumping between regimes; weaker for long-dated options.",
-        "Skew / smirk (equity options): implied vol falls as strike/price rises — higher for low strikes, lower for high strikes; caused by the leverage effect (falling equity → higher leverage → genuinely higher volatility) and crashophobia (a fear-driven pricing premium on deep OTM puts, not a claim volatility itself rises).",
-        "Frown (anticipated binary/news event): implied vol is HIGHEST at-the-money and lower away from it — the mirror image of a smile, because the outcome is bimodal (two-hump) rather than fat-tailed."
+        "Skew / smirk (equity options): implied vol falls as strike/price rises, so it is higher for low strikes, lower for high strikes; caused by the leverage effect (falling equity → higher leverage → genuinely higher volatility) and crashophobia (a fear-driven pricing premium on deep OTM puts, not a claim volatility itself rises).",
+        "Frown (anticipated binary/news event): implied vol is HIGHEST at-the-money and lower away from it, the mirror image of a smile, because the outcome is bimodal (two-hump) rather than fat-tailed."
       ]
     },
     {
       title: "Alternative ways to parameterize the volatility smile's x-axis",
       points: [
-        "\\(X/S_{0}\\) (strike over current spot price) — the default, but shifts every time the spot price moves.",
-        "X alone (strike price only) — simpler, but price-level dependent, so it is a less stable curve over time.",
-        "\\(X/F_{0}\\) (strike over the forward price, same maturity) — often preferred, since the forward price is the theoretical expected future price, giving a cleaner definition of 'at-the-money.'",
-        "Option delta — lets traders study volatility patterns for options beyond plain European/American calls and puts, since delta generalizes across payoff types."
+        "\\(X/S_{0}\\) (strike over current spot price): the default, but it shifts every time the spot price moves.",
+        "X alone (strike price only): simpler, but price-level dependent, so it is a less stable curve over time.",
+        "\\(X/F_{0}\\) (strike over the forward price, same maturity): often preferred, since the forward price is the theoretical expected future price, giving a cleaner definition of 'at-the-money.'",
+        "Option delta: lets traders study volatility patterns for options beyond plain European/American calls and puts, since delta generalizes across payoff types."
       ]
     },
     {
       title: "The two competing effects on delta when equity price changes",
       points: [
-        "Effect 1 — movement along the existing smile curve: as equity price changes, \\(X/S_{0}\\) changes, moving the option to a different point on the same fixed curve. This is all standard BSM delta captures.",
-        "Effect 2 — the whole curve shifting up or down: because equity price and volatility are typically negatively correlated, a price move shifts the ENTIRE smile curve, not just the option's position on it. This effect dominates effect 1 in practice, and only the minimum variance delta (which is systematically lower than standard BSM delta) accounts for it."
+        "Effect 1, movement along the existing smile curve: as equity price changes, \\(X/S_{0}\\) changes, moving the option to a different point on the same fixed curve. This is all standard BSM delta captures.",
+        "Effect 2, the whole curve shifting up or down: because equity price and volatility are typically negatively correlated, a price move shifts the ENTIRE smile curve, not just the option's position on it. This effect dominates effect 1 in practice, and only the minimum variance delta (which is systematically lower than standard BSM delta) accounts for it."
       ]
     }
   ],
@@ -152,7 +152,7 @@ export default ({
         "They could differ, since implied vol depends on which side of the market is more active"
       ],
       answer: 0,
-      why: "Put-call parity is a pure no-arbitrage identity that holds regardless of the true distribution, so any dollar deviation from BSM must be identical for the call and put at that strike — mechanically forcing equal implied vol. The 'call is higher,' 'put is higher,' and 'they could differ' answers all treat implied vol as if it could diverge empirically, which contradicts the arbitrage-derived parity relationship."
+      why: "Put-call parity is a pure no-arbitrage identity that holds regardless of the true distribution, so any dollar deviation from BSM must be identical for the call and put at that strike, mechanically forcing equal implied vol. The 'call is higher,' 'put is higher,' and 'they could differ' answers all treat implied vol as if it could diverge empirically, which contradicts the arbitrage-derived parity relationship."
     },
     {
       q: "An implied volatility curve for currency options shows higher implied vol at both the lowest and highest strikes than at the at-the-money strike. What does this pattern imply about the true distribution, and what causes it?",
@@ -174,7 +174,7 @@ export default ({
         "crashophobia only applies to currency options, not equities"
       ],
       answer: 1,
-      why: "Crashophobia (Mark Rubinstein's term, post-1987 crash) is specifically about the PRICE investors will pay for crash insurance (deep OTM puts) out of fear, separate from whether realized volatility has actually changed. The 'realized volatility genuinely spikes' answer describes the leverage effect, a distinct mechanical cause; the 'same underlying mechanism' answer wrongly merges two separately named causes the reading treats as distinct; the 'only applies to currency options' answer is wrong — crashophobia is the equity-market explanation, not a currency one."
+      why: "Crashophobia (Mark Rubinstein's term, post-1987 crash) is specifically about the PRICE investors will pay for crash insurance (deep OTM puts) out of fear, separate from whether realized volatility has actually changed. The 'realized volatility genuinely spikes' answer describes the leverage effect, a distinct mechanical cause; the 'same underlying mechanism' answer wrongly merges two separately named causes the reading treats as distinct; the 'only applies to currency options' answer is wrong, since crashophobia is the equity-market explanation, not a currency one."
     },
     {
       q: "A biotech stock has an FDA ruling due in one week that will send the stock sharply up or down with no likely in-between outcome. Which implied-volatility pattern would you expect on that stock's options, and why?",
@@ -185,7 +185,7 @@ export default ({
         "A flat curve, because BSM already prices binary events correctly"
       ],
       answer: 2,
-      why: "An anticipated binary event produces a bimodal distribution, and at-the-money options carry the highest implied vol because they are most exposed to the coin-flip uncertainty over which extreme outcome occurs — producing a frown (ATM richer than the wings), the mirror image of a smile. The 'smile' answer is the FX pattern from continuous regime-jump risk, not a discrete binary event; the 'skew' answer is the equity leverage/crashophobia pattern, unrelated to binary news; the 'flat curve / BSM prices it correctly' answer assumes a single flat volatility and cannot price this pattern at all."
+      why: "An anticipated binary event produces a bimodal distribution, and at-the-money options carry the highest implied vol because they are most exposed to the coin-flip uncertainty over which extreme outcome occurs, producing a frown (ATM richer than the wings), the mirror image of a smile. The 'smile' answer is the FX pattern from continuous regime-jump risk, not a discrete binary event; the 'skew' answer is the equity leverage/crashophobia pattern, unrelated to binary news; the 'flat curve / BSM prices it correctly' answer assumes a single flat volatility and cannot price this pattern at all."
     },
     {
       q: "Which of the following is NOT a standard alternative parameterization of the volatility smile's x-axis (in place of \\(X/S_{0}\\))?",
@@ -196,7 +196,7 @@ export default ({
         "Strike price divided by the risk-free rate"
       ],
       answer: 3,
-      why: "The three recognized alternatives are X alone, \\(X/F_{0}\\) (often preferred since the forward price is the theoretical expected future price), and option delta (useful beyond plain European/American payoffs). 'Strike divided by the risk-free rate' is not a parameterization used in the reading — it is a fabricated distractor mixing unrelated variables."
+      why: "The three recognized alternatives are X alone, \\(X/F_{0}\\) (often preferred since the forward price is the theoretical expected future price), and option delta (useful beyond plain European/American payoffs). 'Strike divided by the risk-free rate' is not a real parameterization here: it is a fabricated distractor mixing unrelated variables."
     },
     {
       q: "When an equity's price changes, which effect on implied volatility dominates in practice, and what does that imply about the minimum variance delta versus the standard BSM delta?",
@@ -207,12 +207,12 @@ export default ({
         "Neither effect dominates consistently, so the two deltas are unrelated"
       ],
       answer: 1,
-      why: "The source is explicit: the whole-curve shift (effect 2, from the negative price-volatility correlation) dominates the along-the-curve movement (effect 1), and the minimum variance delta — which incorporates that dominant shift — comes out systematically LOWER than the standard BSM delta, which ignores the shift entirely. The 'shift dominates, so minimum variance delta is higher' answer is the most common exam trap: it correctly identifies which effect dominates but reverses the direction of the delta comparison."
+      why: "The whole-curve shift (effect 2, from the negative price-volatility correlation) dominates the along-the-curve movement (effect 1), and the minimum variance delta, which incorporates that dominant shift, comes out systematically LOWER than the standard BSM delta, which ignores the shift entirely. The 'shift dominates, so minimum variance delta is higher' answer is the most common exam trap: it correctly identifies which effect dominates but reverses the direction of the delta comparison."
     }
   ],
 
   sources: [
-    { title: "Fundamental Review of the Trading Book (FRTB) — BIS", url: "https://www.bis.org/bcbs/publ/d352.htm", note: "The regulatory reading (R16) that follows this one, for context on why mispriced tail risk matters to capital requirements." }
+    { title: "Fundamental Review of the Trading Book (FRTB), BIS", url: "https://www.bis.org/bcbs/publ/d352.htm", note: "The regulatory reading (R16) that follows this one, for context on why mispriced tail risk matters to capital requirements." }
   ],
 
   pdf: { book: 1, query: "Actual option prices, in conjunction with the BSM model" }

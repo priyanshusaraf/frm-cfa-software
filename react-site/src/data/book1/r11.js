@@ -31,7 +31,7 @@ export default ({
     {
       name: "Call option intrinsic value at maturity",
       math: "C_T = \\max(0,\\ B_T - X)",
-      note: "At the option's expiration nodes, the option is worth its exercise value or zero, whichever is larger — no time value remains.",
+      note: "At the option's expiration nodes, the option is worth its exercise value or zero, whichever is larger. No time value remains.",
       plain: "The option's value at maturity is simply the bond price at that node minus the strike price, but never less than zero. You'd never voluntarily pay more for the bond than you have to just to exercise your right.",
       derivation: `<p>In the book's worked example, a European call, strike \\(X=\\$100.00\\), on a 7% annual-coupon, 3-year bond, with the option expiring at the end of Year 2, the bottom Year-2 node has a bond price of \\(B_T=\\$102.20\\). So:</p>
       \\[ C_T = \\max(0,\\ 102.20 - 100.00) = \\$2.20 \\]
@@ -54,7 +54,7 @@ export default ({
       intuition: "Both methods give the same derivative value. The difference between true and risk-neutral probabilities is exactly the interest rate drift, i.e. the risk premium.",
       example: "Method 1 (adjust rates, keep 50/50) is exactly what the $90.006 zero-coupon bond example does: you take the yield curve's spot/forward rates and shape the tree's rates so that averaging with plain 50/50 weights reproduces the market price. Method 2 (adjust probabilities, keep rates) shows up in the CMT swap and call-option examples, where the risk-neutral probability of an up move is given directly as 0.76 in Year 1 and 0.60 in Year 2. These aren't literal forecasts of how likely rates are to rise. They're whatever probabilities, applied to the tree's actual rates, reproduce the correct no-arbitrage price.",
       pitfall: "Don't think of risk-neutral probabilities as 'the real probabilities of up/down moves.' They're a pricing convenience that bakes the risk premium into the probability weights instead of the discount rate.",
-      related: [{ r: 12, label: "R12 — risk premium as a separate, additive effect on top of convexity" }]
+      related: [{ r: 12, label: "R12: risk premium as a separate, additive effect on top of convexity" }]
     },
     {
       name: "Pricing options via backward induction",
@@ -86,14 +86,14 @@ export default ({
       def: "Recombining: up-then-down = down-then-up (same rate, fewer nodes, computationally simpler). Non-recombining ('state-dependent volatility'): the two paths land on genuinely different rates.",
       intuition: "In every worked example above (the $100 zero-coupon bond, the 7% coupon bond call option), the middle Year-2 node has exactly one rate (6.34% in the call-option example), regardless of whether the path got there via up-then-down or down-then-up. That collapsing of paths into shared nodes is what keeps a 2-period tree at 3 distinct nodes instead of 4, and what keeps an N-period tree computationally tractable. A non-recombining tree can arise if, say, rates above some threshold (e.g., 3%) move by a fixed number of basis points but rates below that threshold move differently. The path taken to reach a given point then genuinely changes the rate you land on.",
       pitfall: "Non-recombining trees are more realistic in some settings, but they multiply computational complexity rapidly over many periods. That's a real cost, not a free upgrade.",
-      related: [{ r: 13, label: "R13 — Vasicek's tree famously does NOT recombine" }]
+      related: [{ r: 13, label: "R13: Vasicek's tree famously does NOT recombine" }]
     },
     {
       name: "Time steps and the BSM-bond mismatch",
       def: "Smaller time steps mean more accuracy at more computational expense. A direct trade-off, no free lunch.",
       example: "Three named reasons BSM cannot be used for bonds. First, BSM assumes no upper bound on the underlying's price, but a bond has a maximum value, reached when interest rates hit zero, at which point a zero-coupon bond is worth exactly its par/face value and a coupon bond is worth the sum of its remaining coupons plus par. Second, BSM assumes a constant risk-free rate, but bond payoffs are literally driven by changing rates: self-contradictory, since the very thing the model treats as fixed is what's generating the bond's value changes. Third, BSM assumes constant volatility, but bond price volatility must fall to zero as the bond approaches maturity (pull-to-par: a bond maturing tomorrow can only be worth its redemption value, so there's essentially no price uncertainty left).",
       pitfall: "All three BSM-for-bonds reasons are individually testable. Know all three, not just one.",
-      related: [{ r: 15, label: "R15 — BSM's constant-vol assumption failing again, for options generally" }],
+      related: [{ r: 15, label: "R15: BSM's constant-vol assumption failing again, for options generally" }],
       memory: "Three reasons BSM can't price a bond: capped price, self-contradictory rate assumption, vol must die to zero (pull-to-par)."
     },
     {
@@ -160,9 +160,9 @@ export default ({
     {
       title: "Three steps to price an option on a fixed-income instrument via backward induction",
       points: [
-        "Step 1 — Price the underlying bond at every node using the tree's projected interest rates, adding any coupon before discounting at each step.",
-        "Step 2 — Calculate the derivative's intrinsic value at each node at maturity (e.g., max(0, bond price − strike) for a call).",
-        "Step 3 — Discount those terminal values backward through the tree, node by node, using the risk-neutral probabilities, until you reach today's value."
+        "Step 1, price the underlying bond at every node using the tree's projected interest rates, adding any coupon before discounting at each step.",
+        "Step 2, calculate the derivative's intrinsic value at each node at maturity (e.g., max(0, bond price − strike) for a call).",
+        "Step 3, discount those terminal values backward through the tree, node by node, using the risk-neutral probabilities, until you reach today's value."
       ]
     },
     {
@@ -198,7 +198,7 @@ export default ({
       options: [
         "The bond is trading cheap and you should buy it immediately",
         "The tree's rates (or probabilities) need recalibration so the model price matches the $90.006 market price",
-        "Nothing — a small mismatch between model and market price is expected and can be ignored",
+        "Nothing, since a small mismatch between model and market price is expected and can be ignored",
         "The market price is wrong and should be corrected to $91.20"
       ],
       answer: 1,
@@ -246,7 +246,7 @@ export default ({
         "BSM assumes constant volatility, but bond price volatility must fall to zero as maturity approaches"
       ],
       answer: 2,
-      why: "The three specific, testable reasons are: no price upper bound, constant risk-free rate assumption, and constant volatility assumption (versus pull-to-par). Exercise style (European vs. American) is a separate modeling choice unrelated to why BSM's core assumptions fail for bonds — it is not one of the three named reasons, making it the correct 'NOT' answer."
+      why: "The three specific, testable reasons are: no price upper bound, constant risk-free rate assumption, and constant volatility assumption (versus pull-to-par). Exercise style (European vs. American) is a separate modeling choice unrelated to why BSM's core assumptions fail for bonds, so it is not one of the three named reasons, making it the correct 'NOT' answer."
     },
     {
       q: "A callable bond and an otherwise-identical option-free bond are compared as yields fall well below the call-relevant yield y′. Which statement correctly describes the callable bond's behavior?",
@@ -257,12 +257,12 @@ export default ({
         "It behaves identically to the option-free bond because the call feature only matters at issuance"
       ],
       answer: 1,
-      why: "Below y′, investors anticipate the issuer calling the bond, so its price is capped near the call price — negative convexity — and reinvestment risk worsens because investors get cash back (coupon plus call price) exactly when rates are low. The bond does NOT outperform the option-free bond (ruling out the 'positive convexity, rallies more' answer), it is very much affected by yield changes even if compressed (ruling out the 'price is unaffected' answer), and the call feature remains economically relevant throughout the bond's life whenever it's in the money for the issuer (ruling out the 'behaves identically because the call only matters at issuance' answer)."
+      why: "Below y′, investors anticipate the issuer calling the bond, so its price is capped near the call price (negative convexity) and reinvestment risk worsens because investors get cash back (coupon plus call price) exactly when rates are low. The bond does NOT outperform the option-free bond (ruling out the 'positive convexity, rallies more' answer), it is very much affected by yield changes even if compressed (ruling out the 'price is unaffected' answer), and the call feature remains economically relevant throughout the bond's life whenever it's in the money for the issuer (ruling out the 'behaves identically because the call only matters at issuance' answer)."
     }
   ],
 
 
   pdf: { book: 1, query: "A binomial model is a model that assumes" },
 
-  summary: `<p><strong>Backward induction</strong>: value maturity first, walk backward; each node = discounted average of two successor values. Must be <strong>arbitrage-free</strong> (matches market price) or recalibrate. <strong>True vs risk-neutral probabilities</strong>: two equivalent ways to bake in the risk premium (adjust rates under 50/50, or adjust probabilities under given rates) — the gap between them IS the interest rate drift. <strong>Option pricing</strong>: price bond at every node → intrinsic value at maturity → discount back with risk-neutral probabilities; American features need every-node comparison. <strong>OAS</strong>: constant spread added to discount rates (not cash flows) to match market price; OAS>0 = cheap. <strong>Recombining vs non-recombining</strong> trees trade simplicity for realism. <strong>BSM fails for bonds</strong>: unbounded-price assumption, constant-rate assumption, constant-vol assumption all violated. <strong>Callable</strong> = negative convexity below y′ + reinvestment risk; <strong>putable</strong> = value floor above y′.</p>`
+  summary: `<p><strong>Backward induction</strong>: value maturity first, walk backward; each node = discounted average of two successor values. Must be <strong>arbitrage-free</strong> (matches market price) or recalibrate. <strong>True vs risk-neutral probabilities</strong>: two equivalent ways to bake in the risk premium (adjust rates under 50/50, or adjust probabilities under given rates). The gap between them IS the interest rate drift. <strong>Option pricing</strong>: price bond at every node → intrinsic value at maturity → discount back with risk-neutral probabilities; American features need every-node comparison. <strong>OAS</strong>: constant spread added to discount rates (not cash flows) to match market price; OAS>0 = cheap. <strong>Recombining vs non-recombining</strong> trees trade simplicity for realism. <strong>BSM fails for bonds</strong>: unbounded-price assumption, constant-rate assumption, constant-vol assumption all violated. <strong>Callable</strong> = negative convexity below y′ + reinvestment risk; <strong>putable</strong> = value floor above y′.</p>`
 });
