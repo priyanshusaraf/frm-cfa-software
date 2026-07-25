@@ -360,6 +360,26 @@ export const conceptLinkTable = [
     "snippet": "Economic capital is portfolio UL scaled up by a multiplier that reaches deep into the tail of the loss distribution — it is the size of the buffer a bank must hold, beyond its reserve for EL, to survive an extreme (e.g...."
   },
   {
+    "slug": "expected-shortfall",
+    "name": "Expected Shortfall",
+    "display": "Expected Shortfall",
+    "layer": "core",
+    "kind": "formula",
+    "homeReading": 1,
+    "refs": [
+      1,
+      2,
+      3,
+      6,
+      7,
+      16,
+      31,
+      57
+    ],
+    "linkPhrases": [],
+    "snippet": "ES is the average size of a loss on the days that are already worse than VaR: the expected severity once you're already in the bad-outcome region."
+  },
+  {
     "slug": "initial-margin-independent-amount",
     "name": "Initial margin (independent amount)",
     "display": "Initial margin",
@@ -479,25 +499,6 @@ export const conceptLinkTable = [
     "excludePhrases": [
       "equity value"
     ]
-  },
-  {
-    "slug": "expected-shortfall",
-    "name": "Expected Shortfall",
-    "display": "Expected Shortfall",
-    "layer": "core",
-    "kind": "formula",
-    "homeReading": 1,
-    "refs": [
-      1,
-      3,
-      6,
-      7,
-      16,
-      31,
-      57
-    ],
-    "linkPhrases": [],
-    "snippet": "ES is the average size of a loss on the days that are already worse than VaR: the expected severity once you're already in the bad-outcome region."
   },
   {
     "slug": "compliance-risk",

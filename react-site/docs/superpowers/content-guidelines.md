@@ -259,3 +259,39 @@ Rules for anyone adding or renaming a `formulas[]`/`concepts[]` entry:
 5. **Rerun the generator after renaming anything.**
    `node scripts/build-core-concepts.mjs`, then
    `node scripts/preview-concept-links.mjs <rn...>` to see what changed.
+
+### Wave 2 (R06-R10, Book 1, 2026-07-26) and what the gate learned
+
+**A wave can be interrupted mid-file, and a dash-clean file is NOT proof the wave ran.**
+This wave was resumed from a killed session: r06/r08/r10 were dash-clean and committed to
+nothing, r07 still had 19 dashes and r09 two. Before assuming an uncommitted wave is done,
+run the dash grep per file, and read the diff of the "finished" files for mandate items the
+agent had not reached yet (this one had left GARP attributions in three of the five).
+
+**The defect class this wave adds: a date/label attached to the wrong event.** R07 called
+the CDO tranche blowup "the 2008 tranche trade" in ten places (breakdown title, concept name,
+misconception, high-yield item, recall, hook, quiz stem, thinkLike, teaches, summary) while
+its own body correctly said the trigger was the May 2005 GM/Ford downgrade. Book 1 line 2385
+puts the trade "just prior to the financial crisis"; the 2007-2009 systemic-correlation
+material is a genuinely separate story that the same reading also covers, which is exactly
+how the two got merged. **Rule: when a reading covers an event AND a later crisis, check that
+every label naming a year is attached to the event it actually describes.** A student who
+memorized the hook would have answered "2008" to a date question and been wrong.
+
+**Second defect: a qualitative gloss that contradicts the numbers in its own file.** R08's
+`thinkLike` said recession-period correlation is "comparatively stable", while the same file
+correctly prints recession correlation volatility at 80.5% against 83.0% in normal periods
+(second-highest of three, not stable). The numbers were right everywhere; only the adjective
+was wrong. **When a reading's punchline is a near-tie between two regimes, the prose must
+carry the actual gap, not round it into a qualitative contrast.**
+
+**Verified-correct, do not rewrite:** R09's copula derivations (the percentile mapping, the
+7,750 pairwise correlations, the Gaussian default-time copula) are all right and well
+explained; R10's regression hedge has the direction right (dependent = nominal yield,
+independent = real yield, beta rescales the naive DV01 face amount), confirmed against Book 1
+lines 3111-3131; R06's BCBS Working Paper No. 19 (Jan 2011) attribution matches line 281.
+
+**Renaming a concept costs a generator run.** R07's "Correlation and the 2008 crisis: the CDO
+tranche mechanism" became "The CDO tranche trade of May 2005", which changes a link target.
+`node scripts/build-core-concepts.mjs` after any concept rename, and commit the regenerated
+`conceptLinkTable.js` in the same commit.

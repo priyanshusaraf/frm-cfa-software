@@ -43,11 +43,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 3 | 1 | Parametric Approaches (II): Extreme Value Theory | done | done | 1 | pass | Fixed reciprocal POT ratio in concepts example. |
 | 4 | 1 | Backtesting VaR | done | done | 1 | pass | Fixed inverted eli5 direction + 97/97.5 contradiction. |
 | 5 | 1 | VaR Mapping | done | done | 1 | pass |  |
-| 6 | 1 | Messages From the Academic Literature | done | todo | 2 | - | |
-| 7 | 1 | Correlation Basics | done | todo | 2 | - | |
-| 8 | 1 | Empirical Properties of Correlation | done | todo | 2 | - | |
-| 9 | 1 | Financial Correlation Modeling: Copulas | done | todo | 2 | - | |
-| 10 | 1 | Empirical Approaches to Risk Metrics and Hedging | done | todo | 2 | - | |
+| 6 | 1 | Messages From the Academic Literature | done | done | 2 | pass | Wrong-way risk framing fine; only dashes + abbreviations. |
+| 7 | 1 | Correlation Basics | done | done | 2 | pass | Fixed: the tranche trade was misdated as 2008 throughout (May 2005). |
+| 8 | 1 | Empirical Properties of Correlation | done | done | 2 | pass | Fixed thinkLike overstating recession correlation as stable (80.5% vs 83.0%). |
+| 9 | 1 | Financial Correlation Modeling: Copulas | done | done | 2 | pass | Copula math and derivations verified correct. |
+| 10 | 1 | Empirical Approaches to Risk Metrics and Hedging | done | done | 2 | pass | Regression-hedge direction (dep=nominal, indep=real) verified against Tuckman. |
 | 11 | 1 | The Science of Term Structure Models | done | todo | 3 | - | |
 | 12 | 1 | Evolution of Short Rates and Shape of the Term Structure | done | todo | 3 | - | |
 | 13 | 1 | The Art of Term Structure Models: Drift | done | todo | 3 | - | |
