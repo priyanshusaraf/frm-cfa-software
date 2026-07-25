@@ -404,17 +404,17 @@ export default function Chapter() {
       </>)}
 
       {d.formulas && d.formulas.length > 0 && (<>
-        <SectionLabel txt="Formula box" color={book.color} rn={rn} />
+        <SectionLabel txt="Formulas" color={book.color} rn={rn} />
         {d.formulas.map((f, i) => {
           const mathCls = "f-math" + (isTex(f.math) ? " f-tex" : "");
           return (
             <div className="formula-block" key={i}>
               <div className="f-name">{f.name}</div>
               <div className={mathCls} dangerouslySetInnerHTML={{ __html: renderMath(f.math, true) }} />
-              {f.plain && <p style={{ fontStyle: "italic", fontSize: "0.86rem", margin: "0.4rem 0 0" }}><Html as="span" html={f.plain} /></p>}
+              {f.plain && <p className="f-plain"><Html as="span" html={f.plain} /></p>}
               {f.note && <div className="f-note"><Html as="span" html={f.note} /></div>}
               {f.derivation && (
-                <Accordion type="single" collapsible style={{ marginTop: "0.5rem" }}>
+                <Accordion type="single" collapsible className="f-deeper">
                   <AccordionItem value={"derivation-" + i}>
                     <AccordionTrigger>Show the math</AccordionTrigger>
                     <AccordionContent>
@@ -429,7 +429,7 @@ export default function Chapter() {
       </>)}
 
       {d.concepts && d.concepts.length > 0 && (<>
-        <SectionLabel txt="Concept hierarchy — click to expand" color={book.color} rn={rn} />
+        <SectionLabel txt="Concepts" color={book.color} rn={rn} />
         {d.concepts.map((c, i) => <ConceptCard key={i} c={c} open={i === 0} id={"concept-" + slugify(c.name)} />)}
       </>)}
 

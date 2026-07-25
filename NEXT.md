@@ -1,3 +1,3 @@
-DONE: Closed the ui-sweep phase. Verified planner/block-review/case-study/consistency render marker-clean; fixed Planner's missing document.title and Consistency's "About 0 readings per active day" line showing with no data. Ledger flipped to content-sonnet-clearance.
-NEXT: Start content-sonnet-clearance wave 1 (r01-r05) per content-run-protocol.md, gating each file on validate-reading.mjs.
-BLOCKERS: none.
+DONE: Recomposed reading typography. Formulas lost six layers of chrome and now sit as centred math with left-aligned prose beneath; concepts lost the card + 7-colour badge rainbow and render as dictionary entries with quiet run-in labels. Fixed fitMath's hardcoded 1.22rem that silently overrode the stylesheet.
+NEXT: Rebuild the Consistency heatmap (the >=8 and >=4 tiers return the same colour, so there is no intensity ramp) and fix the "green square" copy against blue cells.
+BLOCKERS: Light theme for the new reading CSS was token-audited (no hardcoded colours) but not visually confirmed; headless light capture timed out.

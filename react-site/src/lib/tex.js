@@ -35,7 +35,13 @@ export function fitMath(root) {
     el.style.fontSize = "";
     const inner = el.querySelector(".katex");
     if (!inner) return;
-    let size = 1.22, guard = 0; // rem; must match .f-tex in style.css
+    /* Start from whatever the stylesheet actually says rather than a hardcoded
+       number: this used to be pinned at 1.22rem with a "must match style.css"
+       comment, so raising the CSS size silently did nothing and every formula
+       kept rendering at the old size. Read it, and the two cannot drift again. */
+    const rootPx = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    let size = (parseFloat(getComputedStyle(el).fontSize) || 19.5) / rootPx;
+    let guard = 0;
     while (inner.offsetWidth > el.clientWidth - 2 && size > 0.7 && guard++ < 40) {
       size -= 0.03;
       el.style.fontSize = size.toFixed(3) + "rem";

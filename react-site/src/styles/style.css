@@ -242,38 +242,56 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
 .callout.warn .callout-title { color: var(--amber); }
 
 /* ---------- Collapsible concept cards ---------- */
-details.concept {
-  border: 1px solid var(--border); border-radius: var(--radius);
-  background: var(--bg-raised); margin: 0.6rem 0; overflow: hidden;
-}
+/* ---------- concept entries ----------
+   A concept used to render as a raised card whose seven fields each carried a
+   coloured pill (blue/purple/green/amber/red/cyan/pink). Eight concepts meant
+   ~56 badges in seven hues, which is why the page read as incoherent, and it
+   broke the house rule that book colour is the only identity accent.
+
+   The replacement is a dictionary entry: the term is a heading, the definition
+   is the lead, and every other field is a paragraph with a quiet RUN-IN label.
+   Uniform neutral labels, with one exception that is genuinely semantic
+   (Pitfall reads red, because it is a warning). No card, no fill, no shadow. */
+details.concept { border-top: 1px solid var(--border); margin: 0; }
+details.concept:first-of-type { border-top: none; }
 details.concept > summary {
-  cursor: pointer; padding: 0.85rem 1.1rem; font-weight: 640; font-size: 1rem;
-  list-style: none; display: flex; align-items: center; gap: 0.6rem;
-  user-select: none;
+  cursor: pointer; padding: 1rem 0 0.9rem; font-weight: 650; font-size: 1.12rem;
+  letter-spacing: -0.01em; color: var(--text);
+  list-style: none; display: flex; align-items: baseline; gap: 0.55rem; user-select: none;
+  transition: color 0.15s;
 }
 details.concept > summary::-webkit-details-marker { display: none; }
+/* A collapsed entry must still look openable: at 0.72rem the caret read as a
+   speck of dust, so it keeps near-body size and takes the accent on hover. */
 details.concept > summary::before {
-  content: "▸"; color: var(--text-faint); font-size: 0.8rem; transition: transform 0.15s;
+  content: "▸"; color: var(--text-faint); font-size: 0.95rem; line-height: 1;
+  transition: transform 0.15s, color 0.15s; flex: none;
 }
+details.concept > summary:hover::before { color: var(--accent); }
 details.concept[open] > summary::before { transform: rotate(90deg); }
-details.concept > summary:hover { background: var(--bg-hover); }
-details.concept .concept-body { padding: 0.2rem 1.15rem 1rem; border-top: 1px solid var(--border); }
-.concept-field { margin: 0.75rem 0; }
+details.concept > summary:hover { color: var(--accent); }
+details.concept > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+/* Indent the body to the term's text, so the entry reads as one hanging block. */
+details.concept .concept-body { padding: 0 0 1.5rem 1.27rem; }
+
+.concept-field { margin: 0.85rem 0 0; font-size: 0.95rem; line-height: 1.6; }
 .concept-field .field-tag {
-  display: inline-block; font-size: 0.7rem; font-weight: 750; text-transform: uppercase;
-  letter-spacing: 0.08em; padding: 0.12em 0.55em; border-radius: 99px; margin-bottom: 0.3rem;
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--text-faint); margin-right: 0.5em; white-space: nowrap;
 }
-.field-tag.def { background: var(--accent-soft); color: var(--accent); }
-.field-tag.int { background: var(--purple-soft); color: var(--purple); }
-.field-tag.ex { background: var(--green-soft); color: var(--green); }
-.field-tag.cex { background: var(--amber-soft); color: var(--amber); }
-.field-tag.pit { background: var(--red-soft); color: var(--red); }
-.field-tag.rel { background: var(--cyan-soft); color: var(--cyan); }
-.field-tag.mem { background: var(--pink-soft); color: var(--pink); }
-.concept-field > div { font-size: 0.95rem; }
-/* The definition is the testable core of a term — render it larger and warmer. */
-.concept-field.def { border-left: 2px solid var(--accent); padding-left: 0.7rem; margin-left: -0.1rem; }
-.concept-field.def > div { font-size: 1.08rem; font-weight: 500; color: var(--text); line-height: 1.5; }
+/* Run-in: the label sits on the first line of its own paragraph, not above it.
+   Content fields are trusted HTML and may open with a <p>; that first paragraph
+   has to go inline or the label is orphaned on its own line. */
+.concept-field > div { display: inline; }
+.concept-field > div > p:first-child { display: inline; }
+.concept-field > div > p:last-child { margin-bottom: 0; }
+.concept-field.pit .field-tag { color: var(--red); }
+/* The definition is the testable core of a term: it leads, at full strength,
+   with no label at all — its position says what it is. */
+.concept-field.def { margin-top: 0.15rem; font-size: 1.06rem; line-height: 1.55; color: var(--text); }
+.concept-field.def .field-tag { display: none; }
+.concept-field.rel { margin-top: 1rem; }
+.concept-field.rel > div { display: block; margin-top: 0.35rem; }
 
 /* ---------- Misconception rows ---------- */
 .misc-row {
@@ -326,20 +344,38 @@ details.concept .concept-body { padding: 0.2rem 1.15rem 1rem; border-top: 1px so
 .recall-hint { font-size: 0.78rem; color: var(--text-faint); padding: 0 1.1rem 0.6rem; }
 
 /* ---------- Formula blocks ---------- */
-.formula-block {
-  background: var(--bg-inset);
-  border: 1px solid var(--border); border-left: 3px solid var(--cyan);
-  border-radius: var(--radius);
-  padding: 0.85rem 1.2rem 0.95rem; margin: 0.9rem 0;
-  box-shadow: var(--shadow);
+/* ---------- formulas ----------
+   A formula is the emphasis of its own paragraph, so it needs air, not a
+   container. The old treatment stacked six layers of chrome around every
+   equation (inset fill, full border, 3px cyan rule, radius, shadow, coloured
+   caps label); six of those down a reading read as a pile of boxes rather than
+   one document. Everything below is type and space: the only rule is a hairline
+   BETWEEN formulas, which separates without enclosing. */
+.formula-block { margin: 2.1rem 0; }
+.formula-block + .formula-block { border-top: 1px solid var(--border); padding-top: 2.1rem; }
+.formula-block .f-name {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.11em;
+  color: var(--text-faint); text-align: center; margin-bottom: 0.9rem;
 }
-.formula-block .f-name { font-size: 0.76rem; font-weight: 750; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cyan); margin-bottom: 0.35rem; }
 /* legacy HTML math (un-converted readings) */
-.formula-block .f-math { font-family: var(--mono); font-size: 0.98rem; white-space: nowrap; overflow-x: auto; }
-/* KaTeX-typeset math: centered, enlarged, horizontally scrollable if wide */
-.formula-block .f-tex { font-size: 1.22rem; overflow-x: auto; overflow-y: hidden; padding: 0.15rem 0 0.05rem; }
-.formula-block .f-tex .katex-display { margin: 0.35rem 0; }
-.formula-block .f-note { font-size: 0.88rem; color: var(--text-dim); margin-top: 0.5rem; white-space: normal; }
+.formula-block .f-math { font-family: var(--mono); font-size: 1.02rem; text-align: center; white-space: nowrap; overflow-x: auto; }
+/* KaTeX-typeset math: the visual centre of the block, generous vertical air */
+.formula-block .f-tex { font-size: 1.5rem; overflow-x: auto; overflow-y: hidden; padding: 0.2rem 0; }
+.formula-block .f-tex .katex-display { margin: 0; }
+/* Centre the MATH, left-align the PROSE about it. Centred ragged text is fine
+   for a one-line caption and actively harder to read once it wraps, which the
+   plain-language gloss always does. */
+.formula-block .f-plain { font-size: 0.96rem; line-height: 1.6; color: var(--text); margin: 1.3rem 0 0; text-align: left; }
+.formula-block .f-note { font-size: 0.87rem; line-height: 1.55; color: var(--text-dim); margin: 0.6rem 0 0; text-align: left; }
+/* The derivation is optional depth: it must not out-weigh the formula above it,
+   so it drops the accordion's card treatment down to a single quiet rule. */
+.formula-block .f-deeper { margin: 1rem 0 0; }
+.formula-block .f-deeper [data-radix-collection-item],
+.formula-block .f-deeper > div { border: none; background: none; }
+.formula-block .f-deeper button {
+  padding-left: 0; padding-right: 0; font-size: 0.84rem; color: var(--text-faint);
+}
+.formula-block .f-deeper button:hover { color: var(--accent); }
 .formula-block sub, .formula-block sup { font-size: 0.7em; }
 .tex-error { font-family: var(--mono); color: var(--red); }
 
