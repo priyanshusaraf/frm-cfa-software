@@ -105,6 +105,32 @@ export const conceptLinkTable = [
     "snippet": "Basel I, Basel II, Basel 2.5, Basel III and the 2017 finalization are usually met as five separate sets of rules to memorize. They are one object being repaired. Every version exists because the previous one was gamed..."
   },
   {
+    "slug": "liquidity-spiral",
+    "name": "The liquidity spiral",
+    "display": "The liquidity spiral",
+    "layer": "core",
+    "authored": true,
+    "homeReading": 64,
+    "selfContained": true,
+    "refs": [
+      63,
+      64,
+      70,
+      76,
+      80
+    ],
+    "linkPhrases": [
+      "liquidity spiral",
+      "liquidity black hole",
+      "liquidity black holes",
+      "positive feedback trading",
+      "positive feedback traders",
+      "transactions liquidity",
+      "funding liquidity"
+    ],
+    "snippet": "Transactions liquidity and funding liquidity are taught as two definitions to keep apart. The examinable object is what happens when they stop being separate: each one worsens the other, leverage multiplies every turn,..."
+  },
+  {
     "slug": "information-ratio",
     "name": "Information ratio",
     "display": "Information ratio",

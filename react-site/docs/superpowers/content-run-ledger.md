@@ -228,8 +228,31 @@ time-average, PFE is a per-date quantile, and both are already floored at zero s
 "positive" separates nothing), and R36 now carries a chip to it. Per this run's own
 doctrine, "leave it alone" is a verdict.
 
-**Still open:** Vasicek/WCDR and the liquidity spiral, neither criterion-tested yet. The
-Vasicek page additionally owes a pass against the section 1a doctrine, which postdates it.
+### Candidate 4, the liquidity spiral: BUILT 2026-07-27, with the span corrected
+
+`/concept/liquidity-spiral` (homeReading 64). **The spec's span was wrong here too.** It
+lists R63, R64, R68, R71 and R73, but R68 (intraday), R71 (stress testing) and R73
+(contingency funding planning) are process readings, not the feedback loop. The loop's
+actual constituents, checked against the corpus, are R63 (the two kinds of liquidity and the
+solvency-is-not-liquidity lesson with its three case studies), R64 (where the loop is named
+and where leverage arrives as its multiplier), R70 (the loop destroying a real dealer bank),
+R76 (repo, the secured funding channel that ran anyway) and R80 (the frictions, one of which
+IS the loop). Criterion 2 holds strongly: the loop is named in one clause of R64, its
+real-world instance is six readings later, and the funding market it ran through is twelve
+readings after that.
+
+Nine sections run one full turn of the circuit: solvency against liquidity, the two
+questions sharing the word, the loop itself traced as a closed circuit (price fall, mark
+down, margin call, forced sale, deeper price fall), leverage as the gain control acting at
+BOTH points (how hard each turn hits and how easily the first turn starts), liquidity black
+holes and positive feedback trading answering the natural "surely someone buys" objection,
+R70 and R76 as the loop with a name attached, the cost of the exit (liquidity-adjusted VaR,
+the stressed multiple, and the square-root-of-T correction), a defence table where every
+liquidity rule is mapped to the turn it interrupts, and the traps.
+
+**Still open:** Vasicek/WCDR, the last candidate. It is a different shape from the other
+four, since it already HAS a Phase-2 authored deepDive on r26's formula; what it owes is a
+pass against the section 1a doctrine, which postdates it, rather than a new page.
 
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 

@@ -359,4 +359,118 @@ export const authoredConcepts = [
       },
     ],
   },
+
+  /* The liquidity spiral, the third hard-concept sequencing page (spec candidate
+     five). Criterion test applied 2026-07-27, and the spec's span was CORRECTED
+     in the process: it lists R63, R64, R68, R71 and R73, but R68 (intraday),
+     R71 (stress testing) and R73 (contingency funding planning) are process
+     readings, not the feedback loop. The loop's actual constituents are R63 (the
+     two kinds of liquidity and the solvency-is-not-liquidity lesson), R64 (where
+     the loop is named, and where leverage arrives as its multiplier), R70 (the
+     loop running inside a real dealer bank), R76 (repo, the funding channel that
+     actually ran) and R80 (the frictions that keep a market illiquid, including
+     funding constraints).
+
+     Criterion 2 holds strongly. The loop is the examinable object and it is
+     named in one clause of R64, its real-world instance is six readings later,
+     and the specific funding channel that broke is twelve readings later still.
+     Nothing runs one full turn of it end to end.
+
+     Sourced from Schweser Book 4 at the repo root (positive feedback trading and
+     its causes, including the margin-call bullet that IS the spiral mechanism,
+     at lines ~613-631) and from the five readings' own already-gated content. */
+  {
+    slug: "liquidity-spiral",
+    name: "The liquidity spiral",
+    layer: "core",
+    homeReading: 64,
+    selfContained: true,
+    refs: [63, 64, 70, 76, 80],
+    linkPhrases: [
+      "liquidity spiral", "liquidity black hole", "liquidity black holes",
+      "positive feedback trading", "positive feedback traders",
+      "transactions liquidity", "funding liquidity",
+      /* not "LVaR": liquidity-adjusted VaR already owns its own page, and it is
+         one input to this loop rather than the loop itself. */
+    ],
+    lead: "Transactions liquidity and funding liquidity are taught as two definitions to keep apart. The examinable object is what happens when they stop being separate: each one worsens the other, leverage multiplies every turn, and the market thins out exactly when you need to sell. This page runs one full turn of that loop.",
+    sections: [
+      {
+        label: "You are solvent, and you still cannot pay",
+        html: `<p>Take a firm whose assets are genuinely worth more than its liabilities. On any reasonable valuation it is comfortably profitable, not merely surviving. Now its lenders decline to roll a large short-term borrowing next Tuesday, and the cash to repay is not there, because it is tied up in assets that will pay out over years. The firm fails on Tuesday.</p>
+        <p>Nothing about that story requires the firm to have been wrong about anything. This is the lesson Book 4 opens with and then repeats through three separate case studies: Northern Rock, Ashanti Goldfields and Metallgesellschaft were all economically defensible positions destroyed by cash TIMING, not by cash amounts. <strong>Solvency asks whether the assets exceed the liabilities. Liquidity asks whether the cash arrives before the obligation does.</strong> They are different questions, and a firm can pass the first and be dead from the second.</p>
+        <p>Once you accept that, the interesting question is not what liquidity risk is. It is why liquidity problems, unlike solvency problems, tend to accelerate rather than settle down.</p>`,
+      },
+      {
+        label: "Two questions that share one word",
+        html: `<p>The word liquidity is doing two jobs, and separating them is the prerequisite for everything else.</p>
+        <p><strong>Transactions liquidity</strong> is a property of an asset and its market: can you sell this position without moving the price against yourself? A Treasury bill has it, a block of thinly traded corporate bonds does not, and the cost of not having it shows up as the gap between the price you were marked at and the price you actually get. This is the risk that liquidity-adjusted value at risk exists to price, by adding the cost of liquidation on top of the ordinary market-risk number.</p>
+        <p><strong>Funding liquidity</strong> is a property of your balance sheet: can you keep financing yourself as your borrowings come due? A firm that funds long assets with short borrowings is profitable precisely because short money is cheap, and is exposed precisely because that money has to be replaced over and over. Every rollover is a fresh chance for the lender to say no.</p>
+        <p>Each risk on its own is manageable, and firms run both deliberately. An illiquid asset is fine if you never have to sell it in a hurry. Short-term funding is fine if it keeps rolling. The danger is not in either one.</p>`,
+      },
+      {
+        label: "One turn of the loop",
+        html: `<p>Here is what makes the pair dangerous in a way neither is alone. Follow a single sequence, starting anywhere, because the point is that it closes.</p>
+        <p>An asset price falls. Your position is marked down, so your equity absorbs the loss. Because you are levered, your lenders now hold collateral worth less than it was, and they respond in the ordinary, contractually correct way: they call for more margin. You do not have spare cash, so you meet the call by selling something. Selling into a falling market moves the price further down, which marks down the rest of your book AND everybody else's book, which produces more margin calls, at your firm and at every other firm holding the same assets. Those firms sell too.</p>
+        <p>Read that again as a circuit rather than a story. <strong>Funding pressure forces a sale, the sale damages transactions liquidity, damaged transactions liquidity produces worse marks and worse collateral, and worse collateral produces more funding pressure.</strong> That is the whole mechanism, and Schweser puts it in the list of causes of positive feedback trading in exactly these terms: when leveraged investors cannot meet margin calls they have to close out positions, which only accentuates the current trend in prices.</p>
+        <p>The reason this deserves its own page rather than a definition is that no single reading runs the full circuit. R63 gives you the two kinds of liquidity, R64 names the loop in a clause and moves on to leverage, R70 shows it destroying a real firm, and R76 shows the specific funding market it ran through. The loop is what the exam tests, and it is assembled from four places.</p>`,
+      },
+      {
+        label: "Leverage is the multiplier on every turn",
+        html: `<p>Leverage is not a separate topic that happens to sit in the same reading. It is the gain control on the loop above, and it acts at two points at once.</p>
+        <p>Define leverage as assets divided by equity. The return on equity is then the leveraged asset return minus the cost of the borrowed part, which means a firm at thirty times leverage turns a 1% asset gain into roughly a 30% equity gain. The same arithmetic runs backwards with no mercy: a 3% fall in asset values wipes out the equity of a thirty-times-levered firm entirely. Both Bear Stearns and Lehman were running overnight-repo-funded leverage above thirty times.</p>
+        <p>The second point is subtler and matters more for the loop. Higher leverage means a SMALLER price move is needed before a margin call arrives, so a highly levered firm enters the forced-selling stage of the circuit earlier and on a gentler shock. Leverage therefore sets both how hard each turn hits and how easily the first turn starts.</p>
+        <p>Two measurement traps sit here, both testable. Gross leverage counts every position and therefore overstates the risk of a book whose shorts genuinely hedge its longs, which is why net leverage is the right measure there. And on an economic balance sheet a short sale carries more leverage than a margin loan of the same size. A short position inherently borrows the full value of what it sells, while a margin purchase borrows only the part the investor did not fund.</p>`,
+      },
+      {
+        label: "Why the market disappears exactly when you need it",
+        html: `<p>A natural objection to the loop: surely someone buys. In a functioning market a price fall attracts buyers, which is what stops the fall. Schweser calls those buyers NEGATIVE feedback traders, and when they dominate, prices are stable and the market is liquid.</p>
+        <p>A liquidity black hole is what happens when the other group dominates, so that falling prices produce more selling instead of buying, and everyone wants the same side of the trade at once. The causes are worth knowing individually, because each is a mechanical rule that fires without anyone deciding to panic. Stop-loss rules sell automatically once a price falls through a level. Trend and breakout trading buy strength and sell weakness by design. Predatory traders who learn of a large forced sale short ahead of it to profit from the decline they know is coming. A firm hedging a large SHORT option position must buy after a price rise and sell after a fall, which is destabilising. That is the exact opposite of dynamic hedging of a LONG option position, which sells into rallies and buys into declines and is therefore stabilising. Portfolio insurance in 1987 was the same effect at scale. Rules built to synthesise put options on more than $60 billion of portfolios sold equities as the market fell. The models called for $12 billion of sales when only $4 billion could be executed by Friday's close, and the overhang broke on the Monday. And margin calls, the loop's own engine, appear in this same list.</p>
+        <p>So the answer to the objection is that the buyers who would normally arrive are, in these conditions, sellers instead. That is why liquidity does not degrade smoothly under stress. It disappears.</p>`,
+      },
+      {
+        label: "The loop running inside a real firm",
+        html: `<p>R70 is this circuit with a name attached, and it is worth reading as the case study of the mechanism rather than as a separate topic about dealer banks.</p>
+        <p>The trigger is not a proven insolvency. Counterparties merely QUESTIONING whether a dealer is solvent is enough, because each counterparty's rational, individually correct response is to reduce its exposure, and the sum of those responses is the liquidity crisis they were worried about. It is self-fulfilling in the precise sense that the belief produces the outcome.</p>
+        <p>What makes a dealer bank especially exposed is that it has five business lines and a solvency scare hits all of them at once, so there is no diversification to fall back on. Derivatives counterparties stop accepting novations and ask to offset contracts, repo lenders decline to renew, prime brokerage clients move their balances elsewhere, and the clearing bank can freeze cash settlement outright. Both parts of 2008's endgame are instances: Bear Stearns' refusal of novation requests damaged the confidence it was meant to protect, and JPMorgan Chase's invocation of its right of offset as Lehman's clearing bank froze Lehman's cash and was the final trigger.</p>
+        <p>R76 supplies the detail that makes the repo channel worth understanding rather than just naming. Repo is SECURED financing, which is exactly why it was assumed to be run-proof, and it ran anyway. When a lender doubts both the borrower and the value of the collateral, being secured stops being reassurance. Secured funding is not immune to a confidence run; it simply fails one step later.</p>`,
+      },
+      {
+        label: "What the loop costs you when you finally sell",
+        html: `<p>Two quantitative pieces attach to the selling stage, and both exist because ordinary market-risk measurement assumes you can get out at the marked price.</p>
+        <p>Liquidity-adjusted value at risk adds the cost of liquidation to the ordinary value at risk, using half the bid-ask spread applied to the position size. Under stress the spread is not its average: it is pushed out by some multiple of its own volatility, and the worked example in R63 has the stressed liquidation cost running at roughly three and a half times the normal one. The lesson for the loop is that the cost of exiting is at its worst in exactly the conditions that force you to exit.</p>
+        <p>The second piece corrects a habit rather than adding a charge. Scaling a one-day value at risk to a T-day liquidation by multiplying by the square root of T assumes you hold the whole position for all T days and then sell it at once. A firm that liquidates gradually holds a shrinking position, so its true multiplier is SMALLER than the naive square-root figure. Getting this backwards overstates the risk of an orderly liquidation and understates the difference between selling gradually and being forced to sell at once.</p>
+        <p>R80 closes the circle by explaining why the exit is expensive at all. Beyond the visible transaction cost sit four frictions that keep markets illiquid: the search cost of finding a counterparty, asymmetric information about what the asset is worth, price impact, and funding constraints. That last one is the loop itself, appearing in the list of reasons a market is illiquid in the first place. Illiquid markets also freeze together, roughly on a decade cycle, dragging normally-liquid markets with them.</p>`,
+      },
+      {
+        label: "Where the loop can be broken",
+        html: `<p>Every liquidity defence in Book 4 interrupts one specific turn of the circuit. Read as a list of rules they are arbitrary; read as interruptions they are almost predictable.</p>
+        <div class="tablewrap"><table>
+        <thead><tr><th>Defence</th><th>Which turn it interrupts</th></tr></thead>
+        <tbody>
+        <tr><td>Holding high-quality liquid assets (the thirty-day coverage requirement)</td><td>The margin call no longer forces a sale, because it can be met with cash</td></tr>
+        <tr><td>Stable, longer-dated funding (the one-year funding requirement)</td><td>Fewer rollovers, so fewer chances for a lender to decline</td></tr>
+        <tr><td>Lower leverage</td><td>A larger price move is needed before the first margin call, and each turn hits less hard</td></tr>
+        <tr><td>Diversified funding sources</td><td>One channel closing does not close all of them at once, which is the dealer bank's specific weakness</td></tr>
+        <tr><td>Liquidity stress testing and a contingency funding plan</td><td>The decisions are made before the loop starts, when there is still time to choose which assets to sell</td></tr>
+        <tr><td>Central bank borrowing</td><td>A buyer exists when the private market has none, which is the black hole's defining absence</td></tr>
+        </tbody>
+        </table></div>
+        <p>One caution that the same readings supply: regulatory uniformity can work against this. Rules that push every institution to hold the same assets and react to stress the same way make the whole system a positive feedback trader.</p>`,
+      },
+      {
+        label: "Traps, and the three questions to ask any liquidity problem",
+        html: `<p>Ask three things. <strong>Which liquidity is this, the asset's or the balance sheet's?</strong> A stem about exiting a position is transactions liquidity; a stem about lenders is funding liquidity; a stem where one causes the other is the loop and usually wants you to name it. <strong>Is leverage in the picture?</strong> If it is, the answer almost always involves a margin call happening earlier than intuition suggests. <strong>Is the firm solvent?</strong> If the scenario says yes, the question is testing the distinction that opens this page, and the correct answer will not be about asset values.</p>
+        <p>The traps that recur:</p>
+        <ul>
+        <li><strong>Treating a solvency scare as requiring actual insolvency.</strong> Counterparties questioning solvency is sufficient, and the run is what makes the doubt true.</li>
+        <li><strong>Assuming secured funding cannot run.</strong> Repo ran in 2008. Collateral reassures only while its own value is trusted.</li>
+        <li><strong>Positive against negative feedback traders.</strong> Positive feedback buys strength and sells weakness and DESTABILISES. The names sound like value judgements and are not.</li>
+        <li><strong>Short option hedging against dynamic hedging of a long option.</strong> Hedging a short position buys after rises and sells after falls, which is destabilising; the long-option case is the stabilising mirror. This pair is easy to invert under time pressure.</li>
+        <li><strong>Scaling liquidation value at risk by the square root of T.</strong> The correct multiplier for a gradual liquidation is smaller, because the position shrinks as it is sold.</li>
+        <li><strong>Gross leverage on a hedged book.</strong> It overstates risk where shorts genuinely offset longs; net leverage is the measure that answers the question being asked.</li>
+        </ul>`,
+      },
+    ],
+  },
 ];
