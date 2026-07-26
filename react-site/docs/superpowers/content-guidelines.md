@@ -831,3 +831,27 @@ mangled one is worse than a mangled sentence: rerun `build-core-concepts.mjs` af
 fixing any of them.
 
 **Book 4 (R63-R80) is now fully cleared.** Remaining: Book 5, R81-R101, waves 17-20.
+
+### Wave 17 (R81-R85, Book 5, 2026-07-26): the first Book 5 wave
+
+**R82 was missing the whole "other macroeconomic factors" subsection.** It taught the
+three headline macro factors (economic growth, inflation, volatility) in detail and
+stopped, dropping productivity shocks (with the ~50% correlation to stock returns and
+the Smets and Wouters seven-shock DSGE benchmark), demographic risk (the OLG model,
+the baby-boomer liquidation prediction, rising risk aversion with age) and political
+or sovereign risk. Added at source depth. **This is now the third wave running where
+the gap had the same shape: the category is covered, a named member of it is not.**
+That pattern is worth checking for deliberately rather than waiting for the audit,
+because the audit only catches it when the source happens to bold the member.
+
+**Book 5's readings are the most heavily parenthesized in the corpus**, so the
+two-pass dash method is not optional here: every one of the five had strings the
+paired rule had to skip. Run pass one, then pass two with the paired rule disabled,
+then the separator repair over `points[]`, `title:` and `name:`.
+
+**Watch the audit's worked-example headings in quantitative readings.** R85 flagged
+"computing component VaR (example 1)", "computing portfolio VaR (part 1)" and four
+more of the same shape. Those are Schweser's own worked-example headings, not
+concepts; the reading reproduces every one of them inside `formulas[].derivation`.
+Expect a burst of these on any calculation-heavy reading and do not treat the count
+as signal.

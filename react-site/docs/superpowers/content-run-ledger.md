@@ -150,11 +150,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 78 | 4 | Covered Interest Parity Lost | done | done | 16 | pass | Heaviest second-pass file: its (1)(2) prose blocks were skipped by the paired rule and needed the no-paren pass. |
 | 79 | 4 | Risk Management for Changing Interest Rates: ALM & Duration | done | done | 16 | pass | Enumerated-prose tell in the two-kinds-of-rate-risk passage rewritten; four highYield whys asserted their own examinability. |
 | 80 | 4 | Illiquid Assets | done | done | 16 | pass | Coverage flags all false positives: the per-market illiquidity detail (7%/22% bond yield variation, on/off-the-run) is present under different headings. |
-| 81 | 5 | Factor Theory | done | todo | 17 | - | |
-| 82 | 5 | Factors | done | todo | 17 | - | |
-| 83 | 5 | Alpha (and the Low-Risk Anomaly) | done | todo | 17 | - | |
-| 84 | 5 | Portfolio Construction | done | todo | 17 | - | |
-| 85 | 5 | Portfolio Risk: Analytical Methods | done | todo | 17 | - | |
+| 81 | 5 | Factor Theory | done | done | 17 | pass | Five 'lesson N' coverage flags all false positives (each lesson is taught). A 'Six lessons follow' structure-announcement tell removed. |
+| 82 | 5 | Factors | done | done | 17 | pass | REAL GAP FILLED: the other macroeconomic factors (productivity shocks with the DSGE/Smets-Wouters seven, demographic risk via OLG models, political/sovereign risk) were absent. |
+| 83 | 5 | Alpha (and the Low-Risk Anomaly) | done | done | 17 | pass | Lightest of the wave. Momentum and value/growth flags both false positives. |
+| 84 | 5 | Portfolio Construction | done | done | 17 | pass | Both WEAK LO flags false positives (alpha refining and dispersion are each taught at length). Three exam-voice whys de-metered. |
+| 85 | 5 | Portfolio Risk: Analytical Methods | done | done | 17 | pass | All flags are the audit matching worked-example headings ('computing component VaR (example 1)'), which the reading reproduces in its formulas. |
 | 86 | 5 | VaR and Risk Budgeting in Investment Management | done | todo | 18 | - | |
 | 87 | 5 | Risk Monitoring and Performance Measurement | done | todo | 18 | - | |
 | 88 | 5 | Portfolio Performance Evaluation | done | todo | 18 | - | |
