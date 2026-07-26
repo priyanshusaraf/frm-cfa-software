@@ -1089,3 +1089,30 @@ mark.hl.hl-r { background: color-mix(in srgb, var(--red) 26%, transparent); box-
 .case-link .cl-title { font-size: 0.83rem; font-weight: 600; color: var(--text); }
 .case-link .cl-note { font-size: 0.76rem; color: var(--text-faint); line-height: 1.4; }
 .case-index { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 0.9rem 0 1.4rem; }
+
+/* One-page summary outline (components/chapter/SummaryOutline.jsx). Two levels
+   only, on purpose: the summary is skimmed the morning of the exam, so a point
+   is either a headline or evidence for one, and a third level would restore the
+   density this replaced. */
+.sum-lead { font-size: 0.9rem; color: var(--text-dim); margin-bottom: 0.7rem; }
+.sum-outline { list-style: none; margin: 0; padding: 0; }
+.sum-outline > li + li { margin-top: 0.62rem; }
+.sum-point { display: flex; gap: 0.55rem; align-items: baseline; font-size: 0.9rem; }
+/* Baseline-aligned via its own line-height rather than a margin, so the dot
+   tracks the first line of text at any --font-scale. */
+.sum-dot {
+  flex: none; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent); transform: translateY(-2px);
+}
+.sum-head { font-weight: 600; color: var(--text); }
+.sum-subs {
+  list-style: none; margin: 0.28rem 0 0; padding: 0 0 0 1.15rem;
+  border-left: 1px solid var(--border); margin-left: 1.5px;
+}
+.sum-subs > li {
+  font-size: 0.85rem; color: var(--text-dim); margin: 0.16rem 0; line-height: 1.5;
+}
+.sum-subs-list > li { position: relative; padding-left: 0.75rem; }
+.sum-subs-list > li::before {
+  content: "–"; position: absolute; left: 0; color: var(--text-faint);
+}
