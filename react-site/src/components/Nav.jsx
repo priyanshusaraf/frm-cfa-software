@@ -131,7 +131,20 @@ export default function Nav({ onMenuOpenChange }) {
             Study <ChevronDown size={12} className={"transition-transform" + (studyOpen ? " rotate-180" : "")} />
           </NavButton>
         </PopoverTrigger>
-        <PopoverContent align="start" className="w-56 p-1.5">
+        {/* Sixteen Study destinations do not fit a laptop viewport, and at any
+            font-scale above 1 they run off the bottom with no way to reach the
+            last few (owner-reported 2026-07-27). Radix publishes the space
+            between the trigger and the viewport edge as
+            --radix-popover-content-available-height; capping at 85% of it keeps
+            a visible gap at the bottom so the list reads as scrollable rather
+            than cut off, and it re-measures on every open, so it stays correct
+            at any zoom or window size. collisionPadding keeps that measurement
+            off the very edge of the screen. */}
+        <PopoverContent
+          align="start"
+          collisionPadding={12}
+          className="w-56 overflow-y-auto overscroll-contain p-1.5 max-h-[calc(var(--radix-popover-content-available-height)*0.85)]"
+        >
           {STUDY_GROUPS.map((group, gi) => (
             <div key={group.label || "g" + gi} className={gi ? "mt-1.5 border-t border-line pt-1.5" : ""}>
               {group.label && (
