@@ -100,24 +100,39 @@ function sectionsOf(bn) {
 /* Title similarity on content words, so "Financial Correlation Modeling:
    Copulas" still finds "FINANCIAL CORRELATION MODELING-BOTTOM-UP APPROACHES"
    when nothing matches exactly. */
-function titleScore(a, b) {
+/* Two numbers, because one cannot do both jobs. `score` normalizes by the
+   SHORTER title, which is what lets a subtitle difference still match; it also
+   saturates at 1 for any candidate whose words are a strict subset of the
+   other's. `overlap` normalizes by the LONGER one, so a subset scores low. The
+   scorer ranks on `score` and breaks ties on `overlap`. */
+function titleMatch(a, b) {
   /* Short titles ("CVA") have no words long enough to survive the content-word
      filter, so they are compared whole. */
-  if (norm(a) === norm(b)) return 1;
+  if (norm(a) === norm(b)) return { score: 1, overlap: 1 };
   const wa = new Set(norm(a).split(" ").filter((w) => w.length > 3));
   const wb = new Set(norm(b).split(" ").filter((w) => w.length > 3));
-  if (!wa.size || !wb.size) return 0;
+  if (!wa.size || !wb.size) return { score: 0, overlap: 0 };
   let hit = 0;
   for (const w of wa) if (wb.has(w)) hit++;
-  return hit / Math.min(wa.size, wb.size);
+  return { score: hit / Math.min(wa.size, wb.size), overlap: hit / Math.max(wa.size, wb.size) };
 }
 
 function sectionFor(rn, title) {
   const secs = sectionsOf(bookOf(rn));
-  let best = null, bestScore = 0;
+  /* An exact title match is never a guess and must win outright, ahead of the
+     fuzzy scorer. Found 2026-07-26: the source's "LIQUIDITY RISK" scored a
+     perfect 1 against "Intraday Liquidity Risk Management" (subset saturation,
+     above) and, sitting earlier in the book, took the `>` comparison, so r68
+     was audited against r63's chapter and reported seventeen phantom gaps. */
+  const exact = secs.find((s) => norm(s.title) === norm(title));
+  if (exact) return { text: exact.text, matchedTitle: exact.title, score: 1 };
+
+  let best = null, bestScore = 0, bestOverlap = 0;
   for (const s of secs) {
-    const sc = titleScore(title, s.title);
-    if (sc > bestScore) { bestScore = sc; best = s; }
+    const { score, overlap } = titleMatch(title, s.title);
+    if (score > bestScore || (score === bestScore && overlap > bestOverlap)) {
+      bestScore = score; bestOverlap = overlap; best = s;
+    }
   }
   /* Below this the match is a guess, and auditing against the wrong chapter is
      worse than reporting nothing. */

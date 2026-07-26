@@ -62,36 +62,28 @@
  },
  {
   "rn": 3,
-  "sourceTitle": "NON-PARAMETRIC APPROACHES",
+  "sourceTitle": "PARAMETRIC APPROACHES (II): EXTREME VALUE",
   "matchScore": 1,
-  "sourceLines": 224,
-  "terms": 3,
+  "sourceLines": 232,
+  "terms": 8,
   "topics": 7,
   "missing": [
    {
-    "term": "advantages and disadvantages of non-parametric methods",
+    "term": "compute var and expected shortfall given pot estimates",
     "count": 1
    },
    {
-    "term": "bootstrap historical simulation",
-    "count": 1
-   },
-   {
-    "term": "surrogate density function",
+    "term": "conditional var",
     "count": 1
    }
   ],
   "missingTopics": [
-   "age-weighted historical simulation",
-   "applying non-parametric estimation",
-   "bootstrap historical simulation approach",
-   "correlation-weighted historical simulation",
-   "volatility-weighted historical simulation"
+   "var and expected shortfall"
   ],
   "weakLOs": [
    {
-    "id": "2.d",
-    "text": "Identify advantages and disadvantages of non-parametric estimation methods.",
+    "id": "3.a",
+    "text": "Explain the importance and challenges of extreme values in risk management.",
     "coverage": 0.5
    }
   ]
@@ -498,77 +490,23 @@
  },
  {
   "rn": 23,
-  "sourceTitle": "CREDIT RISK MANAGEMENT",
+  "sourceTitle": "CREDIT SCORING AND RETAIL CREDIT RISK MANAGEMENT",
   "matchScore": 1,
-  "sourceLines": 452,
-  "terms": 12,
-  "topics": 10,
+  "sourceLines": 328,
+  "terms": 32,
+  "topics": 5,
   "missing": [
    {
-    "term": "asset classification",
-    "count": 1
-   },
-   {
-    "term": "concentration limits",
-    "count": 1
-   },
-   {
-    "term": "loan loss provisions",
-    "count": 1
-   },
-   {
-    "term": "loan loss reserves",
-    "count": 1
-   },
-   {
-    "term": "loan workout procedure",
-    "count": 1
-   },
-   {
-    "term": "related parties",
-    "count": 1
-   },
-   {
-    "term": "unexpected loss",
+    "term": "tradeoff between creditworthiness and profitability",
     "count": 1
    }
   ],
-  "missingTopics": [
-   "credit asset classification",
-   "credit facility allocation and credit risk reduction",
-   "credit risk management capacity",
-   "elements of an effective lending policy",
-   "expected loss under ifrs 9",
-   "expected loss vs. unexpected loss",
-   "loan loss provisions and reserves",
-   "managing loss assets",
-   "setting exposure and concentration limits"
-  ],
+  "missingTopics": [],
   "weakLOs": [
    {
-    "id": "19.a",
-    "text": "Describe key elements of an effective lending or financing policy.",
-    "coverage": 0.5
-   },
-   {
-    "id": "19.b",
-    "text": "Explain the importance and challenges of setting exposure and concentration limits.",
+    "id": "23.c",
+    "text": "Discuss the “dark side” of retail credit risk and the measures that attempt to address the problem.",
     "coverage": 0.42857142857142855
-   },
-   {
-    "id": "19.c",
-    "text": "Describe the scope and allocation processes of a bank’s credit facility and explain bank-specific policies and actions to reduce credit risk.",
-    "coverage": 0.46153846153846156
-   },
-   {
-    "id": "19.e",
-    "text": "Describe and explain loan loss provisions and loan loss reserves.",
-    "coverage": 0.25
-   },
-   {
-    "id": "19.i",
-    "text": "Explain the components of credit risk analysis.",
-    "coverage": 0.5
    }
   ]
  },
@@ -842,108 +780,34 @@
  },
  {
   "rn": 31,
-  "sourceTitle": "CREDIT DERIVATIVES",
+  "sourceTitle": "DERIVATIVES",
   "matchScore": 1,
-  "sourceLines": 544,
-  "terms": 20,
-  "topics": 14,
+  "sourceLines": 368,
+  "terms": 19,
+  "topics": 10,
   "missing": [
    {
-    "term": "calculate",
-    "count": 2
-   },
-   {
-    "term": "base correlation",
+    "term": "clearing derivative transactions",
     "count": 1
    },
    {
-    "term": "cds forwards",
-    "count": 1
-   },
-   {
-    "term": "cds indices",
-    "count": 1
-   },
-   {
-    "term": "cds-bond basis",
-    "count": 1
-   },
-   {
-    "term": "cheapest-to-deliver (ctd) bond",
-    "count": 1
-   },
-   {
-    "term": "collateralized debt obligations (cdos)",
-    "count": 1
-   },
-   {
-    "term": "compound (or tranche) correlation",
-    "count": 1
-   },
-   {
-    "term": "copula correlation)",
-    "count": 1
-   },
-   {
-    "term": "gaussian copula model",
-    "count": 1
-   },
-   {
-    "term": "itraxx europe",
-    "count": 1
-   },
-   {
-    "term": "n_ underlying securities",
-    "count": 1
-   },
-   {
-    "term": "recovery rate",
-    "count": 1
-   },
-   {
-    "term": "synthetic cdo",
+    "term": "monoline insurance companies",
     "count": 1
    }
   ],
   "missingTopics": [
-   "binary cds",
-   "cds forwards and options",
-   "cds valuation",
-   "credit indices",
-   "fixed coupons",
-   "gaussian copula approach",
-   "gaussian copula model alternatives",
-   "implied correlation",
-   "marking a cds to market",
-   "spread payments approach",
-   "synthetic cdo valuation",
-   "synthetic cdos"
+   "benefits of ccps",
+   "central clearing and the role of ccps",
+   "counterparty risk intermediaries",
+   "margin requirements for derivatives",
+   "market participants and collateralization in derivatives markets",
+   "shortfalls of ccps"
   ],
   "weakLOs": [
    {
-    "id": "30.b",
-    "text": "Explain how to account for credit risk exposure in valuing a CDS.",
-    "coverage": 0.4
-   },
-   {
-    "id": "30.c",
-    "text": "Identify the default probabilities used to value a CDS.",
-    "coverage": 0.5
-   },
-   {
-    "id": "30.d",
-    "text": "Evaluate the use of credit indices and fixed coupons in pricing CDS transactions.",
-    "coverage": 0.2857142857142857
-   },
-   {
-    "id": "30.f",
-    "text": "Describe the process of valuing a synthetic CDO using the spread payments approach and the Gaussian copula model of time to default approach.",
-    "coverage": 0.5384615384615384
-   },
-   {
-    "id": "30.g",
-    "text": "Define the two measures of implied correlation: compound (tranche) correlation and base correlation.",
-    "coverage": 0.5
+    "id": "31.i",
+    "text": "Define special purpose vehicles (SPVs), derivatives product companies (DPCs), monolines, and credit derivatives product companies (CDPCs) and describe the limitations of using them as risk mitigating methods.",
+    "coverage": 0.55
    }
   ]
  },
@@ -964,13 +828,7 @@
    "otc derivatives costs",
    "quantifying counterparty risk"
   ],
-  "weakLOs": [
-   {
-    "id": "32.h",
-    "text": "Explain the components of the X-Value Adjustment (xVA) term.",
-    "coverage": 0.4
-   }
-  ]
+  "weakLOs": []
  },
  {
   "rn": 33,
@@ -1077,7 +935,7 @@
    {
     "id": "36.h",
     "text": "Explain the impact of collateralization on exposure and assess the risk associated with the remargining period, threshold, and minimum transfer amount.",
-    "coverage": 0.5
+    "coverage": 0.5833333333333334
    }
   ]
  },
@@ -1885,88 +1743,14 @@
  },
  {
   "rn": 68,
-  "sourceTitle": "LIQUIDITY RISK",
+  "sourceTitle": "INTRADAY LIQUIDITY RISK MANAGEMENT",
   "matchScore": 1,
-  "sourceLines": 360,
-  "terms": 16,
-  "topics": 4,
-  "missing": [
-   {
-    "term": "cost of liquidation",
-    "count": 2
-   },
-   {
-    "term": "ashanti goldfields",
-    "count": 1
-   },
-   {
-    "term": "bid and offer price",
-    "count": 1
-   },
-   {
-    "term": "deleveraging",
-    "count": 1
-   },
-   {
-    "term": "leveraging",
-    "count": 1
-   },
-   {
-    "term": "liquidity black holes",
-    "count": 1
-   },
-   {
-    "term": "metallgesellschaft (mg)",
-    "count": 1
-   },
-   {
-    "term": "mid-market price",
-    "count": 1
-   },
-   {
-    "term": "negative feedback traders",
-    "count": 1
-   },
-   {
-    "term": "northern rock",
-    "count": 1
-   },
-   {
-    "term": "positive feedback traders",
-    "count": 1
-   },
-   {
-    "term": "predatory trading",
-    "count": 1
-   },
-   {
-    "term": "solvency",
-    "count": 1
-   }
-  ],
-  "missingTopics": [
-   "case studies",
-   "liquidity coverage ratio (lcr)",
-   "liquidity risk ratios",
-   "net stable funding ratio (nsfr)"
-  ],
-  "weakLOs": [
-   {
-    "id": "64.a",
-    "text": "Explain and calculate liquidity trading risk via cost of liquidation and liquidity-adjusted VaR (LVaR).",
-    "coverage": 0.5
-   },
-   {
-    "id": "64.b",
-    "text": "Identify liquidity funding risk, funding sources, and lessons learned from real cases: Northern Rock, Ashanti Goldfields, and Metallgesellschaft.",
-    "coverage": 0.4166666666666667
-   },
-   {
-    "id": "64.d",
-    "text": "Explain liquidity black holes and identify the causes of positive feedback trading.",
-    "coverage": 0.4444444444444444
-   }
-  ]
+  "sourceLines": 316,
+  "terms": 0,
+  "topics": 21,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": []
  },
  {
   "rn": 69,
@@ -2021,90 +1805,25 @@
  },
  {
   "rn": 72,
-  "sourceTitle": "LIQUIDITY RISK",
+  "sourceTitle": "LIQUIDITY RISK REPORTING AND STRESS TESTING",
   "matchScore": 1,
-  "sourceLines": 360,
-  "terms": 16,
-  "topics": 4,
+  "sourceLines": 338,
+  "terms": 7,
+  "topics": 10,
   "missing": [
    {
-    "term": "calculate",
-    "count": 2
-   },
-   {
-    "term": "cost of liquidation",
-    "count": 2
-   },
-   {
-    "term": "ashanti goldfields",
+    "term": "deposit tracker report (3)",
     "count": 1
    },
    {
-    "term": "bid and offer price",
-    "count": 1
-   },
-   {
-    "term": "deleveraging",
-    "count": 1
-   },
-   {
-    "term": "leveraging",
-    "count": 1
-   },
-   {
-    "term": "liquidity black holes",
-    "count": 1
-   },
-   {
-    "term": "metallgesellschaft (mg)",
-    "count": 1
-   },
-   {
-    "term": "mid-market price",
-    "count": 1
-   },
-   {
-    "term": "negative feedback traders",
-    "count": 1
-   },
-   {
-    "term": "northern rock",
-    "count": 1
-   },
-   {
-    "term": "positive feedback traders",
-    "count": 1
-   },
-   {
-    "term": "predatory trading",
-    "count": 1
-   },
-   {
-    "term": "solvency",
+    "term": "deposit tracker report (4)",
     "count": 1
    }
   ],
   "missingTopics": [
-   "case studies",
-   "net stable funding ratio (nsfr)"
+   "interpreting liquidity risk reports"
   ],
-  "weakLOs": [
-   {
-    "id": "64.a",
-    "text": "Explain and calculate liquidity trading risk via cost of liquidation and liquidity-adjusted VaR (LVaR).",
-    "coverage": 0.375
-   },
-   {
-    "id": "64.b",
-    "text": "Identify liquidity funding risk, funding sources, and lessons learned from real cases: Northern Rock, Ashanti Goldfields, and Metallgesellschaft.",
-    "coverage": 0.4166666666666667
-   },
-   {
-    "id": "64.d",
-    "text": "Explain liquidity black holes and identify the causes of positive feedback trading.",
-    "coverage": 0.3333333333333333
-   }
-  ]
+  "weakLOs": []
  },
  {
   "rn": 73,
