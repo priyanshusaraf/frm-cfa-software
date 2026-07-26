@@ -158,6 +158,79 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
 /* ---------- Layout ---------- */
 .page { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1.4rem 6rem; }
 .page.wide { max-width: 1200px; }
+
+/* ---------- Docked Study sidebar (Home / book overviews / Study pages) ----------
+   Mounted by main.jsx's Shell; the item list lives in lib/studyNav.js and is
+   shared with the navbar popover.
+
+   .app-shell wraps the router on EVERY route and is `display: contents` unless
+   the sidebar is up, so Chapter's .split-shell free-form column layout (and
+   everything else) sees the same box model it did before the wrapper existed.
+   Below 1180px it stays `contents`, the sidebar hides, and .study-nav-trigger
+   is un-hidden: the Study pages stay reachable at every width, decided in CSS
+   rather than by a JS viewport measurement that would flash on first paint. */
+.app-shell { display: contents; }
+
+.study-sidebar { display: none; }
+
+@media (min-width: 1180px) {
+  .app-shell.has-sidebar { display: flex; align-items: flex-start; }
+  /* The route's own <main class="page"> keeps margin:0 auto, so the 860px column
+     stays centred in whatever is left rather than hugging the sidebar. */
+  .app-shell.has-sidebar > .page { flex: 1 1 auto; min-width: 0; }
+
+  /* Sticky like .split-panes: a 16-item list scrolls itself, never the page. */
+  .study-sidebar {
+    display: flex; flex-direction: column;
+    position: sticky; top: var(--nav-h); align-self: flex-start;
+    flex: 0 0 15rem; width: 15rem;
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto; overscroll-behavior: contain;
+    padding: 1.35rem 0.7rem 2rem 1rem;
+    border-right: 1px solid var(--border);
+  }
+  .study-sidebar[data-collapsed] { flex-basis: 3.75rem; width: 3.75rem; padding-inline: 0.6rem; }
+
+  /* The navbar popover and the sidebar are the same nav; showing both is noise. */
+  html[data-study-sidebar] .study-nav-trigger { display: none; }
+}
+
+.study-sidebar-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 0.5rem; margin-bottom: 0.9rem; min-height: 1.6rem;
+}
+.study-sidebar[data-collapsed] .study-sidebar-head { justify-content: center; }
+.study-sidebar-title {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.09em; color: var(--accent);
+}
+.study-sidebar-toggle {
+  display: flex; align-items: center; justify-content: center;
+  background: none; border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text-faint); padding: 0.25rem; cursor: pointer; flex-shrink: 0;
+}
+.study-sidebar-toggle:hover { background: var(--bg-hover); color: var(--text); }
+
+.study-sidebar-nav { display: flex; flex-direction: column; gap: 0.85rem; }
+.study-sidebar-group { display: flex; flex-direction: column; gap: 0.1rem; }
+.study-sidebar-grouplabel {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-faint);
+  padding: 0 0.5rem 0.3rem;
+}
+.study-sidebar-link {
+  display: flex; align-items: center; gap: 0.55rem;
+  padding: 0.35rem 0.5rem; border-radius: var(--radius-sm);
+  font-size: 0.85rem; color: var(--text-dim);
+  transition: background-color 0.12s, color 0.12s;
+}
+.study-sidebar-link:hover { background: var(--bg-hover); color: var(--text); text-decoration: none; }
+.study-sidebar-link.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+.study-sidebar-icon { flex-shrink: 0; }
+.study-sidebar[data-collapsed] .study-sidebar-link { justify-content: center; padding-inline: 0; }
+.study-sidebar[data-collapsed] .study-sidebar-group + .study-sidebar-group {
+  border-top: 1px solid var(--border); padding-top: 0.6rem;
+}
 .crumbs { font-size: 0.83rem; color: var(--text-faint); margin-bottom: 0.4rem; }
 .crumbs a { color: var(--text-faint); }
 .crumbs a:hover { color: var(--accent); }

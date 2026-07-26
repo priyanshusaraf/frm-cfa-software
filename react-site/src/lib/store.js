@@ -14,7 +14,10 @@
      hlLabels:   { y, g, b, r },                      // user-editable color legend
      lastVisited:{ rn, ts, y, section },              // most recently opened chapter (+ scroll y, section label left off in)
      bookmarks:  { [rn]: [ { id, txt, ts } ] },       // section bookmarks; id = slugify(section title)
-     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, mathScale, split, pdfZoom },
+     layout: { pageWidth, keyPointsOpen, tocOpen, blockWidths, fontScale, mathScale, split, pdfZoom,
+               studySidebarCollapsed },
+              // + studySidebarCollapsed: OPTIONAL true = the docked Study sidebar shows as an
+              //   icon-only rail; absent = expanded (the default)
               // + mathScale: formula size multiplier, independent of fontScale (0.7-1.8, absent = 1)
               // + pdfZoom: page zoom for the full-page /pdf/:bn reader (0.5-3, absent = 1)
               // reading-column width (px) + rail open states + per-block widths { [`${rn}:key`]: px }
@@ -240,6 +243,18 @@ export function setBlockWidth(key, px) {
   if (typeof px === "number" && px > 0) bw[key] = Math.round(px); else delete bw[key];
   save({ ...s, layout: { ...(s.layout || {}), blockWidths: bw } });
 }
+/* Docked Study sidebar (Home / book overviews / Study pages): collapsed to an
+   icon-only rail or expanded. Stored as an OPTIONAL key that is deleted when
+   false, so an old blob and a deliberately-expanded sidebar look identical and
+   the default stays "expanded" without a migration. */
+export function setStudySidebarCollapsed(collapsed) {
+  const s = load();
+  const layout = { ...(s.layout || {}) };
+  if (collapsed) layout.studySidebarCollapsed = true;
+  else delete layout.studySidebarCollapsed;
+  save({ ...s, layout });
+}
+
 /* app-wide text size multiplier, applied as --font-scale on <html> (Settings page) */
 export function setFontScale(scale) {
   const s = load();

@@ -821,6 +821,36 @@ Spec: `docs/superpowers/specs/2026-07-25-study-nudges-and-pomodoro-design.md`. O
 - **Not headless-verifiable:** the toast's timed appearance, the mascot animation, and the
   pill's live countdown need a real browser.
 
+### 7.8 Docked Study sidebar on non-reading pages (BUILT, 2026-07-26)
+
+Owner ask: the navbar Study menu had grown to sixteen items, so on pages that are not
+readings it should become a left sidebar in the app accent, with the navbar menu kept
+everywhere else. Things a future agent must not undo:
+
+- **`src/lib/studyNav.js` is now the single source of the Study destinations**, grouped
+  (Plan / Practice / Reference / Yours / Settings) and consumed by BOTH surfaces: the navbar
+  popover in `Nav.jsx` and `StudySidebar.jsx`. Adding a Study page means one entry there,
+  plus the route in `main.jsx` and the `CommandPalette` entry. Do not re-inline the list into
+  either renderer. `hasStudySidebar(pathname)` is the one predicate deciding the surface:
+  `/`, `/book/:bn`, and the Study destinations themselves get the sidebar; readings, concept
+  pages, `/mindmap`, `/search` and `/pdf/:bn` keep the popover, and fullscreen never gets it.
+- **`.app-shell` wraps the router on EVERY route and is `display: contents`** unless the
+  sidebar is up. That is what keeps Chapter's `.split-shell` free-form pane layout seeing the
+  exact box model it saw before the wrapper existed. Do not give it a default `display: flex`.
+- **The ≥1180px gate and the popover-hiding are pure CSS**, driven by `data-study-sidebar` on
+  `<html>` (set by `Shell`). Below the breakpoint the sidebar is `display: none` and
+  `.study-nav-trigger` comes back, so every Study page stays reachable at every width. Do not
+  replace this with a JS `matchMedia` check: it would render the wrong surface on first paint.
+- **Collapsed is an icon-only rail, not a hide.** The toggle must stay on screen, because on
+  these routes the navbar popover (the only other way in) is hidden. `layout.studySidebarCollapsed`
+  is an OPTIONAL key deleted when false, so old blobs and a deliberately-expanded sidebar look
+  identical and the default stays "expanded" with no migration.
+- Verified headless at 1440px (sidebar + 16 links on `/`, `/book/1`, `/planner`, `/formulas`,
+  `/glossary`, `/settings`, `/concepts`; absent on `/chapter/36`, `/concept/information-ratio`)
+  and at 1000px (sidebar gone, Study dropdown back). The collapse toggle's click behaviour was
+  checked by temporarily forcing `collapsed` true and screenshotting; its live click needs a
+  real browser.
+
 ## 8. TOP PRIORITY: the content-quality pass (scoped 2026-07-21, eleventh session)
 
 The product owner's explicit direction after reviewing the tenth session's feature work:

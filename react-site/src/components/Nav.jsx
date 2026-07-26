@@ -3,51 +3,20 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import {
   Waypoints,
   Search,
-  RotateCcw,
-  ListChecks,
-  Sigma,
-  BarChart3,
-  StickyNote,
   Moon,
   SunMedium,
   ChevronDown,
   Command as CommandIcon,
-  CalendarDays,
-  Calculator,
-  BookA,
-  Highlighter,
-  Bookmark,
   Timer,
-  TimerReset,
-  Settings as SettingsIcon,
-  Boxes,
   Maximize2,
   Minimize2,
 } from "lucide-react";
 import { META } from "../lib/meta.js";
+import { STUDY_GROUPS, STUDY_PATHS } from "../lib/studyNav.js";
 import { useStore, setFontScale } from "../lib/store.js";
 import { toggleFullscreen, useFullscreen } from "../lib/fullscreen.js";
 import { Popover, PopoverTrigger, PopoverContent } from "./ui/popover.jsx";
 import NavSplitControls from "./NavSplitControls.jsx";
-
-const STUDY_ITEMS = [
-  ["/planner", "Study planner", CalendarDays],
-  ["/mock", "Mock exam", Timer],
-  ["/pomodoro", "Pomodoro", TimerReset],
-  ["/revision", "Revision", RotateCcw],
-  ["/review", "Review queue", ListChecks],
-  ["/drills", "Calculation drills", Calculator],
-  ["/formulas", "Formula sheet", Sigma],
-  ["/glossary", "Glossary", BookA],
-  ["/progress", "Progress", BarChart3],
-  ["/notes", "Notes", StickyNote],
-  ["/highlights", "Highlights", Highlighter],
-  ["/bookmarks", "Bookmarks", Bookmark],
-  ["/concepts", "Core Concepts", Boxes],
-  ["/case-study", "Case study", Boxes],
-  ["/consistency", "Consistency", BarChart3],
-  ["/settings", "Settings", SettingsIcon],
-];
 
 function openPalette() {
   document.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }));
@@ -103,7 +72,7 @@ export default function Nav({ onMenuOpenChange }) {
     if (!isNaN(d) && d >= 0) daysToExam = d;
   }
 
-  const studyActive = STUDY_ITEMS.some(([to]) => location.pathname === to);
+  const studyActive = STUDY_PATHS.indexOf(location.pathname) !== -1;
 
   const setStudyOpen = useCallback((v) => {
     setStudyOpenState(v);
@@ -147,32 +116,45 @@ export default function Nav({ onMenuOpenChange }) {
         <Search size={13} className="mr-1 inline -translate-y-px" />Search
       </NavLink>
 
+      {/* .study-nav-trigger is the hook style.css hides at >=1180px on routes that
+          show the docked sidebar instead (html[data-study-sidebar]). Below that
+          breakpoint the sidebar is hidden and this comes back, so the Study pages
+          are reachable at every width. */}
       <Popover open={studyOpen} onOpenChange={setStudyOpen}>
         <PopoverTrigger asChild>
           <NavButton
             className={
-              "inline-flex cursor-pointer select-none items-center gap-0.5 rounded-md px-2.5 py-[0.3rem] font-app text-[0.86rem] transition-colors " +
+              "study-nav-trigger inline-flex cursor-pointer select-none items-center gap-0.5 rounded-md px-2.5 py-[0.3rem] font-app text-[0.86rem] transition-colors " +
               (studyActive ? "bg-accent-soft font-semibold text-accent" : "text-dim hover:bg-hovered hover:text-ink")
             }
           >
             Study <ChevronDown size={12} className={"transition-transform" + (studyOpen ? " rotate-180" : "")} />
           </NavButton>
         </PopoverTrigger>
-        <PopoverContent align="start" className="w-52 p-1.5">
-          {STUDY_ITEMS.map(([to, label, Icon]) => (
-            <Link
-              key={to}
-              to={to}
-              className={
-                "flex items-center gap-2 rounded-el px-2.5 py-1.5 text-[0.85rem] transition-colors " +
-                (location.pathname === to
-                  ? "bg-accent-soft text-accent"
-                  : "text-dim hover:bg-hovered hover:text-ink")
-              }
-            >
-              <Icon size={14} />
-              {label}
-            </Link>
+        <PopoverContent align="start" className="w-56 p-1.5">
+          {STUDY_GROUPS.map((group, gi) => (
+            <div key={group.label || "g" + gi} className={gi ? "mt-1.5 border-t border-line pt-1.5" : ""}>
+              {group.label && (
+                <div className="px-2.5 pb-1 font-mono text-[0.62rem] font-semibold uppercase tracking-wide text-faint">
+                  {group.label}
+                </div>
+              )}
+              {group.items.map(({ to, label, Icon }) => (
+                <Link
+                  key={to}
+                  to={to}
+                  className={
+                    "flex items-center gap-2 rounded-el px-2.5 py-1.5 text-[0.85rem] transition-colors " +
+                    (location.pathname === to
+                      ? "bg-accent-soft text-accent"
+                      : "text-dim hover:bg-hovered hover:text-ink")
+                  }
+                >
+                  <Icon size={14} />
+                  {label}
+                </Link>
+              ))}
+            </div>
           ))}
         </PopoverContent>
       </Popover>

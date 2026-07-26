@@ -1,14 +1,16 @@
 import React, { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Minimize2 } from "lucide-react";
 import { createRoot } from "react-dom/client";
-import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
+import { HashRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import "@fontsource-variable/geist";
 import "@fontsource-variable/geist-mono";
 import "./styles/tailwind.css";
 import "./styles/style.css";
 import "./widgets/all.js";
 import Nav from "./components/Nav.jsx";
+import StudySidebar from "./components/StudySidebar.jsx";
 import ReturnToReading from "./components/ReturnToReading.jsx";
+import { hasStudySidebar } from "./lib/studyNav.js";
 import StudyNudge, { showNudge } from "./components/StudyNudge.jsx";
 import PomodoroPill from "./components/PomodoroPill.jsx";
 import QuickNotes from "./components/QuickNotes.jsx";
@@ -66,6 +68,20 @@ function Shell() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [navPinned, setNavPinned] = useState(false);
   const peekRef = useRef(null);
+  const { pathname } = useLocation();
+
+  /* Home, book overviews and the Study pages dock the Study nav on the left
+     instead of hiding it behind the navbar popover. Fullscreen is reading mode,
+     so it never gets the sidebar. The attribute (rather than a prop threaded
+     into Nav) is what lets ONE css rule hide the popover trigger at the same
+     breakpoint the sidebar appears at, with no JS viewport measurement. */
+  const sidebar = !fullscreen && hasStudySidebar(pathname);
+  useEffect(() => {
+    const el = document.documentElement;
+    if (sidebar) el.setAttribute("data-study-sidebar", "1");
+    else el.removeAttribute("data-study-sidebar");
+    return () => el.removeAttribute("data-study-sidebar");
+  }, [sidebar]);
 
   /* The parked nav's height drives where the handle sits once the nav is down.
      Measured rather than hardcoded: it changes with font-scale and with the
@@ -160,35 +176,41 @@ function Shell() {
           <Minimize2 size={13} /> Exit
         </button>
       )}
-      <Suspense fallback={<PageLoading />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/book/:bn" element={<Book />} />
-          <Route path="/chapter/:rn" element={<Chapter />} />
-          <Route path="/mindmap" element={<MindMap />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/revision" element={<Revision />} />
-          <Route path="/notes" element={<NotesPage />} />
-          <Route path="/pdf/:bn" element={<PdfView />} />
-          <Route path="/progress" element={<ProgressPage />} />
-          <Route path="/formulas" element={<Formulas />} />
-          <Route path="/review" element={<Review />} />
-          <Route path="/glossary" element={<Glossary />} />
-          <Route path="/planner" element={<Planner />} />
-          <Route path="/drills" element={<Drills />} />
-          <Route path="/highlights" element={<Highlights />} />
-          <Route path="/mock" element={<MockExam />} />
-          <Route path="/pomodoro" element={<Pomodoro />} />
-          <Route path="/bookmarks" element={<Bookmarks />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/concepts" element={<ConceptsIndex />} />
-          <Route path="/concept/:slug" element={<ConceptPage />} />
-          <Route path="/block-review/:blockId" element={<BlockReview />} />
-          <Route path="/case-study" element={<CaseStudy />} />
-          <Route path="/consistency" element={<Consistency />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </Suspense>
+      {/* .app-shell is `display: contents` unless the sidebar is up, so every
+          other route (Chapter's .split-shell especially) sees exactly the DOM
+          box model it saw before this wrapper existed. */}
+      <div className={"app-shell" + (sidebar ? " has-sidebar" : "")}>
+        {sidebar && <StudySidebar />}
+        <Suspense fallback={<PageLoading />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/book/:bn" element={<Book />} />
+            <Route path="/chapter/:rn" element={<Chapter />} />
+            <Route path="/mindmap" element={<MindMap />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/revision" element={<Revision />} />
+            <Route path="/notes" element={<NotesPage />} />
+            <Route path="/pdf/:bn" element={<PdfView />} />
+            <Route path="/progress" element={<ProgressPage />} />
+            <Route path="/formulas" element={<Formulas />} />
+            <Route path="/review" element={<Review />} />
+            <Route path="/glossary" element={<Glossary />} />
+            <Route path="/planner" element={<Planner />} />
+            <Route path="/drills" element={<Drills />} />
+            <Route path="/highlights" element={<Highlights />} />
+            <Route path="/mock" element={<MockExam />} />
+            <Route path="/pomodoro" element={<Pomodoro />} />
+            <Route path="/bookmarks" element={<Bookmarks />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/concepts" element={<ConceptsIndex />} />
+            <Route path="/concept/:slug" element={<ConceptPage />} />
+            <Route path="/block-review/:blockId" element={<BlockReview />} />
+            <Route path="/case-study" element={<CaseStudy />} />
+            <Route path="/consistency" element={<Consistency />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </Suspense>
+      </div>
       <QuickNotes />
       <CommandPalette />
       <FontScaleSync />
