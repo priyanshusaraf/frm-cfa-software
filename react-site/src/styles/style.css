@@ -192,13 +192,15 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
     flex: 0 0 15rem; width: 15rem;
     height: calc(100vh - var(--nav-h));
     overflow-y: auto; overscroll-behavior: contain;
-    /* The bottom padding is deliberately deep: `.return-to-reading` is fixed at
-       the left edge and overlays this rail, so the last link (Settings) needs
-       room to scroll clear of it. Owner-reported 2026-07-27: 5rem was not
-       enough to see Settings and the button at the same time at maximum scroll,
-       so it is now the button's own footprint (its height plus its 1.25rem
-       offset) plus a full link-row of breathing space. */
-    padding: 1.35rem 0.7rem 7.5rem 1rem;
+    /* The bottom padding clears `.return-to-reading`, which is fixed at the left
+       edge and overlays this rail, so the last link (Settings) can scroll above
+       it rather than under it. The value is that button's footprint and nothing
+       more: its 1.25rem offset from the viewport bottom, its roughly 2rem
+       height, and about one link-row of gap. Tuned twice with the owner on
+       2026-07-27, first up from 5rem and then back down from 7.5rem, which left
+       a visible void under Settings. If the button's padding or font-size
+       changes, this is the number that has to follow it. */
+    padding: 1.35rem 0.7rem 4.25rem 1rem;
     border-right: 1px solid var(--border);
   }
   .study-sidebar[data-collapsed] { flex-basis: 3.75rem; width: 3.75rem; padding-inline: 0.6rem; }
