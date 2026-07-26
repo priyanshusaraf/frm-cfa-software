@@ -226,6 +226,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "Kenneth R. French data library (Fama and French factor returns)", url: "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html", note: "The actual factor return series (market, size, value, profitability, investment, momentum) that this reading treats as abstractions. Seeing that a factor is a downloadable monthly time series makes the bundles-of-risk framing concrete." }
+  ],
+
   pdf: { book: 5, query: "it is easiest to think of assets as bundles of" },
 
   summary: `<p><strong>Factor theory</strong>: factors (not assets) earn risk premiums; assets are bundles of factors; investors have differing optimal factor exposures. <strong>CAPM</strong> (single factor, market beta): six lessons, hold the factor, own optimal exposure, average investor=100% market, factor risk must be rewarded, risk=beta, valuable (bad-times-payoff) assets have LOW premiums. Seven shortcomings: financial-wealth-only, mean-variance utility, single-period horizon, homogeneous expectations, frictionless markets (NO taxes/costs, not uniform), price-taking, free information. <strong>Multifactor models</strong> (e.g., APT) generalize to multiple factors; the <strong>SDF/pricing kernel</strong> (m) generalizes further, allowing nonlinear bad-times indexing, CAPM is the linear special case. <strong>EMH</strong>: speculative trading is costly, active managers can't generally beat the market, but EMH still identifies exploitable inefficiencies; Grossman-Stiglitz paradox questions truly costless information.</p>`

@@ -1,3 +1,3 @@
-DONE: Phase 4 Track C wave 14: sources for Book 2's five source-less readings, all fetched and confirmed live. r17 gets BCBS d403 (problem assets), r19 BCBS d350 (expected credit losses), r25 BCBS WP14 (rating-system validation), r29 the BIS OTC derivatives statistics, r39 BCBS d374 (securitisation framework). All five from the Basel Committee, which is the right answer for a book of bank credit regulation.
-NEXT: Track C wave 15, the remaining 11: r44, r64, r81, r82, r83, r84, r85, r87, r88, r89, r95. Start with r44 and r64 (Books 3 and 4), then the Book 5 investment-management cluster.
+DONE: Phase 4 Track C wave 15: r44 gets the BCBS operational-resilience standard (the final d516, not the closed consultative d509), r64 the CGFS collateral-encumbrance report, and r81/r82/r83 all take the Kenneth French data library, which is simultaneously the original source, a live dataset, and the only way to check whether a premium the readings assert survived out of sample. All fetched and confirmed live.
+NEXT: Track C wave 16, the last six: r84, r85, r87, r88, r89, r95.
 BLOCKERS: none.

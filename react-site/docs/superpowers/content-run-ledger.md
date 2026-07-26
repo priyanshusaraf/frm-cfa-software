@@ -94,7 +94,12 @@ acceptable final answer and is recorded as a decision.
   external improves on).
 - Done: **r17** (BCBS d403), **r19** (BCBS d350), **r25** (BCBS WP14), **r29** (BIS OTC
   derivatives statistics at `data.bis.org`), **r39** (BCBS d374).
-- Remaining 11: r44, r64, r81, r82, r83, r84, r85, r87, r88, r89, r95.
+- Done: **r44** (BCBS d516, the FINAL operational-resilience standard, not the closed
+  consultative d509), **r64** (CGFS 49), **r81, r82, r83** (Kenneth French data library,
+  one link serving three readings).
+- Remaining 6: r84, r85, r87, r88, r89, r95.
+- Dead candidate: NBIM's Ang/Goetzmann/Schaefer active-management report 404s at the
+  obvious URL.
 - Rejected candidates, do not re-try: the NY Fed ACM term-premia page (HTTP 403 to
   automated fetches, so unverifiable), and BCBS WP22 (it is the securitization supervisory
   formula, not a tail-risk paper).

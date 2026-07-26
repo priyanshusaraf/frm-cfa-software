@@ -261,5 +261,9 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "BCBS: principles for operational resilience", url: "https://www.bis.org/bcbs/publ/d516.htm", note: "The supervisory standard behind the resilience and business-continuity half of this reading, published after the pandemic tested every assumption in it." }
+  ],
+
   pdf: { book: 3, query: "There are four ways to respond to risk: (1) tolerate" }
 });

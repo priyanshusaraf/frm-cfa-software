@@ -227,6 +227,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "Kenneth R. French data library (Fama and French factor returns)", url: "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html", note: "Monthly and daily series for every factor named in this reading, including the international and emerging-market versions, which is where you can check whether a premium the reading describes actually survived out of sample." }
+  ],
+
   pdf: { book: 5, query: "Historically, value stocks have significantly outperformed growth stocks" },
 
   summary: `<p><strong>Value premium</strong>: high book-to-market outperforms low, rational (asymmetric adjustment costs, genuine risk) vs. behavioral (overextrapolation of growth + loss aversion on value, mispricing) explanations. <strong>Macro factors</strong>: growth/inflation/volatility, SHOCKS matter, not levels; high-yield bonds are growth-cycle-indifferent; volatility's leverage effect + discount-rate channel both lower stock returns. <strong>Volatility</strong>: negative risk premium, sell options to collect it, but tail risk is severe (insurance-selling analogy). <strong>Fama-French</strong>: MKT+SMB+HML, SMB/HML betas centered on ZERO (active tilt required). <strong>Size premium</strong> disappeared post-discovery (data mining or arbitraged away); <strong>value</strong> persisted. <strong>Momentum</strong> (WML/UMD): vastly outperforms but crash-prone, positive feedback/destabilizing, vs. value's negative feedback/stabilizing character.</p>`

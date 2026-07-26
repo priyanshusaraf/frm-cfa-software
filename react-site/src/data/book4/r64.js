@@ -231,6 +231,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "CGFS: asset encumbrance, financial reform and the demand for collateral assets", url: "https://www.bis.org/publ/cgfs49.htm", note: "The collateral-market plumbing this reading describes, examined at system level: what happens to unsecured creditors' residual claims as banks fund themselves more and more against collateral." }
+  ],
+
   pdf: { book: 4, query: "This reading analyzes the effects of liquidity and leverage on firm risk" },
 
   summary: `<p><strong>Transactions vs funding liquidity risk</strong> feed each other in a vicious loop. <strong>Maturity mismatch</strong> is profitable but creates rollover risk. <strong>Fractional-reserve banking</strong>: ALM works because deposits are sticky; off-balance-sheet vehicles (ABCP, SIVs) moved (not eliminated) risk pre-crisis; MMMFs can 'break the buck.' <strong>Leverage ratio</strong> L=assets/equity; r_E=L×r_A−(L−1)×r_D, amplifies gains AND losses. <strong>Economic balance sheets</strong>: short sale leverage (2.0) > margin-loan leverage (1.5) since shorts inherently borrow full value; gross leverage overstates risk for hedged shorts (use net); options represented at delta-equivalent value. <strong>Corrected T-day liquidation VaR</strong> < naive √T scaling for gradually-liquidated positions. Market liquidity: tightness, depth, resiliency.</p>`

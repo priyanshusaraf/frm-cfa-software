@@ -214,6 +214,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "Kenneth R. French data library (Fama and French factor returns)", url: "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html", note: "The HML and momentum series this reading regresses against when it separates alpha from factor exposure, maintained by Fama and French themselves." }
+  ],
+
   pdf: { book: 5, query: "The capital asset pricing model (CAPM) from traditional finance" },
 
   summary: `<p><strong>Low-risk anomaly</strong>: CAPM violation, low-beta/low-vol stocks show HIGHER risk-adjusted returns. <strong>Alpha</strong>=avg excess return vs benchmark (active return); <strong>tracking error</strong>=SD of excess returns; <strong>IR</strong>\\(=\\alpha /TE\\); <strong>Sharpe</strong>\\(=\\alpha /\\sigma\\) (vs risk-free benchmark). Good benchmarks: well-defined, tradeable, replicable, risk-adjusted. A too-risky benchmark understates alpha/IR. <strong>Grinold's law</strong>: \\(IR\\approx IC\\times \\sqrt{BR}\\), play smart (high IC, few bets) or play often (many independent bets); IC tends to fall as AUM grows. <strong>Factor regression</strong> (Fama-French + UMD) builds multi-factor benchmarks; <strong>style analysis</strong> uses tradeable ETFs with time-varying (re-estimated each period) factor loadings, fixing Fama-French's untradeable-index problem. <strong>Nonlinear strategies</strong> (merger arb, convertible arb) can show false-positive alpha under linear regression due to skewness. <strong>Volatility anomaly</strong> (higher SD → lower return AND lower Sharpe) and <strong>beta anomaly</strong> (higher beta → lower Sharpe, via the vol denominator, not necessarily lower raw return). Explanations: data mining (NOT well supported), leverage-constrained investors (buy high-beta as leverage substitute), institutional constraints (short-sale/tracking-error limits), investor preferences.</p>`

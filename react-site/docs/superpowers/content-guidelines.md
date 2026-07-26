@@ -1734,3 +1734,24 @@ the reading raises rather than restating its topic:
 **Book 2's whole set came from one institution, and that is the right answer, not laziness.**
 Everything in this book is bank credit regulation, so the Basel Committee is the primary
 source for all five. Reaching for variety would have meant reaching for weaker links.
+
+### Wave 15: r44, r64, r81, r82, r83 (2026-07-26)
+
+- **r44**: BCBS principles for operational resilience (d516, March 2021). **Note the version
+  trap**: d509 is the CONSULTATIVE version and its page reads "Status: Closed", which is not
+  something you want a student clicking into. d516 is the final standard and reads "Current".
+  Check the status line on any BIS page before shipping it.
+- **r64**: CGFS report 49, asset encumbrance and the demand for collateral assets. Chosen
+  over a Basel leverage-ratio standard because it looks at the same collateral plumbing the
+  reading describes but at system level, including what happens to unsecured creditors'
+  residual claims as banks fund themselves increasingly against collateral.
+- **r81, r82, r83 all take the Kenneth French data library.** This is the strongest link in
+  Track C so far and the reasoning is worth reusing: these three readings treat factors as
+  abstractions, and the library is the actual downloadable monthly series for every factor
+  they name, maintained by Fama and French themselves. It is simultaneously the original
+  source, a live dataset, and the only way a student can check whether a premium the reading
+  asserts survived out of sample. Three readings, one link, no padding.
+
+**A dead candidate for the record:** NBIM's hosting of the Ang, Goetzmann and Schaefer report
+on active management (the natural companion to Book 5, since Ang is the source author) is a
+404 at the obvious URL. Worth finding a live host if anyone wants it, but not worth guessing.
