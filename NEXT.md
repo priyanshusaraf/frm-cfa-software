@@ -1,3 +1,3 @@
-DONE: Phase 4 Track B wave 7: audited r36, r80, r25, r43, r65. Found the run's most serious hole so far, r25's LO 25.a (agency ratings vs internal credit rating systems) was entirely absent and is now a new leading concept; r65 gained the normal-vs-stressed-state EWI point; r36, r80 and r43 dismissed outright. All gates green.
-NEXT: Track B wave 8, ordered by weak-LO shortfall rather than composite score: r35, r19, r84, r95, r38.
+DONE: Phase 4 Track B wave 8 (first weak-LO-ordered wave): audited r35, r19, r84, r95, r38. One real gap, r19's lending policy existed only as four labels in teaches with no explanation anywhere; two new breakdown blocks added from the source. r35, r84, r95, r38 dismissed. All gates green.
+NEXT: Track B wave 9, next by weak-LO shortfall: r28, r77, r23, r26, r3.
 BLOCKERS: none.

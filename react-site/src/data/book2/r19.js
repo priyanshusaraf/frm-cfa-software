@@ -148,6 +148,25 @@ export default ({
 
   breakdown: [
     {
+      title: "What a lending policy actually specifies",
+      points: [
+        { point: "Lending authority", explain: "Explicit limits on what each lending officer can approve alone, usually rising with experience and tenure. Smaller banks centralize this; larger ones decentralize it by geography, product line, or customer type." },
+        { point: "Types and distribution of loans", explain: "Which credit instruments the bank will actually deploy, decided from its officers' expertise, its deposit structure, and real credit demand. Category caps (commercial, real estate, consumer) sit here, and any deviation needs Board approval." },
+        { point: "Appraisal process", explain: "Limits on appraisals by credit type, when a renewal or extension forces a reappraisal, when an independent appraiser is required, and the maximum acceptable loan-to-appraised-value ratio." },
+        { point: "Loan pricing", explain: "Rates structured by loan type, covering the cost of funds, loan supervision, and administrative overhead, plus the probability of loss and a reasonable margin. Reviewed periodically against market and competitive conditions rather than set once." },
+        { point: "Maturities", explain: "Maximum maturity per loan type, backed by a realistic repayment schedule that accounts for where the repayment money will come from and how long the collateral will actually last." }
+      ]
+    },
+    {
+      title: "The three buckets every regulator's minimum lending standards fall into",
+      points: [
+        "Policies that limit or reduce credit risk outright (concentration and related-party limits, lending authority, appraisal standards).",
+        "Policies that classify assets by credit risk exposure and collectability (the five-category classification spectrum below).",
+        "Policies that create provisions for potential losses (loan loss provisions, and the reserves they accumulate into).",
+        "Underneath all three, regulators expect the same three things named explicitly: the risks the bank faces now and could face, a written statement of its risk management philosophy, and defined acceptable credit risk parameters. Credit risk touches roughly 70% of a bank's balance sheet, which is why it remains the primary cause of bank failure."
+      ]
+    },
+    {
       title: "Asset classification categories",
       points: [
         "Standard (pass): delinquency not in question; loans fully secured with cash or cash-equivalents (e.g., a CD) generally keep this label regardless of other unfavorable factors.",

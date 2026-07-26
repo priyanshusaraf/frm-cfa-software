@@ -1444,3 +1444,48 @@ characteristic point.
 
 Running Track B total: 95 candidates checked over three waves, 8 real gaps, 6 readings
 dismissed outright. The rate holds around 90% false positive.
+
+### Wave 8: r35, r19, r84, r95, r38 (2026-07-26), the first weak-LO-ordered wave
+
+Ordering by weak LO worked, but not the way I expected: **four of the five readings with
+the worst LO shortfalls were fully covered, and the one real gap was in the reading with
+the SECOND-worst shortfall.** So weak LO is a better signal than `missingTopics`, not a
+reliable one. Both are candidate generators; neither substitutes for reading the source
+section and then the reading.
+
+**Dismissed: r35 (both weak LOs plus 4 candidates), r84, r95, r38.**
+
+- **r35** flags 35.e ("risks faced by a CCP") at 0.40 and 35.f ("examples of a loss
+  waterfall") at 0.33. The reading mentions the loss waterfall 14 times, the default fund
+  30, initial margin 60, variation margin 40, compression 17. The low LO scores come from
+  the audit matching LO TEXT content-words: "risks faced" as a phrase appears nowhere,
+  because no one writes that way. **Watch for this: an LO whose wording is bureaucratic
+  ("discuss the risks faced by", "provide examples of") will score low against
+  well-written prose no matter how complete it is.**
+- **r84** (alpha refining, dispersion) and **r95** (AI fairness and bias, Trustworthy AI)
+  both re-confirm their earlier wave-17/19 dismissals: 14 mentions of refining, 19 of
+  dispersion, 59 of fairness, 43 of bias. **r95's `sources` are still empty**, which is
+  the separate Phase-4 item in protocol section 3, not a coverage gap.
+- **r38** covers CCR as both credit and market risk, and DVA 23 times.
+
+**The one real gap: r19's lending policy had names but no content.** LO 19.a (elements of
+an effective lending or financing policy) and LO 19.c (scope and allocation of the credit
+facility) were represented ONLY by a list of four labels inside `teaches`: "concentration
+limits, lending authority, appraisal standards, and portfolio-review coverage rules". No
+concept and no breakdown block explained any of them, and the source gives each its own
+bulleted treatment. Two new breakdown blocks added: the five lending-policy factors
+(lending authority, types and distribution, appraisal process, loan pricing, maturities)
+with `{point, explain}` mechanism on each, and the three buckets regulators' minimum
+standards fall into.
+
+**This is a distinct defect class from a plain omission, and worth naming: the LABEL-ONLY
+gap.** The reading names the concept, so every keyword grep finds it and every reader
+skims past it, but nowhere does it say what the thing IS. It is the exact failure
+CLAUDE.md section 1 describes for R32's xVA family ("a definition that restates its own
+name"), except here the definition is missing entirely and only the name survives. **When
+a `teaches` field lists concepts in a parenthetical, check that each one has a real home
+later in the file.** A grep cannot distinguish a label from an explanation; only reading
+can.
+
+Running Track B total after four waves: 120 candidates checked, 9 real gaps, 10 readings
+dismissed outright.
