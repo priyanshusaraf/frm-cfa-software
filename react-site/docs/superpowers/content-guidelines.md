@@ -1119,3 +1119,53 @@ its own sentence, because it is the actual reason capital allocation exists.
 Re-derive the measurement before continuing (it is a regex over the field, sliced to
 the NEXT key rather than an assumed one) rather than trusting this table, which goes
 stale as soon as the next reading is rewritten.
+
+### The measurement is now a script, and the old table was wrong (wave 1, 2026-07-26)
+
+**`node scripts/prose-density.mjs <field> [floor] [rn...]`** replaces the hand-rolled
+regex. It IMPORTS each reading module and reads the field off the default export, which
+removes the slice-to-the-next-key failure mode entirely rather than working around it.
+
+Re-deriving with it immediately showed the stored worklist above was **materially
+wrong**, and not because of intervening rewrites. Six readings the table lists as
+offenders are not: `thinkLike` r33, r64, r15, r21, r22, r26 all measure in the 30s.
+The old regex was over-reading, almost certainly by swallowing a neighbouring field.
+Two readings the table omits, `thinkLike` r61 (51.8) and r77 (50.5), are genuine. Corpus
+averages on the honest measurement at wave-1 open: `thinkLike` 35.1, `intuition` 31.3,
+with 12 and 10 readings above 45 rather than 23 and 12.
+
+**The real worklist, worst first, measured wave 1.** `thinkLike`: r65 68.7, r25 59.0,
+r60 59.0, r62 58.3, r78 57.0, r74 54.8, r21 53.4, r40 52.0, r61 51.8, r27 51.8, r77
+50.5, r8 47.8. `intuition`: r52 71.0, r50 61.0, r47 56.0, r101 55.5, r24 54.4, r86 49.0,
+r19 48.5, r23 48.2, r92 46.1, r31 46.0. Wave 1 cleared the top five across both fields.
+
+### Wave 1: r52, r65, r50, r25, r60 (2026-07-26)
+
+All five landed between 13.7 and 19.9 w/s. What the splits surfaced, which is the part
+worth keeping:
+
+- **r52 `intuition`** had the best idea in the wave (a fine equal to the gain makes
+  violating a free option) compressed into a clause, with the expected-value inequality
+  arriving before the reader had the option framing. The rewrite runs the coin metaphor
+  to its end, states the inequality alone, then plugs in a sub-100% catch probability so
+  the reader derives "the fine must be a MULTIPLE of the gain" instead of being told it.
+- **r65 `thinkLike`** was a five-stage pipeline written as one arrow chain with nested
+  parentheses (`→` three levels deep). Each stage is now its own paragraph. **Arrow
+  chains in prose are a density tell in their own right**: they let an author append
+  unbounded material to one sentence without it looking like a run-on.
+- **r50 `intuition`** already had two paragraphs and still measured 61, which is the
+  reminder that paragraph count is not the signal. Its three-link chain (before / at /
+  after signing) is now three paragraphs, and the miss-a-link consequences read as three
+  separate sentences, which is where they belong.
+- **r25 `thinkLike`** and **r60 `thinkLike`** both carried the "three exam shapes" pileup
+  the section above describes. Splitting them also fixed two comma splices in r25 and one
+  in r60, plus a meta-reference in each: r60 said the buffer distinction "is explicitly
+  flagged as a favorite trap" (flagged by whom?) and that "the source itself says not to
+  memorize every haircut table". Both now state the fact directly. **A density rewrite is
+  the natural moment to catch these, because you are re-reading every clause anyway.**
+- r60's "Basel 2.5's stressed VaR/IRC/CR charge" was an unexpanded abbreviation pile.
+  Checked against the reading's own prose and written out as stressed VaR, incremental
+  risk charge and comprehensive risk charge.
+
+`ai-tells.mjs` on all five after rewriting: 0 tells. Run it on your own prose every wave;
+this is the third time the guidelines have said so and it has paid off every time.
