@@ -53,13 +53,15 @@ register("exposure-metrics", function (el) {
   var svg = shell(el, "Exposure metrics: EE, PFE, EPE and effective EE on one profile",
     '<span class="seg"><button data-k="swap" class="on">IR swap</button><button data-k="fx">FX forward</button><button data-k="loan">Loan</button></span>' +
     '<label>confidence <input type="range" min="0.90" max="0.99" step="0.01" value="0.95"><span class="w-value"></span></label>' +
-    '<label><input type="checkbox" data-eff checked> show effective EE</label>',
+    '<label><input type="checkbox" data-eff checked> show effective EE</label>' +
+    '<label><input type="checkbox" data-pfe checked> show PFE</label>',
     660, 250, " ");
   var cap = el.querySelector(".w-caption");
   var seg = el.querySelectorAll(".seg button");
   var slider = el.querySelector('input[type="range"]');
   var val = el.querySelector(".w-value");
   var effBox = el.querySelector("[data-eff]");
+  var pfeBox = el.querySelector("[data-pfe]");
   var kind = "swap";
 
   function draw() {
@@ -72,8 +74,8 @@ register("exposure-metrics", function (el) {
 
     /* Scale to the tallest curve on screen so the shape always fills the box. */
     var max = 0;
-    for (var s = 0; s <= 1; s += 0.01) max = Math.max(max, PFE(s));
-    max *= 1.12;
+    for (var s = 0; s <= 1; s += 0.01) max = Math.max(max, pfeBox.checked ? PFE(s) : EE(s));
+    max *= pfeBox.checked ? 1.12 : 1.35;
     var X = function (t) { return x0 + t * (W - x0 - 22); };
     var Y = function (v) { return y0 - (v / max) * (y0 - 20); };
 
@@ -90,33 +92,39 @@ register("exposure-metrics", function (el) {
     }
     var epe = sum / (n + 1), eepe = esum / (n + 1);
 
-    svgEl("path", { d: pathOf(PFE, X, Y), fill: "none", stroke: "var(--red)", "stroke-width": 2.2 }, svg);
-    svgEl("path", { d: pathOf(EE, X, Y), fill: "none", stroke: "var(--accent)", "stroke-width": 2.6 }, svg);
+    if (pfeBox.checked) svgEl("path", { d: pathOf(PFE, X, Y), fill: "none", stroke: "var(--red)", "stroke-width": 2.2 }, svg);
     if (effBox.checked) {
       var d = "";
       for (var j = 0; j <= n; j++) d += (d ? " L" : "M") + X(j / n) + "," + Y(effPts[j]);
-      svgEl("path", { d: d, fill: "none", stroke: "var(--amber)", "stroke-width": 2, "stroke-dasharray": "5 3" }, svg);
-      svgEl("line", { x1: x0, x2: W - 22, y1: Y(eepe), y2: Y(eepe), stroke: "var(--amber)", "stroke-width": 1, opacity: 0.55 }, svg);
+      svgEl("path", { d: d, fill: "none", stroke: "var(--amber)", "stroke-width": 7, opacity: 0.34, "stroke-linecap": "round" }, svg);
+      svgEl("line", { x1: x0, x2: W - 22, y1: Y(eepe), y2: Y(eepe), stroke: "var(--amber)", "stroke-width": 1.2, "stroke-dasharray": "6 4", opacity: 0.9 }, svg);
     }
+    svgEl("path", { d: pathOf(EE, X, Y), fill: "none", stroke: "var(--accent)", "stroke-width": 2.6 }, svg);
     svgEl("line", { x1: x0, x2: W - 22, y1: Y(epe), y2: Y(epe), stroke: "var(--green)", "stroke-width": 1.4, "stroke-dasharray": "2 3" }, svg);
     axes(svg, W, H, x0, y0, "time → maturity", "exposure");
 
     /* Label each curve where it is actually tall, not at t=1: a swap's PFE has
        decayed to nothing by maturity, so anchoring there piled every label into
        the bottom-right corner on top of each other. */
-    function tag(text, xt, v, color, anchor) {
+    /* Labels are clamped inside the plot box. Anchoring "effective EPE" at t=1
+       pushed it off the right edge, and stacking EPE against effective EPE at
+       the same x overlapped them whenever the two lines sat close together. */
+    function tag(text, xt, v, color, anchor, dy) {
+      var px = Math.min(Math.max(X(xt), x0 + 6), W - 26);
       var t2 = svgEl("text", {
-        x: X(xt), y: Math.max(Y(v) - 6, 12), "text-anchor": anchor || "middle",
-        "font-size": 10.5, fill: color
+        x: px, y: Math.min(Math.max(Y(v) + (dy || -6), 12), y0 - 4),
+        "text-anchor": anchor || "middle", "font-size": 10.5, fill: color
       }, svg);
       t2.textContent = text;
     }
     var pkT = 0, pk = 0;
     for (var q = 0; q <= 1; q += 0.01) { if (PFE(q) > pk) { pk = PFE(q); pkT = q; } }
-    tag("PFE " + (alpha * 100).toFixed(0) + "%", pkT, pk, "var(--red)");
-    tag("EE", pkT, EE(pkT), "var(--accent)");
-    tag("EPE", 0.06, epe, "var(--green)", "start");
-    if (effBox.checked) tag("effective EPE", 0.99, eepe, "var(--amber)", "end");
+    if (pfeBox.checked) tag("PFE " + (alpha * 100).toFixed(0) + "%", pkT, pk, "var(--red)");
+    tag("EE", pkT, EE(pkT), "var(--accent)", "middle", 16);
+    /* EPE and effective EPE go to opposite ends, and on opposite sides of their
+       lines, so they stay apart even when the two levels are close. */
+    tag("EPE", 0.03, epe, "var(--green)", "start", 14);
+    if (effBox.checked) tag("effective EPE", 0.97, eepe, "var(--amber)", "end");
 
     cap.innerHTML = "<strong>EE</strong> is the mean of the in-your-favour outcomes at each date; <strong>PFE</strong> is the same date's tail at " +
       (alpha * 100).toFixed(0) + "%. Raising confidence lifts PFE and leaves EE untouched, because EE is an average and PFE is a quantile. " +
@@ -132,6 +140,7 @@ register("exposure-metrics", function (el) {
   });
   slider.addEventListener("input", draw);
   effBox.addEventListener("change", draw);
+  pfeBox.addEventListener("change", draw);
   draw();
 });
 
@@ -282,25 +291,34 @@ register("mpor-line", function (el) {
   var cap = el.querySelector(".w-caption");
   var kind = "otc";
   var STEPS = [
-    { n: "Valuation / margin call", w: 1 },
-    { n: "Grace period", w: 1.4 },
-    { n: "Default declared", w: 0.8 },
-    { n: "Macro-hedging", w: 1.5 },
-    { n: "Auction / close-out", w: 2.3 }
+    { n: "Valuation / margin call" },
+    { n: "Grace period" },
+    { n: "Default declared" },
+    { n: "Macro-hedging" },
+    { n: "Auction / close-out" }
   ];
   function draw() {
     svg.innerHTML = "";
     var W = 660, H = 190, x0 = 24, y = 74;
-    var total = STEPS.reduce(function (a, s) { return a + s.w; }, 0);
-    var avail = W - x0 * 2, x = x0;
+    /* Width follows the LABEL, not an arbitrary weight: the boxes previously got
+       a fixed share of the row and the longer captions spilled out of them. */
+    var FS = 10, CH = 5.35, PAD = 20;
+    var wants = STEPS.map(function (st) { return st.n.length * CH + PAD; });
+    var total = wants.reduce(function (a, b) { return a + b; }, 0);
+    var avail = W - x0 * 2;
+    /* If the natural widths do not fit, every box shrinks by the same factor and
+       the font shrinks with them so the text keeps fitting. */
+    var fit = Math.min(1, avail / total);
+    if (fit < 1) FS = Math.max(8, FS * Math.max(fit, 0.8));
+    var x = x0;
     STEPS.forEach(function (s, i) {
-      var w = (s.w / total) * avail;
+      var w = (wants[i] / total) * avail;
       svgEl("rect", {
         x: x, y: y, width: w - 3, height: 30, rx: 4,
         fill: i >= 3 ? "var(--accent-soft)" : "var(--bg-inset)",
         stroke: i >= 3 ? "var(--accent)" : "var(--border)"
       }, svg);
-      var t = svgEl("text", { x: x + (w - 3) / 2, y: y + 19, "text-anchor": "middle", "font-size": 10, fill: "var(--text)" }, svg);
+      var t = svgEl("text", { x: x + (w - 3) / 2, y: y + 19, "text-anchor": "middle", "font-size": FS, fill: "var(--text)" }, svg);
       t.textContent = s.n;
       x += w;
     });

@@ -1,3 +1,3 @@
-DONE: Cleared the R36/R35 backlog. Figures 36.10 and 36.11 built (payment-frequency, exercise-date), so all 7 widgets cover the reading's figure set; R35 gained macro-hedging and rights-of-assessment concepts; R36's five concepts that had no intuition now carry the mechanism. All 9 of R36's learning objectives verified covered.
-NEXT: Apply the same treatment to R37 (CVA), which consumes R36's output and is the other half of the counterparty-pricing pair.
-BLOCKERS: R35 still trips ai-tells 4 times (not-x-but-y, judged to be carrying argument rather than filler, left deliberately). Coverage back-audit over the 65 cleared readings still unscheduled.
+DONE: Fixed the two owner-reported widget UI defects (MPoR step boxes now sized to their labels instead of overflowing; exposure-metrics labels clamped inside the plot, effective EE drawn as a halo under EE so the overlap reads honestly, plus a show-PFE toggle so the EE pair can fill the box).
+NEXT: Apply the R36 treatment to R37 (CVA), which consumes R36's output.
+BLOCKERS: The show-PFE toggle's live behaviour is not headless-verifiable (the static-DOM harness does not run widget JS); needs a real browser check. Coverage back-audit over the 65 cleared readings still unscheduled.
