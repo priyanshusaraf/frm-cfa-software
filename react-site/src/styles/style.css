@@ -39,16 +39,22 @@
   --font-scale: 1;
   --nav-h: 3.4rem;
 }
+/* Light theme is deliberately NOT pure white on near-black (owner-reported
+   2026-07-26: "the contrast is too high, it affects my eyes"). The page sits at
+   a soft paper grey and cards a shade above it, so surfaces still separate but
+   nothing emits full-brightness white; body text is lifted off black to match.
+   The pair still clears WCAG AAA by a wide margin, so this costs no legibility.
+   Dark mode was judged correct as-is and must not be re-tuned alongside it. */
 :root[data-theme="light"] {
-  --bg: #fafafa;
-  --bg-raised: #ffffff;
-  --bg-hover: #f0f0f0;
-  --bg-inset: #f0f0f0;
-  --border: #e4e4e4;
-  --border-strong: #cccccc;
-  --text: #171717;
-  --text-dim: #5c5c5c;
-  --text-faint: #8f8f8f;
+  --bg: #f1f0ed;
+  --bg-raised: #f9f8f6;
+  --bg-hover: #e8e6e2;
+  --bg-inset: #eae8e4;
+  --border: #dedcd7;
+  --border-strong: #c3c0b9;
+  --text: #24262b;
+  --text-dim: #5f6169;
+  --text-faint: #8c8e95;
   --accent: #2f6bdb;
   --accent-soft: rgba(47, 107, 219, 0.09);
   --green: #1f9e63;
@@ -186,7 +192,10 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
     flex: 0 0 15rem; width: 15rem;
     height: calc(100vh - var(--nav-h));
     overflow-y: auto; overscroll-behavior: contain;
-    padding: 1.35rem 0.7rem 2rem 1rem;
+    /* The bottom padding is deliberately deep: `.return-to-reading` is fixed at
+       the left edge and overlays this rail, so the last link (Settings) needs
+       room to scroll clear of it. */
+    padding: 1.35rem 0.7rem 5rem 1rem;
     border-right: 1px solid var(--border);
   }
   .study-sidebar[data-collapsed] { flex-basis: 3.75rem; width: 3.75rem; padding-inline: 0.6rem; }
@@ -924,12 +933,21 @@ html[data-fullscreen] .pomo-fab { display: none; }
    `.corner-pill.left` / `.rail-panel.left` (bottom-left on reading surfaces) and
    the sidebar itself (left edge on study surfaces) — and those two never appear
    together, so `data-study-sidebar` on <html> picks the right dodge for each. */
+/* The border is a gradient, which a `border-color` cannot express: the visible
+   1px is the BORDER-box layer of a two-layer background showing through a
+   transparent border, with the fill painted on the padding-box layer on top.
+   Consequence for anyone editing this: `background` and `border-color` are no
+   longer independently settable here, so hover restates both layers. */
 .return-to-reading {
   position: fixed; left: 12px; bottom: 1.25rem; z-index: 44;
   font-size: 0.78rem; padding: 0.3rem 0.6rem; border-radius: var(--radius-sm);
-  color: var(--text-dim); background: var(--bg-raised); border: 1px solid var(--border);
+  color: var(--text-dim);
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
+    linear-gradient(135deg, var(--purple), var(--accent) 55%, var(--pink)) border-box;
   box-shadow: var(--shadow);
-  cursor: pointer; transition: color .15s, border-color .15s, background .15s;
+  cursor: pointer; transition: color .15s, opacity .15s;
 }
 /* Sit one row up when the KeyPoints pill is on screen claiming the corner. This
    is rare but real: Chapter.jsx repoints activeReading at the chapter you open,
@@ -940,13 +958,18 @@ html[data-fullscreen] .pomo-fab { display: none; }
 @media (min-width: 1000px) {
   html:has(.corner-pill.left) .return-to-reading { bottom: 3.7rem; }
 }
-/* Study surfaces: clear the sidebar. --study-sidebar-w is published by
-   StudySidebar.jsx and tracks its collapsed width, so the button follows the
-   rail in. Only applied at the breakpoint where the sidebar is actually shown. */
-@media (min-width: 1180px) {
-  html[data-study-sidebar] .return-to-reading { left: calc(var(--study-sidebar-w, 0px) + 12px); }
+/* Study surfaces: the button STAYS at the left edge and overlays the sidebar
+   (owner directive, 2026-07-26) rather than dodging right of it. It lands over
+   the sidebar's own scrollbar, which is acceptable because the sidebar reserves
+   bottom padding for it (see `.study-sidebar`) so its last link, Settings, is
+   still reachable at maximum scroll. */
+.return-to-reading:hover {
+  color: var(--text);
+  background:
+    linear-gradient(var(--bg-hover), var(--bg-hover)) padding-box,
+    linear-gradient(135deg, var(--purple), var(--accent) 55%, var(--pink)) border-box;
+  box-shadow: var(--shadow), 0 0 0 3px var(--purple-soft);
 }
-.return-to-reading:hover { color: var(--text); border-color: var(--border-strong); background: var(--bg-hover); }
 
 /* ---------- section-label bookmark toggle ---------- */
 .section-label { position: relative; }

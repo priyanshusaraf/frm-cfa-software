@@ -1,3 +1,3 @@
-DONE: Fixed the home Consistency card (viewBox-scaled 26-week grid that fills the card, centred equal-width number columns, legend matching /consistency, no pooled slack at the bottom) and moved the Return-to-Reading button to the bottom left, clear of the new Study sidebar and of the KeyPoints corner pill.
-NEXT: Apply the R36 treatment to R37 (CVA), which consumes R36's output.
-BLOCKERS: The show-PFE toggle's live behaviour is still not headless-verifiable. Coverage back-audit over the 65 cleared readings still unscheduled.
+DONE: Return-to-Reading now sits at the far left over the Study sidebar with a purple-to-pink gradient border, the sidebar reserves 5rem bottom padding so Settings clears it, and the light theme was softened off pure white / near-black.
+NEXT: Run content-sonnet-clearance wave 14 (r66-r70) per docs/superpowers/content-run-protocol.md section 2.
+BLOCKERS: coverage-audit.mjs title matching is off (r68 audited against the wrong source section); fixing it before the wave.
