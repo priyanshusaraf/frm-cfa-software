@@ -174,11 +174,17 @@ export default function Chapter() {
     if (d.eli5) pushSec("Explain it simply");
     if (d.thinkLike) pushSec("Think like a risk manager");
     if (d.visual) pushSec("See it");
-    if (d.breakdown && d.breakdown.length) pushSec("At a glance: the lists that matter");
+    /* Explanation before consolidation (owner directive, 2026-07-26): the
+       breakdown lists are a SUMMARY, and they used to run before the concepts
+       that explain them, so a reading read intro, intuition, summary,
+       explanation, summary again. Concepts and their formulas now come first;
+       the lists consolidate afterwards. Keep this order identical to the JSX
+       below or the TOC lies about the page. */
+    if (d.concepts && d.concepts.length) pushSec("Concepts");
+    if (d.formulas && d.formulas.length) pushSec("Formulas");
+    if (d.breakdown && d.breakdown.length) pushSec("Consolidate: the lists to memorize");
     if (d.lists && d.lists.length) pushSec("Build the list — memorize the order");
     if (d.pairs && d.pairs.length) pushSec("Match names to scope");
-    if (d.formulas && d.formulas.length) pushSec("Formulas");
-    if (d.concepts && d.concepts.length) pushSec("Concepts");
     if (d.connections) pushSec("Connections");
     if (d.misconceptions && d.misconceptions.length) pushSec("Common misconceptions & exam traps");
     if (d.highYield && d.highYield.length) pushSec("High yield — what to prioritize");
@@ -377,8 +383,54 @@ export default function Chapter() {
         <SectionLabel txt="See it" color={book.color} rn={rn} />
         <div className="prose" dangerouslySetInnerHTML={{ __html: d.visual }} />
       </>)}
+      {d.concepts && d.concepts.length > 0 && (<>
+        <SectionLabel txt="Concepts" color={book.color} rn={rn} />
+        {d.concepts.map((c, i) => <ConceptCard key={i} c={c} open={i === 0} id={"concept-" + slugify(c.name)} />)}
+      </>)}
+      {readingCoreConcepts.length > 0 && (
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center", margin: "0 0 1.5rem" }}>
+          <span style={{ fontSize: "0.8rem", color: "var(--text-faint)" }}>Core concepts in this reading:</span>
+          {readingCoreConcepts.map((c) => (
+            <Link
+              key={c.slug}
+              to={`/concept/${c.slug}`}
+              className="chip"
+              style={{ textDecoration: "none" }}
+              title={`Reused in ${c.refs.length} readings — deep-dive page`}
+            >
+              {c.name} ↗
+            </Link>
+          ))}
+        </div>
+      )}
+
+      {d.formulas && d.formulas.length > 0 && (<>
+        <SectionLabel txt="Formulas" color={book.color} rn={rn} />
+        {d.formulas.map((f, i) => {
+          const mathCls = "f-math" + (isTex(f.math) ? " f-tex" : "");
+          return (
+            <div className="formula-block" key={i}>
+              <div className="f-name">{f.name}</div>
+              <div className={mathCls} dangerouslySetInnerHTML={{ __html: renderMath(f.math, true) }} />
+              {f.plain && <p className="f-plain"><Html as="span" html={f.plain} /></p>}
+              {f.note && <div className="f-note"><Html as="span" html={f.note} /></div>}
+              {f.derivation && (
+                <Accordion type="single" collapsible className="f-deeper">
+                  <AccordionItem value={"derivation-" + i}>
+                    <AccordionTrigger>Show the math</AccordionTrigger>
+                    <AccordionContent>
+                      <Html html={f.derivation} />
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              )}
+            </div>
+          );
+        })}
+      </>)}
+
       {d.breakdown && d.breakdown.length > 0 && (<>
-        <SectionLabel txt="At a glance: the lists that matter" color={book.color} rn={rn} />
+        <SectionLabel txt="Consolidate: the lists to memorize" color={book.color} rn={rn} />
         <div className="breakdown-grid">
           {d.breakdown.map((b, i) => (
             <Resizable key={i} blockKey={`${rn}:bd:${i}`} className="card">
@@ -417,53 +469,6 @@ export default function Chapter() {
         <SectionLabel txt="Match names to scope" color={book.color} rn={rn} />
         <MatchPairs pairs={d.pairs} color={book.color} />
       </>)}
-
-      {d.formulas && d.formulas.length > 0 && (<>
-        <SectionLabel txt="Formulas" color={book.color} rn={rn} />
-        {d.formulas.map((f, i) => {
-          const mathCls = "f-math" + (isTex(f.math) ? " f-tex" : "");
-          return (
-            <div className="formula-block" key={i}>
-              <div className="f-name">{f.name}</div>
-              <div className={mathCls} dangerouslySetInnerHTML={{ __html: renderMath(f.math, true) }} />
-              {f.plain && <p className="f-plain"><Html as="span" html={f.plain} /></p>}
-              {f.note && <div className="f-note"><Html as="span" html={f.note} /></div>}
-              {f.derivation && (
-                <Accordion type="single" collapsible className="f-deeper">
-                  <AccordionItem value={"derivation-" + i}>
-                    <AccordionTrigger>Show the math</AccordionTrigger>
-                    <AccordionContent>
-                      <Html html={f.derivation} />
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              )}
-            </div>
-          );
-        })}
-      </>)}
-
-      {d.concepts && d.concepts.length > 0 && (<>
-        <SectionLabel txt="Concepts" color={book.color} rn={rn} />
-        {d.concepts.map((c, i) => <ConceptCard key={i} c={c} open={i === 0} id={"concept-" + slugify(c.name)} />)}
-      </>)}
-
-      {readingCoreConcepts.length > 0 && (
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", alignItems: "center", margin: "0 0 1.5rem" }}>
-          <span style={{ fontSize: "0.8rem", color: "var(--text-faint)" }}>Core concepts in this reading:</span>
-          {readingCoreConcepts.map((c) => (
-            <Link
-              key={c.slug}
-              to={`/concept/${c.slug}`}
-              className="chip"
-              style={{ textDecoration: "none" }}
-              title={`Reused in ${c.refs.length} readings — deep-dive page`}
-            >
-              {c.name} ↗
-            </Link>
-          ))}
-        </div>
-      )}
 
       {d.connections && (<>
         <SectionLabel txt="Connections" color={book.color} rn={rn} />

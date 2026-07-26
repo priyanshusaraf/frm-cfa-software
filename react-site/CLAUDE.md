@@ -135,6 +135,44 @@ it — that's the bar.
 
   Grep check before shipping a content edit that introduces an abbreviation: confirm the
   expansion appears in the file, and that the file uses exactly one expansion for it.
+- **CHAPTER SECTION ORDER: explanation before consolidation** (owner directive,
+  2026-07-26). The chapter used to run intro, intuition, `breakdown` lists,
+  `concepts`, `summary`. The breakdown lists ARE a summary, so the page summarised
+  the material twice and explained it once, in between. The owner's words: "the
+  summary is coming before the explanation, which doesn't make sense." The order
+  in `Chapter.jsx` is now teaches, why, intuition, eli5, thinkLike, visual,
+  **concepts, formulas, breakdown, lists, pairs**, then the rest. Consequences for
+  content authoring:
+  1. `concepts[]` carries the teaching load. Each core idea gets its own card and
+     is explained thoroughly there; do not rely on a breakdown bullet to carry an
+     idea the concepts never explain.
+  2. Introduce math gradually inside the concepts that need it. `formulas[]` is
+     the consolidated reference AFTER the ideas are settled, not the place a
+     student meets an equation for the first time.
+  3. `breakdown[]` is now a recap of material already taught. A breakdown bullet
+     that is the ONLY place a concept appears is a defect: on a dense reading it
+     reads as a definition dump with no mechanism (the reference failure is R36's
+     "Effective EE and effective EPE: EE forced to be non-decreasing, and its
+     average", which an owner comfortable with the math had to re-read repeatedly).
+     Use the `{point, explain}` shape so each bullet carries its mechanism.
+  4. Dense quantitative readings want MORE explanation, not tighter summary. The
+     owner on R36: "this is a reading where overexplaining concepts is appreciated."
+  The TOC in `Chapter.jsx` (`pushSec`) must stay in the same order as the JSX or
+  the rail lies about the page.
+- **AI-VOICE TELLS: three structural habits, banned** (owner-reported 2026-07-26
+  against R36's `thinkLike`, verdict "it just screams AI"). Dashes were the
+  visible layer; these are the next one, and they cannot be grepped for one
+  character, so `node scripts/ai-tells.mjs <rn>` detects them structurally.
+  1. **Announcing your own structure** instead of teaching: "Two practical habits
+     follow.", "Three things matter here." Just make the point.
+  2. **Chaining rhetorical questions with fragment answers**: "Single payout at
+     the end? Exposure climbs. Regular settlement? It gets capped." Two or more
+     in parallel is the loudest tell in the app. Write connected prose.
+  3. **The aphoristic closer**: "X is what turns a slow reconstruction into a fast
+     answer." The transformation pivot (X into Y) as a closing flourish.
+  Explicitly NOT banned, having been reviewed and judged acceptable: the
+  "almost always one of two kinds" construction, and ordinary causal claims that
+  happen to use "is what makes".
 - **Human, plain tone.** Write the way a sharp tutor talks, not the way a textbook is printed.
   The tone-humanization + em-dash removal has NOT been done across the 101 readings: as of
   2026-07-21, `src/data` still holds **7,614 em/en-dashes and 100 of 101 readings fail the

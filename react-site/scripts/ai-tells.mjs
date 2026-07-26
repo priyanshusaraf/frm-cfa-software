@@ -16,6 +16,11 @@
    found by grepping one character. Each pattern below is a STRUCTURAL habit, so
    it is matched structurally.
 
+   Owner calibration 2026-07-26: of the four habits first identified, the
+   "almost always one of two templates" construction was judged acceptable
+   writing and its pattern was removed. Announcing structure, chaining
+   rhetorical questions, and the aphoristic closer are the real tells.
+
    Enforcement note: the coverage incident taught that a rule nothing checks is
    not a rule. This runs as a warn-level check so the run cannot quietly drift
    back into the voice, but it is advisory: every pattern here has legitimate
@@ -51,13 +56,12 @@ const PATTERNS = [
   },
   {
     id: "aphoristic-closer",
-    what: "closes on an aphorism (X is what turns/separates Y into Z)",
-    re: /\bis\s+what\s+(turns|separates|distinguishes|makes|converts|divides)\b/gi,
-  },
-  {
-    id: "manufactured-symmetry",
-    what: "asserts a suspiciously round count of kinds",
-    re: /\b(almost always|nearly always|invariably)\s+(one of\s+)?(two|three)\s+(templates?|kinds?|flavou?rs?|shapes?|buckets?|patterns?)\b/gi,
+    what: "closes on an aphorism (X is what turns Y into Z)",
+    /* Narrowed after measuring: a bare "the collateral is what makes repos
+       safer" is an ordinary causal claim, not a flourish. The tell is the
+       transformation pivot, X into Y or X from Y, which is what the flagged
+       R36 sentence used ("turns a slow reconstruction into a fast answer"). */
+    re: /\bis\s+what\s+(turns|separates|converts|divides|distinguishes)\s+[^.;]{3,60}\s(into|from)\s/gi,
   },
   {
     id: "not-x-but-y",
