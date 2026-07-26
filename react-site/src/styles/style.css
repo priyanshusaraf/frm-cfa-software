@@ -936,21 +936,20 @@ html[data-fullscreen] .pomo-fab { display: none; }
    `.corner-pill.left` / `.rail-panel.left` (bottom-left on reading surfaces) and
    the sidebar itself (left edge on study surfaces) — and those two never appear
    together, so `data-study-sidebar` on <html> picks the right dodge for each. */
-/* The border is a gradient, which a `border-color` cannot express: the visible
-   1px is the BORDER-box layer of a two-layer background showing through a
-   transparent border, with the fill painted on the padding-box layer on top.
-   Consequence for anyone editing this: `background` and `border-color` are no
-   longer independently settable here, so hover restates both layers. */
+/* No border at all (owner directive, 2026-07-27). This carried a purple-to-pink
+   gradient border, built as a two-layer background showing through a transparent
+   border; the owner's verdict on it was "horrible". The raised fill and the
+   shadow are enough to lift it off the page, and a borderless chip is what the
+   rest of the app's floating chrome looks like. Do not reintroduce a gradient
+   here: if this ever needs more separation, deepen the shadow. */
 .return-to-reading {
   position: fixed; left: 12px; bottom: 1.25rem; z-index: 44;
   font-size: 0.78rem; padding: 0.3rem 0.6rem; border-radius: var(--radius-sm);
   color: var(--text-dim);
-  border: 1px solid transparent;
-  background:
-    linear-gradient(var(--bg-raised), var(--bg-raised)) padding-box,
-    linear-gradient(135deg, var(--purple), var(--accent) 55%, var(--pink)) border-box;
+  border: none;
+  background: var(--bg-raised);
   box-shadow: var(--shadow);
-  cursor: pointer; transition: color .15s, opacity .15s;
+  cursor: pointer; transition: color .15s, background-color .15s;
 }
 /* Sit one row up when the KeyPoints pill is on screen claiming the corner. This
    is rare but real: Chapter.jsx repoints activeReading at the chapter you open,
@@ -976,10 +975,8 @@ html[data-fullscreen] .pomo-fab { display: none; }
 html[data-study-sidebar] .return-to-reading { left: 1rem; }
 .return-to-reading:hover {
   color: var(--text);
-  background:
-    linear-gradient(var(--bg-hover), var(--bg-hover)) padding-box,
-    linear-gradient(135deg, var(--purple), var(--accent) 55%, var(--pink)) border-box;
-  box-shadow: var(--shadow), 0 0 0 3px var(--purple-soft);
+  background: var(--bg-hover);
+  box-shadow: var(--shadow);
 }
 
 /* ---------- section-label bookmark toggle ---------- */
