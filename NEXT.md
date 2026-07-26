@@ -1,3 +1,3 @@
-DONE: Phase 4 density wave 3: r74, r21, r40, r61, r27 thinkLike, 50 to 55 w/s down to 17.9 to 20.8. thinkLike corpus avg is now 31.4 with only r77 and r8 left above 45; intuition 29.2 with five left. All gates green.
-NEXT: Density wave 4, the last seven of Track A: intuition r86, r19, r23, r92, r31 and thinkLike r77, r8.
+DONE: Phase 4 Track A (prose density) is COMPLETE. Wave 4 cleared the last seven (intuition r86, r19, r23, r92, r31; thinkLike r77, r08). Nothing in eli5, intuition or thinkLike is above 45 w/s anywhere in the corpus. Full-corpus sweep: 0 validator failures, 0 dashes, 101 files import.
+NEXT: Start Phase 4 Track B, the coverage back-audit: re-read react-site/docs/superpowers/coverage-report.json and work its worst readings, verifying each candidate against the Schweser source before adding anything.
 BLOCKERS: none.

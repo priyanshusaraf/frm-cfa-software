@@ -8,9 +8,14 @@ export default ({
 
   why: `<p>Risk budgeting is fundamentally different from market-value allocation. You're allocating a scarce RISK budget, not dollars, and because assets aren't perfectly correlated, the sum of individual VaRs always exceeds the actual portfolio VaR. Ignoring this (focusing on stand-alone VaR) leads to systematically wrong manager/asset selection.</p>`,
 
-  intuition: `<p>Buy-side (asset managers, pension funds) and sell-side (banks) have structurally different risk profiles: sell-side trades rapidly with high leverage (needs forward-looking, dynamic VaR); buy-side holds positions for years with lower leverage (has historically relied on tracking error/benchmarking, but is increasingly adopting VaR as investing globalizes and complexifies).</p>
-  <p>The reading's central numeric lesson: focusing on STAND-ALONE VaR when choosing between two candidate positions can lead to the WRONG choice, because what matters is each candidate's CORRELATION with the existing portfolio, not its isolated risk. A lower-stand-alone-VaR asset with high correlation to existing holdings can push total portfolio VaR over budget, while a higher-stand-alone-VaR asset with zero correlation keeps you under budget, correlation, not stand-alone risk, determines the actual incremental VaR impact.</p>
-  <p>Funding risk (relevant mainly to pension funds) reframes VaR around the SURPLUS (assets − liabilities): surplus at risk (SaR) asks how much the surplus could shrink, accounting for the fact that liabilities themselves move (often in the SAME direction as assets when rates change, but not necessarily by the same amount), ironically, falling rates can raise both asset values AND the present value of future obligations, sometimes leaving the surplus worse off despite rising asset values.</p>`,
+  intuition: `<p>Buy-side firms (asset managers, pension funds) and sell-side firms (banks) have structurally different risk profiles.</p>
+  <p>The sell side trades rapidly and with high leverage, which is why it needs forward-looking, dynamic VaR.</p>
+  <p>The buy side holds positions for years at lower leverage. It has historically relied on tracking error against a benchmark instead, and is increasingly adopting VaR as investing globalizes and grows more complex.</p>
+  <p>The central numeric lesson is that choosing between two candidate positions on STAND-ALONE VaR can lead you to the WRONG choice. What matters is each candidate's CORRELATION with the portfolio you already hold, not its isolated risk.</p>
+  <p>A lower-stand-alone-VaR asset that is highly correlated with existing holdings can push total portfolio VaR over budget. A higher-stand-alone-VaR asset with zero correlation can leave you comfortably under it. Correlation, not stand-alone risk, determines the incremental VaR impact.</p>
+  <p>Funding risk, which matters mainly to pension funds, reframes VaR around the SURPLUS (assets minus liabilities). Surplus at risk (SaR) asks how much that surplus could shrink.</p>
+  <p>The complication is that the liabilities move too, often in the SAME direction as the assets when rates change, though not necessarily by the same amount.</p>
+  <p>So falling rates can lift both asset values AND the present value of future obligations, and the surplus can end up worse off even while the assets are rising.</p>`,
 
   visual: `<div class="widget" data-widget="compvar"></div>`,
 

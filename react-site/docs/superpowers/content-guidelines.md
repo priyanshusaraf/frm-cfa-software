@@ -1236,3 +1236,48 @@ and r74's bare MMDA.
 `\\(m\\)`, `\\(\\beta\\)` and `\\(\\rho=0\\)`; splitting the paragraphs around them
 renders fine (`katex-html` present in the dump). Copy the escaping exactly as it appears
 in the source file rather than retyping it.
+
+### Wave 4, and TRACK A IS COMPLETE (2026-07-26)
+
+The last seven: `intuition` r86, r19, r23, r92, r31 and `thinkLike` r77, r08.
+
+**Final state of the density pass, measured with `prose-density.mjs`:**
+
+| field | corpus avg at open | now | above 45 |
+|-------|--------------------|-----|----------|
+| `eli5` | 36.2 | 30.1 | 0 |
+| `intuition` | 31.3 | 27.7 | 0 |
+| `thinkLike` | 35.1 | 30.8 | 0 |
+
+Nothing in any of the three fields is above 45 words per sentence. A full-corpus
+validator sweep and dash grep after the wave: 0 failures, 0 dashes, 101 files import.
+
+**Two new mechanisms this wave, both distinct from the inline-numbered-list pattern:**
+
+1. **The spectrum arrow chain** (r19's classification ladder, standard through loss).
+   Same `→` machinery as wave 2's r101, but the links are the RUNGS OF A SCALE rather
+   than causal steps, and each rung had its diagnosis buried in a parenthetical. Bolding
+   the rung name and giving it a paragraph turns a run-on into something a student can
+   actually revise from. The health-chart metaphor was good and is untouched.
+2. **The case-study fact wall** (r92, 507 words in 11 sentences). Not a chain and not a
+   list: individual sentences carrying three or four dated facts each, because a case
+   study has genuinely many facts. This is the one where splitting takes real judgment,
+   since the facts must all survive. The rule that worked: **one sentence per causal
+   step, and a date or figure travels with the step it belongs to.** r92 went from 3
+   paragraphs to 15 with no fact lost.
+
+**A trap this wave produced, worth guarding against generally.** Compressing r92's
+sign-off list cost the file its only expansions of FRBSF and CDFPI, both of which are
+used bare elsewhere in the reading (a `memory` field and a timeline entry). Caught on a
+grep, restored. **When a density rewrite deletes a parenthetical, check whether that
+parenthetical was the file's only expansion of an abbreviation used elsewhere.** The
+validator does not catch this; only a grep does.
+
+r92's LFBO/RBO expansions were also taken from the file's own wording (Large and Foreign
+Banking Organization, Regional Banking Organization) rather than invented, per the
+one-name rule. Same for r77's WAL and LTP and r31's SPV/DPC/CDPC family, which the
+rewrite writes out in full.
+
+**Track B (the coverage back-audit) is the remaining Phase-4 work.** Re-read
+`coverage-report.json` first; the ledger's worst-first ordering is documented as stale
+in two places.

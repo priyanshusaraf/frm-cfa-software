@@ -29,20 +29,19 @@ Advance this header only when every row for the active phase is `done`, then com
 Phase 4 is not a per-reading sweep, so it is tracked as worklists, not rows. Detail and
 per-reading learnings live in `content-guidelines.md` under "PHASE 4".
 
-**Track A, prose density (`node scripts/prose-density.mjs <field> [floor]`).**
-Re-derive before every wave; the numbers below go stale on the next rewrite.
+**Track A, prose density (`node scripts/prose-density.mjs <field> [floor]`) is DONE**
+(2026-07-26). All three prose fields are clear: nothing above 45 words per sentence
+anywhere in the corpus. `eli5` avg 30.1, `intuition` 27.7, `thinkLike` 30.8. A
+full-corpus validator sweep and dash grep after the last wave: 0 failures, 0 dashes,
+101 files import.
 
-- `eli5` ....... DONE. Nothing above 45 w/s. Corpus avg 31.2.
-- `intuition` .. IN PROGRESS, corpus avg 29.2. Remaining above 45, worst first:
-                 **r86 (49.0), r19 (48.5), r23 (48.2), r92 (46.1), r31 (46.0).**
-- `thinkLike` .. IN PROGRESS, corpus avg 31.4. Remaining above 45: **r77 (50.5),
-                 r8 (47.8).** Everything else is below 45.
-
-That is 7 readings left in Track A. Wave 4 takes all of them plus a re-measure.
-
-Waves so far, all gates green, all 2026-07-26:
+Waves, all gates green, all 2026-07-26:
 wave 1 = r52, r65, r50, r25, r60. wave 2 = r47, r62, r101, r78, r24.
-wave 3 = r74, r21, r40, r61, r27 (all `thinkLike`).
+wave 3 = r74, r21, r40, r61, r27. wave 4 = r86, r19, r23, r92, r31, r77, r08.
+Plus the six extremes cleared before wave 1 (r100, r86, r69, r70, r20, r32).
+
+Re-run the script before declaring this closed in a later session; it is cheap, and
+three separate "done corpus-wide" claims in this run turned out to have survivors.
 
 **Track B, the coverage back-audit.** Not started in this phase. See the OPEN section
 below; re-read `coverage-report.json` rather than trusting any ordering written here.
