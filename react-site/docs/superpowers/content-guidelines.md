@@ -1755,3 +1755,40 @@ source for all five. Reaching for variety would have meant reaching for weaker l
 **A dead candidate for the record:** NBIM's hosting of the Ang, Goetzmann and Schaefer report
 on active management (the natural companion to Book 5, since Ang is the source author) is a
 404 at the obvious URL. Worth finding a live host if anyone wants it, but not worth guessing.
+
+### Wave 16: r84, r85, r87, r88, r89, r95, and Track C CLOSES (2026-07-26)
+
+Three links, three deliberate zeros. **17 of the original 21 readings now carry a live
+external link; 4 carry none on purpose.**
+
+- **r88**: the GIPS standards (CFA Institute). It earns its place for a sharper reason than
+  topical overlap: GIPS exists precisely to stop the reporting games this reading teaches a
+  student to detect, cherry-picked composites and selective periods among them.
+- **r89**: the FSB's 2025 final report on leverage in nonbank financial intermediation. The
+  reading covers hedge fund strategies; this covers why supervisors watch them, and the
+  counterparty channel the risk travels down.
+- **r95**: the FSB's 2024 report on the financial stability implications of AI. It names the
+  vulnerabilities this reading's trustworthiness principles are trying to contain, and in
+  the order regulators rank them: third-party and service-provider concentration first, then
+  model risk, data quality and governance.
+
+**The four deliberate zeros, with reasons, so nobody reads them as unfinished work:**
+
+- **r13** (term structure drift), **r84** (portfolio construction), **r85** (portfolio risk:
+  analytical methods), **r87** (risk monitoring and performance measurement).
+- All four are pedagogical derivations from a textbook author (Tuckman, Grinold and Kahn,
+  Jorion). There is no regulator, standard-setter, exchange or dataset that adds anything
+  the reading does not already do better, and the underlying texts are not freely hostable.
+  **A link that merely proves the topic exists is padding**, which is the exact failure that
+  produced the 283 stripped encyclopedia links.
+
+**Dead or unverifiable candidates, recorded so nobody burns fetches re-trying them:** the
+SEC's private-funds-statistics page and the New York Fed's ACM term-premia page both return
+403 to automated fetches, so neither can be verified and neither ships. An ESMA
+alternative-investment-fund news page returned only navigation chrome, so its content could
+not be confirmed. CFA Institute's refresher-reading URLs 404. NBIM's Ang/Goetzmann/Schaefer
+report 404s at the obvious URL.
+
+**Corpus state at Track C close: 139 source links across 101 readings, zero banned hosts,
+four readings deliberately empty.** Every URL added in this track was fetched and confirmed
+live before it shipped, which is the one rule protocol section 3 actually insists on.

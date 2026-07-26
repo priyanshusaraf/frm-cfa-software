@@ -6,7 +6,12 @@ this file, finds its place, and continues. Procedure lives in
 
 ## ACTIVE PHASE
 
-    content-opus-improvement
+    none: all four phases complete (2026-07-26)
+
+The next scheduled work is NOT a phase. It is the hard-concept sequencing build
+(CVA first), spec'd at
+`specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md` and
+recorded as an OPEN item below. It needs the owner to schedule it.
 
 Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality first):
 
@@ -20,7 +25,20 @@ Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality f
                                       nudges + Pomodoro. Detail in PROGRESS.md.
 3. `content-sonnet-clearance` ....... DONE 2026-07-26 (waves 1-20, all 101 rows verified).
                                       Corpus-wide: 0 em/en-dashes remain in src/data.
-4. `content-opus-improvement` ....... ACTIVE. Opus-B. "Leave it alone" is a valid verdict.
+4. `content-opus-improvement` ....... DONE 2026-07-26. Three tracks, 16 waves:
+                                      Track A prose density (all three fields clear of
+                                      45 w/s), Track B the coverage back-audit (~195
+                                      candidates, 14 gaps, 1 factual error across 12
+                                      fields, 5 missing names, 31 dismissals), Track C
+                                      the `sources` curation (17 of 21 readings given a
+                                      fetched-and-live link, 4 deliberately empty).
+                                      Consciously de-scoped, with reasons recorded in
+                                      `content-guidelines.md`: ~10 readings whose only
+                                      remaining flag is a weak LO at exactly 0.50, the
+                                      band that ran four dismissals per real gap. Per
+                                      this phase's own doctrine, "leave it alone" is a
+                                      verdict, and that residual risk is stated rather
+                                      than worked to zero.
 
 Advance this header only when every row for the active phase is `done`, then commit.
 
@@ -96,10 +114,17 @@ acceptable final answer and is recorded as a decision.
   derivatives statistics at `data.bis.org`), **r39** (BCBS d374).
 - Done: **r44** (BCBS d516, the FINAL operational-resilience standard, not the closed
   consultative d509), **r64** (CGFS 49), **r81, r82, r83** (Kenneth French data library,
-  one link serving three readings).
-- Remaining 6: r84, r85, r87, r88, r89, r95.
-- Dead candidate: NBIM's Ang/Goetzmann/Schaefer active-management report 404s at the
-  obvious URL.
+  one link serving three readings), **r88** (GIPS), **r89** (FSB NBFI leverage),
+  **r95** (FSB AI and financial stability).
+- **TRACK C IS COMPLETE.** 17 of the 21 got a live link; **4 are deliberately empty and
+  must not be read as unfinished work: r13, r84, r85, r87.** All four are pedagogical
+  textbook derivations (Tuckman, Grinold and Kahn, Jorion) with no regulator, dataset or
+  standard-setter that adds anything, and a link proving the topic exists is padding.
+- Corpus: **139 source links across 101 readings, zero banned hosts.** Every URL in this
+  track was fetched and confirmed live before shipping.
+- Dead or unverifiable, do not re-try: NBIM's Ang/Goetzmann/Schaefer report (404), the
+  SEC private-funds-statistics page (403), the NY Fed ACM term-premia page (403), CFA
+  Institute refresher-reading URLs (404), an ESMA AIF news page (returns only chrome).
 - Rejected candidates, do not re-try: the NY Fed ACM term-premia page (HTTP 403 to
   automated fetches, so unverifiable), and BCBS WP22 (it is the securitization supervisory
   formula, not a tail-risk paper).

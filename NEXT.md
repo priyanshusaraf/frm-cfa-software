@@ -1,3 +1,3 @@
-DONE: Phase 4 Track C wave 15: r44 gets the BCBS operational-resilience standard (the final d516, not the closed consultative d509), r64 the CGFS collateral-encumbrance report, and r81/r82/r83 all take the Kenneth French data library, which is simultaneously the original source, a live dataset, and the only way to check whether a premium the readings assert survived out of sample. All fetched and confirmed live.
-NEXT: Track C wave 16, the last six: r84, r85, r87, r88, r89, r95.
-BLOCKERS: none.
+DONE: PHASE 4 (content-opus-improvement) IS COMPLETE, 16 waves across three tracks: prose density (all of eli5/intuition/thinkLike now clear of 45 w/s), the coverage back-audit (~195 candidates, 14 real gaps, 1 factual error across 12 fields, 5 missing source names, 31 dismissals), and the sources curation (17 of 21 readings given a fetched-and-live link, 4 deliberately empty). Ledger ACTIVE PHASE header advanced; all four phases now done.
+NEXT: The hard-concept sequencing build, CVA first, per specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md. It is spec'd, not scheduled, and needs the owner to say go.
+BLOCKERS: none. Consciously de-scoped and recorded: ~10 readings whose only remaining coverage flag is a weak LO at exactly 0.50, the band that ran four dismissals per real gap.

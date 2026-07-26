@@ -135,6 +135,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "Global Investment Performance Standards (GIPS), CFA Institute", url: "https://www.gipsstandards.org/", note: "The standard-setter for how managers are actually permitted to present performance. Worth seeing because it exists precisely to stop the reporting games this reading teaches you to detect, such as cherry-picked composites and selective time periods." }
+  ],
+
   pdf: { book: 5, query: "Professional money managers are routinely evaluated using a wide array of metrics" },
 
   formulas: [

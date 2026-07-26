@@ -244,5 +244,9 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "FSB: the financial stability implications of artificial intelligence (2024)", url: "https://www.fsb.org/2024/11/the-financial-stability-implications-of-artificial-intelligence/", note: "Names the vulnerabilities this reading's trustworthiness principles are trying to contain, in the order regulators rank them: third-party and service-provider concentration first, then model risk, data quality and governance." }
+  ],
+
   pdf: { book: 5, query: "proposed the first major regulation targeting artificial intelligence" }
 });

@@ -235,5 +235,9 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "FSB: leverage in nonbank financial intermediation, final report (2025)", url: "https://www.fsb.org/2025/07/leverage-in-nonbank-financial-intermediation-final-report/", note: "The supervisory view of what hedge fund leverage does to the rest of the system, and the counterparty channel through which it travels. The reading covers the strategies; this covers why regulators watch them." }
+  ],
+
   pdf: { book: 5, query: "important distinctions between hedge funds and mutual funds" }
 });
