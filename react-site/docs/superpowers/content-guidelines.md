@@ -1085,3 +1085,37 @@ the reader reach the punchline themselves:
 **Do not rewrite an ELI5 that is already short-sentenced.** Nine of the readings I
 checked on the way to these fourteen were fine, and per protocol section 3 that is the
 expected outcome. The measurement exists so the pass touches only what is broken.
+
+### The thinkLike / intuition pass (opened 2026-07-26, IN PROGRESS)
+
+Same measurement applied to the next two prose fields. Both are worse than `eli5` was:
+
+| field | corpus avg w/s | above 45 (at open) |
+|-------|----------------|--------------------|
+| `eli5` (now done) | 31.2 | 0 |
+| `thinkLike` | 41.7 | 28 |
+| `intuition` | 34.1 | 13 |
+
+**Six rewritten so far, the extremes**: r100 `intuition` (151 words per sentence, a
+single sentence carrying five ideas), r86 `thinkLike` (112), r69 `thinkLike` (98),
+r70 (82), r20 (76), r32 (71). Corpus averages moved to 38.3 and 32.8.
+
+**REMAINING WORKLIST, worst first.** `thinkLike`: r65 (70), r33 (63), r25 (60), r60
+(60), r62 (59), r64 (58), r78 (58), r74 (55), r15 (54), r21 (54), r22 (54), r40 (53),
+r26 (52), r27 (52), then the rest above 45. `intuition`: r52 (72), r50 (62), r47 (57),
+r101 (57), r24 (55), r89 (51), r86 (50), r19 (49), r23 (49), r31 (47), r92 (46), r96
+(46). Twenty-three and twelve respectively.
+
+**What these rewrites are actually for, so the next session does not treat it as a
+word-count exercise.** `thinkLike` fails in a specific way: it opens with a genuinely
+good reframing ("she does not ask X, she asks Y"), then packs the entire consequence
+chain plus all three exam shapes into one or two enormous sentences. The reframing is
+the valuable part and it gets buried by what follows it. Splitting gives the reframing
+its own paragraph and lets each consequence land, and it usually surfaces a point the
+original had subordinated into a clause. In r20, the fact that adding loans stops
+helping once you reach the systematic residual was inside a parenthetical; it is now
+its own sentence, because it is the actual reason capital allocation exists.
+
+Re-derive the measurement before continuing (it is a regex over the field, sliced to
+the NEXT key rather than an assumed one) rather than trusting this table, which goes
+stale as soon as the next reading is rewritten.

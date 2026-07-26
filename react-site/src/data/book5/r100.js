@@ -9,8 +9,11 @@ export default ({
 
   why: `<p>This reading matters less for novel finance theory and more as a pattern-recognition exercise: nearly every crypto 'flaw' is a familiar risk-management concept from earlier books recurring in a new wrapper, congestion/fees are a liquidity-cost problem, fragmentation is a network/interoperability version of market segmentation, false decentralization is a concentration/counterparty-risk problem, and cryptoization is essentially a currency-substitution version of a bank run. Recognizing the analogy is the fastest way to retain this reading and the fastest way to eliminate wrong exam answers that ignore these parallels.</p>`,
 
-  intuition: `<p>Picture crypto as a financial system that had to reinvent, from scratch, every piece of infrastructure that traditional finance built over centuries (settlement, credit intermediation, price discovery, dispute resolution), except it did so in about 15 years, with no lender of last resort, no deposit insurance, and marketing that claims it doesn't need any of that because it's 'decentralized.' The structural flaws in this reading are exactly the seams where that reinvention is incomplete: the trilemma is a hard constraint (you can't have security + decentralization + scale all at once, so something always gives), fragmentation is what happens when projects route around the trilemma by forking off new chains, the oracle problem is DeFi's version of 'garbage in, garbage out' for anything that needs real-world data, and false decentralization is the reveal that most 'trustless' systems still have a small number of humans who can move markets.</p>`,
-
+  intuition: `<p>Traditional finance took centuries to build its plumbing: settlement, credit intermediation, price discovery, dispute resolution. Crypto rebuilt all of it from scratch in about fifteen years.</p>
+  <p>It did so with no lender of last resort and no deposit insurance, while marketing itself as not needing either, because it is decentralized.</p>
+  <p>Every structural flaw in this reading sits at a seam where that rebuild is incomplete. The trilemma is the hard constraint underneath: security, decentralization and scale cannot all be had at once, so one of the three is always being quietly given up.</p>
+  <p>Fragmentation is what happens when a project refuses to give any of them up and forks off a new chain instead. The oracle problem is DeFi's version of garbage in, garbage out, and it appears the moment a contract needs a fact from the real world.</p>
+  <p>And false decentralization is the reveal underneath all of it: most systems described as trustless still have a small number of people who can move the market.</p>`,
   formulas: [],
 
   concepts: [
