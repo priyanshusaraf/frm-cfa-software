@@ -112,8 +112,16 @@ for (const a of authoredConcepts || []) {
   const slug = a.slug || slugify(a.name);
   claimed.add(slug);
   linkRows.push({
-    slug, name: a.name, display: displayName(a.name), layer: a.layer || "revision",
+    slug, name: a.name, display: displayName(a.name), layer: a.layer || "revision", authored: true,
     homeReading: a.homeReading != null ? a.homeReading : null,
+    /* Carried through so the inline linker can exempt a sequenced core page
+       from the forward-only rule (see candidatesFor in src/lib/conceptLinks.js). */
+    ...(a.selfContained ? { selfContained: true } : {}),
+    /* Authored pages carry their refs too, so Chapter.jsx can offer the page as
+       a chip on every contributing reading. Without this an authored page is
+       reachable only from prose that happens to name it, which leaves its own
+       home reading with no route to it at all. */
+    refs: Array.isArray(a.refs) ? a.refs : [],
     linkPhrases: a.linkPhrases || [],
     snippet: plainText(a.lead || (a.sections && a.sections[0] && a.sections[0].html)),
   });

@@ -8,7 +8,13 @@ export const conceptLinkTable = [
     "name": "Securitization and structured finance, from first principles",
     "display": "Securitization and structured finance, from first principles",
     "layer": "revision",
+    "authored": true,
     "homeReading": 39,
+    "refs": [
+      28,
+      39,
+      30
+    ],
     "linkPhrases": [
       "securitization",
       "securitisation",
@@ -27,7 +33,13 @@ export const conceptLinkTable = [
     "name": "Tranching: CMO cash-flow timing vs CDO/CLO credit loss",
     "display": "Tranching: CMO cash-flow timing vs CDO/CLO credit loss",
     "layer": "core",
+    "authored": true,
     "homeReading": 28,
+    "refs": [
+      28,
+      39,
+      30
+    ],
     "linkPhrases": [
       "collateralized mortgage obligation",
       "collateralized debt obligation",
@@ -38,6 +50,34 @@ export const conceptLinkTable = [
       "CLO"
     ],
     "snippet": "A CMO and a CDO both pool debt, slice it into tranches, and pay them in a waterfall, and they share the word tranche. But they divide two unrelated risks. Confusing them is one of the most common structured-finance..."
+  },
+  {
+    "slug": "cva",
+    "name": "Credit value adjustment (CVA)",
+    "display": "Credit value adjustment (CVA)",
+    "layer": "core",
+    "authored": true,
+    "homeReading": 37,
+    "selfContained": true,
+    "refs": [
+      25,
+      29,
+      32,
+      35,
+      36,
+      37,
+      38
+    ],
+    "linkPhrases": [
+      "credit value adjustment",
+      "credit valuation adjustment",
+      "CVA",
+      "BCVA",
+      "bilateral CVA",
+      "unilateral CVA",
+      "debt value adjustment"
+    ],
+    "snippet": "CVA is a thread running through seven readings rather than a topic that lives in one. Its inputs are taught twelve readings before the model that consumes them, a compressed trailer arrives before the formula exists,..."
   },
   {
     "slug": "information-ratio",
@@ -591,6 +631,24 @@ export const conceptLinkTable = [
     "snippet": "Tracking error measures how much the investment's return wanders away from its benchmark's return, period to period. The volatility of the excess-return series itself."
   },
   {
+    "slug": "transaction-costs",
+    "name": "Transaction costs",
+    "display": "Transaction costs",
+    "layer": "core",
+    "kind": "concept",
+    "homeReading": 84,
+    "refs": [
+      32,
+      39,
+      67,
+      80,
+      81,
+      84
+    ],
+    "linkPhrases": [],
+    "snippet": "Costs of changing allocations (commissions, spreads), reduce active returns, and are typically LESS uncertain than alphas but still uncertain."
+  },
+  {
     "slug": "central-counterparty-ccp-roles-benefits-shortfalls",
     "name": "Central counterparty (CCP): roles, benefits, shortfalls",
     "display": "Central counterparty (CCP): roles, benefits, shortfalls",
@@ -711,23 +769,6 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "Each asset's slice of portfolio UL: RC_{1} = (UL_{1}^{2} + \\rho_{12}UL_{1}UL_{2})/UL_P (two-asset case), with RC_{1}+RC_{2}=UL_P. Formally it's the partial derivative of UL_P with respect to that asset's own UL, also..."
-  },
-  {
-    "slug": "transaction-costs",
-    "name": "Transaction costs",
-    "display": "Transaction costs",
-    "layer": "core",
-    "kind": "concept",
-    "homeReading": 84,
-    "refs": [
-      32,
-      67,
-      80,
-      81,
-      84
-    ],
-    "linkPhrases": [],
-    "snippet": "Costs of changing allocations (commissions, spreads), reduce active returns, and are typically LESS uncertain than alphas but still uncertain."
   },
   {
     "slug": "unexpected-loss-single-asset",

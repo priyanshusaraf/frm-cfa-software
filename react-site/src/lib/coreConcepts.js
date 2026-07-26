@@ -98,6 +98,7 @@ export function findConcept(readingsMap, slug, authored = defaultAuthored, linkT
       refs: Array.isArray(a.refs) ? a.refs : [],
       lead: a.lead || null,
       sections: Array.isArray(a.sections) ? a.sections : [],
+      selfContained: !!a.selfContained,
       authored: true,
     };
   }

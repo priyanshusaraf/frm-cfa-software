@@ -8,10 +8,11 @@ this file, finds its place, and continues. Procedure lives in
 
     none: all four phases complete (2026-07-26)
 
-The next scheduled work is NOT a phase. It is the hard-concept sequencing build
-(CVA first), spec'd at
-`specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md` and
-recorded as an OPEN item below. It needs the owner to schedule it.
+The hard-concept sequencing build was scheduled by the owner on 2026-07-27 and its
+PILOT (CVA) IS DONE, see the section below. The mechanism now exists and is proven; the
+four remaining candidates in
+`specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md` are the next
+work, each still needing the spec's criterion-3 test applied before it is built.
 
 Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality first):
 
@@ -131,21 +132,60 @@ acceptable final answer and is recorded as a decision.
   The false-positive rate holds around 90%, so this is a CHECKING exercise, not a
   writing one; budget for reading the source, not for prose.
 
-## OPEN: hard-concept sequencing, CVA first (owner directive, 2026-07-26)
+## DONE (pilot) / OPEN (the rest): hard-concept sequencing (owner directive, 2026-07-26)
 
 Spec: `specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md`.
-**Not scheduled into a phase yet, and not started.**
+**CVA, the pilot, shipped 2026-07-27. The four remaining candidates are not started.**
 
 The owner reported being unable to grasp what CVA is doing even with the current, audited
-material. The cause is not coverage (Track B wave 5 found r37 essentially complete) and not
-density (r37 passed Track A). It is SEQUENCING: CVA spans R25, R29, R32, R35, R36, R37, R38
-and R62, each locally complete, and nothing assembles them in learning order. The fix is an
-authored Core Concept page (`authoredConcepts.js`, `layer: "core"`, no new page type) that
-compiles the thread and teaches it problem-first.
+material. The cause was not coverage (Track B wave 5 found r37 essentially complete) and not
+density (r37 passed Track A). It was SEQUENCING: CVA spans R25, R29, R32, R35, R36, R37, R38
+and R62, each locally complete, and nothing assembled them in learning order.
 
-The spec also generalizes the mechanism and records four more candidates (exposure metrics,
-Vasicek/WCDR, the Basel capital stack, the liquidity spiral) with the three-part test for
-qualifying. Read the spec rather than re-deriving any of it.
+**What shipped.** `/concept/cva`, an authored `layer: "core"` entry in
+`src/data/authoredConcepts.js` with nine problem-first sections: the bet and the assumption
+under it, why the loan formula breaks, the exposure asymmetry (R36 pulled forward), the base
+formula built as four questions about one future date with a per-symbol breakdown, the six
+extensions each framed as "which of the four inputs does this move", the margin period of
+risk sequenced AFTER collateral (with R35's three CCP stretches), the survival-probability
+term R37 omits on purpose and R38 supplies, a consolidated direction table LAST as revision,
+and the three questions to ask any CVA problem. Every fact verified against `Book 2 (1).md`;
+the owner's Downloads reference note was used only as a completeness checklist. Basel III
+CVA capital (R62) is deliberately excluded and said to be a separate bucket.
+
+**Three infrastructure changes the pilot forced, all reusable by the remaining candidates:**
+
+1. `selfContained: true` on an authored entry exempts it from the inline linker's
+   forward-only rule (`candidatesFor` in `src/lib/conceptLinks.js`). That rule exists so an
+   AUTO-detected page, which renders its home reading's own fields, is never linked from a
+   reading that precedes it. A sequenced page is authored from first principles, so the rule
+   was backwards for it: CVA's home is R37, but R25, R29, R32 and R36 all come earlier and
+   are exactly where the stuck student is. Regression-tested in `conceptLinks.test.js`.
+2. Authored entries now carry `refs` and `authored: true` into `conceptLinkTable.js`, and
+   `Chapter.jsx` renders a "Core concepts in this reading" chip for any authored page whose
+   refs include the reading. Without it an authored page was unreachable from its own home
+   reading, since the linker skips a page's home. This also fixed the two pre-existing
+   authored pages, which now surface on r28/r30/r39 instead of only where prose named them.
+3. The concept-page kicker reads "assembled around R37" rather than "first defined in R37"
+   when `selfContained` is set, because a sequenced page is not lifted from one reading.
+
+**Not trimmed, deliberately.** Spec step 5 warned r37 could end up duplicated. It is not:
+r37 keeps its curriculum-specific treatment (the four WWR modeling approaches, exotic and
+path-dependent products, the CCP collateral cases) and the page carries the assembly. No
+content was removed from any contributing reading; the judgement was that r37's material is
+specific rather than redundant, and deleting good content to satisfy a checklist is the
+wrong trade.
+
+**Gates:** 123/123 tests, build green, dash grep clean, all five `ai-tells.mjs` patterns
+clean over the whole file (checked by running the patterns directly, since that script reads
+readings, not authored concepts), no sentence over 45 words per the Track A ceiling, and
+headless render-checks of `/concept/cva` plus r25, r28, r29, r30, r32, r35, r36, r37, r38,
+r39, `/concepts` and home, asserting real content (h1 text, 19 KaTeX spans, the 6 symbol
+rows, the 11-row direction table) and not merely the absence of markers.
+
+**Still open:** the four other candidates in the spec (exposure metrics, Vasicek/WCDR, the
+Basel capital stack, the liquidity spiral). The Vasicek page also still owes a pass against
+the section 1a doctrine, which predates it.
 
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 

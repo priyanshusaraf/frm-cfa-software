@@ -59,7 +59,11 @@ export default function ConceptPage() {
 
       <div className="kicker" style={{ color: layerColor }}>
         {layerLabel}
-        {hasHome ? <> · {isRevision ? "assumed from" : "first defined in"} R{concept.homeReading}{homeMeta ? " · " + homeMeta.t : ""}</> : null}
+        {/* "first defined in" is wrong for a SEQUENCED page: it is assembled
+            across its refs rather than lifted from one reading, and the whole
+            point is that the student reaches it from readings that come before
+            its home. */}
+        {hasHome ? <> · {isRevision ? "assumed from" : concept.selfContained ? "assembled around" : "first defined in"} R{concept.homeReading}{homeMeta ? " · " + homeMeta.t : ""}</> : null}
       </div>
       <h1>{concept.display || concept.name}</h1>
       {concept.lead && <p className="lead"><Html as="span" html={concept.lead} /></p>}

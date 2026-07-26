@@ -105,7 +105,14 @@ export function candidatesFor(entries, rn) {
          defined in R31" and explained in R31's terms. A revision-layer page is
          exempt: it re-teaches an assumed prerequisite from first principles, so
          it is useful from anywhere in the corpus. */
-      if (e.layer === "revision") return Number(e.homeReading) !== here;
+      /* `selfContained` is the same exemption for a SEQUENCED core page (the
+         hard-concept build, CLAUDE.md section 8.7): it is authored from first
+         principles and does not render the home reading's fields, so it reads
+         correctly from a reading that precedes its home. CVA is the case that
+         forced this: its inputs are taught in R25 and R36 and it is trailed in
+         R29 and R32, all BEFORE R37, and those are exactly the readings whose
+         student needs the assembly. */
+      if (e.layer === "revision" || e.selfContained) return Number(e.homeReading) !== here;
       return Number(e.homeReading) < here;
     })
     .map((e) => ({ ...e, phrases: conceptPhrases(e) }))

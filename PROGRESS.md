@@ -4,6 +4,26 @@ Single source of truth for **where development stands**, so work can resume even
 session dies or limits run out. Scope of all work: **`react-site/` only** — the vanilla
 `site/` app is frozen. Full design: `docs/superpowers/specs/2026-07-18-react-marketable-design.md`.
 
+> **⏭ HARD-CONCEPT SEQUENCING: CVA PILOT SHIPPED (2026-07-27).** All four content phases
+> were already complete; this is the build the ledger had recorded as OPEN and the owner
+> scheduled it. `/concept/cva` is an authored, self-contained Core Concept page that
+> ASSEMBLES a concept the curriculum splits across R25, R29, R32, R35, R36, R37 and R38,
+> sequenced problem-first instead of in reading order (nine sections: the bet, why the loan
+> formula breaks, the exposure asymmetry, the formula as four questions with a per-symbol
+> breakdown, the six extensions each framed as "which input does this move", the margin
+> period of risk placed AFTER collateral, the survival term R37 omits on purpose, the
+> direction table last as revision, then the traps). Basel III CVA capital (R62) is
+> deliberately out and said to be a separate bucket. Three reusable infrastructure changes
+> came with it: `selfContained: true` exempts a sequenced page from the inline linker's
+> forward-only rule (it was unreachable from the six earlier readings that need it most),
+> authored pages now carry `refs`/`authored` into `conceptLinkTable.js` so `Chapter.jsx`
+> renders a chip on every contributing reading (this also un-orphaned the two existing
+> authored pages), and the page kicker reads "assembled around R{n}" rather than "first
+> defined in". 123/123 tests, build green, render-checks assert real content. Next: the four
+> remaining candidates in `specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md`
+> (exposure metrics, Vasicek/WCDR, the Basel capital stack, the liquidity spiral), each
+> needing the spec's criterion-3 test before it is built. Detail in the ledger.
+>
 > **⏭ ACTIVE RESUME POINT (2026-07-25, sixteenth session):** the run is now driven by
 > `react-site/docs/superpowers/content-run-ledger.md` (position) + `content-run-protocol.md`
 > (procedure), entered by saying "continue" (see the block at the top of the root CLAUDE.md).

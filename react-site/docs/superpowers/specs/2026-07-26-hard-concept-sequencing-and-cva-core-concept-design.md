@@ -1,6 +1,9 @@
 # Hard-concept sequencing, and CVA as the pilot
 
-**Status:** SPEC ONLY, not built. Owner-requested 2026-07-26, mid-session, during Phase 4.
+**Status:** PILOT BUILT 2026-07-27 (`/concept/cva`); the four other candidates in section 2
+are still spec-only. Owner-requested 2026-07-26, mid-session, during Phase 4. Build notes,
+including the three infrastructure changes the pilot forced, are in
+`../content-run-ledger.md` under "hard-concept sequencing".
 **Owner reference material:** `~/Downloads/FRM2_R37_CVA_and_MPoR.md` (a compiled CVA study
 note the owner supplied as a structural model; see "How to use the reference file" below).
 

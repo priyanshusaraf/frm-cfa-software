@@ -145,8 +145,19 @@ export default function Chapter() {
   const readingCoreConcepts = useMemo(() => {
     if (!d) return [];
     const names = new Set([...(d.formulas || []).map((f) => f.name), ...(d.concepts || []).map((c) => c.name)]);
-    return coreConceptsTable.filter((c) => names.has(c.name));
-  }, [d]);
+    const auto = coreConceptsTable.filter((c) => names.has(c.name));
+    /* Authored pages (securitization, the CMO/CDO comparison, the sequenced CVA
+       assembly) are never in coreConcepts.json, which is name-matched against
+       this reading's own fields. They declare their contributing readings
+       instead, and a reading that contributes to one should offer it: R37 is
+       CVA's home and would otherwise have no route to its own concept page,
+       since the inline linker deliberately skips a page's home reading. */
+    const claimed = new Set(auto.map((c) => c.slug));
+    const authored = conceptLinkTable.filter(
+      (c) => c.authored && !claimed.has(c.slug) && Array.isArray(c.refs) && c.refs.includes(rn),
+    );
+    return [...auto, ...authored];
+  }, [d, rn]);
 
   /* Anchor ladders for the two split panes (spec: PDF anchor ladder). `pdf.query`
      is authored against the FULL book, so it is the right first guess there but

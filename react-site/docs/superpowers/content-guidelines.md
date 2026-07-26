@@ -1792,3 +1792,55 @@ report 404s at the obvious URL.
 **Corpus state at Track C close: 139 source links across 101 readings, zero banned hosts,
 four readings deliberately empty.** Every URL added in this track was fetched and confirmed
 live before it shipped, which is the one rule protocol section 3 actually insists on.
+
+## SEQUENCED CORE-CONCEPT PAGES (the CVA pilot, 2026-07-27)
+
+Durable lessons from building `/concept/cva`, the first hard-concept sequencing page
+(react-site/CLAUDE.md section 8.7). Read these before building the next one so the
+mechanics are not re-derived.
+
+**1. The organising question is "which input does this move".** R37 presents six topics
+after the base formula and reads as six new things. Every one of them moves exactly one of
+the four inputs (exposure, default probability, loss fraction, discounting). Framing each
+extension that way collapses the reading. Look for the equivalent question in the next
+candidate before writing a line: the Basel capital stack's is probably "what does this
+version add that the previous one could not measure", the liquidity spiral's is "which
+direction is the feedback running".
+
+**2. Sequence the mitigant before the thing that measures its gap.** The margin period of
+risk means nothing until the student knows collateral shrinks exposure. Curriculum order
+puts MPoR in R36 and collateral's effect on price in R37, which is backwards for learning.
+When a candidate has a "window where the fix has not arrived yet" concept, it goes after
+the fix, always.
+
+**3. Name a deliberate omission out loud.** R37 drops the survival-probability term on
+purpose and says so in a professor's note that is easy to miss. A student who spots the
+missing term and does not know it is deliberate concludes they have misunderstood the
+algebra and re-reads. One sentence saying "this is left out here and added in R38" is worth
+more than a paragraph of explanation elsewhere.
+
+**4. The consolidated direction table goes LAST, and it is revision, not material.** Same
+rule as the chapter section order. Writing it first is tempting because it is the easiest
+part; a page that opens with it has summarised before it explained.
+
+**5. Check the linker's forward-only rule before assuming reachability.** An authored core
+page is invisible to every reading before its home unless it sets `selfContained: true`,
+and invisible from its OWN home reading unless it declares `refs` (which now render as a
+chip via `Chapter.jsx`). Both were true of the CVA page on first build, which would have
+made it unreachable from R25, R29, R32, R35, R36 and R37, that is to say from six of the
+seven readings it exists to serve. Verify with `preview-concept-links.mjs` over every
+contributing reading AND a headless render of each, grepping for the chip.
+
+**6. Do not trim the contributing readings reflexively.** The spec warned about r37 turning
+into a duplicate. It did not, because the page carries the ASSEMBLY (order, the four-input
+frame, the cross-reading pointers) and r37 keeps the curriculum-specific detail (the WWR
+modeling approaches, exotic products, the CCP collateral cases). Duplication is when the
+same explanation appears twice, not when two pages discuss the same topic at different
+altitudes. Delete only what is genuinely restated worse.
+
+**7. Gates for an authored concept page.** `validate-reading.mjs` does not cover
+`authoredConcepts.js` and `ai-tells.mjs` and `prose-density.mjs` read readings, not authored
+concepts. Run the tell patterns and the words-per-sentence count directly against the
+sections (a short inline node script does it), grep for dashes, then `npm test`,
+`npm run build`, and a render-check that asserts CONTENT (section labels present, KaTeX
+spans counted, table rows counted), never just the absence of marker strings.

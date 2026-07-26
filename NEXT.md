@@ -1,3 +1,3 @@
-DONE: PHASE 4 (content-opus-improvement) IS COMPLETE, 16 waves across three tracks: prose density (all of eli5/intuition/thinkLike now clear of 45 w/s), the coverage back-audit (~195 candidates, 14 real gaps, 1 factual error across 12 fields, 5 missing source names, 31 dismissals), and the sources curation (17 of 21 readings given a fetched-and-live link, 4 deliberately empty). Ledger ACTIVE PHASE header advanced; all four phases now done.
-NEXT: The hard-concept sequencing build, CVA first, per specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md. It is spec'd, not scheduled, and needs the owner to say go.
-BLOCKERS: none. Consciously de-scoped and recorded: ~10 readings whose only remaining coverage flag is a weak LO at exactly 0.50, the band that ran four dismissals per real gap.
+DONE: The hard-concept sequencing pilot. /concept/cva assembles CVA across R25/R29/R32/R35/R36/R37/R38 problem-first, plus three reusable infra fixes (selfContained backward linking, authored-page chips on contributing readings, the "assembled around" kicker). 123/123 tests, build green, render-checks assert content.
+NEXT: Apply the spec's criterion-3 test to the four remaining sequencing candidates (exposure metrics, Vasicek/WCDR, the Basel capital stack, the liquidity spiral) and build whichever qualify, exposure metrics first.
+BLOCKERS: none.

@@ -33,6 +33,17 @@ test("candidatesFor links a core concept forward only, a revision page anywhere"
   assert.equal(candidatesFor([revision], 12).length, 1, "a prerequisite refresher is useful anywhere");
 });
 
+test("candidatesFor links a self-contained core page backwards as well as forwards", () => {
+  /* The sequenced-page exemption (CLAUDE.md section 8.7). CVA's home is R37 but
+     its inputs and its trailer sit in R25/R29/R32/R36, so a forward-only link
+     would miss every reading whose student is actually stuck. */
+  const seq = { slug: "cva", name: "Credit value adjustment (CVA)", homeReading: 37, layer: "core", selfContained: true };
+  assert.equal(candidatesFor([seq], 29).length, 1, "reachable from a reading before its home");
+  assert.equal(candidatesFor([seq], 38).length, 1, "and from one after it");
+  assert.equal(candidatesFor([seq], 37).length, 0, "but never inside its home reading");
+  assert.equal(candidatesFor([{ ...seq, selfContained: false }], 29).length, 0, "plain core pages stay forward-only");
+});
+
 test("findLinkMatches matches an abbreviation at word boundaries only", () => {
   const c = candidatesFor([WCDR], 30); // a reading after WCDR's home
   const hit = findLinkMatches("The WCDR sets capital.", c, new Set());
