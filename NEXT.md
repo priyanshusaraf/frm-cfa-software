@@ -1,3 +1,3 @@
-DONE: Phase 4 density wave 2: r47, r101, r24 intuition and r62, r78 thinkLike, from 54 to 58 w/s down to 15.3 to 20.4. Also fixed a broken nested parenthetical and a raw `<` in r62, and expanded its six bare abbreviations. All gates green.
-NEXT: Density wave 3, worst first across both fields: thinkLike r74 (54.8), r21 (53.4), r40 (52.0), r61 (51.8), r27 (51.8).
+DONE: Phase 4 density wave 3: r74, r21, r40, r61, r27 thinkLike, 50 to 55 w/s down to 17.9 to 20.8. thinkLike corpus avg is now 31.4 with only r77 and r8 left above 45; intuition 29.2 with five left. All gates green.
+NEXT: Density wave 4, the last seven of Track A: intuition r86, r19, r23, r92, r31 and thinkLike r77, r8.
 BLOCKERS: none.

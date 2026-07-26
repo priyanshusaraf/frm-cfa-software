@@ -1204,3 +1204,35 @@ Two more instances of the wave-1 lesson that a density rewrite catches adjacent 
 r24's three answers to the local-currency-default puzzle were a comma-spliced (1)(2)(3)
 run, and r78's second paragraph made the reader hold three exam shapes plus a quoted stem
 in one sentence.
+
+### Wave 3: r74, r21, r40, r61, r27, all `thinkLike` (2026-07-26)
+
+From 50.5 to 54.8 down to 17.9 to 20.8. This wave is where the shape of the whole pass
+became clear enough to state as a rule.
+
+**`thinkLike` has one dominant failure mode, and it is not length.** In all five (and in
+r25 and r60 in wave 1), the field is built from an <em>inline numbered list</em>: a
+"(1) ... and (2) ..." or "(a) ... (b) ... (c) ..." run inside a single sentence, usually
+twice per field, once for the practitioner's habits and once for the exam shapes. Each
+item is itself a full idea with its own parenthetical qualifications, so the sentence
+carries four or five clauses deep. **The fix is mechanical and almost never changes a
+word of content: give each numbered item its own paragraph and drop the numeral.** The
+numeral was doing the work a paragraph break should have been doing. If you find yourself
+preserving "(1)" and "(2)" in the rewrite, you have not actually fixed it.
+
+Related, and worth its own note: **dropping the numeral is also what keeps
+`ai-tells.mjs`'s enumerated-prose detector quiet.** The Phase-3 lesson was that the
+numbered CADENCE reads as machine-written while knowing there are three of something is
+fine. That lesson and this one point the same way: keep the count in the lead-in ("Three
+exam shapes come out of this"), lose the numerals in the body.
+
+Two more de-metered meta-references, both caught by the re-read rather than by any grep:
+r40's "the exam setter cares far more about..." and r61's "the specific carve-out the
+source gives" (r61 now says "the carve-out the reform actually makes", which is also more
+useful, since it points at the rule rather than at a book). r40's bare EDPM is expanded,
+and r74's bare MMDA.
+
+**r27 confirms inline KaTeX survives this treatment.** Its `thinkLike` carries
+`\\(m\\)`, `\\(\\beta\\)` and `\\(\\rho=0\\)`; splitting the paragraphs around them
+renders fine (`katex-html` present in the dump). Copy the escaping exactly as it appears
+in the source file rather than retyping it.
