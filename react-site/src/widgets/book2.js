@@ -322,3 +322,101 @@ register("mpor-line", function (el) {
   });
   draw();
 });
+
+/* --- Figure 36.10: payment frequency asymmetry ---------------------------- */
+register("payment-frequency", function (el) {
+  var svg = shell(el, "Payment frequency: who pays more often changes the exposure",
+    '<span class="seg">' +
+    '<button data-k="equal" class="on">Equal frequency</button>' +
+    '<button data-k="recv">Receive more often than you pay</button>' +
+    '<button data-k="pay">Pay more often than you receive</button>' +
+    "</span>", 660, 240, " ");
+  var cap = el.querySelector(".w-caption");
+  var kind = "equal";
+  /* Each payment RECEIVED settles part of what you are owed and removes it from
+     the exposure; each payment MADE removes an obligation and leaves relatively
+     more of the trade standing in your favour. So receiving more frequently
+     than you pay drags the profile down, and paying more frequently lifts it. */
+  function f(t, k) {
+    var base = sigmaOf("swap", t);
+    if (k === "recv") return base * (1 - 0.22 * Math.sin(Math.PI * t));
+    if (k === "pay") return base * (1 + 0.26 * Math.sin(Math.PI * t));
+    return base;
+  }
+  function draw() {
+    svg.innerHTML = "";
+    var W = 660, H = 240, x0 = 44, y0 = H - 34, max = 0;
+    ["equal", "recv", "pay"].forEach(function (k) {
+      for (var s = 0; s <= 1; s += 0.02) max = Math.max(max, f(s, k));
+    });
+    max *= 1.12;
+    var X = function (t) { return x0 + t * (W - x0 - 22); };
+    var Y = function (v) { return y0 - (v / max) * (y0 - 20); };
+    svgEl("path", { d: pathOf(function (t) { return f(t, "equal"); }, X, Y), fill: "none", stroke: "var(--text-faint)", "stroke-width": 1.5, "stroke-dasharray": "4 3" }, svg);
+    if (kind !== "equal") {
+      svgEl("path", { d: pathOf(function (t) { return f(t, kind); }, X, Y), fill: "none", stroke: kind === "pay" ? "var(--red)" : "var(--green)", "stroke-width": 2.8 }, svg);
+    } else {
+      svgEl("path", { d: pathOf(function (t) { return f(t, "equal"); }, X, Y), fill: "none", stroke: "var(--accent)", "stroke-width": 2.8 }, svg);
+    }
+    axes(svg, W, H, x0, y0, "time → maturity", "potential future exposure");
+    var l = svgEl("text", { x: W - 24, y: 26, "text-anchor": "end", "font-size": 11, fill: "var(--text-faint)" }, svg);
+    l.textContent = "dashed = equal frequency";
+    cap.textContent = kind === "equal"
+      ? "The baseline: fixed and floating legs settling on the same schedule, so payments in and out cancel as they fall due and the profile is the plain swap hump. Switch either leg's frequency to see the asymmetry."
+      : kind === "recv"
+        ? "Receiving quarterly while paying semiannually LOWERS exposure. Every payment you receive settles part of what the counterparty owes you and removes it from the position, so collecting more often means less unpaid value is left standing at any moment. This is the case the source illustrates with quarterly floating received against semiannual fixed paid."
+        : "Paying quarterly while receiving semiannually RAISES exposure above the equal-frequency case. You are handing over value on a faster schedule than you are collecting it, so at any moment more of what you are owed is still outstanding. Same trade, same notional, reversed asymmetry.";
+  }
+  el.querySelectorAll(".seg button").forEach(function (b) {
+    b.addEventListener("click", function () {
+      el.querySelectorAll(".seg button").forEach(function (x) { x.classList.remove("on"); });
+      b.classList.add("on"); kind = b.getAttribute("data-k"); draw();
+    });
+  });
+  draw();
+});
+
+/* --- Figure 36.11: swaption against forward swap -------------------------- */
+register("exercise-date", function (el) {
+  var svg = shell(el, "Swaption against forward swap: the crossover at the exercise date",
+    '<label>exercise date <input type="range" min="0.15" max="0.6" step="0.01" value="0.33"><span class="w-value"></span></label>',
+    660, 250, " ");
+  var cap = el.querySelector(".w-caption");
+  var slider = el.querySelector("input");
+  var val = el.querySelector(".w-value");
+
+  function draw() {
+    var T = parseFloat(slider.value);
+    val.textContent = "at " + (T * 100).toFixed(0) + "% of the trade's life";
+    svg.innerHTML = "";
+    var W = 660, H = 250, x0 = 44, y0 = H - 34;
+    /* Before exercise the swaption carries option value on top of the underlying
+       swap's diffusion, so it sits ABOVE the forward swap. After exercise the
+       holder walks away in every state where the swap is a liability, so the
+       swaption's surviving exposure is smaller than the forward swap's, which
+       stays on the books in those same states. */
+    function swaption(t) {
+      var u = sigmaOf("swap", t);
+      return t < T ? u + 0.55 * Math.sqrt(t) : u * 0.62;
+    }
+    function fwd(t) { return sigmaOf("swap", t) * (t < T ? 0.72 : 1); }
+    var max = 0;
+    for (var s = 0; s <= 1; s += 0.01) max = Math.max(max, swaption(s), fwd(s));
+    max *= 1.14;
+    var X = function (t) { return x0 + t * (W - x0 - 22); };
+    var Y = function (v) { return y0 - (v / max) * (y0 - 20); };
+    svgEl("line", { x1: X(T), x2: X(T), y1: 20, y2: y0, stroke: "var(--amber)", "stroke-width": 1.2, "stroke-dasharray": "4 3" }, svg);
+    var el2 = svgEl("text", { x: X(T), y: 16, "text-anchor": "middle", "font-size": 10.5, fill: "var(--amber)" }, svg);
+    el2.textContent = "exercise date";
+    svgEl("path", { d: pathOf(swaption, X, Y, 0.004), fill: "none", stroke: "var(--purple)", "stroke-width": 2.8 }, svg);
+    svgEl("path", { d: pathOf(fwd, X, Y, 0.004), fill: "none", stroke: "var(--cyan)", "stroke-width": 2.4 }, svg);
+    axes(svg, W, H, x0, y0, "time → maturity", "potential future exposure");
+    var a = svgEl("text", { x: X(T * 0.5), y: Y(swaption(T * 0.75)) - 8, "text-anchor": "middle", "font-size": 10.5, fill: "var(--purple)" }, svg);
+    a.textContent = "swaption";
+    var b = svgEl("text", { x: X(Math.min(T + 0.3, 0.92)), y: Y(fwd(Math.min(T + 0.3, 0.92))) - 8, "text-anchor": "middle", "font-size": 10.5, fill: "var(--cyan)" }, svg);
+    b.textContent = "forward swap";
+    cap.textContent = "Two trades on the same underlying swap, and they swap places at the exercise date. BEFORE it, the swaption is worth more than the forward swap, because it carries the option's value on top of the underlying position, so its exposure is higher. AFTER it, the relationship reverses: the swaption holder only exercises where the swap is worth having, so in every state where the swap turned out badly the swaption simply is not exercised and no exposure survives. The forward swap has no such escape, and stays on the books at a positive value in scenarios the swaption walked away from, which is why its exposure is the larger one from the exercise date onward. Drag the exercise date to watch the crossover move with it.";
+  }
+  slider.addEventListener("input", draw);
+  draw();
+});

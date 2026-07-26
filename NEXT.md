@@ -1,3 +1,3 @@
-DONE: Built src/widgets/book2.js, five interactive exposure widgets for R36 (metrics EE/PFE/EPE/effective-EE, product shapes, the four factors as switches, netting vs correlation, MPoR timeline), covering roughly 12 of the reading's 14 source figures; added the R35 to R36 MPoR heads-up.
-NEXT: Finish R36's figure set (Fig 36.10 unequal payment frequency, Fig 36.11 swaption vs forward swap) and deepen R35's macro-hedging and rights of assessment, which are still thin.
-BLOCKERS: R36's prose still needs re-authoring to the explanation-first order; widgets alone do not fix it. Coverage back-audit over the 65 cleared readings still unscheduled.
+DONE: Cleared the R36/R35 backlog. Figures 36.10 and 36.11 built (payment-frequency, exercise-date), so all 7 widgets cover the reading's figure set; R35 gained macro-hedging and rights-of-assessment concepts; R36's five concepts that had no intuition now carry the mechanism. All 9 of R36's learning objectives verified covered.
+NEXT: Apply the same treatment to R37 (CVA), which consumes R36's output and is the other half of the counterparty-pricing pair.
+BLOCKERS: R35 still trips ai-tells 4 times (not-x-but-y, judged to be carrying argument rather than filler, left deliberately). Coverage back-audit over the 65 cleared readings still unscheduled.
