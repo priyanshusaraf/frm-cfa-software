@@ -155,7 +155,7 @@ export default ({
   highYield: [
     { stars: 5, what: "The core controversy: CoCo write-down 'worked as designed' vs. apparent violation of creditor hierarchy, and why write-down CoCos effectively rank junior to equity.", why: "The single most important conceptual tension in this reading, and the crux of the entire market reaction." },
     { stars: 4, what: "Mechanical vs. discretionary (PONV) triggers, and Basel III's requirement that regulatory-capital CoCos include a PONV trigger.", why: "A precise, frequently tested regulatory requirement." },
-    { stars: 4, what: "Bear Stearns (2008, SPV mechanism) vs. Credit Suisse (2023, direct CoCo trigger), comparing rescue mechanisms.", why: "A rich compare-contrast case pair, frequently tested via mechanism-matching questions." },
+    { stars: 4, what: "Bear Stearns (2008, SPV mechanism) vs. Credit Suisse (2023, direct CoCo trigger), comparing rescue mechanisms.", why: "A rich compare-contrast pair, so a stem can describe one rescue mechanism and ask which crisis it belongs to." },
     { stars: 3, what: "Market reaction: CDS spreads showing no anticipation, EU regulators' public distancing, and the proposed reforms (simple, off-the-shelf, issuer-option-based).", why: "The practical fallout and forward-looking reform direction, good for synthesis questions." },
     { stars: 3, what: "CoCo moral hazard: shareholders favoring write-down CoCos since losses fall on CoCo investors, not equity.", why: "A subtle incentive-structure point worth precise recall." }
   ],

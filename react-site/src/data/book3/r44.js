@@ -177,9 +177,9 @@ export default ({
   ],
 
   highYield: [
-    { stars: 5, what: "Human error taxonomy: slip, rule-based mistake, knowledge-based mistake, violation: voluntariness, cause, and remedy for each.", why: "The most precisely tested framework in this reading, with a clean four-way structure that scenario-matching questions are built on." },
+    { stars: 5, what: "Human error taxonomy: slip, rule-based mistake, knowledge-based mistake, violation: voluntariness, cause, and remedy for each.", why: "The most precisely testable framework here: a clean four-way split, so a stem can describe one case and ask which of the four it is." },
     { stars: 4, what: "Four types of internal controls (preventive/detective/corrective/directive) and automated-control risks (Type 1/2 errors).", why: "Foundational control vocabulary reused when analyzing case studies (R48, R50, R52)." },
-    { stars: 4, what: "Four categories of control testing (self-assessment/examination/observation/reperformance) and which control type each suits.", why: "Tested on its own, not just as an appendix to the control types: knowing which testing method fits automated versus key controls is a frequent scenario-matching question." },
+    { stars: 4, what: "Four categories of control testing (self-assessment/examination/observation/reperformance) and which control type each suits.", why: "Tested on its own, not just as an appendix to the control types: a stem can describe a control and ask which testing method fits it, where automated versus key controls is the distinction that decides the answer." },
     { stars: 3, what: "Four T's of risk response (tolerate/treat/transfer/terminate).", why: "A clean, simple classification, easy points if memorized." },
     { stars: 3, what: "Weak-control patterns: 'optimistic' and 'collective' controls, and piling-on-more-of-the-same-type as a bad habit.", why: "A subtle, frequently tested set of anti-patterns." },
     { stars: 2, what: "Four phases of a major operational event (crisis/emergency response/recovery/restoration) and RPO vs. RTO.", why: "RPO (data loss tolerance) vs. RTO (downtime tolerance) is an easy definitional mix-up to test." }

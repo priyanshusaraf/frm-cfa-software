@@ -222,7 +222,7 @@ export default ({
   ],
 
   highYield: [
-    { stars: 5, what: "Full SMA capital calculation: BI → BIC (marginal buckets) → ILM → capital (bucket 1 vs 2/3).", why: "The single most important formula closing the entire book: a multi-step calculation GARP loves to test in full." },
+    { stars: 5, what: "Full SMA capital calculation: BI → BIC (marginal buckets) → ILM → capital (bucket 1 vs 2/3).", why: "The single most important formula closing the entire book: a multi-step calculation that gets asked end to end." },
     { stars: 5, what: "PP&E general maintenance contracts excluded from gross loss: the classic distractor.", why: "Explicitly flagged as a favorite exam trap." },
     { stars: 4, what: "ILM mechanics: ILM=1 at industry-average loss history, >1 worse, <1 better; skipped entirely with <5yrs of data.", why: "The core conceptual mechanism connecting a bank's own risk management quality to its actual capital requirement." },
     { stars: 4, what: "Why SMA replaced AMA (comparability failure, no convergence): the philosophical shift to non-model-based standardization.", why: "Ties together the entire Basel reform arc (R59→R60→R61→R62) into one coherent narrative." },

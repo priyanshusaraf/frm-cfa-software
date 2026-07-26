@@ -101,7 +101,7 @@ export default ({
     { stars: 4, what: "The four-step ORM cycle: identification → assessment → mitigation → monitoring, plus which tools belong to which step.", why: "A clean process the exam likes to test by describing a tool (scenario analysis, KRI tracking) and asking which step it belongs to." },
     { stars: 3, what: "Five characteristics that make op risk hard to manage.", why: "A clean five-item list, good for quick conceptual recall, and each one maps to a specific management headache the exam can probe." },
     { stars: 3, what: "Legal, compliance, reputational, and strategic risk as subsets pulled into operational risk.", why: "Tests whether you know op risk's scope extends beyond 'processes and systems' into these four adjacent risk types." },
-    { stars: 2, what: "BCBS's seven principles of operational resilience, and which regulator (UK/US Fed/BCBS/ECB/MAS) issued which guidance and roughly when.", why: "Supporting detail, useful context for R43's deeper process, and testable as a matching question." }
+    { stars: 2, what: "BCBS's seven principles of operational resilience, and which regulator (UK/US Fed/BCBS/ECB/MAS) issued which guidance and roughly when.", why: "Supporting detail and useful context for R43's deeper process, and a stem can name a guidance document and ask which body issued it." }
   ],
 
   recall: [

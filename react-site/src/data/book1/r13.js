@@ -145,11 +145,11 @@ export default ({
 
   highYield: [
     { stars: 5, what: "The nested family: Model 1 ⊂ Model 2 ⊂ Ho-Lee, and Vasicek's mean-reversion branch with \\(k(\\theta - r)\\).", why: "The single most reliably tested structural fact in this reading. Know the nesting cold." },
-    { stars: 5, what: "Vasicek's declining volatility term structure and non-parallel shifts, the #1 most confused concept in R11-14.", why: "GARP explicitly flags this as the reading's hardest, most-tested distinction." },
+    { stars: 5, what: "Vasicek's declining volatility term structure and non-parallel shifts, the #1 most confused concept in R11-14.", why: "This is the hardest and most-tested distinction in the group." },
     { stars: 4, what: "Why Vasicek's tree doesn't recombine (path-dependent reversion adjustment).", why: "A conceptual mechanism question that also tests understanding of backward induction from R11." },
     { stars: 3, what: "Model 1's four named limitations (flat vol TS, one factor, negative rates possible, downward-sloping predicted curve from convexity).", why: "A clean, individually testable recall list." },
     { stars: 3, what: "Arbitrage-free vs equilibrium models: what each is good for and useless for.", why: "A recurring conceptual contrast tested with 'which model would you use to find a mispriced security.'" },
-    { stars: 3, what: "The two fixes for negative rates (non-negative distribution vs zero-flooring) and Vasicek's half-life / expected-rate-at-T calculations.", why: "Directly computational LOs (13.c, 13.g); GARP likes turning these into plug-in-the-numbers problems." }
+    { stars: 3, what: "The two fixes for negative rates (non-negative distribution vs zero-flooring) and Vasicek's half-life / expected-rate-at-T calculations.", why: "Directly computational LOs (13.c, 13.g); These turn naturally into plug-in-the-numbers problems." }
   ],
 
   recall: [

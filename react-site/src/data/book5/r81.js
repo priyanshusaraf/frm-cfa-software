@@ -191,7 +191,7 @@ export default ({
       q: "Which of the following would least likely meet the definition of a 'factor' under factor theory?",
       options: ["The market portfolio", "Momentum investing style", "Hedge funds", "Volatility"],
       answer: 2,
-      why: "Hedge funds are an asset category that CONTAINS multiple factor exposures (equity, rate, volatility, default risk). They are not a factor themselves. The market, momentum style, and volatility are all genuine factors. This is the exact framing GARP uses to test the assets-vs-factors distinction."
+      why: "Hedge funds are an asset category that CONTAINS multiple factor exposures (equity, rate, volatility, default risk). They are not a factor themselves. The market, momentum style, and volatility are all genuine factors. That framing is exactly how the assets-vs-factors distinction gets probed."
     },
     {
       q: "According to CAPM's sixth lesson, an asset that reliably delivers a positive payoff during 'bad times' (periods of low market returns) should have:",

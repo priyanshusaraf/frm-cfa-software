@@ -31,7 +31,7 @@ export default ({
       name: "Payment netting vs. close-out netting",
       def: "Payment netting (also called set-off): combines the cash flows from different contracts with a counterparty into a single net payment, routine and ongoing, reduces settlement risk and boosts operational efficiency. Close-out netting: netting of contract VALUES with a counterparty specifically triggered by that counterparty's default, collapsing all outstanding contracts into one net termination amount.",
       intuition: "Payment netting happens every payment date regardless of anyone's credit quality, it's just efficient plumbing. Close-out netting only fires once, at the moment of default, and its purpose is entirely about credit risk: it stops you from having to pay in full on losing trades while only getting a fractional recovery on winning trades.",
-      pitfall: "Payment netting reduces settlement/operational risk but does NOT reduce presettlement (counterparty default) risk, for that you need close-out netting. This exact distinction is the basis of a GARP practice question: a firm worried about presettlement risk should ask for close-out netting, not payment netting.",
+      pitfall: "Payment netting reduces settlement/operational risk but does NOT reduce presettlement (counterparty default) risk, for that you need close-out netting. This exact distinction is what a question turns on: a firm worried about presettlement risk should ask for close-out netting, not payment netting.",
       related: ["Bilateral vs multilateral netting"]
     },
     {
@@ -109,11 +109,11 @@ export default ({
 
   highYield: [
     { stars: 4, what: "Netting's boundary condition: no benefit if all trades are same-signed (e.g., all bought, premium-paid options).", why: "A precise, frequently tested limitation that prevents overestimating netting's universal power." },
-    { stars: 4, what: "Numeric netting exposure calculation: sum ALL signed MtM values for netted exposure; sum only POSITIVE MtM values for gross (un-netted) exposure.", why: "GARP loves a direct 4-5 number arithmetic question here (e.g., +5, −4, +2, +3, −6 → netted = 0, gross = 10), memorize the mechanic, not just the concept." },
+    { stars: 4, what: "Numeric netting exposure calculation: sum ALL signed MtM values for netted exposure; sum only POSITIVE MtM values for gross (un-netted) exposure.", why: "A direct four or five number arithmetic question is the standard form here (e.g., +5, −4, +2, +3, −6 → netted = 0, gross = 10), memorize the mechanic, not just the concept." },
     { stars: 3, what: "Payment netting vs. close-out netting: timing, trigger, and which risk each addresses (settlement/operational vs. presettlement/credit).", why: "A clean two-way distinction, good material for 'which of these describes X' questions, and the basis of a common practice-exam trap." },
     { stars: 3, what: "Trade compression reduces gross exposure/counterparty count, NOT net exposure.", why: "A specific, testable distinction between operational and risk-reducing tools." },
     { stars: 3, what: "Bilateral (2 parties) vs. multilateral (many parties, via a central hub) netting, and multilateral netting's disadvantages: mutualized risk, reduced monitoring incentive, redundant-position accumulation, confidentiality loss.", why: "Tests whether you understand netting isn't a free lunch as it scales beyond two counterparties." },
-    { stars: 2, what: "Break clause types: mandatory, optional, trigger-based (e.g., ratings downgrade), and the 'banker's paradox' explaining their unpopularity.", why: "A named, quotable concept GARP likes to test with a scenario question." }
+    { stars: 2, what: "Break clause types: mandatory, optional, trigger-based (e.g., ratings downgrade), and the 'banker's paradox' explaining their unpopularity.", why: "A named, quotable concept, easily wrapped in a scenario stem." }
   ],
 
   recall: [

@@ -105,7 +105,7 @@ export default ({
   ],
 
   highYield: [
-    { stars: 3, what: "Through-the-cycle vs. point-in-time: definitions, users, and best-fit horizon.", why: "A clean two-way comparison, frequently tested as a matching question, and the exam's favorite wrong-answer trap is claiming through-the-cycle is 'more accurate' or 'relies only on internal data.'" },
+    { stars: 3, what: "Through-the-cycle vs. point-in-time: definitions, users, and best-fit horizon.", why: "A clean two-way comparison, easily probed by describing one and asking which it is. The favourite wrong answer claims through-the-cycle is 'more accurate' or 'relies only on internal data.'" },
     { stars: 3, what: "The five-step CRA rating development process, in order.", why: "Directly tested as 'which step were they on when X happened': e.g., checking a fitted model against out-of-sample data identifies model validation specifically." },
     { stars: 2, what: "CRA criticisms, especially issuer-pays conflict of interest and procyclicality.", why: "Recurring conceptual points, connects to R39's securitization rating conflicts." },
     { stars: 2, what: "Behavioral vs. profit (account-level vs. customer-level) consumer scoring.", why: "Tested via short scenario questions naming a specific input (e.g., 'updates in near real time using payment history') that you must match to the right scoring type." }

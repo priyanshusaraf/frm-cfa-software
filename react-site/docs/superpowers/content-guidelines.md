@@ -967,3 +967,48 @@ there.
 **A corollary worth keeping: the full-corpus sweep is cheap and should end every
 phase.** It takes about a minute and it is the only thing that catches a per-wave
 gate that was subtly wrong. `for f in src/data/book*/r*.js; do ... grep '^FAIL'; done`.
+
+## PHASE 4 (content-opus-improvement), opened 2026-07-26
+
+### The exam-voice sweep: what a truncated grep had been hiding
+
+Phase 3 recorded a corpus-wide sweep of durable rule 9 (the FRM has no matching or
+sequencing questions) as complete. It was not. **Eleven instances survived**, in r2,
+r22, r40, r44 (x2), r65, r93, r98, r99 (x2) and r100. Two reasons, both worth
+learning:
+
+1. **The scans were truncated.** Wave checks piped grep output through `cut -c1-150`,
+   and several violations sat past column 150 of a long prose line. r98's `why` said
+   "expect matching questions" 380 characters in. **Never truncate a grep you are using
+   as a gate. Print the match with `grep -o` and a window around it, not the line
+   prefix.**
+2. **The pattern was too tight.** `matching question` (space) missed
+   `matching-question` (hyphen), and `matching-style` missed `scenario-matching`. Use
+   `matching[- ]\w+` and read the hits.
+
+Rewrites keep the teaching and change the format claim: "tested as a matching
+exercise" becomes "a stem describes X and asks which of the four it is", which is both
+true of the real exam and more useful, because it tells the student what the question
+LOOKS like rather than naming a genre.
+
+### GARP-as-examiner: 28 more, and the one that must stay
+
+Rule 1 bans "GARP tests this". A corpus sweep found **28 live instances** in forms the
+earlier passes had not matched: "GARP likes to test", "GARP loves testing", "GARP
+explicitly flags", "GARP's favorite governance framework", "a GARP practice question".
+All rewritten to say what the question does instead of who writes it.
+
+**One GARP mention must survive, and a future sweep must not remove it**:
+r32's "Beyond Schweser, and flagged so you do not mistake it for something GARP will
+test: ..." is the labelling convention CLAUDE.md section 1 REQUIRES whenever content
+goes beyond exam scope. It names GARP deliberately, to mark a boundary for the
+student. Grep for `GARP` should therefore return exactly one prose hit plus the
+`sources[]` entries.
+
+### The general lesson from both sweeps
+
+**A prior session recording a sweep as "done corpus-wide" is not evidence it is.**
+Three times this run, a completed-and-documented sweep turned out to have survivors
+(dashes in a generated file, rule 9 in eleven readings, GARP in twenty-eight). Re-run
+the grep yourself, with a pattern you widened, before trusting the record. It costs
+seconds and it caught real defects every time.

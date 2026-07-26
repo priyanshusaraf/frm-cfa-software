@@ -120,7 +120,7 @@ export default ({
 
   highYield: [
     { stars: 4, what: "CIP formula and the cross-currency basis's meaning (interest-rate adjustment restoring CIP, not the forward premium itself).", why: "The core conceptual foundation of this reading, frequently tested for the basis-vs-premium distinction." },
-    { stars: 4, what: "Two causes of nonzero basis (liquidity decline, risk premia) and three demand sources plus limits to arbitrage explaining persistence.", why: "A complete causal story GARP likes to test as 'why hasn't this arbitrage been closed.'" },
+    { stars: 4, what: "Two causes of nonzero basis (liquidity decline, risk premia) and three demand sources plus limits to arbitrage explaining persistence.", why: "A complete causal story, and the natural question off it is why the arbitrage has not been closed." },
     { stars: 4, what: "Why foreign-currency (USD) funding gaps are structurally more dangerous than domestic mismatches. No foreign central bank can print USD.", why: "The central conceptual insight of the USD shortage material, and the Fed swap-line response it motivated." },
     { stars: 3, what: "FX swap vs cross-currency basis swap: term, reconversion rate, interim payments.", why: "A clean instrument-comparison table, good for the 'which of these is X' question shape." },
     { stars: 3, what: "Consolidated global balance sheet view needed to see true USD funding gap (Switzerland example).", why: "A vivid, specific illustration of a subtle measurement point." }
