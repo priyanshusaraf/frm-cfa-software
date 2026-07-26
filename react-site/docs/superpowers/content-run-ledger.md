@@ -85,10 +85,18 @@ section below is stale and says so.
   four dismissals per real gap in wave 8. Treat those as low priority: the marginal
   reading is likelier to cost an hour than to find a defect. Residual risk recorded
   honestly rather than worked to zero.
-- **Remaining Phase-4 work is therefore the `sources` curation** (protocol section 3):
-  21 readings have no `sources` at all (r02, r03, r11, r12, r13, r17, r19, r25, r29, r39,
-  r44, r64, r81-r85, r87-r89, r95). Every URL must be fetched and confirmed live before it
-  ships, and zero sources is an acceptable final answer for a reading.
+**Track C, the `sources` curation** (protocol section 3). IN PROGRESS. 21 readings had no
+`sources`. Every URL is fetched and confirmed live before it ships; zero sources is an
+acceptable final answer and is recorded as a decision.
+
+- Done: **r02, r03** (BCBS WP19), **r11** (Fed nominal yield curve), **r12** (BIS term
+  premia + Fed curve), **r13** (deliberate ZERO: a pedagogical drift chapter nothing
+  external improves on).
+- Remaining 16: r17, r19, r25, r29, r39, r44, r64, r81, r82, r83, r84, r85, r87, r88, r89,
+  r95.
+- Rejected candidates, do not re-try: the NY Fed ACM term-premia page (HTTP 403 to
+  automated fetches, so unverifiable), and BCBS WP22 (it is the securitization supervisory
+  formula, not a tail-risk paper).
   The false-positive rate holds around 90%, so this is a CHECKING exercise, not a
   writing one; budget for reading the source, not for prose.
 

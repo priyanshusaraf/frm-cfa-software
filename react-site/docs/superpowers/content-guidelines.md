@@ -1672,3 +1672,39 @@ marginal reading is far more likely to cost an hour than to find a defect.
 Final Track B tally: ~195 candidates checked across 8 waves, 14 real content gaps filled,
 1 factual error corrected across 12 fields, 5 missing source names supplied, 31 readings
 dismissed outright with reasons recorded.
+
+## PHASE 4, the `sources` curation (protocol section 3)
+
+21 readings shipped with no `sources` at all after 283 encyclopedia links were stripped.
+`validate-reading.mjs` now rejects wikipedia.org and investopedia.com by host, so the only
+question is what genuinely earns a place. **Zero sources is an acceptable final answer and
+should be recorded as a decision, not left looking like an oversight.**
+
+### Wave 13: r2, r3, r11, r12, r13 (2026-07-26)
+
+Four links added, all fetched and confirmed live before shipping:
+
+- **r2 and r3 both get BCBS Working Paper 19**, "Messages from the academic literature on
+  risk measurement for the trading book" (2011). This is the Basel Committee's own review of
+  exactly the estimation literature these two readings teach, non-parametric weighting
+  schemes in r2 and tail estimation in r3. **One document legitimately serving two readings
+  is fine**; padding each with a separate weaker link is not.
+- **r11 gets the Fed's nominal yield curve dataset** (the Gurkaynak, Sack and Wright fitted
+  curves, 1961 to present). It earns its place for a specific teaching reason: it shows that
+  a real yield curve is an ESTIMATE produced by a model (Svensson since 1980,
+  Nelson-Siegel before), not an observation, which is the premise the whole reading rests on.
+- **r12 gets the BIS Quarterly Review's "Term premia: models and some stylised facts"** plus
+  the same Fed dataset. The BIS piece decomposes yields into expected short rates and a term
+  premium, which is the same split (expectations, risk premium, convexity) r12 builds by hand.
+
+**r13 stays at ZERO, deliberately.** It is a pedagogical chapter on drift specifications
+(Ho-Lee, Vasicek, model choice) and nothing external adds to it that the reading does not
+already do better. A link to a generic rates page would be padding, which is the exact
+failure that produced the encyclopedia links in the first place.
+
+**Two candidates were fetched and REJECTED, which is worth recording so nobody re-tries
+them:** the New York Fed's ACM term-premia page returns HTTP 403 to automated fetches (so it
+cannot be verified and must not ship), and BCBS Working Paper 22 turned out to be the
+modified supervisory formula for securitization capital, not the tail-risk paper its title
+suggested. **Fetch before you cite, every time: a plausible-sounding BIS number is not a
+plausible-sounding topic.**

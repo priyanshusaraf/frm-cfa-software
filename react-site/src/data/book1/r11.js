@@ -262,6 +262,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "Federal Reserve: nominal yield curve estimates (Gurkaynak, Sack and Wright)", note: "The daily fitted Treasury curve the models in this reading are ultimately calibrated against, plus the methodology paper behind it. Useful for seeing that a real curve is an estimate, not an observation.", url: "https://www.federalreserve.gov/data/nominal-yield-curve.htm" }
+  ],
+
   pdf: { book: 1, query: "A binomial model is a model that assumes" },
 
   summary: `<p><strong>Backward induction</strong>: value maturity first, walk backward; each node = discounted average of two successor values. Must be <strong>arbitrage-free</strong> (matches market price) or recalibrate. <strong>True vs risk-neutral probabilities</strong>: two equivalent ways to bake in the risk premium (adjust rates under 50/50, or adjust probabilities under given rates). The gap between them IS the interest rate drift. <strong>Option pricing</strong>: price bond at every node → intrinsic value at maturity → discount back with risk-neutral probabilities; American features need every-node comparison. <strong>OAS</strong>: constant spread added to discount rates (not cash flows) to match market price; OAS>0 = cheap. <strong>Recombining vs non-recombining</strong> trees trade simplicity for realism. <strong>BSM fails for bonds</strong>: unbounded-price assumption, constant-rate assumption, constant-vol assumption all violated. <strong>Callable</strong> = negative convexity below y′ + reinvestment risk; <strong>putable</strong> = value floor above y′.</p>`

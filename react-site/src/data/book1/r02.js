@@ -229,5 +229,9 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "Messages from the academic literature on risk measurement for the trading book (BCBS Working Paper 19)", url: "https://www.bis.org/publ/bcbs_wp19.htm", note: "The Basel Committee's own literature review of the estimation approaches this reading covers, including where historical simulation and its weighted variants hold up and where they do not." }
+  ],
+
   pdf: { book: 1, query: "Reading 1 gave you two extremes" }
 });

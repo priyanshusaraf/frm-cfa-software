@@ -169,6 +169,11 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "BIS Quarterly Review: term premia, models and some stylised facts", url: "https://www.bis.org/publ/qtrpdf/r_qt1809h.htm", note: "Decomposes real bond yields into expected short rates and a term premium, which is the same three-way split (expectations, risk premium, convexity) this reading builds by hand." },
+    { title: "Federal Reserve: nominal yield curve estimates", url: "https://www.federalreserve.gov/data/nominal-yield-curve.htm", note: "Daily fitted curves back to 1961, for checking what the shapes in this reading actually look like in the data." }
+  ],
+
   pdf: { book: 1, query: "This reading discusses how the decision tree framework" },
 
   summary: `<p>Curve shape has (at least) two independent drivers. <strong>Expectations</strong>: rate direction expected → curve slope; breaks down at very long horizons where long-run real rate + inflation expectations anchor the level instead. <strong>Convexity (Jensen's inequality)</strong>: E[1/(1+r)] > 1/(1+E[r]), so volatility of future rates RAISES expected bond price and LOWERS implied yield; grows with BOTH maturity and volatility, independently. <strong>Risk premium</strong>: a separate, additive compensation-for-risk effect that LOWERS bond price and RAISES expected return. Do not conflate with convexity, which often points the opposite direction on price.</p>`

@@ -1,3 +1,3 @@
-DONE: Phase 4 Track B wave 12 exhausts the named-term sweep: re-ran the filter over all 66 unaudited readings, 13 survivors, all resolving to a missing name or shape noise, no new content gaps. r60 gained the cost-of-capital rationale name, r67 the discipline-of-the-financial-marketplace name. Track B is now substantively closed (~195 candidates, 14 gaps, 1 factual error, 5 names, 31 dismissals).
-NEXT: The last Phase-4 item, the `sources` curation for the 21 readings with none (r02, r03, r11, r12, r13, r17, r19, r25, r29, r39, r44, r64, r81-r85, r87-r89, r95): regulators/standard-setters/original papers only, every URL fetched and confirmed live, zero sources an acceptable answer.
+DONE: Phase 4 Track C (sources curation) wave 13: r02 and r03 get BCBS Working Paper 19, r11 the Fed's nominal yield curve dataset, r12 the BIS term-premia article plus the Fed curve. All fetched and confirmed live. r13 stays at zero deliberately. Two candidates fetched and rejected (NY Fed ACM page 403s; BCBS WP22 is the securitization formula, not tail risk).
+NEXT: Track C wave 14, the Book 2 readings with no sources: r17, r19, r25, r29, r39.
 BLOCKERS: none.

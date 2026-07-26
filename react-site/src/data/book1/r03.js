@@ -184,5 +184,9 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "Messages from the academic literature on risk measurement for the trading book (BCBS Working Paper 19)", url: "https://www.bis.org/publ/bcbs_wp19.htm", note: "Surveys the tail-estimation literature behind this reading, including what the research does and does not support about fitting extremes." }
+  ],
+
   pdf: { book: 1, query: "Extreme values are important for risk management because they are associated with catastrophic events" }
 });
