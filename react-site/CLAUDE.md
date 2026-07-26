@@ -55,7 +55,39 @@ The teaching doctrine, in order of priority:
    the Schweser books at the repository root (`Book N (1).md` full texts; `FRM2_*_CompleteBookN.md`
    condensed companions for Books 1–4; Book 5 has only the full text). Never invent facts,
    numbers, named lists, or committee structures. If the source doesn't say it, you don't
-   write it. Rephrasing for clarity is the job; adding content is a defect.
+   write it. Rephrasing for clarity is the job.
+
+   **AMENDED 2026-07-26 (owner directive): where Schweser is THIN, you may bring in
+   outside material.** The old rule ("adding content is a defect") produced the exact
+   failure this app exists to prevent. The reference case is R32's xVA family:
+   Schweser spends six lines on a whole learning objective and defines each term with
+   its own name ("funding value adjustment: the cost of funding a transaction"). The
+   reading reproduced that faithfully, so the student met six adjustments, learned
+   nothing about any of them, and could not tell they mattered. In the owner's words,
+   the entire point of the software is to help out where other people go fast. A
+   compressed restatement of an already-compressed source teaches nothing.
+
+   The rule is now: the source sets the SCOPE (which topics, which facts are
+   examinable); it does not cap the DEPTH of explanation. Where the source is skeletal
+   on something examinable, explain the mechanism properly, drawing on the underlying
+   reference the source itself cites (Gregory for counterparty risk, Tuckman for term
+   structure, Hull, Ang) or on well-established market practice. Three binding
+   conditions:
+   1. **Never contradict the source, and never add a testable FACT it does not
+      support** (a number, a named list, a committee structure, a threshold).
+      Mechanism and intuition are what you add, not new examinable content.
+   2. **Label anything genuinely beyond exam scope** so a student never mistakes it
+      for something GARP will test. Convention: "Beyond Schweser, and flagged so you
+      do not mistake it for something GARP will test: ...". This is the same labelling
+      rule section 6 applies to core-concept deep dives, extended to ordinary readings.
+   3. **Depth is earned by importance, not spread evenly.** Go deep where the source
+      is thin AND the material is examinable or genuinely confusing. Padding a
+      well-covered topic is still a defect.
+
+   Signal that a reading needs this treatment: a definition that restates its own name,
+   a list of terms each getting one clause, or a learning objective the source
+   dispatches in a few lines. `scripts/coverage-audit.mjs` finds what is MISSING; this
+   rule governs what to do when the material is present but starved.
 2. **Intuition before formalism.** Sections are ordered teaches → why → intuition → eli5 →
    thinkLike → visual → breakdown → formulas → concepts → … deliberately: the student meets
    the *idea* three or four times before the first equation. When you write a formula's
