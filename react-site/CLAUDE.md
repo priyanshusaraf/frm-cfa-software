@@ -163,7 +163,14 @@ it — that's the bar.
      (potential FUTURE exposure)** is the exact pair that broke R37, which had propagated a
      one-off typo in the source ("expected potential exposure") into its prose AND a quiz stem,
      contradicting R36's correct definition. When a family has look-alike members, name the
-     distinguishing word in the sentence that introduces them.
+     distinguishing word in the sentence that introduces them. **But the mnemonic
+     disambiguates the NAMES only; never let it stand in for the concept.**
+     Owner-caught 2026-07-26: R36 had written "the word that distinguishes EPE
+     from PFE is POSITIVE", which is simply false. EE and PFE are both already
+     floored at zero, so POSITIVE separates EPE from nothing; it pairs EPE
+     against expected NEGATIVE exposure. What actually separates EPE from PFE is
+     the time dimension (a scalar time-average against a per-date quantile).
+     State the real distinction first, then offer the name mnemonic if it helps.
 
   Grep check before shipping a content edit that introduces an abbreviation: confirm the
   expansion appears in the file, and that the file uses exactly one expansion for it.
