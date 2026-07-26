@@ -68,6 +68,22 @@ section below is stale and says so.
   The false-positive rate holds around 90%, so this is a CHECKING exercise, not a
   writing one; budget for reading the source, not for prose.
 
+## OPEN: hard-concept sequencing, CVA first (owner directive, 2026-07-26)
+
+Spec: `specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md`.
+**Not scheduled into a phase yet, and not started.**
+
+The owner reported being unable to grasp what CVA is doing even with the current, audited
+material. The cause is not coverage (Track B wave 5 found r37 essentially complete) and not
+density (r37 passed Track A). It is SEQUENCING: CVA spans R25, R29, R32, R35, R36, R37, R38
+and R62, each locally complete, and nothing assembles them in learning order. The fix is an
+authored Core Concept page (`authoredConcepts.js`, `layer: "core"`, no new page type) that
+compiles the thread and teaches it problem-first.
+
+The spec also generalizes the mechanism and records four more candidates (exposure metrics,
+Vasicek/WCDR, the Basel capital stack, the liquidity spiral) with the three-part test for
+qualifying. Read the spec rather than re-deriving any of it.
+
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 
 R35 was found to have passed its wave-7 gate while omitting the margin period of

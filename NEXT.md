@@ -1,3 +1,3 @@
-DONE: Phase 4 Track B wave 9: audited r28, r77, r23, r26, r3. r26 was missing LO 26.f entirely (credit spread risk was never defined); added as a concept with the two reasons spreads cannot be historically simulated. r77 gained a real challenges breakdown, r28 gained the source's three-tiered and internal-credit-enhancement labels; r23 and r3 dismissed. All gates green.
-NEXT: Write the tough-concept sequencing spec the owner asked for on 2026-07-26, starting with CVA as a Core Concept page compiled from every reading that touches it (reference: ~/Downloads/FRM2_R37_CVA_and_MPoR.md).
-BLOCKERS: none.
+DONE: Wrote the hard-concept sequencing spec the owner asked for (specs/2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md): the diagnosis, the three-part qualifying test, a nine-section problem-first plan for a CVA Core Concept page compiling R25/R29/R32/R35/R36/R37/R38, and four further candidates. Wired into CLAUDE.md as section 8.7 and into the ledger as an OPEN item. Not built.
+NEXT: Resume Phase 4 Track B wave 10 (r16, r29, r34, r66 and the next weak-LO readings), unless the owner wants the CVA page built first.
+BLOCKERS: none. The CVA page is spec-only and unscheduled; it needs the owner to say whether it runs before or after the rest of Track B.
