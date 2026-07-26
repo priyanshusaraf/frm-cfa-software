@@ -919,11 +919,32 @@ html[data-fullscreen] .pomo-fab { display: none; }
 }
 
 /* ---------- global "Return to Reading" button (nav.activeReading) ---------- */
+/* Bottom-left, not top-left: docked under the nav it landed straight on top of
+   the Study sidebar's header. The two things it must not collide with are
+   `.corner-pill.left` / `.rail-panel.left` (bottom-left on reading surfaces) and
+   the sidebar itself (left edge on study surfaces) — and those two never appear
+   together, so `data-study-sidebar` on <html> picks the right dodge for each. */
 .return-to-reading {
-  position: fixed; left: 12px; top: calc(var(--nav-h) + 10px); z-index: 40;
+  position: fixed; left: 12px; bottom: 1.25rem; z-index: 44;
   font-size: 0.78rem; padding: 0.3rem 0.6rem; border-radius: var(--radius-sm);
   color: var(--text-dim); background: var(--bg-raised); border: 1px solid var(--border);
+  box-shadow: var(--shadow);
   cursor: pointer; transition: color .15s, border-color .15s, background .15s;
+}
+/* Sit one row up when the KeyPoints pill is on screen claiming the corner. This
+   is rare but real: Chapter.jsx repoints activeReading at the chapter you open,
+   so the two only coexist on an already-DONE chapter, which does not repoint it.
+   Matched on the pill itself rather than by route, so it cannot drift out of
+   sync with where that pill renders; kept inside the media query because the
+   pill is in the DOM but display:none below 1000px. */
+@media (min-width: 1000px) {
+  html:has(.corner-pill.left) .return-to-reading { bottom: 3.7rem; }
+}
+/* Study surfaces: clear the sidebar. --study-sidebar-w is published by
+   StudySidebar.jsx and tracks its collapsed width, so the button follows the
+   rail in. Only applied at the breakpoint where the sidebar is actually shown. */
+@media (min-width: 1180px) {
+  html[data-study-sidebar] .return-to-reading { left: calc(var(--study-sidebar-w, 0px) + 12px); }
 }
 .return-to-reading:hover { color: var(--text); border-color: var(--border-strong); background: var(--bg-hover); }
 
@@ -1134,12 +1155,31 @@ mark.hl.hl-r { background: color-mix(in srgb, var(--red) 26%, transparent); box-
 .momentum-title { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-faint); }
 .momentum-more { font-size: 0.75rem; color: var(--text-faint); text-decoration: none; }
 .momentum-more:hover { color: var(--accent); text-decoration: none; }
-.momentum-nums { display: flex; gap: 1.6rem; margin-bottom: 0.9rem; }
-.momentum-nums > div { display: flex; flex-direction: column; }
+/* The two cards are stretched to the taller one by the grid. The streak card's
+   content is shorter, so unless it distributes that slack every pixel of it
+   piles up under the last element (the note), which is what left the card
+   looking half-empty. Column flex + a growing heat block spends it instead. */
+.momentum-streak { display: flex; flex-direction: column; }
+.momentum-heat-wrap {
+  flex: 1 1 auto; display: flex; flex-direction: column; justify-content: center;
+  min-height: 0;
+}
+/* Equal-width, centred columns: the same treatment .consistency-tiles gives the
+   tiles on /consistency. A flex row with a fixed gap left them packed against
+   the left edge and off any common axis. */
+.momentum-nums {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem; margin-bottom: 1rem;
+}
+.momentum-nums > div { display: flex; flex-direction: column; text-align: center; }
 .momentum-nums .mn { font-size: 1.5rem; font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
 .momentum-nums .ml { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-faint); margin-top: 0.25rem; }
-.momentum-heat { display: block; max-width: 100%; height: auto; }
-.momentum-note { font-size: 0.78rem; color: var(--text-faint); margin: 0.8rem 0 0; }
+/* width:100% + the viewBox is what fits the grid to the card at any width.
+   A `max-width` alone did nothing here: with no viewBox the SVG kept its
+   intrinsic pixel size and sat left-aligned with dead space beside it. */
+.momentum-heat { display: block; width: 100%; height: auto; }
+.momentum-heat-wrap .heat-legend { margin-top: 0.6rem; }
+.momentum-note { font-size: 0.78rem; color: var(--text-faint); margin: 0.9rem 0 0; }
 .momentum-books { display: flex; flex-direction: column; gap: 0.72rem; }
 .momentum-book { display: block; text-decoration: none; }
 .momentum-book:hover { text-decoration: none; }

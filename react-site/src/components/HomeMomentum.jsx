@@ -7,13 +7,24 @@ import Progress from "./ui/progress.jsx";
 
 /* The two motivating views (streak + per-book completion) surfaced on the home
    page, so opening the app shows you where you stand instead of making you go
-   look for it. Deliberately a SUMMARY, not a copy of either page: 13 weeks
-   rather than 26, no legend, and both halves link through to the real page.
+   look for it. It is a summary of /consistency, but it MATCHES that page rather
+   than diverging from it: same 26-week window, same cell geometry, same four
+   green levels, same legend. The only things dropped are the month/weekday
+   labels, which do not survive the narrower card.
+
+   The grid is drawn in viewBox units and stretched to the card width by CSS
+   (`.momentum-heat { width: 100% }`). Without the viewBox the SVG rendered at a
+   fixed 169px and sat left-aligned in a ~370px card with dead space beside it,
+   which is exactly the bug this replaced. Keep the viewBox: it is what makes the
+   grid fit any card width, and it is why WEEKS can match the real page without
+   overflowing.
 
    It renders even at zero, because "0 day streak" with a line telling you how to
    start is the motivating case, not an empty one worth hiding. */
 
-const CELL = 10, GAP = 3, STEP = CELL + GAP, WEEKS = 13;
+const CELL = 12, GAP = 3, STEP = CELL + GAP, WEEKS = 26;
+// Trailing gap trimmed, so the drawing is flush with both edges of the card.
+const VB_W = WEEKS * STEP - GAP, VB_H = 7 * STEP - GAP;
 
 const LEVELS = [
   "color-mix(in srgb, var(--green) 22%, var(--bg-inset))",
@@ -60,25 +71,32 @@ export default function HomeMomentum() {
           <div><span className="mn">{stats.longest}</span><span className="ml">longest</span></div>
           <div><span className="mn">{stats.activeDays}</span><span className="ml">active days</span></div>
         </div>
-        <svg
-          width={WEEKS * STEP}
-          height={7 * STEP}
-          role="img"
-          aria-label={"Study activity over the last " + WEEKS + " weeks"}
-          className="momentum-heat"
-        >
-          {grid.map((col, w) =>
-            col.map((cell, d) => (
-              <rect
-                key={cell.key}
-                x={w * STEP} y={d * STEP} width={CELL} height={CELL} rx={2}
-                fill={cell.inFuture ? "transparent" : (cell.count ? LEVELS[levelOf(cell.count)] : "var(--bg-inset)")}
-                stroke={cell.inFuture ? "none" : "var(--border)"}
-                strokeWidth={0.5}
-              />
-            ))
-          )}
-        </svg>
+        <div className="momentum-heat-wrap">
+          <svg
+            viewBox={"0 0 " + VB_W + " " + VB_H}
+            role="img"
+            aria-label={"Study activity over the last " + WEEKS + " weeks"}
+            className="momentum-heat"
+          >
+            {grid.map((col, w) =>
+              col.map((cell, d) => (
+                <rect
+                  key={cell.key}
+                  x={w * STEP} y={d * STEP} width={CELL} height={CELL} rx={2}
+                  fill={cell.inFuture ? "transparent" : (cell.count ? LEVELS[levelOf(cell.count)] : "var(--bg-inset)")}
+                  stroke={cell.inFuture ? "none" : "var(--border)"}
+                  strokeWidth={0.5}
+                />
+              ))
+            )}
+          </svg>
+          <div className="heat-legend">
+            <span>Less</span>
+            <span className="hl-sq" style={{ background: "var(--bg-inset)" }} />
+            {LEVELS.map((c) => <span className="hl-sq" key={c} style={{ background: c }} />)}
+            <span>More</span>
+          </div>
+        </div>
         <p className="momentum-note">
           {total
             ? "Every square is a day you showed up."

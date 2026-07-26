@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { STUDY_GROUPS } from "../lib/studyNav.js";
@@ -17,6 +18,16 @@ import { useStore, setStudySidebarCollapsed } from "../lib/store.js";
 export default function StudySidebar() {
   const collapsed = !!useStore((s) => s.layout && s.layout.studySidebarCollapsed);
   const Chevron = collapsed ? PanelLeftOpen : PanelLeftClose;
+
+  /* Published so fixed-position chrome can clear the sidebar (the "Return to
+     Reading" button reads it). Cleared on unmount, which is also how routes
+     without a sidebar get back to a 0 offset. The widths must stay in step with
+     the .study-sidebar flex-basis rules in style.css. */
+  useEffect(() => {
+    const el = document.documentElement;
+    el.style.setProperty("--study-sidebar-w", collapsed ? "3.75rem" : "15rem");
+    return () => el.style.removeProperty("--study-sidebar-w");
+  }, [collapsed]);
 
   return (
     <aside className="study-sidebar" data-collapsed={collapsed ? "1" : undefined} aria-label="Study">
