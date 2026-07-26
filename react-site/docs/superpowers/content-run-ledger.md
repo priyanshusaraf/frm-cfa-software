@@ -155,11 +155,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 83 | 5 | Alpha (and the Low-Risk Anomaly) | done | done | 17 | pass | Lightest of the wave. Momentum and value/growth flags both false positives. |
 | 84 | 5 | Portfolio Construction | done | done | 17 | pass | Both WEAK LO flags false positives (alpha refining and dispersion are each taught at length). Three exam-voice whys de-metered. |
 | 85 | 5 | Portfolio Risk: Analytical Methods | done | done | 17 | pass | All flags are the audit matching worked-example headings ('computing component VaR (example 1)'), which the reading reproduces in its formulas. |
-| 86 | 5 | VaR and Risk Budgeting in Investment Management | done | todo | 18 | - | |
-| 87 | 5 | Risk Monitoring and Performance Measurement | done | todo | 18 | - | |
-| 88 | 5 | Portfolio Performance Evaluation | done | todo | 18 | - | |
-| 89 | 5 | Hedge Funds | done | todo | 18 | - | |
-| 90 | 5 | Performing Due Diligence on Specific Managers and Funds | done | todo | 18 | - | |
+| 86 | 5 | VaR and Risk Budgeting in Investment Management | done | done | 18 | pass | REAL GAP FILLED: the global custodian question (visibility against control) was absent. New breakdown block. |
+| 87 | 5 | Risk Monitoring and Performance Measurement | done | done | 18 | pass | Cleanest of the wave: dashes plus one 'according to the reading' quiz stem. |
+| 88 | 5 | Portfolio Performance Evaluation | done | done | 18 | pass | REAL GAP FILLED: universe comparison (rank within style bucket, and why it fails) added; appraisal ratio now named as the information ratio's synonym, per the one-name rule. |
+| 89 | 5 | Hedge Funds | done | done | 18 | pass | 203-word strategy-roster def trimmed; the breakdown already carried all ten strategies. |
+| 90 | 5 | Performing Due Diligence on Specific Managers and Funds | done | done | 18 | pass | Heaviest separator repair of the run (31); the GARP exam-voice opener rewritten. |
 | 91 | 5 | Predicting Fraud by Investment Managers | done | todo | 19 | - | |
 | 92 | 5 | Review of the Federal Reserve's Supervision of Silicon Valley Bank | done | todo | 19 | - | |
 | 93 | 5 | The Credit Suisse CoCo Wipeout | done | todo | 19 | - | |

@@ -855,3 +855,26 @@ more of the same shape. Those are Schweser's own worked-example headings, not
 concepts; the reading reproduces every one of them inside `formulas[].derivation`.
 Expect a burst of these on any calculation-heavy reading and do not treat the count
 as signal.
+
+### Wave 18 (R86-R90, Book 5, 2026-07-26): two more gaps, and a synonym rule applied
+
+**R86 was missing the global custodian entirely** (a bolded source term) and **R88 was
+missing universe comparison**, the style-bucket ranking method the source introduces
+immediately BEFORE the risk-adjusted measures precisely so the reader can see what
+those measures fix. Both added. R88's omission is instructive: the reading taught
+Sharpe, Treynor, Jensen and the information ratio thoroughly, so it looked complete,
+but it had dropped the naive baseline those ratios are defined against. **A reading
+that teaches the sophisticated tool and drops the naive one it replaces has lost the
+motivation, which is the thing this app exists to supply.**
+
+**The appraisal ratio was a synonym, not a gap, and synonyms have their own rule.**
+The source writes "known as the information ratio or appraisal ratio" for one
+quantity. Protocol 2a-0 item 3 says ignore a term taught under another name, but
+CLAUDE.md's abbreviation rule 2 says to pick the dominant name AND state once that
+the other means the same, so the student is not thrown when the exam prints it.
+Both apply: do not add a second concept, DO add the synonym note. Check for this
+whenever an audit line names something the reading clearly already teaches.
+
+**Separator repair volume is climbing through Book 5** (10, 14, 11, 19, 31 across
+this wave against 9 to 20 in Book 4), because these readings lean harder on
+"Term, then definition" list items. The repair is mechanical and safe; budget for it.
