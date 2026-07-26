@@ -194,8 +194,11 @@ tr:nth-child(even) td { background: color-mix(in srgb, var(--bg-raised) 60%, var
     overflow-y: auto; overscroll-behavior: contain;
     /* The bottom padding is deliberately deep: `.return-to-reading` is fixed at
        the left edge and overlays this rail, so the last link (Settings) needs
-       room to scroll clear of it. */
-    padding: 1.35rem 0.7rem 5rem 1rem;
+       room to scroll clear of it. Owner-reported 2026-07-27: 5rem was not
+       enough to see Settings and the button at the same time at maximum scroll,
+       so it is now the button's own footprint (its height plus its 1.25rem
+       offset) plus a full link-row of breathing space. */
+    padding: 1.35rem 0.7rem 7.5rem 1rem;
     border-right: 1px solid var(--border);
   }
   .study-sidebar[data-collapsed] { flex-basis: 3.75rem; width: 3.75rem; padding-inline: 0.6rem; }
@@ -962,7 +965,15 @@ html[data-fullscreen] .pomo-fab { display: none; }
    (owner directive, 2026-07-26) rather than dodging right of it. It lands over
    the sidebar's own scrollbar, which is acceptable because the sidebar reserves
    bottom padding for it (see `.study-sidebar`) so its last link, Settings, is
-   still reachable at maximum scroll. */
+   still reachable at maximum scroll.
+
+   Owner directive 2026-07-27: line it up WITH the sidebar rather than merely
+   near it. `left` matches `.study-sidebar`'s own padding-left, so the button's
+   box starts on the same vertical as every link box above it. It is in `rem`
+   for the same reason the sidebar's padding is: the app-wide font-scale control
+   resizes both together, and a px value here would drift out of alignment at
+   any scale other than 1. */
+html[data-study-sidebar] .return-to-reading { left: 1rem; }
 .return-to-reading:hover {
   color: var(--text);
   background:
