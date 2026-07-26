@@ -1,3 +1,3 @@
-DONE: Three hard-concept sequencing pages shipped: /concept/cva, /concept/basel-capital-stack and /concept/liquidity-spiral. Exposure metrics was criterion-tested and rejected. Two of the spec's five candidate spans were found wrong against the source and corrected in the ledger.
-NEXT: The last candidate, Vasicek/WCDR, which needs a section 1a problem-first pass on its existing Phase-2 deepDive in src/data/book2/r26.js rather than a new page.
+DONE: The hard-concept sequencing build is complete. Four authored pages shipped (/concept/cva, basel-capital-stack, liquidity-spiral, and the Vasicek/WCDR shadowing layer), exposure metrics criterion-tested and rejected, and two wrong candidate spans in the spec corrected against the source. All five spec candidates are resolved.
+NEXT: Owner input needed on what comes after content. The remaining scoped-but-unbuilt work is section 8.5 (the securitization flagship's remaining depth), section 9's learning-coherence build (planner spine, ReadingArc, visual builders), and section 7.3 (device licensing, which needs a backend).
 BLOCKERS: none.

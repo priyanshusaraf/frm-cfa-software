@@ -473,4 +473,97 @@ export const authoredConcepts = [
       },
     ],
   },
+
+  /* Vasicek / WCDR, the last hard-concept sequencing candidate. It is a
+     different shape from the other three: a Phase-2 authored layer already
+     existed on r26's formula (`terms[]` plus a `deepDive`), and what the ledger
+     recorded as owed was a pass against the section 1a problem-first doctrine,
+     which postdates it.
+
+     This entry SHADOWS the auto-detected concept of the same slug (see
+     findConcept in src/lib/coreConcepts.js), and deliberately keeps
+     `kind: "formula"` with the exact name r26 gives the formula, so the existing
+     formula block, the five-symbol breakdown and the beyond-exam deepDive all
+     still render UNDER these sections. That order is the point: the idea is
+     built first, and the equation and its symbol table are the consolidation
+     after it, per the chapter section-order rule.
+
+     "Vasicek" alone is deliberately NOT a link phrase. In Book 1 the name means
+     the interest-rate model (r08, r11, r13, r14), which has nothing to do with
+     this. The full name and the abbreviation are unambiguous.
+
+     Sourced from Schweser Book 2, Reading 26 (Vasicek's model, lines ~4125-4145,
+     including the sibling models and the tail-correlation limitation) and
+     Reading 21 / Book 3 Reading 59 for the IRB capital use. The worked figure
+     (PD 1%, rho 0.2, 99.9% confidence, WCDR about 14.6%) is r26's own and was
+     re-checked arithmetically here, since an inverted sign in this exact
+     calculation is a recorded past defect (react-site/CLAUDE.md section 8.4). */
+  {
+    slug: "vasicek-worst-case-default-rate-wcdr",
+    name: "Vasicek worst-case default rate (WCDR)",
+    kind: "formula",
+    layer: "core",
+    homeReading: 26,
+    selfContained: true,
+    refs: [21, 26, 27, 29, 59],
+    linkPhrases: ["worst-case default rate", "one-factor Gaussian copula"],
+    lead: "One number answers the only question a capital rule really asks: in a bad year, not an average one, what fraction of this loan book defaults? Getting there needs one idea (a shared economy) and one piece of arithmetic, and the formula is unreadable until you have both.",
+    sections: [
+      {
+        label: "A thousand loans, and one question you cannot answer yet",
+        html: `<p>You are responsible for capital at a bank holding a thousand corporate loans. Each borrower has, say, a 1% chance of defaulting this year. The question you have to answer is not what you expect to lose. It is how bad the year can get, because capital exists for the bad year and not for the average one.</p>
+        <p>The average is easy and it is the wrong answer. A 1% default probability across a thousand loans means about ten defaults, so a bank that held capital for ten defaults would be capitalised for a year in which nothing unusual happened. Worse, the interest rate you charge is already meant to cover those ten. Charging capital for them as well would be paying twice for the same loss. What capital has to cover is the distance between a bad year and an average one, so what you actually need is a HIGH PERCENTILE of the default rate, not its mean.</p>`,
+      },
+      {
+        label: "The obvious model, and the absurd answer it gives",
+        html: `<p>Try the simplest possible assumption: each borrower defaults independently, like a thousand separate coin flips weighted at 1%. This is a completely standard statistical setup, and it produces a number immediately.</p>
+        <p>The number is close to useless. Independent draws average out, and the more of them there are the harder they average out, so across a thousand loans the realised default rate almost never strays far from 1%. The worst case at high confidence sits barely above the mean, which says a large diversified loan book needs almost no capital at all. Every banking crisis in history says otherwise.</p>
+        <p>So the independence assumption is not a simplification that costs a little accuracy. It removes the exact phenomenon that makes lending dangerous.</p>`,
+      },
+      {
+        label: "Borrowers are not separate coins",
+        html: `<p>What actually happens in a bad year is that borrowers fail TOGETHER. A recession does not pick one firm; it lowers demand, tightens credit and raises funding costs for all of them at once, so defaults arrive in clusters rather than at a steady trickle.</p>
+        <p>Take the coin picture and correct it. A thousand independent coins land near five hundred heads essentially always. Now wire the coins so they tend to land the same way as each other. The average is unchanged, and the spread is transformed: outcomes far from the average become genuinely possible, because the coins are no longer casting a thousand separate votes. They are casting something closer to one vote with a thousand echoes.</p>
+        <p>A loan portfolio is the wired version. The capital question is entirely a question about how strongly the coins are wired together, which is what the correlation parameter measures.</p>`,
+      },
+      {
+        label: "One shared economy, and one private story",
+        html: `<p>Here is the modelling move that makes this computable, and it is a single idea rather than a technique. Split what happens to each borrower into two parts: something that happens to EVERYONE, and something that happens only to THEM.</p>
+        <p>Write each firm's asset return as a mix of a common factor, meaning the state of the economy, and an idiosyncratic term, meaning that firm's own management, customers and luck. The correlation parameter is the mixing weight: it is the share of each firm's fortunes driven by the shared factor, so it is exactly the dial that decides how strongly the coins are wired. A firm defaults when its asset return falls below a threshold, and the threshold is set so that, averaged over all possible economies, the firm defaults with its stated probability.</p>
+        <p>Now the whole distribution collapses into something answerable. Fix the economy at some specified level of badness and the only remaining randomness is each firm's private story, which really is independent across a large portfolio and really does average out. So for a GIVEN state of the economy, the default rate is essentially determined. The distribution of the portfolio's default rate is therefore just the distribution of the economy itself, passed through the firms' thresholds. Asking for the 99.9th percentile default rate becomes asking what fraction of firms default when the economy is at its 99.9th-percentile worst.</p>
+        <p>That is why the answer is one line of algebra rather than a simulation, and it is the single most important thing to understand about the model. Schweser makes the same point from the other end. The correlation used here should be roughly the correlation between the firms' returns on assets or equity, which is precisely the shared-factor exposure just described, and similar listed companies can proxy it when the borrowers are private.</p>`,
+      },
+      {
+        label: "Reading the formula as three moves",
+        html: `<p>The equation below is that argument written down, and every piece of it does one of three jobs.</p>
+        <p>The first move converts a probability into a threshold. The inverse normal of the default probability is the point on the asset-return scale below which the firm fails, so a 1% default probability becomes a threshold of about minus 2.33 standard deviations. The second move shifts that threshold for a bad economy. Adding the square root of the correlation multiplied by the inverse normal of the confidence level moves the whole population toward default. At 99.9% confidence that inverse normal is about PLUS 3.09, a large positive number pushing hard in the direction of more defaults. The third move rescales by the square root of one minus the correlation, which is the dispersion left over once the shared factor has been fixed, and converts back into a probability.</p>
+        <p>Run it once with real numbers so the shape is concrete. A 1% default probability, a correlation of 0.2 and 99.9% confidence give a numerator of about minus 2.33 plus 0.447 times 3.09, which is about minus 0.94, divided by 0.894 to give about minus 1.06, and the normal probability of minus 1.06 is roughly 14.6%. A book expected to lose 1% is being capitalised against losing about 14.6%. That factor of fourteen between the average year and the regulatory bad year is the entire reason the model exists, and it comes from correlation alone.</p>
+        <p>The sign of the confidence term is worth pausing on, because it has been got wrong in this app before. Higher confidence means a LARGER positive inverse normal, which means MORE defaults. If a reading of the formula has the 99.9% term making things look safer, the reading is inverted.</p>`,
+      },
+      {
+        label: "Its siblings, and what each one buys",
+        html: `<p>Vasicek's model is one of three ways R26 offers for getting a loss distribution, and they are easiest to hold apart by what each one treats as the source of the uncertainty.</p>
+        <p><strong>Vasicek</strong> puts the uncertainty in a shared economic factor and asks for a percentile of the default RATE. Its distinctive advantage is that this yields a closed form, so no simulation is required, which is why regulators could write it into a capital rule.</p>
+        <p><strong>CreditRisk+</strong> puts the uncertainty in the NUMBER of defaults and models it directly as a distribution. It is binomial if defaults are independent, Poisson when the probability is small and the portfolio large, and negative binomial once the default rate itself is treated as uncertain and given a gamma distribution. Increasing that uncertainty fattens the right tail, which is the same phenomenon correlation produces in Vasicek, reached by a different route.</p>
+        <p><strong>CreditMetrics</strong> widens the question from default to CREDIT MIGRATION, using a transition matrix so that a downgrade, not only a default, changes the portfolio's value.</p>
+        <p>Vasicek's known limitation is the flip side of what makes it tractable. A single common factor cannot express that two airlines are more alike than an airline and a software firm, and the model does not capture tail correlation, the tendency for correlations themselves to rise in a crisis. Both are reasons to reach for a richer model when you are not bound by a regulatory formula.</p>`,
+      },
+      {
+        label: "Where the number is actually used",
+        html: `<p>This is not a modelling curiosity. It is the arithmetic inside a legal capital requirement, and the connection is what makes the whole thing worth learning properly.</p>
+        <p>Under the Basel internal ratings-based approach, capital equals exposure at default times loss given default times the GAP between the worst-case default rate and the ordinary probability of default, adjusted for maturity. That subtraction is the point made in the first section, now in regulatory form: pricing is supposed to cover the expected loss, so capital covers only the unexpected part. The percentile the regulation asks for is 99.9%, which is where the plus 3.09 above comes from.</p>
+        <p>The same machinery is what R29 uses for a credit portfolio's value at risk and what R27 builds up factor by factor, so recognising it in its different costumes saves re-learning it three times. Whether a bank may use this formula with its own inputs at all, and what floors sit under the answer, is a separate question that belongs to the capital rules rather than to the model.</p>`,
+      },
+      {
+        label: "Traps",
+        html: `<ul>
+        <li><strong>Confusing WCDR with expected loss.</strong> WCDR is a high percentile of the DEFAULT RATE. Multiplying it by exposure and loss given default gives a percentile of LOSS, and capital is what remains once the expected part is subtracted from that.</li>
+        <li><strong>Believing diversification solves it.</strong> Diversification removes idiosyncratic risk and leaves the common factor untouched. That residual is what the formula prices, and no amount of adding loans reduces it.</li>
+        <li><strong>Reading the confidence term as reducing risk.</strong> At 99.9% the inverse normal is about plus 3.09, and it pushes the default rate UP.</li>
+        <li><strong>Treating correlation as an observable.</strong> It is proxied from asset or equity return correlations, and those are least stable exactly when the number matters.</li>
+        <li><strong>Mixing up the siblings.</strong> CreditRisk+ models the number of defaults, CreditMetrics models migrations as well as defaults, and Vasicek models the default rate through a shared factor.</li>
+        </ul>`,
+      },
+    ],
+  },
 ];

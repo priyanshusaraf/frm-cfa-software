@@ -250,9 +250,39 @@ R70 and R76 as the loop with a name attached, the cost of the exit (liquidity-ad
 the stressed multiple, and the square-root-of-T correction), a defence table where every
 liquidity rule is mapped to the turn it interrupts, and the traps.
 
-**Still open:** Vasicek/WCDR, the last candidate. It is a different shape from the other
-four, since it already HAS a Phase-2 authored deepDive on r26's formula; what it owes is a
-pass against the section 1a doctrine, which postdates it, rather than a new page.
+### Candidate 5, Vasicek / WCDR: BUILT 2026-07-27, as a shadowing layer
+
+The odd one out, and handled differently on purpose. A Phase-2 authored layer already
+existed on r26's formula (`terms[]` plus a beyond-exam `deepDive`), so what was owed was the
+section 1a pass, not a new page. The authored entry therefore SHADOWS the auto-detected
+concept of the same slug while keeping `kind: "formula"` and r26's exact formula name, so
+the existing formula block, five-symbol table and deepDive all still render UNDERNEATH the
+new sections. That ordering is the whole point: idea first, equation and symbol table as the
+consolidation after it.
+
+Eight sections build it problem-first: a thousand loans and the question capital actually
+asks, the independence assumption and the absurd near-zero answer it gives, borrowers
+failing together (the R28 wired-coins device reused, since it is the app's best-liked
+explanation), the one-shared-economy split that makes a closed form possible, the formula
+read as three moves (probability to threshold, shift for a bad economy, rescale and convert
+back) with the PD 1% / rho 0.2 / 99.9% worked case landing at about 14.6%, the siblings
+(CreditRisk+ and CreditMetrics) separated by what each treats as the source of uncertainty,
+where the number is actually consumed (the IRB subtraction), and the traps.
+
+Two deliberate guards. `N^-1(X)` at 99.9% is about PLUS 3.09 and the page says so explicitly,
+because an inverted reading of that exact term is a recorded past defect (CLAUDE.md section
+8.4); the arithmetic was re-checked here and reproduces 14.6%. And **"Vasicek" alone is NOT a
+link phrase**: in Book 1 the name is the interest-rate model (r08, r11, r13, r14), an
+unrelated object. Only the full name and the abbreviation are matched.
+
+### The sequencing candidate list is now CLOSED
+
+All five spec candidates are resolved: CVA, the Basel capital stack, the liquidity spiral
+and Vasicek/WCDR built; exposure metrics criterion-tested and rejected with its reason
+recorded. **Two of the spec's five spans were factually wrong against the source** and are
+corrected above (exposure metrics does not reach R59; the liquidity spiral runs through R70,
+R76 and R80, not the process readings R68, R71 and R73). A future candidate should be span-
+checked against the corpus and the source BEFORE it is written, not after.
 
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 

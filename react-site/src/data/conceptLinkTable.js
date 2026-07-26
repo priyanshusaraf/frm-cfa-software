@@ -131,6 +131,27 @@ export const conceptLinkTable = [
     "snippet": "Transactions liquidity and funding liquidity are taught as two definitions to keep apart. The examinable object is what happens when they stop being separate: each one worsens the other, leverage multiplies every turn,..."
   },
   {
+    "slug": "vasicek-worst-case-default-rate-wcdr",
+    "name": "Vasicek worst-case default rate (WCDR)",
+    "display": "Vasicek worst-case default rate (WCDR)",
+    "layer": "core",
+    "authored": true,
+    "homeReading": 26,
+    "selfContained": true,
+    "refs": [
+      21,
+      26,
+      27,
+      29,
+      59
+    ],
+    "linkPhrases": [
+      "worst-case default rate",
+      "one-factor Gaussian copula"
+    ],
+    "snippet": "One number answers the only question a capital rule really asks: in a bad year, not an average one, what fraction of this loan book defaults? Getting there needs one idea (a shared economy) and one piece of arithmetic,..."
+  },
+  {
     "slug": "information-ratio",
     "name": "Information ratio",
     "display": "Information ratio",
@@ -187,20 +208,6 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "The industry-standard legal document (introduced 1985, widely used since 1992, developed by the International Swaps and Derivatives Association) that governs bilateral OTC trades. It standardizes four things: (1)..."
-  },
-  {
-    "slug": "vasicek-worst-case-default-rate-wcdr",
-    "name": "Vasicek worst-case default rate (WCDR)",
-    "display": "Vasicek worst-case default rate (WCDR)",
-    "layer": "core",
-    "kind": "formula",
-    "homeReading": 26,
-    "refs": [
-      26,
-      29
-    ],
-    "linkPhrases": [],
-    "snippet": "This says: over horizon T, the worst default rate you'd expect at confidence level X, i.e., the default rate so bad it's only exceeded (1−X)% of the time, is a function of the average one-year probability of default..."
   },
   {
     "slug": "value-at-risk-var",
@@ -1070,21 +1077,6 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "Available stable funding (the part of a bank's funding base unlikely to disappear over a full year) must be at least as large as the stable funding its assets require. So the bank isn't relying on money that could..."
-  },
-  {
-    "slug": "one-factor-gaussian-copula-time-to-default",
-    "name": "One-factor Gaussian copula (time-to-default)",
-    "display": "One-factor Gaussian copula",
-    "layer": "core",
-    "kind": "concept",
-    "homeReading": 29,
-    "refs": [
-      29,
-      30,
-      59
-    ],
-    "linkPhrases": [],
-    "snippet": "Transforms non-normal times-to-default into standard normal variables via each firm's own marginal default distribution; the joint (bivariate normal) structure is the 'copula.' Correlation here is called the COPULA..."
   },
   {
     "slug": "peaks-over-threshold-pot-generalized-pareto",

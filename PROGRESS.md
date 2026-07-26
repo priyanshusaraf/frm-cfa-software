@@ -37,6 +37,18 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > against the source, since "effective EPE" appears nowhere in Book 3). Remaining candidates:
 > Vasicek/WCDR and the liquidity spiral.
 >
+> **SEQUENCING PAGES 3 AND 4, AND THE CANDIDATE LIST IS CLOSED (2026-07-27).**
+> `/concept/liquidity-spiral` runs one full turn of the transactions-liquidity /
+> funding-liquidity circuit that R64 names in a clause and nobody assembles, with leverage as
+> its gain control, liquidity black holes answering the "surely someone buys" objection, R70
+> and R76 as the loop with a name attached, and a defence table mapping every liquidity rule
+> to the turn it interrupts. `/concept/vasicek-worst-case-default-rate-wcdr` is handled
+> differently: it SHADOWS the auto-detected concept while keeping the existing formula block,
+> five-symbol table and beyond-exam deepDive rendering underneath eight new problem-first
+> sections, which is the section 1a pass the ledger recorded as owed. All five spec candidates
+> are now resolved (four built, exposure metrics rejected). Two of the spec's five candidate
+> spans turned out to be wrong against the source and are corrected in the ledger.
+>
 > **⏭ ACTIVE RESUME POINT (2026-07-25, sixteenth session):** the run is now driven by
 > `react-site/docs/superpowers/content-run-ledger.md` (position) + `content-run-protocol.md`
 > (procedure), entered by saying "continue" (see the block at the top of the root CLAUDE.md).
