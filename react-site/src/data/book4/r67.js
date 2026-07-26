@@ -20,7 +20,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Three liquidity management strategies",
+      title: "Liquidity management strategies",
       points: [
         "Asset conversion (asset liquidity management) — mostly smaller institutions. Hold a portfolio of genuinely liquid assets and convert pieces of it to cash as needs arise: Treasury bills (direct obligations of the U.S. or foreign governments), CDs, municipal bonds, interbank deposits, repurchase agreements, Eurocurrency loans, federal funds loans, and federal agency securities. A liquid asset must have a ready market, a stable price when sold, and be reversible (you can get the principal back with little risk of loss). Cost: you give up the earnings those assets would have generated (opportunity cost), you pay transaction costs to sell, and you risk having to sell in a down market — so the rule of thumb is to sell your lowest-profit-potential assets first, even though those are often the ones that make the balance sheet look strongest.",
         "Liability management (borrowed/purchased liquidity) — mostly larger institutions. Instead of holding a liquidity buffer in assets, borrow funds only when a need actually arises: jumbo negotiable CDs ($100,000+), repurchase agreement sales, Eurocurrency issuance, federal funds borrowing, the central bank discount window, and Federal Home Loan Bank (FHLB) advances. Advantage: you only borrow exactly what's needed, when it's needed, and can adjust the rate you're willing to pay up or down depending on urgency, leaving the asset portfolio untouched. Disadvantage: it's a riskier strategy because borrowing costs and credit availability both fluctuate with market conditions outside the bank's control.",
@@ -28,7 +28,7 @@ export default ({
       ]
     },
     {
-      title: "Four approaches to estimating liquidity requirements",
+      title: "Approaches to estimating liquidity requirements",
       points: [
         "Sources and uses of funds — track that deposit increases raise liquidity and loan increases drain it; forecast expected changes in deposits (driven by personal income growth, money supply growth, inflation, retail sales, money-market deposit yields) and expected changes in loans (driven by economic growth, corporate earnings, the spread between the prime rate and CD/commercial-paper rates), then take estimated ∆deposits − ∆loans to get a surplus (+) or deficit (−) for the period. A positive gap (sources > uses) is a surplus; a negative gap (uses > sources) is a deficit.",
         "Structure of funds — split every funding source into three buckets by how likely it is to be withdrawn: volatile/hot-money liabilities (highly rate-sensitive, high withdrawal likelihood — large CDs, Eurocurrency deposits, repo agreements, fed funds borrowings), vulnerable funds (a meaningful chunk likely to leave), and core deposits/stable funds (unlikely to move). Apply a reserve percentage to each bucket (e.g. 90% for hot money, 25% for vulnerable, 10% for core — these percentages vary by bank and are always given on the exam, not memorized) and sum to get the liability liquidity reserve; add a further allowance for potential future good loans (loans to creditworthy customers with legitimate needs) if the bank wants to be able to fund all future demand. Can be extended into best-case / most-likely-case / worst-case scenarios, each assigned a probability, with the expected liquidity requirement equal to the probability-weighted average of the scenario outcomes.",

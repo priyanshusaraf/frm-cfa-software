@@ -164,7 +164,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three routes to a default probability",
+      title: "Routes to a default probability",
       points: [
         "From financial STATEMENTS: Altman's Z-score runs five balance-sheet ratios (liquidity, cumulative profitability, operating profitability, market-based leverage, asset turnover) through empirically-fitted weights to produce one score, compared against fixed cutoffs.",
         "From historical RATING BEHAVIOR: a rating migration matrix reports the actual cumulative fraction of similarly-rated issuers that defaulted by each future year; subtracting consecutive years isolates the marginal (single-year) default probability.",

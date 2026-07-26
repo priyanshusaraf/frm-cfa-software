@@ -154,14 +154,14 @@ export default ({
       ]
     },
     {
-      title: "Two causes of a nonzero cross-currency basis",
+      title: "Causes of a nonzero cross-currency basis",
       points: [
         "Decline in market liquidity: wider bid-ask spreads in the underlying spot/forward FX markets raise the transaction cost of executing the CIP arbitrage, eating into or eliminating the theoretical profit.",
         "Risk premia: rising counterparty credit risk (the chance your FX-swap or basis-swap counterparty fails) and rising sovereign credit risk (measured via sovereign CDS spreads on the government bonds used in the arbitrage) — even small increases matter a lot when hedging demand for one currency is large."
       ]
     },
     {
-      title: "Three demand sources for the basis opening up post-crisis",
+      title: "Demand sources for the basis opening up post-crisis",
       points: [
         "Banks hedging currency mismatches on their own balance sheets using FX swaps.",
         "Institutional investors (insurers, banks) hedging foreign-currency risk in their investment portfolios using FX swaps.",
@@ -179,7 +179,7 @@ export default ({
       ]
     },
     {
-      title: "Three channels banks used to fund USD asset growth",
+      title: "Channels banks used to fund USD asset growth",
       points: [
         "Borrow in domestic currency, convert to USD at spot, and use the proceeds to buy the USD asset.",
         "Convert domestic-currency liabilities into USD via an FX swap.",
@@ -199,7 +199,7 @@ export default ({
       ]
     },
     {
-      title: "Two structural benefits of the Fed's swap-line network",
+      title: "Structural benefits of the Fed's swap-line network",
       points: [
         "Only the Fed can create unlimited USD — a capability no other central bank has for the dollar, making the Fed uniquely positioned as an international backstop (and a template later referenced for other currencies).",
         "The network created no counterparty credit risk for the Fed, because every swap line was fully collateralized by the foreign central bank's own currency — day-to-day credit monitoring of individual foreign banks stayed the job of the foreign central bank, not the Fed."

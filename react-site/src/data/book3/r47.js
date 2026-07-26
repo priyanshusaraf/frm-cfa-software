@@ -91,7 +91,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Five areas of cyber governance",
+      title: "Areas of cyber governance",
       points: [
         "Cybersecurity strategy: whether a defined, board-reviewed strategy exists and aligns with overall business strategy; three regulatory approaches exist (regulator sets requirements / bank writes its own / regulator reviews existing IT strategy).",
         "Management roles and responsibilities: board and senior-management accountability, often (but not mandatorily) organized around the three-lines-of-defense model; supervision tends to focus on lines 1 and 2, which can weaken the model's effectiveness.",
@@ -101,7 +101,7 @@ export default ({
       ]
     },
     {
-      title: "Four areas of cyber risk management & response",
+      title: "Areas of cyber risk management & response",
       points: [
         "Supervision of cyber-resilience: reviews triggered by a bank's own risk assessments, inspection findings, or actual incidents; jurisdictions increasingly engage industry via conferences and discussion papers to influence behavior.",
         "Information security controls: mapping and classifying assets, real-time threat detection, penetration testing (simulated attacks to find weaknesses), often voluntarily funded by the institutions themselves.",
@@ -110,7 +110,7 @@ export default ({
       ]
     },
     {
-      title: "Five information-sharing channels",
+      title: "Information-sharing channels",
       points: [
         "Bank-to-bank: trust-dependent, built incrementally (small group first, then wider); only Brazil, Japan, and Saudi Arabia mandate it.",
         "Bank-to-regulator: usually mandated; one of the three most common channels; purposes include systemic risk monitoring and improving regulatory oversight.",

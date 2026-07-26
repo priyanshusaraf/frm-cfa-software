@@ -105,7 +105,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three cybersecurity frameworks",
+      title: "Cybersecurity frameworks",
       points: [
         "NIST CSF: voluntary, five-step process (identify, protect, detect, respond, recover); U.S. government-originated, generalized from critical infrastructure to any business.",
         "CIS Critical Security Controls: a detailed, continuously updated technical checklist firms use to build or review their cybersecurity protocol; complements NIST or feeds into ISO 27001 certification.",
@@ -146,7 +146,7 @@ export default ({
   lists: [
     {
       id: "frameworks",
-      title: "Three cybersecurity frameworks",
+      title: "Cybersecurity frameworks",
       axis: "Each framework sits one layer more concrete than the last: process, then technical checklist, then certifiable standard.",
       items: [
         "NIST CSF: voluntary five-step process (identify, protect, detect, respond, recover)",

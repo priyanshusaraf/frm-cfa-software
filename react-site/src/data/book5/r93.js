@@ -21,7 +21,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The two CoCo design features (every CoCo has both)",
+      title: "CoCo design features (every CoCo has both)",
       points: [
         "Trigger — mechanical: activates automatically when a predefined capital ratio (book or market value of capital over risk-weighted assets, RWAs) breaches a set threshold; purely rules-based, no judgment involved.",
         "Trigger — discretionary (point of nonviability, PONV): activates when a supervisor or regulator judges the bank has weakened to the point that, without conversion, it would become insolvent or non-viable; Basel III REQUIRES this trigger for a CoCo to count as regulatory capital, even if a mechanical trigger is also present.",
@@ -37,7 +37,7 @@ export default ({
       ]
     },
     {
-      title: "Three reasons large, well-capitalized banks favor issuing CoCos",
+      title: "Reasons large, well-capitalized banks favor issuing CoCos",
       points: [
         "Low conversion risk: because the issuing bank is healthy, the probability the trigger ever fires is low, which lets the bank price the CoCo more cheaply (a yield benefit to the issuer, still a premium yield to the investor versus plain bonds).",
         "Senior bondholder benefit: CoCos absorb losses before senior debt does, so senior bondholders effectively get extra protection, which the issuing bank can point to when marketing its senior paper.",
@@ -53,7 +53,7 @@ export default ({
       ]
     },
     {
-      title: "Five problems the Credit Suisse CoCo write-down created (per the source's 'Lessons Learned')",
+      title: "Problems the Credit Suisse CoCo write-down created (per the source's 'Lessons Learned')",
       points: [
         "It caught investors by surprise — CDS spread analysis shows the market did not price in a write-down until the day before the takeover.",
         "It caused negative market reaction because participants viewed it as disregarding the accepted creditor hierarchy (bondholders normally senior to shareholders in distress).",

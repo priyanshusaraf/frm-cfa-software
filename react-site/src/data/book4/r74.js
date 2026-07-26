@@ -36,7 +36,7 @@ export default ({
       ]
     },
     {
-      title: "Three deposit pricing methods",
+      title: "Deposit pricing methods",
       points: [
         "Cost-plus pricing — unit price = operating expense per unit of service + allocated overhead expense + planned profit margin. Purely a cost-recovery formula; ignores what the funds raised could actually earn if invested. Worked example from the source: a demand deposit account costing $2.50/month to service, plus $1.25 allocated overhead, plus a $0.25 target profit margin, is priced at $4.00/month.",
         "Marginal-cost pricing — compares the marginal cost of raising the next dollar of deposits to the marginal yield earned reinvesting it (e.g., in loans). The economically 'correct' approach because it's forward-looking, but the trap is that repricing usually applies to the WHOLE deposit base, not just the incremental amount, which can make the true marginal cost far higher than the headline rate increase suggests.",

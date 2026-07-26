@@ -145,7 +145,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four weighting improvements to plain historical simulation, and the flaw each one targets",
+      title: "Weighting improvements to plain historical simulation, and the flaw each one targets",
       points: [
         "Age-weighted (hybrid): weight decays geometrically with age, \\(w(i)=\\lambda^{i-1}(1-\\lambda)/(1-\\lambda^{n})\\). Fixes ghost effects and staleness by letting influence fade gradually instead of vanishing at the n-th day cliff.",
         "Volatility-weighted (Hull-White): rescale each historical return by \\((\\sigma_{T}/\\sigma_{t})\\). Fixes regime mismatch, so a return from a calm (or volatile) historical day is restated in today's volatility terms; the calculation procedure itself is unchanged, only the input data is.",

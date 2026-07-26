@@ -179,7 +179,7 @@ export default ({
       ]
     },
     {
-      title: "Nine investment-security selection factors",
+      title: "Investment-security selection factors",
       points: [
         "Expected rate of return — YTM for held-to-maturity securities, holding period yield (HPY) for securities sold early or with no fixed maturity.",
         "Tax exposure — after-tax comparison of taxable vs tax-exempt bonds, tax-equivalent yield, bank-qualified bonds, tax swapping, portfolio shifting.",
@@ -194,7 +194,7 @@ export default ({
       ]
     },
     {
-      title: "Five maturity strategies",
+      title: "Maturity strategies",
       points: [
         "Ladder (spaced-maturity) — equal weight across every maturity bucket up to a cap (e.g., 20% each in 1–5 year buckets); simple, steady liquidity, not income-maximizing.",
         "Front-end load — concentrate in short-term securities (e.g., 100% in ≤2yr); maximizes liquidity, minimizes yield.",
@@ -204,7 +204,7 @@ export default ({
       ]
     },
     {
-      title: "Two maturity management tools",
+      title: "Maturity management tools",
       points: [
         "Yield curve — shape signals rate expectations (downward-sloping = expected rate declines); enables the carry trade (borrow short/cheap, invest long/rich) and riding the yield curve (sell after a pre-maturity price spike, reinvest longer).",
         "Duration — present-value-weighted average time to receive all cash flows; measures price sensitivity to rate changes; matching duration to the planned holding period immunizes the portfolio by offsetting price risk against reinvestment risk."

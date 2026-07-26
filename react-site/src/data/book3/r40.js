@@ -128,7 +128,7 @@ export default ({
       ]
     },
     {
-      title: "The seven Basel II event-type categories, with a typical example and its frequency/severity profile",
+      title: "Basel II event-type categories, with a typical example and its frequency/severity profile",
       points: [
         "Internal fraud (IF): employee defalcation, rogue trading bypassing controls. Low frequency, low severity.",
         "External fraud (EF): credit card fraud, hacking losses. High frequency, low severity.",
@@ -140,7 +140,7 @@ export default ({
       ]
     },
     {
-      title: "Five characteristics that make op risk hard to manage",
+      title: "Characteristics that make op risk hard to manage",
       points: [
         "Heterogeneous: a huge range of dissimilar event types resists a single clean statistical model.",
         "Idiosyncratic: diffuse and firm-specific; cannot be centralized or fully hedged away; residual risk always remains.",
@@ -150,7 +150,7 @@ export default ({
       ]
     },
     {
-      title: "The four risk types operational risk pulls in",
+      title: "Risk types operational risk pulls in",
       points: [
         "Legal risk (always included): loss from the enforcement or nonfulfillment of contracts. Most of it originates in EPWS (Type 3) and EDPM (Type 7) events.",
         "Compliance risk (always included): narrower than legal risk, specifically failing to adhere to applicable policies and procedures. Shows up in CPBP (Type 4) events, and the fines attached to it have risen enough over the past decade that many firms now run dedicated compliance departments.",
@@ -169,7 +169,7 @@ export default ({
       ]
     },
     {
-      title: "The five elements of operational resilience",
+      title: "Elements of operational resilience",
       points: [
         "Business continuity: minimizing disruption to business processes.",
         "Key (important) services: identifying and protecting the most critical services so they continue with little or no disruption.",
@@ -206,7 +206,7 @@ export default ({
     },
     {
       id: "basel-event-types",
-      title: "Seven Basel II event-type categories",
+      title: "Basel II event-type categories",
       axis: "The order follows Basel's own Type 1 through Type 7 numbering, the fixed reference sequence used industry-wide so loss events are classified and reported consistently from firm to firm.",
       items: [
         "Internal fraud (IF): employee defalcation, rogue trading; low frequency, low severity",
@@ -220,7 +220,7 @@ export default ({
     },
     {
       id: "resilience-elements",
-      title: "Five elements of operational resilience",
+      title: "Elements of operational resilience",
       axis: "The elements move from broad goal to specific mechanics to continuous improvement: name the aim, narrow to what matters most, quantify how much disruption is tolerable, execute the response, then close the loop by learning from it.",
       items: [
         "Business continuity: minimizing disruption to business processes",

@@ -125,14 +125,14 @@ export default ({
       ]
     },
     {
-      title: "Two routes to risk-weighted assets (RWA)",
+      title: "Routes to risk-weighted assets (RWA)",
       points: [
         "Standardized approach: a supervisory authority prescribes fixed, predetermined risk weights per asset category. Easy for any bank to apply, but because the weights are set externally (not tailored to one bank's actual portfolio), they are set conservatively high, usually costlier in capital terms than a bank's true risk would justify.",
         "Internal ratings-based (IRB) approach: the bank itself estimates PD and LGD per borrower using its own historical data and internal credit scoring, then feeds those into the asymptotic single risk factor (ASRF) model, which assumes the loan portfolio is diversified enough that idiosyncratic (firm-specific) risk has been diversified away, leaving only systematic (market-wide) risk to capitalize against."
       ]
     },
     {
-      title: "Three families of default-prediction models",
+      title: "Families of default-prediction models",
       points: [
         "Judgmental (qualitative/expert-system): the 5C framework (Character, Capacity, Capital, Collateral, Conditions) relies on expert judgment rather than statistics; best when little historical data exists (e.g. one-off project finance deals); weak on validation, speed, and consistency.",
         "Empirical: mines historical loan data (accepted vs. rejected, good-standing vs. defaulted) for statistical patterns, increasingly via machine learning; works for both consumer and corporate loans, is transparent and testable, but can fail in unprecedented conditions its training data never saw.",

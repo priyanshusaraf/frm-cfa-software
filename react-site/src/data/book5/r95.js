@@ -124,7 +124,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Three self-learning-model focus areas (ethical concerns)",
+      title: "Self-learning-model focus areas (ethical concerns)",
       points: [
         "Fraud detection / AML — self-learning AI adapts as fraud tactics evolve and reduces false alert flags, but the same adaptiveness makes past decisions harder to explain.",
         "Trading models — algorithmic trading and robo-advising make capital allocation decisions with low explainability to stakeholders, so the outcome is less trustworthy without a way to review the process.",
@@ -151,7 +151,7 @@ export default ({
       ]
     },
     {
-      title: "Two XAI (explainable AI) approaches",
+      title: "XAI (explainable AI) approaches",
       points: [
         "Interpretable-by-design — build the model itself to be inherently simple and understandable; the flaw is that this level of simplification is usually insufficient for genuinely complex real-world relationships.",
         "Post-hoc approaches (LIME, SHAP) — build a second, separate approximation model that uses game-theory-based methods to interpolate what the original complex model was likely doing; makes the model less opaque (not fully transparent), at the cost of significant extra compute."

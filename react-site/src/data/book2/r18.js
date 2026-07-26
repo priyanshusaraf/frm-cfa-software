@@ -20,7 +20,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three lines of defense",
+      title: "Lines of defense",
       points: [
         "1st line, business owners: originate, price, and manage credit risk day to day; they own the risk they create.",
         "2nd line, enterprise risk management, compliance, and legal: independently monitor and oversee the 1st line's risk-taking, and establish the guidelines, policies, and limits everyone else must operate within.",
@@ -28,7 +28,7 @@ export default ({
       ]
     },
     {
-      title: "The four GSLO pillars of good governance",
+      title: "GSLO pillars of good governance",
       points: [
         "Guidelines: written credit policies (risk standards) defining how transactions must be conducted; must be understandable, concise, precise, and accessible, and are owned/maintained by the CRO's office.",
         "Skills: authority is delegated only to people with the proper expertise; delegation runs in two steps: (1) assign risk parameters (exposure, credit quality, tenor) to the transaction, then (2) route it to the approval level matched to that risk.",
@@ -37,7 +37,7 @@ export default ({
       ]
     },
     {
-      title: "The three processes that generate credit risk",
+      title: "Processes that generate credit risk",
       points: [
         "Credit origination: the point at which a new exposure is created; originators are incentivized by volume and margin, which can push them toward riskier deals if unchecked.",
         "Credit risk assessment: the independent evaluation of how risky a proposed transaction actually is, before it is approved.",
@@ -45,7 +45,7 @@ export default ({
       ]
     },
     {
-      title: "The three parameters of any credit-sensitive transaction",
+      title: "Parameters of any credit-sensitive transaction",
       points: [
         "Amount of exposure: how much the organization stands to lose; the raw dollar size of the position.",
         "Credit quality: the creditworthiness of the counterparty, i.e. how likely they are to default.",

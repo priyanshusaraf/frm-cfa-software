@@ -123,7 +123,7 @@ export default ({
       ]
     },
     {
-      title: "Five characteristics that determine whether a product can be cleared",
+      title: "Characteristics that determine whether a product can be cleared",
       points: [
         "Standardization: the CCP is legally liable for all cash flows, so products (e.g. CDS) must be standardized before clearing, and standardization also enables netting of similar contracts.",
         "Complexity: exotic derivatives are hard to value reliably even if standardized, so only non-exotic, less complex derivatives can be cleared (accurate valuation drives correct initial/variation margin).",

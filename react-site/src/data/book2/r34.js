@@ -206,7 +206,7 @@ export default ({
       ]
     },
     {
-      title: "Four motivations for managing collateral",
+      title: "Motivations for managing collateral",
       points: [
         "Reduce credit exposure: enabling more trading capacity with a given counterparty.",
         "Enable trading at all: some counterparties (e.g., below a rating threshold) can only be traded with on a collateralized basis.",
@@ -223,7 +223,7 @@ export default ({
       ]
     },
     {
-      title: "The six risks collateralization itself introduces",
+      title: "Risks collateralization itself introduces",
       points: [
         "Market risk: adverse market moves since the last collateral posting leave a temporary gap; small compared to being fully uncollateralized, but hard to hedge/quantify.",
         "Operational risk: missed collateral calls, failed deliveries, computer/human error, or fraud in the collateral process itself.",

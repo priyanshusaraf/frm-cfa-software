@@ -105,7 +105,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four key investor-protection regulations",
+      title: "Key investor-protection regulations",
       points: [
         "MiFID (2004 enacted, 2007 implemented, EU): broad business/organizational conduct plus disclosure and reporting requirements to prevent market abuse.",
         "MiFID II / MiFIR (2014, EU): the post-crisis successor to MiFID, adding rules on advisor pay, conflicts of interest, fair communication with customers, independent investment advice, product governance, and best execution.",
@@ -114,14 +114,14 @@ export default ({
       ]
     },
     {
-      title: "The two categories of regulatory compliance risk",
+      title: "Categories of regulatory compliance risk",
       points: [
         "Suitability, disclosure, and fiduciary responsibilities: did the firm recommend appropriate products, disclose what mattered, and act in the client's interest?",
         "Improper business and market practices: did the firm's conduct in the market itself (manipulation, unfair dealing) cross a line, independent of any single client relationship?"
       ]
     },
     {
-      title: "The three case-study fines",
+      title: "Case-study fines",
       points: [
         "UBS, $11.15 billion, 2008: misrepresented securities as safe when they carried significant liquidity risk (largest single-organization penalty on record here; a suitability/disclosure failure).",
         "JPMorgan, $920 million, 2020, fined by the CFTC: market manipulation and deceptive conduct via spoofing over 8+ years (an improper market-practice failure).",
@@ -133,7 +133,7 @@ export default ({
   lists: [
     {
       id: "regulations",
-      title: "Four investor-protection regulations, in order",
+      title: "Investor-protection regulations, in order",
       axis: "The list runs EU pair then US pair, and within each jurisdiction from broad conduct rule to sharper successor: MiFID's broad conduct rules get sharpened by MiFID II, then the Dodd-Frank pair handles the crisis cleanup, ending on the Volcker Rule's outright ban.",
       items: [
         "MiFID (2004/2007, EU): broad business conduct and disclosure rules to prevent market abuse.",
@@ -144,7 +144,7 @@ export default ({
     },
     {
       id: "fines",
-      title: "Three case-study fines, largest to smallest",
+      title: "Case-study fines, largest to smallest",
       axis: "Order by fine size, which tracks how far each violation strayed from honest dealing: outright deception (UBS) costs the most, active manipulation (JPMorgan) costs less, and a fiduciary lapse with no lie or manipulation (Deutsche Bank) costs least.",
       items: [
         "UBS, $11.15 billion (2008): misrepresented securities as safe.",

@@ -114,7 +114,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three parts of a model",
+      title: "Parts of a model",
       points: [
         "Information inputs: the data and assumptions fed into the model; garbage in, garbage out applies directly here.",
         "Processing: the statistical and mathematical logic that converts those inputs into a quantitative estimate.",
@@ -122,7 +122,7 @@ export default ({
       ]
     },
     {
-      title: "Two ways model risk arises",
+      title: "Ways model risk arises",
       points: [
         "Error (execution risk): the model has significant errors and produces faulty outputs, from bad coding to bad input data to an over-simplified design.",
         "Misuse (conceptual error): the model is not used properly, not used for its intended purpose, or applied out of the context/environment it was designed and calibrated for."
@@ -150,7 +150,7 @@ export default ({
       ]
     },
     {
-      title: "Three elements of model validation",
+      title: "Elements of model validation",
       points: [
         "Conceptual soundness: documentation review, live testing, single- and multi-variable sensitivity analysis, and stress testing.",
         "Ongoing monitoring: process verification (data/code integrity, override review) plus benchmarking (comparison against other models/data).",
@@ -162,7 +162,7 @@ export default ({
   lists: [
     {
       id: "model-parts",
-      title: "Three parts of a model, in data-flow order",
+      title: "Parts of a model, in data-flow order",
       axis: "Order follows the flow of data through the model itself: raw inputs go in first, get transformed by processing, and only then become a report a human can act on.",
       items: [
         "Information inputs: the data and assumptions fed in.",
@@ -172,7 +172,7 @@ export default ({
     },
     {
       id: "validation-elements",
-      title: "Three elements of model validation, in sequence",
+      title: "Elements of model validation, in sequence",
       axis: "Order moves through the model's lifecycle: first ask whether the design itself is sound, then check whether it is still behaving correctly day to day, and only then confirm whether its estimates actually matched what happened.",
       items: [
         "Conceptual soundness: documentation review, live testing, sensitivity analysis, stress testing.",

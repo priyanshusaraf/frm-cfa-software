@@ -190,7 +190,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Exposure metric family (LO 36.a)",
+      title: "Exposure metric family",
       points: [
         "Expected mark-to-market: the plain average value of the trade at a future date. It can be positive or negative.",
         "Expected exposure (EE): the amount expected to be lost given positive mark-to-market and counterparty default. Only the positive part of the distribution counts, so EE is never below zero and is always at least as large as expected mark-to-market.",
@@ -202,7 +202,7 @@ export default ({
       ]
     },
     {
-      title: "Credit exposure compared to VaR (LO 36.b)",
+      title: "Credit exposure compared to VaR",
       points: [
         "Application: exposure is defined for pricing and for risk management, VaR only for risk management, so exposure may need two different calculations of the same position.",
         "Time horizon: VaR runs over days, exposure over years, which is why drift, underlying volatility and co-dependence matter for exposure and are irrelevant to VaR.",
@@ -211,7 +211,7 @@ export default ({
       ]
     },
     {
-      title: "Four factors shaping a credit exposure profile (LO 36.c)",
+      title: "Factors shaping a credit exposure profile",
       points: [
         "Future uncertainty: contracts paying once at maturity, such as foreign exchange forwards and forward rate agreements, accumulate uncertainty about that single final value all the way to the end.",
         "Periodic cash flows: regular payments such as bond coupons or swap legs settle part of the position and cap the accumulation, unless the amounts are themselves variable, as on a floating leg.",
@@ -220,7 +220,7 @@ export default ({
       ]
     },
     {
-      title: "Exposure profile shapes by product (LO 36.d, 36.e)",
+      title: "Exposure profile shapes by product",
       points: [
         "Bonds, loans and repos: roughly flat at notional. A fixed-coupon bond picks up a little extra from interest-rate risk when rates fall; a floating-rate loan can decline over time through prepayments.",
         "Interest rate swaps: a peak in the middle, from future payment uncertainty balanced against roll-off risk as payments settle.",
@@ -232,7 +232,7 @@ export default ({
       ]
     },
     {
-      title: "Five steps in the margin period of risk (LO 36.h)",
+      title: "Steps in the margin period of risk",
       points: [
         "Valuation and margin call: the time to compute current exposure and the market value of collateral, which is what establishes whether a call is valid.",
         "Receiving collateral: the gap between the counterparty receiving the request and actually releasing the collateral.",
@@ -242,7 +242,7 @@ export default ({
       ]
     },
     {
-      title: "Five collateral parameters that create residual exposure",
+      title: "Collateral parameters that create residual exposure",
       points: [
         "Margin period of risk: the delay itself is a window of elevated, uncollateralized exposure.",
         "Threshold: an exposure level below which no collateral is called at all, so that amount stays permanently uncovered.",
@@ -252,7 +252,7 @@ export default ({
       ]
     },
     {
-      title: "Five differences between funding and credit exposure (LO 36.g)",
+      title: "Differences between funding and credit exposure",
       points: [
         "Defining value: subjective for credit exposure, since it depends on close-out assumptions. Objective for funding exposure, since it is present in non-default situations too.",
         "Margin period of risk: it assumes counterparty default and belongs to credit exposure. A funding delay assumes no default, so a funding value adjustment can be zero while the credit value adjustment is not.",
@@ -262,7 +262,7 @@ export default ({
       ]
     },
     {
-      title: "Four collateral segregation and rehypothecation scenarios (LO 36.i)",
+      title: "Collateral segregation and rehypothecation scenarios",
       points: [
         "Cash that is not segregated: mitigates both counterparty risk and funding costs, because it is fully reusable.",
         "Securities that can be rehypothecated: mitigates both, provided the haircuts are large enough to cover the securities' own price risk.",

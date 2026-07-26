@@ -144,7 +144,7 @@ export default ({
       ]
     },
     {
-      title: "The three lines of defense (plus two things that sit outside them)",
+      title: "Lines of defense (plus two things that sit outside them)",
       points: [
         "First line: business line staff and management: primary decision-making authority, accountability, and responsibility for managing the risk/reward balance; designated risk owners identify, measure, mitigate, and report on their own risks.",
         "Second line: risk oversight functions (operational, market, credit risk management; often compliance, legal, IT): measures risk types, builds risk tools/methods/models, continuously monitors the effectiveness of the ERM framework.",
@@ -170,7 +170,7 @@ export default ({
       ]
     },
     {
-      title: "The three stress-testing approaches",
+      title: "Stress-testing approaches",
       points: [
         "Parameter (model) testing: changes parameter values to test model robustness; quantitative, applied to measurable risks; used both in formal stress tests and for strategic/business planning shock estimates.",
         "Macroeconomic (macro) testing: regulators issue annual macro shock scenarios (GDP, unemployment, inflation swings) banks use to evaluate solvency/resilience; holistic, blending quantitative and qualitative methods across both measurable and immeasurable risk.",
@@ -178,7 +178,7 @@ export default ({
       ]
     },
     {
-      title: "The three modules of an operational risk stress-testing framework",
+      title: "Modules of an operational risk stress-testing framework",
       points: [
         "Expected nonlegal loss forecast module: quantitative model output (loss forecasts per risk type, under baseline and adverse macro scenarios) plus expert refinement using industry/controls/entity-specific knowledge.",
         "Legal loss module: forecasts losses from immaterial litigation, above-threshold current cases, and future litigation; complicated by the lag between the triggering macro event and the eventual legal loss.",

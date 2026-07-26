@@ -94,7 +94,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four goals of the December 2017 reforms",
+      title: "Goals of the December 2017 reforms",
       points: [
         "Expand the robustness and sensitivity of the standardized approach (SA) for credit risk, CVA risk, and operational risk — make the rule-based option good enough that banks lose less accuracy by using it.",
         "Restrict the use of internal model approaches for those same three risk types — credit, CVA, and operational risk — narrowing where a bank's own model can substitute for the standard rule.",

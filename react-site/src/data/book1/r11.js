@@ -158,7 +158,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Three steps to price an option on a fixed-income instrument via backward induction",
+      title: "Steps to price an option on a fixed-income instrument via backward induction",
       points: [
         "Step 1, price the underlying bond at every node using the tree's projected interest rates, adding any coupon before discounting at each step.",
         "Step 2, calculate the derivative's intrinsic value at each node at maturity (e.g., max(0, bond price − strike) for a call).",
@@ -166,7 +166,7 @@ export default ({
       ]
     },
     {
-      title: "Two equivalent ways to build a risk-neutral (arbitrage-free) tree",
+      title: "Equivalent ways to build a risk-neutral (arbitrage-free) tree",
       points: [
         "Method 1, adjust the rates: start from spot/forward rates off the current yield curve, keep 50/50 probabilities, and shape the tree's rates so the model price matches the market price of an on-the-run bond.",
         "Method 2, adjust the probabilities: take the tree's rates as given and solve for risk-neutral probabilities (not 50/50) that make the model price match the market price.",
@@ -174,7 +174,7 @@ export default ({
       ]
     },
     {
-      title: "Three reasons Black-Scholes-Merton cannot be used to value bonds",
+      title: "Reasons Black-Scholes-Merton cannot be used to value bonds",
       points: [
         "No upper price bound: BSM assumes the underlying's price is unbounded, but a bond has a maximum value, reached when rates hit zero (a zero-coupon bond is worth par, a coupon bond is worth the sum of remaining coupons plus par).",
         "Constant risk-free rate: BSM assumes the risk-free rate never changes, but a bond's entire payoff and value are driven by changing rates. A self-contradiction.",

@@ -125,7 +125,7 @@ export default ({
       ]
     },
     {
-      title: "Two loss scenarios for the non-defaulting party under an ISDA close-out",
+      title: "Loss scenarios for the non-defaulting party under an ISDA close-out",
       points: [
         "Scenario 1: non-defaulting party's value is positive and exceeds the defaulting party's posted collateral: it becomes an unsecured creditor for the shortfall (value owed minus collateral held).",
         "Scenario 2: the defaulting party's value is positive but less than the collateral it posted to the non-defaulting party: the non-defaulting party owes back the excess collateral, becoming an unsecured creditor for that excess amount owed."
@@ -139,7 +139,7 @@ export default ({
       ]
     },
     {
-      title: "Three sources of default correlation",
+      title: "Sources of default correlation",
       points: [
         "External events: shocks that hit firms concentrated in the same geographic region or industry together.",
         "Economic conditions: overall macro conditions that push average default rates systematically higher or lower in some years than others.",

@@ -168,7 +168,7 @@ export default ({
       ]
     },
     {
-      title: "Three structural risk factors beyond PD/correlation",
+      title: "Structural risk factors beyond PD/correlation",
       points: [
         "Systematic risk: cannot be diversified away even in a well-spread pool; high pairwise correlation still threatens senior tranches.",
         "Tranche thinness: equity/mezzanine's 95% and 99% credit VaR sit close together, meaning once the tranche is breached the loss is typically severe.",

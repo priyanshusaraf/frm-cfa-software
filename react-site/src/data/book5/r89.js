@@ -129,7 +129,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The named hedge fund strategy universe (LO 91.e)",
+      title: "The named hedge fund strategy universe",
       points: [
         "Managed futures — systematic trend-following in bond/equity/commodity/currency futures, high leverage, no net long/short bias; payoff resembles a lookback straddle (captures the full swing of a big directional move).",
         "Global macro — discretionary directional bets on rates, FX, commodities, and stock indices; does best in EXTREME currency moves; both managed futures and global macro are 'asset allocation' strategies with low equity correlation.",
@@ -154,7 +154,7 @@ export default ({
       ]
     },
     {
-      title: "Landmark stress events showing convergence of risk factors (LO 91.g)",
+      title: "Landmark stress events showing convergence of risk factors",
       points: [
         "March–April 1994 (Fed rate-policy shock) — 7 of 10 DJCS style sub-indices lost money over two months; only short sellers and managed futures were spared (merger arb was positive in March, equity market neutral positive in April).",
         "August 1998 (pre-LTCM collapse) — 8 of 10 DJCS sub-indices had large losses, driven by market-wide liquidation of risky assets amplified by LTCM's own high leverage; short sellers and managed futures again avoided losses.",

@@ -130,7 +130,7 @@ export default ({
 
   breakdown: [
     {
-      title: "SVB's six specific risk exposures (LO 94.c)",
+      title: "SVB's six specific risk exposures",
       points: [
         "Deposit concentration — depositor base concentrated in startups, VCs, and PE firms in tech/life sciences, so withdrawal demand hit all at once when the industry hit trouble together.",
         "Type of deposits — large, ~94% uninsured (above FDIC limits); shifted from noninterest-bearing to interest-bearing in 2022, changing liability duration and worsening liquidity stress test results.",
@@ -141,7 +141,7 @@ export default ({
       ]
     },
     {
-      title: "Three MRIAs from the May 31, 2022 supervisory report (LO 94.d)",
+      title: "MRIAs from the May 31, 2022 supervisory report",
       points: [
         "Board effectiveness — board, management, and CRO never adequately shifted from RBO-level to LFBO-level (EPS) rigor, even after hiring consultants in 2020; the board lacked experience running a large financial institution.",
         "Risk management programs — no formal risk appetite standard, no root-cause tracking/reporting, no enterprise-wide policies/procedures or internal control framework, incentives disconnected from risk outcomes, underdeveloped talent acquisition and performance review.",
@@ -149,7 +149,7 @@ export default ({
       ]
     },
     {
-      title: "Six liquidity deficiencies found once SVB moved to LFBO review (LO 94.e)",
+      title: "Liquidity deficiencies found once SVB moved to LFBO review",
       points: [
         "Needed a plan to address shortfalls in liquidity stress testing and contingency funding.",
         "Internal audit function needed redesign to provide sufficient liquidity risk oversight.",

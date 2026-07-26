@@ -113,7 +113,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Seven transaction types that generate credit risk",
+      title: "Transaction types that generate credit risk",
       points: [
         "Lending: the lender is exposed to the borrower not repaying the loan.",
         "Leases: the lessor (asset owner, often financed with borrowed funds) is exposed to the lessee not making scheduled lease payments.",
@@ -125,7 +125,7 @@ export default ({
       ]
     },
     {
-      title: "Five sources of corporate credit risk",
+      title: "Sources of corporate credit risk",
       points: [
         "Account receivables: customers may fail or refuse to pay for goods delivered on credit; mitigated via insurance, factoring, or documentary credit.",
         "Short-term investments and bank deposits: the issuer of a short-term security, or the bank holding a deposit, may fail to pay; mitigated by diversifying deposits across banks.",
@@ -135,7 +135,7 @@ export default ({
       ]
     },
     {
-      title: "Three motivations for managing credit risk",
+      title: "Motivations for managing credit risk",
       points: [
         "Survival: avoiding large losses that could push the firm toward bankruptcy.",
         "Profitability: every credit loss avoided is profit preserved.",

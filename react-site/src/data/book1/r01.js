@@ -146,7 +146,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three ways to compute VaR",
+      title: "Ways to compute VaR",
       points: [
         "Historical simulation: sort n real historical P&L/return observations worst-to-best and read off the observation at rank (α×n)+1. Zero distributional assumption, but only as imaginative as the data you already have.",
         "Normal (parametric) VaR: assume P&L is normally distributed with mean μ and SD σ; VaR = −μ + σ×z_α, using z=1.65 (95%) or z=2.33 (99%). Needs only two numbers, but is only as good as the normality assumption.",

@@ -21,7 +21,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four transition risk drivers",
+      title: "Transition risk drivers",
       points: [
         "Climate policy changes: public rules and regulations to cut pollution and push the low-carbon transition — e.g., GHG emission taxes/limits or subsidies for electric vehicle production.",
         "Technology innovation and change: shifting toward greener, more energy-efficient technology — this raises near-term costs for adopters (e.g., carbon levies, retrofits) but can also create a competitive edge (e.g., better energy storage, climate-resilient infrastructure).",
@@ -48,7 +48,7 @@ export default ({
       ]
     },
     {
-      title: "The three factors that modulate severity: heterogeneity, amplifiers, mitigants",
+      title: "Factors that modulate severity: heterogeneity, amplifiers, mitigants",
       points: [
         "Geographical heterogeneity: exposure varies by climate driver intensity (temperature/precipitation variance, timing of low-carbon policy adoption), by economic/market structure (emerging markets more exposed than advanced economies; short-term resilience from low debt-to-GDP vs. long-term resilience from flexible FX, strong infrastructure, financial-sector stability, and low inequality), and by financial-system structure (small-bank-heavy systems lend more post-disaster but concentrate risk; less-liquid developing markets and underdeveloped derivatives markets raise exposure).",
         "Amplifiers (risk-enhancing): interacting risk drivers (concurrent policy shifts and multiple simultaneous climate events), financial amplifiers (feedback loops like reduced insurance supply making insurance scarcer and pricier later), and combined-channel impact (one event hitting a bank through both a macro and a micro channel at once, e.g., a hurricane damaging the economy and simultaneously the specific homeowner's creditworthiness).",

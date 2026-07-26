@@ -152,7 +152,7 @@ export default ({
       ]
     },
     {
-      title: "Three implications of conditioning the single-factor model on a realized market value",
+      title: "Implications of conditioning the single-factor model on a realized market value",
       points: [
         "Conditional PD moves away from unconditional PD whenever β or the realized market value is nonzero, a weak (negative) market realization means a smaller idiosyncratic shock is now enough to trigger default.",
         "Conditional standard deviation (√(1−β²)) is strictly less than the unconditional standard deviation of 1, conditioning on the common factor resolves exactly the systematic share of the uncertainty.",

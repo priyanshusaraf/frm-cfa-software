@@ -115,7 +115,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The five lines of business a dealer bank runs, and their liquidity risk",
+      title: "Lines of business a dealer bank runs, and their liquidity risk",
       points: [
         "OTC derivatives dealing — swaps, CDOs, CMOs, CDSs; dealer banks run a 'matched book,' offsetting each client position with an opposite position against another dealer, so one dealer's trouble transmits directly to every other dealer it faces.",
         "Repo financing — dealer banks fund large fractions of their own balance sheet (Treasuries, agency securities, corporate bonds, mortgages, CDOs) with overnight repo, requiring little incremental capital and enabling very high leverage.",
@@ -125,7 +125,7 @@ export default ({
       ]
     },
     {
-      title: "How a counterparty reduces exposure to a dealer bank whose solvency is in doubt (LO 71.b channels)",
+      title: "How a counterparty reduces exposure to a dealer bank whose solvency is in doubt",
       points: [
         "Borrowing from the dealer, or entering a new offsetting derivatives contract with the dealer, to net down existing exposure.",
         "Requesting that in-the-money options be revised to at-the-money strikes, so the counterparty receives a cash payout and reduces its remaining exposure.",
@@ -136,7 +136,7 @@ export default ({
       ]
     },
     {
-      title: "Policy measures proposed to alleviate dealer bank risk (LO 71.c)",
+      title: "Policy measures proposed to alleviate dealer bank risk",
       points: [
         "Central clearing counterparties (CCPs) for standardized OTC derivatives, to blunt the matched-book contagion channel (not effective for customized contracts like AIG's).",
         "Tri-party repo utilities / 'emergency banks' — proposed infrastructure with fewer conflicting incentives to manage orderly unwinds of a troubled dealer's repo book and set tighter standards for margin, documentation, and collateral substitution.",

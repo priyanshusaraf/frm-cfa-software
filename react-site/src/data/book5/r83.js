@@ -145,7 +145,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four criteria for an effective benchmark",
+      title: "Criteria for an effective benchmark",
       points: [
         "Well-defined: hosted by an independent index provider, verifiable and unambiguous (e.g., S&P 500 Index, Russell 1000 Index).",
         "Tradeable: it must be a real basket of securities you could directly invest in instead of the strategy being evaluated.",

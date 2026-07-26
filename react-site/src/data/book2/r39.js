@@ -164,7 +164,7 @@ export default ({
       ]
     },
     {
-      title: "Three SPV structures and their typical assets",
+      title: "SPV structures and their typical assets",
       points: [
         "Amortizing (pass-through): principal and interest paid to investors on a set amortization schedule as received; valued via weighted-average life (WAL), which requires prepayment assumptions. Used for residential mortgages, commercial mortgages, consumer loans.",
         "Revolving: principal is reinvested into new receivables during a revolving period rather than passed straight through; investors are repaid via controlled amortization or a lump-sum 'soft bullet' payment. Used for credit card debt, auto loans (short horizon, high prepayment rate).",

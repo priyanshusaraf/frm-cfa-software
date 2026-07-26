@@ -19,7 +19,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The five risk planning objectives",
+      title: "Risk planning objectives",
       points: [
         "Set expected return and volatility goals — specify acceptable VaR and tracking error for a period, and use scenario analysis to find potential sources of failure and how to respond to them.",
         "Define quantitative measures of success or failure — state concrete guidelines, e.g. an acceptable return on equity (ROE) or return on risk capital (RORC), so regulators and management can assess performance objectively.",
@@ -37,7 +37,7 @@ export default ({
       ]
     },
     {
-      title: "The three sources of growing risk consciousness",
+      title: "Sources of growing risk consciousness",
       points: [
         "Banks — lenders who fund investors care where those funds actually get invested, adding an external check on risk-taking.",
         "Boards, senior management, and plan sponsors — these groups have become more versed in risk oversight and more aware of the need to actively supervise asset management activities.",

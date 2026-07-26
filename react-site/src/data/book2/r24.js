@@ -153,7 +153,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four sources of country risk",
+      title: "Sources of country risk",
       points: [
         "Economic growth life cycle: mature economies/companies are less risky than young, early-growth ones, which have less cushion and bigger swings (2008: developed equities fell 25%-30%, emerging fell 50%+).",
         "Political risk: regime type and stability, split into continuity, corruption, physical violence, and nationalization/expropriation risk.",
@@ -162,7 +162,7 @@ export default ({
       ]
     },
     {
-      title: "Four components of political risk",
+      title: "Components of political risk",
       points: [
         "Continuous vs. discontinuous risk: democracies: low but constant risk from elections; autocracies: stable policy punctuated by rare, severe, hard-to-hedge shocks.",
         "Corruption: an implicit tax on firm profits, worsened by potential legal sanctions if caught paying bribes; ranked annually by Transparency International.",
@@ -171,7 +171,7 @@ export default ({
       ]
     },
     {
-      title: "Three reasons for local currency default despite the ability to print money",
+      title: "Reasons for local currency default despite the ability to print money",
       points: [
         "Gold standard (historical, pre-1971): currency had to be backed by gold reserves, capping how much a country could print.",
         "Shared currency: union membership (e.g., the euro) removes independent monetary policy; Greece could not unilaterally print euros during its 2015 crisis.",
@@ -189,7 +189,7 @@ export default ({
       ]
     },
     {
-      title: "Six factors influencing sovereign default risk",
+      title: "Factors influencing sovereign default risk",
       points: [
         "Level of indebtedness (debt/GDP), including obligations to a country's own citizens, not just foreign lenders, necessary context but not sufficient alone (the U.S., Japan, France are highly indebted yet highly rated).",
         "Pension and social-service commitments: grow with an aging population and raise risk independent of foreign debt.",

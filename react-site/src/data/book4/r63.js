@@ -147,7 +147,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Six sources of funding liquidity",
+      title: "Sources of funding liquidity",
       points: [
         "Cash and treasuries — safe, highly liquid, but low-yielding; a firm must balance liquidity against return.",
         "Retail and wholesale deposits — widely assumed stable, but actually unstable: customers rate-shop across institutions, and stress tends to hit the whole deposit market at once, not just one bank.",
@@ -158,7 +158,7 @@ export default ({
       ]
     },
     {
-      title: "Three funding-liquidity case studies",
+      title: "Funding-liquidity case studies",
       points: [
         "Northern Rock (2007) — funded long-term mortgages with short-term debt; a public emergency Bank of England borrowing request triggered a visible bank run (£2 billion withdrawn in a week); nationalized after emergency borrowing reached £25 billion.",
         "Ashanti Goldfields (1999) — short gold forwards hedging shareholders against falling gold prices; a surprise 15-central-bank gold-sale moratorium spiked gold prices over 25%; margin calls on the illiquid physical hedge couldn't be met in cash, forcing restructuring, a mine sale, and equity dilution.",
@@ -167,7 +167,7 @@ export default ({
       ]
     },
     {
-      title: "17 BIS principles for sound liquidity risk management",
+      title: "BIS principles for sound liquidity risk management",
       points: [
         "Fundamental principle — a comprehensive liquidity risk management framework with sufficient HQLA, overseen by supervisors.",
         "Governance (3 principles) — risk tolerance aligned to the bank's role/strategy; board-approved policies with ongoing senior-management reporting; liquidity costs/benefits priced into new products and performance measurement.",

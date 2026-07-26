@@ -110,7 +110,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four categories of funding liquidity",
+      title: "Categories of funding liquidity",
       points: [
         "Operational — funds needed to cover regular day-to-day operating activity (e.g., clearing payments); cannot be diverted to non-operational needs.",
         "Contingent — very high-quality liquid assets and credit facilities held specifically to satisfy liabilities under stress; this is what the stressed liquidity asset buffer measures.",
@@ -119,7 +119,7 @@ export default ({
       ]
     },
     {
-      title: "Six stress test design dimensions",
+      title: "Stress test design dimensions",
       points: [
         "Scope — start with the consolidated firm-wide test, then layer in parent-only, subsidiary, business-line, or business-unit tests where liquidity transfer restrictions or separate regulatory regimes make a consolidated view misleading.",
         "Scenario development — set a benchmark liquidity level first, then build historical scenarios (real but scarce data) and hypothetical scenarios (forward-looking, split into systemic-only, idiosyncratic-only, and combined shocks at varying severity), plus reverse stress tests that start from failure and work backward.",
@@ -130,7 +130,7 @@ export default ({
       ]
     },
     {
-      title: "Four outputs (deliverables) of a liquidity stress test",
+      title: "Outputs (deliverables) of a liquidity stress test",
       points: [
         "Stress testing assumptions — the general stress level, whether the scenario is systemic/idiosyncratic/combined, the contribution of each driver, and the resulting cash flows.",
         "Current liquidity position metrics — available liquidity versus net cash outflows, contrasting tactical (~30-day) survival with structural (~12-month) survival.",

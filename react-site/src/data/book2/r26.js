@@ -29,7 +29,7 @@ export default ({
       ]
     },
     {
-      title: "The four Credit VaR modeling families",
+      title: "Credit VaR modeling families",
       points: [
         "Vasicek's Gaussian copula model (also the Basel IRB engine): outputs WCDR(T,X), the worst-case default rate at confidence X over horizon T for a large, granular portfolio; captures defaults only; ρ is proxied by ROA/ROE correlation; no tail correlation (assumes ρ is constant, which understates how violently real defaults cluster in a crisis).",
         "CreditRisk+ (Credit Suisse, 1997): starts from an independent-default binomial, approximates it with a Poisson for the realistic case of small PD and many loans, then, because the true default rate itself is uncertain and can be modeled as following a gamma distribution, upgrades the Poisson to a negative binomial; captures defaults only; needs the least data of the four, since it ignores credit ratings and capital structure entirely and just tracks bankrupt/non-bankrupt outcomes.",

@@ -117,7 +117,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three volatility-curve shapes",
+      title: "Volatility-curve shapes",
       points: [
         "Smile (currency/FX options): implied vol higher at BOTH deep ITM and deep OTM strikes than ATM; caused by exchange-rate volatility jumping between regimes; weaker for long-dated options.",
         "Skew / smirk (equity options): implied vol falls as strike/price rises, so it is higher for low strikes, lower for high strikes; caused by the leverage effect (falling equity → higher leverage → genuinely higher volatility) and crashophobia (a fear-driven pricing premium on deep OTM puts, not a claim volatility itself rises).",
@@ -134,7 +134,7 @@ export default ({
       ]
     },
     {
-      title: "The two competing effects on delta when equity price changes",
+      title: "Competing effects on delta when equity price changes",
       points: [
         "Effect 1, movement along the existing smile curve: as equity price changes, \\(X/S_{0}\\) changes, moving the option to a different point on the same fixed curve. This is all standard BSM delta captures.",
         "Effect 2, the whole curve shifting up or down: because equity price and volatility are typically negatively correlated, a price move shifts the ENTIRE smile curve, not just the option's position on it. This effect dominates effect 1 in practice, and only the minimum variance delta (which is systematically lower than standard BSM delta) accounts for it."

@@ -40,7 +40,7 @@ export default ({
     },
     {
       id: "orm-report-components",
-      title: "Seven components of a comprehensive internal ORM report",
+      title: "Components of a comprehensive internal ORM report",
       axis: "The seven pieces move from what's already known (top risks, heatmap) through what's being watched right now (appetite, KRIs, events) to response and lookahead (action plans, emerging risks).",
       items: [
         "Prioritized risks and outlook: top-10 list with likelihood, severity, rating, outlook",
@@ -164,7 +164,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The five internal reporting audiences (LO 45.a)",
+      title: "Internal reporting audiences",
       points: [
         "Risk committee (board subcommittee): monitors the whole risk framework; gets summary exposures/trends plus detailed KRIs, large-event investigations, and event frequency/severity; issues directives to the ExCo.",
         "Audit committee (board subcommittee): third-level, independent oversight via internal audit (third line of defense), which reviews controls regularly and reports findings to the audit committee and ExCo.",
@@ -182,7 +182,7 @@ export default ({
       ]
     },
     {
-      title: "The seven components of a comprehensive internal ORM report",
+      title: "Components of a comprehensive internal ORM report",
       points: [
         "1) Prioritized risks and outlook: top-10 list ranked by inherent risk (before mitigation) and/or residual risk (after it), each with likelihood, severity, rating, and outlook (improving/worsening/status quo). Common entries: technology breakdowns, cyberattacks, data loss, regulatory and compliance breaches, and transformation-project risk.",
         "2) Heatmap and risk register: register built from RCSA exercises; heatmap plots likelihood vs. severity, colored red/amber/yellow/green.",
@@ -194,7 +194,7 @@ export default ({
       ]
     },
     {
-      title: "Reporting challenges specific to op risk (LO 45.c)",
+      title: "Reporting challenges specific to op risk",
       points: [
         "Cost-benefit test: cost of collecting data < its value; content aligns with priorities; reporting must be able to influence a decision.",
         "Event data asymmetry: a few high-severity, low-frequency events dominate; high-frequency low-severity events barely move the loss budget.",

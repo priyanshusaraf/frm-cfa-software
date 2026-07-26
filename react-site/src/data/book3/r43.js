@@ -229,7 +229,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The seven steps of operational resilience",
+      title: "Steps of operational resilience",
       points: [
         "1. Determine important business services (IBSs): narrow the focus to the services whose disruption would matter most, not every process the bank runs.",
         "2. Establish impact tolerances for each IBS: set the maximum disruption, often expressed in time and severity, the bank will tolerate before harm becomes unacceptable.",
@@ -241,7 +241,7 @@ export default ({
       ]
     },
     {
-      title: "The three steps of the FAIR model",
+      title: "Steps of the FAIR model",
       points: [
         "1. Determine risk factors and how they interrelate: break the scenario into its component drivers (asset at risk, threat, threat type, resulting loss if it occurs).",
         "2. Measure each factor: express each driver as a distribution (a range with likelihoods), not a single point guess.",
@@ -249,7 +249,7 @@ export default ({
       ]
     },
     {
-      title: "Three methods for combining internal and external loss data",
+      title: "Methods for combining internal and external loss data",
       points: [
         "Scaling: adjust external or historical losses for size (the bank's asset base) and inflation so they're comparable to the bank's current profile.",
         "Cut-off mix: below a threshold, rely on internal data; above it, where internal data thins out, blend in external data for a more reliable tail.",
@@ -257,7 +257,7 @@ export default ({
       ]
     },
     {
-      title: "Four concentric circles of the ORM framework (data → assessment → monitoring → learning)",
+      title: "Concentric circles of the ORM framework (data → assessment → monitoring → learning)",
       points: [
         "1. Incident and loss database: the raw record of what actually happened.",
         "2. Assessment through RCSAs: structured judgment about inherent and residual risk levels.",

@@ -24,7 +24,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Seven risk-measurement challenges for AI RMF",
+      title: "Risk-measurement challenges for AI RMF",
       points: [
         "Third-party data/systems add complexity — the AI provider may not disclose its risk metrics, or uses different ones than the deploying organization, and customers may lack adequate controls when interacting with that third-party data.",
         "New/incremental risks are hard to identify — by definition, little or nothing is known yet about emergent risks from a system that hasn't existed before.",
@@ -46,7 +46,7 @@ export default ({
       ]
     },
     {
-      title: "Seven characteristics of trustworthy AI",
+      title: "Characteristics of trustworthy AI",
       points: [
         "Valid and reliable — validated by unbiased testing for its planned use, reliable over time without failure, accurate (close to true values, considers Type I/II errors, generalizes beyond the test set), and robust/generalizable across different (including unplanned but reasonable) scenarios.",
         "Safe — does not endanger people, property, or the environment; safety is built in from the earliest design stage, incidents are documented and prioritized, and a \"kill switch\" may shut the system down on suspected misuse.",
@@ -58,7 +58,7 @@ export default ({
       ]
     },
     {
-      title: "Four AI RMF core functions",
+      title: "AI RMF core functions",
       points: [
         "Govern — establishes the internal risk-management culture and the process for determining, analyzing, and mitigating risk; pervasive across the other three functions, running top-down from the board (mission/values/risk tolerance) through senior management (culture) to lower management (connecting technical detail to policy); also covers third-party data/systems.",
         "Map — sets up risk framing: establishes context, then risk in relation to that context, using wide-ranging internal and external input; without it, AI actors at different lifecycle stages can't coordinate and one stage's work can be inadvertently compromised later.",

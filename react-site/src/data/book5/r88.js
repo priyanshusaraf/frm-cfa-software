@@ -22,7 +22,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The 5 risk-adjusted performance measures — and which risk each punishes",
+      title: "Risk-adjusted performance measures — and which risk each punishes",
       points: [
         "Sharpe ratio — excess return per unit of TOTAL risk (standard deviation); implicitly rewards diversification since undiversified volatility drags the ratio down.",
         "Treynor measure — excess return per unit of SYSTEMATIC risk (beta) only; gives no credit or penalty for diversification.",
@@ -32,7 +32,7 @@ export default ({
       ]
     },
     {
-      title: "3 steps to compute the dollar-weighted rate of return (IRR)",
+      title: "Steps to compute the dollar-weighted rate of return (IRR)",
       points: [
         "Step 1: Determine the timing of every cash flow and whether it is an inflow (+, e.g. deposits) or an outflow (−, e.g. withdrawals, purchases, or the ending value).",
         "Step 2: Net the cash flows for each time period, and set the present value of inflows equal to the present value of outflows.",
@@ -40,7 +40,7 @@ export default ({
       ]
     },
     {
-      title: "3 steps to compute the annual time-weighted rate of return",
+      title: "Steps to compute the annual time-weighted rate of return",
       points: [
         "Step 1: Value the portfolio immediately before every significant deposit or withdrawal, splitting the evaluation period into subperiods at each cash-flow date.",
         "Step 2: Compute the holding-period return (HPR) of the portfolio for each subperiod.",
@@ -48,7 +48,7 @@ export default ({
       ]
     },
     {
-      title: "3 complications in measuring hedge fund performance",
+      title: "Complications in measuring hedge fund performance",
       points: [
         "Nonlinear risk — hedge fund risk is not constant over time; option-like strategies mean risk itself changes with market conditions, unlike a static beta assumption.",
         "Illiquidity-driven smoothing — many holdings are illiquid, so reported values rely on ESTIMATED (not transaction-based) prices, which artificially smooths reported returns and induces serial correlation into any statistical analysis of them.",
@@ -56,7 +56,7 @@ export default ({
       ]
     },
     {
-      title: "3 steps of Sharpe's style analysis",
+      title: "Steps of Sharpe's style analysis",
       points: [
         "Step 1: Run a regression of the portfolio's returns against an exhaustive, mutually exclusive set of asset-class indices, with the regression weights constrained to be nonnegative and to sum to 100% (so they can be read as 'effective' asset-class allocations).",
         "Step 2: Perform performance attribution — the % of return variance explained by the regression (R²) is attributed to asset allocation (style), and the unexplained remainder (1 − R²) is attributed to selection (security picking plus market timing); the two sum to the fund's aggregate contribution.",

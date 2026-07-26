@@ -126,7 +126,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Six risks from outsourcing",
+      title: "Risks from outsourcing",
       points: [
         "Compliance risk: the service provider fails to operate in compliance with relevant local laws and regulations.",
         "Concentration risk: too few service providers to choose from, or providers clustered in only a few geographic areas.",
@@ -182,7 +182,7 @@ export default ({
   lists: [
     {
       id: "six-risks",
-      title: "Six risks from outsourcing",
+      title: "Risks from outsourcing",
       axis: "Each risk answers a different question about what could go wrong when someone else does the work, moving from rule-breaking to over-reliance to public perception to jurisdiction to internal breakdown to lawsuits.",
       items: [
         "Compliance risk: provider breaks relevant laws/regulations.",

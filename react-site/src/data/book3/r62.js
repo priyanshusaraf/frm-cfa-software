@@ -46,7 +46,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three components of the Business Indicator (BI)",
+      title: "Components of the Business Indicator (BI)",
       points: [
         "ILDC (interest, lease, dividend component): net interest income (capped relative to interest-earning assets) plus dividend income — the 'lending and investing' slice of the bank's activity.",
         "SC (services component): max(fee income, fee expense) plus max(other operating income, other operating expense) — the 'fee and service' slice; using the larger of income vs. expense captures scale of activity even where the bank is a net payer of fees.",
@@ -54,7 +54,7 @@ export default ({
       ]
     },
     {
-      title: "The three BI buckets and their marginal BIC rates",
+      title: "BI buckets and their marginal BIC rates",
       points: [
         "Bucket 1 (BI ≤ €1 billion): a single 12% marginal rate applies to this entire slice.",
         "Bucket 2 (€1 billion < BI ≤ €30 billion): the portion of BI falling in this range is charged 15%, on top of the Bucket 1 charge for the first €1 billion.",
@@ -62,7 +62,7 @@ export default ({
       ]
     },
     {
-      title: "Four goals of the December 2017 Basel III finalization (the reforms this reading's SMA formula belongs to)",
+      title: "Goals of the December 2017 Basel III finalization (the reforms this reading's SMA formula belongs to)",
       points: [
         "Expand the robustness and risk-sensitivity of the standardized approaches for credit risk, CVA risk, and operational risk.",
         "Restrict the use of internal-model approaches for those same three risk types (e.g., A-IRB removed for large/mid corporates and financial institutions; IRB removed entirely for CVA risk).",

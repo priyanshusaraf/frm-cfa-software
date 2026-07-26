@@ -44,7 +44,7 @@ export default ({
       ]
     },
     {
-      title: "Four factors behind changes in CVA from spread/recovery assumptions",
+      title: "Factors behind changes in CVA from spread/recovery assumptions",
       points: [
         "Credit spread level: higher spread generally raises CVA, but nonlinearly: PD is capped at 100%, so right at the edge of default CVA actually ticks down slightly, then falls to zero once default itself occurs.",
         "Shape of the credit spread curve: an upward-sloping curve (risk loaded later) produces a LOWER CVA than a flat or downward-sloping curve (risk loaded earlier/now, front-loaded).",

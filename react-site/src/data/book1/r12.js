@@ -111,7 +111,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Three forces that shape the term structure",
+      title: "Forces that shape the term structure",
       points: [
         "Expectations of future short rates: a rising expected path of 1-year rates produces an upward-sloping curve, a falling path produces a downward-sloping curve, and a flat path produces a flat curve; the n-year spot rate is the geometric average of the expected 1-year-rate sequence. Works well for short-to-medium horizons; breaks down for very long ones.",
         "Convexity (Jensen's inequality): because the discount factor 1/(1+r) is convex in r, uncertainty (volatility) about future rates mechanically raises the expected bond price and lowers the implied yield versus a naive 'use the expected rate' calculation, with zero directional view required. Grows with both maturity and volatility, independently.",

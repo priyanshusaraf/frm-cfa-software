@@ -98,7 +98,7 @@ export default ({
       ]
     },
     {
-      title: "The two case studies: what actually happened",
+      title: "Case studies: what actually happened",
       points: [
         "Capital One (2019 breach, $80M OCC fine in 2020): a former AWS employee exploited a firewall weakness to steal data on 100 million U.S. customers (140,000 SSNs, 80,000 bank accounts); both firms knew of the vulnerability but kept the data unencrypted; a 2015 internal audit had already missed the control weaknesses.",
         "Morgan Stanley ($60M OCC fine in 2020): improper decommissioning of wealth-management data servers in 2016 and 2019: failed to assess decommissioning risk, failed to assess/monitor subcontractor risk, and failed to maintain a proper customer-data inventory; disposed hardware still held confidential client data.",

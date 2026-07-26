@@ -91,7 +91,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Five AI advantages for banks and customers",
+      title: "AI advantages for banks and customers",
       points: [
         "Cost cutting — Deloitte estimates the top 2,000 U.S. banks spend $250 billion a year on customer support; AI chatbots can cut that materially.",
         "On-demand customer service — chatbots, check deposit via text/image recognition, and digital transfers/bill pay mean no branch visit or business-hours constraint.",
@@ -101,7 +101,7 @@ export default ({
       ]
     },
     {
-      title: "Five AI disadvantages/difficulties",
+      title: "AI disadvantages/difficulties",
       points: [
         "Loss of personal touch — some customers strongly prefer human interaction; heavy AI use risks commoditizing the customer experience and reducing differentiation between banks.",
         "Lack of control over potential biases — all inputs get reduced to numbers, and unintended biases can hide inside data like credit scores.",
@@ -111,7 +111,7 @@ export default ({
       ]
     },
     {
-      title: "Five regulatory issues in AI modeling and valuation",
+      title: "Regulatory issues in AI modeling and valuation",
       points: [
         "Potential for bias — algorithmic bias (a.k.a. algorithmic discrimination) can arise unintentionally from data inputs, even where an existing law like the Equal Credit Opportunity Act applies.",
         "Evolution in credit scores — AI can weigh a much wider dataset than traditional scoring, which could expand credit access, but the outcome depends entirely on what data is used.",

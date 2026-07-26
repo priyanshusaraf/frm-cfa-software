@@ -162,7 +162,7 @@ export default ({
       ]
     },
     {
-      title: "The five FRTB liquidity-horizon categories",
+      title: "FRTB liquidity-horizon categories",
       points: [
         "Category 1: 10-day horizon: the most liquid risk factors (e.g. large-cap equity); can realistically be exited in about two weeks even under stress.",
         "Category 2: 20-day horizon: e.g. investment-grade sovereign credit spreads; roughly one month to unwind without moving the price.",
@@ -172,7 +172,7 @@ export default ({
       ]
     },
     {
-      title: "The five nested ES shocks in the IMA waterfall",
+      title: "Nested ES shocks in the IMA waterfall",
       points: [
         "\\(ES_{1}\\): 10-day shock applied to ALL risk-factor categories (1 through 5) simultaneously, nothing held fixed.",
         "\\(ES_{2}\\): 10-day shock applied to categories 2 through 5; category 1 held fixed (its shorter-horizon risk is already captured).",
@@ -183,7 +183,7 @@ export default ({
       ]
     },
     {
-      title: "The four separate FRTB checks running alongside the capital number",
+      title: "Separate FRTB checks running alongside the capital number",
       points: [
         "Trading book vs. banking book classification: dual test: the bank must be ABLE to trade the asset, AND the trading desk must actively manage its risk; reclassification afterward is heavily restricted.",
         "Backtesting: ordinary VaR (not stressed ES) is backtested over a 1-day horizon using the latest 12 months, at 99% or 97.5% confidence; more than 12 exceptions (99%) or 30 exceptions (97.5%) forces the standardized approach.",

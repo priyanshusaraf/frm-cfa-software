@@ -123,7 +123,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four LTP approaches, in ascending order of quality",
+      title: "LTP approaches, in ascending order of quality",
       points: [
         "Zero cost: rate = swap curve with no spread added at all; liquidity is treated as entirely free, which massively underprices long-term illiquid assets and gives credit unions no reward for supplying liabilities.",
         "Pooled average cost: one flat spread (above the swap curve for assets, below it for liabilities) applied across ALL maturities — undercharges long-tenor assets and overcharges short-tenor ones, and can distort the loan-to-deposit ratio if the spread is adjusted (lowering it grows loans but shrinks deposits, or vice versa).",
@@ -154,7 +154,7 @@ export default ({
       ]
     },
     {
-      title: "Three problems with charging contingent liquidity risk on a flat-average basis (pre-crisis approach)",
+      title: "Problems with charging contingent liquidity risk on a flat-average basis (pre-crisis approach)",
       points: [
         "It assumes every asset carries the same contingent liquidity risk, which is false — different business activities have very different probabilities of triggering unexpected drawdowns.",
         "Charging only assets ignores that liabilities also carry run-off risk (deposit withdrawals) and that off-balance-sheet exposures — derivatives and collateral calls — carry their own contingent liquidity risk that needs separate pricing.",

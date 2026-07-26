@@ -18,7 +18,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The six messages from the literature (LO 6.a through 6.f)",
+      title: "Messages from the literature",
       points: [
         "6.a (VaR implementation): no single correct time horizon, it depends on liquidity and purpose. Ignoring time-varying volatility understates risk, but modeling it makes VaR procyclical and noisier. Backtesting struggles when exceptions are few or the horizon is long.",
         "6.b (Liquidity risk): exogenous liquidity (market-wide bid/ask cost, priced via liquidity-adjusted VaR) versus endogenous liquidity (your own trade size moving the price against you). Studies say model endogenous liquidity first.",
@@ -29,7 +29,7 @@ export default ({
       ]
     },
     {
-      title: "Three types of stress-testing exercises",
+      title: "Types of stress-testing exercises",
       points: [
         "Historical scenarios: replay an actual past market episode's moves (1998 or 2008, say) against today's portfolio.",
         "Predefined scenarios: a risk team specifies a hypothetical adverse change in a chosen set of risk factors ('equities down 20%, rates up 100bp') and reprices the book under it.",
@@ -38,7 +38,7 @@ export default ({
       ]
     },
     {
-      title: "Liquidity risk splits in two (LO 6.b)",
+      title: "Liquidity risk splits in two",
       points: [
         "In a crisis, market liquidity worsens and the 'liquidity horizon' of a position lengthens: it takes longer to unwind without materially moving the price.",
         "Exogenous liquidity: the market-wide, average transaction cost (essentially the bid/ask spread) that applies to any trader regardless of who they are or how large the trade is. It is handled by a liquidity-adjusted VaR (LVaR), which adds an estimated spread cost on top of ordinary VaR.",

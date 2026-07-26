@@ -197,7 +197,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four key elements of the crypto ecosystem (build order)",
+      title: "Key elements of the crypto ecosystem (build order)",
       points: [
         "Unbacked crypto (e.g., Bitcoin, Ethereum) — value driven purely by supply/demand, no backing asset, too volatile to be a medium of exchange.",
         "Stablecoins — pegged to a nominal anchor (usually USD, sometimes gold or another cryptoasset) to fix that volatility; split into asset-backed (collateralized by bonds/deposits via a centralized intermediary) and algorithmic (arbitrage with a paired volatile token, e.g., TerraUSD/Luna, no real collateral).",
@@ -216,7 +216,7 @@ export default ({
       ]
     },
     {
-      title: "Four risk-bearer categories crypto poses risk to",
+      title: "Risk-bearer categories crypto poses risk to",
       points: [
         "Investors — extreme volatility, an unregulated market that attracts fraud/scams, wallet-hacking and exchange-collapse risk, with large investors generally benefiting at small investors' expense.",
         "Governments — money laundering/terrorist financing (aided by pseudo-anonymity), lost tax revenue, financial-stability risk if crypto is widely adopted as payment (it's outside government control), and cryptoization (crypto substituting for local currency, especially in unstable emerging markets, eroding monetary sovereignty).",

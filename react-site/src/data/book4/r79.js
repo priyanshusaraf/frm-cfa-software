@@ -174,7 +174,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four steps to build an IS-gap report",
+      title: "Steps to build an IS-gap report",
       points: [
         "1) Select repricing buckets — a day, a week, a month, a quarter, a year — based on when assets and liabilities reprice (reach current market rates) or mature.",
         "2) Sort assets and liabilities into buckets — add up the dollar amount of assets that reprice within each window, and separately the dollar amount of liabilities that reprice within the same window.",

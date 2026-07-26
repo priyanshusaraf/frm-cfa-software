@@ -127,7 +127,7 @@ export default ({
   thinkLike: `<p>A market risk manager reaches for EVT specifically when someone asks "what's our loss at 99.9% confidence?" and the honest answer is "we have maybe two or three observations that bad in our entire dataset." Historical simulation (R2) can't answer that question at all; its worst possible VaR is capped at the worst day that happened to occur in the sample. EVT lets you extrapolate past the worst day you've seen, using a theorem (Fisher-Tippett / GPBdH) rather than a guess. The manager's real judgment call is the threshold u. Set it too high and the tail estimate is theoretically clean but statistically noisy (few data points). Set it too low and you get plenty of data, but it's contaminated by observations that aren't really extreme, breaking the approximation the theorem relies on. On calibration day, this trade-off, not the algebra, is what a manager actually agonizes over, and it is the single concept the exam comes back to most. Expect a conceptual question phrased as "what happens if the threshold is set too high/too low," plus a numeric question that hands you β, ξ, u, and Nᵤ/n and asks you to plug them into the POT VaR formula, then get ES for free as a linear function of that VaR rather than re-deriving it. The exam also loves the sign of ξ as a stand-alone concept question. Know the Fréchet/Gumbel/Weibull mapping cold, and default to ξ>0 whenever the question doesn't hand you a reason to think otherwise, because assuming light tails when they're actually fat is the error that gets institutions killed.</p>`,
 
   breakdown: [
-    { title: "The three GEV shape regimes (by sign of ξ)", points: [
+    { title: "GEV shape regimes, by the sign of ξ", points: [
       "ξ > 0 gives you the Fréchet distribution: heavy, power-law tails, matching the t-distribution and Pareto distribution, the realistic case for financial market returns.",
       "ξ = 0 gives you the Gumbel distribution: light, exponential-type tails, matching the normal and lognormal distributions.",
       "ξ < 0 gives you the Weibull distribution: tails lighter/thinner than normal, effectively bounded, and explicitly rare in finance, so FRM narrows the practical choice to Fréchet vs. Gumbel."
@@ -148,7 +148,7 @@ export default ({
       "Shared parameter: ξ, the tail index, has the identical interpretation and identical Fréchet/Gumbel/Weibull cutoffs in both frameworks.",
       "Data efficiency: GEV discards a lot of data (one maximum per block, everything else thrown away); POT uses every observation above the threshold, so it's generally more data-efficient."
     ]},
-    { title: "The four steps to compute POT VaR and ES from given parameters", points: [
+    { title: "Computing POT VaR and ES from given parameters", points: [
       "Step 1: form the ratio (n/N_u) × (1−c), which tells you how many multiples of the exceedance frequency the target confidence level represents.",
       "Step 2: raise that ratio to the power −ξ.",
       "Step 3: subtract 1 and scale by β/ξ to get the adjustment above the threshold.",

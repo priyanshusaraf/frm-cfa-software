@@ -137,7 +137,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Five asset classification categories",
+      title: "Asset classification categories",
       points: [
         "Standard (pass): delinquency not in question; loans fully secured with cash or cash-equivalents (e.g., a CD) generally keep this label regardless of other unfavorable factors.",
         "Specially mentioned (watch): potential weaknesses exist that could impact repayment ability, for varied reasons; not yet a confirmed problem.",
@@ -156,7 +156,7 @@ export default ({
       ]
     },
     {
-      title: "Three components of expected loss",
+      title: "Components of expected loss",
       points: [
         "Probability of default (PD): likelihood a specific borrower fails to make timely interest/principal payments; driven by historical peer data, CDS spread degradation, rating-agency views, and individual credit scores. Answers 'who.'",
         "Loss given default (LGD): the percentage of exposure lost if default occurs (LGD = 1 − recovery rate); driven by how well-secured the specific credit product is. Answers 'what product.'",

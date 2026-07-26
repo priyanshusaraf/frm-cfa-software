@@ -19,7 +19,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Five inputs to portfolio construction",
+      title: "Inputs to portfolio construction",
       points: [
         "Current portfolio — the assets and weights already held; measured with the MOST certainty of all five inputs.",
         "Alphas — expected excess returns for each asset; subject to real forecast error and bias.",
@@ -36,7 +36,7 @@ export default ({
       ]
     },
     {
-      title: "Three types of neutralization",
+      title: "Types of neutralization",
       points: [
         "Benchmark neutralization — adjust alphas so the active portfolio's beta matches the benchmark's beta exactly, removing an unintended market-timing bet; equivalent to imposing a beta constraint directly in mean-variance optimization.",
         "Cash neutralization — adjust alphas so the portfolio carries no active cash position (no accidental over- or under-investment).",
@@ -44,7 +44,7 @@ export default ({
       ]
     },
     {
-      title: "Four portfolio construction techniques (increasing sophistication, increasing fragility)",
+      title: "Portfolio construction techniques (increasing sophistication, increasing fragility)",
       points: [
         "Screens — rank all candidate stocks by alpha and simply keep the top N (e.g., the 60 highest-alpha stocks out of a 200-stock universe), or assign buy/hold/sell tiers; simplest method, easy to control turnover by resizing the tiers.",
         "Stratification — divide the universe into mutually exclusive size/sector buckets first (e.g., large/mid/small cap × 6 industries = 18 categories), then match the benchmark's weight in each bucket; controls risk well IF the buckets capture the benchmark's real risk dimensions, but throws away any information about alpha differences WITHIN a bucket or across buckets.",

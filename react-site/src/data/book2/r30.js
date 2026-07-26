@@ -170,7 +170,7 @@ export default ({
       ]
     },
     {
-      title: "Three cases for the up-front premium (standardized CDS)",
+      title: "Cases for the up-front premium (standardized CDS)",
       points: [
         "CDS spread = fixed coupon: no up-front premium needed: the standardized coupon already equals fair value.",
         "CDS spread > fixed coupon: the buyer is under-paying relative to fair value, so the buyer pays the seller an up-front amount equal to the PV of (spread − coupon).",
@@ -178,7 +178,7 @@ export default ({
       ]
     },
     {
-      title: "Five alternatives to the one-factor Gaussian copula",
+      title: "Alternatives to the one-factor Gaussian copula",
       points: [
         "Heterogeneous models: let each reference entity have its own time-to-default distribution instead of assuming one shared Q(t), at the cost of losing the simple binomial default-count formula.",
         "Other copulas: Student's t, Archimedean, Clayton, and Marshall-Olkin copulas, chosen to better capture tail dependence than the Gaussian copula does.",

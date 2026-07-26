@@ -142,7 +142,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four CCR exposure measures",
+      title: "CCR exposure measures",
       points: [
         "Current exposure (replacement cost): max(0, market value) if the counterparty defaults today with zero recovery, a snapshot of today.",
         "Peak exposure: a high percentile (95%/99%) of the exposure distribution at a specific future date, generated across many future dates, a future tail measure.",
@@ -151,7 +151,7 @@ export default ({
       ]
     },
     {
-      title: "Two shortcomings of stressing current exposure",
+      title: "Shortcomings of stressing current exposure",
       points: [
         "Aggregation is not meaningful: summing exposures across counterparties assumes simultaneous default (unrealistic) and ignores each counterparty's credit quality entirely.",
         "No wrong-way-risk information: because credit quality is stripped from the calculation, the stress result cannot reveal whether exposure and default probability move together in that scenario."
@@ -165,7 +165,7 @@ export default ({
       ]
     },
     {
-      title: "Four named pitfalls in stress testing CCR",
+      title: "Named pitfalls in stress testing CCR",
       points: [
         "CCR stress results are typically NOT aggregated with loan portfolio or trading-position stress tests, a relatively new discipline that hasn't caught up.",
         "When combined, institutions typically (mistakenly) use current exposure instead of expected exposure or EPE.",

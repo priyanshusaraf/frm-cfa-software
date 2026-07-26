@@ -23,7 +23,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three backtesting statistics, and what each one actually looks at",
+      title: "Backtesting statistics, and what each one actually looks at",
       points: [
         "Failure-rate z-test: treats each day as a coin flip (exception or not) and asks whether the observed exception COUNT is a plausible draw from that coin, using the normal approximation to the binomial. Fast, mechanical, and the most likely 'compute this' question.",
         "Kupiec unconditional coverage (LRuc): a likelihood-ratio version of the same count question. It compares the likelihood of the data under the model's stated p versus under the observed rate N/T. Same binomial logic as the z-test, dressed as a \\(\\chi^{2}(1)\\) test; 3.84 = 1.96².",
@@ -31,7 +31,7 @@ export default ({
       ]
     },
     {
-      title: "The four official Basel yellow-zone causes (5-9 exceptions, 250 days, 99% VaR)",
+      title: "Official Basel yellow-zone causes (5-9 exceptions, 250 days, 99% VaR)",
       points: [
         "Basic integrity of the model is lacking: the model is poorly specified, or the data/code feeding it is flawed; a penalty applies.",
         "Model accuracy needs to be improved: the approximations used are simply not precise enough for the risk taken; a penalty applies.",

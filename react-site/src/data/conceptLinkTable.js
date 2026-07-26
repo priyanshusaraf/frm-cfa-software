@@ -255,7 +255,6 @@ export const conceptLinkTable = [
       37,
       38,
       55,
-      56,
       57,
       58,
       59,
@@ -338,7 +337,7 @@ export const conceptLinkTable = [
       89
     ],
     "linkPhrases": [],
-    "snippet": "The diversification benefit is simply the capital saved by holding two imperfectly-correlated activities together instead of separately — the sum of what each would need alone, minus what they actually need combined."
+    "snippet": "The diversification benefit is simply the capital saved by holding two imperfectly-correlated activities together instead of separately, the sum of what each would need alone, minus what they actually need combined."
   },
   {
     "slug": "economic-capital",
@@ -571,7 +570,7 @@ export const conceptLinkTable = [
       98
     ],
     "linkPhrases": [],
-    "snippet": "BHCs must have a process to identify all risk exposures — from stress conditions, changing economic/financial environments, and both on- and off-balance-sheet items — and their impact on capital adequacy. This includes..."
+    "snippet": "BHCs must have a process to identify all risk exposures (from stress conditions, changing economic/financial environments, and both on- and off-balance-sheet items) and their impact on capital adequacy. This includes..."
   },
   {
     "slug": "tracking-error",
@@ -660,7 +659,7 @@ export const conceptLinkTable = [
       90
     ],
     "linkPhrases": [],
-    "snippet": "The hurdle rate is the minimum after-tax return the firm's equity investors require — RAROC must clear this bar the same way an IRR must clear a project's discount rate."
+    "snippet": "The hurdle rate is the minimum after-tax return the firm's equity investors require, RAROC must clear this bar the same way an IRR must clear a project's discount rate."
   },
   {
     "slug": "legal-risk-as-an-outsourcing-risk",
@@ -694,7 +693,7 @@ export const conceptLinkTable = [
       78
     ],
     "linkPhrases": [],
-    "snippet": "Capital must be at least 3% of a bank's TOTAL exposure — with no risk-weighting adjustment at all — so it acts as a blunt backstop against a bank gaming its risk weights down to shrink its risk-weighted-asset-based..."
+    "snippet": "Capital must be at least 3% of a bank's TOTAL exposure (with no risk-weighting adjustment at all) so it acts as a blunt backstop against a bank gaming its risk weights down to shrink its risk-weighted-asset-based ratios."
   },
   {
     "slug": "raroc",
@@ -964,7 +963,7 @@ export const conceptLinkTable = [
       77
     ],
     "linkPhrases": [],
-    "snippet": "Available stable funding — the part of a bank's funding base unlikely to disappear over a full year — must be at least as large as the stable funding its assets require, so the bank isn't relying on money that could..."
+    "snippet": "Available stable funding (the part of a bank's funding base unlikely to disappear over a full year) must be at least as large as the stable funding its assets require. So the bank isn't relying on money that could..."
   },
   {
     "slug": "one-factor-gaussian-copula-time-to-default",

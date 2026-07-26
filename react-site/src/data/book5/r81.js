@@ -162,7 +162,7 @@ export default ({
       ]
     },
     {
-      title: "Seven shortcomings (unrealistic assumptions) of the CAPM",
+      title: "Shortcomings (unrealistic assumptions) of the CAPM",
       points: [
         "Investors only have financial wealth — ignores human capital / labor income risk, which is itself a factor.",
         "Investors have mean-variance (symmetric) utility — ignores that investors dislike losses more than they like equivalent gains (loss aversion / downside risk).",
@@ -174,7 +174,7 @@ export default ({
       ]
     },
     {
-      title: "Six lessons of multifactor models (parallel to CAPM's six)",
+      title: "Lessons of multifactor models (parallel to CAPM's six)",
       points: [
         "Diversification is beneficial — the tradable version of each factor removes idiosyncratic risk, just as the market does in CAPM.",
         "Investors have optimal exposures — to each priced factor, not just the market.",

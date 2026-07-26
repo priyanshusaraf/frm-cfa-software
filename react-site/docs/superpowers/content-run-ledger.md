@@ -93,11 +93,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 53 | 3 | Supervisory Guidance on Model Risk Management | done | done | 11 | pass | Light dash pass; the two-condition backtest rule and SR 11-7 definition verified. |
 | 54 | 3 | Case Study: Model Risk and Model Validation | done | done | 11 | pass | Dash purge; replaced a 'None of the three' quiz option with a mechanism question on the copula. |
 | 55 | 3 | Stress Testing Banks | done | done | 11 | pass | Dash purge; rewrote a recall answer that had said 'the reading doesn't specify' instead of answering. |
-| 56 | 3 | Risk Capital Attribution and RAPM | done | todo | 12 | - | |
-| 57 | 3 | Range of Practices in Economic Capital Frameworks | done | todo | 12 | - | |
-| 58 | 3 | Capital Planning at Large Bank Holding Companies | done | todo | 12 | - | |
-| 59 | 3 | Capital Regulation Before the Global Financial Crisis | done | todo | 12 | - | |
-| 60 | 3 | Solvency, Liquidity, and Other Regulation After the GFC | done | todo | 12 | - | |
+| 56 | 3 | Risk Capital Attribution and RAPM | done | done | 12 | pass | Heaviest wave-12 file: 101 dashes plus five over-long defs; two new breakdown blocks added. |
+| 57 | 3 | Range of Practices in Economic Capital Frameworks | done | done | 12 | pass | Bulk dash pass mangled three defs by eating existing parens; all three rewritten as real definitions. |
+| 58 | 3 | Capital Planning at Large Bank Holding Companies | done | done | 12 | pass | Dash purge; removed a Module Quiz source leak and fixed a {r,why} related ref. |
+| 59 | 3 | Capital Regulation Before the Global Financial Crisis | done | done | 12 | pass | Dash purge only; the Basel I/II arithmetic and IRB parameters were already correct. |
+| 60 | 3 | Solvency, Liquidity, and Other Regulation After the GFC | done | done | 12 | pass | Dash purge; the 367-word Dodd-Frank def trimmed, with the Volcker nuance moved into breakdown. |
 | 61 | 3 | High-Level Summary of Basel III Reforms | done | todo | 13 | - | |
 | 62 | 3 | Basel III: Finalizing Post-Crisis Reforms | done | todo | 13 | - | |
 | 63 | 4 | Liquidity Risk | done | todo | 13 | - | |

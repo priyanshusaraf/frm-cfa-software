@@ -19,7 +19,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The 12 bank principles, by cluster",
+      title: "Bank principles, by cluster",
       points: [
         "Principle 1 (assess & strategize): build a sound process for understanding climate risk drivers' impact on the business and embed it in strategy and risk management, including possible effects on employee remuneration.",
         "Principle 2 (assign & oversee): the board and senior management clearly assign climate responsibilities to people/committees and exercise effective oversight, using external specialists or board training if internal knowledge is insufficient.",
@@ -36,7 +36,7 @@ export default ({
       ]
     },
     {
-      title: "The 6 supervisor principles, by cluster",
+      title: "Supervisor principles, by cluster",
       points: [
         "Principle 13 (governance check): supervisors confirm banks have soundly incorporated climate risk into strategy, governance, and controls — maintaining communication with the board, questioning strategic assumptions, and reviewing all three lines of defense.",
         "Principle 14 (risk-management check): supervisors confirm banks can identify, monitor, and manage climate risk within their risk appetite framework — checking the scope/frequency of materiality assessments and the sufficiency of data and reporting.",

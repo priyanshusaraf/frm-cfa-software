@@ -134,7 +134,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four collateral-market transaction types",
+      title: "Collateral-market transaction types",
       points: [
         "Margin loans — collateralized by the security itself, usually extended by the broker executing the trade; the broker holds the stock in a 'street name' account (registered in the broker's name, not the customer's), which lets the broker both seize/sell it quickly on a margin call AND re-lend it to other customers who want to short it. Regulation T sets the minimum initial margin at 50%.",
         "Repos (repurchase agreements) — a collateralized short-term loan structured as a sale-today/buyback-later at an agreed forward price; the implied interest is the spread between the spot and forward prices. Traditionally only Treasury bills were used as collateral, but by the mid-2000s acceptable collateral had expanded to whole loans, high-yield bonds, and structured credit products (ABS/CDO tranches) — a key channel that fed pre-crisis leverage growth.",
@@ -152,7 +152,7 @@ export default ({
       ]
     },
     {
-      title: "Three measures of market liquidity",
+      title: "Measures of market liquidity",
       points: [
         "Tightness (width) — the cost of a round-trip trade, measured by the bid-ask spread plus commissions; a narrower spread means a tighter, more liquid market.",
         "Depth — how large an order the market can absorb before it moves the price adversely; an individual investor's trade is usually absorbed with no impact, a large institutional trade usually isn't.",

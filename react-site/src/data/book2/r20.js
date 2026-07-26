@@ -158,7 +158,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three inputs to every EL/UL calculation",
+      title: "Inputs to every EL/UL calculation",
       points: [
         "Probability of default (PD / EDF): the likelihood the borrower defaults; on its own it's not the full risk picture, since brief, quickly-cured defaults matter far less than permanent ones.",
         "Exposure amount (EA / EAD): the dollar amount actually at risk, typically the drawn/outstanding balance of a loan or credit line (not the full committed facility size).",
@@ -166,7 +166,7 @@ export default ({
       ]
     },
     {
-      title: "Three challenges to quantifying credit risk in the bottom-up framework",
+      title: "Challenges to quantifying credit risk in the bottom-up framework",
       points: [
         "Illiquidity of credit assets: risk contribution is computed without the continuous market-price feedback loop that correlated risk factors get in liquid markets, unlike equities or bonds that trade freely.",
         "Short (one-year) estimation horizon: credit quality changes genuinely play out over multi-year periods, but in practice models compress this into a single year for tractability, which can understate longer-run risk.",

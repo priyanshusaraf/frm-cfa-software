@@ -176,7 +176,7 @@ export default ({
       ]
     },
     {
-      title: "Three market participant tiers",
+      title: "Market participant tiers",
       points: [
         "Large players: big global banks with huge, diversified derivatives books across nearly every product, acting as dealers and controlling roughly 80% of OTC notional value.",
         "Medium players: smaller/regional banks and financial institutions trading a fair volume of OTC derivatives but a narrower product range (typically excluding credit derivatives, commodities, exotics).",
@@ -184,7 +184,7 @@ export default ({
       ]
     },
     {
-      title: "Four components standardized by the ISDA Master Agreement",
+      title: "Components standardized by the ISDA Master Agreement",
       points: [
         "Contractual terms for posting collateral: later elaborated in the Credit Support Annex (CSA).",
         "Events of default and termination: the eight triggers (failure to pay/deliver, breach of agreement, credit support default, misrepresentation, default under a specified transaction, cross-default, bankruptcy, merger without assumption).",
@@ -201,7 +201,7 @@ export default ({
       ]
     },
     {
-      title: "Four legacy risk-mitigating entity structures: and how each one broke down",
+      title: "Legacy risk-mitigating entity structures: and how each one broke down",
       points: [
         "SPV (special purpose vehicle): bankruptcy-remote, off-balance-sheet entity; transforms counterparty risk into legal risk; Lehman's SPV flip provision was unenforceable in the US but enforceable in the UK, a direct jurisdictional contradiction.",
         "DPC (derivatives product company): separately capitalized AAA subsidiary trading mirrored (offsetting) positions; rating depends on minimizing market risk, parental support, and internal risk controls; Lehman's and Bear Stearns's DPCs did not unwind in the planned orderly fashion.",
@@ -210,7 +210,7 @@ export default ({
       ]
     },
     {
-      title: "Three quantitative models for derivatives risk",
+      title: "Quantitative models for derivatives risk",
       points: [
         "Value at risk (VaR): worst loss over a short horizon at a stated confidence level; simple, single-number, distribution-shape-agnostic, but silent on tail severity and not always subadditive.",
         "Potential future exposure (PFE): the credit-risk analogue of VaR over a long horizon, measuring exposure arising from gains owed to you.",

@@ -176,7 +176,7 @@ export default ({
       ]
     },
     {
-      title: "Three tiers of institutions that take on counterparty risk",
+      title: "Tiers of institutions that take on counterparty risk",
       points: [
         "Large players: large dealer banks; trade with each other and many clients; wide asset-class coverage (commodities, equity, FX, rates, credit); high volume; DO post collateral.",
         "Medium players: smaller banks/financial institutions; high volume, many clients, but narrower asset-class coverage than large players; likely (not certain) to post collateral.",
@@ -184,7 +184,7 @@ export default ({
       ]
     },
     {
-      title: "Counterparty risk terminology (LO 32.d)",
+      title: "Counterparty risk terminology",
       points: [
         "Credit exposure: the loss conditional on the counterparty defaulting; combines current exposure, future exposure, and contingent liabilities, using replacement cost (assuming zero recovery), not the full notional.",
         "Credit migration: the possibility a counterparty's credit rating deteriorates or improves over the contract term; mean reversion means strong ratings tend to drift down (rising future default probability) and weak ratings tend to drift up or default early (falling future default probability further out).",
@@ -196,7 +196,7 @@ export default ({
       ]
     },
     {
-      title: "Methods to manage counterparty risk (LO 32.f)",
+      title: "Methods to manage counterparty risk",
       points: [
         "Trade only with high-quality counterparties: simplest method; typically AAA-rated names that may not even need to post collateral.",
         "Cross-product netting: aggregate positive- and negative-value trades with a counterparty into one net figure on default, reducing risk for both sides (subject to legal enforceability risk).",
@@ -217,7 +217,7 @@ export default ({
       ]
     },
     {
-      title: "The xVA family (LO 32.h)",
+      title: "The xVA family",
       points: [
         "CVA (credit value adjustment): the cost of the counterparty's default risk to you; the piece of a derivative's price that accounts for counterparty risk.",
         "DVA (debt value adjustment): the mirror image of CVA, pricing your OWN default risk from the counterparty's perspective.",
@@ -228,7 +228,7 @@ export default ({
       ]
     },
     {
-      title: "Three levels at which counterparty risk is quantified (LO 32.e)",
+      title: "Levels at which counterparty risk is quantified",
       points: [
         "Trade level: the nature of the specific trade and its own risk factors.",
         "Counterparty level: risk-mitigating factors (netting, collateral) applied for that individual counterparty.",

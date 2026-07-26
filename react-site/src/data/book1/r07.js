@@ -179,7 +179,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Five areas where financial correlation risk appears",
+      title: "Areas where financial correlation risk appears",
       points: [
         "Investments: Markowitz's portfolio theory. Correlation between held assets determines diversification benefit and the return/risk ratio.",
         "Trading: correlation-sensitive products (correlation options, correlation swaps, quanto options) whose value is a direct function of the correlation between two or more underlyings.",

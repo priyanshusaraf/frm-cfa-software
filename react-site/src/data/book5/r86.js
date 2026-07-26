@@ -37,7 +37,7 @@ export default ({
       ]
     },
     {
-      title: "Four risk types every fund must distinguish",
+      title: "Risk types every fund must distinguish",
       points: [
         "Absolute (asset) risk — total possible dollar loss over a horizon, measured directly from the portfolio's own return; no benchmark involved.",
         "Relative risk — dollar loss measured against a benchmark (excess return = portfolio return minus benchmark return); VaR applies to the tracking error (the standard deviation of that excess return) when excess returns are normal.",
@@ -46,7 +46,7 @@ export default ({
       ]
     },
     {
-      title: "Three explanations top management checks when overall portfolio risk jumps",
+      title: "Explanations top management checks when overall portfolio risk jumps",
       points: [
         "A single manager took on more risk — has she exceeded her risk budget, and is it a temporary market move, unintentional weight drift, or unauthorized trading (a 'rogue trader')?",
         "Different managers, acting independently, took similar bets — e.g., every bond manager moves into long-duration bonds and every equity manager rotates into high-dividend utilities/REITs on a shared 'rates will fall' view, which looks diversified on paper but concentrates interest-rate risk in practice.",

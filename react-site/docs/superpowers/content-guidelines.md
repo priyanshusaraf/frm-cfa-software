@@ -656,3 +656,44 @@ layer ramping accent → cyan → amber → red with depth, because reaching a l
 strictly worse news. **Rule: in a static widget, never spend a saturated accent colour on
 something that is not conveying data. A reader reasonably reads colour as either meaning
 or affordance.**
+
+### Wave 12 (R56-R60, Book 3, 2026-07-26): the bulk pass, its two failure modes, and a corpus-wide title sweep
+
+**554 dashes across five files, so this wave used the pattern-assisted pass again** (the
+wave-4 method), with one improvement worth keeping: **write the rules so they physically
+cannot match across a string boundary.** The regexes use an inner class of
+`[^"`\n—–]`, which makes the wave-4 defect (a paired-dash rule joining two adjacent
+`related` entries) impossible by construction. Script kept at `/tmp/dashpass.py` in that
+session; reproduce it rather than hand-rolling a looser version.
+
+**Failure mode 1, still live: the paired rule eats existing parentheses.** R57's
+`concepts[4].def` came out as "(the board should understand gross (standalone) vs. net
+(diversified) enterprise-wide risk; (2) senior management commitment) must actively
+support", because the numbered list `(1) ... (2) ...` gave the rule brackets to swallow.
+Per-string paren counts stay balanced, so the wave-5 audit does not catch it. **A def
+containing an enumerated `(1) (2) (3)` list must be excluded from the pattern pass and
+rewritten by hand.** All three of R57's failing defs were rewritten from scratch, which
+was needed anyway because the validator was rejecting them for length.
+
+**Failure mode 2: the fallback comma turns explanatory clauses into comma splices.**
+Fixed by a second scripted pass promoting a known set of splice openers (", this ",
+", they ", ", it's ", ", don't ", ", hence ") to a full stop, then grepping for
+`\. [a-z]` to catch fragments the promotion created. Two real fragments surfaced that way
+("Especially where Basel III is conservative."), so run that grep every time, filtering
+the legitimate abbreviations (vs., e.g., i.e., econ.).
+
+**Owner intervention (third this session): counts do not belong in headings.** "people
+can count man", against "Advantages of central clearing (six)". This is durable style
+rule 11 extended: not just bracketed counts but any leading enumeration in a heading.
+**253 titles across 91 files** were rewritten ("Five areas of cyber governance" becomes
+"Areas of cyber governance"). Two carve-outs, both deliberate: rhetorical hook titles
+keep their counts, because "Three capital concepts, three jobs" and "Four kinds of 'oops'"
+are voice rather than enumeration (hooks are detectable by their one-line
+`{ title: "...", text: "..." }` shape), and a number stays when it is part of the term
+itself. The same sweep removed 28 `(LO 36.d)` source-guide references that had leaked into
+titles and breakdown points.
+
+**Method note for that sweep:** restoring the hook lines from `git show HEAD:<file>` also
+restored their em-dashes, because HEAD predated this wave's purge. Any bulk restore has to
+be followed by re-running the dash pass on the touched files. Caught by the per-file dash
+count, which is why that check runs after every step and not only at the end.

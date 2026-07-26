@@ -125,7 +125,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Two explanations for the value premium",
+      title: "Explanations for the value premium",
       points: [
         "Rational: value firms hold fixed, non-redeployable capital (high, asymmetric adjustment costs), making them genuinely riskier — the premium compensates for losses in bad times defined by labor-income risk, weak investment growth, luxury-consumption risk, long-run consumption risk, and housing risk.",
         "Behavioral (overextrapolation/overreaction): investors assume a growth firm's recent hot streak continues indefinitely and bid its price above fundamentals; when growth disappoints, the stock underperforms.",
@@ -133,7 +133,7 @@ export default ({
       ]
     },
     {
-      title: "Three most important macroeconomic factors",
+      title: "Most important macroeconomic factors",
       points: [
         "Economic growth: equities outperform in expansions (large stocks ~12.4%, small stocks ~16.8%); government/investment-grade bonds outperform in recessions (~12.3%-12.6%); high-yield bonds are relatively indifferent to the growth cycle (7.4% recession vs. 7.7% expansion).",
         "Inflation: high inflation hurts both stocks and bonds — bonds mechanically (fixed payments lose real value), stocks less predictably (ownership of real productive assets, but still generally worse in high-inflation periods historically).",
@@ -141,7 +141,7 @@ export default ({
       ]
     },
     {
-      title: "Two approaches to mitigating volatility risk",
+      title: "Approaches to mitigating volatility risk",
       points: [
         "Invest in less-volatile assets like government or investment-grade bonds — but this is not a perfect hedge: the VIX-bond correlation is only ~0.12, and in 2007-09 both stocks and bonds fell together under a shared volatility shock.",
         "Buy volatility protection directly in the derivatives market — out-of-the-money put options, which pay off precisely when volatility (and losses) spike."
@@ -156,7 +156,7 @@ export default ({
       ]
     },
     {
-      title: "Two explanations for the disappearing size effect",
+      title: "Explanations for the disappearing size effect",
       points: [
         "Data mining: Fischer Black (1993) argued the original Banz/Reinganum in-sample finding was never substantiated in later out-of-sample data — it may have been a statistical fluke.",
         "Investor action: once published, rational investors bid up small-cap prices until the excess return was competed away — consistent with the efficient market hypothesis (EMH)."

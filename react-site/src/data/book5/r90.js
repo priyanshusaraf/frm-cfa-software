@@ -21,7 +21,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Eight reasons hedge funds have failed",
+      title: "Reasons hedge funds have failed",
       points: [
         "Poor investment decisions — a single calculated risk gone wrong, or a chain of bad decisions (a 'domino effect').",
         "Fraud — accounting fraud (misstated book values/income), valuation fraud (misstated market values), or outright theft of fund assets.",
@@ -34,7 +34,7 @@ export default ({
       ]
     },
     {
-      title: "Four themes of manager evaluation",
+      title: "Themes of manager evaluation",
       points: [
         "Strategy — what the fund actually does: investment style, sector/security specializations, how the style has evolved, turnover and liquidity, loss-limiting mechanisms, how much quantitative modeling is used, whether short sales and derivatives are for hedging or speculation, how trades are executed, and any private-company exposure.",
         "Ownership — whether traders, portfolio managers, and analysts hold ownership interests in the firm itself, which aligns their financial interests with investors' and helps retain the people who generated the results.",

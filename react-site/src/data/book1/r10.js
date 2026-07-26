@@ -139,7 +139,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The three empirical hedging tools, in order of sophistication",
+      title: "Empirical hedging tools, in order of sophistication",
       points: [
         "DV01-neutral hedge: sizes the offsetting face amount purely from the ratio of the two instruments' DV01s, assuming their yields move 1-for-1. Simplest, but silently wrong whenever that assumption fails (e.g., nominal T-bond vs TIPS).",
         "Single-variable regression hedge: regresses the hedged instrument's yield change on the hedge instrument's yield change, then scales the naive DV01 ratio by the fitted slope \\(\\beta\\), and additionally reports \\(R^2\\)/standard error as a hedge-quality readout.",

@@ -163,7 +163,7 @@ export default ({
       ]
     },
     {
-      title: "Three lines of defense",
+      title: "Lines of defense",
       points: [
         "Line 1 (front line / business unit): identifies its significant operational risks, builds controls for them, tests whether those controls work, and reports on operational risk within its own business line.",
         "Line 1 escalates to Line 2 whenever it cannot handle a risk itself or discovers a control weakness, a process weakness, or a loss caused by missing controls.",
@@ -219,7 +219,7 @@ export default ({
     },
     {
       id: "three-lines-of-defense",
-      title: "Three lines of defense",
+      title: "Lines of defense",
       axis: "Independence from day-to-day risk-taking increases at each line: Line 1 owns the risk, Line 2 watches with zero hands-on involvement, and Line 3 independently audits whether both prior lines are doing their jobs.",
       items: [
         "Line 1, front line / business unit (plus informal 'Line 1.5' risk champions): generates, measures, and manages its own risk; escalates weaknesses to Line 2",

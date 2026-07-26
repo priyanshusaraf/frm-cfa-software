@@ -181,7 +181,7 @@ export default ({
       ]
     },
     {
-      title: "The four causes of the 'dark side' of retail credit risk",
+      title: "Causes of the 'dark side' of retail credit risk",
       points: [
         "Lack of historical loss data: a product is too new to have a reliable loss track record.",
         "Economy-wide systematic shock: an across-the-board rise in risk factors makes retail products behave unexpectedly all at once.",
@@ -191,7 +191,7 @@ export default ({
       ]
     },
     {
-      title: "Three types of credit risk scoring models",
+      title: "Types of credit risk scoring models",
       points: [
         "Credit bureau scores: the applicant's FICO score; fast, cheap, easy to implement; standardized 300 to 850 scale, higher = lower risk and better rates.",
         "Pooled model: built by an outside vendor using data pooled across lenders; costlier than a bureau score but can be tailored to a specific industry.",

@@ -82,7 +82,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The five CFP design considerations",
+      title: "CFP design considerations",
       points: [
         "Alignment to the firm's business and risk profile — the CFP must reflect the firm's actual business activities, products, asset classes, geographies and FX exposure, with EWIs, limits, and escalation levels tied to the firm's risk appetite statement, and must be updated as internal strategy/products and external conditions (the economy) change.",
         "Integration with broader risk management frameworks — the CFP should be embedded in the firm's liquidity risk management, ERM, capital management, and business continuity/crisis management programs so it works within the firm's existing internal control system rather than standing alone.",
@@ -92,7 +92,7 @@ export default ({
       ]
     },
     {
-      title: "The five CFP components",
+      title: "CFP components",
       points: [
         "Governance and oversight — the four roles (corporate treasury, liquidity crisis team, management committee, board of directors), documentation structure, and regular testing/readiness assessment of the plan.",
         "Scenarios and liquidity gap analysis — CFP stress scenarios must be consistent with the firm's liquidity stress-testing scenarios and link to recovery provisions, though the CFP can also examine additional, less-likely scenarios beyond the stress test's normal scope.",
@@ -102,7 +102,7 @@ export default ({
       ]
     },
     {
-      title: "The four CFP governance roles",
+      title: "CFP governance roles",
       points: [
         "Corporate treasury — has day-to-day oversight of the firm's risk, funding, and liquidity in normal times; based on macro/micro analysis and stress-test results, decides when to activate the CFP and pull in the liquidity crisis team.",
         "Liquidity crisis team (LCT) — executives, business-unit leaders, and senior management who engineer the CFP's response and present it to the management committee for approval; own internal/external communication and coordination and ongoing liquidity monitoring, and make implementation suggestions alongside treasury and the management committee.",
@@ -150,7 +150,7 @@ export default ({
       ]
     },
     {
-      title: "Two categories of early warning indicators (EWIs) the CFP monitors",
+      title: "Categories of early warning indicators (EWIs) the CFP monitors",
       points: [
         "Market and business measures — broad macro/micro indicators such as a large sudden decline in stock indices, sovereign or firm credit downgrades, a surge in market volatility, sudden catastrophic events, an accelerated rise in assets financed by unstable liabilities, negative publicity, deteriorating asset quality, falling earnings/earnings projections, loans being withdrawn or not renewed, wider CDS/debt spreads, higher required collateral, counterparties avoiding unsecured or long-term transactions with the firm, and deposit run-off.",
         "Liquidity health measures — narrower, ratio-based indicators that directly reflect the firm's liquidity strength: projected net funding requirements vs. current unused funding capacity; non-core funding to long-term assets; overnight borrowings to total assets; short-term liabilities to total assets; funding-source concentration; funding maturity profile; used capacity to total borrowing capacity; liquid assets to volatile liabilities; unpledged eligible collateral to total assets; and loans to commitments."

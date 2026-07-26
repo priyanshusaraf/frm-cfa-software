@@ -118,7 +118,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The eight nondeposit funding sources",
+      title: "Nondeposit funding sources",
       points: [
         "Fed funds — short-term (often overnight) interbank borrowing settled via reserve accounts at the Fed; cheapest and fastest, but rates can be volatile, especially on reserve-settlement days.",
         "Repurchase agreements (repos) — collateralized short-term borrowing: sell high-quality securities now (starting leg), buy them back later at a preset price (closing leg); collateral lowers the lender's credit risk.",
@@ -139,7 +139,7 @@ export default ({
       ]
     },
     {
-      title: "The four types of negotiable CDs",
+      title: "Types of negotiable CDs",
       points: [
         "Domestic CDs — issued by U.S. institutions inside the United States.",
         "Dollar-denominated (Euro) CDs — dollar-denominated CDs issued by banks outside the United States.",
@@ -148,7 +148,7 @@ export default ({
       ]
     },
     {
-      title: "The five factors affecting choice among nondeposit sources",
+      title: "Factors affecting choice among nondeposit sources",
       points: [
         "Relative cost — fed funds are usually cheapest; domestic CDs and Eurocurrency deposits cost a bit more; commercial paper is generally priciest, maturity-dependent.",
         "Risk — interest rate risk is highest on the shortest-maturity sources (fed funds); credit/availability risk (can you get the funds when you need them) hits CD, Eurodollar, and commercial paper markets hardest.",
@@ -158,7 +158,7 @@ export default ({
       ]
     },
     {
-      title: "The two ways to estimate overall funding cost",
+      title: "Ways to estimate overall funding cost",
       points: [
         "Historical average cost approach — backward-looking; averages interest and noninterest costs of all funding raised to date, plus shareholders' required return, into a single weighted average cost of funds (breakeven cost rate before considering equity's required return).",
         "Pooled funds approach — forward-looking; divides total expected operating costs of NEW funds by (a) all new funds raised, to get the pooled funds expense rate, and by (b) only the dollars actually invested in earning assets, to get the hurdle rate — the true minimum return new business must earn."

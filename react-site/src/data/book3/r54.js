@@ -96,14 +96,14 @@ export default ({
 
   breakdown: [
     {
-      title: "The two broad types of model risk (LO 55.a)",
+      title: "Broad types of model risk",
       points: [
         "Execution risk: the model fails to function as intended because of errors in input data or in the coding of the model.",
         "Conceptual errors: the model's underlying assumptions are invalid (don't match reality), or the wrong modeling technique was used for the problem at hand; harder to detect than execution risk because the model can keep producing plausible output for years before the mismatch surfaces."
       ]
     },
     {
-      title: "The four factors that set a model's risk tier",
+      title: "Factors that set a model's risk tier",
       points: [
         "Materiality of model output: the dollar value of loss if the model fails.",
         "Model complexity: more complex models are harder to fully validate and more prone to hidden errors.",
@@ -112,7 +112,7 @@ export default ({
       ]
     },
     {
-      title: "The three case studies and their failure modes (LO 55.c)",
+      title: "Case studies and their failure modes",
       points: [
         "Gaussian copula CDO pricing model (David X. Li, 2000s) → invalid assumptions: inferred asset correlations from current CDS prices, assuming markets were efficient; historically low mortgage-default correlations spiked in the 2008 crisis, and the model only caught up with a lag.",
         "Barclays' bid for Lehman Brothers assets (2008 bankruptcy) → implementation error: 179 unwanted positions, hidden in spreadsheet rows, were unintentionally revealed during a PDF conversion by a junior law associate, forcing a later legal motion to exclude them.",

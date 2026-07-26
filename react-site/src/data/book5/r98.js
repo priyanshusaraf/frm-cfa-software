@@ -17,7 +17,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The five Basel Committee findings (2021 report)",
+      title: "Basel Committee findings (2021 report)",
       points: [
         "Forward-looking, granular measurement methodologies are needed because climate-related financial risk has unique features that traditional financial risk methods (built on historical loss data) were not designed to capture.",
         "Banks and supervisors have concentrated their efforts on mapping near-term transition risk drivers into portfolio and counterparty exposures — this is the most mature part of the measurement toolkit so far.",
@@ -27,7 +27,7 @@ export default ({
       ]
     },
     {
-      title: "Three areas of uncertainty in climate risk measurement",
+      title: "Areas of uncertainty in climate risk measurement",
       points: [
         "Intrinsic uncertainty in physical and transition risk driver projections — the underlying climate science itself has a range of possible outcomes.",
         "Data gaps that create measurement uncertainty — even where the science is settled, banks often lack the granular data to apply it to their specific book.",
@@ -66,7 +66,7 @@ export default ({
       ]
     },
     {
-      title: "Three data categories that feed climate risk quantification",
+      title: "Data categories that feed climate risk quantification",
       points: [
         "Physical/transition risk driver data translated into economic risk factors — sourced from commercial providers, academic organizations, and government agencies (NOT retail brokerage firms).",
         "Data linking climate-adjusted economic risk factors to specific exposures (vulnerability data) — geospatial data for physical risk, sector/carbon-sensitivity data for transition risk.",
@@ -74,7 +74,7 @@ export default ({
       ]
     },
     {
-      title: "Three co-equal challenge areas in climate risk model design",
+      title: "Co-equal challenge areas in climate risk model design",
       points: [
         "Capturing economic effects — models struggle with nonlinearity, alternative scenario paths, extreme weather/future disruption, and coarse damage functions; historical data is a poor predictor of a future that looks structurally different from the past.",
         "Long-term horizon assessments — projections up to 30 years out become progressively more uncertain the further they extend, and future portfolio composition itself is uncertain over that horizon.",

@@ -148,7 +148,7 @@ export default ({
       ]
     },
     {
-      title: "Three lines of defense for AML/CFT",
+      title: "Lines of defense for AML/CFT",
       points: [
         "Line 1: business units (front office, customer-facing staff, e.g. tellers and branch managers): identify, assess, and control ML/FT risk day to day per written policy; report suspicious transactions.",
         "Line 2: chief AML/CFT officer: ongoing monitoring, internal/external point of contact, must be independent of business-line duties, data protection, and internal audit; reports to senior management or the board.",
@@ -191,7 +191,7 @@ export default ({
     },
     {
       id: "three-lines-aml",
-      title: "Three lines of defense for AML/CFT",
+      title: "Lines of defense for AML/CFT",
       axis: "Each line sits one step further from the customer relationship: doing the work, watching the whole program, auditing that both did their job.",
       items: [
         "Line 1: business units (tellers, branch managers) identify and report suspicious activity day to day",

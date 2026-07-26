@@ -129,7 +129,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four reasons mapping is necessary",
+      title: "Reasons mapping is necessary",
       points: [
         "Too many positions to model individually. The pairwise covariance count explodes combinatorially (5,000 stocks ≈ 12.5 million covariance terms), making direct modeling computationally and statistically infeasible.",
         "A common risk-factor 'language' is needed across very different instrument types. A bond, a stock, and an FX forward can't be directly compared unless restated in terms of shared factors like rates, equity indices, and FX rates.",
@@ -138,7 +138,7 @@ export default ({
       ]
     },
     {
-      title: "The three fixed-income mapping methods (coarse to fine)",
+      title: "Fixed-income mapping methods (coarse to fine)",
       points: [
         "Principal mapping considers only the principal repayment at the portfolio's weighted-average life, ignoring every coupon payment. Simplest and least precise.",
         "Duration mapping replaces the whole portfolio with a single zero-coupon bond whose maturity equals the portfolio's Macaulay duration. More precise than principal mapping but still collapses everything to one number.",

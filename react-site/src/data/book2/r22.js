@@ -125,7 +125,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four benefits of a credit scoring/rating system",
+      title: "Benefits of a credit scoring/rating system",
       points: [
         "Reduces subjectivity: a standardized score/rating replaces individual loan-officer judgment calls.",
         "Enables analysis: the numeric/lettered output feeds scenario analysis and stress testing across a portfolio.",
@@ -134,7 +134,7 @@ export default ({
       ]
     },
     {
-      title: "Five Basel Committee specification requirements",
+      title: "Basel Committee specification requirements",
       points: [
         "Meaningful differentiation of risk: grades reflect real risk differences (not capital-management games), allow transaction-level nuance within a grade, and must be reasonably dispersed (not concentrated in one grade).",
         "Continuous evaluation of borrowers: ratings are re-reviewed at least annually.",
@@ -154,7 +154,7 @@ export default ({
       ]
     },
     {
-      title: "Five common criticisms of credit rating agencies",
+      title: "Common criticisms of credit rating agencies",
       points: [
         "Lack of transparency: proprietary methodology can't be publicly verified for fairness or validity.",
         "Potential conflicts of interest: the rated entity pays the CRA's fee ('issuer pays').",
@@ -164,7 +164,7 @@ export default ({
       ]
     },
     {
-      title: "Two consumer scoring methods (and profit scoring's two sub-types)",
+      title: "Consumer scoring methods (and profit scoring's two sub-types)",
       points: [
         "Behavioral scoring: uses a customer's historical payment/purchasing behavior, updates near real-time, used for credit limits, collections, and marketing.",
         "Profit scoring (account-level): estimates profitability per individual account, ignoring links to a customer's other accounts.",

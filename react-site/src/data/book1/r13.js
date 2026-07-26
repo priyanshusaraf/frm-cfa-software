@@ -174,7 +174,7 @@ export default ({
 
   breakdown: [
     {
-      title: "The four nested drift models",
+      title: "Nested drift models",
       points: [
         "Model 1 (no drift): dr = σdw. Pure noise, no directional bias, tree recombines, always some chance of negative rates.",
         "Model 2 (constant drift): dr = λdt + σdw. One fixed drift forever, tree still recombines but the middle node moves away from r0 over time.",
@@ -192,7 +192,7 @@ export default ({
       ]
     },
     {
-      title: "Two fixes for negative rates",
+      title: "Fixes for negative rates",
       points: [
         "Switch to a distribution that's always non-negative (lognormal or chi-squared). Negative rates become mathematically impossible, at the cost of possibly introducing unwanted skewness or distorted volatility elsewhere in the model.",
         "Keep the original (normal) tree but force any negative node to zero ('zero-flooring'). This touches only the low-rate tail, leaving the rest of the distribution unchanged; generally the less invasive, preferred fix."

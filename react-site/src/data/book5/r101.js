@@ -25,7 +25,7 @@ export default ({
       ]
     },
     {
-      title: "The three macroprudential tools for cyber/ICT systemic risk",
+      title: "Macroprudential tools for cyber/ICT systemic risk",
       points: [
         "Circuit breakers — a temporary, supplementary pause on normal rules that buys a bank time to assess damage after a major cyber incident and control the resulting deposit-run risk; requires proving the attack was a genuine force majeure event, which is contestable if better controls arguably could have prevented it.",
         "Cooperative arrangements — institutions pooling information, standards, and infrastructure so a hit institution's customers can be served elsewhere; the concrete example is Sheltered Harbor, LLC in the US, a collectively owned entity using shared data formats/procedures so a co-owner bank's customers can transact through another co-owner bank after a serious cyberattack.",

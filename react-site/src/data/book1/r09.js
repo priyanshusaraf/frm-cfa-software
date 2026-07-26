@@ -23,9 +23,9 @@ export default ({
     {
       title: "The three-part machinery of this reading",
       points: [
-        "Copula function (LO 9.a), a general mapping tool: converts n marginal distributions, however oddly shaped, into a single n-variate function via a known, well-behaved distribution (typically standard normal), preserving each marginal exactly while defining a joint dependence structure.",
-        "Gaussian copula for default (LO 9.b), the copula function specialized to default risk: maps each company's cumulative default probability Q(t) through the inverse standard normal CDF N⁻¹, then reads the joint default probability off the bivariate (or n-variate) normal CDF at those mapped points, using a default correlation ρ.",
-        "Correlated default time via simulation (LO 9.c): for n > 2 assets, Cholesky decomposition generates correlated random draws from the n-variate standard normal distribution. Each draw is matched (via Excel or a Newton-Raphson search) against the market-implied cumulative default probability curve for that asset to back out a simulated default time, repeated (say, 100,000 times) because there is no closed-form solution."
+        "Copula function, a general mapping tool: converts n marginal distributions, however oddly shaped, into a single n-variate function via a known, well-behaved distribution (typically standard normal), preserving each marginal exactly while defining a joint dependence structure.",
+        "Gaussian copula for default, the copula function specialized to default risk: maps each company's cumulative default probability Q(t) through the inverse standard normal CDF N⁻¹, then reads the joint default probability off the bivariate (or n-variate) normal CDF at those mapped points, using a default correlation ρ.",
+        "Correlated default time via simulation: for n > 2 assets, Cholesky decomposition generates correlated random draws from the n-variate standard normal distribution. Each draw is matched (via Excel or a Newton-Raphson search) against the market-implied cumulative default probability curve for that asset to back out a simulated default time, repeated (say, 100,000 times) because there is no closed-form solution."
       ]
     },
     {

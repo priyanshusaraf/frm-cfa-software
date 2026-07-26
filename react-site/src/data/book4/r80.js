@@ -114,7 +114,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four characteristics of illiquid markets",
+      title: "Characteristics of illiquid markets",
       points: [
         "Most asset classes are illiquid to at least some degree — even large-cap public equities have some friction; only the degree differs (seconds between public-equity trades vs. decades between art or infrastructure trades).",
         "Markets for illiquid assets are collectively enormous — U.S. residential mortgages ~$16T and institutional real estate ~$9T (2012) rival the ~$17T combined market cap of the NYSE and Nasdaq.",
@@ -134,7 +134,7 @@ export default ({
       ]
     },
     {
-      title: "Three reported-return biases (all inflate performance / understate risk)",
+      title: "Reported-return biases (all inflate performance / understate risk)",
       points: [
         "Survivorship bias — funds are not required to report, so poor performers stop reporting or never start, and many fail outright and vanish from the database, leaving only survivors' above-average returns visible (overstates returns ~1-2% for mutual funds, up to ~4% for illiquid assets).",
         "Sample selection bias — assets are sold, and hence reported, mostly when values are high (zombie/shell companies simply aren't marked), inflating reported alpha (one VC study: reported alpha >90% vs. -7% corrected) and understating beta and variance.",
@@ -142,7 +142,7 @@ export default ({
       ]
     },
     {
-      title: "Four ways to harvest illiquidity premiums (easiest/largest-impact last)",
+      title: "Ways to harvest illiquidity premiums (easiest/largest-impact last)",
       points: [
         "Passive allocation to illiquid asset classes — simply hold a target % in, e.g., real estate or private equity.",
         "Liquidity security selection — within an asset class, deliberately choose the less-liquid instrument (e.g. off-the-run over on-the-run Treasuries).",

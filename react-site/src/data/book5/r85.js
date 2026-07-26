@@ -128,7 +128,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Three levels of portfolio VaR",
+      title: "Levels of portfolio VaR",
       points: [
         "Diversified (portfolio) VaR — the real, correlation-aware VaR of the whole book; this is the number you actually report.",
         "Undiversified VaR — the sum of every position's stand-alone VaR, equivalent to assuming every pair of positions is perfectly correlated (ρ=1); a pessimistic upper-bound benchmark, not a real-world figure.",
@@ -136,7 +136,7 @@ export default ({
       ]
     },
     {
-      title: "Three VaR-based tools for managing (not just measuring) a portfolio",
+      title: "VaR-based tools for managing (not just measuring) a portfolio",
       points: [
         "Marginal VaR — the instantaneous per-unit sensitivity of portfolio VaR to one position, \\(MVaR_i=(VaR_P/\\text{portfolio value})\\times\\beta_i\\); tells you which dial to turn.",
         "Incremental VaR — the actual change in VaR from adding a whole new position, generally larger than marginal VaR since it can include nonlinear effects; ideally needs full revaluation, but has a cheap marginal-VaR-based shortcut for small additions.",

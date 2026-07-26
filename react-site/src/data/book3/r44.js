@@ -25,7 +25,7 @@ export default ({
 
   breakdown: [
     {
-      title: "Four T's of risk response",
+      title: "T's of risk response",
       points: [
         "Tolerate: fully accept the risk and its consequences, no mitigating action (like holding an unhedged position).",
         "Treat: accept the risk but take action to mitigate its impact (controls, automation, contingency plans; a hedged position).",
@@ -34,7 +34,7 @@ export default ({
       ]
     },
     {
-      title: "Four types of internal controls",
+      title: "Types of internal controls",
       points: [
         "Preventive: lowers the chance the event happens at all by attacking the underlying cause (e.g., segregation of duties across four different people for generating/approving/paying/recording a transaction).",
         "Detective: acts as an alarm once an event is underway, to catch it and limit loss fast (e.g., a fraud alert on an unusual card transaction).",
@@ -43,7 +43,7 @@ export default ({
       ]
     },
     {
-      title: "Four categories of control testing",
+      title: "Categories of control testing",
       points: [
         "Self-assessment: the control owner tests their own work; cheap but not objective, so reserved for low-risk/secondary controls.",
         "Examination: an independent party reviews documentation and a written summary of results; limited scope makes it best suited to automated controls.",
@@ -61,7 +61,7 @@ export default ({
       ]
     },
     {
-      title: "Four phases of a major operational risk event",
+      title: "Phases of a major operational risk event",
       points: [
         "Crisis: the firm realizes an incident occurred (minutes to much longer).",
         "Emergency response: specialists determine and quickly implement the best course of action.",
@@ -70,7 +70,7 @@ export default ({
       ]
     },
     {
-      title: "Five components of a NIRAP business case",
+      title: "Components of a NIRAP business case",
       points: [
         "Objective: what the firm wants to achieve and why the new product/initiative is being introduced.",
         "Alternatives: what other options exist besides the proposed product.",
