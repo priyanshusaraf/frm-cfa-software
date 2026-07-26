@@ -140,11 +140,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 68 | 4 | Intraday Liquidity Risk Management | done | done | 14 | pass | Two enumerated defs trimmed (288 and 322 words); the paired-dash rule ate a paren in the governance breakdown, rewritten by hand. |
 | 69 | 4 | Monitoring Liquidity | done | done | 14 | pass | Clean apart from dashes and one highYield why that cited its own flagging. |
 | 70 | 4 | The Failure Mechanics of Dealer Banks | done | done | 14 | pass | Lightest file of the wave: one dash, plus two 'the reading states' meta-references. |
-| 71 | 4 | Liquidity Stress Testing | done | todo | 15 | - | |
-| 72 | 4 | Liquidity Risk Reporting and Stress Testing | done | todo | 15 | - | |
-| 73 | 4 | Contingency Funding Planning | done | todo | 15 | - | |
-| 74 | 4 | Managing and Pricing Deposit Services | done | todo | 15 | - | |
-| 75 | 4 | Managing Nondeposit Liabilities | done | todo | 15 | - | |
+| 71 | 4 | Liquidity Stress Testing | done | done | 15 | pass | Coverage flag a false positive. Rewrote the two-registers exam paragraph and a teaches sentence the dash pass had broken. |
+| 72 | 4 | Liquidity Risk Reporting and Stress Testing | done | done | 15 | pass | Rewrote the exam paragraph, which called the named-reports list a 'matching exercise' (rule 9). Three highYield whys de-metered. |
+| 73 | 4 | Contingency Funding Planning | done | done | 15 | pass | Cleanest of the wave: dashes plus two 'the source says' meta-references in quiz stems. |
+| 74 | 4 | Managing and Pricing Deposit Services | done | done | 15 | pass | REAL COVERAGE GAP FILLED: the four CD innovations (bump-up, step-up, liquid, index), relationship pricing, and implicit interest were all absent though the source bolds them and module-quizzes two. |
+| 75 | 4 | Managing Nondeposit Liabilities | done | done | 15 | pass | Dash purge and one 'frequently tested' why; the funding-source cost and risk material was already fully covered. |
 | 76 | 4 | Repurchase Agreements and Financing | done | todo | 16 | - | |
 | 77 | 4 | Liquidity Transfer Pricing: A Guide to Better Practice | done | todo | 16 | - | |
 | 78 | 4 | Covered Interest Parity Lost | done | todo | 16 | - | |

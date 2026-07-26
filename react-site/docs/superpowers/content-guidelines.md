@@ -761,3 +761,43 @@ fact", "explicitly flagged as a frequently tested distinction", "GARP likes to t
 this"). Rule 1 bans meta-references to the source; this is the same tell pointed at
 the exam. Say what the trap IS, not that a trap exists: "the wrong option is simply
 the correct fact reversed" teaches; "this is testable" does not.
+
+### Wave 15 (R71-R75, Book 4, 2026-07-26): the first REAL coverage gap the audit has caught
+
+**R74 was missing the four CD innovations entirely, and the source module-quizzes two
+of them.** Bump-up CDs (the depositor may switch to a higher rate if rates rise),
+step-up CDs (the rate adjusts upward on a schedule), liquid CDs (some funds
+withdrawable without penalty) and index CDs (return linked to an index such as the
+S&P 500) are each bolded in the source and answer key `2. C` turns on separating
+bump-up from step-up. The reading taught negotiable/jumbo CDs and stopped. Also
+absent: **relationship pricing** (pricing deposit services against the customer's
+whole relationship, not the account) and **implicit interest** (below-cost service
+pricing under Regulation Q, the toasters-and-teddy-bears era). All three were added
+from the source, at source depth. This is the MPoR case repeating in a different
+book, and it is exactly what protocol 2a-0 exists to catch: **the prose that WAS
+there read perfectly well.** Nothing about R74 looked deficient from inside the file.
+
+Note the shape of the miss. R74 covered the pricing METHODS thoroughly (cost-plus,
+marginal, conditional, with worked numbers) and the deposit TYPES thoroughly, then
+dropped the sub-list hanging off one type. **Enumerations nested one level below a
+covered heading are where gaps hide**, because a reviewer checking "does it cover
+deposit types?" ticks yes.
+
+**The list-separator repair from wave 14 can be automated safely, and should be.**
+Rather than hand-fixing every `breakdown[].points` entry the dash pass flattened,
+diff against `HEAD`: for each points string, find where the dash sat in the original,
+then replace the comma or full stop the script substituted with a colon. 89
+separators across five files were restored this way in one pass, with no judgment
+calls. The script lives in the wave-15 session transcript; reproduce it rather than
+hand-editing, and **still read the result**, because the rule cannot tell a
+term-separator dash from a genuine mid-sentence one.
+
+**Two tells to check for AFTER hand-rewriting, not just before.** The r72 rewrite of
+its exam paragraph introduced "Two other things are worth holding precisely", a
+textbook structure-announcement (CLAUDE.md AI-VOICE TELLS item 1) that
+`ai-tells.mjs` caught on the post-edit run. **Run `ai-tells.mjs` again after your own
+prose edits, not only on the file as you found it.** The same run caught a sentence
+the dash pass had left ungrammatical in r71's `teaches` ("...integration with other
+models. That separate a stress test that..."), which the dash count and the
+validator both pass cleanly. A broken sentence is invisible to every mechanical gate
+in the pipeline except reading it.
