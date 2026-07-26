@@ -63,6 +63,21 @@ the 40-plus r99 previously reported). Fixed in the same commit as this note.
 This back-audit is NOT yet scheduled into a phase. Decide with the owner whether
 it runs as its own sweep before the remaining clearance waves or alongside them.
 
+## OPEN: 20 readings still carry AI-voice tells (found 2026-07-26, post-phase sweep)
+
+`node scripts/ai-tells.mjs --all` flags **29 tells across 20 readings: r2, r5, r7,
+r10, r11, r13, r14, r18, r20, r21, r26, r28, r32, r33, r35, r38, r51, r53, r59, r61**
+(20 enumerated-prose, 7 not-x-but-y, 2 aphoristic-closer). Every one is from waves
+1 to 13. None of r66 to r101 carries a tell, because from wave 14 on the script was
+run per reading and again after hand edits.
+
+This is a real gap in the earlier waves, not a false-positive class: the script
+detects the three structural habits CLAUDE.md bans by name. It is left OPEN rather
+than fixed here because rewriting those passages is prose work that belongs to
+`content-opus-improvement`, and because each one needs a judgment about whether the
+rewrite improves the teaching or just satisfies the detector. Run the script first
+in that phase; it is a ready-made worklist.
+
 ## How to read a row
 
 `p3` = phase-3 hover linking status. Linking is AUTOMATIC (built 2026-07-25, see

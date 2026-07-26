@@ -673,3 +673,35 @@ bookmark toggles, both corner pills, and the resize handle present.
 - Practice test papers (needs sourced papers).
 - Any backend/auth/payments; state stays in localStorage with export/import for now.
 - Other courses (multi-course shell) once Part II has conviction.
+
+## Shipped 2026-07-26 (content-sonnet-clearance completed, waves 14-20)
+
+- **Phase 3 of the content run is DONE.** Waves 14-20 cleared r66-r101 (36 readings),
+  completing Books 4 and 5 and the 101-reading corpus. Ledger header advanced to
+  `content-opus-improvement`. Per-wave detail in `docs/superpowers/content-run-ledger.md`;
+  durable learnings in `content-guidelines.md`.
+- **Corpus invariant reached: 0 em/en-dashes across all 101 readings** (7,614 when the
+  workstream was scoped 2026-07-21). `grep -rn '—\|–' src/data` returning nothing is now
+  a standing check, so any reintroduction is a regression.
+- **Six real coverage gaps found and filled from the Schweser source** (the defect class
+  this run existed to catch): r74 (four CD innovations, relationship pricing, implicit
+  interest), r76 (open repos), r82 (productivity/demographic/political macro factors),
+  r86 (the global custodian), r88 (universe comparison). All had the same shape, a
+  category covered thoroughly with one named member silently dropped.
+- **Two bugs fixed in `scripts/coverage-audit.mjs`**, both of which had been auditing
+  readings against the WRONG source chapter: title-similarity saturation on subset
+  matches (hit r3, r23, r31, r68, r72) and section titles carrying no `#` heading marks
+  (hit r6, r92, r99). r99 was the back-audit's "worst" reading at 40+ candidates; it has
+  4. The ledger's back-audit section is amended accordingly.
+- **89 validator failures repaired across 12 readings**, hidden by a gate that piped
+  `validate-reading.mjs` through `tail -1` (it prints FAIL before warn). All pre-existing
+  debt, concentrated in r98-r101: 22 MODULE QUIZ source leaks naming answer letters, 14
+  prose fields stored as plain strings with no HTML, 19 empty concept keys, 18 over-long
+  enumerated defs, 2 malformed refs.
+- **UI**: Return-to-Reading docked at the far left over the Study sidebar with a
+  gradient purple border (sidebar reserves 5rem bottom padding so Settings stays
+  reachable); light theme softened off pure white and near-black, dark mode unchanged.
+- Verification at close: 101/101 validator clean, 0 dashes, imports clean, 122 tests,
+  build green, chapters render marker-clean with real content.
+- **OPEN, carried into the next phase**: 29 AI-voice tells across 20 readings (r2-r61,
+  all from waves 1-13). `node scripts/ai-tells.mjs --all` is the worklist.
