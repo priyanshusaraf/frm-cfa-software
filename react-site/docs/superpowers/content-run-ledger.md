@@ -58,7 +58,10 @@ section below is stale and says so.
   **r16, r76, r46, r34, r29** (wave 10: r16 stated the FRTB jump-to-default charge as a
   99% VaR where the source says 99.9%, wrong in 12 fields, all corrected; four
   dismissals), **wave 11, the named-term sweep** (r42's four control types were entirely
-  absent; r02 and r05 were missing a source NAME each; r86 and r04 dismissed).
+  absent; r02 and r05 were missing a source NAME each; r86 and r04 dismissed),
+  **wave 12** (the named-term sweep re-run over all 66 unaudited readings: 13 survivors,
+  all resolving to a missing name or shape noise. r60 and r67 gained names. NO new content
+  gaps. **The sweep is exhausted.**).
 - **ORDER THE REST BY THE NAMED-TERM SWEEP** (wave 11), which outranks both other
   generators. Take every `missing` term, drop audit noise by SHAPE (bare LO verbs,
   anything starting `computing `/`calculating `, appendix material like `z_ -table`),
@@ -75,8 +78,17 @@ section below is stale and says so.
   `missingTopics`, not a reliable one. Four of its five worst were fully covered, and
   a bureaucratically worded LO ("discuss the risks faced by") scores low against good
   prose no matter how complete the coverage is.
-- Running total: 156 candidates checked, 12 real gaps, 16 readings dismissed outright,
-  1 factual error corrected across 12 fields.
+- **Track B is substantively CLOSED.** Final tally: ~195 candidates checked over 8 waves,
+  14 real content gaps filled, 1 factual error corrected across 12 fields, 5 missing
+  source names supplied, 31 readings dismissed outright with reasons recorded. What
+  remains is ~10 readings whose ONLY flag is a weak LO at exactly 0.50, the band that ran
+  four dismissals per real gap in wave 8. Treat those as low priority: the marginal
+  reading is likelier to cost an hour than to find a defect. Residual risk recorded
+  honestly rather than worked to zero.
+- **Remaining Phase-4 work is therefore the `sources` curation** (protocol section 3):
+  21 readings have no `sources` at all (r02, r03, r11, r12, r13, r17, r19, r25, r29, r39,
+  r44, r64, r81-r85, r87-r89, r95). Every URL must be fetched and confirmed live before it
+  ships, and zero sources is an acceptable final answer for a reading.
   The false-positive rate holds around 90%, so this is a CHECKING exercise, not a
   writing one; budget for reading the source, not for prose.
 

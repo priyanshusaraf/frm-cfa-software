@@ -1627,3 +1627,48 @@ backtesting the reading covers 7 and 11 times).**
 Running Track B total after seven waves: ~180 candidates checked, 14 real gaps, 18 readings
 dismissed outright, 1 factual error corrected across 12 fields, and 3 missing source names
 supplied.
+
+### Wave 12: the named-term sweep EXHAUSTED (2026-07-26)
+
+Re-ran wave 11's filter over the 66 readings not yet audited. **13 readings had a survivor;
+all 13 resolved to either a missing NAME or shape noise the filter should have caught.** No
+new content gaps. The sweep is done.
+
+**Two missing names supplied:**
+
+- **r60: the cost-of-capital rationale.** The reading had the substance ("cheaper to raise
+  capital in good times than bad") inside a parenthetical, without the source's name for
+  it, and without the conclusion that follows: build the countercyclical buffer up when
+  conditions are good and release it when they are not, because that is what makes
+  financial stability cheaper.
+- **r67: the discipline of the financial marketplace.** The reading teaches this as "market
+  signals" and covers the signals themselves (stock price, borrowing risk premiums, public
+  confidence) 7 times. The formal name, which is what a stem would print, was absent.
+
+**Dismissed, and the shape lessons they teach for anyone extending the filter:**
+
+- `applying a gaussian copula` (r9), `applying jensen's inequality` (r12),
+  `identifying the var limit` (r1), `additional credit risk modeling approaches` (r21):
+  **the filter should drop a leading gerund too** (`applying `, `identifying `,
+  `additional `), same as it drops bare LO verbs. All four concepts are covered heavily
+  (copula 76 in r9, Jensen 20 in r12).
+- `lean techniques` (r44) and `preventative controls` (r48) are **spelling and word-form
+  variants** of present material (lean 6 and six sigma 4 in r44; preventive 20 and detective
+  17 in r48, the American spelling against the source's British one).
+- `value/growth effect` (r83) is the slash form of the reading's "value-vs-growth tilt
+  (HML)", which appears 14 times. This confirms the wave-17 dismissal was right.
+- `management process` (r69), `cumulative` (r101), `n_ underlying securities` (r30),
+  `climate-related financial risks employed by banks and supervisors` (r98): fragments of
+  LO or heading text, not terms.
+
+**Track B status: the three generators are exhausted or nearly so.** The named-term sweep
+is complete. `missingTopics` is documented as nearly pure noise. What remains is ~10
+readings whose only flag is a weak LO at exactly 0.50 coverage, which is the band that
+produced four dismissals for every real gap in wave 8. **A future session should treat those
+ten as low priority and consider Track B substantively closed**, with the residual risk
+recorded honestly rather than worked to zero: the audit's own false-positive rate means the
+marginal reading is far more likely to cost an hour than to find a defect.
+
+Final Track B tally: ~195 candidates checked across 8 waves, 14 real content gaps filled,
+1 factual error corrected across 12 fields, 5 missing source names supplied, 31 readings
+dismissed outright with reasons recorded.
