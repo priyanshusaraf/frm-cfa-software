@@ -1528,3 +1528,49 @@ documented deliberate KEEP. Expected steady state, not work outstanding.
 
 Running Track B total after five waves: 139 candidates checked, 12 real gaps, 12 readings
 dismissed outright.
+
+### Wave 10: r16, r76, r46, r34, r29 (2026-07-26). A WRONG NUMBER, not a gap.
+
+**r16 stated the FRTB jump-to-default charge as a 99% VaR. The source says 99.9%.** Book 1
+line 4985: "This risk is subject to an incremental default risk (IDR) charge... calculated
+based on a 99.9% VaR with a one-year time horizon." The reading had 99% in **twelve
+places**: a concept `def`, a concept `pitfall`, a concept `memory`, a `connections.confused`
+pair, a misconception, two `highYield` items, two quiz `why`s, a quiz stem, a hook, the
+`thinkLike` exam-shape description, and the `summary`. All corrected, and the source's name
+for the charge (incremental default risk, IDR) added, since the reading had only the Basel
+2.5 parent name (incremental risk charge, IRC).
+
+**This is the most consequential Track B finding so far, and it is a different defect class
+from everything else in the phase.** Three things about it are worth carrying forward:
+
+1. **A wrong number is worse than a missing one.** A gap leaves the student ignorant; this
+   left them confidently wrong on a directly examinable figure, and the reading is
+   internally consistent about it, so nothing looks off from the inside.
+2. **The coverage audit found it only indirectly.** It flagged `incremental default risk
+   (idr)` as a MISSING TERM, which reads like a trivial naming nit. Checking the term
+   against the source is what exposed the number. **Do not skip a "missing term" candidate
+   because the concept is obviously covered: read the source sentence the term sits in.**
+3. **The error had propagated to twelve fields, which is what makes it expensive.** The
+   fix required a full-file sweep of "99%", separating the eleven legitimate mentions
+   (Basel I's 10-day 99% VaR, and the 99%-VaR-vs-97.5%-ES numerical comparison) from the
+   twelve wrong ones. **Grep the whole file for a corrected number, do not fix the
+   occurrence you found.** A number that is wrong once in an enriched reading is almost
+   never wrong only once.
+
+**Dismissed: r76, r46, r34, r29.**
+
+- **r76** flags five topics; the reading has 17 reverse-repo mentions, 50 Lehman, 17
+  haircut, and covers counterparty and liquidity risk through repo directly.
+- **r46** (stress-testing operational risk models) has 38 stress-test mentions and 8
+  explicit challenge discussions.
+- **r34** flags the whole CSA cluster; CSA appears 70 times, threshold 98, dispute 26.
+  `types of collateral` is a heading, and the reading covers cash, government bonds and
+  equity as collateral under its own wording.
+- **r29** flags `equity prices for default probability estimates`. The Merton route is
+  taught in R21 and R25 (where wave 7 also added the rating-staleness point that motivates
+  it), and r29 cross-references R21 explicitly. **This is the sanctioned pattern, not a
+  gap**: section 1a says the reading keeps its own specific material and links out for the
+  underlying concept.
+
+Running Track B total after six waves: 156 candidates checked, 12 real gaps, 16 readings
+dismissed outright, and 1 factual error corrected across 12 fields.

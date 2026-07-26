@@ -54,17 +54,22 @@ section below is stale and says so.
   in r25 plus 1 small fill, three readings dismissed).
   **r35, r19, r84, r95, r38** (wave 8, the first weak-LO-ordered wave: 25 candidates,
   1 real gap in r19, four readings dismissed), **r28, r77, r23, r26, r3** (wave 9:
-  19 candidates, r26 was missing LO 26.f entirely, two modest fills, two dismissals).
+  19 candidates, r26 was missing LO 26.f entirely, two modest fills, two dismissals),
+  **r16, r76, r46, r34, r29** (wave 10: r16 stated the FRTB jump-to-default charge as a
+  99% VaR where the source says 99.9%, wrong in 12 fields, all corrected; four
+  dismissals).
 - **ORDER THE REST BY WEAK LOs, not by the composite score.** Wave 7 established why:
   `missingTopics` is dominated by heading-text mismatches (a reading that numbers a
   framework differently, or hyphenates a term differently, reads as missing it), while
   `weakLOs` is what found r25's genuinely absent learning objective. Next, by summed
-  LO shortfall. Next: **r16 (16.c@0.50), r29 (29.a@0.50), r34 (34.g@0.50),
-  r66 (67.b@0.50)** and the rest at 0.50. 15 readings still carry a weak LO. Wave 8's caveat: weak LO is a better signal than
+  LO shortfall. Next: **r66 (67.b@0.50)** and the remaining ~10 readings at 0.50.
+  **And do not skip `missing`-term candidates**: wave 10's factual error surfaced from
+  one, `incremental default risk (idr)`, which looked like a naming nit. Wave 8's caveat: weak LO is a better signal than
   `missingTopics`, not a reliable one. Four of its five worst were fully covered, and
   a bureaucratically worded LO ("discuss the risks faced by") scores low against good
   prose no matter how complete the coverage is.
-- Running total: 139 candidates checked, 12 real gaps, 12 readings dismissed outright.
+- Running total: 156 candidates checked, 12 real gaps, 16 readings dismissed outright,
+  1 factual error corrected across 12 fields.
   The false-positive rate holds around 90%, so this is a CHECKING exercise, not a
   writing one; budget for reading the source, not for prose.
 
