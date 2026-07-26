@@ -49,8 +49,15 @@ Fixed in commit dd4e559 and `coverage-report.json` regenerated, so the worst-fir
 list above is stale for r31, r23, r68 and r72 specifically. **Anyone resuming the
 back-audit must re-read the report, not this paragraph's ordering.**
 
-r6 has no Schweser section at all ("Messages From the Academic Literature" is
-absent from `Book 1 (1).md`), so it cannot be coverage-audited from the books.
+**CORRECTED 2026-07-26 (wave 19): r6's section is NOT absent.** The claim above was
+an artifact of the same class of audit bug. Three sections in the source title
+themselves with a bare `**TITLE**` line carrying no `#` heading marks, and the
+section extractor required the marks, so it dropped them: r6's "Messages From the
+Academic Literature", r92's SVB review, and r99's climate-principles reading. r6 and
+r92 fell through to no match and a wrong match respectively, and **r99, listed as the
+single worst reading in the back-audit above, was audited against the WRONG chapter
+entirely.** All three now audit correctly (r6: 2 candidates, r92: 2, r99: 4, against
+the 40-plus r99 previously reported). Fixed in the same commit as this note.
 
 This back-audit is NOT yet scheduled into a phase. Decide with the owner whether
 it runs as its own sweep before the remaining clearance waves or alongside them.

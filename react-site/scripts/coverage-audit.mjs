@@ -79,10 +79,16 @@ function sectionsOf(bn) {
   const heads = [];
   lines.forEach((l, i) => {
     if (/^#{3,6}\s*\*\*READING\s+\d+\*\*/.test(l)) {
-      /* The title is the next heading line after the READING marker. */
+      /* The title is the next heading line after the READING marker. The `#`
+         marks are OPTIONAL: three sections in the source (Book 4's US dollar
+         shortage, Book 5's SVB review and its climate-principles reading) title
+         themselves with a bare `**TITLE**` line. Requiring the marks dropped
+         those sections entirely, so their readings fell through to a fuzzy
+         match on a neighbouring chapter, which is how r92 came to be audited
+         against the artificial-intelligence reading. */
       let title = "";
       for (let j = i + 1; j < Math.min(i + 6, lines.length); j++) {
-        const m = lines[j].match(/^#{1,4}\s*\*\*([^*]+)\*\*\s*$/);
+        const m = lines[j].match(/^#{0,4}\s*\*\*([^*]+)\*\*\s*$/);
         if (m) { title = clean(m[1]); break; }
         if (lines[j].trim()) break;
       }

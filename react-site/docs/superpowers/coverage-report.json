@@ -138,7 +138,21 @@
  },
  {
   "rn": 6,
-  "error": "no source section matched title \"Messages From the Academic Literature\""
+  "sourceTitle": "MESSAGES FROM THE ACADEMIC LITERATURE ON RISK MEASUREMENT FOR THE TRADING BOOK",
+  "matchScore": 1,
+  "sourceLines": 200,
+  "terms": 16,
+  "topics": 6,
+  "missing": [
+   {
+    "term": "integrated risk measurement",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "integrating liquidity risk into var models"
+  ],
+  "weakLOs": []
  },
  {
   "rn": 7,
@@ -1684,10 +1698,6 @@
   "topics": 22,
   "missing": [
    {
-    "term": "bankers’ acceptances",
-    "count": 1
-   },
-   {
     "term": "calculate",
     "count": 1
    },
@@ -1709,7 +1719,7 @@
    {
     "id": "67.b",
     "text": "Identify and discuss various factors that affect the choice of investment securities by a bank.",
-    "coverage": 0.375
+    "coverage": 0.5
    }
   ]
  },
@@ -1856,10 +1866,6 @@
     "count": 1
    },
    {
-    "term": "implicit interest",
-    "count": 1
-   },
-   {
     "term": "index cds",
     "count": 1
    },
@@ -1869,10 +1875,6 @@
    },
    {
     "term": "liquid cds",
-    "count": 1
-   },
-   {
-    "term": "relationship pricing",
     "count": 1
    },
    {
@@ -1914,10 +1916,6 @@
   "missing": [
    {
     "term": "collateral in repo transactions",
-    "count": 1
-   },
-   {
-    "term": "open repos",
     "count": 1
    },
    {
@@ -2070,20 +2068,7 @@
   "sourceLines": 376,
   "terms": 15,
   "topics": 13,
-  "missing": [
-   {
-    "term": "demographic risk",
-    "count": 1
-   },
-   {
-    "term": "political (or sovereign) risk",
-    "count": 1
-   },
-   {
-    "term": "productivity shocks",
-    "count": 1
-   }
-  ],
+  "missing": [],
   "missingTopics": [
    "behavioral theories of the value premium",
    "dynamic risk factors",
@@ -2207,10 +2192,6 @@
     "count": 1
    },
    {
-    "term": "global custodian",
-    "count": 1
-   },
-   {
     "term": "surplus at risk (via computing volatility of surplus)",
     "count": 1
    },
@@ -2263,10 +2244,6 @@
     "count": 2
    },
    {
-    "term": "appraisal ratio",
-    "count": 1
-   },
-   {
     "term": "calculating the m",
     "count": 1
    },
@@ -2280,7 +2257,6 @@
    }
   ],
   "missingTopics": [
-   "universe comparisons",
    "use the following information to answer questions 1 and 2"
   ],
   "weakLOs": []
@@ -2324,51 +2300,21 @@
  },
  {
   "rn": 92,
-  "sourceTitle": "ARTIFICIAL INTELLIGENCE AND BANK SUPERVISION",
-  "matchScore": 0.5,
-  "sourceLines": 150,
-  "terms": 5,
-  "topics": 3,
+  "sourceTitle": "REVIEW OF THE FEDERAL RESERVE’S SUPERVISION AND REGULATION OF SILICON VALLEY BANK",
+  "matchScore": 1,
+  "sourceLines": 272,
+  "terms": 6,
+  "topics": 6,
   "missing": [
    {
-    "term": "ai disadvantages",
-    "count": 1
-   },
-   {
-    "term": "algorithmic bias",
-    "count": 1
-   },
-   {
-    "term": "machine learning",
-    "count": 1
-   },
-   {
-    "term": "neural networks",
+    "term": "position and the bank’s internal audit function",
     "count": 1
    }
   ],
   "missingTopics": [
-   "ai advantages",
-   "ai applications in the financial sector",
-   "regulatory issues"
+   "svb interest rate risk management deficiencies"
   ],
-  "weakLOs": [
-   {
-    "id": "96.b",
-    "text": "Explain the advantages of implementing AI-based applications to the banking services companies and their customers.",
-    "coverage": 0.5
-   },
-   {
-    "id": "96.c",
-    "text": "Discuss the disadvantages and difficulties for financial companies using AI.",
-    "coverage": 0.5
-   },
-   {
-    "id": "96.d",
-    "text": "Clarify the specific issues faced by banks and regulators arising from utilizing AI in modeling and valuation.",
-    "coverage": 0.4
-   }
-  ]
+  "weakLOs": []
  },
  {
   "rn": 93,
@@ -2465,100 +2411,19 @@
  },
  {
   "rn": 99,
-  "sourceTitle": "CLIMATE-RELATED FINANCIAL RISKS—MEASUREMENT METHODOLOGIES",
-  "matchScore": 0.67,
-  "sourceLines": 558,
-  "terms": 25,
-  "topics": 14,
-  "missing": [
-   {
-    "term": "agent-based models (abms)",
-    "count": 1
-   },
-   {
-    "term": "aggregation perspectives",
-    "count": 1
-   },
-   {
-    "term": "capturing economic effects",
-    "count": 1
-   },
-   {
-    "term": "client or project ratings and scores",
-    "count": 1
-   },
-   {
-    "term": "climate risk ratings/scores",
-    "count": 1
-   },
-   {
-    "term": "climate-related financial risks employed by banks and supervisors",
-    "count": 1
-   },
-   {
-    "term": "computable general equilibrium (cge) models",
-    "count": 1
-   },
-   {
-    "term": "dynamic stochastic general equilibrium (dsge) models",
-    "count": 1
-   },
-   {
-    "term": "input-output models",
-    "count": 1
-   },
-   {
-    "term": "integrated assessment models (iams)",
-    "count": 1
-   },
-   {
-    "term": "jurisdiction comparability",
-    "count": 1
-   },
-   {
-    "term": "long-term horizon assessments",
-    "count": 1
-   },
-   {
-    "term": "natural capital analysis",
-    "count": 1
-   },
-   {
-    "term": "operational assessment challenges",
-    "count": 1
-   },
-   {
-    "term": "overlapping generation (olg) models",
-    "count": 1
-   },
-   {
-    "term": "portfolio and sector exposures",
-    "count": 1
-   }
-  ],
+  "sourceTitle": "PRINCIPLES FOR THE EFFECTIVE MANAGEMENT AND SUPERVISION OF CLIMATE-RELATED FINANCIAL RISKS",
+  "matchScore": 1,
+  "sourceLines": 336,
+  "terms": 0,
+  "topics": 10,
+  "missing": [],
   "missingTopics": [
-   "climate-related financial risk complexity",
-   "considerations and issues with climate-related financial risks",
-   "current and developing methodologies",
-   "exposure granularity",
-   "exposure mapping and measurement",
-   "heterogeneities",
-   "incorporating risk mitigation and risk reduction",
-   "key takeaways",
-   "risk differentiation",
-   "risk quantification",
-   "sources of uncertainty",
-   "top-down and bottom-up approaches",
-   "transition and physical risk measurement",
-   "unique data needs"
+   "comprehensive management of market, liquidity, operational, and other risks",
+   "corporate governance",
+   "prudential regulatory and supervisory requirements for banks",
+   "responsibilities, power, and functions of supervisors"
   ],
-  "weakLOs": [
-   {
-    "id": "100.d",
-    "text": "Compare and contrast climate-measuring methodologies utilized by banks, regulators, and third-party providers.",
-    "coverage": 0.5454545454545454
-   }
-  ]
+  "weakLOs": []
  },
  {
   "rn": 100,
