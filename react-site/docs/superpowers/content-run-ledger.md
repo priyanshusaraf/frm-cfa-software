@@ -23,6 +23,27 @@ Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality f
 
 Advance this header only when every row for the active phase is `done`, then commit.
 
+## OPEN: the coverage back-audit (owner directive, 2026-07-26)
+
+R35 was found to have passed its wave-7 gate while omitting the margin period of
+risk entirely. The cause was structural: no step in the run ever compared a
+reading against its source for MISSING material. `scripts/coverage-audit.mjs`
+now closes that hole going forward (protocol section 2a-0), but it also means
+**every reading cleared before wave 14 was cleared without a coverage check.**
+
+Current state: `docs/superpowers/coverage-report.json` holds a full run.
+551 candidate gaps across 100 readings, 368 of them in the 65 readings already
+marked `content: done`. The false-positive rate is high by design, so these are
+candidates, not confirmed holes; each needs a human or Opus judgment.
+
+Worst first: r99, r31, r64, r68, r23, r24, r72, r27, r59, r37, r57, r39.
+
+r6 has no Schweser section at all ("Messages From the Academic Literature" is
+absent from `Book 1 (1).md`), so it cannot be coverage-audited from the books.
+
+This back-audit is NOT yet scheduled into a phase. Decide with the owner whether
+it runs as its own sweep before the remaining clearance waves or alongside them.
+
 ## How to read a row
 
 `p3` = phase-3 hover linking status. Linking is AUTOMATIC (built 2026-07-25, see

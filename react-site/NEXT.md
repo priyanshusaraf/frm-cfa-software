@@ -1,0 +1,3 @@
+DONE: Built scripts/coverage-audit.mjs after R35 was found missing MPoR despite passing its gate; it compares each reading against its Schweser section for MISSING material and is now mandatory in the run protocol (section 2a-0 and the Opus-A gate).
+NEXT: Decide with the owner whether the coverage back-audit over the 65 already-cleared readings runs as its own sweep or folds into the remaining waves, then continue wave 14 (r66-r70).
+BLOCKERS: 551 candidate coverage gaps logged in docs/superpowers/coverage-report.json, 368 of them in readings already marked done. High false-positive rate by design, so each needs judgment, not bulk edits.

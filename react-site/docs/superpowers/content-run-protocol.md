@@ -64,9 +64,49 @@ Mark the `p3` column `done` per reading. Verification is section 4.
 
 The MVP clearance run. Wave = 5 readings, then a mandatory Opus-A gate.
 
+### 2a-0. COVERAGE FIRST — run this before any prose edit (owner directive, 2026-07-26)
+
+```bash
+node scripts/coverage-audit.mjs NN        # per reading, before touching it
+```
+
+**Why this exists.** R35 passed the wave-7 gate while omitting the margin period
+of risk completely: a bolded, examinable concept the source devotes a subsection
+and a module-quiz question to. Nothing in the old pipeline could have caught it,
+because the mandate below is a closed list of STYLE fixes and the gate checks
+sense, dashes and render. **An omission is invisible to anyone reading only the
+data file** - the prose that IS there reads perfectly well. It is visible only
+against the source. In the owner's words: what costs marks is not the general
+idea, it is the smaller details, and the app was over-explaining easy concepts
+(novation) while dropping hard testable ones (MPoR).
+
+The audit prints two kinds of candidate gap plus weak learning objectives:
+
+- `TOPIC NOT COVERED` - a source subsection heading the reading never addresses.
+  Highest signal. This is the bucket that catches an MPoR-class hole.
+- `MISSING` - a term the source bolds that the reading never teaches.
+- `WEAK LO` - a learning objective whose content words barely appear.
+
+**It reports candidates, it does not judge.** Measured false-positive rate is
+high (in a hand-check of r24, all 8 sampled items were in fact taught in the
+reading's own words; in r59, 7 of 8 were). So:
+
+1. Run it. For every line it prints, check the reading yourself.
+2. If the concept genuinely is not taught anywhere in the file, ADD IT, from the
+   source, at the depth the source gives it. This is a sixth permitted edit and
+   it OVERRIDES the closed list below.
+3. If it is taught under another name, ignore the line. Do not rename anything
+   to satisfy the tool.
+4. Record real gaps found in `content-guidelines.md` so the pattern is learned.
+
+Coverage outranks polish. A reading that is dash-clean and missing a testable
+concept has failed, and a reading that teaches everything is not blocked by a
+rough sentence.
+
 ### 2a. Sonnet's mandate — a CLOSED list
 
-Per reading, Sonnet may change ONLY these five things:
+Beyond filling the coverage gaps found in 2a-0, per reading Sonnet may change
+ONLY these five things:
 
 1. **Em/en-dash purge.** Every `—` and `–` gets a context-appropriate rewrite
    (comma, colon, parentheses, or a full stop; a full stop or colon usually reads
@@ -105,9 +145,13 @@ Opus-A verifies, it does not rewrite. Over the 5 readings just cleared:
 1. **Sense.** Did an edit change or damage the meaning? Directional claims and
    any edited formula prose get checked against the source.
 2. **Dashes.** `grep -Rn '—\|–' src/data/bookN/rNN.js` returns nothing, per file.
-3. **UI/render.** Render-check each of the 5 chapters (section 3). Broken widget,
+3. **Coverage.** Re-run `node scripts/coverage-audit.mjs` over the 5 readings and
+   confirm every `TOPIC NOT COVERED` / `WEAK LO` line was either filled or
+   consciously dismissed as a false positive. An undismissed, unfilled gap is a
+   gate failure. This is the check whose absence let R35 ship without MPoR.
+4. **UI/render.** Render-check each of the 5 chapters (section 3). Broken widget,
    broken KaTeX, or empty section = gate failure.
-4. **Write what it learned into `content-guidelines.md`** — the point of the gate.
+5. **Write what it learned into `content-guidelines.md`** — the point of the gate.
    Record per reading what is genuinely good (so nobody rewrites it later), what
    was weak and how it was fixed, and any guidance that makes the NEXT wave better.
    A gate that produces no durable learning has not been run properly.
@@ -148,6 +192,7 @@ links in the first place. Zero sources is an acceptable final answer for a readi
 
 ```bash
 cd react-site
+node scripts/coverage-audit.mjs NN                     # each touched reading
 node scripts/validate-reading.mjs bookN/rNN.js NN      # each touched reading
 grep -Rn '—\|–' src/data/bookN/rNN.js                  # must return nothing
 node --input-type=module -e "await import('./src/data/bookN/rNN.js')"  # import sweep

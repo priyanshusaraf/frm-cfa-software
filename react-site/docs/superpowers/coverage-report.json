@@ -1,0 +1,2887 @@
+[
+ {
+  "rn": 1,
+  "sourceTitle": "ESTIMATING MARKET RISK MEASURES: AN INTRODUCTION AND OVERVIEW",
+  "matchScore": 1,
+  "sourceLines": 322,
+  "terms": 16,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "computing var",
+    "count": 1
+   },
+   {
+    "term": "computing var (arithmetic returns)",
+    "count": 1
+   },
+   {
+    "term": "computing var (lognormal distribution) computing var (lognormal distribution)",
+    "count": 1
+   },
+   {
+    "term": "computing var (normal distribution)",
+    "count": 1
+   },
+   {
+    "term": "estimating standard errors",
+    "count": 1
+   },
+   {
+    "term": "identifying the var limit",
+    "count": 1
+   },
+   {
+    "term": "profit/loss data",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "estimating coherent risk measures",
+   "parametric estimation approaches"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 2,
+  "sourceTitle": "NON-PARAMETRIC APPROACHES",
+  "matchScore": 1,
+  "sourceLines": 224,
+  "terms": 3,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "surrogate density function",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "applying non-parametric estimation"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 3,
+  "sourceTitle": "NON-PARAMETRIC APPROACHES",
+  "matchScore": 1,
+  "sourceLines": 224,
+  "terms": 3,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "advantages and disadvantages of non-parametric methods",
+    "count": 1
+   },
+   {
+    "term": "bootstrap historical simulation",
+    "count": 1
+   },
+   {
+    "term": "surrogate density function",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "age-weighted historical simulation",
+   "applying non-parametric estimation",
+   "bootstrap historical simulation approach",
+   "correlation-weighted historical simulation",
+   "volatility-weighted historical simulation"
+  ],
+  "weakLOs": [
+   {
+    "id": "2.d",
+    "text": "Identify advantages and disadvantages of non-parametric estimation methods.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 4,
+  "sourceTitle": "BACKTESTING VAR",
+  "matchScore": 1,
+  "sourceLines": 304,
+  "terms": 10,
+  "topics": 6,
+  "missing": [
+   {
+    "term": "computing the probability of exception",
+    "count": 1
+   },
+   {
+    "term": "model verification",
+    "count": 1
+   },
+   {
+    "term": "testing for unconditional coverage",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "basel committee rules for backtesting",
+   "using failure rates in model verification",
+   "using var to measure potential losses"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 5,
+  "sourceTitle": "VAR MAPPING",
+  "matchScore": 1,
+  "sourceLines": 408,
+  "terms": 12,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "primitive risk factors",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "forward contracts",
+   "mapping approaches for linear derivatives",
+   "mapping approaches for nonlinear derivatives"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 6,
+  "error": "no source section matched title \"Messages From the Academic Literature\""
+ },
+ {
+  "rn": 7,
+  "sourceTitle": "CORRELATION BASICS: DEFINITIONS, APPLICATIONS, AND TERMINOLOGY",
+  "matchScore": 1,
+  "sourceLines": 468,
+  "terms": 22,
+  "topics": 5,
+  "missing": [
+   {
+    "term": "computing var with the variance-covariance method",
+    "count": 1
+   },
+   {
+    "term": "concentration ratio for bank x and one loan to company a",
+    "count": 1
+   },
+   {
+    "term": "concentration ratio for bank y and two loans to companies a and b",
+    "count": 1
+   },
+   {
+    "term": "migration risk",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "correlations during the global financial crisis",
+   "correlations in financial investments",
+   "relationship between var and correlation"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 8,
+  "sourceTitle": "EMPIRICAL PROPERTIES OF CORRELATION: HOW DO CORRELATIONS BEHAVE IN THE REAL WORLD?",
+  "matchScore": 1,
+  "sourceLines": 210,
+  "terms": 7,
+  "topics": 3,
+  "missing": [
+   {
+    "term": "calculating expected correlation",
+    "count": 1
+   },
+   {
+    "term": "calculating mean reversion",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "correlations during different economic states"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 9,
+  "sourceTitle": "FINANCIAL CORRELATION MODELING—BOTTOM-UP APPROACHES",
+  "matchScore": 0.8,
+  "sourceLines": 222,
+  "terms": 8,
+  "topics": 4,
+  "missing": [
+   {
+    "term": "applying a gaussian copula",
+    "count": 1
+   },
+   {
+    "term": "illustrate",
+    "count": 1
+   }
+  ],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 10,
+  "sourceTitle": "EMPIRICAL APPROACHES TO RISK METRICS AND HEDGING",
+  "matchScore": 1,
+  "sourceLines": 246,
+  "terms": 1,
+  "topics": 6,
+  "missing": [],
+  "missingTopics": [
+   "face amout of offsetting position"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 11,
+  "sourceTitle": "THE SCIENCE OF TERM STRUCTURE MODELS",
+  "matchScore": 1,
+  "sourceLines": 394,
+  "terms": 17,
+  "topics": 11,
+  "missing": [
+   {
+    "term": "demonstrate",
+    "count": 1
+   },
+   {
+    "term": "nonrecombining trees",
+    "count": 1
+   },
+   {
+    "term": "valuing an option-free bond",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "bonds with embedded options",
+   "constructing the binomial interest rate tree",
+   "fixed-income securities and black-scholes-merton",
+   "recombining and nonrecombining",
+   "using the risk-neutral interest rate tree",
+   "valuing an option-free bond with the tree, using backward induction"
+  ],
+  "weakLOs": [
+   {
+    "id": "11.e",
+    "text": "Explain how the principles of arbitrage pricing of derivatives on fixedincome securities can be extended over multiple periods.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 12,
+  "sourceTitle": "THE EVOLUTION OF SHORT RATES AND THE SHAPE OF THE TERM STRUCTURE",
+  "matchScore": 1,
+  "sourceLines": 330,
+  "terms": 4,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "applying jensen’s inequality",
+    "count": 1
+   },
+   {
+    "term": "demonstrate",
+    "count": 1
+   },
+   {
+    "term": "three years",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "flat yield curve"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 13,
+  "sourceTitle": "THE ART OF TERM STRUCTURE MODELS: DRIFT",
+  "matchScore": 1,
+  "sourceLines": 364,
+  "terms": 0,
+  "topics": 7,
+  "missing": [],
+  "missingTopics": [
+   "model 1 effectiveness",
+   "model 2 effectiveness",
+   "vasicek model effectiveness"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 14,
+  "sourceTitle": "THE ART OF TERM STRUCTURE MODELS: VOLATILITY AND DISTRIBUTION",
+  "matchScore": 1,
+  "sourceLines": 238,
+  "terms": 2,
+  "topics": 3,
+  "missing": [],
+  "missingTopics": [
+   "model 3 effectiveness"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 15,
+  "sourceTitle": "VOLATILITY SMILES",
+  "matchScore": 1,
+  "sourceLines": 232,
+  "terms": 6,
+  "topics": 7,
+  "missing": [],
+  "missingTopics": [
+   "foreign currency options",
+   "volatility term structure and volatility surfaces"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 16,
+  "sourceTitle": "FUNDAMENTAL REVIEW OF THE TRADING BOOK",
+  "matchScore": 1,
+  "sourceLines": 404,
+  "terms": 17,
+  "topics": 11,
+  "missing": [
+   {
+    "term": "cumulative",
+    "count": 1
+   },
+   {
+    "term": "incremental default risk (idr)",
+    "count": 1
+   },
+   {
+    "term": "t_ -distribution",
+    "count": 1
+   },
+   {
+    "term": "z_ -table",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "hypothesis testing—one-tailed test example",
+   "hypothesis testing—two-tailed test example",
+   "proposed modifications to basel regulations"
+  ],
+  "weakLOs": [
+   {
+    "id": "16.c",
+    "text": "Explain the FRTB revisions to Basel regulations in the following areas:",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 17,
+  "sourceTitle": "FUNDAMENTALS OF CREDIT RISK",
+  "matchScore": 1,
+  "sourceLines": 304,
+  "terms": 5,
+  "topics": 10,
+  "missing": [
+   {
+    "term": "transactions that generate credit risk",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "financial institutions",
+   "insurance companies"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 18,
+  "sourceTitle": "GOVERNANCE",
+  "matchScore": 1,
+  "sourceLines": 268,
+  "terms": 3,
+  "topics": 11,
+  "missing": [],
+  "missingTopics": [
+   "creation and approval",
+   "maintenance and content"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 19,
+  "sourceTitle": "CREDIT RISK MANAGEMENT",
+  "matchScore": 1,
+  "sourceLines": 452,
+  "terms": 12,
+  "topics": 10,
+  "missing": [],
+  "missingTopics": [
+   "credit facility allocation and credit risk reduction",
+   "elements of an effective lending policy",
+   "loan loss provisions and reserves",
+   "managing loss assets",
+   "setting exposure and concentration limits"
+  ],
+  "weakLOs": [
+   {
+    "id": "19.b",
+    "text": "Explain the importance and challenges of setting exposure and concentration limits.",
+    "coverage": 0.5714285714285714
+   },
+   {
+    "id": "19.g",
+    "text": "Explain the requirements for estimating expected loss under IFRS 9.",
+    "coverage": 0.4
+   }
+  ]
+ },
+ {
+  "rn": 20,
+  "sourceTitle": "CAPITAL STRUCTURE IN BANKS",
+  "matchScore": 1,
+  "sourceLines": 308,
+  "terms": 11,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "computing portfolio expected and unexpected loss",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "modeling credit risk"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 21,
+  "sourceTitle": "INTRODUCTION TO CREDIT RISK MODELING AND ASSESSMENT",
+  "matchScore": 1,
+  "sourceLines": 364,
+  "terms": 24,
+  "topics": 6,
+  "missing": [
+   {
+    "term": "additional credit risk modeling approaches",
+    "count": 1
+   },
+   {
+    "term": "judgmental approach",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "credit risk factors",
+   "evaluating a bank’s financial condition",
+   "predicting default in credit risk models"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 22,
+  "sourceTitle": "CREDIT SCORING AND RATING",
+  "matchScore": 1,
+  "sourceLines": 286,
+  "terms": 9,
+  "topics": 8,
+  "missing": [],
+  "missingTopics": [
+   "criticisms of credit rating agency scores",
+   "definition and validation of ratings",
+   "developing credit scoring and rating models"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 23,
+  "sourceTitle": "CREDIT RISK MANAGEMENT",
+  "matchScore": 1,
+  "sourceLines": 452,
+  "terms": 12,
+  "topics": 10,
+  "missing": [
+   {
+    "term": "asset classification",
+    "count": 1
+   },
+   {
+    "term": "concentration limits",
+    "count": 1
+   },
+   {
+    "term": "loan loss provisions",
+    "count": 1
+   },
+   {
+    "term": "loan loss reserves",
+    "count": 1
+   },
+   {
+    "term": "loan workout procedure",
+    "count": 1
+   },
+   {
+    "term": "related parties",
+    "count": 1
+   },
+   {
+    "term": "unexpected loss",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "credit asset classification",
+   "credit facility allocation and credit risk reduction",
+   "credit risk management capacity",
+   "elements of an effective lending policy",
+   "expected loss under ifrs 9",
+   "expected loss vs. unexpected loss",
+   "loan loss provisions and reserves",
+   "managing loss assets",
+   "setting exposure and concentration limits"
+  ],
+  "weakLOs": [
+   {
+    "id": "19.a",
+    "text": "Describe key elements of an effective lending or financing policy.",
+    "coverage": 0.5
+   },
+   {
+    "id": "19.b",
+    "text": "Explain the importance and challenges of setting exposure and concentration limits.",
+    "coverage": 0.42857142857142855
+   },
+   {
+    "id": "19.c",
+    "text": "Describe the scope and allocation processes of a bank’s credit facility and explain bank-specific policies and actions to reduce credit risk.",
+    "coverage": 0.46153846153846156
+   },
+   {
+    "id": "19.e",
+    "text": "Describe and explain loan loss provisions and loan loss reserves.",
+    "coverage": 0.25
+   },
+   {
+    "id": "19.i",
+    "text": "Explain the components of credit risk analysis.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 24,
+  "sourceTitle": "COUNTRY RISK: DETERMINANTS, MEASURES, AND IMPLICATIONS",
+  "matchScore": 1,
+  "sourceLines": 448,
+  "terms": 42,
+  "topics": 16,
+  "missing": [
+   {
+    "term": "comparing local currency bond yields is less meaningful",
+    "count": 1
+   },
+   {
+    "term": "credit default swaps (cdss)",
+    "count": 1
+   },
+   {
+    "term": "evaluating factors that may contribute to default",
+    "count": 1
+   },
+   {
+    "term": "greater volatility in default spreads",
+    "count": 1
+   },
+   {
+    "term": "increased likelihood of political change",
+    "count": 1
+   },
+   {
+    "term": "local (i.e., domestic) country debt",
+    "count": 1
+   },
+   {
+    "term": "more fragile banking systems",
+    "count": 1
+   },
+   {
+    "term": "overreaction leads to a vicious cycle",
+    "count": 1
+   },
+   {
+    "term": "pension funds and social services",
+    "count": 1
+   },
+   {
+    "term": "ratings are biased upward",
+    "count": 1
+   },
+   {
+    "term": "ratings review process",
+    "count": 1
+   },
+   {
+    "term": "spreads adjust quicker to new information",
+    "count": 1
+   },
+   {
+    "term": "the economist",
+    "count": 1
+   },
+   {
+    "term": "the world bank",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "evaluating country risk",
+   "shortcomings of the sovereign rating system"
+  ],
+  "weakLOs": [
+   {
+    "id": "24.b",
+    "text": "Evaluate the methods for measuring country risk and discuss the limitations of using those methods.",
+    "coverage": 0.4444444444444444
+   }
+  ]
+ },
+ {
+  "rn": 25,
+  "sourceTitle": "ESTIMATING DEFAULT PROBABILITIES",
+  "matchScore": 1,
+  "sourceLines": 596,
+  "terms": 21,
+  "topics": 14,
+  "missing": [
+   {
+    "term": "credit ratings",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "approximating hazard rates",
+   "borrowing rating vs. probability of default",
+   "default probability estimation with the merton model",
+   "merton model performance",
+   "real-world vs. risk-neutral default probabilities"
+  ],
+  "weakLOs": [
+   {
+    "id": "25.a",
+    "text": "Compare agencies’ ratings to internal credit rating systems.",
+    "coverage": 0.5714285714285714
+   },
+   {
+    "id": "25.c",
+    "text": "Describe the relationship between borrower rating and probability of default.",
+    "coverage": 0.5714285714285714
+   }
+  ]
+ },
+ {
+  "rn": 26,
+  "sourceTitle": "CREDIT VALUE AT RISK",
+  "matchScore": 1,
+  "sourceLines": 284,
+  "terms": 6,
+  "topics": 6,
+  "missing": [
+   {
+    "term": "factors for calculating credit var",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "credit risk plus model"
+  ],
+  "weakLOs": [
+   {
+    "id": "26.f",
+    "text": "Define credit spread risk and assess its impact on calculating credit VaR.",
+    "coverage": 0.42857142857142855
+   }
+  ]
+ },
+ {
+  "rn": 27,
+  "sourceTitle": "PORTFOLIO CREDIT RISK",
+  "matchScore": 1,
+  "sourceLines": 414,
+  "terms": 11,
+  "topics": 10,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 1
+   },
+   {
+    "term": "calculating default correlation",
+    "count": 1
+   },
+   {
+    "term": "computing credit var (default correlation = 0, number of credits = 1,000)",
+    "count": 1
+   },
+   {
+    "term": "computing credit var (default correlation = 0, number of credits = 50)",
+    "count": 1
+   },
+   {
+    "term": "computing credit var (default correlation = 1, number of credits = n)",
+    "count": 1
+   },
+   {
+    "term": "computing credit var with a copula",
+    "count": 1
+   },
+   {
+    "term": "credit value at risk",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "conditional default probabilities",
+   "default correlation for credit portfolios",
+   "equation 1",
+   "equation 2",
+   "equation 3",
+   "equation 4"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 28,
+  "sourceTitle": "STRUCTURED CREDIT RISK",
+  "matchScore": 1,
+  "sourceLines": 416,
+  "terms": 13,
+  "topics": 13,
+  "missing": [
+   {
+    "term": "internal credit enhancements",
+    "count": 1
+   },
+   {
+    "term": "measuring default sensitivities",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "impact of probability of default and default correlation",
+   "three-tiered securitization structure"
+  ],
+  "weakLOs": [
+   {
+    "id": "28.e",
+    "text": "Compute and evaluate one or two iterations of interim cashflows in a three-tiered securitization structure.",
+    "coverage": 0.3333333333333333
+   }
+  ]
+ },
+ {
+  "rn": 29,
+  "sourceTitle": "CREDIT RISK",
+  "matchScore": 1,
+  "sourceLines": 380,
+  "terms": 21,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "creditmetrics model",
+    "count": 1
+   },
+   {
+    "term": "debt (debit) valuation adjustment (dva)",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "credit risk mitigation",
+   "default probability estimate comparisons",
+   "equity prices for default probability estimates"
+  ],
+  "weakLOs": [
+   {
+    "id": "29.a",
+    "text": "Assess the credit risks of derivatives.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 30,
+  "sourceTitle": "CREDIT DERIVATIVES",
+  "matchScore": 1,
+  "sourceLines": 544,
+  "terms": 20,
+  "topics": 14,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 2
+   },
+   {
+    "term": "copula correlation)",
+    "count": 1
+   },
+   {
+    "term": "n_ underlying securities",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "cds valuation",
+   "credit derivative products",
+   "synthetic cdo valuation"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 31,
+  "sourceTitle": "CREDIT DERIVATIVES",
+  "matchScore": 1,
+  "sourceLines": 544,
+  "terms": 20,
+  "topics": 14,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 2
+   },
+   {
+    "term": "base correlation",
+    "count": 1
+   },
+   {
+    "term": "cds forwards",
+    "count": 1
+   },
+   {
+    "term": "cds indices",
+    "count": 1
+   },
+   {
+    "term": "cds-bond basis",
+    "count": 1
+   },
+   {
+    "term": "cheapest-to-deliver (ctd) bond",
+    "count": 1
+   },
+   {
+    "term": "collateralized debt obligations (cdos)",
+    "count": 1
+   },
+   {
+    "term": "compound (or tranche) correlation",
+    "count": 1
+   },
+   {
+    "term": "copula correlation)",
+    "count": 1
+   },
+   {
+    "term": "gaussian copula model",
+    "count": 1
+   },
+   {
+    "term": "itraxx europe",
+    "count": 1
+   },
+   {
+    "term": "n_ underlying securities",
+    "count": 1
+   },
+   {
+    "term": "recovery rate",
+    "count": 1
+   },
+   {
+    "term": "synthetic cdo",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "binary cds",
+   "cds forwards and options",
+   "cds valuation",
+   "credit indices",
+   "fixed coupons",
+   "gaussian copula approach",
+   "gaussian copula model alternatives",
+   "implied correlation",
+   "marking a cds to market",
+   "spread payments approach",
+   "synthetic cdo valuation",
+   "synthetic cdos"
+  ],
+  "weakLOs": [
+   {
+    "id": "30.b",
+    "text": "Explain how to account for credit risk exposure in valuing a CDS.",
+    "coverage": 0.4
+   },
+   {
+    "id": "30.c",
+    "text": "Identify the default probabilities used to value a CDS.",
+    "coverage": 0.5
+   },
+   {
+    "id": "30.d",
+    "text": "Evaluate the use of credit indices and fixed coupons in pricing CDS transactions.",
+    "coverage": 0.2857142857142857
+   },
+   {
+    "id": "30.f",
+    "text": "Describe the process of valuing a synthetic CDO using the spread payments approach and the Gaussian copula model of time to default approach.",
+    "coverage": 0.5384615384615384
+   },
+   {
+    "id": "30.g",
+    "text": "Define the two measures of implied correlation: compound (tranche) correlation and base correlation.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 32,
+  "sourceTitle": "COUNTERPARTY RISK AND BEYOND",
+  "matchScore": 1,
+  "sourceLines": 284,
+  "terms": 33,
+  "topics": 9,
+  "missing": [
+   {
+    "term": "foreign exchange forwards",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "otc derivatives costs",
+   "quantifying counterparty risk"
+  ],
+  "weakLOs": [
+   {
+    "id": "32.h",
+    "text": "Explain the components of the X-Value Adjustment (xVA) term.",
+    "coverage": 0.4
+   }
+  ]
+ },
+ {
+  "rn": 33,
+  "sourceTitle": "NETTING, CLOSE-OUT, AND RELATED ASPECTS",
+  "matchScore": 1,
+  "sourceLines": 202,
+  "terms": 12,
+  "topics": 6,
+  "missing": [],
+  "missingTopics": [
+   "netting and close-out between multiple counterparties",
+   "netting and close-out between two counterparties",
+   "netting and close-out procedures"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 34,
+  "sourceTitle": "MARGIN (COLLATERAL) AND SETTLEMENT",
+  "matchScore": 1,
+  "sourceLines": 340,
+  "terms": 16,
+  "topics": 14,
+  "missing": [],
+  "missingTopics": [
+   "collateral agreement features",
+   "collateral agreements and types of collateral",
+   "collateral coverage, disputes, and resolutions",
+   "csa agreements"
+  ],
+  "weakLOs": [
+   {
+    "id": "34.g",
+    "text": "Explain the features of a collateralization agreement.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 35,
+  "sourceTitle": "CENTRAL CLEARING",
+  "matchScore": 1,
+  "sourceLines": 444,
+  "terms": 16,
+  "topics": 15,
+  "missing": [
+   {
+    "term": "bilaterally cleared markets",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "initial margin and default fund requirements",
+   "membership requirements",
+   "netting, multilateral offset, and compression"
+  ],
+  "weakLOs": [
+   {
+    "id": "35.e",
+    "text": "Discuss the risks faced by a CCP and the ways it manages its exposures.",
+    "coverage": 0.4
+   },
+   {
+    "id": "35.f",
+    "text": "Provide examples of a loss waterfall.",
+    "coverage": 0.3333333333333333
+   }
+  ]
+ },
+ {
+  "rn": 36,
+  "sourceTitle": "FUTURE VALUE AND EXPOSURE",
+  "matchScore": 1,
+  "sourceLines": 432,
+  "terms": 22,
+  "topics": 8,
+  "missing": [
+   {
+    "term": "and fx rates)",
+    "count": 1
+   },
+   {
+    "term": "calculate",
+    "count": 1
+   },
+   {
+    "term": "computing pfe",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "comparing credit exposure to var methods",
+   "impact of collateral on counterparty risk and funding",
+   "measuring exposure during the mpor",
+   "modeling collateral",
+   "modeling netting agreements"
+  ],
+  "weakLOs": [
+   {
+    "id": "36.b",
+    "text": "Compare the characterization of credit exposure to VaR methods and describe additional considerations used in the determination of credit exposure.",
+    "coverage": 0.5454545454545454
+   },
+   {
+    "id": "36.h",
+    "text": "Explain the impact of collateralization on exposure and assess the risk associated with the remargining period, threshold, and minimum transfer amount.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 37,
+  "sourceTitle": "CVA",
+  "matchScore": 1,
+  "sourceLines": 576,
+  "terms": 24,
+  "topics": 17,
+  "missing": [
+   {
+    "term": "computing cva spread",
+    "count": 1
+   },
+   {
+    "term": "incorporating netting and collateralization",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "credit default swaps (cdss)",
+   "cva for a bilateral contract",
+   "examples of wrong-way risk and right-way risk",
+   "foreign currency swaps",
+   "foreign currency transactions",
+   "impact of changes in credit spread and recovery rates",
+   "impact of collateral and ccps on wwr",
+   "interest rate transactions",
+   "over-the-counter call option",
+   "over-the-counter put option"
+  ],
+  "weakLOs": [
+   {
+    "id": "37.k",
+    "text": "Describe wrong-way risk and contrast it with right-way risk.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 38,
+  "sourceTitle": "THE EVOLUTION OF STRESS TESTING COUNTERPARTY EXPOSURES",
+  "matchScore": 1,
+  "sourceLines": 296,
+  "terms": 15,
+  "topics": 9,
+  "missing": [
+   {
+    "term": "derivative portfolio",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "ccr treatment",
+   "stress testing credit valuation adjustment",
+   "stress testing debt value adjustment"
+  ],
+  "weakLOs": [
+   {
+    "id": "38.b",
+    "text": "Explain the treatment of counterparty credit risk (CCR) both as a credit risk and as a market risk and describe its implications for trading activities and risk management for a financial institution.",
+    "coverage": 0.5714285714285714
+   },
+   {
+    "id": "38.g",
+    "text": "Calculate the DVA and explain how stressing DVA enters into aggregating stress tests of CCR.",
+    "coverage": 0.5714285714285714
+   }
+  ]
+ },
+ {
+  "rn": 39,
+  "sourceTitle": "AN INTRODUCTION TO SECURITIZATION",
+  "matchScore": 1,
+  "sourceLines": 588,
+  "terms": 43,
+  "topics": 13,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 4
+   },
+   {
+    "term": "subordinating note classes",
+    "count": 1
+   },
+   {
+    "term": "z_ -table",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "auto loan performance tools",
+   "benefits to financial institutions",
+   "benefits to investors",
+   "hypothesis testing—one-tailed test example",
+   "hypothesis testing—two-tailed test example",
+   "performance measures for securitized structures",
+   "probability example",
+   "securitization benefits"
+  ],
+  "weakLOs": [
+   {
+    "id": "39.f",
+    "text": "Explain the various performance analysis tools for securitized structures and identify the asset classes they are most applicable to.",
+    "coverage": 0.5454545454545454
+   }
+  ]
+ },
+ {
+  "rn": 40,
+  "sourceTitle": "INTRODUCTION TO OPERATIONAL RISK AND RESILIENCE",
+  "matchScore": 1,
+  "sourceLines": 332,
+  "terms": 16,
+  "topics": 14,
+  "missing": [],
+  "missingTopics": [
+   "event-driven risk categories",
+   "other regulators",
+   "regulatory expectations",
+   "u.k. regulations",
+   "u.s. regulations"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 41,
+  "sourceTitle": "RISK GOVERNANCE",
+  "matchScore": 1,
+  "sourceLines": 508,
+  "terms": 2,
+  "topics": 18,
+  "missing": [],
+  "missingTopics": [
+   "board of directors role (operational resilience)",
+   "board of directors role (operational risk)",
+   "delineation of the lines of defense",
+   "regulatory expectations",
+   "risk appetite (best practices)",
+   "risk appetite (regulatory expectations)",
+   "second line of defense",
+   "third line of defense"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 42,
+  "sourceTitle": "RISK IDENTIFICATION",
+  "matchScore": 1,
+  "sourceLines": 398,
+  "terms": 13,
+  "topics": 21,
+  "missing": [
+   {
+    "term": "corrective controls",
+    "count": 1
+   },
+   {
+    "term": "detective controls",
+    "count": 1
+   },
+   {
+    "term": "directive controls",
+    "count": 1
+   },
+   {
+    "term": "preventive controls",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "brainstorming methods",
+   "custom taxonomies",
+   "scenario analysis best practices",
+   "scope of risk identification",
+   "taxonomies for causes, impacts, and controls"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 43,
+  "sourceTitle": "RISK MEASUREMENT AND ASSESSMENT",
+  "matchScore": 1,
+  "sourceLines": 498,
+  "terms": 9,
+  "topics": 23,
+  "missing": [],
+  "missingTopics": [
+   "comprehensive data",
+   "data quality requirements",
+   "impact scales",
+   "incident dates",
+   "likelihood assessment scales",
+   "regulatory requirements for operational loss data"
+  ],
+  "weakLOs": [
+   {
+    "id": "43.c",
+    "text": "Describe the differences among key risk indicators (KRIs), key performance indicators (KPIs), and key control indicators (KCIs).",
+    "coverage": 0.5454545454545454
+   }
+  ]
+ },
+ {
+  "rn": 44,
+  "sourceTitle": "RISK MITIGATION",
+  "matchScore": 1,
+  "sourceLines": 428,
+  "terms": 24,
+  "topics": 17,
+  "missing": [
+   {
+    "term": "external operational risk",
+    "count": 1
+   },
+   {
+    "term": "lean techniques",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "assessing new products and initiatives",
+   "external insurance",
+   "managing reputational risk",
+   "process design and categories of human errors",
+   "risk mitigation characteristics"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 45,
+  "sourceTitle": "RISK REPORTING",
+  "matchScore": 1,
+  "sourceLines": 398,
+  "terms": 16,
+  "topics": 21,
+  "missing": [],
+  "missingTopics": [
+   "audit committee (within the board of directors)",
+   "business line managers (and risk champions)",
+   "central operational risk function (and operational risk committee)",
+   "executive committee (within the board of directors)",
+   "operational risk event data asymmetry",
+   "risk committee (within the board of directors)"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 46,
+  "sourceTitle": "INTEGRATED RISK MANAGEMENT",
+  "matchScore": 1,
+  "sourceLines": 322,
+  "terms": 19,
+  "topics": 15,
+  "missing": [],
+  "missingTopics": [
+   "capital assessment risk aggregation",
+   "capital elements of the erm framework",
+   "fundamentals of stress testing",
+   "introduction to erm",
+   "structure of erm"
+  ],
+  "weakLOs": [
+   {
+    "id": "46.d",
+    "text": "Explain challenges and considerations when developing and implementing models used in stress testing operational risk.",
+    "coverage": 0.5555555555555556
+   }
+  ]
+ },
+ {
+  "rn": 47,
+  "sourceTitle": "CYBER-RESILIENCE: RANGE OF PRACTICES",
+  "matchScore": 1,
+  "sourceLines": 408,
+  "terms": 2,
+  "topics": 24,
+  "missing": [],
+  "missingTopics": [
+   "cyber-resilience standards and guidelines",
+   "expectations and practices around visibility of third-party interconnections",
+   "sharing cybersecurity information between institutions"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 48,
+  "sourceTitle": "CASE STUDY: CYBERTHREATS AND INFORMATION SECURITY RISKS",
+  "matchScore": 1,
+  "sourceLines": 220,
+  "terms": 11,
+  "topics": 4,
+  "missing": [
+   {
+    "term": "preventative controls",
+    "count": 1
+   },
+   {
+    "term": "vailability (or",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "cybersecurity protection and monitoring",
+   "cybersecurity risk frameworks and standards"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 49,
+  "sourceTitle": "CASE STUDY: FINANCIAL CRIME AND FRAUD",
+  "matchScore": 1,
+  "sourceLines": 184,
+  "terms": 17,
+  "topics": 7,
+  "missing": [],
+  "missingTopics": [
+   "financial crime risk management",
+   "usaa federal savings bank case study"
+  ],
+  "weakLOs": [
+   {
+    "id": "50.b",
+    "text": "Summarize the regulatory findings and describe the lessons learned from the USAA case study.",
+    "coverage": 0.5714285714285714
+   }
+  ]
+ },
+ {
+  "rn": 50,
+  "sourceTitle": "GUIDANCE ON MANAGING OUTSOURCING RISK",
+  "matchScore": 1,
+  "sourceLines": 202,
+  "terms": 7,
+  "topics": 7,
+  "missing": [],
+  "missingTopics": [
+   "effective program to manage outsourcing risk",
+   "risks of outsourcing activities to third-party service providers"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 51,
+  "sourceTitle": "CASE STUDY: THIRD-PARTY RISK MANAGEMENT",
+  "matchScore": 1,
+  "sourceLines": 140,
+  "terms": 1,
+  "topics": 5,
+  "missing": [],
+  "missingTopics": [
+   "overview of third-party risk management",
+   "the tprm life cycle"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 52,
+  "sourceTitle": "CASE STUDY: INVESTOR PROTECTION AND COMPLIANCE RISKS IN INVESTMENT ACTIVITIES",
+  "matchScore": 1,
+  "sourceLines": 112,
+  "terms": 8,
+  "topics": 4,
+  "missing": [],
+  "missingTopics": [
+   "investor protection case studies",
+   "markets in financial instruments directive"
+  ],
+  "weakLOs": [
+   {
+    "id": "53.b",
+    "text": "Describe and provide lessons learned from the case studies involving violations of investor protection or compliance regulations.",
+    "coverage": 0.5454545454545454
+   }
+  ]
+ },
+ {
+  "rn": 53,
+  "sourceTitle": "SUPERVISORY GUIDANCE ON MODEL RISK MANAGEMENT",
+  "matchScore": 1,
+  "sourceLines": 206,
+  "terms": 4,
+  "topics": 6,
+  "missing": [],
+  "missingTopics": [
+   "evaluation of conceptual soundness",
+   "vendor and other third-party products"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 54,
+  "sourceTitle": "CASE STUDY: MODEL RISK AND MODEL VALIDATION",
+  "matchScore": 1,
+  "sourceLines": 152,
+  "terms": 4,
+  "topics": 6,
+  "missing": [],
+  "missingTopics": [
+   "nasa mars orbiter",
+   "the barclays acquisition of lehman brothers’ assets and spreadsheet error"
+  ],
+  "weakLOs": [
+   {
+    "id": "55.c",
+    "text": "Describe lessons learned from the three case studies involving model risk.",
+    "coverage": 0.5714285714285714
+   }
+  ]
+ },
+ {
+  "rn": 55,
+  "sourceTitle": "STRESS TESTING BANKS",
+  "matchScore": 1,
+  "sourceLines": 208,
+  "terms": 3,
+  "topics": 4,
+  "missing": [],
+  "missingTopics": [
+   "challenges in designing stress tests",
+   "challenges in modeling the balance sheet",
+   "stress test comparisons"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 56,
+  "sourceTitle": "RISK CAPITAL ATTRIBUTION AND RISK-ADJUSTED PERFORMANCE MEASUREMENT",
+  "matchScore": 1,
+  "sourceLines": 506,
+  "terms": 18,
+  "topics": 16,
+  "missing": [
+   {
+    "term": "hurdle rate for capital budgeting decisions",
+    "count": 1
+   },
+   {
+    "term": "risk capital for market risk",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "raroc for performance measurement",
+   "using economic capital approaches"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 57,
+  "sourceTitle": "RANGE OF PRACTICES AND ISSUES IN ECONOMIC CAPITAL FRAMEWORKS",
+  "matchScore": 1,
+  "sourceLines": 516,
+  "terms": 17,
+  "topics": 25,
+  "missing": [
+   {
+    "term": "best practices and concerns for economic capital governance",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "assessing interest rate risk in the banking book",
+   "banks’ pricing behavior",
+   "credit risk–related challenges to pd and lgd estimation",
+   "defining and calculating risk measures",
+   "differences in risk profiles between margined and non-margined counterparties",
+   "economic capital constraints and opportunities",
+   "evaluating counterparty credit risk",
+   "interaction between market risk and credit risk—wrong-way risk",
+   "operational risk–related challenges in managing counterparty credit risk",
+   "the choice of stress scenarios",
+   "var (the most commonly used measure)"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 58,
+  "sourceTitle": "CAPITAL PLANNING AT LARGE BANK HOLDING COMPANIES: SUPERVISORY EXPECTATIONS AND RANGE OF CURRENT PRACTICE",
+  "matchScore": 1,
+  "sourceLines": 338,
+  "terms": 8,
+  "topics": 12,
+  "missing": [],
+  "missingTopics": [
+   "operational risk",
+   "quantitative and qualitative basis"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 59,
+  "sourceTitle": "CAPITAL REGULATION BEFORE THE GLOBAL FINANCIAL CRISIS",
+  "matchScore": 1,
+  "sourceLines": 696,
+  "terms": 43,
+  "topics": 22,
+  "missing": [
+   {
+    "term": "adjusting exposure and collateral using the comprehensive approach",
+    "count": 1
+   },
+   {
+    "term": "adjusting for collateral using the simple approach",
+    "count": 1
+   },
+   {
+    "term": "calculating risk-based capital",
+    "count": 1
+   },
+   {
+    "term": "calculating risk-weighted assets for an off-balance sheet item",
+    "count": 1
+   },
+   {
+    "term": "compare",
+    "count": 1
+   },
+   {
+    "term": "copula correlation",
+    "count": 1
+   },
+   {
+    "term": "credit equivalent amounts (ceas)",
+    "count": 1
+   },
+   {
+    "term": "credit equivalent amounts for off-balance sheet items",
+    "count": 1
+   },
+   {
+    "term": "determine",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "collateral adjustments",
+   "foundations irb approach and advanced irb approach for retail exposures",
+   "pillars of sound bank management",
+   "the 1996 amendment: market risk and trading activities"
+  ],
+  "weakLOs": [
+   {
+    "id": "60.a",
+    "text": "Explain the motivations for introducing the Basel regulations, including key risk exposures addressed, and explain the reasons for revisions to Basel regulations over time.",
+    "coverage": 0.38461538461538464
+   }
+  ]
+ },
+ {
+  "rn": 60,
+  "sourceTitle": "SOLVENCY, LIQUIDITY, AND OTHER REGULATION AFTER THE GLOBAL FINANCIAL CRISIS",
+  "matchScore": 1,
+  "sourceLines": 494,
+  "terms": 28,
+  "topics": 10,
+  "missing": [
+   {
+    "term": "calculating the nsfr",
+    "count": 1
+   },
+   {
+    "term": "cost-of-capital rationale",
+    "count": 1
+   },
+   {
+    "term": "incremental default risk charge (idrc)",
+    "count": 1
+   },
+   {
+    "term": "required tier 1 equity capital, total tier 1 capital, and total capital",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "basel iii capital requirements",
+   "liquidity risk management",
+   "reforms after the global financial crisis"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 61,
+  "sourceTitle": "HIGH-LEVEL SUMMARY OF BASEL III REFORMS",
+  "matchScore": 1,
+  "sourceLines": 210,
+  "terms": 6,
+  "topics": 5,
+  "missing": [],
+  "missingTopics": [
+   "leverage ratio framework"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 62,
+  "sourceTitle": "BASEL III: FINALIZING POST-CRISIS REFORMS",
+  "matchScore": 1,
+  "sourceLines": 394,
+  "terms": 6,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "computing the standardized approach capital requirement",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "identification, collection, and treatment of operational loss data",
+   "standardized approach capital requirement",
+   "the standardized approach vs. earlier approaches"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 63,
+  "sourceTitle": "LIQUIDITY RISK",
+  "matchScore": 1,
+  "sourceLines": 360,
+  "terms": 16,
+  "topics": 4,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 2
+   }
+  ],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 64,
+  "sourceTitle": "LIQUIDITY AND LEVERAGE",
+  "matchScore": 1,
+  "sourceLines": 488,
+  "terms": 64,
+  "topics": 14,
+  "missing": [
+   {
+    "term": "adverse price impact",
+    "count": 1
+   },
+   {
+    "term": "computing firm roe (total asset = $4)",
+    "count": 1
+   },
+   {
+    "term": "computing firm roe (total assets = $2)",
+    "count": 1
+   },
+   {
+    "term": "computing transactions cost",
+    "count": 1
+   },
+   {
+    "term": "convertible arbitrage hedge funds",
+    "count": 1
+   },
+   {
+    "term": "cross-margin agreements",
+    "count": 1
+   },
+   {
+    "term": "embedded leverage",
+    "count": 1
+   },
+   {
+    "term": "fractionalreserve bank",
+    "count": 1
+   },
+   {
+    "term": "futures, forward contracts, and swap contracts",
+    "count": 1
+   },
+   {
+    "term": "merger arbitrage hedge funds",
+    "count": 1
+   },
+   {
+    "term": "option contracts",
+    "count": 1
+   },
+   {
+    "term": "repledging",
+    "count": 1
+   },
+   {
+    "term": "run on the bank",
+    "count": 1
+   },
+   {
+    "term": "slippage",
+    "count": 1
+   },
+   {
+    "term": "suspension of convertibility",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "adjusting var for position liquidity",
+   "economics of the collateral market",
+   "short positions and leverage",
+   "structured credit products and off-balance sheet vehicles"
+  ],
+  "weakLOs": [
+   {
+    "id": "65.g",
+    "text": "Discuss interactions between different types of liquidity risk and explain how liquidity risk events can increase systemic risk.",
+    "coverage": 0.5454545454545454
+   }
+  ]
+ },
+ {
+  "rn": 65,
+  "sourceTitle": "EARLY WARNING INDICATORS",
+  "matchScore": 1,
+  "sourceLines": 268,
+  "terms": 1,
+  "topics": 16,
+  "missing": [],
+  "missingTopics": [
+   "ewi applications",
+   "ewi characteristics",
+   "ewi guidelines",
+   "federal reserve (supervision and regulation [sr] 10-6) guidelines",
+   "industry practices",
+   "normal and stressed states"
+  ],
+  "weakLOs": [
+   {
+    "id": "66.b",
+    "text": "Identify EWI guidelines from banking regulators and supervisors (OCC, BCBS, Federal Reserve).",
+    "coverage": 0.42857142857142855
+   }
+  ]
+ },
+ {
+  "rn": 66,
+  "sourceTitle": "THE INVESTMENT FUNCTION IN FINANCIAL-SERVICES MANAGEMENT",
+  "matchScore": 1,
+  "sourceLines": 406,
+  "terms": 39,
+  "topics": 22,
+  "missing": [
+   {
+    "term": "bankers’ acceptances",
+    "count": 1
+   },
+   {
+    "term": "calculate",
+    "count": 1
+   },
+   {
+    "term": "calculating the net after-tax return from municipal bonds",
+    "count": 1
+   },
+   {
+    "term": "comparing bond yields",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "capital market investments",
+   "money market investments",
+   "more recently developed investment instruments"
+  ],
+  "weakLOs": [
+   {
+    "id": "67.b",
+    "text": "Identify and discuss various factors that affect the choice of investment securities by a bank.",
+    "coverage": 0.375
+   }
+  ]
+ },
+ {
+  "rn": 67,
+  "sourceTitle": "LIQUIDITY AND RESERVES MANAGEMENT: STRATEGIES AND POLICIES",
+  "matchScore": 1,
+  "sourceLines": 366,
+  "terms": 32,
+  "topics": 7,
+  "missing": [
+   {
+    "term": "discipline of the financial marketplace",
+    "count": 1
+   },
+   {
+    "term": "net federal funds and repurchase agreements position",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "market signals/discipline approach"
+  ],
+  "weakLOs": [
+   {
+    "id": "68.d",
+    "text": "Summarize the process taken by a U.S. bank to calculate its legal reserves.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 68,
+  "sourceTitle": "LIQUIDITY RISK",
+  "matchScore": 1,
+  "sourceLines": 360,
+  "terms": 16,
+  "topics": 4,
+  "missing": [
+   {
+    "term": "cost of liquidation",
+    "count": 2
+   },
+   {
+    "term": "ashanti goldfields",
+    "count": 1
+   },
+   {
+    "term": "bid and offer price",
+    "count": 1
+   },
+   {
+    "term": "deleveraging",
+    "count": 1
+   },
+   {
+    "term": "leveraging",
+    "count": 1
+   },
+   {
+    "term": "liquidity black holes",
+    "count": 1
+   },
+   {
+    "term": "metallgesellschaft (mg)",
+    "count": 1
+   },
+   {
+    "term": "mid-market price",
+    "count": 1
+   },
+   {
+    "term": "negative feedback traders",
+    "count": 1
+   },
+   {
+    "term": "northern rock",
+    "count": 1
+   },
+   {
+    "term": "positive feedback traders",
+    "count": 1
+   },
+   {
+    "term": "predatory trading",
+    "count": 1
+   },
+   {
+    "term": "solvency",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "case studies",
+   "liquidity coverage ratio (lcr)",
+   "liquidity risk ratios",
+   "net stable funding ratio (nsfr)"
+  ],
+  "weakLOs": [
+   {
+    "id": "64.a",
+    "text": "Explain and calculate liquidity trading risk via cost of liquidation and liquidity-adjusted VaR (LVaR).",
+    "coverage": 0.5
+   },
+   {
+    "id": "64.b",
+    "text": "Identify liquidity funding risk, funding sources, and lessons learned from real cases: Northern Rock, Ashanti Goldfields, and Metallgesellschaft.",
+    "coverage": 0.4166666666666667
+   },
+   {
+    "id": "64.d",
+    "text": "Explain liquidity black holes and identify the causes of positive feedback trading.",
+    "coverage": 0.4444444444444444
+   }
+  ]
+ },
+ {
+  "rn": 69,
+  "sourceTitle": "MONITORING LIQUIDITY",
+  "matchScore": 1,
+  "sourceLines": 336,
+  "terms": 21,
+  "topics": 2,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 2
+   },
+   {
+    "term": "management process",
+    "count": 1
+   },
+   {
+    "term": "term structure of cumulated lgc",
+    "count": 1
+   }
+  ],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 70,
+  "sourceTitle": "THE FAILURE MECHANICS OF DEALER BANKS",
+  "matchScore": 1,
+  "sourceLines": 206,
+  "terms": 6,
+  "topics": 4,
+  "missing": [],
+  "missingTopics": [
+   "liquidity concerns for dealer banks",
+   "policies to alleviate dealer bank risks"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 71,
+  "sourceTitle": "LIQUIDITY STRESS TESTING",
+  "matchScore": 1,
+  "sourceLines": 424,
+  "terms": 6,
+  "topics": 16,
+  "missing": [],
+  "missingTopics": [
+   "estimating contingent liquidity"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 72,
+  "sourceTitle": "LIQUIDITY RISK",
+  "matchScore": 1,
+  "sourceLines": 360,
+  "terms": 16,
+  "topics": 4,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 2
+   },
+   {
+    "term": "cost of liquidation",
+    "count": 2
+   },
+   {
+    "term": "ashanti goldfields",
+    "count": 1
+   },
+   {
+    "term": "bid and offer price",
+    "count": 1
+   },
+   {
+    "term": "deleveraging",
+    "count": 1
+   },
+   {
+    "term": "leveraging",
+    "count": 1
+   },
+   {
+    "term": "liquidity black holes",
+    "count": 1
+   },
+   {
+    "term": "metallgesellschaft (mg)",
+    "count": 1
+   },
+   {
+    "term": "mid-market price",
+    "count": 1
+   },
+   {
+    "term": "negative feedback traders",
+    "count": 1
+   },
+   {
+    "term": "northern rock",
+    "count": 1
+   },
+   {
+    "term": "positive feedback traders",
+    "count": 1
+   },
+   {
+    "term": "predatory trading",
+    "count": 1
+   },
+   {
+    "term": "solvency",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "case studies",
+   "net stable funding ratio (nsfr)"
+  ],
+  "weakLOs": [
+   {
+    "id": "64.a",
+    "text": "Explain and calculate liquidity trading risk via cost of liquidation and liquidity-adjusted VaR (LVaR).",
+    "coverage": 0.375
+   },
+   {
+    "id": "64.b",
+    "text": "Identify liquidity funding risk, funding sources, and lessons learned from real cases: Northern Rock, Ashanti Goldfields, and Metallgesellschaft.",
+    "coverage": 0.4166666666666667
+   },
+   {
+    "id": "64.d",
+    "text": "Explain liquidity black holes and identify the causes of positive feedback trading.",
+    "coverage": 0.3333333333333333
+   }
+  ]
+ },
+ {
+  "rn": 73,
+  "sourceTitle": "CONTINGENCY FUNDING PLANNING",
+  "matchScore": 1,
+  "sourceLines": 374,
+  "terms": 1,
+  "topics": 12,
+  "missing": [],
+  "missingTopics": [
+   "policies and procedures",
+   "stakeholder involvement, roles, and responsibilities"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 74,
+  "sourceTitle": "MANAGING AND PRICING DEPOSIT SERVICES",
+  "matchScore": 1,
+  "sourceLines": 480,
+  "terms": 34,
+  "topics": 12,
+  "missing": [
+   {
+    "term": "bump-up cds",
+    "count": 1
+   },
+   {
+    "term": "free pricing (free checking)",
+    "count": 1
+   },
+   {
+    "term": "implicit interest",
+    "count": 1
+   },
+   {
+    "term": "index cds",
+    "count": 1
+   },
+   {
+    "term": "jumbo cds",
+    "count": 1
+   },
+   {
+    "term": "liquid cds",
+    "count": 1
+   },
+   {
+    "term": "relationship pricing",
+    "count": 1
+   },
+   {
+    "term": "retirement savings accounts",
+    "count": 1
+   },
+   {
+    "term": "step-up cds",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "marginal cost method to set deposit rates",
+   "nontransaction (savings or thrift) deposits"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 75,
+  "sourceTitle": "MANAGING NONDEPOSIT LIABILITIES",
+  "matchScore": 1,
+  "sourceLines": 336,
+  "terms": 28,
+  "topics": 11,
+  "missing": [],
+  "missingTopics": [
+   "relative costs of each funding source",
+   "risks of each funding source"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 76,
+  "sourceTitle": "REPURCHASE AGREEMENTS AND FINANCING",
+  "matchScore": 1,
+  "sourceLines": 294,
+  "terms": 18,
+  "topics": 15,
+  "missing": [
+   {
+    "term": "collateral in repo transactions",
+    "count": 1
+   },
+   {
+    "term": "open repos",
+    "count": 1
+   },
+   {
+    "term": "reverse repurchase agreement",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "cash management (repos as investment vehicles)",
+   "mechanics of repurchase agreements",
+   "repos and lehman brothers",
+   "repos during the credit crisis",
+   "short position financing (repos as financing vehicles)"
+  ],
+  "weakLOs": [
+   {
+    "id": "77.c",
+    "text": "Discuss how counterparty risk and liquidity risk can arise through the use of repo transactions.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 77,
+  "sourceTitle": "LIQUIDITY TRANSFER PRICING: A GUIDE TO BETTER PRACTICE",
+  "matchScore": 1,
+  "sourceLines": 364,
+  "terms": 10,
+  "topics": 9,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 3
+   },
+   {
+    "term": "calculating the credit for the liquidity benefit of deposits",
+    "count": 1
+   },
+   {
+    "term": "matched-maturity marginal cost approach for a bullet loan",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "applying the matched-maturity marginal cost approach in practice",
+   "challenges of implementing the ltp process",
+   "separate average costs of funds approach"
+  ],
+  "weakLOs": [
+   {
+    "id": "78.b",
+    "text": "Discuss challenges that may arise for banks during the implementation of LTP.",
+    "coverage": 0.3333333333333333
+   }
+  ]
+ },
+ {
+  "rn": 78,
+  "sourceTitle": "COVERED INTEREST PARITY LOST: UNDERSTANDING THE CROSSCURRENCY BASIS",
+  "matchScore": 0.86,
+  "sourceLines": 156,
+  "terms": 2,
+  "topics": 4,
+  "missing": [],
+  "missingTopics": [
+   "why the basis does not close: limits to arbitrage",
+   "why the basis opens up: demand for currency hedges"
+  ],
+  "weakLOs": [
+   {
+    "id": "80.b",
+    "text": "Identify key factors that affect the cross-currency swap basis.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 79,
+  "sourceTitle": "RISK MANAGEMENT FOR CHANGING INTEREST RATES: ASSET-LIABILITY MANAGEMENT AND DURATION TECHNIQUES",
+  "matchScore": 1,
+  "sourceLines": 408,
+  "terms": 19,
+  "topics": 6,
+  "missing": [
+   {
+    "term": "portfolio duration and change in total assets",
+    "count": 1
+   },
+   {
+    "term": "positive duration gap (assets have more dollar market risk than liabilities)",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "asset-liability management strategies",
+   "limitations of interest-sensitive gap management"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 80,
+  "sourceTitle": "ILLIQUID ASSETS",
+  "matchScore": 1,
+  "sourceLines": 596,
+  "terms": 10,
+  "topics": 19,
+  "missing": [
+   {
+    "term": "difficulties finding a counterparty (i.e., search frictions)",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "asset allocation to illiquid asset classes with transaction costs",
+   "illiquidity effects in corporate bond markets",
+   "illiquidity effects in equity markets",
+   "illiquidity effects in u.s. treasury markets",
+   "investor holdings of illiquid assets",
+   "portfolio allocation to illiquid assets"
+  ],
+  "weakLOs": [
+   {
+    "id": "82.f",
+    "text": "Evaluate portfolio choice decisions on the inclusion of illiquid assets.",
+    "coverage": 0.5714285714285714
+   }
+  ]
+ },
+ {
+  "rn": 81,
+  "sourceTitle": "FACTOR THEORY",
+  "matchScore": 1,
+  "sourceLines": 386,
+  "terms": 12,
+  "topics": 13,
+  "missing": [],
+  "missingTopics": [
+   "lesson 1: hold the factor, not the individual asset",
+   "lesson 2: investors have their own optimal factor risk exposures",
+   "lesson 3: the average investor is fully invested in the market",
+   "lesson 4: exposure to factor risk must be rewarded",
+   "lesson 5: risk is measured as beta exposure"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 82,
+  "sourceTitle": "FACTORS",
+  "matchScore": 1,
+  "sourceLines": 376,
+  "terms": 15,
+  "topics": 13,
+  "missing": [
+   {
+    "term": "demographic risk",
+    "count": 1
+   },
+   {
+    "term": "political (or sovereign) risk",
+    "count": 1
+   },
+   {
+    "term": "productivity shocks",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "behavioral theories of the value premium",
+   "dynamic risk factors",
+   "other macroeconomic factors",
+   "rational theories of the value premium"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 83,
+  "sourceTitle": "ALPHA (AND THE LOW-RISK ANOMALY)",
+  "matchScore": 1,
+  "sourceLines": 390,
+  "terms": 16,
+  "topics": 5,
+  "missing": [
+   {
+    "term": "momentum effect",
+    "count": 1
+   },
+   {
+    "term": "value/growth effect",
+    "count": 1
+   }
+  ],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 84,
+  "sourceTitle": "PORTFOLIO CONSTRUCTION",
+  "matchScore": 1,
+  "sourceLines": 298,
+  "terms": 11,
+  "topics": 8,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": [
+   {
+    "id": "86.b",
+    "text": "Evaluate the motivation for and the methods used for refining alphas in the implementation process.",
+    "coverage": 0.42857142857142855
+   },
+   {
+    "id": "86.i",
+    "text": "Describe dispersion, explain its causes, and describe methods for controlling forms of dispersion.",
+    "coverage": 0.5555555555555556
+   }
+  ]
+ },
+ {
+  "rn": 85,
+  "sourceTitle": "PORTFOLIO RISK: ANALYTICAL METHODS",
+  "matchScore": 1,
+  "sourceLines": 498,
+  "terms": 13,
+  "topics": 6,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 3
+   },
+   {
+    "term": "computing component var (example 1)",
+    "count": 1
+   },
+   {
+    "term": "computing component var (example 2, part 1)",
+    "count": 1
+   },
+   {
+    "term": "computing component var (example 2, part 2)",
+    "count": 1
+   },
+   {
+    "term": "computing portfolio var (part 1)",
+    "count": 1
+   },
+   {
+    "term": "computing portfolio var (part 2)",
+    "count": 1
+   },
+   {
+    "term": "computing portfolio var (part 3)",
+    "count": 1
+   },
+   {
+    "term": "computing var using matrix notation",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "decisions"
+  ],
+  "weakLOs": [
+   {
+    "id": "87.b",
+    "text": "Explain the impact of correlation on portfolio risk.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 86,
+  "sourceTitle": "VAR AND RISK BUDGETING IN INVESTMENT MANAGEMENT",
+  "matchScore": 1,
+  "sourceLines": 386,
+  "terms": 18,
+  "topics": 9,
+  "missing": [
+   {
+    "term": "compute",
+    "count": 2
+   },
+   {
+    "term": "demonstrate",
+    "count": 1
+   },
+   {
+    "term": "determining a fund’s risk profile",
+    "count": 1
+   },
+   {
+    "term": "global custodian",
+    "count": 1
+   },
+   {
+    "term": "surplus at risk (via computing volatility of surplus)",
+    "count": 1
+   },
+   {
+    "term": "var applications",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "hedge fund issues",
+   "managing risk with var"
+  ],
+  "weakLOs": [
+   {
+    "id": "88.g",
+    "text": "Explain how VaR can be used in the development of investment guidelines and for improving the investment process.",
+    "coverage": 0.5714285714285714
+   }
+  ]
+ },
+ {
+  "rn": 87,
+  "sourceTitle": "RISK MONITORING AND PERFORMANCE MEASUREMENT",
+  "matchScore": 1,
+  "sourceLines": 332,
+  "terms": 12,
+  "topics": 10,
+  "missing": [],
+  "missingTopics": [
+   "liquidity considerations"
+  ],
+  "weakLOs": [
+   {
+    "id": "89.b",
+    "text": "Describe risk planning, including its objectives, effects, and the participants in its development.",
+    "coverage": 0.5714285714285714
+   }
+  ]
+ },
+ {
+  "rn": 88,
+  "sourceTitle": "PORTFOLIO PERFORMANCE EVALUATION",
+  "matchScore": 1,
+  "sourceLines": 500,
+  "terms": 16,
+  "topics": 13,
+  "missing": [
+   {
+    "term": "calculate",
+    "count": 2
+   },
+   {
+    "term": "appraisal ratio",
+    "count": 1
+   },
+   {
+    "term": "calculating the m",
+    "count": 1
+   },
+   {
+    "term": "m-squared (m",
+    "count": 1
+   },
+   {
+    "term": "risk-adjusted performance appraisal measures",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "universe comparisons",
+   "use the following information to answer questions 1 and 2"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 89,
+  "sourceTitle": "HEDGE FUNDS",
+  "matchScore": 1,
+  "sourceLines": 302,
+  "terms": 15,
+  "topics": 14,
+  "missing": [],
+  "missingTopics": [
+   "convergences of risk factors"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 90,
+  "sourceTitle": "PERFORMING DUE DILIGENCE ON SPECIFIC MANAGERS AND FUNDS",
+  "matchScore": 1,
+  "sourceLines": 452,
+  "terms": 10,
+  "topics": 18,
+  "missing": [],
+  "missingTopics": [
+   "consistency of the fund terms with the investment strategy"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 91,
+  "sourceTitle": "PREDICTING FRAUD BY INVESTMENT MANAGERS",
+  "matchScore": 1,
+  "sourceLines": 158,
+  "terms": 3,
+  "topics": 4,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 92,
+  "sourceTitle": "ARTIFICIAL INTELLIGENCE AND BANK SUPERVISION",
+  "matchScore": 0.5,
+  "sourceLines": 150,
+  "terms": 5,
+  "topics": 3,
+  "missing": [
+   {
+    "term": "ai disadvantages",
+    "count": 1
+   },
+   {
+    "term": "algorithmic bias",
+    "count": 1
+   },
+   {
+    "term": "machine learning",
+    "count": 1
+   },
+   {
+    "term": "neural networks",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "ai advantages",
+   "ai applications in the financial sector",
+   "regulatory issues"
+  ],
+  "weakLOs": [
+   {
+    "id": "96.b",
+    "text": "Explain the advantages of implementing AI-based applications to the banking services companies and their customers.",
+    "coverage": 0.5
+   },
+   {
+    "id": "96.c",
+    "text": "Discuss the disadvantages and difficulties for financial companies using AI.",
+    "coverage": 0.5
+   },
+   {
+    "id": "96.d",
+    "text": "Clarify the specific issues faced by banks and regulators arising from utilizing AI in modeling and valuation.",
+    "coverage": 0.4
+   }
+  ]
+ },
+ {
+  "rn": 93,
+  "sourceTitle": "THE CREDIT SUISSE COCO WIPEOUT: FACTS, MISPERCEPTIONS, AND LESSONS FOR FINANCIAL REGULATION",
+  "matchScore": 1,
+  "sourceLines": 184,
+  "terms": 1,
+  "topics": 6,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 94,
+  "sourceTitle": "ARTIFICIAL INTELLIGENCE AND BANK SUPERVISION",
+  "matchScore": 1,
+  "sourceLines": 150,
+  "terms": 5,
+  "topics": 3,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": [
+   {
+    "id": "96.c",
+    "text": "Discuss the disadvantages and difficulties for financial companies using AI.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 95,
+  "sourceTitle": "FINANCIAL RISK MANAGEMENT AND EXPLAINABLE, TRUSTWORTHY, RESPONSIBLE AI",
+  "matchScore": 1,
+  "sourceLines": 204,
+  "terms": 6,
+  "topics": 5,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": [
+   {
+    "id": "97.b",
+    "text": "Analyze the potential benefits and challenges of utilizing AI while maintaining fairness and preventing biases in risk assessment and decisionmaking.",
+    "coverage": 0.5
+   },
+   {
+    "id": "97.d",
+    "text": "Describe the approaches and technologies that should be considered in the implementation and assessment of Trustworthy AI.",
+    "coverage": 0.5
+   }
+  ]
+ },
+ {
+  "rn": 96,
+  "sourceTitle": "ARTIFICIAL INTELLIGENCE RISK MANAGEMENT FRAMEWORK",
+  "matchScore": 1,
+  "sourceLines": 442,
+  "terms": 7,
+  "topics": 19,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 97,
+  "sourceTitle": "CLIMATE-RELATED RISK DRIVERS AND THEIR TRANSMISSION CHANNELS",
+  "matchScore": 1,
+  "sourceLines": 372,
+  "terms": 5,
+  "topics": 8,
+  "missing": [],
+  "missingTopics": [],
+  "weakLOs": []
+ },
+ {
+  "rn": 98,
+  "sourceTitle": "CLIMATE-RELATED FINANCIAL RISKS—MEASUREMENT METHODOLOGIES",
+  "matchScore": 1,
+  "sourceLines": 558,
+  "terms": 25,
+  "topics": 14,
+  "missing": [
+   {
+    "term": "climate-related financial risks employed by banks and supervisors",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "considerations and issues with climate-related financial risks",
+   "current and developing methodologies",
+   "incorporating risk mitigation and risk reduction",
+   "unique data needs"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 99,
+  "sourceTitle": "CLIMATE-RELATED FINANCIAL RISKS—MEASUREMENT METHODOLOGIES",
+  "matchScore": 0.67,
+  "sourceLines": 558,
+  "terms": 25,
+  "topics": 14,
+  "missing": [
+   {
+    "term": "agent-based models (abms)",
+    "count": 1
+   },
+   {
+    "term": "aggregation perspectives",
+    "count": 1
+   },
+   {
+    "term": "capturing economic effects",
+    "count": 1
+   },
+   {
+    "term": "client or project ratings and scores",
+    "count": 1
+   },
+   {
+    "term": "climate risk ratings/scores",
+    "count": 1
+   },
+   {
+    "term": "climate-related financial risks employed by banks and supervisors",
+    "count": 1
+   },
+   {
+    "term": "computable general equilibrium (cge) models",
+    "count": 1
+   },
+   {
+    "term": "dynamic stochastic general equilibrium (dsge) models",
+    "count": 1
+   },
+   {
+    "term": "input-output models",
+    "count": 1
+   },
+   {
+    "term": "integrated assessment models (iams)",
+    "count": 1
+   },
+   {
+    "term": "jurisdiction comparability",
+    "count": 1
+   },
+   {
+    "term": "long-term horizon assessments",
+    "count": 1
+   },
+   {
+    "term": "natural capital analysis",
+    "count": 1
+   },
+   {
+    "term": "operational assessment challenges",
+    "count": 1
+   },
+   {
+    "term": "overlapping generation (olg) models",
+    "count": 1
+   },
+   {
+    "term": "portfolio and sector exposures",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "climate-related financial risk complexity",
+   "considerations and issues with climate-related financial risks",
+   "current and developing methodologies",
+   "exposure granularity",
+   "exposure mapping and measurement",
+   "heterogeneities",
+   "incorporating risk mitigation and risk reduction",
+   "key takeaways",
+   "risk differentiation",
+   "risk quantification",
+   "sources of uncertainty",
+   "top-down and bottom-up approaches",
+   "transition and physical risk measurement",
+   "unique data needs"
+  ],
+  "weakLOs": [
+   {
+    "id": "100.d",
+    "text": "Compare and contrast climate-measuring methodologies utilized by banks, regulators, and third-party providers.",
+    "coverage": 0.5454545454545454
+   }
+  ]
+ },
+ {
+  "rn": 100,
+  "sourceTitle": "THE CRYPTO ECOSYSTEM: KEY ELEMENTS AND RISKS",
+  "matchScore": 1,
+  "sourceLines": 320,
+  "terms": 15,
+  "topics": 11,
+  "missing": [],
+  "missingTopics": [
+   "addressing crypto ecosystem flaws",
+   "potential policy actions to mitigate crypto risks"
+  ],
+  "weakLOs": []
+ },
+ {
+  "rn": 101,
+  "sourceTitle": "DIGITAL RESILIENCE AND FINANCIAL STABILITY: THE QUEST FOR POLICY TOOLS IN THE FINANCIAL SECTOR",
+  "matchScore": 1,
+  "sourceLines": 366,
+  "terms": 15,
+  "topics": 11,
+  "missing": [
+   {
+    "term": "cumulative",
+    "count": 1
+   },
+   {
+    "term": "t_ -distribution",
+    "count": 1
+   },
+   {
+    "term": "z_ -table",
+    "count": 1
+   }
+  ],
+  "missingTopics": [
+   "financial stability policies and tools",
+   "hypothesis testing—one-tailed test example",
+   "hypothesis testing—two-tailed test example",
+   "probability example"
+  ],
+  "weakLOs": []
+ }
+]
