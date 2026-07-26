@@ -63,20 +63,31 @@ the 40-plus r99 previously reported). Fixed in the same commit as this note.
 This back-audit is NOT yet scheduled into a phase. Decide with the owner whether
 it runs as its own sweep before the remaining clearance waves or alongside them.
 
-## OPEN: 20 readings still carry AI-voice tells (found 2026-07-26, post-phase sweep)
+## CLOSED: the AI-voice tell worklist (opened and cleared 2026-07-26)
 
-`node scripts/ai-tells.mjs --all` flags **29 tells across 20 readings: r2, r5, r7,
-r10, r11, r13, r14, r18, r20, r21, r26, r28, r32, r33, r35, r38, r51, r53, r59, r61**
-(20 enumerated-prose, 7 not-x-but-y, 2 aphoristic-closer). Every one is from waves
-1 to 13. None of r66 to r101 carries a tell, because from wave 14 on the script was
-run per reading and again after hand edits.
+`ai-tells.mjs` flagged 29 tells across 20 readings, all from waves 1 to 13. All 28
+actionable ones are fixed. The corpus now reports **1 tell across 101 readings, and
+that one is a deliberate KEEP** (see below).
 
-This is a real gap in the earlier waves, not a false-positive class: the script
-detects the three structural habits CLAUDE.md bans by name. It is left OPEN rather
-than fixed here because rewriting those passages is prose work that belongs to
-`content-opus-improvement`, and because each one needs a judgment about whether the
-rewrite improves the teaching or just satisfies the detector. Run the script first
-in that phase; it is a ready-made worklist.
+- **20 enumerated-prose** ("First, ... Second, ..."). Rewritten into connected prose
+  using ordinary connectives ("One is ... another is ...", "It starts with ... then
+  ...", or simply dropping the numbering where the sentence order already carried it).
+  The count in the lead-in was usually fine and was left; what reads as machine-written
+  is the numbered cadence, not knowing there are two of something.
+- **7 not-x-but-y**. Every one turned out to be a COMMA SPLICE doing genuine
+  misconception-correction ("Portfolio unexpected loss is not a simple sum of each
+  loan's UL, it is built from every pairwise combination"). The teaching was right and
+  the punctuation was wrong, so the fix is a semicolon, a colon, or "but rather", not a
+  rewrite. Do not delete these: correcting a plausible wrong belief is exactly what
+  CLAUDE.md section 1.4 asks for.
+- **2 aphoristic-closer**. One (r32) was a real closing flourish and went. **One (r28)
+  is a deliberate KEEP and the detector is wrong about it**: "correlation is what turns
+  a 'should never touch us' tranche into a real loss" sits mid-paragraph, explains WHY
+  a senior-tranche manager watches correlation, and is immediately followed by the
+  contrasting equity-tranche case. CLAUDE.md's AI-VOICE TELLS section explicitly carves
+  out "ordinary causal claims that happen to use 'is what makes'". **A future session
+  running this script will see 1/101 flagged; that is the expected steady state, not
+  work outstanding.**
 
 ## How to read a row
 
