@@ -878,3 +878,28 @@ whenever an audit line names something the reading clearly already teaches.
 **Separator repair volume is climbing through Book 5** (10, 14, 11, 19, 31 across
 this wave against 9 to 20 in Book 4), because these readings lean harder on
 "Term, then definition" list items. The repair is mechanical and safe; budget for it.
+
+### Wave 19 (R91-R95, Book 5, 2026-07-26): a second audit bug, and where an over-long def should go
+
+**The coverage audit had a second wrong-chapter bug, and it hit the reading the
+back-audit called the worst in the corpus.** Three sections in the source title
+themselves with a bare `**TITLE**` line and no `#` marks. The extractor required the
+marks, dropped those sections, and their readings fell through: r92 was audited
+against the artificial-intelligence reading, r6 matched nothing (which the ledger had
+recorded as "r6 has no Schweser section at all", a false statement now corrected),
+and **r99's 40-plus reported candidates were against the wrong chapter and drop to
+four.** Between this and the wave-14 subset-saturation bug, **the audit has now been
+wrong about eight readings.** The lesson generalizes past this tool: a report that
+scores its own matches should always print WHAT it matched, and a reviewer should read
+that column first. Both bugs were visible in the output before they were visible in
+the code.
+
+**An over-long `def` is not always an enumeration to move; sometimes it is teaching in
+the wrong field.** R95's XAI def ran 137 words, but only the first third was
+definitional. The rest was a genuinely good explanation of SHAP as a cooperative game
+(each input variable is a player, its Shapley value is its fair share of credit for
+moving the output off the average prediction, averaged over every ordering). That
+belongs in `intuition`, where the chapter renders it as teaching, not in `def`, where
+it reads as a definition that will not end. **Before trimming, ask which field the
+overflow actually wants to live in.** Deleting it would have cost the reading its one
+piece of real insight into a term most readings only name.

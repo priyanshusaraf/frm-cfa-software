@@ -1,3 +1,3 @@
-DONE: content-sonnet-clearance wave 18 (r86-r90) cleared and gated; r86 was missing the global custodian and r88 was missing universe comparison, both now taught.
-NEXT: Run wave 19 (r91-r95) per react-site/docs/superpowers/content-run-protocol.md section 2.
+DONE: content-sonnet-clearance wave 19 (r91-r95) cleared and gated, plus a second coverage-audit fix (bare **TITLE** sections) that corrects r6, r92 and r99.
+NEXT: Run wave 20 (r96-r101), the final clearance wave, per react-site/docs/superpowers/content-run-protocol.md section 2.
 BLOCKERS: none.

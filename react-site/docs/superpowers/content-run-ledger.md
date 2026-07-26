@@ -167,11 +167,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 88 | 5 | Portfolio Performance Evaluation | done | done | 18 | pass | REAL GAP FILLED: universe comparison (rank within style bucket, and why it fails) added; appraisal ratio now named as the information ratio's synonym, per the one-name rule. |
 | 89 | 5 | Hedge Funds | done | done | 18 | pass | 203-word strategy-roster def trimmed; the breakdown already carried all ten strategies. |
 | 90 | 5 | Performing Due Diligence on Specific Managers and Funds | done | done | 18 | pass | Heaviest separator repair of the run (31); the GARP exam-voice opener rewritten. |
-| 91 | 5 | Predicting Fraud by Investment Managers | done | todo | 19 | - | |
-| 92 | 5 | Review of the Federal Reserve's Supervision of Silicon Valley Bank | done | todo | 19 | - | |
-| 93 | 5 | The Credit Suisse CoCo Wipeout | done | todo | 19 | - | |
-| 94 | 5 | Artificial Intelligence and Bank Supervision | done | todo | 19 | - | |
-| 95 | 5 | Explainable, Trustworthy, Responsible AI in Risk Management | done | todo | 19 | - | |
+| 91 | 5 | Predicting Fraud by Investment Managers | done | done | 19 | pass | 166-word Form ADV variable def trimmed; the breakdown already carried every variable with its direction. |
+| 92 | 5 | Review of the Federal Reserve's Supervision of Silicon Valley Bank | done | done | 19 | pass | Was being audited against the AI reading until the second audit-tool fix this session; its real flags are false positives. |
+| 93 | 5 | The Credit Suisse CoCo Wipeout | done | done | 19 | pass | Clean apart from dashes; a source-referencing breakdown title and a quiz stem de-metered. |
+| 94 | 5 | Artificial Intelligence and Bank Supervision | done | done | 19 | pass | Cleanest of the wave: dashes plus two 'according to the reading' quiz stems. |
+| 95 | 5 | Explainable, Trustworthy, Responsible AI in Risk Management | done | done | 19 | pass | 137-word XAI def split: the SHAP-as-cooperative-game explanation moved into intuition, where it teaches rather than pads a definition. |
 | 96 | 5 | Artificial Intelligence Risk Management Framework | done | todo | 20 | - | |
 | 97 | 5 | Climate-Related Risk Drivers and Transmission Channels | done | todo | 20 | - | |
 | 98 | 5 | Climate-Related Financial Risks: Measurement Methodologies | done | todo | 20 | - | |
