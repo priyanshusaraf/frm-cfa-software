@@ -1,3 +1,3 @@
-DONE: Wave 13 (r61-r65) cleared and gated; the one-page summary now renders as a two-level outline corpus-wide; R35's default auction rewritten with porting and MPoR after owner review.
-NEXT: Run wave 14 (r66-r70: investment function, liquidity and reserves management, intraday liquidity risk, monitoring liquidity, failure mechanics of dealer banks).
-BLOCKERS: none. Logged for later: 9 readings (r03, r04, r13, r14, r16, r26, r29, r56, r85) have unbalanced parentheses in their summaries from the bulk dash pass, which also breaks their prose math spans.
+DONE: Display math now stacks at top-level ";" instead of scrolling (17 formulas); R36's exposure-metric family rewritten with per-metric mechanism; ai-tells.mjs detector added after the owner flagged R36's thinkLike as reading machine-written.
+NEXT: Continue the R36 depth pass (the owner's verdict was that the whole reading under-delivers on a dense quant topic), then wave 14 (r66-r70).
+BLOCKERS: Coverage back-audit over the 65 already-cleared readings still unscheduled (see content-run-ledger.md). ai-tells patterns "enumerated-prose" and "aphoristic-closer" have high false-positive rates and are advisory only.

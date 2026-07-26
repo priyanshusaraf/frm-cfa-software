@@ -14,10 +14,40 @@ function katexRender(tex, display) {
   } catch (e) { return '<span class="tex-error">' + esc(tex) + "</span>"; }
 }
 
+/* Splits display math at top-level ";" separators (brace/paren depth zero and
+   outside \text{}), so a card carrying two related formulas can stack them.
+
+   KaTeX cannot line-wrap, so a wide formula previously either shrank to the
+   fitMath floor or grew a horizontal scrollbar. Owner-reported against R36's
+   "EE(MPoR) = ...; PFE(MPoR) = ..." which scrolled off the card: two formulas
+   on one line is a stacking problem, not a scrolling one. */
+function stackParts(tex) {
+  const parts = [];
+  let depth = 0, last = 0;
+  for (let i = 0; i < tex.length; i++) {
+    const c = tex[i];
+    if (c === "\\") { i++; continue; }              // skip escaped char
+    if (c === "{" || c === "(" || c === "[") depth++;
+    else if (c === "}" || c === ")" || c === "]") depth--;
+    else if (c === ";" && depth === 0) { parts.push(tex.slice(last, i)); last = i + 1; }
+  }
+  parts.push(tex.slice(last));
+  return parts.map((p) => p.replace(/^\s*\\quad\s*/, "").trim()).filter(Boolean);
+}
+
 /* Formula-box math: typeset only strings that look like LaTeX;
    legacy HTML-math strings pass through untouched. */
 export function renderMath(s, display) {
-  return isTex(s) ? katexRender(s, display) : s;
+  if (!isTex(s)) return s;
+  if (display) {
+    const parts = stackParts(s);
+    /* gathered centres each row and needs no alignment point, so it is safe for
+       arbitrary formulas that were never written to align on anything. */
+    if (parts.length > 1) {
+      return katexRender("\\begin{gathered}" + parts.join("\\\\[4pt]") + "\\end{gathered}", true);
+    }
+  }
+  return katexRender(s, display);
 }
 
 /* Prose math: typeset \( … \) inline and \[ … \] display, leaving all other
