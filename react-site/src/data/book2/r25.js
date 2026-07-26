@@ -38,6 +38,15 @@ export default ({
 
   concepts: [
     {
+      name: "Agency ratings vs. internal credit rating systems",
+      def: "An agency rating is a long-term, deliberately stable judgment on a large public issuer's creditworthiness. An internal rating system is what a lender builds for the small and mid-sized firms the agencies never cover.",
+      intuition: "Agencies rate through an economic cycle, and they do it on purpose. They could react to every piece of short-term news, but a rating that moved every quarter would be useless to the people who rely on it, so they take the long view: information suggesting a higher chance of default over the next year, with no meaningful change over the following four, may leave the rating where it is. That stability is a design choice, and it is also the reason ratings lag. Agencies also do not rate most small and mid-sized firms, because there is no public bond market demanding it, so lenders build their own systems for those borrowers.",
+      example: "An internal system looks at profitability (return on equity), liquidity (the quick ratio) and solvency (debt-to-equity). Then, because borrowings are repaid in cash rather than in ratios, the lender starts from the company-prepared financial statements and makes its own adjustments to build a cash flow statement, which is what actually speaks to repayment ability.",
+      pitfall: "Do not read agency stability as agency accuracy. 'Rating through the cycle' means a rating can be correct as a five-year view and stale as a one-year view at the same time, which is exactly why the market-based measures in R24 move first.",
+      related: [{ r: 22, label: "R22: how a rating agency actually builds the rating" }],
+      memory: "Agencies: big public issuers, long-term view, stable and slow. Internal systems: small and mid-sized firms, profitability/liquidity/solvency ratios, then a cash flow statement built by hand."
+    },
+    {
       name: "Altman's Z-score",
       def: "A linear discriminant function on five balance-sheet ratios predicting bankruptcy likelihood for public manufacturers.",
       intuition: "Instead of reading five separate ratios and guessing how they combine, Z-score forces them through one formula so every firm gets one comparable number. It was built by statistically finding the weights that best separated firms that later defaulted from firms that didn't, on a large historical sample of manufacturers.",

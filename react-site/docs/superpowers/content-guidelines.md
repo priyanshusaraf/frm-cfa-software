@@ -1396,3 +1396,51 @@ enumerations out of `def`). The fix was to put it in `counter`, where it belongs
 because it IS a limitation. **When a Track B fill makes a `def` long, that is a signal
 you have chosen the wrong field, not that the validator is in the way.** `counter` for a
 limitation, `pitfall` for a trap, `example` for a case, `breakdown` for a list.
+
+### Wave 7: r36, r80, r25, r43, r65 (2026-07-26)
+
+25 candidates checked. **One whole missing learning objective, one small fill, three
+readings dismissed.**
+
+**r25 carried the most serious hole found in Track B so far: LO 25.a was entirely
+absent.** "Compare agencies' ratings to internal credit rating systems" is a named
+learning objective, and the reading had nothing on it: no rating-through-the-cycle, no
+reason agencies skip small and mid-sized firms, and nothing on what an internal system
+actually looks at. It is now a new leading concept, because it is the frame the rest of
+the reading's four PD routes sit inside. Content is all source: agencies take a long-term
+view deliberately (a rating can stay put when the one-year outlook worsens but the
+five-year one does not), agencies do not rate most small and mid-sized firms, internal
+systems use profitability (ROE), liquidity (quick ratio) and solvency (debt-to-equity),
+and the lender rebuilds a cash flow statement by hand from company-prepared statements
+because borrowings are repaid in cash rather than in ratios.
+
+**Why this one escaped every earlier check, which is the lesson.** r25 was cleared in
+wave 5 of the Sonnet run and its ledger note is about a schema fix. The reading is dense,
+well written and covers LOs 25.b through 25.h thoroughly, so **nothing about reading the
+file suggests a gap.** This is precisely the R35/MPoR failure mode restated: an omission
+is invisible from inside the data file. The audit's `weakLOs` field is the signal that
+found it (25.a at 0.57 coverage), and **`weakLOs` deserves more weight than
+`missingTopics`**, which is dominated by heading-text mismatches. Consider scoring
+Track B by weak LOs first on the remaining readings.
+
+**r65: one small fill.** EWI characteristics were complete except that the source has
+EWIs running in BOTH a normal and a stressed state, answering different questions in each
+(normal: is the position worsening; stressed: do we hold enough liquid resources to
+survive a plausible scenario, which is what surfaces systemic risk). Added as a sixth
+characteristic point.
+
+**Dismissed entirely: r36 (10), r80 (7), r43 (8).**
+
+- **r36** flags `comparing credit exposure to var methods` while the reading has a
+  concept literally named "Credit exposure versus value at risk" listing the three
+  burdens exposure carries that VaR does not. MPoR appears 24 times, collateral 94.
+- **r80** confirms the wave-16 note: the per-market illiquidity detail is all present
+  (on-the-run vs off-the-run Treasuries, the 2007-09 T-bond/T-note divergence, ~7% of
+  investment-grade and ~22% of junk yield variation, 1-8% equity premia, listed ~1% vs
+  OTC ~20%). The flags are the source's per-market HEADINGS.
+- **r43** has the BCBS loss-data minimums (10 years, EUR20,000 floor, four dates:
+  occurrence, discovery, reporting, accounting), the five-point impact and likelihood
+  scales by name, and KRI/KPI/KCI 15/11/11 times. All eight flags are headings.
+
+Running Track B total: 95 candidates checked over three waves, 8 real gaps, 6 readings
+dismissed outright. The rate holds around 90% false positive.

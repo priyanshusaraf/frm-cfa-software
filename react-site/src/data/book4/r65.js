@@ -37,7 +37,8 @@ export default ({
         "Internal AND external: internal measures track the bank's own balance sheet (e.g., deposit outflows in a specific client segment); external measures track macroeconomic/market conditions (e.g., broad credit spreads). An effective EWI should ideally catch internal stress before it becomes publicly visible.",
         "Leading, not lagging: a leading indicator provides a signal before the event; a lagging one only confirms it afterward, leaving no time to react.",
         "Granular: sharp enough to stand out against background noise. Example from the source: 'general bank deposits are falling' is a usable EWI, but 'deposits from a specific group of institutional clients are falling' is a far more effective one because it isolates the actual source of stress.",
-        "Multiple time horizons: hourly, daily, weekly, and monthly indicators together, because the bank's assets and liabilities have different durations and a single-horizon indicator will miss problems that build (or erupt) on a different timescale."
+        "Multiple time horizons: hourly, daily, weekly, and monthly indicators together, because the bank's assets and liabilities have different durations and a single-horizon indicator will miss problems that build (or erupt) on a different timescale.",
+        "Run in BOTH a normal and a stressed state, and the two runs answer different questions. In normal operating conditions the indicators are watching for a future worsening of the bank's position. Against a hypothetical but plausible stress scenario, the same indicators are answering whether the bank actually holds enough liquid resources to survive it, and that second exercise is often what surfaces a systemic risk nobody had priced."
       ]
     },
     {

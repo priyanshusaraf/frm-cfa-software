@@ -50,11 +50,18 @@ section below is stale and says so.
 - Audited and closed: **r37, r57, r39, r64, r27** (wave 5, 32 candidates, 5 real gaps),
   **r41, r11, r59, r24, r31** (wave 6, 38 candidates, 2 real gaps, three readings
   dismissed outright). Detail and the dismissal reasons in `content-guidelines.md`.
-- Next by score: **r36 (22), r80 (21), r25 (20), r43 (20), r65 (20)**, then r19 (19),
-  r42 (19), r76 (19), r45 (18), r44 (17), r46 (17), r16 (15).
-- 86 readings still carry at least one candidate. The measured false-positive rate is
-  85% and rising as the score descends, so this is a CHECKING exercise, not a writing
-  one; budget for reading the source, not for prose.
+  **r36, r80, r25, r43, r65** (wave 7, 25 candidates, 1 whole missing learning objective
+  in r25 plus 1 small fill, three readings dismissed).
+- **ORDER THE REST BY WEAK LOs, not by the composite score.** Wave 7 established why:
+  `missingTopics` is dominated by heading-text mismatches (a reading that numbers a
+  framework differently, or hyphenates a term differently, reads as missing it), while
+  `weakLOs` is what found r25's genuinely absent learning objective. Next, by summed
+  LO shortfall: **r35 (35.e@0.40, 35.f@0.33), r19 (19.b@0.57, 19.g@0.40), r84
+  (86.b@0.43, 86.i@0.56), r95 (97.b@0.50, 97.d@0.50), r38 (38.b@0.57, 38.g@0.57)**,
+  then r28, r77, r23, r26, r3, r16, r29, r34, r66. 25 readings still carry a weak LO.
+- Running total: 95 candidates checked, 8 real gaps, 6 readings dismissed outright.
+  The false-positive rate holds around 90%, so this is a CHECKING exercise, not a
+  writing one; budget for reading the source, not for prose.
 
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 
