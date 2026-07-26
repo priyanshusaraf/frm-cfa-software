@@ -1,3 +1,3 @@
-DONE: Phase 4 Track B wave 8 (first weak-LO-ordered wave): audited r35, r19, r84, r95, r38. One real gap, r19's lending policy existed only as four labels in teaches with no explanation anywhere; two new breakdown blocks added from the source. r35, r84, r95, r38 dismissed. All gates green.
-NEXT: Track B wave 9, next by weak-LO shortfall: r28, r77, r23, r26, r3.
+DONE: Phase 4 Track B wave 9: audited r28, r77, r23, r26, r3. r26 was missing LO 26.f entirely (credit spread risk was never defined); added as a concept with the two reasons spreads cannot be historically simulated. r77 gained a real challenges breakdown, r28 gained the source's three-tiered and internal-credit-enhancement labels; r23 and r3 dismissed. All gates green.
+NEXT: Write the tough-concept sequencing spec the owner asked for on 2026-07-26, starting with CVA as a Core Concept page compiled from every reading that touches it (reference: ~/Downloads/FRM2_R37_CVA_and_MPoR.md).
 BLOCKERS: none.

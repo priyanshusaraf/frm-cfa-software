@@ -154,6 +154,17 @@ export default ({
       ]
     },
     {
+      title: "What makes LTP hard to actually implement",
+      points: [
+        { point: "Keeping oversight alive after the policy is written", explain: "Without it, mispriced liquidity premiums let illiquid long-term assets accumulate quietly. That exact pattern, long illiquid assets funded short, is what did the most damage in the global financial crisis." },
+        { point: "Pricing both directions honestly", explain: "The hard half is not charging for liquidity consumed; it is crediting the units that PROVIDE liquidity through deposits. Undervalue that credit and a deposit-gathering unit has no reason to chase the long-dated deposits the bank most wants." },
+        { point: "Centralizing the treasury", explain: "Decentralized funding centers create internal arbitrage: a unit shops for the cheapest internal rate rather than facing the bank's true cost. A single central treasury closes that door." },
+        { point: "Covering the trading book", explain: "Derivatives, contingent collateral calls and margin calls all carry liquidity cost that no simple loan-based schedule captures, so the trading-book policy has to be written deliberately." },
+        { point: "Building an LMIS that can actually report", explain: "The liquidity management information system has to produce high-quality liquidity reports in time to be acted on, and it has to carry the internal pricing policy itself, tracking the cost, benefit and risk of liquidity per business unit. A schedule nobody can compute against is not a price." },
+        { point: "Fixing remuneration last, and on purpose", explain: "If executive pay ignores liquidity, the incentives survive the policy. Pre-crisis, lending units booked long-dated loans that were undercharged for funding, reported higher profits, and were rewarded for it." }
+      ]
+    },
+    {
       title: "Best practices for governing the LTP process",
       points: [
         "A well-defined LTP process with clear guiding principles and rules that apply to every business unit using or providing funding liquidity.",

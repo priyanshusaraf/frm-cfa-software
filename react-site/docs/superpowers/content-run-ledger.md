@@ -53,18 +53,18 @@ section below is stale and says so.
   **r36, r80, r25, r43, r65** (wave 7, 25 candidates, 1 whole missing learning objective
   in r25 plus 1 small fill, three readings dismissed).
   **r35, r19, r84, r95, r38** (wave 8, the first weak-LO-ordered wave: 25 candidates,
-  1 real gap in r19, four readings dismissed).
+  1 real gap in r19, four readings dismissed), **r28, r77, r23, r26, r3** (wave 9:
+  19 candidates, r26 was missing LO 26.f entirely, two modest fills, two dismissals).
 - **ORDER THE REST BY WEAK LOs, not by the composite score.** Wave 7 established why:
   `missingTopics` is dominated by heading-text mismatches (a reading that numbers a
   framework differently, or hyphenates a term differently, reads as missing it), while
   `weakLOs` is what found r25's genuinely absent learning objective. Next, by summed
-  LO shortfall. Next: **r28 (28.e@0.33), r77 (78.b@0.33), r23 (23.c@0.43),
-  r26 (26.f@0.43), r3 (3.a@0.50)**, then r16, r29, r34, r66 and the rest at 0.50.
-  20 readings still carry a weak LO. Wave 8's caveat: weak LO is a better signal than
+  LO shortfall. Next: **r16 (16.c@0.50), r29 (29.a@0.50), r34 (34.g@0.50),
+  r66 (67.b@0.50)** and the rest at 0.50. 15 readings still carry a weak LO. Wave 8's caveat: weak LO is a better signal than
   `missingTopics`, not a reliable one. Four of its five worst were fully covered, and
   a bureaucratically worded LO ("discuss the risks faced by") scores low against good
   prose no matter how complete the coverage is.
-- Running total: 120 candidates checked, 9 real gaps, 10 readings dismissed outright.
+- Running total: 139 candidates checked, 12 real gaps, 12 readings dismissed outright.
   The false-positive rate holds around 90%, so this is a CHECKING exercise, not a
   writing one; budget for reading the source, not for prose.
 

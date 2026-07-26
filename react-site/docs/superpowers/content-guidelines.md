@@ -1489,3 +1489,42 @@ can.
 
 Running Track B total after four waves: 120 candidates checked, 9 real gaps, 10 readings
 dismissed outright.
+
+### Wave 9: r28, r77, r23, r26, r3 (2026-07-26)
+
+19 candidates. **One real gap, two modest fills, two dismissals.**
+
+**r26 was missing LO 26.f entirely: credit spread risk was never defined.** The reading
+had the CreditMetrics machinery, Monte Carlo over a transition matrix, and mentioned
+spreads in passing, so a grep looks healthy. What it never said is that a
+credit-sensitive instrument loses value on a spread move with NO default, and it never
+carried the source's two specific reasons you cannot just historically-simulate spread
+changes: most names have no daily spread quotes, and the companies whose spread history
+you have are survivors, so the sample quietly assumes nobody defaults, which is the exact
+tail being measured. Added as its own concept with the CreditMetrics route and the two
+ways of putting correlation back in (Gaussian copula on rating changes, or assuming
+within-rating spread changes move in unison).
+
+**r77: LO 78.b at 0.33 was half-right.** The reading's "best practices" breakdown mirrors
+most of the challenges, so this was nearly a dismissal. Two things were genuinely thin:
+the LMIS infrastructure challenge (the system has to carry the internal pricing policy and
+report in time to act on, not just exist), and the crediting side. A new
+`{point, explain}` breakdown states the six implementation challenges as challenges.
+
+**r28: named the source's terms.** LO 28.e's worked two-iteration cash flow is fully
+present with numbers, the custodian tests, the cumulative interest-earning trust, and the
+final-year treatment. Only the source's LABELS were missing: "three-tiered structure" and
+OC/excess spread as INTERNAL credit enhancements. Both now appear in the waterfall
+concept's `def`. **A missing label on present material is worth one clause, not a
+rewrite** - the student meets the exam's vocabulary, nothing is restated.
+
+**Dismissed: r23 (its creditworthiness-vs-profitability tradeoff has a full concept, not
+just the `teaches` label - the opposite of r19's wave-8 defect), r3 (has both POT VaR and
+POT Expected Shortfall as formulas).**
+
+**`ai-tells.mjs` returns 1 tell on this wave, and that is correct.** It is r28's
+"correlation is what turns a 'should never touch us' tranche into a real loss", the
+documented deliberate KEEP. Expected steady state, not work outstanding.
+
+Running Track B total after five waves: 139 candidates checked, 12 real gaps, 12 readings
+dismissed outright.
