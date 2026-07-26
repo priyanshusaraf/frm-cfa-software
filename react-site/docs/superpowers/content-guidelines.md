@@ -1169,3 +1169,38 @@ worth keeping:
 
 `ai-tells.mjs` on all five after rewriting: 0 tells. Run it on your own prose every wave;
 this is the third time the guidelines have said so and it has paid off every time.
+
+### Wave 2: r47, r62, r101, r78, r24 (2026-07-26)
+
+All five landed between 15.3 and 20.4 w/s, from 56.0, 58.3, 55.5, 57.0 and 54.4.
+
+**The arrow chain is now confirmed as the dominant mechanism, not an oddity.** Two of
+these five (r101's whole `intuition`, r62's bookkeeping sequence) were `→`-joined chains,
+after r65's in wave 1. An arrow chain is how a very long sentence hides: it reads as a
+diagram, so neither the author nor a reviewer registers it as a run-on, and material can
+be appended to it indefinitely. **When you see `→` in a prose field, measure it.** r101
+was the pure case: a seven-link chain (digital operations, shared cloud, ICT event,
+interconnection, contagion, lost confidence, bank run) with nothing between the links.
+Giving each link a paragraph changes nothing about the content and makes the chain
+walkable, which is the whole point of writing it as a chain in the first place.
+
+**r62 also had a genuine defect the density read exposed**, and it is the kind only a
+re-read catches: a broken parenthetical. The original ran "(watch the absolute-value
+treatment on trading and banking-book P&L (losses count just as much as gains), determine
+the bucket, run the marginal BIC calculation like a tax accountant, and then)" - the
+closing paren had drifted to the end, so three unrelated steps sat inside a
+parenthetical about absolute values, and the sentence's actual "and then" clause was
+trapped in there with them. This is the same class of damage the wave-12 bulk dash pass
+did; **assume any deeply nested parenthetical in a long field is broken until you have
+read it out loud.** The same rewrite expanded ILDC, SC, FC, BIC, SMA and ILM, none of
+which the field had introduced despite the file expanding all of them elsewhere.
+
+**r62's "<5 years of data" was raw `<` inside an HTML string.** Browsers happen to render
+it as text, so nothing looked wrong, but it is a live parse hazard one authored character
+away from swallowing the rest of the paragraph. Written out as "fewer than five years".
+Worth a grep next time someone is in these files.
+
+Two more instances of the wave-1 lesson that a density rewrite catches adjacent defects:
+r24's three answers to the local-currency-default puzzle were a comma-spliced (1)(2)(3)
+run, and r78's second paragraph made the reader hold three exam shapes plus a quoted stem
+in one sentence.

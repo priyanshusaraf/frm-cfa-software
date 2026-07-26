@@ -33,14 +33,15 @@ per-reading learnings live in `content-guidelines.md` under "PHASE 4".
 Re-derive before every wave; the numbers below go stale on the next rewrite.
 
 - `eli5` ....... DONE. Nothing above 45 w/s. Corpus avg 31.2.
-- `intuition` .. IN PROGRESS. Done: r100, r52, r50. Remaining above 45, worst first:
-                 **r47 (56.0), r101 (55.5), r24 (54.4), r86 (49.0), r19 (48.5),
-                 r23 (48.2), r92 (46.1), r31 (46.0).**
-- `thinkLike` .. IN PROGRESS. Done: r86, r69, r70, r20, r32, r65, r25, r60. Remaining
-                 above 45, worst first: **r62 (58.3), r78 (57.0), r74 (54.8), r21 (53.4),
-                 r40 (52.0), r61 (51.8), r27 (51.8), r77 (50.5), r8 (47.8).**
+- `intuition` .. IN PROGRESS. Done: r100, r52, r50, r47, r101, r24. Remaining above 45,
+                 worst first: **r86 (49.0), r19 (48.5), r23 (48.2), r92 (46.1),
+                 r31 (46.0).**
+- `thinkLike` .. IN PROGRESS. Done: r86, r69, r70, r20, r32, r65, r25, r60, r62, r78.
+                 Remaining above 45, worst first: **r74 (54.8), r21 (53.4), r40 (52.0),
+                 r61 (51.8), r27 (51.8), r77 (50.5), r8 (47.8).**
 
-Waves so far: wave 1 = r52, r65, r50, r25, r60 (2026-07-26, all gates green).
+Waves so far, all gates green, all 2026-07-26:
+wave 1 = r52, r65, r50, r25, r60. wave 2 = r47, r62, r101, r78, r24.
 
 **Track B, the coverage back-audit.** Not started in this phase. See the OPEN section
 below; re-read `coverage-report.json` rather than trusting any ordering written here.

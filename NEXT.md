@@ -1,3 +1,3 @@
-DONE: Phase 4 density wave 1: r52 + r50 intuition, r65 + r25 + r60 thinkLike, all now 13.7 to 19.9 w/s (from 71/61/68.7/59/59). Measurement is now scripts/prose-density.mjs, which showed the stored worklist was wrong about six readings. All gates green.
-NEXT: Density wave 2, worst first across both fields: intuition r47 (56.0), thinkLike r62 (58.3), intuition r101 (55.5), thinkLike r78 (57.0), intuition r24 (54.4).
+DONE: Phase 4 density wave 2: r47, r101, r24 intuition and r62, r78 thinkLike, from 54 to 58 w/s down to 15.3 to 20.4. Also fixed a broken nested parenthetical and a raw `<` in r62, and expanded its six bare abbreviations. All gates green.
+NEXT: Density wave 3, worst first across both fields: thinkLike r74 (54.8), r21 (53.4), r40 (52.0), r61 (51.8), r27 (51.8).
 BLOCKERS: none.
