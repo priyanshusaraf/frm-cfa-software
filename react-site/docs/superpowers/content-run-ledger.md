@@ -98,11 +98,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 58 | 3 | Capital Planning at Large Bank Holding Companies | done | done | 12 | pass | Dash purge; removed a Module Quiz source leak and fixed a {r,why} related ref. |
 | 59 | 3 | Capital Regulation Before the Global Financial Crisis | done | done | 12 | pass | Dash purge only; the Basel I/II arithmetic and IRB parameters were already correct. |
 | 60 | 3 | Solvency, Liquidity, and Other Regulation After the GFC | done | done | 12 | pass | Dash purge; the 367-word Dodd-Frank def trimmed, with the Volcker nuance moved into breakdown. |
-| 61 | 3 | High-Level Summary of Basel III Reforms | done | todo | 13 | - | |
-| 62 | 3 | Basel III: Finalizing Post-Crisis Reforms | done | todo | 13 | - | |
-| 63 | 4 | Liquidity Risk | done | todo | 13 | - | |
-| 64 | 4 | Liquidity and Leverage | done | todo | 13 | - | |
-| 65 | 4 | Early Warning Indicators | done | todo | 13 | - | |
+| 61 | 3 | High-Level Summary of Basel III Reforms | done | done | 13 | pass | Dash purge only; the Basel III reform-shape facts were already correct. Removed a 'GARP tests this reading' meta-reference. |
+| 62 | 3 | Basel III: Finalizing Post-Crisis Reforms | done | done | 13 | pass | Dash purge; the marginal BIC arithmetic (12% on first EUR1bn + 15% above = EUR1.92bn) reproduced and correct. |
+| 63 | 4 | Liquidity Risk | done | done | 13 | pass | Six-sources def trimmed, full enumeration verified intact in breakdown. Deposit instability now carries its mechanism, closing this reading's own reference defect. |
+| 64 | 4 | Liquidity and Leverage | done | done | 13 | pass | Dash purge; leverage arithmetic (150/100=1.5, 200/100=2.0, Reg T 1/h=2.0) all reproduced. Fixed a quiz why that named distractors by position under shuffling. |
+| 65 | 4 | Early Warning Indicators | done | done | 13 | pass | Clean dash purge; no numeric or directional token changed anywhere in the file. |
 | 66 | 4 | The Investment Function in Financial-Services Management | done | todo | 14 | - | |
 | 67 | 4 | Liquidity and Reserves Management: Strategies and Policies | done | todo | 14 | - | |
 | 68 | 4 | Intraday Liquidity Risk Management | done | todo | 14 | - | |
