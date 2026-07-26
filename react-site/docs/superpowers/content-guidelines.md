@@ -1574,3 +1574,56 @@ from everything else in the phase.** Three things about it are worth carrying fo
 
 Running Track B total after six waves: 156 candidates checked, 12 real gaps, 16 readings
 dismissed outright, and 1 factual error corrected across 12 fields.
+
+### Wave 11: the named-term sweep (2026-07-26). A better generator than either LO or topic.
+
+Wave 10's factual error came out of a `missing`-TERM candidate, so wave 11 built the
+systematic version instead of continuing down the weak-LO list, which was returning mostly
+dismissals. The filter, worth reusing:
+
+- Take every `missing` term in `coverage-report.json`.
+- Drop the ones that are audit noise by SHAPE, not by judgement: a bare verb from an LO
+  stem (`calculate`, `compare`, `demonstrate`), anything starting `computing ` or
+  `calculating ` (worked-example headings), and appendix material (`z_ -table`,
+  `t_ -distribution`, `hypothesis`, `probability example`).
+- For each survivor, require EVERY word longer than four characters to appear in the data
+  file. A term whose long words are all present is taught under some phrasing; a term with
+  a genuinely absent long word is worth reading the source for.
+
+That reduced 55 candidates across the corpus to a checkable list and found **two real gaps
+and two missing-name fixes in one pass**, a far better yield than waves 6 through 9.
+
+**r42: the four control types were entirely absent.** Preventive, detective, corrective and
+directive controls are four bolded source definitions with an example each, and the reading
+had none of them despite 34 mentions of "control". Added as a `{point, explain}` breakdown
+block, sorted by WHEN each control acts relative to the event, which is what a question
+turns on (corrective and directive are both post-preventive in strength but sit at opposite
+ends of the timeline).
+
+**r02: the surrogate density function had its mechanism but not its name.** The concept
+explains connecting histogram midpoints, area displaced rather than lost, and VaR at a
+continuum of confidence levels. It never said the resulting curve is what the source calls
+a surrogate density function, which is the phrase a stem would use. One clause.
+
+**r05: primitive risk factors is the source's second name** for what the reading calls
+general risk factors, and the mapping example (a thousand positions on one exchange rate
+collapsing to one factor) was missing with it. One clause, per the one-name rule: pick the
+dominant name, state the synonym once.
+
+**Dismissed: r86 (surplus at risk appears 6 times, SaR 14; the flag is a worked-example
+heading), r04 ("model verification" is a source SECTION heading for the failure-rate
+backtesting the reading covers 7 and 11 times).**
+
+**The generator ranking, now that all three have been tried:**
+
+1. **Named-term sweep with the shape filter above.** Highest yield. It catches the label-only
+   and wrong-number classes that the other two miss entirely.
+2. **Weak LOs.** Good for whole-objective omissions (r25's LO 25.a), but four of five in
+   wave 8 were fully covered, and bureaucratic LO wording depresses the score regardless.
+3. **`missingTopics`.** Lowest yield by a wide margin. Dominated by heading-text mismatches:
+   a different numbering (r41's Line 1/2/3), a hyphen (r11's non-recombining), an
+   abbreviation (r64's CDS), or a per-market heading (r80).
+
+Running Track B total after seven waves: ~180 candidates checked, 14 real gaps, 18 readings
+dismissed outright, 1 factual error corrected across 12 fields, and 3 missing source names
+supplied.

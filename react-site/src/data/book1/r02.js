@@ -56,7 +56,7 @@ export default ({
     },
     {
       name: "Non-parametric density estimation",
-      def: "Connect the midpoints of adjacent histogram bars to smooth the empirical distribution, redistributing area between bars without losing total probability mass.",
+      def: "Connect the midpoints of adjacent histogram bars to smooth the empirical distribution, redistributing area between bars without losing total probability mass. The smoothed curve you get is the surrogate density function, which is the name to expect on an exam stem.",
       intuition: "With 100 observations you can only read VaR at 1%, 2%, 3%, and so on. Smoothing draws a continuous curve through the histogram so 95.5% (or any level) becomes readable.",
       pitfall: "The smoothing invents nothing new about the tails. It interpolates between observed points and can't extrapolate beyond the worst observation.",
       related: ["Historical simulation VaR"]

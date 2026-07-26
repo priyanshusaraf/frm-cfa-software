@@ -57,8 +57,15 @@ section below is stale and says so.
   19 candidates, r26 was missing LO 26.f entirely, two modest fills, two dismissals),
   **r16, r76, r46, r34, r29** (wave 10: r16 stated the FRTB jump-to-default charge as a
   99% VaR where the source says 99.9%, wrong in 12 fields, all corrected; four
-  dismissals).
-- **ORDER THE REST BY WEAK LOs, not by the composite score.** Wave 7 established why:
+  dismissals), **wave 11, the named-term sweep** (r42's four control types were entirely
+  absent; r02 and r05 were missing a source NAME each; r86 and r04 dismissed).
+- **ORDER THE REST BY THE NAMED-TERM SWEEP** (wave 11), which outranks both other
+  generators. Take every `missing` term, drop audit noise by SHAPE (bare LO verbs,
+  anything starting `computing `/`calculating `, appendix material like `z_ -table`),
+  then require every word longer than four characters to appear in the data file. The
+  survivors are worth reading the source for. Ranking: named-term sweep > weak LOs >
+  `missingTopics`, which is nearly all heading-text mismatches.
+- Secondary ordering, weak LOs. Wave 7 established why this beats the composite score:
   `missingTopics` is dominated by heading-text mismatches (a reading that numbers a
   framework differently, or hyphenates a term differently, reads as missing it), while
   `weakLOs` is what found r25's genuinely absent learning objective. Next, by summed

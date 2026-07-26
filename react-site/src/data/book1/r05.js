@@ -40,7 +40,7 @@ export default ({
     },
     {
       name: "General vs specific risk",
-      def: "More risk factors → smaller specific (residual/idiosyncratic) risk but more computation. General risk is what the common factors explain; specific risk is what's left over.",
+      def: "More risk factors → smaller specific (residual/idiosyncratic) risk but more computation. General risk is what the common factors explain; specific risk is what's left over. Those common factors go by two names in the source and both can appear in a stem: general risk factors and primitive risk factors. A thousand positions all keyed to one exchange rate collapse into a single primitive factor, which is the whole point of mapping.",
       intuition: "Think of a bond portfolio's total risk as a pie. If your only risk factor is duration, a large slice of the pie is unexplained ('specific'). Add a credit-spread factor and a slice of that 'specific' pie gets relabeled as 'general' (explained). Add a currency factor and another slice moves over. The total pie, total risk, never changes. Only how much of it you've chosen to explain with named, modeled factors versus leave as an unexplained residual changes.",
       pitfall: "Specific risk is not a fixed, intrinsic property of an asset. It's a function of how finely you define general risk. Adding a credit factor, then a currency factor, to a bond model keeps shrinking 'specific risk' further. Treating it as unchangeable is the tested trap.",
       related: ["Fixed-income mapping methods"]

@@ -44,6 +44,16 @@ export default ({
       ]
     },
     {
+      title: "The four kinds of control, sorted by when they act",
+      points: [
+        { point: "Preventive: before the event", explain: "Proactive, and aimed straight at the likely cause so the risk has less chance of occurring at all. In a data-entry context that is an edit check, say a field that refuses anything other than five digits." },
+        { point: "Detective: during or after the event", explain: "Accepts that the event may happen and works to limit the damage once it does. A periodic reconciliation is the standard example: two independently produced amounts have to balance, and the gap between them is the signal." },
+        { point: "Corrective: after the event, aimed at the next one", explain: "Fixes the error going forward so the same failure does not repeat. Training sessions and circulating best practices are the examples the source gives." },
+        { point: "Directive: while the work is happening", explain: "Guidance, process and training supplied at the point of performance, so the error is less likely while someone is actually doing the task. Detailed step-by-step instructions for a specific process are the case in point." },
+        "The distinction that a question turns on is TIMING relative to the event, not how strict the control is. Corrective and directive both come after preventive in strength terms but sit at opposite ends of the timeline."
+      ]
+    },
+    {
       title: "Basel taxonomy: three levels",
       points: [
         "<strong>Level 1</strong>: 7 broad event categories (from R40): internal fraud, external fraud, employment practices and workplace safety (EPWS), clients/products/business practices (CPBP), damage to physical assets (DPA), business disruption and system failures (BDSF), and execution/delivery/process management (EDPM). Basel treats Levels 1 and 2 as the mandatory regulatory reporting categories.",
