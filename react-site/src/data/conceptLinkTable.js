@@ -777,7 +777,7 @@ export const conceptLinkTable = [
       62
     ],
     "linkPhrases": [],
-    "snippet": "This formula says a bank's overall operational-risk exposure proxy is nothing more than three financial-statement-derived numbers — lending income, service/fee income, and trading activity — added together, each..."
+    "snippet": "This formula says a bank's overall operational-risk exposure proxy is nothing more than three financial-statement-derived numbers (lending income, service/fee income, and trading activity) added together, each measured..."
   },
   {
     "slug": "correlation-coefficient-from-covariance",
@@ -918,7 +918,22 @@ export const conceptLinkTable = [
       73
     ],
     "linkPhrases": [],
-    "snippet": "This says: take the raw mismatch between cash coming in and cash going out, then net off however much of that mismatch the bank could cover by selling or pledging its liquid securities — what's left is the true..."
+    "snippet": "This says: take the raw mismatch between cash coming in and cash going out, then net off however much of that mismatch the bank could cover by selling or pledging its liquid securities, what's left is the true liquidity..."
+  },
+  {
+    "slug": "margin-period-of-risk-mpor",
+    "name": "Margin period of risk (MPoR)",
+    "display": "Margin period of risk (MPoR)",
+    "layer": "core",
+    "kind": "concept",
+    "homeReading": 36,
+    "refs": [
+      35,
+      36,
+      37
+    ],
+    "linkPhrases": [],
+    "snippet": "The stretch of time between calling for collateral and actually having usable collateral in hand, also called the remargin period. It is treated as a window of elevated exposure rather than mere administrative delay,..."
   },
   {
     "slug": "minimum-transfer-amount-mta",
@@ -979,6 +994,21 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "Transforms non-normal times-to-default into standard normal variables via each firm's own marginal default distribution; the joint (bivariate normal) structure is the 'copula.' Correlation here is called the COPULA..."
+  },
+  {
+    "slug": "peaks-over-threshold-pot-generalized-pareto",
+    "name": "Peaks-over-threshold (POT) & Generalized Pareto",
+    "display": "Peaks-over-threshold (POT) & Generalized Pareto",
+    "layer": "core",
+    "kind": "concept",
+    "homeReading": 3,
+    "refs": [
+      3,
+      35,
+      43
+    ],
+    "linkPhrases": [],
+    "snippet": "Model EVERY observation exceeding threshold u. The Gnedenko-Pickands-Balkema-deHaan (GPBdH) theorem: as u grows, excess losses converge to the Generalized Pareto distribution (GPD) with scale \\beta and shape \\xi."
   },
   {
     "slug": "reputational-risk",

@@ -145,11 +145,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 73 | 4 | Contingency Funding Planning | done | done | 15 | pass | Cleanest of the wave: dashes plus two 'the source says' meta-references in quiz stems. |
 | 74 | 4 | Managing and Pricing Deposit Services | done | done | 15 | pass | REAL COVERAGE GAP FILLED: the four CD innovations (bump-up, step-up, liquid, index), relationship pricing, and implicit interest were all absent though the source bolds them and module-quizzes two. |
 | 75 | 4 | Managing Nondeposit Liabilities | done | done | 15 | pass | Dash purge and one 'frequently tested' why; the funding-source cost and risk material was already fully covered. |
-| 76 | 4 | Repurchase Agreements and Financing | done | todo | 16 | - | |
-| 77 | 4 | Liquidity Transfer Pricing: A Guide to Better Practice | done | todo | 16 | - | |
-| 78 | 4 | Covered Interest Parity Lost | done | todo | 16 | - | |
-| 79 | 4 | Risk Management for Changing Interest Rates: ALM & Duration | done | todo | 16 | - | |
-| 80 | 4 | Illiquid Assets | done | todo | 16 | - | |
+| 76 | 4 | Repurchase Agreements and Financing | done | done | 16 | pass | Open repos added: a bolded source term the reading omitted while covering overnight and term repo. GARP meta-reference removed. |
+| 77 | 4 | Liquidity Transfer Pricing: A Guide to Better Practice | done | done | 16 | pass | Coverage flags all false positives (LTP challenges and the bullet-loan worked example are both taught). Two exam-voice whys de-metered. |
+| 78 | 4 | Covered Interest Parity Lost | done | done | 16 | pass | Heaviest second-pass file: its (1)(2) prose blocks were skipped by the paired rule and needed the no-paren pass. |
+| 79 | 4 | Risk Management for Changing Interest Rates: ALM & Duration | done | done | 16 | pass | Enumerated-prose tell in the two-kinds-of-rate-risk passage rewritten; four highYield whys asserted their own examinability. |
+| 80 | 4 | Illiquid Assets | done | done | 16 | pass | Coverage flags all false positives: the per-market illiquidity detail (7%/22% bond yield variation, on/off-the-run) is present under different headings. |
 | 81 | 5 | Factor Theory | done | todo | 17 | - | |
 | 82 | 5 | Factors | done | todo | 17 | - | |
 | 83 | 5 | Alpha (and the Low-Risk Anomaly) | done | todo | 17 | - | |

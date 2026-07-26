@@ -801,3 +801,33 @@ the dash pass had left ungrammatical in r71's `teaches` ("...integration with ot
 models. That separate a stress test that..."), which the dash count and the
 validator both pass cleanly. A broken sentence is invisible to every mechanical gate
 in the pipeline except reading it.
+
+### Wave 16 (R76-R80, Book 4, 2026-07-26): Book 4 finished; two mechanical lessons
+
+**R76 was missing open repos**, a bolded source term, while covering overnight and
+term repo thoroughly. Same shape as R74's CD innovations in the previous wave: the
+reading covered the CATEGORY (repo tenor, deposit types) and dropped one named member
+of it. Added with its mechanism, that an open repo renews daily until cancelled and
+so buys the lender a daily exit without re-papering the trade. R77, R78, R79 and R80
+flagged 19 candidates between them and every one was a false positive; R80's
+per-market illiquidity detail in particular (7% of investment-grade and 22% of junk
+bond yield variation, the on-the-run/off-the-run spread) is all present, just not
+under the source's heading names.
+
+**The dash pass needs a SECOND pass for strings holding a `(1) (2)` list.** Wave 12
+established that such strings must be skipped, because the paired rule eats their
+existing parentheses. What nobody wrote down is that skipping them leaves the dashes
+in place, so the file still fails the gate. R78 and R80 had 23 and 29 dashes left
+after the first pass for exactly this reason. The fix is a second run over only the
+skipped strings with the PAIRED RULE DISABLED, leaving just the full-stop and comma
+rules, which cannot touch a parenthesis. Two passes, not one, and the skip list from
+pass one is the input to pass two.
+
+**Extend the separator repair to `title:` and `name:` fields, not just points.** The
+wave-15 script only walked `points[]`, so "Lehman and Bear Stearns. The 2008 case
+studies" and "Covered interest parity. The baseline condition" survived as concept
+names. Concept names are LINK TARGETS (the conceptLinkTable is built from them), so a
+mangled one is worse than a mangled sentence: rerun `build-core-concepts.mjs` after
+fixing any of them.
+
+**Book 4 (R63-R80) is now fully cleared.** Remaining: Book 5, R81-R101, waves 17-20.
