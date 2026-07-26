@@ -1,10 +1,10 @@
 export default ({
   book: 2, reading: 37,
   session: "Counterparty Risk Management",
-  title: "CVA",
+  title: "CVA (Credit Value Adjustment)",
   tagline: "The capstone quant reading of Session 6: multiplies R36's exposure profiles by R25's default probabilities into a single price for counterparty risk.",
 
-  teaches: `<p>The base CVA formula, CVA as a running spread (and how to convert an upfront CVA into a running spread charged on the trade), how credit spread/recovery assumptions move CVA, netting and collateral inside CVA, MPoR scaling, incremental vs. marginal CVA, bilateral CVA (BCVA) and DVA, the special challenges of pricing CVA for exotic/path-dependent products, and wrong-way/right-way risk, including the four modeling approaches and how collateral and CCPs interact with it.</p>`,
+  teaches: `<p>CVA is the credit value adjustment: the dollar amount you knock off a derivative's risk-free value to pay for the chance your counterparty defaults before the trade is over. This reading covers the base CVA formula, CVA as a running spread (and how to convert an upfront CVA into a running spread charged on the trade), how credit spread/recovery assumptions move CVA, netting and collateral inside CVA, MPoR scaling, incremental vs. marginal CVA, bilateral CVA (BCVA) and DVA, the special challenges of pricing CVA for exotic/path-dependent products, and wrong-way/right-way risk, including the four modeling approaches and how collateral and CCPs interact with it.</p>`,
 
   why: `<p>Structurally, everything in this reading is a variation on one formula: \\[ \\text{CVA} = -(1-\\text{RR}) \\times \\Sigma_i\\, \\text{EE}(t_i) \\times q_i \\times \\text{DF}(t_i) \\] Understanding this as Expected Loss's derivatives-specific cousin (rather than a brand-new concept) makes the whole reading tractable: it is still "probability of default × loss given default × exposure," just computed at every future date instead of once.</p>
   <p>The bigger picture: a "risky" derivative like a swap is worth less than its risk-free textbook value, because there's a chance the counterparty won't pay. CVA is precisely that discount: \\(\\text{risky value} = \\text{risk-free value} - \\text{CVA}\\). Pricing a trade correctly means charging (or reserving) exactly this amount, which is why banks run dedicated CVA desks whose whole job is computing and hedging this number.</p>`,

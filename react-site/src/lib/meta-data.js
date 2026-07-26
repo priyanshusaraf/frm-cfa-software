@@ -74,7 +74,7 @@ export const META = {
         { n: 34, t: "Margin (Collateral) and Settlement", hy: 4, deps: [33], tag: "Collateral mechanics: thresholds, MTA, haircuts, disputes" },
         { n: 35, t: "Central Clearing", hy: 4, deps: [34], tag: "CCPs: mutualizing counterparty risk, and concentrating it" },
         { n: 36, t: "Future Value and Exposure", hy: 5, deps: [32], tag: "EE, PFE, EPE, exposure profiles by product" },
-        { n: 37, t: "CVA", hy: 5, deps: [36], tag: "Pricing counterparty risk into the trade: CVA, DVA, wrong-way effects" },
+        { n: 37, t: "CVA (Credit Value Adjustment)", hy: 5, deps: [36], tag: "Pricing counterparty risk into the trade: CVA, DVA, wrong-way effects" },
         { n: 38, t: "The Evolution of Stress Testing Counterparty Exposures", hy: 3, deps: [36, 37], tag: "Stressing exposures vs stressing CVA" },
         { n: 39, t: "An Introduction to Securitization", hy: 4, deps: [28], tag: "The securitization machine: SPVs, waterfalls, and where 2008 broke" }
       ]
