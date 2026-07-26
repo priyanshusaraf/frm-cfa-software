@@ -1351,3 +1351,48 @@ explanation was otherwise abstract. **This is the shape of a defensible Track B 
 source gives it a subsection, and it teaches a contrast the reading was asserting without
 demonstrating.** An add that merely restates something the reading already covers under
 another name is the failure mode to avoid.
+
+### Wave 6: r41, r11, r59, r24, r31 (2026-07-26)
+
+38 candidates checked, **2 real gaps**, three readings dismissed outright. The
+false-positive rate is climbing as the list descends, which is what you would expect: the
+score is dominated by `missingTopics`, and a reading with many source subsections scores
+high whether or not it is missing anything.
+
+**Dismissed entirely: r41 (8), r11 (9), r31 (8).**
+
+- **r41** flags `second line of defense` and `third line of defense` as absent. They are
+  taught, at length, as "Line 1 / Line 2 / Line 3" in a dedicated concept with the CORF
+  self-review-threat mechanic. **The audit matches heading TEXT, so a reading that
+  numbers a framework differently from the source reads as missing it.** Same for
+  `board of directors role (operational risk)` against the reading's "Board of directors:
+  ORM and resilience duties".
+- **r11** flags `nonrecombining trees` while the reading writes "non-recombining" with
+  the hyphen. **A hyphen is enough to produce a phantom gap.** Its weak LO 11.e
+  ("extend arbitrage pricing over multiple periods") is backward induction, which the
+  reading teaches 19 times.
+- **r31** flags the whole CCP and intermediary cluster; the reading has 36 mentions of
+  CCP, 24 of monoline, 34 of DPC, 13 of CDPC, 23 of SPV. Its weak LO 31.i is fully
+  covered. This confirms the ledger's suspicion that r31's report entry was noise.
+
+**The two real gaps:**
+
+- **r59: the retail IRB collapse.** The reading taught the F-IRB/A-IRB ladder for
+  corporates and the retail no-maturity-adjustment rule, but not that the two IRB tiers
+  MERGE for retail (the bank supplies its own PD, EAD and LGD either way), nor that
+  assumed correlations are much lower for retail than corporate. Both are examinable and
+  both were absent. Added to the corporate/retail confused-pair, with the mechanism (a
+  thousand small unrelated borrowers move together far less than a handful of large
+  firms).
+- **r24: the local-currency default-spread limitation.** The reading had the speed
+  advantage and the liquidity/demand caveat, but not the source's distinct limitation
+  that a default spread is far less meaningful on LOCAL currency bonds, since there is no
+  local risk-free benchmark and a cross-country yield gap may be an expected-inflation
+  gap. Added to that concept's `counter`.
+
+**A process note that cost a validator failure.** The r24 addition went into the
+concept's `def` first and pushed it to 170 words, which the validator rejects (rule: move
+enumerations out of `def`). The fix was to put it in `counter`, where it belongs anyway
+because it IS a limitation. **When a Track B fill makes a `def` long, that is a signal
+you have chosen the wrong field, not that the validator is in the way.** `counter` for a
+limitation, `pitfall` for a trap, `example` for a case, `breakdown` for a list.

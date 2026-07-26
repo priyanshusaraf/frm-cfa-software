@@ -47,10 +47,14 @@ three separate "done corpus-wide" claims in this run turned out to have survivor
 `coverage-report.json` by scoring `3×missingTopics + 2×weakLOs + 1×missing`; the OPEN
 section below is stale and says so.
 
-- Audited and closed: **r37, r57, r39, r64, r27** (wave 5). 32 candidates checked,
-  5 real gaps filled, r27 dismissed entirely. Detail in `content-guidelines.md`.
-- Next by score: **r41 (24), r11 (23), r59 (23), r24 (22), r31 (22)**, then r36 (22),
-  r80 (21), r25 (20), r43 (20), r65 (20).
+- Audited and closed: **r37, r57, r39, r64, r27** (wave 5, 32 candidates, 5 real gaps),
+  **r41, r11, r59, r24, r31** (wave 6, 38 candidates, 2 real gaps, three readings
+  dismissed outright). Detail and the dismissal reasons in `content-guidelines.md`.
+- Next by score: **r36 (22), r80 (21), r25 (20), r43 (20), r65 (20)**, then r19 (19),
+  r42 (19), r76 (19), r45 (18), r44 (17), r46 (17), r16 (15).
+- 86 readings still carry at least one candidate. The measured false-positive rate is
+  85% and rising as the score descends, so this is a CHECKING exercise, not a writing
+  one; budget for reading the source, not for prose.
 
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 

@@ -110,7 +110,7 @@ export default ({
     confused: [
       { what: "Foundation IRB vs Advanced IRB", how: "Foundation IRB: bank supplies PD only (LGD/EAD/M are supervisory fixed values). Advanced IRB: bank supplies ALL of PD, LGD, EAD, and M." },
       { what: "Basel II IRB confidence (99.9%) vs Solvency II (99.5%)", how: "Banks (Basel II IRB) use 99.9%; insurers (Solvency II) use 99.5%, a frequently swapped pair, memorize banks-stricter." },
-      { what: "Corporate/retail IRB maturity adjustment", how: "Corporate exposures include the maturity adjustment (MA) in the capital formula; retail exposures DROP the MA entirely, capital = EAD×LGD×(DR99.9−PD) with no MA term." }
+      { what: "Corporate/retail IRB maturity adjustment", how: "Corporate exposures include the maturity adjustment (MA) in the capital formula; retail exposures DROP the MA entirely, capital = EAD×LGD×(DR99.9−PD) with no MA term. Retail also collapses the two IRB tiers: foundation and advanced are merged there, so the bank supplies its own PD, EAD and LGD whichever one it is nominally on, and the assumed correlations are much lower for retail than for corporate exposures, because a thousand small unrelated borrowers move together far less than a handful of large firms do." }
     ]
   },
 
