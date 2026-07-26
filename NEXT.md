@@ -1,3 +1,3 @@
-DONE: Phase 4 Track A (prose density) is COMPLETE. Wave 4 cleared the last seven (intuition r86, r19, r23, r92, r31; thinkLike r77, r08). Nothing in eli5, intuition or thinkLike is above 45 w/s anywhere in the corpus. Full-corpus sweep: 0 validator failures, 0 dashes, 101 files import.
-NEXT: Start Phase 4 Track B, the coverage back-audit: re-read react-site/docs/superpowers/coverage-report.json and work its worst readings, verifying each candidate against the Schweser source before adding anything.
+DONE: Phase 4 Track B wave 5: audited r37, r57, r39, r64, r27 against the Schweser source. 32 candidates checked, 27 dismissed, 5 real gaps filled (r64 suspension of convertibility / run on the bank / cross-margin, r39 subordinating-note performance tests, r57 banks' pricing behavior, r37 the OTC call option RWR case). r27 dismissed entirely. All gates green.
+NEXT: Track B wave 6, next by report score: r41 (24), r11 (23), r59 (23), r24 (22), r31 (22).
 BLOCKERS: none.

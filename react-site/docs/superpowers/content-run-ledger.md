@@ -43,8 +43,14 @@ Plus the six extremes cleared before wave 1 (r100, r86, r69, r70, r20, r32).
 Re-run the script before declaring this closed in a later session; it is cheap, and
 three separate "done corpus-wide" claims in this run turned out to have survivors.
 
-**Track B, the coverage back-audit.** Not started in this phase. See the OPEN section
-below; re-read `coverage-report.json` rather than trusting any ordering written here.
+**Track B, the coverage back-audit.** IN PROGRESS. Re-derive the ordering from
+`coverage-report.json` by scoring `3×missingTopics + 2×weakLOs + 1×missing`; the OPEN
+section below is stale and says so.
+
+- Audited and closed: **r37, r57, r39, r64, r27** (wave 5). 32 candidates checked,
+  5 real gaps filled, r27 dismissed entirely. Detail in `content-guidelines.md`.
+- Next by score: **r41 (24), r11 (23), r59 (23), r24 (22), r31 (22)**, then r36 (22),
+  r80 (21), r25 (20), r43 (20), r65 (20).
 
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 

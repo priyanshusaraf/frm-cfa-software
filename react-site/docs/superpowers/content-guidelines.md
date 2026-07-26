@@ -1281,3 +1281,73 @@ rewrite writes out in full.
 **Track B (the coverage back-audit) is the remaining Phase-4 work.** Re-read
 `coverage-report.json` first; the ledger's worst-first ordering is documented as stale
 in two places.
+
+## PHASE 4, TRACK B: the coverage back-audit
+
+**The report's own worst-first ordering, re-derived 2026-07-26** by scoring each entry
+`3×missingTopics + 2×weakLOs + 1×missing`: r37 (34), r57 (34), r39 (29), r64 (29),
+r27 (25), r41 (24), r11 (23), r59 (23), r24 (22), r31 (22), r36 (22), r80 (21), r25 (20),
+r43 (20), r65 (20). **Every reading named in the ledger's original list is either absent
+or reordered**, r99 most of all: after the section-extractor fix it has 4 candidates, not
+40-plus. Do not work from the ledger's ordering.
+
+### Wave 5: r37, r57, r39, r64, r27 (2026-07-26)
+
+**The measured false-positive rate on this wave was about 85%**: 32 candidates examined,
+5 real gaps, all of them small. That is consistent with the protocol's warning and it
+means the expensive part of Track B is the CHECKING, not the writing. Budget accordingly.
+
+**r27: all 25 candidates dismissed.** Every one is taught, and heavily: 21 mentions of
+default correlation, 15 of copulas, 35 of Credit VaR, 31 of granularity. The
+`equation 1` through `equation 4` candidates are the SOURCE's numbered equation
+headings, and `computing credit var (default correlation = 0, number of credits = 50)`
+is a worked-example heading whose arithmetic the reading reproduces. **A candidate of the
+form `computing X (parameter = value)` is a worked-example heading and is almost never a
+real gap.** Same class as r85's flags in wave 17.
+
+**The three greps that produce false negatives, i.e. that made me nearly ADD something
+already present.** All three came up in r64, whose 15 "missing" terms mostly weren't:
+
+- The reading uses a **synonym**: "implicit leverage" for the source's *embedded
+  leverage*, "rehypothecation" for *repledging*.
+- The reading uses the **abbreviation**: "CDS" where the source heading says *credit
+  default swaps*, "LVaR" where it says *adjusting VaR for position liquidity*.
+- The material is in a **formula name** rather than prose: r64 has both the expected
+  transactions cost / spread risk factor formula and the corrected T-day liquidation VaR
+  formula, so `computing transactions cost` was covered all along.
+
+Always check `formulas[].name` and `concepts[].name` before concluding something is
+absent, and search for the abbreviation as well as the expansion.
+
+**The five real gaps, all filled from the source:**
+
+- **r64: suspension of convertibility and run on the bank.** Both bolded source terms,
+  both genuinely absent, and they sit at the emotional centre of the fractional-reserve
+  story (the queue mechanic: whoever is last gets nothing). Added to the
+  fractional-reserve concept's `def`.
+- **r64: cross-margin agreements.** Bolded inside the source's margin-loan bullet;
+  added to the collateral-market breakdown point where it belongs.
+- **r64: embedded leverage as the source's NAME** for what the reading calls implicit
+  leverage. Not a coverage gap so much as a one-name-rule fix: the student meets the
+  other word on the exam. Named in the economic-balance-sheet concept.
+- **r39: subordinating note classes.** The reading had it as "Subordination" with the
+  waterfall rule but omitted that the pool must pass performance tests over a period of
+  time before principal reaches the subordinate notes. Renamed to the source's term and
+  the test condition added.
+- **r57: banks' pricing behavior.** The one genuine TOPIC-level hole in the wave. The
+  source makes it a named IRRBB measurement challenge (model the persistence of
+  non-maturity products, model how the bank itself sets rates from market conditions,
+  customer relationships, commercial power and commercial policy, and note that pricing
+  those rates means pricing credit risk, so rate stress scenarios must respect the
+  rate/credit dependence). The reading had only the trailing half-clause. Filled.
+
+**One judgement call worth recording.** r37's LO 37.l lists six product-specific WWR/RWR
+examples and the reading's `example` already carried five (put, CDS/monoline, FX
+transaction, FX swap, interest rate swap, plus a commodity case). Only the
+over-the-counter CALL option was missing, and it is the source's cleanest RWR
+illustration: payoff rises AND the counterparty's creditworthiness improves, so it can
+pay. Added as the mirror case, in one sentence, because the reading's RWR-as-normality
+explanation was otherwise abstract. **This is the shape of a defensible Track B add: the
+source gives it a subsection, and it teaches a contrast the reading was asserting without
+demonstrating.** An add that merely restates something the reading already covers under
+another name is the failure mode to avoid.
