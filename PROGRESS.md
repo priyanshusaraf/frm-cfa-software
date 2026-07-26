@@ -24,6 +24,19 @@ session dies or limits run out. Scope of all work: **`react-site/` only** — th
 > (exposure metrics, Vasicek/WCDR, the Basel capital stack, the liquidity spiral), each
 > needing the spec's criterion-3 test before it is built. Detail in the ledger.
 >
+> **SEQUENCING PAGE 2: THE BASEL CAPITAL STACK (2026-07-27).** `/concept/basel-capital-stack`
+> assembles R59, R60, R61 and R62 as ONE object being repaired rather than five sets of rules:
+> the owner-versus-depositor incentive problem, the plain leverage cap and the swap that
+> defeats it, Basel I's risk weighting, the AAA-equals-C blindness it left, Basel II's IRB and
+> the expected-versus-unexpected-loss split, the two SEPARATE crisis failures (trading-book
+> capital, answered by Basel 2.5; funding, answered by Basel III's liquidity ratios) with the
+> leverage ratio returning as a BACKSTOP, the 2017 finalization as the answer to banks
+> modelling their capital down, a bottom-up table of the stack, and the traps. 14 readings now
+> link to it. Also recorded: **exposure metrics was criterion-tested and REJECTED** (its
+> problem is disambiguation, not sequencing, and the spec's claim that it spans R59 is wrong
+> against the source, since "effective EPE" appears nowhere in Book 3). Remaining candidates:
+> Vasicek/WCDR and the liquidity spiral.
+>
 > **⏭ ACTIVE RESUME POINT (2026-07-25, sixteenth session):** the run is now driven by
 > `react-site/docs/superpowers/content-run-ledger.md` (position) + `content-run-protocol.md`
 > (procedure), entered by saying "continue" (see the block at the top of the root CLAUDE.md).

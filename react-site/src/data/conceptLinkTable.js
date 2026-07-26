@@ -80,6 +80,31 @@ export const conceptLinkTable = [
     "snippet": "CVA is a thread running through seven readings rather than a topic that lives in one. Its inputs are taught twelve readings before the model that consumes them, a compressed trailer arrives before the formula exists,..."
   },
   {
+    "slug": "basel-capital-stack",
+    "name": "The Basel capital stack",
+    "display": "The Basel capital stack",
+    "layer": "core",
+    "authored": true,
+    "homeReading": 60,
+    "selfContained": true,
+    "refs": [
+      59,
+      60,
+      61,
+      62
+    ],
+    "linkPhrases": [
+      "Basel I",
+      "Basel II",
+      "Basel 2.5",
+      "Basel III",
+      "output floor",
+      "capital conservation buffer",
+      "countercyclical buffer"
+    ],
+    "snippet": "Basel I, Basel II, Basel 2.5, Basel III and the 2017 finalization are usually met as five separate sets of rules to memorize. They are one object being repaired. Every version exists because the previous one was gamed..."
+  },
+  {
     "slug": "information-ratio",
     "name": "Information ratio",
     "display": "Information ratio",

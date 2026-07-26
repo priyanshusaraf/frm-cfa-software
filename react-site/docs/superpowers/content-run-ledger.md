@@ -183,9 +183,53 @@ headless render-checks of `/concept/cva` plus r25, r28, r29, r30, r32, r35, r36,
 r39, `/concepts` and home, asserting real content (h1 text, 19 KaTeX spans, the 6 symbol
 rows, the 11-row direction table) and not merely the absence of markers.
 
-**Still open:** the four other candidates in the spec (exposure metrics, Vasicek/WCDR, the
-Basel capital stack, the liquidity spiral). The Vasicek page also still owes a pass against
-the section 1a doctrine, which predates it.
+### Candidate 2, the Basel capital stack: BUILT 2026-07-27
+
+`/concept/basel-capital-stack`, spanning R59, R60, R61 and R62 (homeReading 60, so the
+other three carry the inline link and R60 carries the chip). Criterion test: it spans four
+readings; its order breaks in two places (the IRB formula consumes the Vasicek machinery
+defined in R26, thirty-three readings earlier, and R61's output floor exists to repair what
+R59's IRB approach allowed); and a student who has read all four can recite Tier 1, the
+buffers, the leverage ratio and the output floor without being able to say why a bank needs
+all of them at once.
+
+The through-line the four snapshot readings never state: every Basel version is a REPAIR to
+the previous one, and the failure each repair answers is what makes the current stack
+memorable rather than arbitrary. Nine sections run the chain: the owner-versus-depositor
+incentive problem, the plain leverage cap and the Treasury-for-corporate swap that defeats
+it, risk weighting in Basel I, the AAA-equals-C blindness that Basel I left, Basel II's IRB
+and the expected-versus-unexpected-loss split, the two SEPARATE things the crisis broke
+(trading-book capital, answered by Basel 2.5; funding, answered by Basel III's liquidity
+ratios) plus the capital-quality and buffer repairs and the leverage ratio's return as a
+BACKSTOP, then the 2017 finalization as the answer to banks modelling their own capital
+down, a bottom-up table of the stack as it stands, and the traps.
+
+The load-bearing causal claim (internal models produce lower capital, which is why the
+output floor exists) is the source's own, verified at Book 3 lines 7123 and 8187. Gates as
+for the CVA page: 123/123 tests, build green, zero dashes, all five ai-tells patterns clean,
+no sentence over 45 words, render-checks of the page plus r26, r59, r60, r61, r62 and
+`/concepts` asserting section labels, the 6-row table and the chip.
+
+### Candidate 3, exposure metrics (EE / EPE / ENE / PFE / effective EE): NOT BUILT, verdict recorded
+
+**It fails criterion 2, and the spec's own span for it is wrong against the source.** The
+spec lists R36, R37, R38 and R59. Checked 2026-07-27: "effective EPE" appears in exactly one
+file in the corpus (`src/data/book2/r36.js`) and the phrase does not appear anywhere in
+`Book 3 (1).md`, so R59 does not consume it. The real span is R31 and R32 (exposure profiles
+named in passing), R36 (defined), R37 and R38 (consumed), which clears criterion 1.
+
+Criterion 2 does not hold. R36 defines the metrics and R37 consumes them one reading later;
+nothing arrives long before or after the thing that needs it. The actual defect is
+DISAMBIGUATION, seven look-alike abbreviations introduced in a single paragraph, which is
+what produced the owner's EPE-versus-PFE complaint. That is a different failure with a
+different fix, and the sharpest part of it is already fixed: the CVA page's third section
+separates all four metrics side by side and states the real distinction (EPE is a scalar
+time-average, PFE is a per-date quantile, and both are already floored at zero so the word
+"positive" separates nothing), and R36 now carries a chip to it. Per this run's own
+doctrine, "leave it alone" is a verdict.
+
+**Still open:** Vasicek/WCDR and the liquidity spiral, neither criterion-tested yet. The
+Vasicek page additionally owes a pass against the section 1a doctrine, which postdates it.
 
 ## OPEN: the coverage back-audit (owner directive, 2026-07-26)
 

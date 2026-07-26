@@ -249,4 +249,114 @@ export const authoredConcepts = [
       },
     ],
   },
+
+  /* The Basel capital stack, the second hard-concept sequencing page (spec
+     2026-07-26-hard-concept-sequencing-and-cva-core-concept-design.md, candidate
+     four). Criterion test applied 2026-07-27: it spans R59, R60, R61 and R62;
+     its order breaks in two places (the IRB formula depends on the Vasicek
+     machinery defined in R26, thirty-three readings earlier, and the output
+     floor in R61 exists to fix what the IRB approach in R59 allowed); and a
+     student who has read all four can recite Tier 1, the buffers, the leverage
+     ratio and the output floor without being able to say why a bank needs all
+     of them at once. Each reading is a snapshot of one Basel version. Nothing
+     holds the through-line, which is that every version is a repair to the
+     previous one and the repairs are what make the current stack the shape it
+     is.
+
+     Sourced from Schweser Book 3 at the repo root (the reforms and the output
+     floor at lines ~8119-8205) and from the four readings' own already-gated
+     content. The causal claim that internal models produce lower capital, which
+     is the whole reason the output floor exists, is the source's own: "capital
+     charges are generally lower using this method" and "the idea of an output
+     floor is to restrict the ability of large banks to gain an advantage by
+     significantly reducing their capital requirements by using internal
+     approaches instead of SA". */
+  {
+    slug: "basel-capital-stack",
+    name: "The Basel capital stack",
+    layer: "core",
+    homeReading: 60,
+    selfContained: true,
+    refs: [59, 60, 61, 62],
+    linkPhrases: [
+      "Basel I", "Basel II", "Basel 2.5", "Basel III",
+      "output floor", "capital conservation buffer", "countercyclical buffer",
+      /* not "leverage ratio", "LCR" or "NSFR": each already owns its own page,
+         and a link that pulls a reader off a specific ratio onto the general
+         stack is a downgrade. */
+    ],
+    lead: "Basel I, Basel II, Basel 2.5, Basel III and the 2017 finalization are usually met as five separate sets of rules to memorize. They are one object being repaired. Every version exists because the previous one was gamed or was overwhelmed, and knowing which failure each repair answers is what makes the current stack memorable instead of arbitrary.",
+    sections: [
+      {
+        label: "A bank runs on money it does not own",
+        html: `<p>Start with the balance sheet, because every rule in this chain is an argument about one line on it. A bank funds itself overwhelmingly with other people's money: deposits, bonds, short-term borrowing. Only a thin slice at the bottom belongs to the shareholders. When a loan goes bad, that slice absorbs the loss first, and the depositors are untouched as long as the losses stay smaller than it.</p>
+        <p>Push the losses past that slice and something different happens. The bank is now insolvent, the depositors are the ones actually bearing the loss, and since depositors do not monitor loan books, the state usually ends up standing behind them. That is the whole regulatory problem in one sentence: <strong>the people bearing the downside are not the people choosing the risk.</strong> A shareholder with a thin slice and a state guarantee behind them has every reason to lend aggressively, because they keep the upside and someone else absorbs the tail.</p>
+        <p>So a regulator's job reduces to forcing the owners to keep enough of their own money in the bank that they feel the losses their choices create. Everything below is successive attempts to define "enough" in a way that cannot be gamed.</p>`,
+      },
+      {
+        label: "The simplest rule, and the trade that defeats it",
+        html: `<p>The obvious first definition is a plain ratio: capital divided by total assets, above some minimum. Simple, hard to argue with, impossible to misreport. Basel I's first Cooke ratio is essentially that, requiring assets to stay under twenty times capital.</p>
+        <p>Now play the bank's side of it. The rule counts a Treasury bill and a speculative corporate loan identically, because both are one dollar of assets. The corporate loan pays far more. So the bank sells the Treasury bills, buys the corporate loans, and its ratio does not move at all while its actual risk of failing has multiplied. The rule is satisfied, and it has made the bank more dangerous by rewarding exactly the swap it should have discouraged. A capital rule that ignores what the assets are is not a weak rule. It is an incentive pointed the wrong way.</p>`,
+      },
+      {
+        label: "Weight the assets by risk: Basel I, 1988",
+        html: `<p>Basel I's answer, and its real innovation, is to stop counting dollars and start counting risk-weighted dollars. Each asset is multiplied by a weight before it is compared to capital: zero for Treasury bills, 50% for uninsured mortgages, 100% for corporate loans. The Treasury-for-corporate swap now visibly increases risk-weighted assets, so it visibly consumes capital, and the loophole closes.</p>
+        <p>On top of that base sit the two ratios most people mean by "Basel I": Tier 1 capital at least 4% of risk-weighted assets, and total capital at least 8%. Two further pieces were added to stop the same avoidance happening off the balance sheet. Derivatives, which have no principal amount sitting in the assets, are converted into a credit equivalent amount so they consume capital too, and the 1995 netting amendment lets a bank recognise that offsetting trades with one counterparty do not each carry their full exposure. The 1996 market risk amendment then extended the framework past credit risk to the trading book for the first time.</p>`,
+      },
+      {
+        label: "Where Basel I ran out: every corporate borrower looked the same",
+        html: `<p>Risk weighting fixed the crude version of the problem and left a finer version untouched. A loan to a AAA-rated corporate and a loan to a barely-solvent one both attracted the flat 100% weight. So within the corporate bucket, the incentive to reach for the riskiest borrower was exactly as strong as it had been before 1988, because the extra yield was free of any extra capital.</p>
+        <p>The framework was also blind to portfolios. A hundred loans spread across unrelated industries and a hundred loans to one industry's suppliers attract identical capital, even though the second book can plausibly lose everything at once and the first cannot. And nothing anywhere in Basel I asked about losses that come from the bank itself failing rather than from a borrower failing, which is how a rogue trader could destroy a bank without ever moving a risk weight.</p>`,
+      },
+      {
+        label: "Let the bank use its own numbers: Basel II, 2004 and 2007",
+        html: `<p>Basel II attacks the fineness problem by letting the bank supply the inputs. Under the internal ratings-based approach a bank uses its own estimated probability of default for each borrower. A strong AAA credit and a weak one stop attracting the same charge, and the capital requirement finally moves with the thing it is meant to track.</p>
+        <p>Look at what the IRB formula actually asks for, because it is where the long-range dependency in this chain sits. Capital is exposure at default times loss given default times the gap between the worst-case default rate and the expected default rate, adjusted for maturity. That worst-case rate is the Vasicek one-factor Gaussian copula from R26, defined thirty-three readings earlier and used here as an actual legal rule. The subtraction is the part worth holding: the interest rate a bank charges is already supposed to cover the loan's EXPECTED loss, so regulatory capital only needs to cover the gap between a bad year and an average one. Capital funds the unexpected loss, and pricing funds the expected loss.</p>
+        <p>Basel II also adds two things that were simply absent before. Operational risk gets a capital charge for the first time, covering losses from failed processes, people, systems or external events. And the framework stops being a single number: Pillar 1 sets the minimum capital arithmetic, Pillar 2 lets a supervisor demand more where the arithmetic misses something, and Pillar 3 forces disclosure so that markets can price a bank's risk-taking themselves. The three-pillar structure matters more than it looks, because it is an admission that no formula will ever be complete.</p>`,
+      },
+      {
+        label: "Two things Basel II did not survive",
+        html: `<p>The 2007 to 2009 crisis broke Basel II in two separate places, and the repairs are separate too. Treating them as one thing is the most common way this material becomes a blur.</p>
+        <p><strong>The trading book was capitalised far too lightly.</strong> Market risk capital rested on value at risk calibrated to recent, calm data, so it shrank exactly as the market got dangerous. Basel 2.5 answers with three additions. A stressed value at risk is computed on the bank's own worst historical window rather than on recent data. An incremental risk charge covers default and migration risk in the trading book at 99.9% over a year. And a comprehensive risk charge covers the securitization exposures that did the most damage, under which the deepest-junk tranches attract dollar-for-dollar capital.</p>
+        <p><strong>Solvent banks died anyway, because they could not fund themselves.</strong> This is the failure no amount of capital would have prevented, and it is why Basel III is not only a capital reform. The liquidity coverage ratio requires enough high-quality liquid assets to survive thirty days of stressed outflows, and the net stable funding ratio requires the funding structure itself to be durable over a year. Capital answers "can this bank absorb losses"; liquidity answers "can this bank pay tomorrow", and 2008 proved a bank can fail the second while passing the first.</p>
+        <p>Basel III repairs the capital side too, along three lines that are easy to blur. It raises the QUALITY bar, insisting on common equity rather than the hybrid instruments that turned out not to absorb losses when it mattered, with common equity Tier 1 at 4.5%, Tier 1 at 6% and total capital at 8%. It adds BUFFERS above those minimums. The capital conservation buffer of 2.5% is mandatory and lifts the effective requirements to 7%, 8.5% and 10.5%. The countercyclical buffer of up to 2.5% is discretionary, switched on by national supervisors when credit growth looks excessive, and a further buffer applies to globally systemic banks. And it brings back the LEVERAGE RATIO, the crude unweighted rule from the start of this story, now demoted to a backstop of at least 3%. That return is the single most useful thing to remember about the stack: the risk-weighted rule remains the primary one, and the blunt rule sits underneath it to catch the case where the risk weights themselves have been talked down.</p>`,
+      },
+      {
+        label: "The problem with letting a bank model its own capital",
+        html: `<p>Notice what has quietly happened. Ever since Basel II, a large bank's capital requirement depends on numbers the bank itself produces. Schweser is direct about the consequence: capital charges are generally lower under the internal model approaches, which is precisely why sophisticated banks prefer them. Two banks holding the same portfolio can therefore report materially different risk-weighted assets, and the difference reflects their modelling choices rather than their risk.</p>
+        <p>The 2017 finalization answers this with a pair of moves rather than one. First it restricts the models. The advanced IRB approach is withdrawn for large and mid-sized corporates and for financial institutions, which are pushed down to the foundation approach with floors placed on the inputs that remain. The internal-model option for CVA risk is removed outright, and operational risk modelling is abolished altogether. Second, and more general, it imposes an <strong>output floor</strong>. Risk-weighted assets must be the higher of the bank's own approved calculation and 72.5% of what the standardized approach would produce. The floor is computed using the standardized approach for each risk type, never the internal one, which is the detail that makes it a floor at all rather than a self-referential check.</p>
+        <p>The same reforms make the standardized approach worth being floored against, since a floor is only as good as the benchmark under it. Risk weights become more granular, most visibly for residential mortgages, where a single weight for all mortgages is replaced by weights that depend on the loan-to-value ratio, and reliance on external credit ratings is reduced.</p>
+        <p>R62's standardized measurement approach for operational risk is the same philosophy made concrete, and it is worth reading as such rather than as an isolated formula. The advanced measurement approach let each bank model its own operational risk, which produced capital that was both insufficient and incomparable across banks, and the risk factors that actually caused losses, such as misconduct and weak controls, were not captured. The replacement is a formula. A business indicator is built from income and trading components, converted into a capital charge through marginal buckets in the manner of a tax bracket, then scaled by a loss multiplier that sits at exactly one for a bank with industry-average loss history. Flexibility was traded for comparability, deliberately.</p>`,
+      },
+      {
+        label: "The stack as it stands",
+        html: `<p>Read the current requirement from the bottom of the balance sheet upward, and it is four questions rather than a list of numbers.</p>
+        <div class="tablewrap"><table>
+        <thead><tr><th>Layer</th><th>What it asks</th><th>Which failure put it there</th></tr></thead>
+        <tbody>
+        <tr><td>Risk-weighted minimums (common equity Tier 1 4.5%, Tier 1 6%, total 8%)</td><td>Is there enough loss-absorbing capital against the risk actually taken?</td><td>Basel I's blindness to what the assets were, then Basel II's refinement of it</td></tr>
+        <tr><td>Capital conservation buffer, 2.5% and mandatory</td><td>Is there a usable cushion ABOVE the minimum, so hitting the minimum is not the first sign of trouble?</td><td>Banks entered the crisis at their minimum with nothing to spend</td></tr>
+        <tr><td>Countercyclical buffer, up to 2.5% and discretionary, plus the systemic buffer</td><td>Is the credit cycle running hot, and is this bank large enough that its failure is everyone's problem?</td><td>Procyclicality, and too-big-to-fail</td></tr>
+        <tr><td>Leverage ratio, at least 3% and unweighted</td><td>Ignoring every risk weight, is the bank simply too levered?</td><td>Risk weights themselves being talked down</td></tr>
+        <tr><td>Output floor, 72.5% of the standardized calculation</td><td>Has the bank's own model produced an answer far below what a standard rule would?</td><td>Internal models producing systematically lower capital</td></tr>
+        <tr><td>Liquidity coverage ratio and net stable funding ratio</td><td>Can the bank pay for thirty days of stress, and is its funding structure durable over a year?</td><td>Solvent banks failing because funding disappeared</td></tr>
+        </tbody>
+        </table></div>`,
+      },
+      {
+        label: "Traps, and the three questions to ask any Basel problem",
+        html: `<p>Ask three things of any capital question. <strong>Which version of the rules is this?</strong> Numbers moved between Basel I, II, 2.5, III and the 2017 finalization, and an answer that is right for one is wrong for another. <strong>Is this about capital or about liquidity?</strong> They answer different questions and were added for different failures, so a scenario about funding drying up is not a capital problem. <strong>Is this a minimum, a buffer or a backstop?</strong> The three have different governance and different consequences for breaching them, which is where most of the exam's discrimination lives.</p>
+        <p>The traps that recur:</p>
+        <ul>
+        <li><strong>Mandatory against discretionary buffers.</strong> The capital conservation buffer is always on. The countercyclical buffer is switched on by national supervisors and can sit at zero. Mixing them up is the single most reliable buffer question.</li>
+        <li><strong>Confidence levels.</strong> Banks are capitalised at 99.9% under the Basel II internal ratings-based approach; insurers under Solvency II use 99.5%. The pair is swapped constantly.</li>
+        <li><strong>The output floor is computed on the standardized approach.</strong> Using the internal number on both sides of the comparison would make it no floor at all.</li>
+        <li><strong>The leverage ratio is a backstop, not the main rule.</strong> It is unweighted on purpose, and being unweighted is why it cannot be the primary requirement.</li>
+        <li><strong>Capital covers UNEXPECTED loss.</strong> The IRB formula subtracts the probability of default from the worst-case rate because pricing is supposed to have covered the expected part already. An answer that charges capital for the full worst-case loss has double-counted.</li>
+        <li><strong>Restricting internal models did not touch every risk type.</strong> The 2017 restrictions apply to credit risk, CVA risk and operational risk.</li>
+        </ul>
+        <p>One boundary, for the same reason the CVA page draws its own. The CVA capital framework that appears in these readings is about how much CAPITAL a bank holds against its CVA moving. What CVA itself is, and how it is priced, is a separate question with its own page, and keeping the two apart is most of what makes either of them tractable.</p>`,
+      },
+    ],
+  },
 ];
