@@ -1012,3 +1012,39 @@ Three times this run, a completed-and-documented sweep turned out to have surviv
 (dashes in a generated file, rule 9 in eleven readings, GARP in twenty-eight). Re-run
 the grep yourself, with a pattern you widened, before trusting the record. It costs
 seconds and it caught real defects every time.
+
+### The ELI5 measurement, and the worklist it produces (2026-07-26)
+
+Durable rule 10 came from the owner calling R35's ELI5 "very mediocre". It was fixed
+for R35 and, it turns out, for essentially nothing else. Measuring the whole corpus:
+
+**96 of 101 ELI5s are a single `<p>`.** The five that are not are r17, r18, r35 (the
+owner-driven rewrite, 5 paragraphs) r36 (the pilot) and r58.
+
+**But paragraph count is the WRONG measure, and using it alone would have produced a
+bad worklist.** R28's ELI5 is single-paragraph and CLAUDE.md names it the best writing
+in the app. Rule 10's actual diagnostic is "one paragraph AND one sentence", meaning
+the failure is a sentence that never ends, not a block that is not split. Measured
+properly, on sentence length:
+
+- Corpus average: **36 words per sentence.**
+- The real offenders, at 50 to 76 words per sentence: **r64 (76), r95 (73), r65 (65),
+  r87 (64), r74 (56), r46 (53), r90 (52), r80 (51).**
+
+Three were rewritten here as the bar: **r64, r87, r95**, each now 5 to 6 paragraphs at
+15 to 17 words per sentence, following the R35 shape (open in the simpler system the
+reader already understands, change exactly ONE thing, let the consequences fall out
+one per paragraph, close on what the reader has actually bought). r64's boat analogy is
+the clearest demonstration of why the shape matters: the original ran the bought-boat
+case and the shorted-boat case through one 76-word sentence each, so the punchline
+(short leverage is structural, you never chose it) arrived before the reader had
+finished assembling the balance sheet.
+
+**Remaining worklist for this phase: r65, r74, r46, r90, r80**, then anything above
+roughly 45 words per sentence. The measurement script is three lines of regex over the
+`eli5` field; re-derive it rather than eyeballing, because paragraph count will mislead
+you.
+
+**And the lesson that keeps repeating: run `ai-tells.mjs` on YOUR OWN prose.** The r87
+rewrite introduced a fresh not-x-but-y ("the resource being allocated is not money, it
+is RISK") within minutes of the guidelines warning about exactly that.

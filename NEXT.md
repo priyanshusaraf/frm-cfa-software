@@ -1,3 +1,3 @@
-DONE: Phase 4 exam-voice sweep: 11 surviving rule-9 violations (matching/sequencing question formats the FRM does not have) and 28 GARP-as-examiner references removed corpus-wide, plus the 28-of-29 AI-voice tell pass. Corpus gates all green.
-NEXT: Continue content-opus-improvement on r98-r101, the least-finished files in the corpus, judging explanations on teaching quality rather than mechanical checks (per protocol section 3, "leave it alone" is a valid verdict).
+DONE: Phase 4 ELI5 pass opened. Measured the corpus properly (sentence length, not paragraph count, since R28's praised ELI5 is single-paragraph) and rewrote the three worst: r64, r87, r95, from 64-76 words/sentence down to 15-17 across 5-6 paragraphs.
+NEXT: Rewrite the remaining ELI5 offenders in order: r65, r74, r46, r90, r80, following the R35 shape recorded in content-guidelines.md.
 BLOCKERS: none.
