@@ -1048,3 +1048,40 @@ you.
 **And the lesson that keeps repeating: run `ai-tells.mjs` on YOUR OWN prose.** The r87
 rewrite introduced a fresh not-x-but-y ("the resource being allocated is not money, it
 is RISK") within minutes of the guidelines warning about exactly that.
+
+### The ELI5 pass, completed 2026-07-26
+
+All 14 offenders above ~45 words per sentence are rewritten: **r31, r46, r58, r64,
+r65, r74, r77, r80, r87, r88, r90, r93, r95, r100**. Corpus average moved from 36.2 to
+31.2 words per sentence, and nothing now sits above 45. Each rewrite runs 5 to 7
+paragraphs at 13 to 17 words per sentence.
+
+**The measurement trap, recorded because it nearly produced the wrong worklist twice.**
+Paragraph count says 96 of 101 ELI5s are "broken", which is false: R28's is one
+paragraph and is the best-written thing in the app. Sentence LENGTH is the signal, and
+even that needs care, because a naive slice from `eli5:` to `thinkLike:` over-reads on
+any file where `summary` sits between them (r58 measured 51 after being rewritten to
+13). Slice to the NEXT key, whatever it is, not to an assumed one.
+
+**What the rewrites actually changed, beyond length.** In every case the original had
+compressed a causal chain into one sentence, so the conclusion arrived before the
+reader had assembled the premises. Splitting them out is not cosmetic; it is what lets
+the reader reach the punchline themselves:
+
+- **r64** ran the bought-boat and shorted-boat balance sheets through a 76-word
+  sentence each, so "short leverage is structural, you never chose it" landed before
+  the reader had the second balance sheet.
+- **r31** buried the direction of counterparty risk mid-sentence. The rewrite gives it
+  its own paragraph: you do not fear the bet going against you, you fear it going in
+  your favour and the other side not paying. That is durable style rule 3, which this
+  reading was the original violator of.
+- **r93** asserted that Credit Suisse investors "thought of themselves as senior". The
+  rewrite gives the surprise a paragraph of its own and adds the fact that made it
+  bite: the AT1 bonds went to zero while shareholders still received something.
+- **r100** now runs as a chain (nobody trusts the shopkeeper, so copy the notebook, so
+  who arbitrates, so pay a crew, so a backlog forms, so a rival notebook appears),
+  which is the same shape R28 uses and the reason the fragmentation punchline lands.
+
+**Do not rewrite an ELI5 that is already short-sentenced.** Nine of the readings I
+checked on the way to these fourteen were fine, and per protocol section 3 that is the
+expected outcome. The measurement exists so the pass touches only what is broken.
