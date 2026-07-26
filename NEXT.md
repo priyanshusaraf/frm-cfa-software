@@ -1,3 +1,3 @@
-DONE: Phase 4 Track C (sources curation) wave 13: r02 and r03 get BCBS Working Paper 19, r11 the Fed's nominal yield curve dataset, r12 the BIS term-premia article plus the Fed curve. All fetched and confirmed live. r13 stays at zero deliberately. Two candidates fetched and rejected (NY Fed ACM page 403s; BCBS WP22 is the securitization formula, not tail risk).
-NEXT: Track C wave 14, the Book 2 readings with no sources: r17, r19, r25, r29, r39.
+DONE: Phase 4 Track C wave 14: sources for Book 2's five source-less readings, all fetched and confirmed live. r17 gets BCBS d403 (problem assets), r19 BCBS d350 (expected credit losses), r25 BCBS WP14 (rating-system validation), r29 the BIS OTC derivatives statistics, r39 BCBS d374 (securitisation framework). All five from the Basel Committee, which is the right answer for a book of bank credit regulation.
+NEXT: Track C wave 15, the remaining 11: r44, r64, r81, r82, r83, r84, r85, r87, r88, r89, r95. Start with r44 and r64 (Books 3 and 4), then the Book 5 investment-management cluster.
 BLOCKERS: none.

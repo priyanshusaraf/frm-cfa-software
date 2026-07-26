@@ -270,6 +270,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "BCBS: revisions to the securitisation framework", url: "https://www.bis.org/bcbs/publ/d374.htm", note: "The capital treatment of securitisation exposures, including the simple, transparent and comparable criteria. Shows what regulators decided to reward after the structures in this reading went wrong." }
+  ],
+
   pdf: { book: 2, query: "Securitization is the process of transforming the illiquid assets" },
 
   summary: `<p><strong>True sale</strong>: the SPV's legal separateness from the originator is the foundational concept. <strong>Overcollateralization</strong>: pool assets exceed notes issued; the JUNIOR class absorbs this excess, protecting the SENIOR class (a frequently reversed fact). <strong>Three SPV structures</strong>: amortizing/pass-through (mortgages), revolving (credit cards/auto), master trust (multiple issuances, shared excess spread). <strong>Why securitize</strong>: funding diversification, capital relief, risk management. <strong>Credit enhancements</strong>: overcollateralization, pool insurance, subordination, margin step-up, excess spread. <strong>Performance ratios</strong>: delinquency ratio, default ratio, MPR (all /total pool balance); DSCR=NOI/debt payments; WAC=weighted coupon; WAM/WAL=weighted maturity/prepayment-adjusted life; \\(CPR=1- (1- SMM)^{12}\\); PSA benchmarks (100% = 0%→6% over 30 months). SPV liability side costs LESS than its asset side, that gap is the excess spread.</p>`

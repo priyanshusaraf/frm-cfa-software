@@ -199,5 +199,9 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "BCBS: prudential treatment of problem assets, definitions of non-performing exposures and forbearance", url: "https://www.bis.org/bcbs/publ/d403.htm", note: "The supervisory definitions behind the vocabulary this reading introduces. Worth a look for how much work goes into pinning down what 'non-performing' even means across jurisdictions." }
+  ],
+
   pdf: { book: 2, query: "credit risk is the probability that one party" }
 });

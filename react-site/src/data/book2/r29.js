@@ -210,6 +210,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "BIS: OTC derivatives statistics", url: "https://data.bis.org/topics/OTC_DER", note: "Semiannual notional, market value and credit exposure for OTC derivatives including credit default swaps by reference-entity type and rating. Useful for seeing the real size of the market this reading models." }
+  ],
+
   pdf: { book: 2, query: "credit risk is the exposure faced by an individual" },
 
   summary: `<p><strong>Hazard rate recap</strong>: conditional PD = unconditional PD(t)/survival(t−1). <strong>CVA</strong> = PV(cost if counterparty defaults); <strong>DVA</strong> = PV(benefit if the bank itself defaults); f=f_nd−CVA+DVA. <strong>Wrong-way risk</strong> (PD & exposure positively correlated) raises CVA, lowers DVA; right-way risk is the mirror. <strong>Netting</strong>: sum ALL trades (+ and −), not just positive-value ones. <strong>Reduced-form</strong> (fast, low achievable correlation, captures economic cycle) vs. <strong>structural</strong> (slow, arbitrarily high correlation, less direct cycle capture). <strong>One-factor Gaussian copula</strong> V(T,\\(X)=N[(N^{-1}(Q(T))+\\sqrt{\\rho }N^{-1}(X))/\\sqrt{1- \\rho }]\\), structurally identical to R26's Vasicek WCDR formula.</p>`

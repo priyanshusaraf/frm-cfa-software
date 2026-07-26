@@ -1708,3 +1708,29 @@ cannot be verified and must not ship), and BCBS Working Paper 22 turned out to b
 modified supervisory formula for securitization capital, not the tail-risk paper its title
 suggested. **Fetch before you cite, every time: a plausible-sounding BIS number is not a
 plausible-sounding topic.**
+
+### Wave 14: r17, r19, r25, r29, r39, all Book 2 (2026-07-26)
+
+Five links, each fetched and confirmed live, and each chosen so the link answers a question
+the reading raises rather than restating its topic:
+
+- **r17**: BCBS's prudential treatment of problem assets (d403). The reading introduces the
+  vocabulary; this shows how much work went into harmonising what "non-performing" even
+  means across jurisdictions.
+- **r19**: BCBS guidance on credit risk and accounting for expected credit losses (d350).
+  Directly under the reading's classification and provisioning material, and it is the
+  supervisory counterpart to the IFRS 9 staging the reading teaches.
+- **r25**: BCBS Working Paper 14, studies on the validation of internal rating systems.
+  The reading gives four routes to a PD; this is the question of whether the resulting
+  number is any good, which the reading does not address.
+- **r29**: BIS OTC derivatives statistics (note the host: `data.bis.org`, since
+  `bis.org/statistics/derstats.htm` now 302s there, and WebFetch returns cross-host
+  redirects rather than following them). Semiannual notional, market value and credit
+  exposure including CDS by reference-entity type and rating.
+- **r39**: BCBS revisions to the securitisation framework (d374), including the
+  simple-transparent-comparable criteria. It shows what regulators chose to reward AFTER
+  the structures in this reading went wrong, which the reading itself cannot.
+
+**Book 2's whole set came from one institution, and that is the right answer, not laziness.**
+Everything in this book is bank credit regulation, so the Basel Committee is the primary
+source for all five. Reaching for variety would have meant reaching for weaker links.

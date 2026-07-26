@@ -258,6 +258,10 @@ export default ({
   ],
 
 
+  sources: [
+    { title: "BCBS Working Paper 14: studies on the validation of internal rating systems", url: "https://www.bis.org/publ/bcbs_wp14.htm", note: "How PD estimates from an internal rating system are actually validated, which is the practical question sitting underneath this reading's four routes to a default probability." }
+  ],
+
   pdf: { book: 2, query: "This topic discusses various approaches for estimating default probabilities" },
 
   summary: `<p><strong>Altman's Z-score</strong>: 5-ratio discriminant, Z>3 safe, <1.8 high default likelihood. <strong>Migration matrices</strong>: marginal PD = cumulative(t)−cumulative(t−1); IG marginal PD rises early, junk falls after early years. <strong>Hazard rate</strong>: \\(Q(t)=1- e^{- \\lambda t}\\); \\(\\lambda \\approx s(T)/(1- RR)\\) from credit spreads. <strong>Recovery rate</strong> negatively correlated with default rate. <strong>CDS mechanics</strong>: periodic spread, physical/cash settlement, up-front premium for coupon gaps. <strong>CDS-bond basis</strong> ≈0 in theory; several named frictions push it off zero in practice. <strong>Risk-neutral PD</strong> (pricing) > <strong>real-world PD</strong> (scenario analysis) always, for the same firm. <strong>Merton</strong> (precise): solve simultaneously for V0, \\(\\sigma V\\) from observable E0, \\(\\sigma E\\); PD_RN=N(−d2).</p>`

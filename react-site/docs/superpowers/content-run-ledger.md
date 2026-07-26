@@ -92,8 +92,9 @@ acceptable final answer and is recorded as a decision.
 - Done: **r02, r03** (BCBS WP19), **r11** (Fed nominal yield curve), **r12** (BIS term
   premia + Fed curve), **r13** (deliberate ZERO: a pedagogical drift chapter nothing
   external improves on).
-- Remaining 16: r17, r19, r25, r29, r39, r44, r64, r81, r82, r83, r84, r85, r87, r88, r89,
-  r95.
+- Done: **r17** (BCBS d403), **r19** (BCBS d350), **r25** (BCBS WP14), **r29** (BIS OTC
+  derivatives statistics at `data.bis.org`), **r39** (BCBS d374).
+- Remaining 11: r44, r64, r81, r82, r83, r84, r85, r87, r88, r89, r95.
 - Rejected candidates, do not re-try: the NY Fed ACM term-premia page (HTTP 403 to
   automated fetches, so unverifiable), and BCBS WP22 (it is the securitization supervisory
   formula, not a tail-risk paper).
