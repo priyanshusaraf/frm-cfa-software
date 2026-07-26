@@ -170,7 +170,7 @@ export default ({
       { r: 33, why: "Bilateral netting generalizes to CCP-based multilateral netting here." }
     ],
     to: [
-      { r: 36, why: "Initial margin/variation margin become quantitative inputs to exposure profile and MPoR calculations." }
+      { r: 36, why: "Initial margin and variation margin become quantitative inputs to exposure profiles here. The margin period of risk in particular comes back in R36 as a measured quantity, not just a timeline: you will scale volatility over it and read exposure off it, so it is worth being solid on the three stretches before you get there." }
     ],
     confused: [
       { what: "Initial margin vs variation margin", how: "Initial margin covers potential FUTURE losses (market-risk-driven); variation margin settles ALREADY-REALIZED daily price changes (cash only)." },

@@ -14,7 +14,11 @@ export default ({
   <p>Once you can read one curve, the useful skill is recognizing whole silhouettes. A bond or a loan sits roughly flat at notional, because the money at risk is the principal and it does not wander much. An interest rate swap makes a hump: uncertainty about future rates pushes exposure up as you look further out, while each payment that settles removes one more cash flow from the remaining trade and pulls exposure back down. Early on the first force wins, later the second does, and the peak is where they cross. A foreign exchange or cross-currency swap climbs the whole way, because a large notional amount changes hands at the very end and no amount of waiting makes that final number more certain. A long option position climbs until exercise, since it can always drift further into the money. A long-protection credit default swap (CDS) drifts up as the reference credit's spread widens, then jumps at a credit event to notional less recovery.</p>
   <p>Underneath those silhouettes are four building blocks. <strong>Future uncertainty</strong>: a contract that pays once, at the end (a foreign exchange forward, a forward rate agreement), lets doubt about that single final number accumulate all the way to maturity, so exposure keeps climbing. <strong>Periodic cash flows</strong>: a contract that pays regularly settles part of the position each time and caps how much doubt can pile up, though if those payments are themselves variable (a floating leg whose rate resets) some of the uncertainty comes back. <strong>Combination of profiles</strong>: some products are two risk factors stacked, so their exposure is the sum of two shapes. A cross-currency swap is an interest rate swap plus a foreign exchange forward on the final notional exchange, which is exactly why its profile is a hump riding on a ramp. <strong>Optionality</strong>: when one side gets to choose whether to exercise, that choice is worth something in the states where it matters, and that value shows up as extra exposure right up until the choice is made.</p>`,
 
-  visual: `<div class="widget" data-widget="exposure"></div>`,
+  visual: `<div class="widget" data-widget="exposure-metrics"></div>
+  <div class="widget" data-widget="exposure-shapes"></div>
+  <div class="widget" data-widget="exposure-factors"></div>
+  <div class="widget" data-widget="netting-corr"></div>
+  <div class="widget" data-widget="mpor-line"></div>`,
 
   formulas: [
     {

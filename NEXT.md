@@ -1,3 +1,3 @@
-DONE: Rewrote R32's xVA family, R33's close-out vs acceleration (promoted out of the confused sidebar into a concept) and R34's overcollateralization; amended the source rule so outside material is allowed where Schweser is thin, with labelling conditions.
-NEXT: Re-author R36 to the explanation-first order, then sweep Book 2's counterparty cluster (r31-r39) for the same starved-definition pattern the xVA family showed.
-BLOCKERS: The owner's reading numbers run one higher than the app's in recent reports (xVA is r32 not r33, close-out is r33 not r34, collateral is r34 not r35); app labels verified correct, so confirm which numbering they are reading from. Coverage back-audit over the 65 cleared readings still unscheduled.
+DONE: Built src/widgets/book2.js, five interactive exposure widgets for R36 (metrics EE/PFE/EPE/effective-EE, product shapes, the four factors as switches, netting vs correlation, MPoR timeline), covering roughly 12 of the reading's 14 source figures; added the R35 to R36 MPoR heads-up.
+NEXT: Finish R36's figure set (Fig 36.10 unequal payment frequency, Fig 36.11 swaption vs forward swap) and deepen R35's macro-hedging and rights of assessment, which are still thin.
+BLOCKERS: R36's prose still needs re-authoring to the explanation-first order; widgets alone do not fix it. Coverage back-audit over the 65 cleared readings still unscheduled.
