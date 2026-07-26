@@ -6,7 +6,7 @@ this file, finds its place, and continues. Procedure lives in
 
 ## ACTIVE PHASE
 
-    content-sonnet-clearance
+    content-opus-improvement
 
 Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality first):
 
@@ -18,8 +18,9 @@ Phase order (owner directive, 2026-07-25: content comes LAST, UI/functionality f
                                       also shipped the PDF viewer fixes, the eager-loading
                                       regression fix, the doctrine audit, and study
                                       nudges + Pomodoro. Detail in PROGRESS.md.
-3. `content-sonnet-clearance` ....... ACTIVE. The important run. Waves of 5 + Opus-A gate.
-4. `content-opus-improvement` ....... Opus-B. "Leave it alone" is a valid verdict.
+3. `content-sonnet-clearance` ....... DONE 2026-07-26 (waves 1-20, all 101 rows verified).
+                                      Corpus-wide: 0 em/en-dashes remain in src/data.
+4. `content-opus-improvement` ....... ACTIVE. Opus-B. "Leave it alone" is a valid verdict.
 
 Advance this header only when every row for the active phase is `done`, then commit.
 
@@ -172,9 +173,9 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 93 | 5 | The Credit Suisse CoCo Wipeout | done | done | 19 | pass | Clean apart from dashes; a source-referencing breakdown title and a quiz stem de-metered. |
 | 94 | 5 | Artificial Intelligence and Bank Supervision | done | done | 19 | pass | Cleanest of the wave: dashes plus two 'according to the reading' quiz stems. |
 | 95 | 5 | Explainable, Trustworthy, Responsible AI in Risk Management | done | done | 19 | pass | 137-word XAI def split: the SHAP-as-cooperative-game explanation moved into intuition, where it teaches rather than pads a definition. |
-| 96 | 5 | Artificial Intelligence Risk Management Framework | done | todo | 20 | - | |
-| 97 | 5 | Climate-Related Risk Drivers and Transmission Channels | done | todo | 20 | - | |
-| 98 | 5 | Climate-Related Financial Risks: Measurement Methodologies | done | todo | 20 | - | |
-| 99 | 5 | Principles for the Effective Management and Supervision of Climate-Related Financial Risks | done | todo | 20 | - | |
-| 100 | 5 | The Crypto Ecosystem: Key Elements and Risks | done | todo | 20 | - | |
-| 101 | 5 | Digital Resilience and Financial Stability | done | todo | 20 | - | |
+| 96 | 5 | Artificial Intelligence Risk Management Framework | done | done | 20 | pass | Coverage clean. GARP exam-voice opener and one 'identified in the reading' stem rewritten. |
+| 97 | 5 | Climate-Related Risk Drivers and Transmission Channels | done | done | 20 | pass | Coverage clean; three quiz stems referenced the reading itself. Classification traps (chronic vs acute) verified against source. |
+| 98 | 5 | Climate-Related Financial Risks: Measurement Methodologies | done | done | 20 | pass | Heaviest file of the run (110 dashes); its em-dashed TITLE also fixed to the colon form meta-data.js already used. |
+| 99 | 5 | Principles for the Effective Management and Supervision of Climate-Related Financial Risks | done | done | 20 | pass | Coverage flags are the source's own principle-cluster headings; all 12 bank and 6 supervisor principles are taught. |
+| 100 | 5 | The Crypto Ecosystem: Key Elements and Risks | done | done | 20 | pass | Four 'the reading is explicit' counters rewritten to state the fact directly. |
+| 101 | 5 | Digital Resilience and Financial Stability | done | done | 20 | pass | Coverage flags are appendix material (z-table, t-distribution, hypothesis-testing examples), not reading content. |

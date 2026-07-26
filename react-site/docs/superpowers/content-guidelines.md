@@ -903,3 +903,30 @@ belongs in `intuition`, where the chapter renders it as teaching, not in `def`, 
 it reads as a definition that will not end. **Before trimming, ask which field the
 overflow actually wants to live in.** Deleting it would have cost the reading its one
 piece of real insight into a term most readings only name.
+
+### Wave 20 (R96-R101, Book 5, 2026-07-26): the phase closes
+
+Six readings, not five, since Book 5 ends at R101. No real coverage gaps: R99's flags
+are the source's own principle-cluster headings (all 12 bank and 6 supervisor
+principles are taught), and R101's are the book's statistical appendix (z-table,
+t-distribution, worked hypothesis tests), which is not reading content at all. Expect
+appendix bleed on the LAST reading of any book, because the section extractor runs a
+final section to end-of-file.
+
+**R98's TITLE contained an em dash**, "Climate-Related Financial Risks — Measurement
+Methodologies", while `meta-data.js` already carried the colon form. Titles are
+rendered from BOTH files depending on surface, so the two had been disagreeing.
+**Add `title:` to the fields checked for dashes; it is the one field a reader sees on
+every surface** (chapter header, search results, planner, mind map).
+
+**Phase state at close: 0 em/en-dashes across all 101 readings in `src/data`.** The
+count was 7,614 when the workstream was scoped on 2026-07-21. The corpus-wide
+`grep -rn '—\|–' src/data` returning nothing is now a standing invariant, so any
+future content edit that reintroduces one is a regression, not a leftover.
+
+**What this phase learned that the NEXT one should not relearn.** The five-item closed
+mandate held: almost every reading needed only the dash purge, the exam-voice cleanup
+and a def trim. The genuine content defects were rarer and of exactly one shape, found
+in R35, R74, R76, R82, R86 and R88: **the reading covers a category thoroughly and
+silently drops one named member of it.** Opus-B should look there first rather than
+re-reading prose that is already fine.
