@@ -930,3 +930,40 @@ and a def trim. The genuine content defects were rarer and of exactly one shape,
 in R35, R74, R76, R82, R86 and R88: **the reading covers a category thoroughly and
 silently drops one named member of it.** Opus-B should look there first rather than
 re-reading prose that is already fine.
+
+### POST-PHASE REPAIR (2026-07-26): the gate itself was broken, and what it hid
+
+**Waves 15 to 20 ran their validator check as `node scripts/validate-reading.mjs ... | tail -1`.
+The validator prints FAIL lines BEFORE warn lines, so any reading with a trailing
+`warn` reported as clean.** Twelve readings were marked `done` and `pass` while
+carrying real validator failures. A full sweep after the phase closed found 89 of
+them. **Never pipe the validator through `tail`. Grep it: `... 2>&1 | grep '^FAIL'`,
+and treat any output as a gate failure.** This is the single most expensive process
+mistake of the run, because it defeated the one check that was supposed to be
+mechanical and certain.
+
+What the sweep found, all of it PRE-EXISTING content debt rather than damage from the
+dash pass (verified against commit 21c338e):
+
+- **22 MODULE QUIZ source leaks** across r98, r99, r100, r101, each citing a module
+  quiz number AND its answer letter ("MODULE QUIZ 102.2 Q1's correct answer is A").
+  These violate two rules at once: no meta-references to the source, and never name
+  an option letter, since `Quiz.jsx` shuffles. Rewritten to state the fact plainly and
+  keep the trap ("The three properties are security, decentralization and scalability,
+  and no others. Expect plausible substitutes offered in their place.").
+- **14 prose fields stored as plain strings with no HTML** (r98, r99, r100, r101's
+  `teaches`/`why`/`intuition`/`summary`), which render as one undifferentiated wall.
+  Wrapped into `<p>` paragraphs.
+- **19 null/empty concept keys**, which render as blank labelled sections.
+- **18 over-long `def`s**, several over 300 words, all of them enumerations the
+  breakdown already carried.
+- Two malformed cross-references and one option-letter quiz `why`.
+
+**Book 5's last four readings (r98 to r101) carried almost all of this.** They read
+as the least-finished files in the corpus, which is worth knowing for Opus-B: they
+were likely generated late in an earlier enrichment run and never reviewed. Start
+there.
+
+**A corollary worth keeping: the full-corpus sweep is cheap and should end every
+phase.** It takes about a minute and it is the only thing that catches a per-wave
+gate that was subtly wrong. `for f in src/data/book*/r*.js; do ... grep '^FAIL'; done`.

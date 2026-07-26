@@ -5,11 +5,11 @@ export default ({
   title: "Climate-Related Financial Risks: Measurement Methodologies",
   tagline: "How do you put a number on a risk that hasn't happened yet, is missing its own data, and might take 30 years to arrive?",
 
-  teaches: "This reading is the 'now measure it' sequel to R97 (which mapped how climate risk transmits into credit/market/liquidity/operational risk). Here the Basel Committee's 2021 report asks: given those transmission channels, what data do banks and supervisors actually need, what modeling approaches exist today (IAMs, CGE, DSGE, ABMs, stress testing), what broad measurement approaches are banks using (ratings/scores, scenario analysis, climate VaR, natural capital analysis), and (critically) where does the whole measurement enterprise still fall short (data gaps, time-horizon mismatches, comparability across jurisdictions).",
+  teaches: `<p>This reading is the 'now measure it' sequel to R97 (which mapped how climate risk transmits into credit/market/liquidity/operational risk). Here the Basel Committee's 2021 report asks: given those transmission channels, what data do banks and supervisors actually need, what modeling approaches exist today (IAMs, CGE, DSGE, ABMs, stress testing), what broad measurement approaches are banks using (ratings/scores, scenario analysis, climate VaR, natural capital analysis), and (critically) where does the whole measurement enterprise still fall short (data gaps, time-horizon mismatches, comparability across jurisdictions).</p>`,
 
-  why: "Every other climate reading (R97, and the disclosure/scenario material elsewhere) assumes measurement is possible. This reading is the reality check: climate risk measurement is still in its infancy, existing models systematically understate tail/extreme-event severity, and there is no common accounting standard for climate data. For the exam, this reading is a taxonomy-heavy one, expect matching questions (top-down vs bottom-up, gross vs net exposure, IAM vs ABM vs CGE) and 'which of the following is NOT a challenge' questions.",
+  why: `<p>Every other climate reading (R97, and the disclosure/scenario material elsewhere) assumes measurement is possible. This reading is the reality check: climate risk measurement is still in its infancy, existing models systematically understate tail/extreme-event severity, and there is no common accounting standard for climate data. For the exam, this reading is a taxonomy-heavy one, expect matching questions (top-down vs bottom-up, gross vs net exposure, IAM vs ABM vs CGE) and 'which of the following is NOT a challenge' questions.</p>`,
 
-  intuition: "Think of climate risk measurement as building a bridge between two things that don't naturally talk to each other: (1) physical/climate science (temperature paths, flood probabilities, carbon budgets) and (2) financial risk parameters (PD, LGD, EAD, VaR). Every methodology in this reading is an attempt at that translation, and every one of them leaks somewhere, either the physical science is uncertain (data gaps, model-based uncertainty), the translation step is crude (top-down averages, gross vs net), or the time horizon (up to 30 years) exceeds anything financial models were built to handle. The five Basel findings essentially say: we're translating transition risk into credit risk reasonably well; everything else (physical risk, non-credit risk categories, long-horizon nonstandard issues) is still underdeveloped.",
+  intuition: `<p>Think of climate risk measurement as building a bridge between two things that don't naturally talk to each other: (1) physical/climate science (temperature paths, flood probabilities, carbon budgets) and (2) financial risk parameters (PD, LGD, EAD, VaR). Every methodology in this reading is an attempt at that translation, and every one of them leaks somewhere, either the physical science is uncertain (data gaps, model-based uncertainty), the translation step is crude (top-down averages, gross vs net), or the time horizon (up to 30 years) exceeds anything financial models were built to handle. The five Basel findings essentially say: we're translating transition risk into credit risk reasonably well; everything else (physical risk, non-credit risk categories, long-horizon nonstandard issues) is still underdeveloped.</p>`,
 
   eli5: "<p>Imagine your town's flood-insurance office is trying to write policies for houses that won't be built for another 30 years, using a weather forecast that only reliably works about a week out, and a rulebook nobody has agreed on yet. Some inspectors measure flood risk by street address, others just say \"that whole zip code is risky,\" and none of them can agree on what counts as \"flood damage\" in the first place. That's the position banks and their supervisors are in with climate risk: they're trying to price and reserve against a decades-out hazard using science that's uncertain, data that's patchy or inconsistent across providers, and models (temperature-and-economy simulators, agent simulations, stress tests) that were never built for a 30-year horizon in the first place. In finance terms: the \"flood-insurance office\" is a bank's risk function, the \"rulebook nobody agreed on\" is the missing common accounting standard for climate data, and the mismatch between a one-week forecast and a 30-year policy is the time-horizon gap between climate science and 2-5 year capital planning.</p>",
 
@@ -119,7 +119,6 @@ export default ({
       def: "(1) Risk identification (drivers and transmission channels. The subject of R97); (2) exposure mapping and measurement (metrics/indicators); (3) risk quantification (economic models, forward-looking assessment); (4) risk management (mitigation).",
       intuition: "This is the pipeline: first figure out WHAT could hurt you and HOW (R97), then figure out WHERE you're exposed and by HOW MUCH, then put a NUMBER on it, then decide what to DO about it.",
       example: "A bank first identifies that transition risk affects its oil & gas loan book (identification), then maps which specific loans/counterparties are carbon-intensive (exposure mapping), then runs a scenario analysis estimating credit losses under a disorderly transition (quantification), then adjusts underwriting standards or exits the sector (management).",
-      counter: null,
       pitfall: "This reading (R98) is almost entirely about stages 2 and 3 (mapping/measurement and quantification), stage 1 was R97's job, stage 4 is covered elsewhere. Don't confuse which reading owns which stage on the exam.",
       related: ["Five Basel findings"],
       memory: "Identify → Map → Quantify → Manage."
@@ -160,7 +159,7 @@ export default ({
       intuition: "Gross tells you the worst case / raw magnitude; net tells you what you're actually exposed to today. Modeling them separately matters because mitigation strategies 'may change, lapse, or fail to function as designed', net exposure alone hides that fragility.",
       example: "See the worked module quiz: $35mm gross risk, minus $15mm insurance benefit, minus $3mm derivatives benefit → gross exposure is still $35 million (the question asks for GROSS, which ignores mitigation entirely); net would be $17 million.",
       counter: "A common trap is computing net exposure when the question asks for gross, or vice versa, read the question stem carefully for which one is being asked.",
-      pitfall: "MODULE QUIZ 100.1 Q1 asks for GROSS exposure given $35mm total risk, $15mm insurance, $3mm derivatives. The answer is D ($35 million), because gross exposure by definition ignores mitigation benefits entirely.",
+      pitfall: "Given $35mm of total risk, $15mm of insurance and $3mm of derivatives, GROSS exposure is $35 million, not $17mm. Gross exposure ignores mitigation benefits entirely, by definition, so subtracting the hedges is the whole trap.",
       related: ["Risk mitigation and risk reduction"],
       memory: "Gross = before umbrella. Net = after umbrella actually catches the rain."
     },
@@ -168,8 +167,6 @@ export default ({
       name: "Heterogeneities",
       def: "Because each bank's portfolio and each client/counterparty's exposure differs (geography, technology, political environment, sector, location), heterogeneity affects which measurement approach is appropriate. Climate risk is fairly similar within a sector even if individual clients differ; policy/regulation can differ by client.",
       intuition: "No one-size-fits-all measurement approach exists because the underlying risk itself is heterogeneous across geography and counterparty. This is WHY top-down/bottom-up and granularity choices matter so much.",
-      example: null,
-      counter: null,
       pitfall: "Don't confuse 'heterogeneity' (why methodology choice varies) with 'uncertainty' (why any given estimate might be wrong). They're related but distinct considerations from LO 100.a's list.",
       related: ["Exposure granularity", "Sources of uncertainty"],
       memory: "Different banks, different books, different geographies. No universal ruler."
@@ -179,8 +176,7 @@ export default ({
       def: "(1) Physical/transition risk driver data translated into economic risk factors (from commercial/academic/government sources); (2) data linking climate-adjusted economic risk factors to exposures (vulnerability data, geospatial for physical, sector/carbon sensitivity for transition); (3) financial exposure data to translate economic risk into financial risk (valuations, cash flows, portfolio composition, funding behavior for liquidity impact).",
       intuition: "This is a three-stage data pipeline mirroring the four-stage framework: raw climate data → exposure/vulnerability data → financial impact data. Each stage requires progressively more bank-specific, proprietary information.",
       example: "Stage 1: a flood-hazard map from a government agency. Stage 2: overlaying that map onto the geospatial locations of a bank's mortgage collateral. Stage 3: translating flood-damaged collateral into expected loss and liquidity impact.",
-      counter: null,
-      pitfall: "MODULE QUIZ 100.2 Q1: sources for stage-1 driver data include government agencies, academic organizations, and commercial third parties, NOT retail brokerage firms (the correct 'except' answer is B).",
+      pitfall: "Stage-1 driver data comes from government agencies, academic organizations and commercial third parties. Retail brokerage firms are NOT a source, and are the plausible-looking addition to watch for.",
       related: ["Risk assessment framework", "Climate risk classification"],
       memory: "Raw climate data → who's vulnerable → what it costs in dollars."
     },
@@ -189,7 +185,6 @@ export default ({
       def: "Geographic location is the primary driver of physical risk differentiation (proximity/vulnerability to hazards). Jurisdiction is the primary driver of transition risk differentiation (laws, regulations, energy grids, markets). Economic sector is another differentiating factor for both.",
       intuition: "Physical risk is about WHERE you are; transition risk is about WHOSE RULES you live under. Sector matters for both because emissions/vulnerability cluster by industry even though individual firms within a sector differ.",
       example: "A property in a Gulf Coast flood zone: physical risk driven by geography. A coal-fired utility in a jurisdiction about to impose a carbon tax: transition risk driven by jurisdiction/policy.",
-      counter: null,
       pitfall: "Exam trap: swapping the primary driver, geography is NOT the primary driver of transition risk, and jurisdiction is NOT the primary driver of physical risk. Keep them paired correctly.",
       related: ["Transition vs physical risk measurement"],
       memory: "Physical risk = geography. Transition risk = jurisdiction."
@@ -210,7 +205,7 @@ export default ({
       intuition: "These are the 'output layer' approaches banks actually report with, built on top of the underlying models (IAM/ABM/etc.) from the previous concept.",
       example: "A traffic-light climate risk score (red = high exposure, green = low) is a ratings/scores approach; a bank running its balance sheet through an NGFS 'disorderly transition' scenario is doing scenario analysis.",
       counter: "Stress testing and sensitivity analysis are described as forms/tools WITHIN scenario analysis, not fully separate categories. A common point of confusion.",
-      pitfall: "MODULE QUIZ 100.2 Q2: 'Stress testing is a form of scenario analysis' is the correct (most accurate) statement, ratings/scores are NOT necessarily an external/third-party-only approach (banks do them in-house too), and climate VaR is explicitly a real, applied framework (not inapplicable).",
+      pitfall: "Stress testing is a FORM of scenario analysis, not a separate category alongside it. Two related traps: ratings/scores are NOT necessarily an external/third-party-only approach (banks do them in-house too), and climate VaR is explicitly a real, applied framework (not inapplicable).",
       related: ["Modeling approaches", "Scenario dimensions"],
       memory: "Ratings/scores = grade it. Scenario analysis = story-test it (stress test + sensitivity test inside). Natural capital = nature's balance sheet. Climate VaR = climate's version of market VaR."
     },
@@ -219,7 +214,6 @@ export default ({
       def: "Climate scenarios vary along (1) climate outcome (temperature increase) and (2) transition type (gradual vs. abrupt emissions reduction and technology availability). Scenarios come from in-house models or external sources (NGFS, IEA), but drawbacks include lacking detailed physical-risk economic damages and lacking extreme-event impacts. Time horizons for climate risk (up to 30 years) vastly exceed typical capital planning (2-3 years) and strategic planning (3-5 years) horizons. Balance sheets can be modeled as static (illustrates current exposure, less reliable long-term) or dynamic (captures strategic adjustments).",
       intuition: "Traditional stress testing horizons are years; climate horizons are decades. This mismatch is why climate scenario analysis needs its own toolkit rather than reusing macro stress-test infrastructure directly.",
       example: "NGFS 'Net Zero 2050' vs. 'Delayed Transition' scenarios differ on both dimensions, final temperature outcome and how abrupt the emissions path is.",
-      counter: null,
       pitfall: "Don't conflate macro stress testing (2-5 year financial statement focus, capital-need estimation) with climate scenario analysis (specific exposures, longer/variable horizons, strategy/risk-profile focus). The reading explicitly contrasts these.",
       related: ["Broad risk measurement approaches", "Long-term horizon assessments"],
       memory: "Two dials: how hot, how fast. And the clock runs to 2050, not 2028."
@@ -229,7 +223,6 @@ export default ({
       def: "Portfolio/sector exposures (physical vulnerability of collateral, carbon/emission intensity, energy efficiency distributions); transition risk metrics (financed emissions, greenness, alignment approaches measuring gap to climate-target-consistent portfolios, green vs. brown activities); physical risk (geographic concentration, hazard type/probability/severity, geospatial mapping); client/project ratings and scores (in-house or external, e.g. traffic-light red/green, complementing traditional credit scores).",
       intuition: "This is the bank's internal toolkit for turning the broad approaches above into loan-book-level actions. Every loan or counterparty eventually gets tagged with some combination of these metrics.",
       example: "'Financed emissions' is literally the carbon footprint attributable to a bank's lending/investment book. A bank could report financed emissions the way it reports total assets.",
-      counter: null,
       pitfall: "Sectors most at risk for transition are utilities, transportation, oil & gas, construction, metals/mining. A specific list worth memorizing since 'except' questions test it directly.",
       related: ["Supervisor-level methodologies"],
       memory: "Alignment = gap to target. Green vs. brown = which side of the ledger. Traffic light = red bad, green good."
@@ -238,8 +231,7 @@ export default ({
       name: "Supervisor-level methodologies",
       def: "Transition risk: assessed via ad hoc surveys/regulatory information, sector-level view using carbon footprint/emission intensity/policy sensitivity indicators (real estate less analyzed here). Physical risk: assessed via publicly available data and commercial climate scores; indicators include flood maps, water stress near industrial facilities, population below elevation thresholds, agriculture % of GDP; can be done at counterparty/activity/sector/country granularity.",
       intuition: "Supervisors mirror bank-level approaches but operate one level up, assessing system-wide/jurisdiction-wide vulnerability rather than individual loan books.",
-      example: "MODULE QUIZ 100.3 Q1: the sectors flagged from the 2020 bank outreach workshops as relevant for PHYSICAL risk are utilities, agriculture, real estate, retail mortgages, NOT construction (construction is a TRANSITION risk sector). So the 'except' answer is C.",
-      counter: null,
+      example: "The sectors the 2020 bank outreach workshops flagged for PHYSICAL risk are utilities, agriculture, real estate and retail mortgages. Construction belongs to TRANSITION risk, so it is the one that does not belong on a physical-risk list.",
       pitfall: "Don't cross the wires between the transition-risk sector list (utilities, transportation, oil/gas, construction, metals/mining) and the physical-risk sector list (utilities, agriculture, real estate, retail mortgages), utilities appears on BOTH, construction only on transition.",
       related: ["Bank-level exposure mapping categories"],
       memory: "Transition sectors = heavy emitters. Physical sectors = exposed-to-weather (ag, real estate, mortgages)."
@@ -248,9 +240,7 @@ export default ({
       name: "2020 survey takeaways (banks vs. supervisors)",
       def: "Banks: climate risk not fully priced into markets yet; transition risk focus on high-carbon sectors; physical risk focus on utilities/agriculture/real estate/retail mortgages; data from public sources, rating agencies, internal client data; heatmaps useful; still in piloting stage. Supervisors: transition risk is HIGHER priority than physical risk; focus on both macro (banking system) and micro (individual bank) dimensions; mapping/measuring exposures is primary, with stress tests/scenario analysis also heavily used; third-party scenarios most used currently, in-house planned for future; sectoral approach primary for transition risk (emissions/intensity as indicator); aggregate climate risk indicator primary for physical risk (storms/floods/droughts, mostly at country/regional level); short horizons used for transition risk ONLY, long horizons used for BOTH transition and physical risk (5-30 years).",
       intuition: "The banks' survey and supervisors' survey are two independent 'key takeaways' lists. The exam can quote either one, so the time-horizon asymmetry (transition can be short OR long horizon; physical is long horizon only) is a specific, testable detail.",
-      example: null,
-      counter: null,
-      pitfall: "MODULE QUIZ 100.3 Q2 asks which time horizon supervisors are LEAST likely to apply. The answer is C, 'short time horizons for physical risks only,' because physical risk is always assessed with LONG time horizons (short horizons are only used for transition risk).",
+      pitfall: "The time horizon supervisors are LEAST likely to apply is a short one for physical risks only, because physical risk is always assessed with LONG time horizons (short horizons are only used for transition risk).",
       related: ["Two scenario dimensions and time horizon challenge"],
       memory: "Supervisors: transition risk gets both short AND long horizons; physical risk only gets long horizons, physical risk never gets the 'short horizon only' treatment."
     },
@@ -259,8 +249,7 @@ export default ({
       def: "Aggregate risk classifications (using public sector/country vulnerability data) are simple but may lack granularity for counterparty differentiation. Comparability obstacles: (1) jurisdiction comparability. No baseline cross-jurisdictional standard for methods/metrics; (2) aggregation perspectives, hard to model large multi-jurisdictional banks consistently since group-wide policy may conflict with location-specific climate risk.",
       intuition: "You want risk scores that are comparable ACROSS banks (so regulators/investors can benchmark), but the more comparable/standardized you make them, the less they capture bank- or counterparty-specific nuance. A direct echo of the granularity trade-off.",
       example: "A globally active bank's group-wide lending policy might treat all 'oil & gas' exposures the same, even though the transition-risk-relevant regulatory environment differs sharply between, say, the EU and a jurisdiction with no carbon policy.",
-      counter: null,
-      pitfall: "MODULE QUIZ 100.4 Q2 asks for the exception among comparability obstacles: 'undefined damage functions related to physical risks' is NOT listed as a comparability obstacle (it's a data/complexity challenge instead). The true comparability obstacles are jurisdiction comparability, aggregation perspectives, and complexity/granularity needs.",
+      pitfall: "Undefined damage functions related to physical risks are NOT a comparability obstacle; they are a data and complexity challenge, which makes them the natural false member of the list. The true comparability obstacles are jurisdiction comparability, aggregation perspectives, and complexity/granularity needs.",
       related: ["Data availability limitations"],
       memory: "Comparability wants sameness; risk differentiation wants nuance. They pull in opposite directions."
     },
@@ -268,9 +257,7 @@ export default ({
       name: "Data availability limitations",
       def: "Transition/physical risk driver data can fall outside traditional financial data ranges, may be incomplete/insufficiently granular/infrequently updated. Third-party providers try to fill gaps but end users have limited insight into their data scrubbing methods, and comparability across providers is a challenge. Counterparties may provide proprietary data, but smaller counterparties tend to provide more QUALITATIVE than quantitative data, and banks may struggle to update data post-underwriting. Public information quality/quantity correlates with company size. No common accounting standards for climate data exist. Supervisory reports add standardized data but may lack needed granularity.",
       intuition: "Data problems compound at every link of the chain: the raw data is imperfect, the vendors filling gaps are opaque, the counterparties supplying proprietary data skew qualitative (especially smaller ones), and once a loan is underwritten the data often goes stale.",
-      example: null,
-      counter: null,
-      pitfall: "MODULE QUIZ 100.4 Q1: the correct statement is B, 'supervisory reports often lack the granularity needed to assess climate risk'. The others are all FALSE per the text (no established accounting standards exist; banks often CANNOT easily get updated data post-underwriting; SMALLER counterparties provide more qualitative, not quantitative, data).",
+      pitfall: "Supervisory reports often lack the granularity needed to assess climate risk, and that is the true statement in this family. The plausible alternatives are all false (no established accounting standards exist; banks often CANNOT easily get updated data post-underwriting; SMALLER counterparties provide more qualitative, not quantitative, data).",
       related: ["Gaps and challenges: risk differentiation and comparability"],
       memory: "Every step of the data chain leaks: raw data imperfect → vendors opaque → small counterparties give you words not numbers → data goes stale after underwriting."
     },
@@ -278,8 +265,6 @@ export default ({
       name: "Climate-related financial risk complexity: three challenge areas",
       def: "(1) Capturing economic effects, models struggle with nonlinearity, alternative scenarios, extreme weather/future disruption, and coarse damage functions; historical data is a poor predictor of the future. (2) Long-term horizon assessments, up to 30-year horizons make projections increasingly uncertain the further out they extend; future portfolio composition uncertainty needs addressing. (3) Operational assessment challenges, requires IT/data infrastructure investment and interdisciplinary (in-house + outsourced climate) expertise.",
       intuition: "This is the 'why is this so hard' summary: the economics are nonlinear and undocumented historically, the time horizon breaks normal capital-planning assumptions, and the operational lift (systems, talent) is its own separate barrier from the modeling challenge itself.",
-      example: null,
-      counter: null,
       pitfall: "Don't treat 'operational assessment challenges' as an afterthought. It's explicitly one of the three co-equal challenge areas, distinct from modeling/economic-effects challenges.",
       related: ["Sources of uncertainty", "Data availability limitations"],
       memory: "Economics too nonlinear, horizon too long, operations too underbuilt."
@@ -345,7 +330,8 @@ export default ({
     { title: "Prix fixe vs. menu", text: "Supervisors: transition risk gets a menu of horizons (short AND long); physical risk is prix fixe long-horizon only." }
   ],
 
-  summary: "The Basel Committee's 2021 report finds climate risk measurement most mature where transition risk maps into credit risk, and still immature everywhere else, physical risk, other risk categories, and long-horizon nonstandard issues. Three data categories feed the pipeline: raw climate/hazard data, exposure-vulnerability data, and financial-impact data. A wide toolkit of models exists (IAM, sensitivity analysis, input-output, CGE, DSGE, OLG, ABM, stress testing), each trading off realism, transparency, and computational cost, and all of them tend to understate extreme/tail events. Broad measurement approaches (ratings/scores, scenario analysis (which contains stress testing and sensitivity analysis as forms) natural capital analysis, climate VaR) turn these models into bank- and supervisor-facing outputs. Key structural challenges recur throughout: the granularity/complexity trade-off (high for underwriting, low for strategy), gross vs. net exposure (model both), a stark time-horizon mismatch (climate horizons up to 30 years vs. 2-5 year capital/strategic planning), persistent data gaps (no common accounting standards, opaque third-party scrubbing, qualitative-heavy small-counterparty data), and comparability obstacles across jurisdictions and consolidated banking groups.",
+  summary: `<p>The Basel Committee's 2021 report finds climate risk measurement most mature where transition risk maps into credit risk, and still immature everywhere else, physical risk, other risk categories, and long-horizon nonstandard issues. Three data categories feed the pipeline: raw climate/hazard data, exposure-vulnerability data, and financial-impact data. A wide toolkit of models exists (IAM, sensitivity analysis, input-output, CGE, DSGE, OLG, ABM, stress testing), each trading off realism, transparency, and computational cost, and all of them tend to understate extreme/tail events.</p>
+  <p>Broad measurement approaches (ratings/scores, scenario analysis (which contains stress testing and sensitivity analysis as forms) natural capital analysis, climate VaR) turn these models into bank- and supervisor-facing outputs. Key structural challenges recur throughout: the granularity/complexity trade-off (high for underwriting, low for strategy), gross vs. net exposure (model both), a stark time-horizon mismatch (climate horizons up to 30 years vs. 2-5 year capital/strategic planning), persistent data gaps (no common accounting standards, opaque third-party scrubbing, qualitative-heavy small-counterparty data), and comparability obstacles across jurisdictions and consolidated banking groups.</p>`,
 
   quiz: [
     {

@@ -588,7 +588,7 @@ export const conceptLinkTable = [
       88
     ],
     "linkPhrases": [],
-    "snippet": "Tracking error measures how much the investment's return wanders away from its benchmark's return, period to period — the volatility of the excess-return series itself."
+    "snippet": "Tracking error measures how much the investment's return wanders away from its benchmark's return, period to period. The volatility of the excess-return series itself."
   },
   {
     "slug": "central-counterparty-ccp-roles-benefits-shortfalls",
@@ -643,23 +643,6 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "This says: take the actual joint probability that both firms default, subtract what that joint probability WOULD be if the two firms' defaults were completely unrelated (π₁×π₂), and scale the result by each firm's own..."
-  },
-  {
-    "slug": "hurdle-rate-after-tax",
-    "name": "Hurdle rate (after-tax)",
-    "display": "Hurdle rate",
-    "layer": "core",
-    "kind": "formula",
-    "homeReading": 56,
-    "refs": [
-      21,
-      56,
-      75,
-      78,
-      90
-    ],
-    "linkPhrases": [],
-    "snippet": "The hurdle rate is the minimum after-tax return the firm's equity investors require, RAROC must clear this bar the same way an IRR must clear a project's discount rate."
   },
   {
     "slug": "legal-risk-as-an-outsourcing-risk",
@@ -744,7 +727,7 @@ export const conceptLinkTable = [
       84
     ],
     "linkPhrases": [],
-    "snippet": "Costs of changing allocations (commissions, spreads) — reduce active returns, and are typically LESS uncertain than alphas but still uncertain."
+    "snippet": "Costs of changing allocations (commissions, spreads), reduce active returns, and are typically LESS uncertain than alphas but still uncertain."
   },
   {
     "slug": "unexpected-loss-single-asset",
@@ -810,6 +793,22 @@ export const conceptLinkTable = [
     ],
     "linkPhrases": [],
     "snippet": "Q(t) = 1- e^{- \\lambda t} for constant hazard rate \\lambda. Approximate: \\lambda ≈ s(T)/(1−RR) for a bond priced near par."
+  },
+  {
+    "slug": "hurdle-rate-after-tax",
+    "name": "Hurdle rate (after-tax)",
+    "display": "Hurdle rate",
+    "layer": "core",
+    "kind": "formula",
+    "homeReading": 56,
+    "refs": [
+      21,
+      56,
+      75,
+      78
+    ],
+    "linkPhrases": [],
+    "snippet": "The hurdle rate is the minimum after-tax return the firm's equity investors require, RAROC must clear this bar the same way an IRR must clear a project's discount rate."
   },
   {
     "slug": "liquidity-adjusted-var-lvar",

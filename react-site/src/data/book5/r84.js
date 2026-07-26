@@ -237,7 +237,7 @@ export default ({
         "Stock D should be excluded from the portfolio entirely."
       ],
       answer: 1,
-      why: "The two-step alpha-coverage procedure explicitly sets the alpha of a benchmark stock with no forecast to ZERO, meaning the manager takes no active bet on it and simply holds it at its benchmark weight. It is the FORECASTED stocks (A and B) whose alphas get adjusted (a benchmark-weighted measure is subtracted from each) to keep the whole set benchmark-neutral. Averaging A and B's alphas or assigning the benchmark's own alpha would invent information the manager doesn't actually have; excluding D entirely isn't consistent with benchmark tracking."
+      why: "The two-step alpha-coverage procedure explicitly sets the alpha of a benchmark stock with no forecast to ZERO, meaning the manager takes no active bet on it and simply holds it at its benchmark weight. It is the two FORECASTED stocks whose alphas get adjusted (a benchmark-weighted measure is subtracted from each) to keep the whole set benchmark-neutral. Averaging the two forecast alphas, or assigning the benchmark's own alpha, would invent information the manager does not actually have, and dropping the unforecast stock from the portfolio altogether is inconsistent with tracking the benchmark at all."
     }
   ],
 
