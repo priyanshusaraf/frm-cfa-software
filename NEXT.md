@@ -1,3 +1,3 @@
-DONE: Return-to-Reading now sits at the far left over the Study sidebar with a purple-to-pink gradient border, the sidebar reserves 5rem bottom padding so Settings clears it, and the light theme was softened off pure white / near-black.
-NEXT: Run content-sonnet-clearance wave 14 (r66-r70) per docs/superpowers/content-run-protocol.md section 2.
-BLOCKERS: coverage-audit.mjs title matching is off (r68 audited against the wrong source section); fixing it before the wave.
+DONE: content-sonnet-clearance wave 14 (r66-r70) cleared and gated: 0 dashes, 15 coverage candidates all judged false positives, validator/ai-tells/import/build green, all five chapters render marker-clean with real content.
+NEXT: Run wave 15 (r71-r75) per react-site/docs/superpowers/content-run-protocol.md section 2.
+BLOCKERS: none. (Wave 13 left no content-guidelines.md entry; recorded there as a gap rather than reconstructed.)

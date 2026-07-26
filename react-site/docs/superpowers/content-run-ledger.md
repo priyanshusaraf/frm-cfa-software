@@ -38,6 +38,17 @@ candidates, not confirmed holes; each needs a human or Opus judgment.
 
 Worst first: r99, r31, r64, r68, r23, r24, r72, r27, r59, r37, r57, r39.
 
+**Amended 2026-07-26 (wave 14): that report was partly bogus.** `coverage-audit.mjs`
+scored a candidate section by overlap normalized by the SHORTER title, which
+saturates at 1 for any source title whose words are a subset of the reading's, and
+the earliest such section won the tie. Five readings were audited against the wrong
+chapter: r3 (against NON-PARAMETRIC APPROACHES), r23 (against CREDIT RISK
+MANAGEMENT), r31 (against CREDIT DERIVATIVES), r68 (against LIQUIDITY RISK) and r72
+(against LIQUIDITY RISK). r68's seventeen "gaps" were entirely phantom; it has none.
+Fixed in commit dd4e559 and `coverage-report.json` regenerated, so the worst-first
+list above is stale for r31, r23, r68 and r72 specifically. **Anyone resuming the
+back-audit must re-read the report, not this paragraph's ordering.**
+
 r6 has no Schweser section at all ("Messages From the Academic Literature" is
 absent from `Book 1 (1).md`), so it cannot be coverage-audited from the books.
 
@@ -124,11 +135,11 @@ in `notes` (keep it to one line; real detail goes in `content-guidelines.md`).
 | 63 | 4 | Liquidity Risk | done | done | 13 | pass | Six-sources def trimmed, full enumeration verified intact in breakdown. Deposit instability now carries its mechanism, closing this reading's own reference defect. |
 | 64 | 4 | Liquidity and Leverage | done | done | 13 | pass | Dash purge; leverage arithmetic (150/100=1.5, 200/100=2.0, Reg T 1/h=2.0) all reproduced. Fixed a quiz why that named distractors by position under shuffling. |
 | 65 | 4 | Early Warning Indicators | done | done | 13 | pass | Clean dash purge; no numeric or directional token changed anywhere in the file. |
-| 66 | 4 | The Investment Function in Financial-Services Management | done | todo | 14 | - | |
-| 67 | 4 | Liquidity and Reserves Management: Strategies and Policies | done | todo | 14 | - | |
-| 68 | 4 | Intraday Liquidity Risk Management | done | todo | 14 | - | |
-| 69 | 4 | Monitoring Liquidity | done | todo | 14 | - | |
-| 70 | 4 | The Failure Mechanics of Dealer Banks | done | todo | 14 | - | |
+| 66 | 4 | The Investment Function in Financial-Services Management | done | done | 14 | pass | Coverage flags all false positives. Meta-references purged (source nicknames, 'the site moves on'); an unsourced '270 days by statute' fact removed. |
+| 67 | 4 | Liquidity and Reserves Management: Strategies and Policies | done | done | 14 | pass | Rewrote the exam paragraph, which carried both a GARP meta-reference and a 'matching-style' question shape that does not exist. |
+| 68 | 4 | Intraday Liquidity Risk Management | done | done | 14 | pass | Two enumerated defs trimmed (288 and 322 words); the paired-dash rule ate a paren in the governance breakdown, rewritten by hand. |
+| 69 | 4 | Monitoring Liquidity | done | done | 14 | pass | Clean apart from dashes and one highYield why that cited its own flagging. |
+| 70 | 4 | The Failure Mechanics of Dealer Banks | done | done | 14 | pass | Lightest file of the wave: one dash, plus two 'the reading states' meta-references. |
 | 71 | 4 | Liquidity Stress Testing | done | todo | 15 | - | |
 | 72 | 4 | Liquidity Risk Reporting and Stress Testing | done | todo | 15 | - | |
 | 73 | 4 | Contingency Funding Planning | done | todo | 15 | - | |

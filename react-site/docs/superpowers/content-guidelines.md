@@ -697,3 +697,67 @@ titles and breakdown points.
 restored their em-dashes, because HEAD predated this wave's purge. Any bulk restore has to
 be followed by re-running the dash pass on the touched files. Caught by the per-file dash
 count, which is why that check runs after every step and not only at the end.
+
+### Wave 13 (R61-R65, 2026-07-26): no entry was written
+
+The wave-13 gate updated the ledger rows but never wrote its section here, so its
+learnings exist only as the one-line notes in `content-run-ledger.md`. Recorded as a
+gap rather than reconstructed, because inventing what a gate "probably" learned is
+worse than admitting it was skipped. **The gate is not done until this file has a
+section for the wave** (protocol section 2b item 5).
+
+### Wave 14 (R66-R70, Book 4, 2026-07-26): a broken audit tool, and what a dash pass does to a list
+
+**The coverage audit had been matching the wrong source chapter, and the gate could
+not have seen it.** `coverage-audit.mjs` picks a source section by title similarity
+normalized by the SHORTER of the two titles. That number saturates at 1 whenever one
+title's content words are a subset of the other's, so the source's "LIQUIDITY RISK"
+tied with the real "INTRADAY LIQUIDITY RISK MANAGEMENT" for r68 and, sitting earlier
+in the book, won the `>` comparison. r68 was audited against r63's chapter and
+reported seventeen missing terms (Northern Rock, Metallgesellschaft, liquidity black
+holes) that belong to a different reading entirely. Five readings were affected;
+three of them, r3, r23 and r31, were cleared in earlier waves under a bogus audit.
+
+The tell was in the output all along and is worth learning to read: the audit prints
+the learning objectives it matched, and r68's said **LO 64.x** when every neighbour
+printed LO 67.x, 68.x, 69.x. **If the LO numbers in an audit do not sit in a run with
+the readings around them, the tool has matched the wrong chapter. Check before
+acting on a single line of its output.** Exact titles now short-circuit the scorer,
+and ties break on overlap normalized by the LONGER title.
+
+**All 15 coverage candidates across the five readings were false positives.** The
+tool's own documented false-positive rate held: r66's "money market investments"
+and "capital market investments" are literally breakdown block titles; r67's "market
+signals/discipline approach" is one of the four approaches it teaches at length;
+r70's two flagged topics both have their own breakdown block. Nothing was added.
+
+**The pattern-assisted dash pass has a THIRD failure mode, and it hits lists
+hardest.** Wave 12 documented the paired rule eating parentheses and the fallback
+comma creating splices. Both recurred (r68's governance breakdown came out as
+"the three lines of defense (treasury, corporate risk management) emphasized here,
+internal audit)"). The new one: **a `breakdown[].points` entry is almost always
+"Term, then its definition", and the dash separating them is the only thing marking
+where the term ends.** Turned into a comma it reads as apposition and the term
+dissolves into the sentence ("Commercial paper, unsecured discount paper from large
+corporations, typically 90 days or less"). Turned into a full stop it reads as a
+fragment ("Cash balances. Held at the central bank"). **The correct replacement in a
+list item is a COLON, and the script cannot know that**, because the same dash in
+prose usually wants a full stop. Practical rule for future waves: run the script
+over the prose fields, then walk `breakdown[]` and every `concepts[].def` by hand and
+convert term-separator dashes to colons. Grep for the artifact afterwards:
+`grep -oE '"[A-Z][^":]{5,60}(, |\. )[a-z]' src/data/bookN/rNN.js` lists every list
+item whose leading term now runs into its definition.
+
+**The validator's option-letter check false-positives on credit ratings.** r66's quiz
+why said "BB to B and B to CCC are both already below the investment-grade line",
+which matches the `[A-D] and [A-D]` rule written to catch "B and C are both wrong".
+Rewriting the sentence to name the ratings by description rather than by pair was
+cheaper than loosening a rule that exists for a real reason. Expect this on any
+reading that discusses rating migration.
+
+**Owner-caught style, still live: never say the material is testable.** Several whys
+in this wave asserted their own examinability ("a specific, testable directional
+fact", "explicitly flagged as a frequently tested distinction", "GARP likes to test
+this"). Rule 1 bans meta-references to the source; this is the same tell pointed at
+the exam. Say what the trap IS, not that a trap exists: "the wrong option is simply
+the correct fact reversed" teaches; "this is testable" does not.
