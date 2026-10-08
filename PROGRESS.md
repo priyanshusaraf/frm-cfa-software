@@ -4,6 +4,20 @@ Single source of truth for **where development stands**, so work can resume even
 session dies or limits run out. Scope of all work: **`react-site/` only** — the vanilla
 `site/` app is frozen. Full design: `docs/superpowers/specs/2026-07-18-react-marketable-design.md`.
 
+> **⏭ CFA LEVEL II FSA PLATFORM (started 2026-10-07, owner directive).** The owner moved the
+> focus to CFA Level II Financial Statement Analysis: thorough first-principles explanations,
+> animations of every treatment across all four statements, demo companies, and a game where
+> the student reconstructs the statements (cells go green, then "confirmation runs" audit
+> their own numbers). Lives at `/cfa/fsa` in `react-site/src/cfa/fsa/` with its own layout;
+> the FRM app is untouched apart from a nav link, palette entries and an optional `cfa.fsa`
+> store slice. Read `react-site/src/cfa/fsa/README.md` (the contract) before touching it.
+> Engine: `engine/ledger.js` derives IS, OCI, BS and CFS from journal entries, so scenarios
+> cannot show statements that do not balance; `npm test` runs every scenario and every
+> practice round. Per-module gate: `node scripts/fsa-check.mjs lmNN`. Scope is the 2026 LOS
+> in `content/curriculum.js`; the owner's CFA books were NOT available in the cloud, so the
+> content is not yet reconciled against them (`react-site/docs/cfa/fsa-curriculum-reconciliation.md`).
+> Module status is in the CFA table at the end of this file.
+
 > **⏭ HARD-CONCEPT SEQUENCING: CVA PILOT SHIPPED (2026-07-27).** All four content phases
 > were already complete; this is the build the ledger had recorded as OPEN and the owner
 > scheduled it. `/concept/cva` is an authored, self-contained Core Concept page that
@@ -750,3 +764,15 @@ bookmark toggles, both corner pills, and the resize handle present.
   build green, chapters render marker-clean with real content.
 - **OPEN, carried into the next phase**: 29 AI-voice tells across 20 readings (r2-r61,
   all from waves 1-13). `node scripts/ai-tells.mjs --all` is the worklist.
+
+
+## CFA Level II FSA platform: module status
+
+| Module | Content | Scenarios | Widgets | Notes |
+|---|---|---|---|---|
+| LM10 Intercorporate Investments | done (orchestrator) | 9 | none | reference module for voice and depth |
+| LM11 Employee Compensation | in progress | | PensionLab, StockOptionLab | |
+| LM12 Multinational Operations | in progress | | FxTranslator, HyperinflationLab, FxSalesLab | |
+| LM13 Financial Institutions | in progress | | CamelsLab, InsurerLab | |
+| LM14 Quality of Financial Reports | in progress | | AccrualsLab, BeneishLab, ManipulationRadar | |
+| LM15 Integration of FSA Techniques | in progress | | DupontLab, AdjustmentsLab | |

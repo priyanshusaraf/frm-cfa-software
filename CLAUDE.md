@@ -41,6 +41,13 @@ Do both of these **without being asked, every time**, not just at the end of a s
    lines, one action in `NEXT` (not a list). A fresh session reads `NEXT.md` first, then
    `PROGRESS.md`, then the run ledger.
 
+## CFA Level II FSA platform (added 2026-10-07)
+
+The owner is now also preparing for CFA Level II. A separate FSA platform lives at
+`/cfa/fsa` in `react-site/src/cfa/fsa/`. Its binding contract is
+`react-site/src/cfa/fsa/README.md`; its scope is the 2026 LOS in `content/curriculum.js`.
+The CFA books are not in this repo yet; until they are, flag rather than guess.
+
 ## What this is — READ THIS FIRST
 
 An **interactive learning website for the FRM Part II exam** (5 books, 101 readings). There
