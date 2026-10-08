@@ -782,6 +782,6 @@ Totals: 66 sections, 33 animated scenarios, 243 reconstruct rounds, 14 widgets, 
 official 2026 topic outline (2026-10-08). Independent reviewers recomputed every number in
 every module and fixed about 60 defects. Verified 2026-10-08: all six module gates OK, npm test 167/167,
 build green, CFA Institute 2026 errata applied (goodwill impairment now one-step, R&D, JV, VIE, contingent liabilities), 25 flags closed by research, then an exam-safe pass closed 26 of the last 27 (certain points in the main text, uncertain ones labelled beyond the curriculum, model notes next to widgets; Beneish AQI now per Beneish 1999). Headless sweep of 46 pages (every scenario played through), widget fuzz of every LM11 to LM15 widget control,
-all clean. Fixed: the Lab kept the old step index when you switched scenario (Theater now keyed by scenario id). Not verified by the owner in a real browser yet.
+all clean. Fixed: the Lab kept the old step index when you switched scenario (Theater now keyed by scenario id); formula sheets and one LM14 item set scrolled sideways at phone width (grid items now min-width 0); every FSA page checked at 390px with no horizontal scroll. Not verified by the owner in a real browser yet.
 NEXT for CFA: owner commits the books under cfa-l2/; then close the 1 open flag (LM11 content source) and run the
 line-by-line checklist in react-site/docs/cfa/fsa-curriculum-reconciliation.md.
