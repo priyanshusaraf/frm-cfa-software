@@ -34,9 +34,9 @@ not reach them, so this file records what was used instead and what still has to
    and key points), LM12 (transaction gain/loss presentation, remeasurement terminology,
    CTA reclassified on disposal, sustainability of volume/price growth), LM14 (the seven
    evaluation steps), LM15 (Nestle case). No public summary was found for LM13.
-4. **Independent accuracy review.** Each of LM11 to LM15 was re-audited by a separate
-   reviewer who recomputed every number; 42 defects were fixed (see git history,
-   commit "independent accuracy review").
+4. **Independent accuracy review.** Every module (LM10 to LM15, plus LM11's rebuilt
+   sections) was re-audited by a separate reviewer who recomputed every number; about 60
+   defects were fixed in total (see git history).
 
 ## Deliberately out of scope
 
@@ -61,13 +61,14 @@ module:
 5. Spot-check two worked examples per module against the book's example format, so exam
    arithmetic conventions (signs, rounding, which rate is "average") match.
 
-## Open flags, all modules (51, generated from each module's `flags` array)
+## Open flags, all modules (52, generated from each module's `flags` array)
 
 Each item must be checked against the owner's edition of the curriculum, then fixed and removed from the module file. Flags closed so far by public CFA Institute sources are recorded in git history.
 
-### LM10 Intercorporate Investments (2 flags)
+### LM10 Intercorporate Investments (3 flags)
 - (LOS 10a) Equity-method impairment reversal: curriculum wording may say neither standard permits reversal; IAS 28 permits it. Verify against the owner's book.
-- (LOS 10a) Contingent liabilities in a business combination: exact IFRS vs US GAAP recognition wording not yet included; add once checked against the book.
+- (LOS 10b) Contingent liabilities in a business combination: the US GAAP row uses the curriculum's contractual / more-likely-than-not wording. Current ASC 805 recognizes them at fair value when that is determinable during the measurement period, otherwise if probable and reasonably estimable. Verify which the 2026 book prints.
+- (LOS 10a) Disclosures section summarizes IFRS 7/12/13 and ASC 805/810 requirements at an analyst level; check the 2026 book for any specific disclosure list it expects candidates to know.
 
 ### LM11 Employee Compensation: Post-Employment and Share-Based (17 flags)
 - (LOS 11a) LOS replaced 2026-10-08 with the official 2026 topic outline (five LOS). Section content for LOS a and c to e was rebuilt from the CFA Institute 2026 refresher summary and third-party notes, not from the reading itself; verify against the book when it is in the repo.

@@ -180,7 +180,7 @@ export default {
         {
           t: "p",
           html: `<p>The theater used a bond bought at par to keep the picture clean. Bonds bought at a discount or premium need one more idea. Suppose Pinnacle pays 956.71 for a five-year, 4% annual-coupon, 1,000 par bond because the market yield is 5%. Pinnacle will receive 40 a year plus 1,000 at maturity, so it is going to earn 5% a year on what it paid, not 4%.</p>
-<p>The effective interest method books exactly that 5%: interest income is the carrying amount times the market yield at purchase. Year one income is \\(956.71 \\times 5\\% = 47.84\\). Only 40 arrives as cash; the other 7.84 is added to the bond's carrying amount (the discount amortizes). Next year the carrying amount is 964.55 and interest income is 48.23. By maturity the carrying amount has climbed to exactly 1,000. A premium bond works in reverse: interest income is below the coupon and the carrying amount falls toward par.</p>`,
+<p>The effective interest method books exactly that 5%: interest income is the carrying amount times the market yield at purchase. Year one income is \\(956.71 \\times 5\\% = 47.84\\). Only 40 arrives as cash; the other 7.84 is added to the bond's carrying amount (the discount amortizes). Next year the carrying amount is \\(956.71 + 7.84 = 964.55\\) and interest income is \\(964.55 \\times 5\\% = 48.23\\). By maturity the carrying amount has climbed to exactly 1,000. A premium bond works in reverse: interest income is below the coupon and the carrying amount falls toward par.</p>`,
         },
         {
           t: "formula",
@@ -229,7 +229,7 @@ export default {
         {
           t: "p",
           html: `<p>Now Pinnacle owns 30% of Kestrel and sits on its board. Why not just carry the stake at fair value like the 4% holding?</p>
-<p>Two reasons. First, Kestrel may not be listed, so there may be no price. Second, and more important, Pinnacle can influence Kestrel's dividend policy. If Pinnacle recognized income only when dividends arrived (the old cost method), it could manufacture profit in a bad year by voting for a big dividend. The income would reflect Pinnacle's influence over the payout, not Kestrel's performance.</p>
+<p>Kestrel may not be listed, so there may be no price to mark to. More important, Pinnacle can influence Kestrel's dividend policy. If Pinnacle recognized income only when dividends arrived (the old cost method), it could manufacture profit in a bad year by voting for a big dividend. The income would reflect Pinnacle's influence over the payout, not Kestrel's performance.</p>
 <p>The equity method fixes that by recognizing Pinnacle's share of Kestrel's <b>earnings</b> as they are earned, whatever is paid out. It is often called one-line consolidation: Pinnacle's share of everything Kestrel owns and owes, net, sits in a single asset line, and Pinnacle's share of Kestrel's profit sits in a single income statement line.</p>`,
         },
         {
@@ -388,7 +388,8 @@ export default {
           head: ["Item", "Treatment (both standards unless noted)"],
           rows: [
             ["Acquisition-related costs (advisers, lawyers)", "Expensed as incurred. Never added to goodwill."],
-            ["Contingent consideration (earn-outs)", "Recognized at fair value at the acquisition date as part of the price. If classified as a liability, remeasured each period with changes in profit; if equity, not remeasured."],
+            ["Contingent consideration (earn-outs)", "Recognized at fair value at the acquisition date as part of the price, so it is inside the goodwill calculation. If classified as a liability, remeasured each period with changes in profit; if equity, not remeasured. Later changes go to profit, not goodwill, because they reflect events after the acquisition date rather than what was bought on that date."],
+            ["Contingent liabilities of the target", "IFRS: recognized at fair value if it is a present obligation arising from past events and its fair value can be measured reliably, even when an outflow is not probable (a lower bar than outside a business combination). US GAAP, as the curriculum states it: contractual contingent liabilities at acquisition-date fair value; non-contractual ones only if it is more likely than not that they meet the definition of a liability."],
             ["In-process research and development", "Recognized as a separate intangible asset at fair value."],
             ["Restructuring costs the acquirer plans", "Not part of the acquisition accounting: expensed later when incurred (unless the target already had the obligation)."],
             ["Bargain purchase", "Gain recognized in profit at the acquisition date, after reassessing the fair values."],
@@ -470,7 +471,7 @@ export default {
           t: "p",
           html: `<p>A special purpose entity (SPE) is a legal shell created for one narrow job: holding leased assets, buying a company's receivables, funding a project. Its owners on paper often hold almost no equity, sometimes a sliver of it, while the sponsoring company designs the structure, guarantees the debt, or takes the first losses.</p>
 <p>That is exactly why a voting-shares test fails. If Pinnacle holds 0% of the SPE's votes but absorbs most of its losses, a "no control, no consolidation" rule would let Pinnacle keep the SPE's debt off its balance sheet while bearing its risk. Enron is the case everyone remembers.</p>
-<p>So both standards look through the votes. Under <b>IFRS 10</b> the general control model applies: does Pinnacle have power over the relevant activities, exposure to variable returns, and the ability to use that power to affect those returns? Under <b>US GAAP</b>, an entity whose equity at risk is too small to finance it, or whose equity holders lack the usual rights, is a <b>variable interest entity</b> (VIE). It is consolidated by its <b>primary beneficiary</b>: the party with the power to direct the activities that most significantly affect the VIE's performance AND the obligation to absorb its losses or the right to receive its benefits.</p>`,
+<p>So both standards look through the votes. Under <b>IFRS 10</b> the general control model applies: does Pinnacle have power over the relevant activities, exposure to variable returns, and the ability to use that power to affect those returns? Under <b>US GAAP</b>, an entity whose equity at risk is too small to finance it, or whose equity holders lack the usual rights, is a <b>variable interest entity</b> (VIE). It is consolidated by its <b>primary beneficiary</b>: the party with the power to direct the activities that most significantly affect the VIE's performance AND the obligation to absorb its losses or the right to receive its benefits. The curriculum also describes the primary beneficiary in risk-and-reward terms: the party that absorbs the majority of the VIE's expected losses, receives the majority of its expected residual returns, or both. In a vignette, look for the party that guarantees the vehicle's debt or holds its first-loss piece.</p>`,
         },
         { t: "theater", scenario: "lm10-spe-securitization" },
         {
@@ -486,6 +487,30 @@ export default {
           options: ["Higher cash from operations and lower debt", "Lower cash from operations and higher debt", "The same cash from operations and higher debt"],
           answer: 1,
           why: "Consolidated, the receivables stay on the balance sheet and the cash received is a borrowing: a financing inflow plus a new liability. Sale treatment would have shown an operating inflow and no debt.",
+        },
+      ],
+    },
+
+    /* ------------------------------------------------------------ */
+    {
+      id: "disclosures",
+      title: "Disclosures: what the notes give back",
+      los: ["a", "b"],
+      blocks: [
+        {
+          t: "p",
+          html: `<p>Every method above compresses something. The equity method hides an associate's revenue and debt inside one line; consolidation hides which assets came from the acquisition; amortized cost hides the market price. Both IFRS and US GAAP require notes that let a reader undo some of that compression, and an analyst who wants a comparable picture across companies starts there.</p>`,
+        },
+        {
+          t: "table",
+          caption: "Where to look in the notes",
+          head: ["Investment", "What the notes add", "What the analyst does with it"],
+          rows: [
+            ["Financial assets", "Carrying amounts by category (FVPL, FVOCI, amortized cost), the fair value of assets carried at amortized cost, and the level of the fair value hierarchy behind each measurement (quoted prices, observable inputs, or unobservable inputs)", "Judge how much of income and equity rests on model-based values, and restate income as if a different classification had been used"],
+            ["Associates and joint ventures", "The judgments behind significant influence or joint control (for example a stake below 20% treated as an associate) and summarized financial information of material investees", "Build a proportionate view: add back the share of revenue, assets and debt the single line hides"],
+            ["Business combinations", "Consideration paid, the fair values assigned to the main classes of assets and liabilities, goodwill, how the NCI was measured, acquisition-related costs, and the acquiree's results since the acquisition date", "Separate acquired growth from organic growth, and see how much of the price is goodwill rather than identifiable assets"],
+            ["Special purpose and variable interest entities", "The nature of the involvement, the assets and liabilities of consolidated vehicles, and the maximum exposure to loss from vehicles that are not consolidated", "Decide whether an off-balance-sheet vehicle belongs back on the balance sheet for leverage analysis"],
+          ],
         },
       ],
     },
@@ -512,9 +537,9 @@ export default {
             ["Equity", "Parent only", "Parent only", "Parent + NCI (highest)"],
             ["Net profit margin", "Highest", "Middle", "Lowest"],
             ["Return on assets", "Highest", "Middle", "Lowest"],
-            ["Leverage (debt to equity)", "Lowest", "Higher", "Higher (NCI in equity partly offsets)"],
+            ["Leverage (liabilities to equity)", "Lowest", "Middle", "Highest (the NCI added to equity only partly offsets the extra liabilities)"],
           ],
-          note: "The acquisition method's NCI sits in equity, which pulls debt to equity back down. Compare the actual numbers in the theater ratio table rather than memorizing a ranking for leverage.",
+          note: "The acquisition method brings in ALL of the investee's liabilities but adds only the NCI to equity, so leverage still ends highest in the usual case. In the theater above, liabilities to equity is 0.44x, 0.53x and 0.54x.",
         },
         {
           t: "callout",
@@ -643,6 +668,7 @@ export default {
 
   flags: [
     { los: "a", note: "Equity-method impairment reversal: curriculum wording may say neither standard permits reversal; IAS 28 permits it. Verify against the owner's book." },
-    { los: "a", note: "Contingent liabilities in a business combination: exact IFRS vs US GAAP recognition wording not yet included; add once checked against the book." },
+    { los: "b", note: "Contingent liabilities in a business combination: the US GAAP row uses the curriculum's contractual / more-likely-than-not wording. Current ASC 805 recognizes them at fair value when that is determinable during the measurement period, otherwise if probable and reasonably estimable. Verify which the 2026 book prints." },
+    { los: "a", note: "Disclosures section summarizes IFRS 7/12/13 and ASC 805/810 requirements at an analyst level; check the 2026 book for any specific disclosure list it expects candidates to know." },
   ],
 };

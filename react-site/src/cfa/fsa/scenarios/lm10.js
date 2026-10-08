@@ -69,7 +69,7 @@ const finAssetsDebt = {
       },
       insight:
         "Total assets are now LOWER under amortized cost than under the other two. Net income is HIGHEST under FVPL. Equity is the same under FVOCI and FVPL, because OCI is still equity.",
-      exam: "Classic item-set question: which classification reports the highest net income when prices rise? FVPL. The highest equity? FVOCI and FVPL tie.",
+      exam: "A classic item-set question asks which classification reports the highest net income when prices rise: FVPL, because only FVPL sends the unrealized gain to profit. Equity is highest under FVOCI and FVPL equally, because OCI is part of equity; amortized cost reports the lowest assets and equity.",
     },
     {
       title: "Close the year",
@@ -233,7 +233,7 @@ const equityMethod = {
         "The dividend is NOT income. Pinnacle already recognized its share of Kestrel's profit; the dividend simply converts part of that share into cash. So cash rises by 12 and the investment falls by 12. Profit does not move.",
       entries: [dr("cash", 12, "CFO", "Dividends received from associate"), cr("inv", 12)],
       insight:
-        "This is why equity-method investors can manipulate nothing by squeezing out dividends, and why the investment line can grow while cash does not.",
+        "Because dividends never touch income, an investor with significant influence cannot manufacture profit by voting for a bigger payout. It is also why the investment line can grow while cash does not.",
       exam: "Dividends received are operating cash flows under US GAAP. IFRS allows operating or investing. Ending investment: 300 + 30 - 3 - 12 = 315.",
     },
     {
@@ -448,7 +448,7 @@ const worksheet = {
     {
       title: "Eliminate the investment against Kestrel's equity",
       html:
-        "One elimination entry does four jobs. It removes Kestrel's pre-acquisition equity (share capital 400 and retained earnings 300), because a group cannot own shares in itself. It removes Pinnacle's investment of 800. It writes Kestrel's plant up to fair value (+100). And it books goodwill of 200 and a non-controlling interest of 200 to make the entry balance. The consolidated column is now the published balance sheet.",
+        "The elimination entry removes Kestrel's pre-acquisition equity (share capital 400 and retained earnings 300), because a group cannot own shares in itself. It removes Pinnacle's investment of 800. It writes Kestrel's plant up to fair value (+100). And it books goodwill of 200 and a non-controlling interest of 200 to make the entry balance. The consolidated column is now the published balance sheet.",
       entries: {
         E: [dr("sc", 400), dr("re", 300), dr("ppe", 100), dr("gw", 200), cr("invSub", 800), cr("nciEq", 200)],
       },
@@ -466,7 +466,7 @@ const worksheet = {
     {
       title: "Year-end eliminations: extra depreciation and the NCI's share",
       html:
-        "Two adjustments. First, the group owns Kestrel's plant at fair value, so it depreciates the 100 step-up: 100 / 10 years = 10. Second, the NCI is entitled to 20% of Kestrel's profit as the GROUP measures it: 20% x (150 - 10) = 28. Consolidated net income is 300 + 150 - 10 = 440, of which 28 belongs to the NCI and 412 to Pinnacle.",
+        "The group owns Kestrel's plant at fair value, so it depreciates the 100 step-up: 100 / 10 years = 10. Kestrel's own books only depreciate book value, so this extra charge exists only on the worksheet. The NCI is entitled to 20% of Kestrel's profit as the GROUP measures it: 20% x (150 - 10) = 28. Consolidated net income is 300 + 150 - 10 = 440, of which 28 belongs to the NCI and 412 to Pinnacle.",
       entries: { E: [dr("dep", 10), cr("ppe", 10), dr("nciAlloc", 28), cr("nciEq", 28)] },
       insight:
         "Check: under the equity method Pinnacle would report 300 + 80% x (150 - 10) = 412. Consolidation and the equity method give the SAME net income to the parent; consolidation just shows all the lines that produce it.",
@@ -565,7 +565,7 @@ const gwImpairment = {
     {
       title: "Run the impairment test and book the loss",
       html:
-        "Facts: the unit's carrying amount including goodwill is 1,400 (identifiable net assets 1,200 + goodwill 200). Its recoverable amount, and its fair value, is 1,300. The fair value of its identifiable net assets is 1,250. IFRS compares carrying amount with recoverable amount in ONE step: 1,400 - 1,300 = 100, charged first against goodwill. US GAAP, as the curriculum presents it, first asks IF there is impairment (fair value 1,300 below carrying 1,400: yes), then MEASURES it by computing implied goodwill: 1,300 - 1,250 = 50. The loss is 200 - 50 = 150.",
+        "Facts: the unit being tested is Kestrel's operating business (the cash and liabilities on this balance sheet sit outside it). Its carrying amount including goodwill is 1,400 (identifiable net operating assets 1,200 + goodwill 200). Its recoverable amount, and its fair value, is 1,300. The fair value of its identifiable net assets is 1,250. IFRS compares carrying amount with recoverable amount in ONE step: 1,400 - 1,300 = 100, charged first against goodwill. US GAAP, as the curriculum presents it, first asks IF there is impairment (fair value 1,300 below carrying 1,400: yes), then MEASURES it by computing implied goodwill: 1,300 - 1,250 = 50. The loss is 200 - 50 = 150.",
       entries: {
         ifrs: [dr("impair", 100), cr("gw", 100)],
         gaap: [dr("impair", 150), cr("gw", 150)],

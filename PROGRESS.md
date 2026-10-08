@@ -777,11 +777,11 @@ bookmark toggles, both corner pills, and the resize handle present.
 | LM14 Quality of Financial Reports | done | 6 | AccrualsLab, BeneishLab, ManipulationRadar | |
 | LM15 Integration of FSA Techniques | done | 4 | DupontLab, AdjustmentsLab | case company confirmed as Nestle |
 
-Totals: 65 sections, 33 animated scenarios, 241 reconstruct rounds, 14 widgets, 18 item sets,
+Totals: 66 sections, 33 animated scenarios, 241 reconstruct rounds, 14 widgets, 18 item sets,
 137+ flashcards, a timed mock exam. LOS text and letters VERIFIED against CFA Institute's
 official 2026 topic outline (2026-10-08). Independent reviewers recomputed every number in
-LM11-LM15 and fixed 42 defects. Verified 2026-10-08: all six module gates OK, npm test 167/167,
+every module and fixed about 60 defects. Verified 2026-10-08: all six module gates OK, npm test 167/167,
 build green, headless sweep of 46 pages (every scenario played through), widget fuzz of 444
 control actions, all clean. Not verified by the owner in a real browser yet.
-NEXT for CFA: owner commits the books under cfa-l2/; then resolve the 51 open flags in
+NEXT for CFA: owner commits the books under cfa-l2/; then resolve the 52 open flags in
 react-site/docs/cfa/fsa-curriculum-reconciliation.md.
