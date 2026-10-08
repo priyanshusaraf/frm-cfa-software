@@ -45,6 +45,13 @@ const BlockReview = lazy(() => import("./pages/BlockReview.jsx"));
 const CaseStudy = lazy(() => import("./pages/CaseStudy.jsx"));
 const Consistency = lazy(() => import("./pages/Consistency.jsx"));
 const Pomodoro = lazy(() => import("./pages/Pomodoro.jsx"));
+/* CFA Level II FSA platform (src/cfa/fsa): its own layout and sidebar. */
+const FsaHome = lazy(() => import("./cfa/fsa/pages/FsaHome.jsx"));
+const FsaModule = lazy(() => import("./cfa/fsa/pages/FsaModule.jsx"));
+const FsaLab = lazy(() => import("./cfa/fsa/pages/FsaLab.jsx"));
+const FsaPractice = lazy(() => import("./cfa/fsa/pages/FsaPractice.jsx"));
+const FsaReference = lazy(() => import("./cfa/fsa/pages/FsaReference.jsx"));
+const FsaCoverage = lazy(() => import("./cfa/fsa/pages/FsaCoverage.jsx"));
 
 function PageLoading() {
   return (
@@ -207,6 +214,15 @@ function Shell() {
             <Route path="/block-review/:blockId" element={<BlockReview />} />
             <Route path="/case-study" element={<CaseStudy />} />
             <Route path="/consistency" element={<Consistency />} />
+            <Route path="/cfa" element={<Navigate to="/cfa/fsa" replace />} />
+            <Route path="/cfa/fsa" element={<FsaHome />} />
+            <Route path="/cfa/fsa/lab" element={<FsaLab />} />
+            <Route path="/cfa/fsa/lab/:sid" element={<FsaLab />} />
+            <Route path="/cfa/fsa/practice" element={<FsaPractice />} />
+            <Route path="/cfa/fsa/practice/:key" element={<FsaPractice />} />
+            <Route path="/cfa/fsa/reference" element={<FsaReference />} />
+            <Route path="/cfa/fsa/coverage" element={<FsaCoverage />} />
+            <Route path="/cfa/fsa/:mid" element={<FsaModule />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Suspense>

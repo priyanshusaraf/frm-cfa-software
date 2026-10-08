@@ -43,6 +43,11 @@
                                                       // pure/testable. Graduation into the SRS queue reuses
                                                       // the existing gradeCard, no second SRS engine.
    }
+     cfa: { fsa: {                                     // OPTIONAL: CFA Level II FSA platform (src/cfa/fsa)
+       practice: { [scenarioId|colId|step]: { stars, ts } }, // best stars 1-3 per reconstruct round
+       read:     { [moduleId]: { [sectionId]: true } },      // sections marked as read
+       checks:   { [checkId]: { ok, ts } },                  // last answer to an inline concept check
+     } },
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
 import { useSyncExternalStore } from "react";
 
@@ -433,4 +438,29 @@ export function importState(json) {
   const obj = JSON.parse(json);
   if (!obj || obj.v !== 1) throw new Error("Unrecognized backup format");
   save(obj);
+}
+
+/* ---- CFA FSA platform (optional `cfa.fsa` slice) ---- */
+function fsaSlice(s) { return (s.cfa && s.cfa.fsa) || {}; }
+function saveFsa(s, patch) {
+  const cfa = s.cfa || {};
+  save({ ...s, cfa: { ...cfa, fsa: { ...fsaSlice(s), ...patch } } });
+}
+export function recordFsaPractice(key, stars, ts) {
+  const s = load();
+  const prev = fsaSlice(s).practice || {};
+  const best = prev[key] && prev[key].stars >= stars ? prev[key].stars : stars;
+  saveFsa(s, { practice: { ...prev, [key]: { stars: best, ts } } });
+}
+export function toggleFsaRead(moduleId, sectionId) {
+  const s = load();
+  const read = fsaSlice(s).read || {};
+  const mod = { ...(read[moduleId] || {}) };
+  if (mod[sectionId]) delete mod[sectionId]; else mod[sectionId] = true;
+  saveFsa(s, { read: { ...read, [moduleId]: mod } });
+}
+export function recordFsaCheck(id, ok, ts) {
+  const s = load();
+  const checks = fsaSlice(s).checks || {};
+  saveFsa(s, { checks: { ...checks, [id]: { ok: !!ok, ts } } });
 }

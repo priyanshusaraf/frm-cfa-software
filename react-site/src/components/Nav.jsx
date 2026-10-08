@@ -10,6 +10,7 @@ import {
   Timer,
   Maximize2,
   Minimize2,
+  Landmark,
 } from "lucide-react";
 import { META } from "../lib/meta.js";
 import { STUDY_GROUPS, STUDY_PATHS } from "../lib/studyNav.js";
@@ -114,6 +115,10 @@ export default function Nav({ onMenuOpenChange }) {
 
       <NavLink to="/search" className={({ isActive }) => "nav-item" + (isActive ? " active" : "")}>
         <Search size={13} className="mr-1 inline -translate-y-px" />Search
+      </NavLink>
+
+      <NavLink to="/cfa/fsa" className={({ isActive }) => "nav-item" + (isActive ? " active" : "")} title="CFA Level II Financial Statement Analysis">
+        <Landmark size={13} className="mr-1 inline -translate-y-px" />CFA FSA
       </NavLink>
 
       {/* .study-nav-trigger is the hook style.css hides at >=1180px on routes that

@@ -25,6 +25,17 @@ const PAGES = [
   { label: "Case study", path: "/case-study" },
   { label: "Consistency", path: "/consistency" },
   { label: "Settings", path: "/settings" },
+  { label: "CFA L2 FSA: overview", path: "/cfa/fsa" },
+  { label: "CFA L2 FSA: animation lab", path: "/cfa/fsa/lab" },
+  { label: "CFA L2 FSA: reconstruct the statements", path: "/cfa/fsa/practice" },
+  { label: "CFA L2 FSA: cheat sheet", path: "/cfa/fsa/reference" },
+  { label: "CFA L2 FSA: curriculum coverage", path: "/cfa/fsa/coverage" },
+  { label: "CFA L2 FSA: LM10 Intercorporate investments", path: "/cfa/fsa/lm10" },
+  { label: "CFA L2 FSA: LM11 Employee compensation", path: "/cfa/fsa/lm11" },
+  { label: "CFA L2 FSA: LM12 Multinational operations", path: "/cfa/fsa/lm12" },
+  { label: "CFA L2 FSA: LM13 Financial institutions", path: "/cfa/fsa/lm13" },
+  { label: "CFA L2 FSA: LM14 Quality of financial reports", path: "/cfa/fsa/lm14" },
+  { label: "CFA L2 FSA: LM15 Integration of FSA techniques", path: "/cfa/fsa/lm15" },
 ];
 
 function stripTags(html) {
