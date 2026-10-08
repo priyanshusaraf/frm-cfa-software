@@ -622,7 +622,13 @@ export default {
         {
           t: "p",
           html: `<p><b>Other post-employment benefits.</b> Many companies also promise retirees medical cover. The promise is defined by the benefit (the care), not by a contribution, so the sponsor bears the risk that medical costs explode, and the accounting is the same as for a DB pension: an obligation measured at present value, a service cost, an interest cost, and actuarial gains and losses. What sets these plans apart in practice is funding and one extra assumption. They are usually <b>unfunded</b> (the sponsor pays claims as they arise), so the whole obligation sits on the balance sheet. And the obligation is driven by the <b>health care cost trend rate</b>, the assumed growth in medical costs, which you will meet again in the assumptions section.</p>
-<p><b>Multi-employer plans</b> pool the contributions of several employers (often in one industry). The curriculum notes that a participant usually accounts for such a plan as defined contribution if there is not enough information to account for its share as defined benefit, which can leave a real deficit off the balance sheet.</p>`,
+`,
+        },
+        {
+          t: "callout",
+          tone: "beyond",
+          title: "Multi-employer plans: IAS 19 background, beyond the 2026 curriculum",
+          html: "Multi-employer plans pool the contributions of several employers, often in one industry. Under IAS 19 a participant accounts for such a plan as defined contribution when it does not have enough information to account for its share as defined benefit, which can leave a real deficit off the balance sheet. This is background on the standard, not a point the 2026 learning outcomes ask you to know.",
         },
         {
           t: "sort",
@@ -710,23 +716,23 @@ export default {
         },
         {
           t: "h",
-          text: "Three measures of the same promise",
+          text: "The obligation both standards measure",
         },
         {
-          t: "table",
-          head: ["Measure", "What it includes", "Maya, end of year 1"],
-          rows: [
-            ["Projected benefit obligation (PBO), US GAAP; present value of the defined benefit obligation, IFRS", "Service to date, valued on PROJECTED final salary. This is the obligation both standards use to measure the liability.", "7,432"],
-            ["Accumulated benefit obligation (ABO), US GAAP disclosure", "Service to date, valued on CURRENT salary, ignoring future pay rises", "\\(2\\% \\times 50{,}000 \\times 1 = 1{,}000\\) a year; \\(1{,}000 \\times 7.7217 / 1.05^4 = 6{,}353\\)"],
-            ["Vested benefit obligation (VBO)", "The part of the obligation employees keep even if they leave now", "0 if benefits vest only after, say, three years of service"],
-          ],
-          note: "For a pay-related plan with expected salary growth, PBO is greater than ABO, which is greater than or equal to VBO. If the plan does not depend on future salary, PBO and ABO are equal.",
+          t: "p",
+          html: `<p>The liability on the balance sheet rests on one measure of the promise: service to date, valued on PROJECTED final salary. US GAAP calls it the <b>projected benefit obligation</b> (PBO); IFRS calls it the present value of the defined benefit obligation. They are the same number. For Maya at the end of year 1 it is 7,432.</p>`,
+        },
+        {
+          t: "callout",
+          tone: "beyond",
+          title: "ABO and VBO: from earlier curricula, not in the 2026 LOS",
+          html: "Earlier Level II curricula also taught two smaller US GAAP measures. The <b>accumulated benefit obligation</b> (ABO) values service to date on CURRENT salary, ignoring future pay rises: for Maya, \\(2\\% \\times 50{,}000 = 1{,}000\\) a year of pension, worth \\(1{,}000 \\times 7.7217 / 1.05^4 = 6{,}353\\). The <b>vested benefit obligation</b> (VBO) is the part employees keep even if they leave now, which is 0 if benefits vest only after, say, three years. For a pay-related plan, PBO is greater than ABO, which is greater than or equal to VBO. The 2026 learning outcomes do not name either measure; they are here only so the terms do not confuse you in older practice material.",
         },
         {
           t: "callout",
           tone: "trap",
           title: "Classic trap",
-          html: "Using current salary to compute the obligation. The PBO (and the IFRS defined benefit obligation) projects salary forward to retirement. Current salary gives the ABO, a smaller number that is only disclosed under US GAAP.",
+          html: "Using current salary to compute the obligation. The PBO (and the IFRS defined benefit obligation) projects salary forward to retirement, because the benefit formula pays on final salary. Valuing service on current salary understates the obligation for any plan with expected pay rises.",
         },
         {
           t: "check",
@@ -955,14 +961,20 @@ export default {
           t: "callout",
           tone: "insight",
           title: "Why the discount rate's effect on interest cost is ambiguous",
-          html: "Interest cost = discount rate x obligation. Raise the rate and the first term rises while the second falls. Which wins depends on how long-dated the obligation is: the longer until payment, the more a rate change moves its present value. For most plans, as for Maya, the higher rate dominates and interest cost rises; for a very long-dated obligation, the fall in the obligation can dominate. Service cost, by contrast, is a present value of future benefits and reliably falls when the rate rises.",
+          html: "Interest cost = discount rate x opening obligation. A higher rate pulls the two factors in opposite directions: the rate applied is higher, but the opening obligation it is applied to is lower, because every future payment is now discounted harder. Which effect wins depends on how long-dated the obligation is: the longer until payment, the more a rate change shrinks its present value. A mature plan, with many members retired or close to it, has a relatively short-dated obligation, so the higher rate dominates and interest cost usually rises, as it does for Maya. For a very long-dated obligation, the fall in the obligation can dominate and interest cost falls. Service cost has no such tension: it is the present value of benefits earned this year, so it falls when the rate rises, and so does the PBO.",
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "The exam-safe answer on a higher discount rate",
+          html: "A higher discount rate lowers the PBO and lowers service cost. Its effect on interest cost can go either way, usually up for a mature plan, so unless the question gives numbers to compute, the answer is that interest cost may increase or decrease. When numbers are given, compute it: the new rate times the new, lower opening obligation.",
         },
         {
           t: "table",
           caption: "Direction of effects (each assumption raised, all else equal)",
           head: ["Assumption raised", "Obligation (PBO)", "Service cost", "Interest cost", "P&L pension expense", "Total periodic pension cost"],
           rows: [
-            ["Discount rate", "Lower", "Lower (usually)", "Ambiguous", "Usually lower", "Lower in the year of change: an actuarial GAIN"],
+            ["Discount rate", "Lower", "Lower", "May increase or decrease (usually up for a mature plan)", "Usually lower", "Lower in the year of change: an actuarial GAIN"],
             ["Rate of compensation increase", "Higher", "Higher", "Higher", "Higher", "Higher: an actuarial loss"],
             ["Expected return on plan assets (US GAAP only)", "No effect", "No effect", "No effect", "Lower (US GAAP)", "No effect"],
             ["Life expectancy (longevity)", "Higher", "Higher", "Higher", "Higher", "Higher: an actuarial loss"],
@@ -1104,10 +1116,10 @@ export default {
           rows: [
             ["Service cost (current and past)", "Operating expense in profit or loss", "Increases it", "No direct effect", "Deduct forecast current service cost from free cash flow: it is the cost of employees' future work, like share-based pay (past service cost from plan amendments is not normally forecast)"],
             ["Net interest", "Profit or loss (often within finance costs)", "Increases a deficit (on a surplus it is net interest income, which increases the surplus)", "No direct effect", "Exclude from free cash flow: the deficit is deducted at its present value instead"],
-            ["Remeasurements", "Other comprehensive income (OCI), never reclassified", "Increase or decrease it", "No direct effect", "Usually forecast at zero: they are the unpredictable gap between assumptions and outcomes"],
-            ["Employer contributions", "None", "Reduce it", "Operating cash outflow", "Not deducted separately: their cost is captured by service cost in free cash flow and the deficit in the bridge"],
+            ["Remeasurements", "Other comprehensive income (OCI), never reclassified", "Increase or decrease it", "No direct effect", "Set to zero in this module's model: they are the gap between assumptions and outcomes, which cannot be forecast"],
+            ["Employer contributions", "None", "Reduce it", "Operating cash outflow", "Not deducted separately in this module's model: their cost is captured by service cost in free cash flow and the deficit in the bridge"],
           ],
-          note: "Under US GAAP the profit or loss side shows service cost, interest cost and the expected return on plan assets, with OCI amounts amortized later; the valuation logic in the last column is the same.",
+          note: "Under US GAAP the profit or loss side shows service cost, interest cost and the expected return on plan assets, with OCI amounts amortized later; the valuation logic in the last column is the same. The treatment of remeasurements and contributions in the last column is this module's reasoning, not wording taken from the curriculum: deficit repair is captured by deducting the deficit in the bridge, so counting the contributions that repair it again in free cash flow would double count; and remeasurements cannot be forecast, so they are set to zero.",
         },
         {
           t: "formula",
@@ -1158,6 +1170,12 @@ export default {
           html: "Deficit: debt-like, deducted in the bridge. Surplus: usually excluded. Future service cost: deducted from free cash flow, the same way the practical approach treats share-based pay. Net interest: excluded from free cash flow, to avoid double counting the time value of money. Defined contribution: already in free cash flow, nothing else to do.",
         },
         { t: "widget", name: "PensionBridge" },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "Pre-tax or after-tax deficit on the exam",
+          html: "Deduct the deficit as given, pre-tax, unless the question supplies a tax rate and asks for an after-tax adjustment. For Pinnacle that means 16,400 by default and 16,550 only when the after-tax version is asked for. Both versions are shown in the widget above: toggle \"Deduct the deficit after tax\" to see the difference.",
+        },
         {
           t: "check",
           id: "lm11-val-1",
@@ -1241,6 +1259,12 @@ export default {
           html: "Since 2018 (ASU 2017-07), US GAAP requires the service cost component to be presented with other compensation costs and the other components of net periodic pension cost outside operating income. Many US GAAP reporters therefore already show something close to the analyst's operating line. IFRS leaves the presentation of net interest to the company, and many show it within finance costs. If the vignette says all pension cost sits in operating expenses, adjust as above.",
         },
         {
+          t: "callout",
+          tone: "exam",
+          title: "What to assume on the exam",
+          html: "The 2026 reading treats service cost as an operating cost under both IFRS and US GAAP, and leaves the analyst to classify the other components (interest cost or net interest, and the return on plan assets). Answer from that, not from the presentation rules of ASU 2017-07.",
+        },
+        {
           t: "check",
           id: "lm11-adj-1",
           q: "A company's employer contributions were 140 and its total periodic pension cost was 100. The tax rate is 25%. To reflect the economic substance, an analyst would most likely:",
@@ -1258,13 +1282,13 @@ export default {
 
   traps: [
     { wrong: "A defined contribution plan's expense depends on how the plan's investments perform.", right: "DC expense is the contribution due for the period. Investment performance belongs to the employees, which is the whole point of the plan type." },
-    { wrong: "The pension obligation is measured on employees' current salaries.", right: "The PBO and the IFRS defined benefit obligation project salaries to retirement. Current salaries give the accumulated benefit obligation, a smaller US GAAP disclosure figure." },
+    { wrong: "The pension obligation is measured on employees' current salaries.", right: "The PBO and the IFRS defined benefit obligation project salaries to retirement. Valuing service on current salaries would understate the obligation whenever pay is expected to rise." },
     { wrong: "Benefits paid to retirees reduce the sponsor's net pension liability and are an operating cash outflow.", right: "Benefits paid from plan assets reduce the obligation and the assets equally: funded status, cost and the sponsor's cash flows are unchanged. Only benefits the sponsor pays directly (typical of unfunded retiree health care) reduce its liability and its cash." },
     { wrong: "Plan assets grow by the expected return on plan assets.", right: "Plan assets grow by the ACTUAL return. The expected return is a US GAAP device for measuring P&L expense; the gap between actual and expected goes to OCI." },
     { wrong: "Under IFRS, past service cost is recognized in OCI and amortized.", right: "IFRS expenses past service cost in profit immediately. It is US GAAP that records prior service cost in OCI and amortizes it over the remaining service period." },
     { wrong: "IFRS remeasurements are recycled to profit when the plan is settled or over time.", right: "IFRS remeasurements in OCI are never reclassified to profit. They may be transferred within equity. US GAAP is the standard that amortizes OCI amounts into profit." },
     { wrong: "A higher expected return on plan assets lowers total periodic pension cost.", right: "It lowers US GAAP P&L expense only. TPPC uses the actual return, so the change just moves cost from P&L into OCI. The obligation is untouched." },
-    { wrong: "A higher discount rate always lowers interest cost.", right: "Interest cost is the rate times the obligation: the rate rises while the obligation falls. The net effect is ambiguous; for most plans the higher rate dominates and interest cost rises." },
+    { wrong: "A higher discount rate always lowers interest cost.", right: "Interest cost is the rate times the opening obligation: the rate rises while the obligation falls. Interest cost may increase or decrease; for a mature plan the higher rate usually dominates and it rises. Without numbers, the answer is \"may increase or decrease\"." },
     { wrong: "When contributions exceed TPPC, the analyst should reduce operating cash flow.", right: "The excess is a repayment of a debt-like obligation, so it moves OUT of operating outflows: CFO rises and CFF falls by the after-tax excess." },
     { wrong: "Equity-settled option expense rises if the share price rises after grant.", right: "Equity-settled awards are measured once at grant-date fair value. Only cash-settled awards (such as SARs paid in cash) are remeasured as the share price moves." },
     { wrong: "Assuming a higher dividend yield increases the fair value of employee options.", right: "Option holders do not receive dividends, and dividends lower the share price path, so a higher dividend yield LOWERS option value and expense." },
@@ -1286,7 +1310,7 @@ export default {
     { topic: "Return on plan assets", ifrs: "Interest income at the discount rate is inside net interest in P&L; the remainder of the actual return is a remeasurement in OCI", usgaap: "EXPECTED return in P&L; actual minus expected to OCI" },
     { topic: "Actuarial gains and losses", ifrs: "Remeasurements in OCI, never reclassified to P&L", usgaap: "OCI, then amortized to P&L using the corridor approach (or faster, including immediate recognition)" },
     { topic: "Total periodic pension cost", ifrs: "Contributions minus change in funded status", usgaap: "Same number: only the P&L and OCI split differs" },
-    { topic: "Presentation of components", ifrs: "No required line; net interest is often shown in finance costs", usgaap: "Service cost with compensation costs; other components outside operating income (ASU 2017-07, flagged)" },
+    { topic: "Presentation of components", ifrs: "No required line; net interest is often shown in finance costs", usgaap: "Service cost with compensation costs; other components outside operating income (ASU 2017-07, beyond the 2026 curriculum)" },
     { topic: "Equity-settled share-based awards", ifrs: "Grant-date fair value, expensed over the service period, credited to equity", usgaap: "Same" },
     { topic: "Cash-settled awards (SARs paid in cash)", ifrs: "Liability remeasured to fair value at each reporting date", usgaap: "Same" },
     { topic: "Deferred tax on share-based pay during vesting", ifrs: "Deferred tax asset built as the expense is recognized (IAS 12 strictly measures it on the estimated future deduction; that refinement is beyond the curriculum)", usgaap: "Deferred tax asset built on the cumulative expense recognized" },
@@ -1309,7 +1333,7 @@ export default {
     { name: "Basic shares roll-forward", tex: "\\text{Basic}_{end} = \\text{Basic}_{beg} + \\text{RSUs vested and options exercised} + \\text{New issuance} - \\text{Repurchases}", plain: "Pinnacle: 1,000 + 10 + 0 - 8 = 1,002." },
     { name: "Diluted shares for RSUs (treasury stock method)", tex: "\\text{Diluted} = \\text{Basic} + \\text{Unvested RSUs} - \\frac{\\text{Average unrecognized compensation cost}}{\\text{Average share price}}", plain: "Pinnacle: 1,001 + 30 - 620 / 40 = 1,015.5." },
     { name: "Excess tax benefit at settlement", tex: "\\text{Windfall} = t \\times (\\text{Value at settlement} - \\text{Grant-date fair value}) \\times \\text{Units}", plain: "Pinnacle: 20% x (45 - 30) x 10 = 30. US GAAP: income tax expense. IFRS: equity." },
-    { name: "Enterprise value to equity value with pensions", tex: "\\text{Equity value} = \\text{EV} - \\text{Debt} + \\text{Cash} - \\text{Pension deficit} \\times (1 - t)^{*}", plain: "EV is enterprise value, computed from free cash flow after service cost and before net interest. A surplus is excluded. *Whether to deduct the deficit after tax is flagged; Pinnacle: 20,000 - 4,000 + 1,000 - 600 = 16,400 (16,550 after 25% tax)." },
+    { name: "Enterprise value to equity value with pensions", tex: "\\text{Equity value} = \\text{EV} - \\text{Debt} + \\text{Cash} - \\text{Pension deficit} \\times (1 - t)^{*}", plain: "EV is enterprise value, computed from free cash flow after service cost and before net interest. A surplus is excluded. *Deduct the deficit as given (pre-tax) unless the question supplies a tax rate and asks for an after-tax adjustment. Pinnacle: 20,000 - 4,000 + 1,000 - 600 = 16,400 (16,550 after 25% tax)." },
     { name: "Net pension liability roll-forward", tex: "\\text{NPL}_{end} = \\text{NPL}_{beg} + \\text{Service cost} + \\text{Net interest} + \\text{Remeasurements} - \\text{Contributions}", plain: "NPL is the net pension liability. Pinnacle: 100 + 110 + 5 + 35 - 80 = 170." },
     { name: "Cash-settled award expense", tex: "\\text{Expense}_t = \\text{FV}_t \\times \\text{Units} \\times \\frac{\\text{Service completed}}{\\text{Service period}} - \\text{Liability}_{t-1}", plain: "The change in a liability measured at current fair value for the service completed so far." },
   ],
@@ -1318,7 +1342,7 @@ export default {
     { q: "What is the pension expense of a defined contribution plan?", a: "The contribution due for the period. Any unpaid portion at year end is an accrued liability." },
     { q: "Name the five items that move the PBO during a year.", a: "Current service cost, interest cost, past service cost (plan amendments), actuarial gains and losses, and benefits paid." },
     { q: "Name the three items that move plan assets.", a: "Actual return, employer contributions, benefits paid." },
-    { q: "What is the difference between the PBO and the ABO?", a: "The PBO projects salaries to retirement; the ABO uses current salaries. For a pay-related plan with salary growth, PBO is larger." },
+    { q: "Why is the PBO valued on projected rather than current salary?", a: "The benefit formula pays on final salary, so the promise already earned grows with expected pay rises. Current salary would understate it." },
     { q: "Give the two ways to compute total periodic pension cost.", a: "Contributions minus the change in funded status; or service cost + interest cost + past service cost + actuarial losses (minus gains) minus actual return." },
     { q: "What goes to P&L under IFRS?", a: "Service cost (current and past, plus settlement gains and losses) and net interest on the net pension liability or asset." },
     { q: "What goes to OCI under IFRS, and is it ever recycled?", a: "Remeasurements: actuarial gains and losses and the return on plan assets minus interest income at the discount rate (and asset ceiling effects). Never recycled to P&L." },
@@ -1338,7 +1362,7 @@ export default {
     { q: "How does the treasury stock method treat unvested RSUs?", a: "Diluted = basic + unvested RSUs - average unrecognized compensation cost / average share price." },
     { q: "Where does the windfall at settlement go under IFRS and US GAAP?", a: "IFRS: equity. US GAAP: income tax expense, so the effective tax rate moves with the share price." },
     { q: "What are the two consistent DCF treatments of share-based pay?", a: "Treat it as a cash expense (no add-back) and use diluted shares; or add it back and raise the share count for all vested, unvested and future awards." },
-    { q: "In a DCF, how are service cost, net interest, a deficit and a surplus treated?", a: "Service cost deducted from free cash flow; net interest excluded; deficit deducted in the bridge as debt-like (possibly after tax); surplus typically excluded." },
+    { q: "In a DCF, how are service cost, net interest, a deficit and a surplus treated?", a: "Service cost deducted from free cash flow; net interest excluded; deficit deducted in the bridge as debt-like (pre-tax unless the question asks for after tax); surplus typically excluded." },
     { q: "How is a defined contribution plan modeled?", a: "Inside operating expenses; cash equals expense; only an accrued liability for unpaid contributions on the balance sheet." },
   ],
 
@@ -1521,14 +1545,6 @@ export default {
   ],
 
   flags: [
-    { los: "a", note: "LOS replaced 2026-10-08 with the official 2026 topic outline (five LOS). Section content for LOS a and c to e was rebuilt from the CFA Institute 2026 refresher summary and third-party notes, not from the reading itself; verify against the book when it is in the repo. Research 2026-10: the five LOS match the CFA Institute 2026 refresher page word for word, and the 2024 to 2026 Level II errata confirm the reading's lesson structure (2.04 share-based tax and share count effects, note disclosures; share-based compensation and financial statement modeling; 2.06 financial reporting for post-employment benefits). The section content itself still cannot be checked without the book." },
-    { los: "d", note: "ABO and VBO: included as US GAAP measures for completeness. Under the 2026 LOS they are likely mentioned only in passing, if at all. Research 2026-10: neither the CFA Institute 2026 refresher summary, AnalystPrep's current LOS 12(d) note nor the 2024 to 2026 errata mention ABO or VBO; they appear only in AnalystPrep notes written for the older LOS. Absence from summaries is not proof they were cut." },
-    { los: "d", note: "US GAAP presentation (ASU 2017-07: non-service components outside operating income) is labelled beyond the curriculum. Check whether the 2026 reading mentions it. Research 2026-10: AnalystPrep's LOS 12(d) note says service cost is an operating expense under both standards and that US GAAP reports interest cost as a gross interest expense separate from operating income, which hints the reading touches presentation, but no source names ASU 2017-07 or confirms the wording." },
-    { los: "d", note: "Effect of a higher discount rate on interest cost is presented as ambiguous (usually higher for typical durations). Confirm the book's exact wording. Research 2026-10: AnalystPrep's note for the older LOS explains the change in interest cost as the net of a lower opening obligation and a higher rate, which matches this module, but nothing found quotes the 2026 reading." },
-    { los: "d", note: "Multi-employer plans treated as DC when information is insufficient: confirm the 2026 reading still includes this point. Research 2026-10: IAS 19 still requires this treatment, but no curriculum-tracking source for the 2023 to 2026 reading mentions multi-employer plans, so the sentence 'the curriculum notes' is unconfirmed." },
-    { los: "d", note: "Projected unit credit arithmetic and corridor amortization were core under the older LOS set and are kept with depth notes; the 2026 LOS d is qualitative ('explain how ... affect the financial statements'). Research 2026-10: AnalystPrep's current LOS 12(d) note describes the 10% corridor and US GAAP amortization but has no single-employee projected unit credit table (that appears only in its older-LOS note); the errata show the reading's pension examples work at component level (service cost, net interest on the beginning net position, expected return). Consistent with the depth notes, but not proof of what the exam will ask." },
-    { los: "e", note: "After-tax deficit in the enterprise value bridge: the 2026 summary says to consider the tax deductibility of contributions. Whether the reading deducts the deficit after tax by default is unconfirmed; both versions are shown. Research 2026-10: the CFA Institute 2026 refresher summary does not mention tax-effecting the deficit, and AnalystPrep's LOS 12(e) note deducts the net pension liability with no tax adjustment (it mentions deductible contributions only as a tax shield under LOS 12(d)). Not conclusive either way." },
-    { los: "e", note: "Deficit-repair contributions are described as not deducted from free cash flow (to avoid double counting with the bridge) and remeasurements as forecast at zero. Both follow from the reading's logic but the wording is unconfirmed. Research 2026-10: AnalystPrep's LOS 12(e) note lists service cost, net interest, remeasurements and contributions as the items to model, deducts future service cost from free cash flow and excludes net interest, but says nothing about contributions in free cash flow or forecasting remeasurements at zero." },
-    { los: "e", note: "The ratio and cash flow reclassification section (old LOS e/f) is kept as an older lens. Its actual-versus-expected-return choice and the pre-tax ledger simplification were flagged before and still apply. Research 2026-10: no current curriculum-tracking note covers these reclassifications, which supports treating them as an older lens; nothing found settles the two simplifications." },
+    { los: "a", note: "Section content for LOS a and c to e was rebuilt from the CFA Institute 2026 refresher summary and third-party notes, not from the reading itself, so it must be checked against the book once the book is in the repo. Research 2026-10: the five LOS match the CFA Institute 2026 refresher page word for word, and the 2024 to 2026 Level II errata confirm the reading's lesson structure, but the section content cannot be checked without the book." },
   ],
 };

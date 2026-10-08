@@ -509,7 +509,7 @@ export default {
       blocks: [
         {
           t: "p",
-          html: `<p>Every method above compresses something. The equity method hides an associate's revenue and debt inside one line; consolidation hides which assets came from the acquisition; amortized cost hides the market price. Both IFRS and US GAAP require notes that let a reader undo some of that compression, and an analyst who wants a comparable picture across companies starts there.</p>`,
+          html: `<p>Every method above compresses something. The equity method hides an associate's revenue and debt inside one line; consolidation hides which assets came from the acquisition; amortized cost hides the market price. Both IFRS and US GAAP require notes that let a reader undo some of that compression, and an analyst who wants a comparable picture across companies starts there.</p><p>The table below is an analyst-level summary of what the notes add for each kind of investment. It is not a list the curriculum asks you to memorize, so do not spend time learning disclosure requirements item by item.</p>`,
         },
         {
           t: "table",
@@ -521,6 +521,12 @@ export default {
             ["Business combinations", "Consideration paid, the fair values assigned to the main classes of assets and liabilities, goodwill, how the NCI was measured, acquisition-related costs, and the acquiree's results since the acquisition date", "Separate acquired growth from organic growth, and see how much of the price is goodwill rather than identifiable assets"],
             ["Special purpose and variable interest entities", "The nature of the involvement, the assets and liabilities of consolidated vehicles, and the maximum exposure to loss from vehicles that are not consolidated", "Decide whether an off-balance-sheet vehicle belongs back on the balance sheet for leverage analysis"],
           ],
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "How disclosure shows up in an item set",
+          html: "Exam questions on disclosure test what an analyst does with the information, not whether you can recite what a standard requires. Expect to use a note: add back an associate's share of debt for leverage, separate acquired revenue growth from organic growth, or put an unconsolidated vehicle back on the balance sheet. The right-hand column of the table is the part to know.",
         },
       ],
     },
@@ -676,7 +682,5 @@ export default {
     },
   ],
 
-  flags: [
-    { los: "a", note: "Disclosures section summarizes IFRS 7/12/13 and ASC 805/810 requirements at an analyst level; check the 2026 book for any specific disclosure list it expects candidates to know. Research 2026-10: the 2026 LOS (CFA Institute refresher page) name 'disclosure' for all five investment types, but the reading summary lists no disclosure items, the 2023 to 2026 Level II errata contain no disclosure corrections, and AnalystPrep's notes list none, so the expected list is still unknown." },
-  ],
+  flags: [],
 };
