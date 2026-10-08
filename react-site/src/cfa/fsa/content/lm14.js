@@ -53,7 +53,7 @@ export default {
           items: [
             { title: "GAAP-compliant, decision-useful, with sustainable earnings and adequate returns", html: "High-quality reporting of high-quality earnings. The top of the spectrum." },
             { title: "GAAP-compliant and decision-useful, but earnings are not sustainable or returns not adequate", html: "The report is fine; the business is not. Low earnings quality, honestly reported. An analyst can see the problem and act on it." },
-            { title: "GAAP-compliant, but biased accounting choices", html: "Every choice is allowed, but they lean one way. <b>Aggressive</b> choices raise reported performance or financial position this period; <b>conservative</b> choices lower them. Both are bias." },
+            { title: "Within GAAP, but biased choices", html: "Every choice is allowed, but they lean one way. <b>Aggressive</b> choices raise reported performance or financial position this period; <b>conservative</b> choices lower them. Both are bias." },
             { title: "Within GAAP, but earnings management", html: "Deliberate action to hit a number. <b>Real</b> earnings management changes what the company does (cutting research or advertising in December to meet a target); <b>accounting</b> earnings management changes only the estimates and choices (shaving the allowance for doubtful accounts)." },
             { title: "Departures from GAAP: non-compliant accounting", html: "The report breaks the rules, for example by capitalizing costs that must be expensed. It can no longer be used to assess performance." },
             { title: "Departures from GAAP: fictitious transactions", html: "Fraud in its plainest form: revenue from customers who do not exist, assets that are not there. The report is not just biased but invented." },
@@ -61,9 +61,9 @@ export default {
         },
         {
           t: "callout",
-          tone: "flag",
-          title: "Check against the official book",
-          html: "The ordering of the two middle levels (biased choices, then earnings management) is reconstructed; the curriculum exhibit may label or order them slightly differently. The idea that quality falls as you move from honest choices to deliberate management to rule-breaking is the examinable point.",
+          tone: "exam",
+          title: "Biased choices versus earnings management",
+          html: "What separates the two middle levels is intent: earnings management is a deliberate choice made to produce a biased report. Intent is hard to prove from the outside, so summaries of the reading often fold earnings management into biased choices. Either way, both sit within GAAP and above the two departures from GAAP.",
         },
         {
           t: "h",
