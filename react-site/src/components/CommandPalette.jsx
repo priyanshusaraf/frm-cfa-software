@@ -30,6 +30,7 @@ const PAGES = [
   { label: "CFA L2 FSA: reconstruct the statements", path: "/cfa/fsa/practice" },
   { label: "CFA L2 FSA: cheat sheet", path: "/cfa/fsa/reference" },
   { label: "CFA L2 FSA: timed mock exam", path: "/cfa/fsa/mock" },
+  { label: "CFA L2 FSA: flashcards (spaced repetition)", path: "/cfa/fsa/flashcards" },
   { label: "CFA L2 FSA: curriculum coverage", path: "/cfa/fsa/coverage" },
   { label: "CFA L2 FSA: LM10 Intercorporate investments", path: "/cfa/fsa/lm10" },
   { label: "CFA L2 FSA: LM11 Employee compensation", path: "/cfa/fsa/lm11" },

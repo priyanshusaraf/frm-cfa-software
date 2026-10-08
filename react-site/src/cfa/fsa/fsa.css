@@ -463,3 +463,14 @@
 .fsa-mock-vig { position: sticky; top: calc(var(--nav-h) + 4.5rem); max-height: calc(100vh - var(--nav-h) - 6rem); overflow: auto; }
 @media (max-width: 1000px) { .fsa-mock-body { grid-template-columns: minmax(0, 1fr); } .fsa-mock-vig { position: static; max-height: none; } }
 .fsa-link.is-flag { color: var(--amber); }
+
+/* ---------- flashcards ---------- */
+.fsa-flash { border: 1px solid var(--border); border-radius: 14px; background: var(--bg-raised); padding: 1.4rem 1.5rem; max-width: 760px; animation: fsa-slidein .3s; }
+.fsa-flash-meta { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-faint); font-weight: 650; margin-bottom: 0.6rem; }
+.fsa-flash-front { font-size: 1.05rem; line-height: 1.6; margin-bottom: 1rem; }
+.fsa-flash-back { font-size: 0.95rem; line-height: 1.65; padding: 0.9rem 1rem; border-left: 3px solid var(--accent); background: var(--bg); border-radius: var(--radius-sm); margin-bottom: 1rem; animation: fsa-slidein .3s; }
+.fsa-flash-grades { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.5rem; }
+.fsa-grade { flex-direction: column; align-items: center; gap: 0.1rem; padding: 0.5rem; }
+.fsa-grade small { color: var(--text-faint); font-size: 0.7rem; font-weight: 400; }
+.fsa-grade.tone-red b { color: var(--red); } .fsa-grade.tone-amber b { color: var(--amber); }
+.fsa-grade.tone-accent b { color: var(--accent); } .fsa-grade.tone-green b { color: var(--green); }

@@ -53,6 +53,7 @@ const FsaPractice = lazy(() => import("./cfa/fsa/pages/FsaPractice.jsx"));
 const FsaReference = lazy(() => import("./cfa/fsa/pages/FsaReference.jsx"));
 const FsaCoverage = lazy(() => import("./cfa/fsa/pages/FsaCoverage.jsx"));
 const FsaMock = lazy(() => import("./cfa/fsa/pages/FsaMock.jsx"));
+const FsaFlashcards = lazy(() => import("./cfa/fsa/pages/FsaFlashcards.jsx"));
 
 function PageLoading() {
   return (
@@ -224,6 +225,7 @@ function Shell() {
             <Route path="/cfa/fsa/reference" element={<FsaReference />} />
             <Route path="/cfa/fsa/coverage" element={<FsaCoverage />} />
             <Route path="/cfa/fsa/mock" element={<FsaMock />} />
+            <Route path="/cfa/fsa/flashcards" element={<FsaFlashcards />} />
             <Route path="/cfa/fsa/:mid" element={<FsaModule />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
