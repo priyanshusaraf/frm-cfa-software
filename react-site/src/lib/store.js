@@ -47,6 +47,7 @@
        practice: { [scenarioId|colId|step]: { stars, ts } }, // best stars 1-3 per reconstruct round
        read:     { [moduleId]: { [sectionId]: true } },      // sections marked as read
        checks:   { [checkId]: { ok, ts } },                  // last answer to an inline concept check
+       mocks:    [ { ts, total, correct, minutes, perModule: { [moduleId]: [correct, total] } } ], // newest first, max 50
      } },
    Older blobs may lack any of the newer keys — readers must treat them all as optional. */
 import { useSyncExternalStore } from "react";
@@ -463,4 +464,9 @@ export function recordFsaCheck(id, ok, ts) {
   const s = load();
   const checks = fsaSlice(s).checks || {};
   saveFsa(s, { checks: { ...checks, [id]: { ok: !!ok, ts } } });
+}
+export function recordFsaMock({ ts, total, correct, minutes, perModule }) {
+  const s = load();
+  const mocks = [{ ts, total, correct, minutes, perModule }, ...(fsaSlice(s).mocks || [])].slice(0, 50);
+  saveFsa(s, { mocks });
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import { Home, Clapperboard, PencilRuler, ScrollText, ListChecks } from "lucide-react";
+import { Home, Clapperboard, PencilRuler, ScrollText, ListChecks, Timer } from "lucide-react";
 import "../fsa.css";
 import { MODULES } from "../content/index.js";
 import { useStore } from "../../../lib/store.js";
@@ -32,6 +32,7 @@ export default function FsaLayout({ children, moduleId }) {
     { to: "/cfa/fsa", label: "Overview", Icon: Home, end: true },
     { to: "/cfa/fsa/lab", label: "Animation lab", Icon: Clapperboard },
     { to: "/cfa/fsa/practice", label: "Reconstruct", Icon: PencilRuler },
+    { to: "/cfa/fsa/mock", label: "Mock exam", Icon: Timer },
     { to: "/cfa/fsa/reference", label: "Cheat sheet", Icon: ScrollText },
     { to: "/cfa/fsa/coverage", label: "Curriculum coverage", Icon: ListChecks },
   ];

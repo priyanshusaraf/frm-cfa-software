@@ -437,3 +437,29 @@
   .fsa-delta { display: none; }
 }
 .fsa-formula-m.is-wrapped { text-align: center; line-height: 2.1; font-size: 1.12em; padding: 0.5rem 0; }
+
+/* ---------- mock exam ---------- */
+.fsa-mock-bar {
+  position: sticky; top: var(--nav-h); z-index: 5;
+  display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+  background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border); padding: 0.6rem 0; margin-bottom: 1rem;
+}
+.fsa-mock-bar > div:first-child { flex: 1; min-width: 220px; }
+.fsa-mock-nav { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+.fsa-mock-set { display: flex; gap: 0.2rem; padding-right: 0.6rem; border-right: 1px solid var(--border); }
+.fsa-mock-set:last-child { border-right: none; }
+.fsa-mock-q { width: 1.6rem; height: 1.6rem; border-radius: 5px; border: 1px solid var(--border); font-family: var(--mono); font-size: 0.7rem; color: var(--text-faint); background: var(--bg); position: relative; }
+.fsa-mock-q.done { background: var(--accent-soft); color: var(--accent); border-color: transparent; }
+.fsa-mock-q.cur { outline: 2px solid var(--accent); outline-offset: 1px; }
+.fsa-mock-q.ok { background: var(--green-soft); color: var(--green); border-color: transparent; }
+.fsa-mock-q.bad { background: var(--red-soft); color: var(--red); border-color: transparent; }
+.fsa-mock-q.flag::after { content: ""; position: absolute; top: -3px; right: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
+.fsa-mock-clock { font-family: var(--mono); font-size: 1rem; display: flex; align-items: center; gap: 0.35rem; padding: 0.3rem 0.7rem; border: 1px solid var(--border); border-radius: var(--radius-sm); }
+.fsa-mock-clock.low { color: var(--red); border-color: var(--red); }
+.fsa-mock-score { display: flex; flex-direction: column; align-items: flex-end; font-family: var(--mono); }
+.fsa-mock-score span { color: var(--text-dim); font-size: 0.8rem; }
+.fsa-mock-body { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.4rem; align-items: start; }
+.fsa-mock-vig { position: sticky; top: calc(var(--nav-h) + 4.5rem); max-height: calc(100vh - var(--nav-h) - 6rem); overflow: auto; }
+@media (max-width: 1000px) { .fsa-mock-body { grid-template-columns: minmax(0, 1fr); } .fsa-mock-vig { position: static; max-height: none; } }
+.fsa-link.is-flag { color: var(--amber); }
