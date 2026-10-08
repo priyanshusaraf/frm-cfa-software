@@ -8,7 +8,7 @@
    whose pages are offset by a few LOS each, and were joined back together)
    and checked against the long-standing Level II wording. LOS LETTERS are
    therefore our ordering, not necessarily CFA Institute's. Reconcile against
-   the official curriculum: docs/cfa/fsa-curriculum-reconciliation.md. */
+   the official curriculum: react-site/docs/cfa/fsa-curriculum-reconciliation.md. */
 export const CURRICULUM = {
   exam: "CFA Level II",
   year: 2026,

@@ -6,7 +6,7 @@ across all the financial statements, use demo companies, and let the student REC
 statements themselves (type a line such as retained earnings, it goes green if right, then
 "confirmation runs" audit the student's own numbers). Clean UI, fun, interactive.
 Stay inside the 2026 curriculum: do not add topics the curriculum does not list just because a
-prep book covers them; FLAG mismatches instead (see `docs/cfa/fsa-curriculum-reconciliation.md`).
+prep book covers them; FLAG mismatches instead (see `react-site/docs/cfa/fsa-curriculum-reconciliation.md`).
 
 ## Layout
 
