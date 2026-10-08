@@ -71,7 +71,7 @@ export default function FsaHome() {
       <div className="fsa-callout tone-flag" style={{ marginTop: "2rem" }}>
         <b><Flag size={12} /> Curriculum reconciliation status</b>
         <p>
-          Scope is the {CURRICULUM.year} Level II FSA curriculum: {CURRICULUM.modules.length} learning modules and {losTotal} learning outcome statements. Your CFA books were not available in the cloud session, so the content has not yet been reconciled line by line against them.
+          Scope is the {CURRICULUM.year} Level II FSA curriculum: {CURRICULUM.modules.length} learning modules and {losTotal} learning outcome statements, verified against CFA Institute's official topic outline. The content itself has not yet been checked line by line against your books.
           {" "}<Link to="/cfa/fsa/coverage">See the coverage map and the open flags <ArrowRight size={12} style={{ verticalAlign: "-1px" }} /></Link>
         </p>
       </div>

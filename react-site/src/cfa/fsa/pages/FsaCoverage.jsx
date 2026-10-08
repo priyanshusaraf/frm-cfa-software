@@ -32,9 +32,13 @@ export default function FsaCoverage() {
       </div>
 
       <div className="fsa-callout tone-flag">
-        <b>Source status: not yet reconciled against your books</b>
-        <p>Your CFA books are in your local Downloads folder, which the cloud session cannot reach. The module list is confirmed from several 2026 sources; the LOS wording was reconstructed from third-party listings and the long-standing Level II wording, so <b>LOS letters are this platform's ordering</b> and may differ from CFA Institute's. Content was written from the curriculum's LOS and from IFRS and US GAAP as the curriculum teaches them.</p>
-        <p>To reconcile: commit the books (PDF or Markdown) to the repository, for example under <code>cfa-l2/</code>, and ask for a reconciliation pass. Each module's flags below are the first things to check.</p>
+        <b>Source status</b>
+        <p>
+          <b>LOS: verified.</b> Every learning outcome statement and its letter comes from CFA Institute's official {CURRICULUM.year} Level II topic outline. This check found that LM 11 had been rewritten for the current curriculum (forecasting share-based compensation, and modeling and valuing post-employment benefits); the module is being rebuilt to match.
+        </p>
+        <p>
+          <b>Content: not yet checked line by line against your books.</b> It was written from the LOS, from IFRS and US GAAP as the curriculum teaches them, and checked against CFA Institute's public 2026 reading summaries where they exist. The open flags below are the points to check first. To finish the job, commit your books (PDF or Markdown) under <code>cfa-l2/</code> and ask for a reconciliation pass.
+        </p>
       </div>
 
       <div className="fsa-callout tone-insight" style={{ marginTop: "1rem" }}>

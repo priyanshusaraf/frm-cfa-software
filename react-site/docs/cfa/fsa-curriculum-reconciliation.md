@@ -1,6 +1,6 @@
 # CFA Level II FSA: curriculum reconciliation
 
-Status: **NOT YET RECONCILIED AGAINST THE OWNER'S BOOKS.** Written 2026-10-08.
+Status: **LOS VERIFIED against the official 2026 outline; content NOT yet checked line by line against the owner's books.** Updated 2026-10-08.
 
 ## Why this file exists
 
@@ -11,21 +11,30 @@ not reach them, so this file records what was used instead and what still has to
 
 ## What the scope is based on
 
-1. **Module list (high confidence).** The 2026 Level II Financial Statement Analysis topic
-   is Topic 3, weighted 10-15%, with six learning modules: LM10 Intercorporate Investments,
-   LM11 Employee Compensation: Post-Employment and Share-Based, LM12 Multinational
-   Operations, LM13 Analysis of Financial Institutions, LM14 Evaluating Quality of
-   Financial Reports, LM15 Integration of Financial Statement Analysis Techniques.
-   Sources: AnalystNotes 2026 Level II topic page; 300hours 2026 study order and curriculum
-   changes (no FSA changes for 2026); UWorld 2026 topic overview (it states a different
-   module count; not confirmed by the others).
-2. **LOS wording (medium confidence).** Reconstructed from AnalystNotes' per-module pages,
-   whose LOS are shifted by a few statements per page (the last LOS of one module appears
-   on the next module's page). Joined back together, they match the long-standing Level II
-   wording. The text lives in `react-site/src/cfa/fsa/content/curriculum.js`.
-3. **LOS letters (low confidence).** The letters a, b, c... are this platform's ordering.
-   CFA Institute's lettering may differ, especially in LM12 (whether "presentation,
-   functional and local currency" comes first).
+1. **LOS (verified, 2026-10-08).** Every LOS and its letter in
+   `react-site/src/cfa/fsa/content/curriculum.js` now matches CFA Institute's official
+   "2026 Level II Topic Outlines" PDF (cfainstitute.org, `2026-l2-topics-combined.pdf`).
+   The PDF is marked "for candidate use only", so it is NOT committed; only the LOS
+   sentences are used.
+2. **What the official LOS check changed.**
+   - LM12, LM13, LM14: same LOS, different letter order. Letters were remapped in the
+     content.
+   - LM10: LOS b wording is "compare and contrast IFRS and US GAAP"; updated.
+   - **LM11 was rewritten by CFA Institute.** The older 8-LOS reading (calculate the PBO,
+     adjust ratios for pension items, interpret note disclosures) was replaced by 5 LOS:
+     contrast types of employee compensation; how share-based compensation affects the
+     statements; FORECAST share-based compensation expense and shares outstanding in a
+     model and use them in valuation; how post-employment benefits affect the statements;
+     MODELING AND VALUATION considerations for post-employment benefits. The module is being
+     rebuilt to the new LOS (in progress); older-curriculum depth is kept but labelled.
+3. **Content checks against public CFA Institute 2026 reading summaries** (refresher
+   reading pages): LM10 (US GAAP goodwill test is two-step in the curriculum), LM11 (scope
+   and key points), LM12 (transaction gain/loss presentation, remeasurement terminology,
+   CTA reclassified on disposal, sustainability of volume/price growth), LM14 (the seven
+   evaluation steps), LM15 (Nestle case). No public summary was found for LM13.
+4. **Independent accuracy review.** Each of LM11 to LM15 was re-audited by a separate
+   reviewer who recomputed every number; 42 defects were fixed (see git history,
+   commit "independent accuracy review").
 
 ## Deliberately out of scope
 
