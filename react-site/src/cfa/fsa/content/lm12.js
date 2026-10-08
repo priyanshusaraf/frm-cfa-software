@@ -726,7 +726,7 @@ export default {
         {
           t: "p",
           html: `<p>Pinnacle's press release says sales grew 14.8%. The chief executive calls it the best year in a decade. Before you raise your forecast, take the growth apart. Sales can grow because Pinnacle sold more units (<b>volume</b>), charged more per unit (<b>price</b>), bought another company (<b>acquisitions</b>), or because foreign sales were translated at a stronger foreign currency (<b>currency</b>). Volume and price together are <b>organic growth</b>.</p>
-<p>Only some of those repeat. Currency growth adds no customers and no pricing power, and exchange rates can just as easily move back next year, so it is not sustainable. Acquired sales add revenue once; they repeat as GROWTH only if Pinnacle keeps buying companies, which costs capital. Organic volume growth is the most durable. Price growth lasts as long as the company's pricing power does.</p>`,
+<p>Only some of those repeat. Currency growth adds no customers and no pricing power, and exchange rates can just as easily move back next year, so it is not sustainable. Acquired sales add revenue once; they repeat as GROWTH only if Pinnacle keeps buying companies, which costs capital. Growth from volume or price is more sustainable than growth from exchange rates, which is the point the 2026 reading makes. Between the two, volume growth tends to be the more durable, and price growth lasts as long as the company's pricing power does.</p>`,
         },
         { t: "widget", name: "FxSalesLab", props: { part: "growth" } },
         {
@@ -859,7 +859,7 @@ export default {
     { q: "Which ratios survive the current rate method unchanged?", a: "Pure balance sheet ratios and pure income statement ratios (if one rate is used for each statement). Mixed ratios such as return on assets and asset turnover change." },
     { q: "How do US GAAP and IFRS treat a subsidiary in a hyperinflationary economy?", a: "US GAAP: parent's currency becomes functional, temporal method. IFRS: restate with a general price index under IAS 29, then translate everything at the current rate." },
     { q: "Why can a multinational's effective tax rate fall with no change in tax rates?", a: "Its ETR is a weighted average of jurisdictions' rates; more pretax income in low-tax countries lowers the average." },
-    { q: "Which components of sales growth are sustainable?", a: "Organic volume most of all, price as far as pricing power lasts. Acquisitions and currency translation are not organic, and currency effects can reverse." },
+    { q: "Which components of sales growth are sustainable?", a: "Growth from volume and price is more sustainable than growth from exchange rate changes (the 2026 reading's point); volume tends to be the most durable, price lasts as far as pricing power does. Acquisitions and currency translation are not organic, and currency effects can reverse." },
     { q: "What happens to the CTA when the subsidiary is sold?", a: "It is reclassified from equity to profit under both IFRS and US GAAP." },
   ],
 
@@ -964,13 +964,10 @@ export default {
 
   flags: [
     { los: "a", note: "Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses." },
-    { los: "b", note: "The statement that neither IFRS nor US GAAP prescribes the income statement line for transaction gains and losses, and the disclosure wording, should be checked against the curriculum text." },
     { los: "d", note: "The 'balance sheet hedge' paragraph (matching monetary assets and liabilities under the temporal method) is mechanism; confirm the curriculum uses this term before relying on it for an exam answer." },
-    { los: "d", note: "Translation terminology: US GAAP 'translation' vs 'remeasurement'. IFRS frames both as translation (into the functional currency, then into the presentation currency). Confirm the curriculum's phrasing." },
     { los: "g", note: "US GAAP highly inflationary threshold stated as cumulative three-year inflation of about 100% or more. Confirm the curriculum's exact wording (some texts say 'exceeding 100%')." },
     { los: "g", note: "HyperinflationLab and the Kestrel Sur numbers assume the price index and exchange rate move evenly through the year (averages are midpoints). The IAS 21 translation difference on the restated opening net investment at the parent level is not modeled; the comparison is at the level of the subsidiary's translated statements, as curriculum examples present it." },
     { los: "c", note: "The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b." },
-    { los: "i", note: "Sustainability ranking of price vs volume growth: the module treats volume as most durable and price as dependent on pricing power. Confirm the curriculum's emphasis." },
     { los: "h", note: "Transfer pricing is mentioned as a driver of the earnings mix. Confirm it appears in the 2026 curriculum's discussion of the effective tax rate." },
     { los: "e", note: "Scenario lm12-cta-vs-remeasurement hides the cash flow statement: a translated cash flow statement needs an 'effect of exchange rate changes on cash' line outside operating, investing and financing, which the ledger engine does not model. Income statement items are translated at the average rate as an approximation of transaction-date rates." },
   ],

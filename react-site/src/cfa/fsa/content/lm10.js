@@ -435,7 +435,7 @@ export default {
           t: "callout",
           tone: "beyond",
           title: "Beyond the curriculum, flagged so you do not mistake it for exam content",
-          html: "Since ASU 2017-04, US GAAP has removed step 2: the loss is simply the amount by which the reporting unit's carrying amount exceeds its fair value, capped at the goodwill balance. If your book still teaches the two-step test, use it on the exam.",
+          html: "Since ASU 2017-04, US GAAP has removed step 2: the loss is simply the amount by which the reporting unit's carrying amount exceeds its fair value, capped at the goodwill balance. The 2026 curriculum still presents the US GAAP test as two steps (confirmed against CFA Institute's 2026 reading summary), so use the two-step arithmetic on the exam.",
         },
         {
           t: "check",
@@ -643,7 +643,6 @@ export default {
 
   flags: [
     { los: "a", note: "Equity-method impairment reversal: curriculum wording may say neither standard permits reversal; IAS 28 permits it. Verify against the owner's book." },
-    { los: "b", note: "US GAAP goodwill impairment: the curriculum's two-step test vs ASU 2017-04 one-step. Verify which version the 2026 book uses." },
     { los: "a", note: "Contingent liabilities in a business combination: exact IFRS vs US GAAP recognition wording not yet included; add once checked against the book." },
   ],
 };

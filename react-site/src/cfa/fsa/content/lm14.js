@@ -444,6 +444,12 @@ export default {
           ],
         },
         {
+          t: "callout",
+          tone: "exam",
+          title: "The 2026 reading's own checklist",
+          html: "CFA Institute's 2026 summary lists the evaluation as: understand the company's business and industry; compare current and prior-period line items for significant differences; evaluate accounting policies, especially unusual revenue and expense recognition against peers; perform financial ratio analysis; examine the cash flow statement, focusing on the gap between net income and operating cash flow; review risk disclosures; review management compensation and insider transactions. The steps above cover the same ground in a different order. Memorize this version for recall questions.",
+        },
+        {
           t: "table",
           caption: "Accounting warning signs",
           head: ["Area", "Warning signs"],

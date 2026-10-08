@@ -582,7 +582,7 @@ const gwImpairment = {
       },
       insight: "No cash moves. Impairment is a pure accrual: it lowers assets, profit and equity together, and it is added back in the indirect cash flow statement.",
       exam:
-        "IFRS impairment can be reversed for most assets but NEVER for goodwill. US GAAP never reverses impairment of assets held for use. Since 2017 (ASU 2017-04) US GAAP has dropped step 2 and measures the loss in one step; check which version your book tests before relying on the two-step arithmetic.",
+        "IFRS impairment can be reversed for most assets but NEVER for goodwill. US GAAP never reverses impairment of assets held for use. The 2026 curriculum presents the US GAAP two-step test, so use it on the exam. (Since 2017, ASU 2017-04 has removed step 2 in practice; that is beyond the curriculum.)",
     },
   ],
   ratios: [

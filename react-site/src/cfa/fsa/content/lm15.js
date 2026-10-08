@@ -940,7 +940,7 @@ export default {
   ],
 
   flags: [
-    { los: "a", note: "The curriculum teaches this module through an extended case of a real multinational. This module uses a fictional company (Pinnacle Corp) built to reproduce the same analytical sequence; verify the 2026 case company and its exhibits against the official book." },
+    { los: "a", note: "CFA Institute's 2026 summary confirms the case company is Nestle (ROE disaggregation, then deeper drivers to judge capital allocation). This module uses a fictional company (Pinnacle Corp) built to reproduce the same analytical sequence; check the book's exhibits before relying on any case figure." },
     { los: "e", note: "Removing the investment in associates from EQUITY as well as from assets (equity-financing assumption) is a modelling choice made here; verify whether the 2026 case exhibit adjusts equity or only assets and net income." },
     { los: "e", note: "Where equity income is presented (above pretax income, or after tax) changes which DuPont factors it distorts. Pinnacle presents it above pretax income; the classic case company presented it after tax. Check the 2026 exhibit." },
     { los: "c", note: "Section heading 'Off-Balance Sheet Leverage from Operating Leases' is reported for 2026. Verify whether the worked example capitalizes pre-2019 operating leases or uses IFRS 16 / ASC 842 disclosures, and whether purchase commitments are treated as debt in the book." },
