@@ -69,8 +69,8 @@ const LIQ_TESTS = [
    holding the other controls where the student left them. */
 function thresholds(tests, scan, maxPct) {
   return tests.map((t) => {
-    for (let x = 0; x <= maxPct + 1e-9; x += 0.01) {
-      if (scan(x)[t.key] < t.min - 1e-12) return { ...t, at: x };
+    for (let i = 1; i <= maxPct * 100; i++) {
+      if (scan(i / 100)[t.key] < t.min - 1e-9) return { ...t, at: (i - 1) / 100 };
     }
     return { ...t, at: null };
   }).sort((a, b) => (a.at == null ? 1e9 : a.at) - (b.at == null ? 1e9 : b.at));
@@ -244,7 +244,7 @@ export default function CamelsLab() {
         <Card letter="E" title="Earnings" alert={m.ni < 0}>
           <Gauge label="Return on assets" value={m.roa} f={(v) => pct(v, 2)} scale={0.025} min={0} warn={0.01} note="Illustrative peer line at 1.0%; loss below zero" />
           <Gauge label="Return on equity" value={m.roe} f={(v) => pct(v, 1)} scale={0.25} min={0} warn={0.1} note="Illustrative 10% cost of equity line" />
-          <Gauge label="Net interest margin" value={m.nim} f={(v) => pct(v, 2)} scale={0.06} min={0} warn={0.03} note="NII 30 / earning assets 940. Illustrative 3% peer line" />
+          <Gauge label="Net interest margin" value={m.nim} f={(v) => pct(v, 2)} scale={0.06} min={0} warn={0.03} note="Net interest income 30 / interest-earning assets 940. Illustrative 3% peer line" />
         </Card>
         <Card letter="L" title="Liquidity" alert={liqBreach.length > 0}>
           <Gauge label="Liquidity coverage ratio" value={m.lcr} f={(v) => pct(v)} scale={2} min={1} note="Basel III minimum 100%" />
@@ -274,7 +274,7 @@ export default function CamelsLab() {
           <b>Which capital line breaks first as the credit shock grows?</b>
           <ol style={{ margin: "0.3rem 0 0", paddingLeft: "1.2rem", fontSize: "0.84rem" }}>
             {capOrder.map((t) => (
-              <li key={t.id}>{t.label}: {t.at == null ? "holds up to a 10% shock" : "breaks at " + t.at.toFixed(2) + "% of loans"}</li>
+              <li key={t.id}>{t.label}: {t.at == null ? "holds up to a 10% shock" : "fails once the shock exceeds " + t.at.toFixed(2) + "% of loans"}</li>
             ))}
           </ol>
           <div style={{ fontSize: "0.78rem", color: "var(--text-dim)", marginTop: "0.3rem" }}>
@@ -285,7 +285,7 @@ export default function CamelsLab() {
           <b>Which liquidity line breaks first as deposits run?</b>
           <ol style={{ margin: "0.3rem 0 0", paddingLeft: "1.2rem", fontSize: "0.84rem" }}>
             {liqOrder.map((t) => (
-              <li key={t.id}>{t.label}: {t.at == null ? "holds up to a 20% run" : "breaks at " + t.at.toFixed(2) + "% of deposits"}</li>
+              <li key={t.id}>{t.label}: {t.at == null ? "holds up to a 20% run" : "fails once the run exceeds " + t.at.toFixed(2) + "% of deposits"}</li>
             ))}
           </ol>
           <div style={{ fontSize: "0.78rem", color: "var(--text-dim)", marginTop: "0.3rem" }}>

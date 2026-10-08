@@ -115,7 +115,7 @@ const channelStuffing = {
         ],
       },
       insight: "Year 2 net margin: 15.0% faithful, 10.6% aggressive (180 / 1,700). A company that stuffs the channel has to stuff it again, and harder, every year to hide the reversal.",
-      exam: "Total earnings over the two years are equal; the pattern (a spike, then a drop with returns) is the signature. Sunbeam's 1997 to 1998 history is the curriculum-style example.",
+      exam: "Total earnings over the two years are equal; the pattern (a spike, then a drop with returns) is the signature. Sunbeam's 1997 results are the best-known real example.",
     },
   ],
   ratios: [

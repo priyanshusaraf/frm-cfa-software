@@ -436,3 +436,4 @@
   .fsa-num-v { min-width: 2.6rem; }
   .fsa-delta { display: none; }
 }
+.fsa-formula-m.is-wrapped { text-align: center; line-height: 2.1; font-size: 1.12em; padding: 0.5rem 0; }

@@ -272,7 +272,7 @@ const lifoToFifo = {
           ["Equity + reserve x (1 - t)", "+180"],
         ],
       },
-      insight: "Some analysts put the 60 in taxes payable instead, which makes the current ratio rise less. State your choice; the curriculum shows both.",
+      insight: "Some analysts treat the 60 as taxes payable instead (a current liability), which makes the current ratio rise less. Whichever you choose, state it.",
     },
     {
       title: "Buy inventory of 2,850 for cash",

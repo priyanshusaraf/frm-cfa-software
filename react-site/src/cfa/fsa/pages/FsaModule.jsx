@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { CheckCircle2, Circle, Clock, Clapperboard, PencilRuler, Star, Flag } from "lucide-react";
 import FsaLayout, { scrollToSection, useFsaState } from "./FsaLayout.jsx";
@@ -9,7 +9,7 @@ import { moduleById, coverage, MODULES } from "../content/index.js";
 import { scenariosFor } from "../scenarios/index.js";
 import { roundsFor, moduleProgress } from "../progress.js";
 import { toggleFsaRead } from "../../../lib/store.js";
-import { renderMath } from "../../../lib/tex.js";
+import FormulaBox from "../components/FormulaBox.jsx";
 
 function SectionHeader({ mod, s, read, n }) {
   return (
@@ -26,14 +26,7 @@ function SectionHeader({ mod, s, read, n }) {
 }
 
 function FormulaCard({ f }) {
-  const html = useMemo(() => renderMath(f.tex, true), [f.tex]);
-  return (
-    <div className="fsa-formula">
-      <div className="fsa-formula-n">{f.name}</div>
-      <div className="fsa-formula-m f-tex" dangerouslySetInnerHTML={{ __html: html }} />
-      {f.plain && <Html className="fsa-formula-p" html={f.plain} />}
-    </div>
-  );
+  return <FormulaBox name={f.name} tex={f.tex} plain={f.plain} />;
 }
 
 export default function FsaModule() {

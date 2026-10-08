@@ -14,10 +14,11 @@ const PRESETS = [
 ];
 const JUNIPER = { npw: 800, deposits: 200, benefits: 620, commExp: 210 };
 
-const pct = (x) => (Number.isFinite(x) ? (x * 100).toFixed(1) + "%" : "n/a");
+const pct = (x, dp = 1) => (Number.isFinite(x) ? (x * 100).toFixed(dp) + "%" : "n/a");
 const num = (x) => {
   if (!Number.isFinite(x)) return "n/a";
-  const s = Math.abs(x).toFixed(Math.abs(x - Math.round(x)) < 0.05 ? 0 : 1);
+  const dp = Math.abs(x - Math.round(x)) < 0.05 ? 0 : 1;
+  const s = Math.abs(x).toLocaleString("en-US", { minimumFractionDigits: dp, maximumFractionDigits: dp });
   return x < -0.04 ? "(" + s + ")" : s;
 };
 
@@ -36,7 +37,7 @@ function Field({ label, value, onChange, hint }) {
   );
 }
 
-function RatioRow({ label, value, formula, scale = 1.3, line, lineLabel, strong }) {
+function RatioRow({ label, value, formula, scale = 1.3, line, lineLabel, strong, dp = 1 }) {
   const v = useTween(Number.isFinite(value) ? value : 0, 600);
   const over = line != null && Number.isFinite(value) && value > line;
   const tone = line == null ? "var(--accent)" : over ? "var(--red)" : "var(--green)";
@@ -44,7 +45,7 @@ function RatioRow({ label, value, formula, scale = 1.3, line, lineLabel, strong 
     <div style={{ margin: "0.4rem 0 0.55rem" }}>
       <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.82rem", fontWeight: strong ? 700 : 500 }}>
         <span>{label}</span>
-        <span style={{ fontFamily: "var(--mono)", color: tone }}>{Number.isFinite(value) ? pct(v) : "n/a"}</span>
+        <span style={{ fontFamily: "var(--mono)", color: tone }}>{Number.isFinite(value) ? pct(v, dp) : "n/a"}</span>
       </div>
       <div style={{ position: "relative", height: strong ? 10 : 7, background: "var(--bg-inset)", borderRadius: 99, margin: "0.25rem 0 0.1rem" }}>
         <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, borderRadius: 99, background: tone, opacity: 0.85, width: Math.max(0, Math.min(1, v / scale)) * 100 + "%" }} />
@@ -134,7 +135,7 @@ export default function InsurerLab() {
           <RatioRow label="Combined ratio" value={r.comb} formula="loss and LAE ratio + expense ratio" line={1} lineLabel="100%" strong />
           <RatioRow label="Dividends to policyholders ratio" value={r.divR} formula="policyholder dividends / net premiums earned" />
           <RatioRow label="Combined ratio after dividends" value={r.combDiv} formula="combined ratio + dividends ratio" line={1} lineLabel="100%" strong />
-          <RatioRow label="Investment yield" value={r.yieldR} scale={0.1} formula="net investment income / average invested assets" />
+          <RatioRow label="Investment yield" value={r.yieldR} scale={0.1} dp={2} formula="net investment income / average invested assets" />
           <div style={{ fontSize: "0.8rem", marginTop: "0.4rem", color: r.combDiv < 1 ? "var(--green)" : "var(--red)", fontWeight: 600 }}>
             {r.combDiv < 1 ? "Below 100%: an underwriting profit on the ratio basis." : r.combDiv > 1 ? "Above 100%: underwriting loses money; investment income has to cover it." : "Exactly 100%: underwriting breaks even."}
           </div>
@@ -165,8 +166,8 @@ export default function InsurerLab() {
             <Field label="Commissions + expenses" value={l.commExp} onChange={setLh("commExp")} />
           </div>
           <div>
-            <RatioRow label="Total benefits paid / (NPW + deposits)" value={lh.ben} formula={num(l.benefits) + " / " + num(l.npw + l.deposits)} />
-            <RatioRow label="(Commissions + expenses) / (NPW + deposits)" value={lh.exp} formula={num(l.commExp) + " / " + num(l.npw + l.deposits)} />
+            <RatioRow label="Total benefits paid / (net premiums written + deposits)" value={lh.ben} formula={num(l.benefits) + " / " + num(l.npw + l.deposits)} />
+            <RatioRow label="(Commissions + expenses) / (net premiums written + deposits)" value={lh.exp} formula={num(l.commExp) + " / " + num(l.npw + l.deposits)} />
             <div style={{ fontSize: "0.74rem", color: "var(--text-dim)" }}>
               There is no combined ratio for a life insurer: benefits are paid over decades and priced with investment returns built in, so the analyst watches these two ratios over time and against peers instead of against 100%.
             </div>

@@ -1,14 +1,10 @@
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import FsaLayout from "./FsaLayout.jsx";
 import Html from "../../../components/Html.jsx";
 import { MODULES } from "../content/index.js";
-import { renderMath } from "../../../lib/tex.js";
+import FormulaBox from "../components/FormulaBox.jsx";
 
-function Tex({ tex }) {
-  const html = useMemo(() => renderMath(tex, true), [tex]);
-  return <div className="fsa-formula-m f-tex" dangerouslySetInnerHTML={{ __html: html }} />;
-}
 
 /* One page to revise from the morning of the exam: every IFRS vs US GAAP
    difference, every formula, every trap, pulled from the modules. */
@@ -51,13 +47,9 @@ export default function FsaReference() {
               </div>
             )}
             {tab === "formulas" && (
-              <div style={{ display: "grid", gap: "0.6rem", gridTemplateColumns: "repeat(auto-fill, minmax(360px, 1fr))" }}>
+              <div style={{ display: "grid", gap: "0.6rem", gridTemplateColumns: "repeat(auto-fill, minmax(440px, 1fr))" }}>
                 {rows.map((f, i) => (
-                  <div key={i} className="fsa-formula">
-                    <div className="fsa-formula-n">{f.name}</div>
-                    <Tex tex={f.tex} />
-                    {f.plain && <Html className="fsa-formula-p" html={f.plain} />}
-                  </div>
+                  <FormulaBox key={i} name={f.name} tex={f.tex} plain={f.plain} />
                 ))}
               </div>
             )}

@@ -244,7 +244,7 @@ const ctaVsRemeasurement = {
         ],
       },
       insight:
-        "One rate move, two opposite signs. Net income: 220 under the current rate method, 207 under the temporal method (145 before the 62 gain). The temporal method puts currency noise INTO earnings; the current rate method parks it in equity.",
+        "The same rate move produced opposite signs. Net income: 220 under the current rate method, 207 under the temporal method (145 before the 62 gain). The temporal method puts currency noise INTO earnings; the current rate method parks it in equity.",
       exam:
         "Know which exposure drives which number. Current rate method: net ASSET exposure, effect in OCI. Temporal method: net MONETARY exposure, effect in net income. A company with a net monetary liability gains from a falling foreign currency under the temporal method even while its translation adjustment would have been negative.",
     },

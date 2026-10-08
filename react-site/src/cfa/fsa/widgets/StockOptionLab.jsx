@@ -54,7 +54,10 @@ export default function StockOptionLab() {
     if (Number.isFinite(n)) setX((p) => ({ ...p, [key]: n }));
   };
 
-  const fv = bsm(x);
+  /* Companies report the per-option fair value to the cent, and the total
+     cost is built from that rounded figure (6.00 x 15,000 = 90,000). */
+  const cents = (v) => Math.round(v * 100) / 100;
+  const fv = cents(bsm(x));
   const intrinsic = Math.max(0, x.S - x.K);
   const total = fv * x.n;
   const perYear = total / x.vest;
@@ -68,7 +71,7 @@ export default function StockOptionLab() {
     { key: "r", label: "Risk-free rate +1 point", to: x.r + 1 },
     { key: "q", label: "Dividend yield +1 point", to: x.q + 1 },
   ].map((b) => {
-    const nv = bsm({ ...x, [b.key]: b.to });
+    const nv = cents(bsm({ ...x, [b.key]: b.to }));
     return { ...b, nv, dFv: nv - fv, dExp: ((nv - fv) * x.n) / x.vest };
   });
   const maxD = Math.max(0.0001, ...bumps.map((b) => Math.abs(b.dFv)));
@@ -98,7 +101,7 @@ export default function StockOptionLab() {
 
       <div className="stat-row" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", gap: "0.6rem", marginBottom: "1rem" }}>
         {[
-          ["Fair value per option", <Tw v={fv} dp={2} />, "Black-Scholes-Merton"],
+          ["Fair value per option", <Tw v={fv} dp={2} />, "Black-Scholes-Merton, to the cent"],
           ["Intrinsic value at grant", <Tw v={intrinsic} dp={2} />, "max(share price - exercise price, 0)"],
           ["Total grant-date fair value", <Tw v={total} />, "fixed for good on the grant date"],
           ["Expense per year", <Tw v={perYear} />, "total / " + x.vest + (x.vest === 1 ? " year" : " years")],

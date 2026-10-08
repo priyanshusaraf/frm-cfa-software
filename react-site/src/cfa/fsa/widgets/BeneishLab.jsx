@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { RotateCcw } from "lucide-react";
-import { useTween } from "../components/motion.js";
+import { useTween, prefersReducedMotion } from "../components/motion.js";
 
 /* Beneish M-score and Altman Z-score lab (LM14, LOS c and d).
    Every index, contribution, score and probability is computed from the raw
@@ -115,6 +115,8 @@ function NumIn({ value, onChange, label }) {
 const cell = { padding: "0.2rem 0.45rem", borderTop: "1px solid var(--border)", background: "transparent" };
 const capS = { fontSize: "0.68rem", textTransform: "uppercase", letterSpacing: "0.06em", color: "var(--text-faint)", fontWeight: 650 };
 
+const ease = (props) => (prefersReducedMotion() ? "none" : props);
+
 /* A horizontal bar for a signed contribution, centred on zero. */
 function Bar({ value, scale, tone }) {
   const w = Number.isFinite(value) ? Math.min(50, (Math.abs(value) / scale) * 50) : 0;
@@ -122,7 +124,7 @@ function Bar({ value, scale, tone }) {
   return (
     <div style={{ position: "relative", height: "0.85rem", background: "var(--bg-inset)", borderRadius: "99px", overflow: "hidden" }}>
       <div style={{ position: "absolute", left: "50%", top: 0, bottom: 0, width: "1px", background: "var(--border-strong)" }} />
-      <div style={{ position: "absolute", top: 0, bottom: 0, left: left + "%", width: w + "%", background: tone, borderRadius: "99px", transition: "left .6s cubic-bezier(.3,.7,.2,1), width .6s cubic-bezier(.3,.7,.2,1)" }} />
+      <div style={{ position: "absolute", top: 0, bottom: 0, left: left + "%", width: w + "%", background: tone, borderRadius: "99px", transition: ease("left .6s cubic-bezier(.3,.7,.2,1), width .6s cubic-bezier(.3,.7,.2,1)") }} />
     </div>
   );
 }
@@ -138,7 +140,7 @@ function Gauge({ value, min, max, marks, tone, label }) {
             <div style={{ position: "absolute", top: "1.4rem", left: "50%", transform: "translateX(-50%)", fontSize: "0.68rem", color: m.tone || "var(--text-dim)", whiteSpace: "nowrap" }}>{m.label}</div>
           </div>
         ))}
-        <div style={{ position: "absolute", left: pos(value) + "%", top: "50%", width: "1.05rem", height: "1.05rem", borderRadius: "50%", background: tone, border: "2px solid var(--bg)", transform: "translate(-50%, -50%)", transition: "left .7s cubic-bezier(.3,.7,.2,1), background .3s", boxShadow: "var(--shadow)" }} aria-label={label} />
+        <div style={{ position: "absolute", left: pos(value) + "%", top: "50%", width: "1.05rem", height: "1.05rem", borderRadius: "50%", background: tone, border: "2px solid var(--bg)", transform: "translate(-50%, -50%)", transition: ease("left .7s cubic-bezier(.3,.7,.2,1), background .3s"), boxShadow: "var(--shadow)" }} aria-label={label} />
       </div>
     </div>
   );

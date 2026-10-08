@@ -770,9 +770,17 @@ bookmark toggles, both corner pills, and the resize handle present.
 
 | Module | Content | Scenarios | Widgets | Notes |
 |---|---|---|---|---|
-| LM10 Intercorporate Investments | done (orchestrator) | 9 | none | reference module for voice and depth |
-| LM11 Employee Compensation | in progress | | PensionLab, StockOptionLab | |
-| LM12 Multinational Operations | in progress | | FxTranslator, HyperinflationLab, FxSalesLab | |
-| LM13 Financial Institutions | in progress | | CamelsLab, InsurerLab | |
-| LM14 Quality of Financial Reports | in progress | | AccrualsLab, BeneishLab, ManipulationRadar | |
-| LM15 Integration of FSA Techniques | in progress | | DupontLab, AdjustmentsLab | |
+| LM10 Intercorporate Investments | done (orchestrator) | 9 | none | reference module for voice and depth; 3 flags |
+| LM11 Employee Compensation | done | 6 | PensionLab, StockOptionLab | 8 flags |
+| LM12 Multinational Operations | done | 3 | FxTranslator, HyperinflationLab, FxSalesLab | 10 flags; translator verified by hand |
+| LM13 Financial Institutions | done | 4 | CamelsLab, InsurerLab | 8 flags |
+| LM14 Quality of Financial Reports | done | 6 | AccrualsLab, BeneishLab, ManipulationRadar | 10 flags |
+| LM15 Integration of FSA Techniques | done | 4 | DupontLab, AdjustmentsLab | 7 flags |
+
+Totals: 61 sections, 32 animated scenarios, 229 reconstruct rounds, 12 widgets, 17 item sets.
+Verified 2026-10-08: every module gate OK, npm test 166/166, build green, headless sweep of
+43 pages (all 32 scenarios played to the end) with zero console errors or warning boxes,
+widgets screenshot-checked in dark theme. NOT verified in a real browser by the owner yet:
+slider feel, animation timing, the reconstruct game's keyboard flow.
+NEXT for CFA: reconcile against the books once committed (checklist and all 46 flags in
+react-site/docs/cfa/fsa-curriculum-reconciliation.md).

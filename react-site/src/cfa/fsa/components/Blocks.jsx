@@ -1,6 +1,6 @@
-import React, { Suspense, lazy, useMemo } from "react";
+import React, { Suspense, lazy } from "react";
 import Html from "../../../components/Html.jsx";
-import { renderMath } from "../../../lib/tex.js";
+import FormulaBox from "./FormulaBox.jsx";
 import { scenarioById } from "../scenarios/index.js";
 import Theater from "./Theater.jsx";
 import { ConceptCheck, Sorter, DecisionTree } from "./Interactives.jsx";
@@ -25,16 +25,6 @@ function Warn({ children }) {
   return <div className="fsa-warnbox">{children}</div>;
 }
 
-function Formula({ name, tex, plain }) {
-  const html = useMemo(() => renderMath(tex, true), [tex]);
-  return (
-    <div className="fsa-formula">
-      {name && <div className="fsa-formula-n">{name}</div>}
-      <div className="fsa-formula-m f-tex" dangerouslySetInnerHTML={{ __html: html }} />
-      {plain && <Html className="fsa-formula-p" html={plain} />}
-    </div>
-  );
-}
 
 export function Block({ b }) {
   switch (b.t) {
@@ -71,7 +61,7 @@ export function Block({ b }) {
         </div>
       );
     case "formula":
-      return <Formula name={b.name} tex={b.tex} plain={b.plain} />;
+      return <FormulaBox name={b.name} tex={b.tex} plain={b.plain} />;
     case "steps":
       return (
         <div className="fsa-steps">

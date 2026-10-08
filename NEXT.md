@@ -1,3 +1,3 @@
-DONE: CFA L2 FSA platform foundation at /cfa/fsa (ledger engine, animated Theater, reconstruct game, LM10 complete with 9 scenarios, coverage page); LM11-LM15 being authored by parallel agents.
-NEXT: Integrate and verify the LM11-LM15 modules (fsa-check per module, npm test, build, headless render-check), then commit.
-BLOCKERS: Owner's CFA books are not in the cloud container; LOS wording reconstructed from third-party listings, so content is not yet reconciled against the books (commit them under cfa-l2/ to unblock).
+DONE: CFA L2 FSA platform complete at /cfa/fsa: all six 2026 modules (LM10-LM15), 32 animated scenarios, 229 reconstruct rounds, 12 widgets; tests, build and a 43-page headless sweep all clean.
+NEXT: Owner commits the CFA Level II books under cfa-l2/, then run the reconciliation checklist in react-site/docs/cfa/fsa-curriculum-reconciliation.md (46 open flags).
+BLOCKERS: CFA books not in the repo, so LOS wording/letters and 46 flagged details are unverified against the official curriculum.
