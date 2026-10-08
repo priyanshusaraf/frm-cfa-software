@@ -1,22 +1,556 @@
 /* LM11 Employee Compensation: Post-Employment and Share-Based.
-   Demo cast: Pinnacle Corp (plan sponsor and option grantor), Kestrel Ltd
-   (peer for disclosure comparisons). Maya is one Pinnacle employee used for
-   the single-employee obligation example. Every number below was checked by
-   arithmetic; the scenarios in scenarios/lm11.js use the same figures. */
+   Structure follows the official 2026 LOS (content/curriculum.js): a types of
+   compensation; b share-based pay in the statements; c forecasting share-based
+   pay and shares outstanding, and valuation; d post-employment benefits in the
+   statements; e modeling and valuing post-employment benefits. Material that
+   was core under the older LOS set (projected unit credit arithmetic, the
+   corridor, ratio and cash flow reclassifications) is kept and labelled.
+   Demo cast: Pinnacle Corp (plan sponsor and award grantor), Kestrel Ltd
+   (peer). Maya is one Pinnacle employee used for the single-employee
+   obligation example. Every number below was recomputed with node scripts;
+   the scenarios in scenarios/lm11.js use the same figures. */
 export default {
   id: "lm11",
   num: 11,
   title: "Employee Compensation: Post-Employment and Share-Based",
   short: "Employee compensation",
   tagline:
-    "Pay that employees earn today but collect years later is a debt in disguise: the accounting decides how much of it you see, and where.",
-  minutes: 200,
+    "Pay that employees earn today but collect years later is a cost in disguise: shares that dilute and pensions that behave like debt. The accounting decides how much you see; your model decides whether you charge for it once.",
+  minutes: 240,
   sections: [
+    /* ------------------------------------------------------------ */
+    {
+      id: "comp-types",
+      title: "What employees are paid, and why the analyst cares about when",
+      los: ["a"],
+      blocks: [
+        {
+          t: "p",
+          html: `<p>You are an analyst building a forecast model for Pinnacle Corp, a software and services company. For most companies, and certainly for Pinnacle, employee pay is the largest single cost, so whatever you assume about it moves every line below revenue and, in the end, your valuation.</p>
+<p>Some of that pay is easy. Salaries paid this month are this month's expense and this month's cash, and next year's salaries are a headcount times a wage. The hard part is pay that employees earn now and collect later, at a cost nobody knows yet: shares that vest in three years at whatever the share price is then, and pensions paid for decades after an employee retires. The company has to estimate those costs to put them in its financial statements, and your model inherits the estimates. This module follows the curriculum's lens: International Financial Reporting Standards (IFRS) first, with the significant differences under US generally accepted accounting principles (US GAAP) called out where they matter.</p>`,
+        },
+        {
+          t: "p",
+          html: `<p><b>Why packages mix several kinds of pay.</b> A compensation package has three jobs at once. It must meet employees' <b>liquidity</b> needs, because they have rent to pay now. It must <b>retain</b> them, so a competitor cannot simply hire them away. And it should <b>motivate</b> the performance shareholders want. No single form of pay does all three: a salary pays the rent but rewards nothing in particular, while shares that vest in three years retain and motivate but cannot pay this month's rent. So companies combine components.</p>`,
+        },
+        {
+          t: "table",
+          caption: "The four components of a compensation package",
+          head: ["Component", "What it is", "Main job", "When the cash moves", "What the accounts must estimate"],
+          rows: [
+            ["Salary and wages", "Fixed pay for time worked", "Liquidity", "As it is earned", "Nothing: expense equals the amount earned in the period"],
+            ["Bonuses (short-term incentives)", "Cash tied to targets for the year", "Motivation over one year, plus liquidity", "Usually shortly after year end", "Whether targets will be met; the unpaid amount is an accrued liability"],
+            ["Share-based compensation (long-term incentives)", "Shares, restricted stock units, stock options", "Aligning employees with shareholders; retention, because unvested awards are lost on leaving", "Usually never for the company: the cost reaches shareholders as dilution", "Fair value at grant (an option pricing model for options), forfeitures, and the tax deduction at settlement"],
+            ["Post-employment benefits", "Pensions, retiree health care and life cover", "Retention and long-term security", "Contributions now (defined contribution) or benefits decades later (defined benefit)", "For defined benefit plans: discount rate, salary growth, longevity, health care cost inflation, return on assets"],
+          ],
+          note: "The first two are settled in cash within about a year, so expense and cash barely diverge. The last two are where expense, cash and the eventual cost come apart, and they are the subject of the rest of this module.",
+        },
+        {
+          t: "callout",
+          tone: "insight",
+          title: "Why the deferred components are the analyst's problem",
+          html: "Share-based pay and post-employment benefits are paid later, at an uncertain cost, so the reported expense is an estimate rather than a cash amount. That creates two modeling jobs a salary never does. Share-based pay creates new shares, so you must forecast the share count your value is divided by. A defined benefit pension creates a debt-like obligation, so you must decide how its deficit and its cost enter your valuation. Both are covered in this module in the curriculum's order: share-based pay first, then post-employment benefits.",
+        },
+        {
+          t: "sort",
+          prompt: "Tap each item in Pinnacle's pay package, then tap the component it belongs to.",
+          buckets: [
+            { id: "st", label: "Short-term: salary and bonus" },
+            { id: "sb", label: "Share-based (long-term incentive)" },
+            { id: "pe", label: "Post-employment benefit" },
+          ],
+          items: [
+            { text: "Monthly salary of an engineer", bucket: "st", why: "Fixed pay for time worked, paid as earned." },
+            { text: "Cash bonus if this year's revenue target is hit", bucket: "st", why: "A short-term incentive settled in cash after year end." },
+            { text: "Restricted stock units vesting after three years", bucket: "sb", why: "Shares delivered later if the employee stays: a long-term incentive." },
+            { text: "Options to buy shares at today's price", bucket: "sb", why: "Worth something only if the share price rises, which aligns the holder with shareholders." },
+            { text: "6% of salary paid into each employee's retirement account", bucket: "pe", why: "A defined contribution plan: a post-employment benefit, even though the cash goes in now." },
+            { text: "A pension of 2% of final salary per year of service", bucket: "pe", why: "A defined benefit plan: paid after employment ends." },
+            { text: "Medical cover for retirees", bucket: "pe", why: "Another post-employment benefit, usually accounted for like a defined benefit pension." },
+          ],
+        },
+        {
+          t: "check",
+          id: "lm11-types-0",
+          q: "Pinnacle wants to keep its senior engineers for at least three more years and to tie their reward to the share price, without spending cash today. Which component fits best?",
+          options: [
+            "A higher monthly salary",
+            "An annual cash bonus based on this year's profit",
+            "Restricted stock units that vest after three years",
+          ],
+          answer: 2,
+          why: "Units that vest only after three years are lost if the engineer leaves, which retains, and their value rises and falls with the share price, which aligns. They need no cash outlay today. A salary rise costs cash now and rewards nothing specific; a one-year cash bonus costs cash and does nothing for retention beyond the year.",
+        },
+      ],
+    },
+
+    /* ------------------------------------------------------------ */
+    {
+      id: "share-based-issues",
+      title: "Paying in shares: the issues",
+      los: ["b"],
+      blocks: [
+        {
+          t: "p",
+          html: `<p>Pinnacle wants to reward its managers for growing the share price, and it would rather not spend cash doing it. Giving managers shares or options looks ideal: it ties their wealth to shareholders' wealth, it costs no cash today, and if the share price never rises, options pay nothing.</p>
+<p>That last point is exactly the problem. For years, an at-the-money option was recorded at its intrinsic value on the grant date, which is zero, so options looked free in the income statement. They are not free: something the market would pay real money for was handed to employees in exchange for their work. Today both IFRS and US GAAP require equity-settled share-based compensation to be <b>expensed at its fair value on the grant date</b>, spread over the period in which employees earn it. (Awards settled in cash are the exception: they are remeasured every period, as you will see in the next section.)</p>`,
+        },
+        {
+          t: "compare",
+          items: [
+            {
+              title: "Why companies use it",
+              tone: "green",
+              points: [
+                "Aligns managers' interests with shareholders'",
+                "Conserves cash: no current cash outlay at grant or vesting for equity-settled awards",
+                "Helps retain staff, because unvested awards are lost on leaving",
+              ],
+            },
+            {
+              title: "The issues an analyst must weigh",
+              tone: "red",
+              points: [
+                "Options have an asymmetric payoff: managers share the upside but not the downside, which can encourage excessive risk-taking or a focus on short-term share price",
+                "Managers may also time news or dividend decisions around grants and exercises",
+                "Dilution: new shares on exercise or vesting reduce existing holders' ownership",
+                "The expense is an estimate: option values depend on assumptions management chooses, so they can be biased low",
+                "Expense and cash diverge: a large non-cash expense with no outflow, while the economic cost lands on shareholders as dilution",
+              ],
+            },
+          ],
+        },
+        {
+          t: "callout",
+          tone: "insight",
+          title: "Who actually pays",
+          html: "When Pinnacle settles in shares, its cash never moves: the cost is borne by existing shareholders, whose slice of the company shrinks. That is why the expense is real even though cash from operations is untouched, and why analysts read the share-based compensation note alongside diluted earnings per share.",
+        },
+        {
+          t: "p",
+          html: `<p><b>Fair value needs judgment.</b> Both IFRS and US GAAP expense share-based pay at fair value. For shares and restricted stock units the fair value is close to the share price at grant, but for options there is no market price, so the company picks an <b>option pricing model</b> (Black-Scholes-Merton or a binomial lattice). That choice is itself a significant judgment, and it is disclosed. The model then needs inputs: the exercise price, expected volatility, expected life (term), expected forfeitures, the dividend yield and the risk-free rate. The exercise price and the risk-free rate are observable. <b>Expected volatility and expected life are the most subjective</b>, because both are forecasts of the future that management makes about its own shares and its own employees, and both move the value a lot.</p>
+<p>The disclosures that make the expense auditable are the ones to read: the valuation model used, each assumption, the number of awards outstanding, granted, exercised or vested, and forfeited, and the compensation cost not yet recognized for unvested awards with the period over which it will be recognized. That last figure tells you how much future expense is already locked in, and you will use it again in the treasury stock method when you forecast diluted shares.</p>`,
+        },
+        {
+          t: "check",
+          id: "lm11-sbc-1",
+          q: "Which statement about equity-settled share-based compensation is most accurate?",
+          options: [
+            "It has no economic cost because no cash is paid",
+            "It is expensed at grant-date fair value over the service period",
+            "It is remeasured to fair value at each reporting date",
+          ],
+          answer: 1,
+          why: "Both standards measure equity-settled awards once, at fair value on the grant date, and recognize that amount over the service period. Remeasurement every period is the rule for CASH-settled awards. The economic cost is real and falls on shareholders through dilution.",
+        },
+      ],
+    },
+
+    /* ------------------------------------------------------------ */
+    {
+      id: "grants-options",
+      title: "Stock grants, restricted stock units, options and appreciation rights in the statements",
+      los: ["b"],
+      blocks: [
+        {
+          t: "p",
+          html: `<p>Every share-based award has the same timeline. On the <b>grant date</b> the terms are agreed and the award is measured. Over the <b>vesting (service) period</b> employees earn it and the expense is recognized. For options, the <b>exercise date</b> comes later, when employees pay the exercise price and receive shares. The type of award decides how it is measured and whether the credit side is equity or a liability.</p>`,
+        },
+        {
+          t: "tree",
+          title: "How is this award measured?",
+          root: "settle",
+          nodes: {
+            settle: {
+              q: "Will the award be settled in shares or in cash?",
+              help: "Stock appreciation rights and phantom shares paid in cash are cash-settled.",
+              options: [{ label: "Shares", next: "kind" }, { label: "Cash", next: "cash" }],
+            },
+            kind: {
+              q: "What do employees receive?",
+              options: [{ label: "Shares (a stock grant, restricted stock or restricted stock units)", next: "grant" }, { label: "Options to buy shares at a fixed price", next: "opt" }],
+            },
+            grant: { result: "Grant-date market price of the shares", tone: "green", html: "Fair value = share price at grant x number of shares, expensed over the vesting period, credited to equity. Never remeasured. Performance shares are also valued at grant date, with the number expected to vest reflecting the performance conditions." },
+            opt: { result: "Grant-date fair value from an option pricing model", tone: "cyan", html: "Black-Scholes-Merton or a binomial (lattice) model, using the share price, exercise price, expected term, expected volatility, risk-free rate and expected dividends. Expensed over the vesting period, credited to paid-in capital. Never remeasured." },
+            cash: { result: "A liability, remeasured to fair value every reporting date", tone: "amber", html: "Expense = change in the liability, which tracks the share price and the portion of the service period completed. Cumulative expense ends up equal to the cash paid." },
+          },
+        },
+        {
+          t: "h",
+          text: "Stock grants",
+        },
+        {
+          t: "p",
+          html: `<p>An outright <b>stock grant</b> gives employees shares, usually as <b>restricted stock</b> that cannot be sold or is forfeited unless the employee stays for a vesting period. Today the most common form is the <b>restricted stock unit</b> (RSU): a promise to deliver one share per unit when it vests, with nothing issued until then. Employees pay nothing for RSUs, so vesting brings the company no cash, unlike an option exercise. <b>Performance shares</b> are contingent on a target, often an accounting measure such as return on assets, which gives managers an incentive to manage that measure. In every case the fair value is the market price of the shares on the grant date, and that fixed amount is expensed over the vesting period, because that is the period in which Pinnacle receives the service the award pays for. If an award vests immediately, there is no future service to wait for, so the whole fair value is expensed on the grant date. The scenario below shows it next to a cash-settled award.</p>`,
+        },
+        {
+          t: "h",
+          text: "Stock options",
+        },
+        {
+          t: "p",
+          html: `<p>An option has no market price because employee options cannot be traded, so its fair value comes from a model: Black-Scholes-Merton or a binomial model. The curriculum does not ask you to compute it, but it does test the inputs and their direction, because management chooses most of them. The two that are observable are the share price and the exercise price. The others are estimates: <b>expected term</b> (employees often exercise early, so it is usually shorter than the contractual life), <b>expected volatility</b>, the <b>risk-free rate</b> for that term, and the <b>expected dividend yield</b>.</p>`,
+        },
+        { t: "theater", scenario: "lm11-stock-options" },
+        { t: "widget", name: "StockOptionLab" },
+        {
+          t: "table",
+          caption: "Assumptions and option value (Pinnacle base case: value 6.00 per option)",
+          head: ["Assumption raised", "Option fair value", "Compensation expense", "Pinnacle, one input changed"],
+          rows: [
+            ["Expected volatility", "Higher", "Higher", "30% to 35%: 6.00 to 6.91"],
+            ["Expected term", "Higher", "Higher", "5 to 6 years: 6.00 to 6.40"],
+            ["Risk-free rate", "Higher", "Higher", "3% to 4%: 6.00 to 6.42"],
+            ["Expected dividend yield", "LOWER", "LOWER", "2.5% to 3.5%: 6.00 to 5.32"],
+          ],
+          note: "Why dividends lower the value: option holders do not receive dividends, and every dividend paid lowers the share price they need to rise. Why a higher risk-free rate raises it: the exercise price is paid in the future, so its present value is smaller when rates are higher.",
+        },
+        {
+          t: "callout",
+          tone: "trap",
+          title: "Classic trap",
+          html: "Thinking a higher assumed dividend yield raises option expense because dividends sound like 'more value'. It is the reverse: higher expected dividends lower the call value and so lower the expense. A company wanting a smaller expense can assume a shorter term, lower volatility or higher dividends. A shorter expected term alone (5 years to 3 at Pinnacle) cuts the value from 6.00 to 4.89 per option, and the total cost from 90,000 to 73,350.",
+        },
+        {
+          t: "formula",
+          name: "Expense for an equity-settled award with cliff vesting",
+          tex: "\\text{Annual expense} = \\frac{\\text{Number of awards expected to vest} \\times \\text{Grant-date fair value per award}}{\\text{Vesting period in years}}",
+          plain: "Pinnacle: 15,000 x 6.00 / 3 = 30,000 a year. Credit paid-in capital. If employees forfeit by leaving before vesting, the expense for their awards is reversed; if vested options simply expire unexercised, nothing is reversed.",
+        },
+        {
+          t: "callout",
+          tone: "beyond",
+          title: "Beyond the curriculum: the model itself",
+          html: "For reference, the Black-Scholes-Merton value of a call with continuous dividend yield q is \\(c = S e^{-qT} N(d_1) - K e^{-rT} N(d_2)\\), with \\(d_1 = \\frac{\\ln(S/K) + (r - q + \\sigma^2/2)T}{\\sigma\\sqrt{T}}\\) and \\(d_2 = d_1 - \\sigma\\sqrt{T}\\). The lab above uses exactly this. The exam tests the direction of each input, not the computation.",
+        },
+        {
+          t: "h",
+          text: "Stock appreciation rights and phantom shares",
+        },
+        {
+          t: "p",
+          html: `<p>A <b>stock appreciation right</b> (SAR) pays the employee the increase in the share price above a set price, usually in cash. Employees get the upside without having to buy shares, and existing shareholders suffer no dilution; but Pinnacle pays cash, and the employee bears no downside. <b>Phantom shares</b> work similarly but are based on a hypothetical number of shares, which lets companies without listed shares (or business units) offer share-like rewards.</p>
+<p>Because a cash-settled award will be paid in cash, it is a <b>liability</b>, and a liability is measured at what it will cost to settle. So it is remeasured at fair value at every reporting date, and the expense is the change in the liability. The expense now moves with the share price, and can even be negative.</p>`,
+        },
+        { t: "theater", scenario: "lm11-grants-vs-sars" },
+        {
+          t: "sort",
+          prompt: "What happens to the compensation expense Pinnacle recognizes? Tap each event, then its effect.",
+          buckets: [
+            { id: "up", label: "Expense rises" },
+            { id: "down", label: "Expense falls" },
+            { id: "none", label: "No effect" },
+          ],
+          items: [
+            { text: "Higher expected volatility assumed at grant (options)", bucket: "up", why: "A more volatile share gives the option more upside, so its fair value is higher." },
+            { text: "Higher expected dividend yield assumed at grant (options)", bucket: "down", why: "Dividends lower the expected share price path that option holders need." },
+            { text: "Longer expected term assumed at grant (options)", bucket: "up", why: "More time for the share price to rise, and a later exercise payment." },
+            { text: "Share price falls after grant (equity-settled options)", bucket: "none", why: "Equity-settled awards are fixed at grant-date fair value." },
+            { text: "Share price rises after grant (cash-settled SARs)", bucket: "up", why: "The liability is remeasured to a higher fair value." },
+            { text: "Share price falls after grant (cash-settled SARs)", bucket: "down", why: "The liability shrinks and the reduction is credited to expense." },
+            { text: "Higher risk-free rate assumed at grant (options)", bucket: "up", why: "The present value of the exercise price falls, so the call is worth more." },
+          ],
+        },
+        {
+          t: "check",
+          id: "lm11-opt-1",
+          q: "Pinnacle grants 20,000 options with a grant-date fair value of 4.50 each, vesting after 3 years. In year 2 the share price doubles. Compensation expense in year 2 is:",
+          options: ["30,000", "60,000", "90,000"],
+          answer: 0,
+          why: "Equity-settled options are measured once: 20,000 x 4.50 = 90,000, expensed evenly over 3 years = 30,000 a year. The share price movement after grant does not change the expense.",
+        },
+        {
+          t: "check",
+          id: "lm11-opt-2",
+          q: "When employees exercise equity-settled options, the company's financial statements show:",
+          options: [
+            "A financing cash inflow equal to the exercise price received, and no income statement effect",
+            "An operating cash inflow and a gain equal to the exercise price",
+            "A compensation expense equal to the intrinsic value at exercise",
+          ],
+          answer: 0,
+          why: "Exercise is a share issue: cash in (financing) and an increase in share capital, together with the paid-in capital already built up from the option expense. The cost was fixed at grant and recognized during vesting, so exercise adds nothing to the income statement.",
+        },
+      ],
+    },
+
+    /* ------------------------------------------------------------ */
+    {
+      id: "sbc-tax",
+      title: "Taxes on share-based pay: the windfall, and why effective tax rates differ",
+      los: ["b"],
+      blocks: [
+        {
+          t: "p",
+          html: `<p>Pinnacle's statutory tax rate is 20%. In a year when its share price jumped, its US GAAP income statement showed an <b>effective tax rate</b> (ETR, income tax expense divided by pre-tax income) of 18%. A competitor with identical operations and identical awards, reporting under IFRS, showed 20%. Same tax paid, same awards, different tax rate. If you forecast Pinnacle's next year with an 18% rate you will probably be wrong, and to see why you need to follow the tax on a share award from grant to settlement.</p>
+<p>The root of it is that the books and the tax authority measure the award differently, at different times. The <b>book expense</b> is the grant-date fair value, spread over the vesting period. In many jurisdictions, including the US, the <b>tax deduction</b> comes only when the award vests (or an option is exercised) and equals the award's value on that day. The two amounts agree only if the share price ends where it started.</p>`,
+        },
+        {
+          t: "steps",
+          title: "The tax life of an equity-settled award",
+          items: [
+            { title: "During vesting: a deferred tax asset builds", html: "Each year's expense will produce a deduction later, so the company records a <b>deferred tax asset</b> equal to the tax rate times the expense recognized, with a deferred tax benefit that lowers tax expense. Pinnacle: 100 of expense a year at 20% builds the asset by 20 a year, to 60 after three years." },
+            { title: "At settlement: the actual deduction is known", html: "Pinnacle's 10 million RSUs vest at a share price of 45, so the deduction is 450 against a cumulative expense of 300. The deduction saves 90 of tax; 60 of that simply uses up the deferred tax asset." },
+            { title: "The excess is the windfall", html: "The other 30, the tax effect of the extra 150 of deduction, is the <b>excess tax benefit</b> (often called the windfall). If the share price had fallen instead, the deduction would be smaller than the expense, and the unused part of the deferred tax asset (a shortfall) would raise tax expense." },
+            { title: "Where the windfall goes depends on the standard", html: "<b>US GAAP</b>: in income tax expense, so the ETR falls in that year. <b>IFRS</b>: directly in equity, because the extra deduction relates to value that never went through profit as an expense, so its tax effect stays out of profit too. The ETR stays at the statutory rate." },
+          ],
+        },
+        { t: "theater", scenario: "lm11-rsu-windfall" },
+        {
+          t: "table",
+          caption: "Pinnacle's vesting year under each standard (millions)",
+          head: ["", "IFRS", "US GAAP"],
+          rows: [
+            ["Pre-tax income (1,600 of profit less 100 of RSU expense)", "1,500", "1,500"],
+            ["Tax on profit before the RSU deduction: 1,600 x 20%", "320", "320"],
+            ["Deferred tax benefit on this year's expense: 100 x 20%", "(20)", "(20)"],
+            ["Windfall: (450 - 300) x 20%", "to equity", "(30)"],
+            ["<b>Income tax expense</b>", "<b>300</b>", "<b>270</b>"],
+            ["<b>Effective tax rate</b>", "<b>20.0%</b>", "<b>18.0%</b>"],
+            ["Net income", "1,200", "1,230"],
+            ["Tax actually payable", "230", "230"],
+          ],
+          note: "Identical cash tax and identical total equity. Only the destination of the 30 differs, and with it net income and the effective tax rate.",
+        },
+        {
+          t: "callout",
+          tone: "gaap",
+          title: "IFRS vs US GAAP: excess tax benefits",
+          html: "US GAAP records excess tax benefits (and shortfalls) on settlement in income tax expense, so a US GAAP reporter's effective tax rate moves with its share price. IFRS records the excess in equity, so the effective tax rate stays closer to the statutory rate. For a model this means a US GAAP history of low tax rates earned in a rising market is a weak guide to the future rate: the windfall repeats only if the share price keeps rising faster than grant prices.",
+        },
+        {
+          t: "check",
+          id: "lm11-tax-1",
+          q: "An IFRS reporter's restricted stock units vest at a share price well above the grant-date price. The excess tax benefit is recognized in:",
+          options: ["Income tax expense, lowering the effective tax rate", "Equity", "Other comprehensive income, later reclassified to profit"],
+          answer: 1,
+          why: "Under IFRS the tax effect of the deduction in excess of the cumulative expense goes directly to equity, because that excess relates to value that was never expensed. It is US GAAP that runs the windfall through income tax expense.",
+        },
+        {
+          t: "check",
+          id: "lm11-tax-2",
+          q: "A US GAAP company's RSUs vest when the share price is below the grant-date price. Compared with the statutory rate, its effective tax rate that year is most likely:",
+          options: ["Lower", "Unchanged", "Higher"],
+          answer: 2,
+          why: "The deduction is smaller than the cumulative expense, so part of the deferred tax asset is never realized. Under US GAAP that shortfall is charged to income tax expense, which pushes the effective tax rate above the statutory rate.",
+        },
+      ],
+    },
+
+    /* ------------------------------------------------------------ */
+    {
+      id: "sbc-forecast",
+      title: "Forecasting share-based pay and the share count, and what they do to value",
+      los: ["c"],
+      blocks: [
+        {
+          t: "p",
+          html: `<p>You are building Pinnacle's five-year model. Look for share-based compensation on its income statement and you will not find a line for it. The expense is spread across cost of sales, research and development, and selling, general and administrative expenses (SG&A), according to the function of the employees who received the awards. Only the note gives the total: 400 (millions) on 10,000 of revenue next year if history holds.</p>
+<p>A model that simply grows each expense line will carry that cost forward without ever seeing it, and will then make the mistake that matters more: it will divide the company's value by today's share count, as if the awards granted every year never turned into shares. Forecasting share-based pay is really two forecasts that must agree with each other: the expense, and the shares outstanding.</p>`,
+        },
+        {
+          t: "h",
+          text: "Step one: forecast the expense and post it to all three statements",
+        },
+        {
+          t: "steps",
+          title: "Forecasting share-based compensation expense",
+          items: [
+            { title: "Measure it against revenue", html: "Take the total from the note for several years and express it as a percentage of revenue. Pinnacle has run at about 4%." },
+            { title: "Choose the forecast percentage", html: "Use the history, management's guidance and what comparable companies spend. Pinnacle's guidance is also about 4%, so next year's expense is \\(4\\% \\times 10{,}000 = 400\\)." },
+            { title: "Treat early-stage companies separately", html: "A young company pays heavily in shares because it is short of cash, so share-based pay can be a large share of revenue. As it matures, revenue grows faster than the award pool and the percentage falls. Forecasting a constant high percentage would overstate the cost for years; forecasting today's mature-peer percentage would understate it now. Model the decline explicitly." },
+            { title: "Allocate it if the model is built by function", html: "If your model forecasts cost of sales, research and development, and SG&A separately, split the expense in the proportions the note shows." },
+            { title: "Post the other side", html: "For equity-settled awards the credit is to equity (paid-in capital), so total equity is unchanged by the expense itself. In the indirect cash flow statement the expense is <b>added back</b> to net income in cash flow from operations, because no cash left the company." },
+          ],
+        },
+        {
+          t: "table",
+          caption: "Pinnacle's forecast year: where 400 of share-based compensation lands (millions, before tax)",
+          head: ["Statement", "Line", "Effect"],
+          rows: [
+            ["Income statement", "Cost of sales, research and development, SG&A", "Expenses up 400 in total"],
+            ["Balance sheet", "Paid-in capital", "Up 400"],
+            ["Balance sheet", "Retained earnings", "Down 400 (through net income)"],
+            ["Cash flow statement", "Cash flow from operations, indirect method", "400 added back as a non-cash expense"],
+            ["Cash flow statement", "Cash flow from financing", "Only if cash moves: option exercise proceeds in, share repurchases out"],
+          ],
+        },
+        {
+          t: "h",
+          text: "Step two: forecast the awards, then the shares",
+        },
+        {
+          t: "p",
+          html: `<p>Shares come from awards, so forecast the awards first, in units, and keep them <b>consistent with the expense</b>. If the expense assumes 4% of revenue, the units granted at the forecast share price should be roughly what supports that expense over the vesting period. Then forecast <b>forfeitures</b> (awards lost when employees leave before vesting) at an expected rate, the same rate the expense forecast assumes, since the expense is recognized net of expected forfeitures. Then forecast <b>settlements</b>: either with the same method the company's history shows, or as a fixed portion of the outstanding awards each period (if awards vest over four years, roughly a quarter of the outstanding units each year).</p>`,
+        },
+        {
+          t: "table",
+          caption: "Pinnacle's restricted stock unit (RSU) activity, forecast year (millions of units)",
+          head: ["", "Units"],
+          rows: [
+            ["Unvested at the start of the year", "30"],
+            ["Granted (at a share price of about 40, a grant value of 480)", "12"],
+            ["Forfeited", "(2)"],
+            ["Vested and settled in shares", "(10)"],
+            ["<b>Unvested at the end of the year</b>", "<b>30</b>"],
+          ],
+          note: "The 10 million units that vest become new shares. The 30 million still unvested are potential shares: they matter for the diluted count.",
+        },
+        {
+          t: "formula",
+          name: "Basic shares outstanding roll-forward",
+          tex: "\\text{Basic shares}_{end} = \\text{Basic shares}_{beg} + \\text{RSUs vested and options exercised} + \\text{New issuance} - \\text{Repurchases}",
+          plain: "Pinnacle: 1,000 + 10 + 0 - 8 = 1,002 million. The 8 million repurchased at about 40 cost 320 of cash, a financing outflow. Buying back roughly the number of shares the awards create is how many companies offset dilution, and it is the moment share-based pay turns into real cash.",
+        },
+        {
+          t: "formula",
+          name: "Diluted shares with unvested RSUs (treasury stock method)",
+          tex: "\\text{Diluted shares} = \\text{Basic shares} + \\text{Unvested RSUs} - \\frac{\\text{Average unrecognized compensation cost}}{\\text{Average share price}}",
+          plain: "Use averages for the period. Pinnacle: 1,001 + 30 - 620 / 40 = 1,001 + 30 - 15.5 = 1,015.5 million.",
+        },
+        {
+          t: "p",
+          html: `<p>Why subtract anything? An unvested RSU will become a share, but the employee has not yet given all the service it pays for. The <b>treasury stock method</b> (TSM) treats the compensation cost not yet recognized as if it were proceeds the company will receive (in the form of future service) and pretends those proceeds buy back shares at the average market price. Only the net new shares dilute. Pinnacle's unrecognized cost rolls from 600 at the start of the year to 640 at the end (600 + 480 of new grants - 400 expensed - 40 of unexpensed cost on forfeited units), an average of 620. At an average price of 40, that "buys back" 15.5 million shares, so the 30 million unvested units add only 14.5 million to the diluted count.</p>`,
+        },
+        {
+          t: "callout",
+          tone: "insight",
+          title: "Options bring cash, RSUs do not",
+          html: "When employees exercise options they pay the exercise price, a financing cash inflow, and the treasury stock method for options counts that exercise price as part of the assumed proceeds. Employees pay nothing for RSUs, so vesting brings no cash and the only assumed proceeds are the unrecognized compensation cost. A model that books cash for RSU vesting has invented money.",
+        },
+        {
+          t: "check",
+          id: "lm11-fc-1",
+          q: "Pinnacle starts the year with 1,000 million basic shares. During the year 10 million RSUs vest, 12 million new RSUs are granted, and Pinnacle repurchases 8 million shares. Ending basic shares are closest to:",
+          options: ["1,002 million", "1,014 million", "1,032 million"],
+          answer: 0,
+          why: "Only vested units become shares: 1,000 + 10 - 8 = 1,002. Granting units creates no shares until they vest, so adding the 12 granted gives the wrong 1,014. Adding the 30 still unvested belongs in the diluted count, not the basic one.",
+        },
+        {
+          t: "check",
+          id: "lm11-fc-2",
+          q: "Average basic shares are 1,001 million, average unvested RSUs 30 million, average unrecognized compensation cost 620 million and the average share price 40. Diluted shares under the treasury stock method are closest to:",
+          options: ["1,031.0 million", "1,015.5 million", "1,046.5 million"],
+          answer: 1,
+          why: "Assumed repurchase = 620 / 40 = 15.5 million, so diluted shares = 1,001 + 30 - 15.5 = 1,015.5 million. Counting every unvested unit with no repurchase gives 1,031.0; adding the repurchase instead of subtracting it gives 1,046.5.",
+        },
+        {
+          t: "h",
+          text: "Step three: the tax line in the forecast",
+        },
+        {
+          t: "p",
+          html: `<p>The 10 million units that vest this year are the tranche from the scenario in the previous section: granted at 30, vesting at 45, a windfall of 30. With pre-tax income of 1,500 and a 20% statutory rate, the windfall changes the forecast as follows.</p>`,
+        },
+        {
+          t: "table",
+          caption: "Pinnacle's forecast year, with the vesting tranche's windfall (millions, except per share)",
+          head: ["", "IFRS", "US GAAP"],
+          rows: [
+            ["Pre-tax income", "1,500", "1,500"],
+            ["Income tax expense", "300", "270"],
+            ["Effective tax rate", "20.0%", "18.0%"],
+            ["Net income", "1,200", "1,230"],
+            ["Diluted earnings per share (EPS): net income / 1,015.5", "1.18", "1.21"],
+            ["Windfall credited directly to equity", "30", "0"],
+          ],
+          note: "A US GAAP model has to forecast the windfall, which depends on the share price at vesting; an IFRS model keeps the tax rate at statutory and sends the windfall to equity.",
+        },
+        {
+          t: "h",
+          text: "Step four: valuation. Share-based pay is not free",
+        },
+        {
+          t: "p",
+          html: `<p>Back to the model. Pinnacle's free cash flow (FCF) next year is 3,000 if you add the 400 of share-based compensation back as a non-cash expense, or 2,600 if you do not. Both grow at 3% a year forever, the weighted average cost of capital (WACC) is 9%, net debt is 3,000, and the share price is 40. Today's diluted share count is 1,000 basic + 30 unvested - 600 / 40 = 1,015 million.</p>
+<p>A tempting shortcut is to add back the 400, because no cash left, and divide by 1,015 million shares. That gives 46.31 a share and it is wrong. Pinnacle paid its employees with something valuable, a slice of the company. The cost lands on existing shareholders as dilution, and if Pinnacle repurchases shares to offset that dilution, it lands as cash. Either way it <b>transfers value from shareholders to employees</b>, and a valuation has to charge for it exactly once.</p>`,
+        },
+        {
+          t: "compare",
+          items: [
+            {
+              title: "Treatment 1: treat it as a cash expense",
+              tone: "green",
+              points: [
+                "Do NOT add share-based compensation back: free cash flow is 2,600",
+                "Divide by today's diluted shares (outstanding awards through the treasury stock method)",
+                "Future awards are paid for inside free cash flow, so no extra shares are needed for them",
+                "The practical approach: deduct the expense from free cash flow to capture the dilution from future awards",
+              ],
+            },
+            {
+              title: "Treatment 2: add it back, then count the shares",
+              tone: "purple",
+              points: [
+                "Add share-based compensation back: free cash flow is 3,000",
+                "Increase the share count for ALL awards: vested and unvested ones outstanding today, in full, plus the shares expected for future awards",
+                "Needs a forecast of future grants and the prices they will be settled at, which is why it is harder to do well",
+                "Consistent, but only if the share count really includes the future awards",
+              ],
+            },
+          ],
+        },
+        {
+          t: "table",
+          caption: "Pinnacle per-share value under each treatment (millions, except per share)",
+          head: ["", "Treatment 1: cash expense", "Treatment 2: add back, more shares", "Inconsistent mix"],
+          rows: [
+            ["Free cash flow, year 1", "2,600", "3,000", "3,000"],
+            ["Enterprise value: FCF / (9% - 3%)", "43,333", "50,000", "50,000"],
+            ["Less net debt", "(3,000)", "(3,000)", "(3,000)"],
+            ["Equity value", "40,333", "47,000", "47,000"],
+            ["Shares: basic 1,000 + unvested 30, less TSM 15", "1,015", "", "1,015"],
+            ["Shares: basic 1,000 + all 30 unvested + future awards (6,667 - 600) / 40 = 151.7", "", "1,181.7", ""],
+            ["<b>Value per share</b>", "<b>39.74</b>", "<b>39.77</b>", "<b>46.31</b>"],
+          ],
+          note: "The present value of all future share-based pay is 400 / (9% - 3%) = 6,667. The 600 of unrecognized cost on today's unvested units is part of it, and those units are already counted in full, so only the remaining 6,067 is converted into new shares, at today's price of 40. Treatments 1 and 2 agree to within a few cents; mixing them overstates value by about 16.5%.",
+        },
+        {
+          t: "callout",
+          tone: "trap",
+          title: "The inconsistent mix",
+          html: "Adding share-based compensation back to free cash flow AND dividing by today's diluted shares counts the employees' share of the company nowhere. Pick one place to charge for it: in the cash flows (Treatment 1) or in the share count (Treatment 2). Either way, divide by diluted shares, never basic.",
+        },
+        {
+          t: "callout",
+          tone: "beyond",
+          title: "Beyond the curriculum: why the two treatments differ by a few cents",
+          html: "Treatment 2 converts future awards into shares at today's market price of 40, while Treatment 1 implicitly values them at the intrinsic value the model produces (39.74). The Treatment 2 answer therefore always lands between the Treatment 1 value and the market price, and the two agree exactly only when the market price equals the model's value. The gap is small whenever the model and the market are close, which is why the curriculum can treat them as alternatives.",
+        },
+        {
+          t: "p",
+          html: `<p><b>Multiples.</b> Many companies report non-GAAP measures that exclude share-based compensation, such as adjusted earnings before interest, taxes, depreciation and amortization (adjusted EBITDA) and adjusted earnings per share (adjusted EPS). Excluding a real cost inflates profit, and it flatters a company that pays in shares against a peer that pays the same people in cash bonuses. When comparing multiples, compare like with like: either deduct share-based compensation from the company's adjusted figure or add it back to every peer's.</p>
+<p><b>Buybacks.</b> Look at the company's repurchase policy. A company that buys back shares every year to hold its share count flat is paying for its share-based pay in cash, through financing cash flows. Its share count forecast stays flat, but the cost has not gone away: it has moved from the share count to the cash flow statement.</p>`,
+        },
+        { t: "widget", name: "SbcForecastLab" },
+        {
+          t: "check",
+          id: "lm11-fc-3",
+          q: "An analyst adds share-based compensation back to free cash flow in a discounted cash flow (DCF) model. To stay consistent, she should most likely:",
+          options: [
+            "Divide by basic shares, because diluted shares would double count the awards",
+            "Increase the share count for vested and unvested awards, including the shares expected from future grants",
+            "Leave the share count unchanged, because the expense is non-cash",
+          ],
+          answer: 1,
+          why: "Once the cost is removed from the cash flows it must be charged somewhere else, and the only place left is the share count: all outstanding awards plus the shares future grants will create. Leaving the count unchanged ignores the transfer of value to employees; dropping to basic shares makes the error worse.",
+        },
+        {
+          t: "check",
+          id: "lm11-fc-4",
+          q: "Company A pays engineers mostly in RSUs and reports adjusted EBITDA excluding share-based compensation. Company B pays similar engineers in cash. On enterprise value to adjusted EBITDA, Company A most likely looks:",
+          options: ["Cheaper than it really is", "Exactly comparable", "More expensive than it really is"],
+          answer: 0,
+          why: "Excluding share-based pay inflates A's EBITDA, the denominator, so the multiple is lower and A looks cheaper. B's cash pay stays in its EBITDA. Deduct the share-based expense from A's figure (or add an equivalent back for B) before comparing.",
+        },
+      ],
+    },
+
     /* ------------------------------------------------------------ */
     {
       id: "plan-types",
       title: "Two ways to promise a retirement, and who carries the risk",
-      los: ["a"],
+      los: ["a", "d"],
       blocks: [
         {
           t: "p",
@@ -123,8 +657,14 @@ export default {
     {
       id: "db-obligation",
       title: "Measuring the promise: what does Pinnacle owe one employee today?",
-      los: ["b"],
+      los: ["d"],
       blocks: [
+        {
+          t: "callout",
+          tone: "flag",
+          title: "Depth note: core in earlier curricula, likely lighter in 2026",
+          html: "The single-employee projected unit credit calculation below was a core calculation LOS in earlier Level II curricula. The 2026 learning outcome asks you to explain how post-employment benefits affect the financial statements, so expect fewer pages of actuarial arithmetic on the exam. Keep this section for the mechanism: it is the clearest way to see why the obligation grows, what service cost and interest cost are, and why assumptions matter.",
+        },
         {
           t: "p",
           html: `<p>Maya joins Pinnacle at the start of year 1 and will retire at the end of year 5. The plan pays an annual pension of <b>2% of final salary for each year of service</b>, paid at the end of each year for 10 years after she retires. Her salary in year 1 is 50,000 and the actuary expects it to grow 4% a year, so her final (year 5) salary will be \\(50{,}000 \\times 1.04^4 = 58{,}493\\). The discount rate is 5%.</p>
@@ -164,7 +704,7 @@ export default {
           t: "callout",
           tone: "insight",
           title: "Why interest cost exists at all",
-          html: "The obligation is a present value. A year later, the same promise is a year closer to being paid, so its present value is higher by the discount rate, with no new work done. That unwinding of the discount is interest cost, and it is a financing cost, not an operating one. Remember that when you reach the analyst adjustments.",
+          html: "The obligation is a present value. A year later, the same promise is a year closer to being paid, so its present value is higher by the discount rate, with no new work done. That unwinding of the discount is interest cost, and it is a financing cost, not an operating one. Remember that when you reach the valuation section: it is exactly why net interest stays out of free cash flow.",
         },
         {
           t: "h",
@@ -209,7 +749,7 @@ export default {
     {
       id: "rollforward",
       title: "The whole plan: two roll-forwards and the funded status",
-      los: ["b"],
+      los: ["d"],
       blocks: [
         {
           t: "p",
@@ -272,7 +812,7 @@ export default {
     {
       id: "pension-cost",
       title: "The year's pension cost, and where IFRS and US GAAP put it",
-      los: ["c"],
+      los: ["d"],
       blocks: [
         {
           t: "p",
@@ -341,6 +881,12 @@ export default {
         {
           t: "h",
           text: "The corridor: how US GAAP drains OCI into profit",
+        },
+        {
+          t: "callout",
+          tone: "flag",
+          title: "Depth note: corridor arithmetic",
+          html: "Corridor calculations were examinable in earlier Level II curricula. The 2026 reading states that US GAAP recognizes past service cost, actuarial gains and losses and the actual-minus-expected return in OCI and amortizes them into profit later; it may not ask you to compute the corridor. The mechanism is kept here so the word never surprises you.",
         },
         {
           t: "p",
@@ -466,10 +1012,193 @@ export default {
 
     /* ------------------------------------------------------------ */
     {
-      id: "analyst-adjust",
-      title: "Analyst adjustments: treat the pension like the debt it is",
-      los: ["e", "f"],
+      id: "disclosures",
+      title: "Reading the pension note",
+      los: ["d"],
       blocks: [
+        {
+          t: "p",
+          html: `<p>The balance sheet gives you one number, the net pension liability. Everything you need to judge it lives in the note: the roll-forwards, the cost components, the assumptions, the plan's investments and the cash the plan will need. An item set will hand you an excerpt from that note and expect you to know which line answers which question.</p>`,
+        },
+        {
+          t: "table",
+          caption: "Where each number lives",
+          head: ["You want", "Look in the note for", "Use it to"],
+          rows: [
+            ["Service cost, interest cost, actuarial gains and losses, benefits paid", "Reconciliation of the benefit obligation (opening to closing)", "Compute TPPC; separate operating from financing cost"],
+            ["Actual return, contributions, benefits paid", "Reconciliation of plan assets (opening to closing)", "Compute TPPC; compare contributions with TPPC for the cash flow adjustment"],
+            ["Funded status", "Obligation less plan assets at year end", "Add the deficit to debt"],
+            ["What went to P&L and what went to OCI", "Components of periodic pension cost; amounts recognized in OCI and accumulated OCI", "Separate operating, financing and remeasurement items"],
+            ["Discount rate, rate of compensation increase, expected return (US GAAP), health care trend rates", "Actuarial assumptions table", "Compare with peers and across years"],
+            ["How sensitive the obligation is", "Sensitivity analysis (IFRS requires one for each significant assumption)", "Gauge the risk in the obligation"],
+            ["Future cash demands", "Expected contributions next year; expected benefit payments by year", "Forecast operating cash flow and liquidity needs"],
+            ["What the plan is invested in", "Plan asset allocation", "Judge whether the expected return is plausible and how volatile the funded status may be"],
+          ],
+        },
+        {
+          t: "h",
+          text: "Comparing assumptions across companies",
+        },
+        {
+          t: "table",
+          caption: "Two US GAAP sponsors with similar workforces",
+          head: ["Assumption", "Pinnacle", "Kestrel", "Reading"],
+          rows: [
+            ["Discount rate", "4.8%", "5.6%", "Kestrel's higher rate makes its obligation look smaller: less conservative"],
+            ["Rate of compensation increase", "3.5%", "2.5%", "Kestrel's lower salary growth also shrinks its obligation and cost: less conservative"],
+            ["Expected return on plan assets", "6.5%", "8.0%", "Kestrel's higher expected return lowers its reported P&L expense: less conservative"],
+            ["Plan assets in equities", "45%", "40%", "Kestrel expects MORE return from a MORE conservative asset mix: a red flag"],
+          ],
+          note: "Every Kestrel choice flatters its statements. Before comparing the two companies' leverage or margins, an analyst would want to estimate Kestrel's obligation and expense on Pinnacle's assumptions, or at least treat Kestrel's reported figures as optimistic.",
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "Cash flow information in the note",
+          html: "Contributions are an operating outflow, and a sponsor has some discretion over their timing, so cash flow from operations can be managed by deferring or accelerating them. A large funded-status deficit, combined with the expected benefit payment schedule, tells you how much cash the plan will demand in future years. Compare the expected contributions with TPPC: persistent under-contribution is effectively borrowing from employees.",
+        },
+        {
+          t: "check",
+          id: "lm11-disc-1",
+          q: "Two otherwise similar companies report discount rates of 4.5% and 5.5%. Relative to the 4.5% company, the 5.5% company's assumption most likely:",
+          options: [
+            "Overstates its pension obligation",
+            "Understates its pension obligation",
+            "Has no effect on its obligation, only on its expense",
+          ],
+          answer: 1,
+          why: "A higher discount rate gives a lower present value of the same benefits, so the obligation, and the deficit added to debt by an analyst, look smaller than on the peer's assumption.",
+        },
+      ],
+    },
+
+    /* ------------------------------------------------------------ */
+    {
+      id: "pension-model-value",
+      title: "Modeling post-employment benefits and putting them into a valuation",
+      los: ["e"],
+      blocks: [
+        {
+          t: "p",
+          html: `<p>You are extending Pinnacle's model to its pensions. Newer staff are in a defined contribution plan. Older staff are in a defined benefit plan that is underfunded by 600 (millions). And a subsidiary Pinnacle bought last year brought its own defined benefit plan, overfunded by 200. You need each of them in the forecast statements, and then you need to decide how much of each belongs in the value of a Pinnacle share.</p>
+<p>The obvious approach is to forecast "pension expense" as one line inside operating costs, value the free cash flows, and stop. That gets the defined contribution plan right and the defined benefit plans wrong in two ways at once: it charges the financing cost of the deficit inside the cash flows AND leaves the deficit itself, a debt in all but name, out of the bridge from enterprise value to equity value.</p>`,
+        },
+        {
+          t: "h",
+          text: "Defined contribution: a cost like any other",
+        },
+        {
+          t: "p",
+          html: `<p>Defined contribution expense is the contribution, and the contribution is cash, so model it inside operating expenses (often SG&A, or by function) as a percentage of payroll or of revenue. Cash paid equals the expense, apart from any contribution still unpaid at year end, which is the only balance sheet item: a small accrued liability. In a valuation there is nothing more to do, because the cost is already inside free cash flow.</p>`,
+        },
+        {
+          t: "h",
+          text: "Defined benefit and other post-employment benefits: four moving parts",
+        },
+        {
+          t: "table",
+          caption: "Modeling a defined benefit plan (or other post-employment benefits, OPEB), IFRS presentation",
+          head: ["Component", "Income statement and OCI", "Net pension liability (asset)", "Cash flow statement", "In a DCF valuation"],
+          rows: [
+            ["Service cost (current and past)", "Operating expense in profit or loss", "Increases it", "No direct effect", "Deduct from free cash flow: it is the cost of employees' future work, like share-based pay"],
+            ["Net interest", "Profit or loss (often within finance costs)", "Increases a deficit (reduces a surplus)", "No direct effect", "Exclude from free cash flow: the deficit is deducted at its present value instead"],
+            ["Remeasurements", "Other comprehensive income (OCI), never reclassified", "Increase or decrease it", "No direct effect", "Usually forecast at zero: they are the unpredictable gap between assumptions and outcomes"],
+            ["Employer contributions", "None", "Reduce it", "Operating cash outflow", "Not deducted separately: their cost is captured by service cost in free cash flow and the deficit in the bridge"],
+          ],
+          note: "Under US GAAP the profit or loss side shows service cost, interest cost and the expected return on plan assets, with OCI amounts amortized later; the valuation logic in the last column is the same.",
+        },
+        {
+          t: "formula",
+          name: "Net pension liability roll-forward (for the model)",
+          tex: "\\text{Net pension liability}_{end} = \\text{Net pension liability}_{beg} + \\text{Service cost} + \\text{Net interest} + \\text{Remeasurements} - \\text{Employer contributions}",
+          plain: "Pinnacle's IFRS year from the earlier sections: 100 + 110 (current 60 and past 50 service cost) + 5 + 35 - 80 = 170. Benefits paid by the plan do not appear, because they reduce the obligation and the plan assets equally. Forecast service cost and net interest drive the income statement, contributions drive the cash flow statement, and this roll-forward ties them to the balance sheet.",
+        },
+        {
+          t: "h",
+          text: "From enterprise value to equity value",
+        },
+        {
+          t: "steps",
+          title: "Pinnacle's bridge, step by step (millions)",
+          items: [
+            { title: "Free cash flow: deduct service cost, leave out net interest", html: "Free cash flow before pension items is 1,500. Deduct the 100 of service cost, because employees will keep earning benefits as long as they work, and that is a real operating cost. Do NOT deduct the 30 of net interest on the deficit (5% x 600). Free cash flow is 1,400." },
+            { title: "Enterprise value", html: "Growing at 2% forever and discounted at a WACC of 9%: \\(1{,}400 / (9\\% - 2\\%) = 20{,}000\\)." },
+            { title: "Subtract debt, add cash", html: "Debt 4,000, cash 1,000: 20,000 - 4,000 + 1,000 = 17,000." },
+            { title: "Subtract the underfunded plan as if it were debt", html: "The deficit of 600 is money Pinnacle will have to pay into the plan to keep its promise, with no new service in exchange: economically a debt. 17,000 - 600 = 16,400. Because contributions are usually tax-deductible, many analysts deduct the deficit after tax instead: \\(600 \\times (1 - 25\\%) = 450\\), giving 16,550." },
+            { title: "Leave the overfunded plan's surplus out", html: "The subsidiary's surplus of 200 is typically excluded. It sits in a trust for employees, and the company cannot simply take it back for its capital providers: refunds are restricted (IFRS caps the asset at the benefit available through refunds or lower future contributions) and often heavily taxed." },
+            { title: "Equity value per share", html: "16,400 / 1,000 million shares = 16.40 (or 16.55 with the after-tax deficit)." },
+          ],
+        },
+        {
+          t: "table",
+          caption: "Pinnacle: enterprise value to equity value",
+          head: ["", "Deficit deducted pre-tax", "Deficit deducted after tax"],
+          rows: [
+            ["Enterprise value (FCF 1,400 / 7%)", "20,000", "20,000"],
+            ["Less debt", "(4,000)", "(4,000)"],
+            ["Add cash", "1,000", "1,000"],
+            ["Less pension deficit (underfunded plan)", "(600)", "(450)"],
+            ["Overfunded plan surplus of 200", "excluded", "excluded"],
+            ["<b>Equity value</b>", "<b>16,400</b>", "<b>16,550</b>"],
+            ["<b>Per share (1,000 million shares)</b>", "<b>16.40</b>", "<b>16.55</b>"],
+          ],
+        },
+        {
+          t: "callout",
+          tone: "insight",
+          title: "Why net interest stays out of free cash flow",
+          html: "The deficit deducted in the bridge is a present value. Net interest is nothing more than that present value unwinding as time passes: the time value of money on the same 600. Discounting the cash flows already accounts for time value. Deduct the 30 from free cash flow as well and you charge for the deficit twice: enterprise value drops to 1,370 / 7% = 19,571 and equity value to 15,971, about 429 too low, which is exactly the 30 a year capitalized at 7% (30 / 7%).",
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "The pattern to remember",
+          html: "Deficit: debt-like, deducted in the bridge. Surplus: usually excluded. Future service cost: deducted from free cash flow, the same way the practical approach treats share-based pay. Net interest: excluded from free cash flow, to avoid double counting the time value of money. Defined contribution: already in free cash flow, nothing else to do.",
+        },
+        { t: "widget", name: "PensionBridge" },
+        {
+          t: "check",
+          id: "lm11-val-1",
+          q: "In a DCF valuation of a company with an underfunded defined benefit plan, whose deficit is deducted in the bridge to equity value, which pension item should be excluded from free cash flow?",
+          options: ["Current service cost", "Net interest on the deficit", "Defined contribution plan contributions"],
+          answer: 1,
+          why: "Net interest is the unwinding of the discount on a deficit that is already deducted at its present value; deducting it again double counts. Service cost is the cost of future employee work and belongs in free cash flow, and defined contribution contributions are an ordinary operating cost.",
+        },
+        {
+          t: "check",
+          id: "lm11-val-2",
+          q: "A company's only defined benefit plan has a surplus of 300. In the bridge from enterprise value to equity value, an analyst would most likely:",
+          options: ["Add 300, because a surplus is an asset", "Exclude the surplus", "Subtract 300, because pension items are debt-like"],
+          answer: 1,
+          why: "A surplus is held in trust for employees and is generally not available to the company's capital providers, so it is typically excluded. Only a deficit is treated as debt-like.",
+        },
+        {
+          t: "check",
+          id: "lm11-val-3",
+          q: "In a financial model, a company's defined contribution plan is best forecast as:",
+          options: [
+            "An operating expense equal to the cash contribution, with only an accrued liability for unpaid contributions",
+            "A service cost plus net interest on a net pension liability",
+            "A deduction in the bridge from enterprise value to equity value",
+          ],
+          answer: 0,
+          why: "A defined contribution sponsor owes only the contribution, so expense equals cash and the balance sheet shows at most an accrual. Service cost, net interest and a bridge deduction are defined benefit concepts.",
+        },
+      ],
+    },
+
+    /* ------------------------------------------------------------ */
+    {
+      id: "analyst-adjust",
+      title: "Older lens: reclassifying pension cost and cash flows for ratio analysis",
+      los: ["e"],
+      blocks: [
+        {
+          t: "callout",
+          tone: "flag",
+          title: "Depth note: core in earlier curricula, likely lighter in 2026",
+          html: "The income statement reclassification, the interest coverage rebuild and the contributions-versus-TPPC cash flow move below were a full LOS in earlier Level II curricula. The 2026 reading frames pensions through modeling and valuation instead (the previous section). The logic is the same one: the deficit is debt-like and only service cost is an operating cost. Study this section as reinforcement, and expect it to be tested less directly.",
+        },
         {
           t: "p",
           html: `<p>You are a credit analyst comparing Pinnacle with a peer that has no DB plan. Pinnacle owes its employees a fixed stream of future payments, financed partly by a pot of investments. Strip away the labels and that is a borrowing: Pinnacle has received labour today in exchange for payments later, and the obligation accrues interest. The reported statements blur that in three places, and each has a standard fix.</p>`,
@@ -523,257 +1252,6 @@ export default {
         },
       ],
     },
-
-    /* ------------------------------------------------------------ */
-    {
-      id: "disclosures",
-      title: "Reading the pension note",
-      los: ["f"],
-      blocks: [
-        {
-          t: "p",
-          html: `<p>The balance sheet gives you one number, the net pension liability. Everything you need to judge it lives in the note: the roll-forwards, the cost components, the assumptions, the plan's investments and the cash the plan will need. An item set will hand you an excerpt from that note and expect you to know which line answers which question.</p>`,
-        },
-        {
-          t: "table",
-          caption: "Where each number lives",
-          head: ["You want", "Look in the note for", "Use it to"],
-          rows: [
-            ["Service cost, interest cost, actuarial gains and losses, benefits paid", "Reconciliation of the benefit obligation (opening to closing)", "Compute TPPC; separate operating from financing cost"],
-            ["Actual return, contributions, benefits paid", "Reconciliation of plan assets (opening to closing)", "Compute TPPC; compare contributions with TPPC for the cash flow adjustment"],
-            ["Funded status", "Obligation less plan assets at year end", "Add the deficit to debt"],
-            ["What went to P&L and what went to OCI", "Components of periodic pension cost; amounts recognized in OCI and accumulated OCI", "Separate operating, financing and remeasurement items"],
-            ["Discount rate, rate of compensation increase, expected return (US GAAP), health care trend rates", "Actuarial assumptions table", "Compare with peers and across years"],
-            ["How sensitive the obligation is", "Sensitivity analysis (IFRS requires one for each significant assumption)", "Gauge the risk in the obligation"],
-            ["Future cash demands", "Expected contributions next year; expected benefit payments by year", "Forecast operating cash flow and liquidity needs"],
-            ["What the plan is invested in", "Plan asset allocation", "Judge whether the expected return is plausible and how volatile the funded status may be"],
-          ],
-        },
-        {
-          t: "h",
-          text: "Comparing assumptions across companies",
-        },
-        {
-          t: "table",
-          caption: "Two US GAAP sponsors with similar workforces",
-          head: ["Assumption", "Pinnacle", "Kestrel", "Reading"],
-          rows: [
-            ["Discount rate", "4.8%", "5.6%", "Kestrel's higher rate makes its obligation look smaller: less conservative"],
-            ["Rate of compensation increase", "3.5%", "2.5%", "Kestrel's lower salary growth also shrinks its obligation and cost: less conservative"],
-            ["Expected return on plan assets", "6.5%", "8.0%", "Kestrel's higher expected return lowers its reported P&L expense: less conservative"],
-            ["Plan assets in equities", "45%", "40%", "Kestrel expects MORE return from a MORE conservative asset mix: a red flag"],
-          ],
-          note: "Every Kestrel choice flatters its statements. Before comparing the two companies' leverage or margins, an analyst would want to estimate Kestrel's obligation and expense on Pinnacle's assumptions, or at least treat Kestrel's reported figures as optimistic.",
-        },
-        {
-          t: "callout",
-          tone: "exam",
-          title: "Cash flow information in the note",
-          html: "Contributions are an operating outflow, and a sponsor has some discretion over their timing, so CFO can be managed by deferring or accelerating them. A large funded-status deficit, combined with the expected benefit payment schedule, tells you how much cash the plan will demand in future years. Compare the expected contributions with TPPC: persistent under-contribution is effectively borrowing from employees.",
-        },
-        {
-          t: "check",
-          id: "lm11-disc-1",
-          q: "Two otherwise similar companies report discount rates of 4.5% and 5.5%. Relative to the 4.5% company, the 5.5% company's assumption most likely:",
-          options: [
-            "Overstates its pension obligation",
-            "Understates its pension obligation",
-            "Has no effect on its obligation, only on its expense",
-          ],
-          answer: 1,
-          why: "A higher discount rate gives a lower present value of the same benefits, so the obligation, and the deficit added to debt by an analyst, look smaller than on the peer's assumption.",
-        },
-      ],
-    },
-
-    /* ------------------------------------------------------------ */
-    {
-      id: "share-based-issues",
-      title: "Paying in shares: the issues",
-      los: ["g"],
-      blocks: [
-        {
-          t: "p",
-          html: `<p>Pinnacle wants to reward its managers for growing the share price, and it would rather not spend cash doing it. Giving managers shares or options looks ideal: it ties their wealth to shareholders' wealth, it costs no cash today, and if the share price never rises, options pay nothing.</p>
-<p>That last point is exactly the problem. For years, an at-the-money option was recorded at its intrinsic value on the grant date, which is zero, so options looked free in the income statement. They are not free: something the market would pay real money for was handed to employees in exchange for their work. Today both IFRS and US GAAP require equity-settled share-based compensation to be <b>expensed at its fair value on the grant date</b>, spread over the period in which employees earn it. (Awards settled in cash are the exception: they are remeasured every period, as you will see in the next section.)</p>`,
-        },
-        {
-          t: "compare",
-          items: [
-            {
-              title: "Why companies use it",
-              tone: "green",
-              points: [
-                "Aligns managers' interests with shareholders'",
-                "Conserves cash: no cash outflow at grant or vesting for equity-settled awards",
-                "Helps retain staff, because unvested awards are lost on leaving",
-              ],
-            },
-            {
-              title: "The issues an analyst must weigh",
-              tone: "red",
-              points: [
-                "Options have an asymmetric payoff: managers share the upside but not the downside, which can encourage excessive risk-taking or a focus on short-term share price",
-                "Managers may also time news or dividend decisions around grants and exercises",
-                "Dilution: new shares on exercise or vesting reduce existing holders' ownership",
-                "The expense is an estimate: option values depend on assumptions management chooses, so they can be biased low",
-                "Expense and cash diverge: a large non-cash expense with no outflow, while the economic cost lands on shareholders as dilution",
-              ],
-            },
-          ],
-        },
-        {
-          t: "callout",
-          tone: "insight",
-          title: "Who actually pays",
-          html: "When Pinnacle settles in shares, its cash never moves: the cost is borne by existing shareholders, whose slice of the company shrinks. That is why the expense is real even though cash from operations is untouched, and why analysts read the share-based compensation note alongside diluted earnings per share.",
-        },
-        {
-          t: "p",
-          html: `<p>The disclosures that make the expense auditable are the ones to read: the valuation model used, each assumption (expected volatility, expected term, risk-free rate, expected dividends), the number of awards outstanding, granted, exercised and forfeited, and the compensation cost not yet recognized for unvested awards with the period over which it will be recognized. That last figure tells you how much future expense is already locked in.</p>`,
-        },
-        {
-          t: "check",
-          id: "lm11-sbc-1",
-          q: "Which statement about equity-settled share-based compensation is most accurate?",
-          options: [
-            "It has no economic cost because no cash is paid",
-            "It is expensed at grant-date fair value over the service period",
-            "It is remeasured to fair value at each reporting date",
-          ],
-          answer: 1,
-          why: "Both standards measure equity-settled awards once, at fair value on the grant date, and recognize that amount over the service period. Remeasurement every period is the rule for CASH-settled awards. The economic cost is real and falls on shareholders through dilution.",
-        },
-      ],
-    },
-
-    /* ------------------------------------------------------------ */
-    {
-      id: "grants-options",
-      title: "Stock grants, stock options and appreciation rights in the statements",
-      los: ["h"],
-      blocks: [
-        {
-          t: "p",
-          html: `<p>Every share-based award has the same timeline. On the <b>grant date</b> the terms are agreed and the award is measured. Over the <b>vesting (service) period</b> employees earn it and the expense is recognized. For options, the <b>exercise date</b> comes later, when employees pay the exercise price and receive shares. The type of award decides how it is measured and whether the credit side is equity or a liability.</p>`,
-        },
-        {
-          t: "tree",
-          title: "How is this award measured?",
-          root: "settle",
-          nodes: {
-            settle: {
-              q: "Will the award be settled in shares or in cash?",
-              help: "Stock appreciation rights and phantom shares paid in cash are cash-settled.",
-              options: [{ label: "Shares", next: "kind" }, { label: "Cash", next: "cash" }],
-            },
-            kind: {
-              q: "What do employees receive?",
-              options: [{ label: "Shares (a stock grant or restricted stock)", next: "grant" }, { label: "Options to buy shares at a fixed price", next: "opt" }],
-            },
-            grant: { result: "Grant-date market price of the shares", tone: "green", html: "Fair value = share price at grant x number of shares, expensed over the vesting period, credited to equity. Never remeasured. Performance shares are also valued at grant date, with the number expected to vest reflecting the performance conditions." },
-            opt: { result: "Grant-date fair value from an option pricing model", tone: "cyan", html: "Black-Scholes-Merton or a binomial (lattice) model, using the share price, exercise price, expected term, expected volatility, risk-free rate and expected dividends. Expensed over the vesting period, credited to paid-in capital. Never remeasured." },
-            cash: { result: "A liability, remeasured to fair value every reporting date", tone: "amber", html: "Expense = change in the liability, which tracks the share price and the portion of the service period completed. Cumulative expense ends up equal to the cash paid." },
-          },
-        },
-        {
-          t: "h",
-          text: "Stock grants",
-        },
-        {
-          t: "p",
-          html: `<p>An outright <b>stock grant</b> gives employees shares, usually as <b>restricted stock</b> that cannot be sold or is forfeited unless the employee stays for a vesting period. <b>Performance shares</b> are contingent on a target, often an accounting measure such as return on assets, which gives managers an incentive to manage that measure. In every case the fair value is the market price of the shares on the grant date, and that fixed amount is expensed over the vesting period, because that is the period in which Pinnacle receives the service the award pays for. If an award vests immediately, there is no future service to wait for, so the whole fair value is expensed on the grant date. The scenario below shows it next to a cash-settled award.</p>`,
-        },
-        {
-          t: "h",
-          text: "Stock options",
-        },
-        {
-          t: "p",
-          html: `<p>An option has no market price because employee options cannot be traded, so its fair value comes from a model: Black-Scholes-Merton or a binomial model. The curriculum does not ask you to compute it, but it does test the inputs and their direction, because management chooses most of them. The two that are observable are the share price and the exercise price. The others are estimates: <b>expected term</b> (employees often exercise early, so it is usually shorter than the contractual life), <b>expected volatility</b>, the <b>risk-free rate</b> for that term, and the <b>expected dividend yield</b>.</p>`,
-        },
-        { t: "theater", scenario: "lm11-stock-options" },
-        { t: "widget", name: "StockOptionLab" },
-        {
-          t: "table",
-          caption: "Assumptions and option value (Pinnacle base case: value 6.00 per option)",
-          head: ["Assumption raised", "Option fair value", "Compensation expense", "Pinnacle, one input changed"],
-          rows: [
-            ["Expected volatility", "Higher", "Higher", "30% to 35%: 6.00 to 6.91"],
-            ["Expected term", "Higher", "Higher", "5 to 6 years: 6.00 to 6.40"],
-            ["Risk-free rate", "Higher", "Higher", "3% to 4%: 6.00 to 6.42"],
-            ["Expected dividend yield", "LOWER", "LOWER", "2.5% to 3.5%: 6.00 to 5.32"],
-          ],
-          note: "Why dividends lower the value: option holders do not receive dividends, and every dividend paid lowers the share price they need to rise. Why a higher risk-free rate raises it: the exercise price is paid in the future, so its present value is smaller when rates are higher.",
-        },
-        {
-          t: "callout",
-          tone: "trap",
-          title: "Classic trap",
-          html: "Thinking a higher assumed dividend yield raises option expense because dividends sound like 'more value'. It is the reverse: higher expected dividends lower the call value and so lower the expense. A company wanting a smaller expense can assume a shorter term, lower volatility or higher dividends. A shorter expected term alone (5 years to 3 at Pinnacle) cuts the value from 6.00 to 4.89 per option, and the total cost from 90,000 to 73,350.",
-        },
-        {
-          t: "formula",
-          name: "Expense for an equity-settled award with cliff vesting",
-          tex: "\\text{Annual expense} = \\frac{\\text{Number of awards expected to vest} \\times \\text{Grant-date fair value per award}}{\\text{Vesting period in years}}",
-          plain: "Pinnacle: 15,000 x 6.00 / 3 = 30,000 a year. Credit paid-in capital. If employees forfeit by leaving before vesting, the expense for their awards is reversed; if vested options simply expire unexercised, nothing is reversed.",
-        },
-        {
-          t: "callout",
-          tone: "beyond",
-          title: "Beyond the curriculum: the model itself",
-          html: "For reference, the Black-Scholes-Merton value of a call with continuous dividend yield q is \\(c = S e^{-qT} N(d_1) - K e^{-rT} N(d_2)\\), with \\(d_1 = \\frac{\\ln(S/K) + (r - q + \\sigma^2/2)T}{\\sigma\\sqrt{T}}\\) and \\(d_2 = d_1 - \\sigma\\sqrt{T}\\). The lab above uses exactly this. The exam tests the direction of each input, not the computation.",
-        },
-        {
-          t: "h",
-          text: "Stock appreciation rights and phantom shares",
-        },
-        {
-          t: "p",
-          html: `<p>A <b>stock appreciation right</b> (SAR) pays the employee the increase in the share price above a set price, usually in cash. Employees get the upside without having to buy shares, and existing shareholders suffer no dilution; but Pinnacle pays cash, and the employee bears no downside. <b>Phantom shares</b> work similarly but are based on a hypothetical number of shares, which lets companies without listed shares (or business units) offer share-like rewards.</p>
-<p>Because a cash-settled award will be paid in cash, it is a <b>liability</b>, and a liability is measured at what it will cost to settle. So it is remeasured at fair value at every reporting date, and the expense is the change in the liability. The expense now moves with the share price, and can even be negative.</p>`,
-        },
-        { t: "theater", scenario: "lm11-grants-vs-sars" },
-        {
-          t: "sort",
-          prompt: "What happens to the compensation expense Pinnacle recognizes? Tap each event, then its effect.",
-          buckets: [
-            { id: "up", label: "Expense rises" },
-            { id: "down", label: "Expense falls" },
-            { id: "none", label: "No effect" },
-          ],
-          items: [
-            { text: "Higher expected volatility assumed at grant (options)", bucket: "up", why: "A more volatile share gives the option more upside, so its fair value is higher." },
-            { text: "Higher expected dividend yield assumed at grant (options)", bucket: "down", why: "Dividends lower the expected share price path that option holders need." },
-            { text: "Longer expected term assumed at grant (options)", bucket: "up", why: "More time for the share price to rise, and a later exercise payment." },
-            { text: "Share price falls after grant (equity-settled options)", bucket: "none", why: "Equity-settled awards are fixed at grant-date fair value." },
-            { text: "Share price rises after grant (cash-settled SARs)", bucket: "up", why: "The liability is remeasured to a higher fair value." },
-            { text: "Share price falls after grant (cash-settled SARs)", bucket: "down", why: "The liability shrinks and the reduction is credited to expense." },
-            { text: "Higher risk-free rate assumed at grant (options)", bucket: "up", why: "The present value of the exercise price falls, so the call is worth more." },
-          ],
-        },
-        {
-          t: "check",
-          id: "lm11-opt-1",
-          q: "Pinnacle grants 20,000 options with a grant-date fair value of 4.50 each, vesting after 3 years. In year 2 the share price doubles. Compensation expense in year 2 is:",
-          options: ["30,000", "60,000", "90,000"],
-          answer: 0,
-          why: "Equity-settled options are measured once: 20,000 x 4.50 = 90,000, expensed evenly over 3 years = 30,000 a year. The share price movement after grant does not change the expense.",
-        },
-        {
-          t: "check",
-          id: "lm11-opt-2",
-          q: "When employees exercise equity-settled options, the company's financial statements show:",
-          options: [
-            "A financing cash inflow equal to the exercise price received, and no income statement effect",
-            "An operating cash inflow and a gain equal to the exercise price",
-            "A compensation expense equal to the intrinsic value at exercise",
-          ],
-          answer: 0,
-          why: "Exercise is a share issue: cash in (financing) and an increase in share capital, together with the paid-in capital already built up from the option expense. The cost was fixed at grant and recognized during vesting, so exercise adds nothing to the income statement.",
-        },
-      ],
-    },
   ],
 
   traps: [
@@ -789,6 +1267,14 @@ export default {
     { wrong: "Equity-settled option expense rises if the share price rises after grant.", right: "Equity-settled awards are measured once at grant-date fair value. Only cash-settled awards (such as SARs paid in cash) are remeasured as the share price moves." },
     { wrong: "Assuming a higher dividend yield increases the fair value of employee options.", right: "Option holders do not receive dividends, and dividends lower the share price path, so a higher dividend yield LOWERS option value and expense." },
     { wrong: "Share-based compensation reduces total equity.", right: "For equity-settled awards the expense reduces retained earnings and the credit raises paid-in capital by the same amount: total equity is unchanged until exercise brings in cash." },
+    { wrong: "Share-based compensation is non-cash, so a DCF should add it back and divide by today's diluted shares.", right: "It transfers value from shareholders to employees. Either treat it as a cash expense (no add-back), or add it back AND raise the share count for all awards including future ones. Mixing the two overstated Pinnacle's value from 39.74 to 46.31 a share." },
+    { wrong: "When RSUs vest, the company receives cash, just as it does when options are exercised.", right: "Employees pay nothing for RSUs, so vesting brings no cash. Option exercises bring in the exercise price as a financing inflow." },
+    { wrong: "Under the treasury stock method every unvested RSU counts as a dilutive share.", right: "The average unrecognized compensation cost is treated as proceeds that buy back shares at the average price, so only the net shares dilute: 30 unvested units less 15.5 repurchased at Pinnacle." },
+    { wrong: "Under IFRS the excess tax benefit when awards vest above the grant price lowers income tax expense.", right: "IFRS credits the excess to equity. It is US GAAP that puts it in income tax expense, which is why a US GAAP reporter's effective tax rate moves with its share price." },
+    { wrong: "Adjusted EBITDA that excludes share-based pay is comparable with a peer's EBITDA.", right: "Excluding a real cost inflates profit. A company paying in shares looks cheaper on enterprise value to adjusted EBITDA than a peer paying cash. Compare like with like." },
+    { wrong: "Net interest on a pension deficit should be deducted from free cash flow, because it is a real cost.", right: "The deficit is already deducted at its present value in the bridge to equity value. Net interest is that present value unwinding; deducting it too double counts the time value of money." },
+    { wrong: "An overfunded pension plan's surplus is added to equity value like excess cash.", right: "A surplus sits in trust for employees and is generally not available to capital providers, so it is typically excluded. Only a deficit is treated as debt-like." },
+    { wrong: "A higher forecast share count from awards is already captured by deducting share-based pay from free cash flow, so diluted shares are unnecessary.", right: "Deducting the expense pays for FUTURE awards. Awards already outstanding still need the diluted (treasury stock method) share count." },
   ],
 
   gaap: [
@@ -801,6 +1287,8 @@ export default {
     { topic: "Presentation of components", ifrs: "No required line; net interest is often shown in finance costs", usgaap: "Service cost with compensation costs; other components outside operating income (ASU 2017-07, flagged)" },
     { topic: "Equity-settled share-based awards", ifrs: "Grant-date fair value, expensed over the service period, credited to equity", usgaap: "Same" },
     { topic: "Cash-settled awards (SARs paid in cash)", ifrs: "Liability remeasured to fair value at each reporting date", usgaap: "Same" },
+    { topic: "Deferred tax on share-based pay during vesting", ifrs: "Deferred tax asset built as the expense is recognized (IAS 12 measures it on the estimated future deduction, flagged)", usgaap: "Deferred tax asset built on the cumulative expense recognized" },
+    { topic: "Excess tax benefit (windfall) at settlement", ifrs: "Credited directly to equity; the effective tax rate stays near statutory", usgaap: "Recognized in income tax expense; the effective tax rate moves with the share price" },
   ],
 
   formulas: [
@@ -815,6 +1303,12 @@ export default {
     { name: "Projected unit credit service cost", tex: "\\text{SC}_t = \\frac{\\text{Benefit at retirement}/N}{(1+r)^{N-t}}", plain: "Each year of service buys an equal slice of the retirement benefit, discounted to today." },
     { name: "Cash flow adjustment", tex: "(\\text{Contributions} - \\text{TPPC}) \\times (1 - t)", plain: "Positive: add to CFO and subtract from CFF. Negative: the reverse." },
     { name: "Equity-settled award expense (cliff vesting)", tex: "\\frac{\\text{Awards expected to vest} \\times \\text{Grant-date fair value}}{\\text{Vesting years}}", plain: "Credit paid-in capital. Not remeasured after grant." },
+    { name: "Share-based compensation forecast", tex: "\\text{SBC}_t = s_t \\times \\text{Revenue}_t", plain: "SBC is share-based compensation and s its percentage of revenue, set from history, guidance and peers; let s decline over time for an early-stage company." },
+    { name: "Basic shares roll-forward", tex: "\\text{Basic}_{end} = \\text{Basic}_{beg} + \\text{RSUs vested and options exercised} + \\text{New issuance} - \\text{Repurchases}", plain: "Pinnacle: 1,000 + 10 + 0 - 8 = 1,002." },
+    { name: "Diluted shares for RSUs (treasury stock method)", tex: "\\text{Diluted} = \\text{Basic} + \\text{Unvested RSUs} - \\frac{\\text{Average unrecognized compensation cost}}{\\text{Average share price}}", plain: "Pinnacle: 1,001 + 30 - 620 / 40 = 1,015.5." },
+    { name: "Excess tax benefit at settlement", tex: "\\text{Windfall} = t \\times (\\text{Value at settlement} - \\text{Grant-date fair value}) \\times \\text{Units}", plain: "Pinnacle: 20% x (45 - 30) x 10 = 30. US GAAP: income tax expense. IFRS: equity." },
+    { name: "Enterprise value to equity value with pensions", tex: "\\text{Equity value} = \\text{EV} - \\text{Debt} + \\text{Cash} - \\text{Pension deficit} \\times (1 - t)^{*}", plain: "EV is enterprise value, computed from free cash flow after service cost and before net interest. A surplus is excluded. *Whether to deduct the deficit after tax is flagged; Pinnacle: 20,000 - 4,000 + 1,000 - 600 = 16,400 (16,550 after 25% tax)." },
+    { name: "Net pension liability roll-forward", tex: "\\text{NPL}_{end} = \\text{NPL}_{beg} + \\text{Service cost} + \\text{Net interest} + \\text{Remeasurements} - \\text{Contributions}", plain: "NPL is the net pension liability. Pinnacle: 100 + 110 + 5 + 35 - 80 = 170." },
     { name: "Cash-settled award expense", tex: "\\text{Expense}_t = \\text{FV}_t \\times \\text{Units} \\times \\frac{\\text{Service completed}}{\\text{Service period}} - \\text{Liability}_{t-1}", plain: "The change in a liability measured at current fair value for the service completed so far." },
   ],
 
@@ -834,6 +1328,16 @@ export default {
     { q: "When is an equity-settled award measured, and over what period is it expensed?", a: "At fair value on the grant date; expensed over the vesting (service) period, credited to equity." },
     { q: "How do higher volatility, longer term, higher risk-free rate and higher dividend yield affect option value?", a: "The first three increase it; a higher dividend yield decreases it." },
     { q: "How is a cash-settled SAR accounted for?", a: "As a liability remeasured to fair value at each reporting date; expense is the change in the liability, so it moves with the share price." },
+    { q: "What three jobs does a compensation package do, and which components do which?", a: "Meet liquidity needs (salary, bonus), retain (unvested share awards, pensions) and motivate performance (bonuses, share-based pay)." },
+    { q: "Which option pricing inputs are the most subjective?", a: "Expected volatility and expected life (term). The model choice itself is also a disclosed judgment." },
+    { q: "Where does share-based compensation appear in each statement?", a: "Income statement: inside operating expenses by function. Balance sheet: credit to paid-in capital. Cash flow statement: added back in operating cash flow (indirect method)." },
+    { q: "How do you forecast share-based compensation expense?", a: "As a percentage of revenue from history, guidance and peers; separately for early-stage companies, whose percentage falls as they mature." },
+    { q: "State the basic share roll-forward.", a: "Beginning basic shares + RSUs vested and options exercised + new issuance - repurchases." },
+    { q: "How does the treasury stock method treat unvested RSUs?", a: "Diluted = basic + unvested RSUs - average unrecognized compensation cost / average share price." },
+    { q: "Where does the windfall at settlement go under IFRS and US GAAP?", a: "IFRS: equity. US GAAP: income tax expense, so the effective tax rate moves with the share price." },
+    { q: "What are the two consistent DCF treatments of share-based pay?", a: "Treat it as a cash expense (no add-back) and use diluted shares; or add it back and raise the share count for all vested, unvested and future awards." },
+    { q: "In a DCF, how are service cost, net interest, a deficit and a surplus treated?", a: "Service cost deducted from free cash flow; net interest excluded; deficit deducted in the bridge as debt-like (possibly after tax); surplus typically excluded." },
+    { q: "How is a defined contribution plan modeled?", a: "Inside operating expenses; cash equals expense; only an accrued liability for unpaid contributions on the balance sheet." },
   ],
 
   itemSets: [
@@ -962,16 +1466,75 @@ export default {
         },
       ],
     },
+    {
+      id: "lm11-is4",
+      title: "Forecasting Kestrel's share count and valuing its shares",
+      vignette: `<p>Kestrel Ltd, a software company, settles its share-based pay in restricted stock units (RSUs). An analyst gathers the following for her forecast of next year (millions, except per share):</p>
+<table><tbody>
+<tr><td>Basic shares outstanding, start of year</td><td>500</td></tr>
+<tr><td>RSUs expected to vest during the year</td><td>6</td></tr>
+<tr><td>Shares to be repurchased during the year</td><td>4</td></tr>
+<tr><td>Unvested RSUs: start of year / end of year</td><td>24 / 26</td></tr>
+<tr><td>Unrecognized compensation cost: start of year / end of year</td><td>440 / 520</td></tr>
+<tr><td>Average share price expected for the year</td><td>60</td></tr>
+<tr><td>Current share price</td><td>55</td></tr>
+<tr><td>Current diluted shares (treasury stock method): 500 + 24 - 440 / 55</td><td>516</td></tr>
+<tr><td>Free cash flow next year, with share-based compensation added back</td><td>2,400</td></tr>
+<tr><td>Share-based compensation next year</td><td>300</td></tr>
+<tr><td>Long-term growth of free cash flow and share-based compensation</td><td>3%</td></tr>
+<tr><td>Weighted average cost of capital</td><td>10%</td></tr>
+<tr><td>Net cash</td><td>960</td></tr>
+</tbody></table>`,
+      questions: [
+        {
+          q: "Kestrel's basic shares outstanding at the end of the year are closest to:",
+          options: ["502", "498", "527"],
+          answer: 0,
+          why: "Vested units become shares and repurchases retire them: 500 + 6 - 4 = 502. Reversing the two signs gives 498. Adding the 25 average unvested units confuses the basic count with the diluted one.",
+        },
+        {
+          q: "Kestrel's diluted shares for the year, using the treasury stock method for the RSUs, are closest to:",
+          options: ["526", "518", "534"],
+          answer: 1,
+          why: "Average basic shares are (500 + 502) / 2 = 501, average unvested units (24 + 26) / 2 = 25, and the assumed repurchase is the average unrecognized cost (440 + 520) / 2 = 480 divided by the average price of 60, or 8. Diluted shares = 501 + 25 - 8 = 518. Ignoring the repurchase gives 526; adding it gives 534.",
+        },
+        {
+          q: "If the analyst treats share-based compensation as a cash expense, the value per share is closest to:",
+          options: ["60.00", "68.31", "42.56"],
+          answer: 0,
+          why: "Free cash flow without the add-back is 2,400 - 300 = 2,100. Enterprise value = 2,100 / (10% - 3%) = 30,000. Adding net cash of 960 gives equity of 30,960, divided by the current diluted 516 shares = 60.00. Keeping the add-back with the same share count gives 68.31, the inconsistent mix; forgetting growth (2,100 / 10%) gives 42.56.",
+        },
+        {
+          q: "A colleague prefers to add share-based compensation back to free cash flow. To reach a consistent value she should most likely:",
+          options: [
+            "Keep the 516 current diluted shares, since the awards are already reflected in them",
+            "Increase the share count for all outstanding awards and for the shares future grants are expected to create",
+            "Deduct the net cash, because buybacks will be needed to offset dilution",
+          ],
+          answer: 1,
+          why: "Adding the expense back removes the cost of future awards from the cash flows, so the share count must carry it instead: all unvested units in full plus the shares expected from future grants. The current diluted count only reflects awards already outstanding, net of the treasury stock method. Net cash belongs to shareholders either way.",
+        },
+      ],
+    },
   ],
 
   flags: [
-    { los: "b", note: "ABO and VBO: included as US GAAP measures for completeness. Verify how much the 2026 reading says about them; it may mention them only in passing." },
-    { los: "c", note: "IFRS net interest is computed here on the beginning net liability. IAS 19 strictly adjusts for contributions and benefit payments during the period; the curriculum simplification is assumed. Verify the book's wording." },
-    { los: "c", note: "US GAAP presentation (ASU 2017-07: non-service components outside operating income) is labelled beyond the curriculum. Check whether the 2026 reading mentions it." },
-    { los: "d", note: "Effect of a higher discount rate on interest cost is presented as ambiguous (usually higher for typical durations). Confirm the book's exact wording, which may say interest cost 'typically' falls or rises depending on plan maturity." },
-    { los: "e", note: "Income statement adjustment uses the ACTUAL return as non-operating income. Some curriculum exhibits use the expected return in this reclassification; verify which the 2026 book uses in its worked example." },
-    { los: "e", note: "Cash flow reclassification is shown after tax in prose and formulas but pre-tax in the scenario ledger for clarity; the scenario says so explicitly." },
-    { los: "a", note: "Multi-employer plans treated as DC when information is insufficient: confirm the curriculum still includes this point." },
-    { los: "h", note: "Phantom shares and the detail that cumulative cash-settled expense equals the cash paid: confirm the depth the 2026 reading gives to SARs and phantom shares." },
+    { los: "a", note: "LOS replaced 2026-10-08 with the official 2026 topic outline (five LOS). Section content for LOS a and c to e was rebuilt from the CFA Institute 2026 refresher summary and third-party notes, not from the reading itself; verify against the book when it is in the repo." },
+    { los: "a", note: "Compensation design objectives (liquidity, retention, motivation) and the four components follow the 2026 summary. Check whether the reading uses the label 'short-term incentives' for bonuses and 'long-term incentives' for share-based pay exactly as written here." },
+    { los: "b", note: "Windfall scenario simplification: the deferred tax asset is built on the cumulative expense in both columns. IAS 12 strictly measures it on the estimated future deduction (current share price), with the excess over expense taken to equity as it arises. Verify how far the 2026 reading goes." },
+    { los: "b", note: "Shortfall (deduction below cumulative expense) is stated to raise tax expense under both standards. Confirm the reading mentions shortfalls at all." },
+    { los: "b", note: "Phantom shares and the detail that cumulative cash-settled expense equals the cash paid: confirm the depth the 2026 reading gives to SARs and phantom shares." },
+    { los: "c", note: "Treasury stock method for RSUs: assumed proceeds = average unrecognized compensation cost, repurchased at the average share price (from third-party notes on the 2026 reading). Confirm the exact construction and whether period averages are used." },
+    { los: "c", note: "Valuation Treatment 2 share count (all unvested awards in full plus future-award shares = (PV of future SBC - unrecognized cost) / current price) is our construction to show the two treatments agree. The reading may only say 'increase the share count for vested and unvested awards'. Verify the wording." },
+    { los: "c", note: "Unrecognized cost roll-forward removes half the grant value of forfeited units (forfeited mid-vesting) in the demo and in SbcForecastLab. This is a modeling simplification, not a curriculum rule." },
+    { los: "d", note: "ABO and VBO: included as US GAAP measures for completeness. Under the 2026 LOS they are likely mentioned only in passing, if at all." },
+    { los: "d", note: "IFRS net interest is computed here on the beginning net liability. IAS 19 strictly adjusts for contributions and benefit payments during the period; the curriculum simplification is assumed." },
+    { los: "d", note: "US GAAP presentation (ASU 2017-07: non-service components outside operating income) is labelled beyond the curriculum. Check whether the 2026 reading mentions it." },
+    { los: "d", note: "Effect of a higher discount rate on interest cost is presented as ambiguous (usually higher for typical durations). Confirm the book's exact wording." },
+    { los: "d", note: "Multi-employer plans treated as DC when information is insufficient: confirm the 2026 reading still includes this point." },
+    { los: "d", note: "Projected unit credit arithmetic and corridor amortization were core under the older LOS set and are kept with depth notes; the 2026 LOS d is qualitative ('explain how ... affect the financial statements')." },
+    { los: "e", note: "After-tax deficit in the enterprise value bridge: the 2026 summary says to consider the tax deductibility of contributions. Whether the reading deducts the deficit after tax by default is unconfirmed; both versions are shown." },
+    { los: "e", note: "Deficit-repair contributions are described as not deducted from free cash flow (to avoid double counting with the bridge) and remeasurements as forecast at zero. Both follow from the reading's logic but the wording is unconfirmed." },
+    { los: "e", note: "The ratio and cash flow reclassification section (old LOS e/f) is kept as an older lens. Its actual-versus-expected-return choice and the pre-tax ledger simplification were flagged before and still apply." },
   ],
 };

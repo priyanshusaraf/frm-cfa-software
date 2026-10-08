@@ -34,7 +34,7 @@ export default function FsaCoverage() {
       <div className="fsa-callout tone-flag">
         <b>Source status</b>
         <p>
-          <b>LOS: verified.</b> Every learning outcome statement and its letter comes from CFA Institute's official {CURRICULUM.year} Level II topic outline. This check found that LM 11 had been rewritten for the current curriculum (forecasting share-based compensation, and modeling and valuing post-employment benefits); the module is being rebuilt to match.
+          <b>LOS: verified.</b> Every learning outcome statement and its letter comes from CFA Institute's official {CURRICULUM.year} Level II topic outline. This check found that LM 11 had been rewritten for the current curriculum (forecasting share-based compensation, and modeling and valuing post-employment benefits); the module was rebuilt to match.
         </p>
         <p>
           <b>Content: not yet checked line by line against your books.</b> It was written from the LOS, from IFRS and US GAAP as the curriculum teaches them, and checked against CFA Institute's public 2026 reading summaries where they exist. The open flags below are the points to check first. To finish the job, commit your books (PDF or Markdown) under <code>cfa-l2/</code> and ask for a reconciliation pass.

@@ -1,20 +1,18 @@
 /* The 2026 CFA Level II Financial Statement Analysis curriculum (Topic 3,
    Learning Modules 10 to 15), as the scope of this platform.
 
-   PROVENANCE, read before trusting a letter: the owner's CFA books were not
-   available in the cloud session that built this (they live in a local
-   Downloads folder). The module list is confirmed by several 2026 sources;
-   the LOS wording was reconstructed from third-party listings (AnalystNotes,
-   whose pages are offset by a few LOS each, and were joined back together)
-   and checked against the long-standing Level II wording. LOS LETTERS are
-   therefore our ordering, not necessarily CFA Institute's. Reconcile against
-   the official curriculum: react-site/docs/cfa/fsa-curriculum-reconciliation.md. */
+   PROVENANCE: every LOS sentence and its letter order below is verbatim from
+   CFA Institute's official "2026 Level II Topic Outlines" PDF
+   (cfainstitute.org, 2026-l2-topics-combined.pdf), checked 2026-10-08. The
+   PDF is "for candidate use only" and is not committed. The CONTENT that
+   teaches these LOS has not yet been checked line by line against the
+   owner's books: see react-site/docs/cfa/fsa-curriculum-reconciliation.md. */
 export const CURRICULUM = {
   exam: "CFA Level II",
   year: 2026,
   topic: "Financial Statement Analysis",
   weight: "10-15%",
-  verified: false,
+  verified: true, // LOS text and order; content reconciliation against the books is separate
   modules: [
     {
       id: "lm10", num: 10, title: "Intercorporate Investments",
@@ -25,16 +23,17 @@ export const CURRICULUM = {
       ],
     },
     {
+      /* lm11: replaced 2026-10-08 with the five LOS of the official CFA
+         Institute 2026 Level II topic outline (verbatim). The older
+         eight-LOS set (pension measures, corridor, analyst adjustments)
+         no longer applies; content/lm11.js keeps that teaching, labelled. */
       id: "lm11", num: 11, title: "Employee Compensation: Post-Employment and Share-Based",
       los: [
-        { id: "a", text: "describe the types of post-employment benefit plans and implications for financial reports" },
-        { id: "b", text: "explain and calculate measures of a defined benefit pension obligation (i.e., present value of the defined benefit obligation and projected benefit obligation) and net pension liability (or asset)" },
-        { id: "c", text: "describe the components of a company's defined benefit pension costs" },
-        { id: "d", text: "explain and calculate the effect of a defined benefit plan's assumptions on the defined benefit obligation and periodic pension cost" },
-        { id: "e", text: "explain and calculate how adjusting for items of pension and other post-employment benefits that are reported in the notes to the financial statements affects financial statements and ratios" },
-        { id: "f", text: "interpret pension plan note disclosures including cash flow related information" },
-        { id: "g", text: "explain issues associated with accounting for share-based compensation" },
-        { id: "h", text: "explain how accounting for stock grants and stock options affects financial statements, and the importance of companies' assumptions in valuing these grants and options" },
+        { id: "a", text: "contrast types of employee compensation" },
+        { id: "b", text: "explain how share-based compensation affects the financial statements" },
+        { id: "c", text: "explain how to forecast share-based compensation expense and shares outstanding in a financial statement model and their use in valuation" },
+        { id: "d", text: "explain how post-employment benefits affect the financial statements" },
+        { id: "e", text: "explain financial modeling and valuation considerations for post-employment benefits" },
       ],
     },
     {

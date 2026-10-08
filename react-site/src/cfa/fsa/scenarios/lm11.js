@@ -597,4 +597,155 @@ const opeb = {
   ],
 };
 
-export default [dcVsDb, ifrsVsGaap, analystAdjust, opeb, stockOptions, grantsVsSars];
+/* ------------------------------------------------------------------ */
+/* RSU tax windfall. 10 (million) RSUs granted at a share price of 30:
+   grant-date fair value 300, cliff vesting after 3 years, expense 100 a year.
+   Tax rate 20%: deferred tax asset builds 20 a year to 60. Year 3 operating
+   profit before this grant's expense 1,600 (revenue 4,000 less other costs
+   2,400, all cash). RSUs vest at a share price of 45: tax deduction
+   10 x 45 = 450, tax saved 90 = 60 (uses the deferred tax asset) + 30
+   (excess tax benefit, the windfall). Current tax payable
+   (1,600 - 450) x 20% = 230. Year 3 pre-tax income 1,600 - 100 = 1,500.
+   US GAAP tax expense -20 + 320 - 30 = 270 (ETR 18%); IFRS -20 + 320 = 300
+   (ETR 20%) with the 30 credited to equity. Amounts in millions. */
+const rsuOpen = { cash: 500, ppe: 1500, sc: 1200, re: 800 };
+const rsuWindfall = {
+  id: "lm11-rsu-windfall",
+  module: "lm11",
+  title: "Restricted stock units: expense, deferred tax, and the windfall at vesting",
+  standard: "IFRS 2 and IAS 12 vs US GAAP ASC 718 and ASC 740",
+  summary:
+    "Pinnacle grants 10 million restricted stock units (RSUs) at a share price of 30, vesting after three years. The tax rate is 20%. The expense and the deferred tax asset build identically under both standards. The units vest when the share price is 45, so the tax deduction is bigger than the expense ever was. Watch where that extra tax saving lands: income tax expense under US GAAP, equity under IFRS, and the effective tax rate that follows. Amounts in millions.",
+  accounts: [
+    cash(),
+    asset("dta", "Deferred tax asset: share-based pay", "nca"),
+    asset("ppe", "Property, plant and equipment", "nca"),
+    liab("taxPay", "Income tax payable", "cl"),
+    equity("sc", "Share capital"),
+    equity("apicRsu", "Paid-in capital: RSUs"),
+    equity("eqTax", "Paid-in capital: excess tax benefit"),
+    re(),
+    rev("sales", "Revenue", { tags: ["sales"] }),
+    exp("opex", "Other operating expenses"),
+    exp("comp", "Compensation expense: RSUs"),
+    exp("taxExp", "Income tax expense", { tags: ["tax"] }),
+  ],
+  columns: [
+    { id: "ifrs", label: "IFRS", sub: "excess tax benefit to equity", opening: rsuOpen },
+    { id: "gaap", label: "US GAAP", sub: "excess tax benefit to tax expense", opening: rsuOpen },
+  ],
+  steps: [
+    {
+      title: "Grant date: 10 million RSUs, share price 30",
+      html:
+        "<p>Each restricted stock unit is a promise to deliver one Pinnacle share if the employee is still there in three years. Its fair value is the share price at grant (no dividends are expected over the period), so the award is worth 10 x 30 = 300, fixed for good. No entry yet: no service has been received.</p><p>The tax authority sees it differently. In Pinnacle's jurisdiction the deduction comes only when the units vest, and it equals the value of the shares THEN. Nobody knows that number today.</p>",
+      entries: { ifrs: [], gaap: [] },
+      memo: {
+        title: "Two measurements of the same award",
+        rows: [
+          ["Book: grant-date fair value, 10 x 30", "300"],
+          ["Book: expense per year over 3 years", "100"],
+          ["Tax: deduction at vesting, 10 x share price then", "unknown"],
+          ["Deferred tax asset per year: 100 x 20%", "20"],
+        ],
+      },
+      practice: false,
+    },
+    {
+      title: "Year one: expense 100, and a deferred tax asset of 20",
+      prompt: "Recognize one third of the 300 grant-date fair value. The tax rate is 20% and the deduction will come at vesting.",
+      html:
+        "<p>The expense is 300 / 3 = 100, credited to paid-in capital because the award will be settled in shares. Pinnacle gets no tax deduction this year, but it expects one later, so it records a <b>deferred tax asset</b> of 100 x 20% = 20 and a deferred tax benefit that reduces tax expense. Identical under both standards.</p>",
+      entries: {
+        ifrs: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
+        gaap: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
+      },
+      insight: "Net income falls by 100 - 20 = 80. Total equity falls by only the 80 too: paid-in capital rose by 100 while retained earnings fell by 80 (the deferred tax asset is a real asset).",
+    },
+    { title: "Close year one", html: "Net income rolls into retained earnings.", entries: { ifrs: [], gaap: [] }, close: true, practice: false },
+    {
+      title: "Year two: another 100 of expense, deferred tax asset now 40",
+      prompt: "Recognize the second year's expense and its deferred tax effect.",
+      html: "<p>Same entry as year one. The share price is irrelevant to the book expense, which was fixed at grant.</p>",
+      entries: {
+        ifrs: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
+        gaap: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
+      },
+    },
+    { title: "Close year two", html: "Net income rolls into retained earnings.", entries: { ifrs: [], gaap: [] }, close: true, practice: false },
+    {
+      title: "Year three: Pinnacle's ordinary business earns 1,600 before this grant",
+      prompt: "Revenue of 4,000 and other operating costs of 2,400 are settled in cash.",
+      html: "<p>Identical in both columns. This gives the year a pre-tax income to measure the effective tax rate against.</p>",
+      entries: {
+        ifrs: [dr("cash", 4000, "CFO", "Cash received from customers"), cr("sales", 4000), dr("opex", 2400), cr("cash", 2400, "CFO", "Cash paid for operating expenses")],
+        gaap: [dr("cash", 4000, "CFO", "Cash received from customers"), cr("sales", 4000), dr("opex", 2400), cr("cash", 2400, "CFO", "Cash paid for operating expenses")],
+      },
+      practice: false,
+    },
+    {
+      title: "Year three: the last 100 of expense; deferred tax asset reaches 60",
+      prompt: "Recognize the final year's RSU expense and its deferred tax effect.",
+      html: "<p>Cumulative expense is now the full 300, and the deferred tax asset is 300 x 20% = 60: the tax saving Pinnacle expects if the deduction turns out equal to the expense.</p>",
+      entries: {
+        ifrs: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
+        gaap: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
+      },
+    },
+    {
+      title: "The RSUs vest at a share price of 45: 10 million shares issued",
+      prompt: "All 10 million units vest and Pinnacle issues 10 million shares. No cash changes hands.",
+      html:
+        "<p>Vesting is a move inside equity: the 300 built up in paid-in capital for the RSUs becomes share capital. Unlike an option exercise, <b>no cash comes in</b>: employees pay nothing for RSUs. Basic shares outstanding rise by 10 million, which is what a share count forecast has to pick up.</p>",
+      entries: {
+        ifrs: [dr("apicRsu", 300), cr("sc", 300)],
+        gaap: [dr("apicRsu", 300), cr("sc", 300)],
+      },
+      insight: "Total equity does not move and the cash flow statement shows nothing. The cost of the award was the 300 of expense over three years, borne by existing shareholders through dilution.",
+    },
+    {
+      title: "Year three tax on profit before the RSU deduction: 320",
+      prompt: "Before counting the RSU deduction, taxable profit is the 1,600 from the ordinary business. The tax rate is 20%.",
+      html: "<p>Tax on 1,600 at 20% is 320. Identical in both columns. The next step brings in the deduction for the vested RSUs.</p>",
+      entries: {
+        ifrs: [dr("taxExp", 320), cr("taxPay", 320)],
+        gaap: [dr("taxExp", 320), cr("taxPay", 320)],
+      },
+    },
+    {
+      title: "The deduction is 450, not 300: a windfall of 30",
+      prompt: "The tax deduction for the vested RSUs is 10 million x 45 = 450, saving 90 of tax. The deferred tax asset of 60 is used up. Record the saving under each standard.",
+      html:
+        "<p>The deduction is the value of the shares at vesting, 450, so it saves 450 x 20% = 90 of tax. The first 60 of that saving is exactly what the deferred tax asset anticipated, so the asset is used up. The remaining 30 is the <b>excess tax benefit</b> (the windfall): the tax effect of the 150 by which the share price rise made the deduction bigger than the expense.</p><p><b>US GAAP</b> puts the windfall in <b>income tax expense</b>, so tax expense falls and the effective tax rate drops below the statutory 20%. <b>IFRS</b> credits it directly to <b>equity</b>, on the logic that the extra 150 of deduction relates to an amount that never went through profit, so its tax effect should not either.</p>",
+      entries: {
+        ifrs: [dr("taxPay", 90), cr("dta", 60), cr("eqTax", 30)],
+        gaap: [dr("taxPay", 90), cr("dta", 60), cr("taxExp", 30)],
+      },
+      notes: {
+        ifrs: "Tax expense for the year: -20 + 320 = 300. Effective tax rate 300 / 1,500 = 20%.",
+        gaap: "Tax expense for the year: -20 + 320 - 30 = 270. Effective tax rate 270 / 1,500 = 18%.",
+      },
+      memo: {
+        title: "Splitting the 90 of tax saved",
+        rows: [
+          ["Deduction at vesting: 10 x 45", "450"],
+          ["Tax saved: 450 x 20%", "90"],
+          ["Used by the deferred tax asset: 300 x 20%", "60"],
+          ["Excess tax benefit (windfall): (450 - 300) x 20%", "30"],
+          ["Tax payable for the year: 320 - 90", "230"],
+        ],
+      },
+      insight: "Same cash tax (230), same total equity, different net income: 1,230 under US GAAP and 1,200 under IFRS. The gap is entirely the windfall's destination.",
+      exam: "Excess tax benefits at settlement: US GAAP to income tax expense (the effective tax rate moves with the share price); IFRS to equity (the effective tax rate stays near statutory). If the share price had FALLEN, the deduction would be below the expense, and the shortfall would raise tax expense.",
+    },
+  ],
+  ratios: [
+    { label: "Net income", fn: (S) => S.NI, fmt: "num" },
+    { label: "Income tax expense", fn: (S) => -S.tag("tax"), fmt: "num" },
+    { label: "Effective tax rate", fn: (S) => { const pt = S.NI - S.tag("tax"); return Math.abs(pt) > 0.5 ? -S.tag("tax") / pt : null; }, fmt: "pct" },
+    { label: "Deferred tax asset", fn: (S) => S.v("BS:dta"), fmt: "num" },
+    { label: "Total equity", fn: (S) => S.TE, fmt: "num" },
+  ],
+};
+
+export default [dcVsDb, ifrsVsGaap, analystAdjust, opeb, stockOptions, grantsVsSars, rsuWindfall];

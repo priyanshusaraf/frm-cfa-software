@@ -770,17 +770,18 @@ bookmark toggles, both corner pills, and the resize handle present.
 
 | Module | Content | Scenarios | Widgets | Notes |
 |---|---|---|---|---|
-| LM10 Intercorporate Investments | done (orchestrator) | 9 | none | reference module for voice and depth; 3 flags |
-| LM11 Employee Compensation | done | 6 | PensionLab, StockOptionLab | 8 flags |
-| LM12 Multinational Operations | done | 3 | FxTranslator, HyperinflationLab, FxSalesLab | 10 flags; translator verified by hand |
-| LM13 Financial Institutions | done | 4 | CamelsLab, InsurerLab | 8 flags |
-| LM14 Quality of Financial Reports | done | 6 | AccrualsLab, BeneishLab, ManipulationRadar | 10 flags |
-| LM15 Integration of FSA Techniques | done | 4 | DupontLab, AdjustmentsLab | 7 flags |
+| LM10 Intercorporate Investments | done | 9 | none | 2 flags |
+| LM11 Employee Compensation | REBUILT for the 2026 LOS | 7 | PensionLab, StockOptionLab, SbcForecastLab, PensionBridge | 2026 LOS differ from the older reading: added forecasting SBC and shares, pension modeling and valuation |
+| LM12 Multinational Operations | done | 3 | FxTranslator, HyperinflationLab, FxSalesLab | translator verified by hand |
+| LM13 Financial Institutions | done | 4 | CamelsLab, InsurerLab | no public 2026 summary found |
+| LM14 Quality of Financial Reports | done | 6 | AccrualsLab, BeneishLab, ManipulationRadar | |
+| LM15 Integration of FSA Techniques | done | 4 | DupontLab, AdjustmentsLab | case company confirmed as Nestle |
 
-Totals: 61 sections, 32 animated scenarios, 229 reconstruct rounds, 12 widgets, 17 item sets.
-Verified 2026-10-08: every module gate OK, npm test 166/166, build green, headless sweep of
-43 pages (all 32 scenarios played to the end) with zero console errors or warning boxes,
-widgets screenshot-checked in dark theme. NOT verified in a real browser by the owner yet:
-slider feel, animation timing, the reconstruct game's keyboard flow.
-NEXT for CFA: reconcile against the books once committed (checklist and all 46 flags in
-react-site/docs/cfa/fsa-curriculum-reconciliation.md).
+Totals: 65 sections, 33 animated scenarios, 241 reconstruct rounds, 14 widgets, 18 item sets,
+137+ flashcards, a timed mock exam. LOS text and letters VERIFIED against CFA Institute's
+official 2026 topic outline (2026-10-08). Independent reviewers recomputed every number in
+LM11-LM15 and fixed 42 defects. Verified 2026-10-08: all six module gates OK, npm test 167/167,
+build green, headless sweep of 46 pages (every scenario played through), widget fuzz of 444
+control actions, all clean. Not verified by the owner in a real browser yet.
+NEXT for CFA: owner commits the books under cfa-l2/; then resolve the 51 open flags in
+react-site/docs/cfa/fsa-curriculum-reconciliation.md.

@@ -25,8 +25,10 @@ not reach them, so this file records what was used instead and what still has to
      contrast types of employee compensation; how share-based compensation affects the
      statements; FORECAST share-based compensation expense and shares outstanding in a
      model and use them in valuation; how post-employment benefits affect the statements;
-     MODELING AND VALUATION considerations for post-employment benefits. The module is being
-     rebuilt to the new LOS (in progress); older-curriculum depth is kept but labelled.
+     MODELING AND VALUATION considerations for post-employment benefits. The module was
+     rebuilt to the new LOS (new sections on compensation types, share-based pay taxes,
+     forecasting and valuation, and pension modeling/valuation); older-curriculum depth
+     (projected unit credit arithmetic, corridor, ratio reclassifications) is kept but labelled.
 3. **Content checks against public CFA Institute 2026 reading summaries** (refresher
    reading pages): LM10 (US GAAP goodwill test is two-step in the curriculum), LM11 (scope
    and key points), LM12 (transaction gain/loss presentation, remeasurement terminology,
@@ -59,34 +61,39 @@ module:
 5. Spot-check two worked examples per module against the book's example format, so exam
    arithmetic conventions (signs, rounding, which rate is "average") match.
 
-## Open flags, all modules (46, generated from each module's `flags` array)
+## Open flags, all modules (51, generated from each module's `flags` array)
 
-Each item must be checked against the owner's edition of the curriculum, then fixed and removed from the module file.
+Each item must be checked against the owner's edition of the curriculum, then fixed and removed from the module file. Flags closed so far by public CFA Institute sources are recorded in git history.
 
-### LM10 Intercorporate Investments (3 flags)
+### LM10 Intercorporate Investments (2 flags)
 - (LOS 10a) Equity-method impairment reversal: curriculum wording may say neither standard permits reversal; IAS 28 permits it. Verify against the owner's book.
-- (LOS 10b) US GAAP goodwill impairment: the curriculum's two-step test vs ASU 2017-04 one-step. Verify which version the 2026 book uses.
 - (LOS 10a) Contingent liabilities in a business combination: exact IFRS vs US GAAP recognition wording not yet included; add once checked against the book.
 
-### LM11 Employee Compensation: Post-Employment and Share-Based (8 flags)
-- (LOS 11b) ABO and VBO: included as US GAAP measures for completeness. Verify how much the 2026 reading says about them; it may mention them only in passing.
-- (LOS 11c) IFRS net interest is computed here on the beginning net liability. IAS 19 strictly adjusts for contributions and benefit payments during the period; the curriculum simplification is assumed. Verify the book's wording.
-- (LOS 11c) US GAAP presentation (ASU 2017-07: non-service components outside operating income) is labelled beyond the curriculum. Check whether the 2026 reading mentions it.
-- (LOS 11d) Effect of a higher discount rate on interest cost is presented as ambiguous (usually higher for typical durations). Confirm the book's exact wording, which may say interest cost 'typically' falls or rises depending on plan maturity.
-- (LOS 11e) Income statement adjustment uses the ACTUAL return as non-operating income. Some curriculum exhibits use the expected return in this reclassification; verify which the 2026 book uses in its worked example.
-- (LOS 11e) Cash flow reclassification is shown after tax in prose and formulas but pre-tax in the scenario ledger for clarity; the scenario says so explicitly.
-- (LOS 11a) Multi-employer plans treated as DC when information is insufficient: confirm the curriculum still includes this point.
-- (LOS 11h) Phantom shares and the detail that cumulative cash-settled expense equals the cash paid: confirm the depth the 2026 reading gives to SARs and phantom shares.
+### LM11 Employee Compensation: Post-Employment and Share-Based (17 flags)
+- (LOS 11a) LOS replaced 2026-10-08 with the official 2026 topic outline (five LOS). Section content for LOS a and c to e was rebuilt from the CFA Institute 2026 refresher summary and third-party notes, not from the reading itself; verify against the book when it is in the repo.
+- (LOS 11a) Compensation design objectives (liquidity, retention, motivation) and the four components follow the 2026 summary. Check whether the reading uses the label 'short-term incentives' for bonuses and 'long-term incentives' for share-based pay exactly as written here.
+- (LOS 11b) Windfall scenario simplification: the deferred tax asset is built on the cumulative expense in both columns. IAS 12 strictly measures it on the estimated future deduction (current share price), with the excess over expense taken to equity as it arises. Verify how far the 2026 reading goes.
+- (LOS 11b) Shortfall (deduction below cumulative expense) is stated to raise tax expense under both standards. Confirm the reading mentions shortfalls at all.
+- (LOS 11b) Phantom shares and the detail that cumulative cash-settled expense equals the cash paid: confirm the depth the 2026 reading gives to SARs and phantom shares.
+- (LOS 11c) Treasury stock method for RSUs: assumed proceeds = average unrecognized compensation cost, repurchased at the average share price (from third-party notes on the 2026 reading). Confirm the exact construction and whether period averages are used.
+- (LOS 11c) Valuation Treatment 2 share count (all unvested awards in full plus future-award shares = (PV of future SBC - unrecognized cost) / current price) is our construction to show the two treatments agree. The reading may only say 'increase the share count for vested and unvested awards'. Verify the wording.
+- (LOS 11c) Unrecognized cost roll-forward removes half the grant value of forfeited units (forfeited mid-vesting) in the demo and in SbcForecastLab. This is a modeling simplification, not a curriculum rule.
+- (LOS 11d) ABO and VBO: included as US GAAP measures for completeness. Under the 2026 LOS they are likely mentioned only in passing, if at all.
+- (LOS 11d) IFRS net interest is computed here on the beginning net liability. IAS 19 strictly adjusts for contributions and benefit payments during the period; the curriculum simplification is assumed.
+- (LOS 11d) US GAAP presentation (ASU 2017-07: non-service components outside operating income) is labelled beyond the curriculum. Check whether the 2026 reading mentions it.
+- (LOS 11d) Effect of a higher discount rate on interest cost is presented as ambiguous (usually higher for typical durations). Confirm the book's exact wording.
+- (LOS 11d) Multi-employer plans treated as DC when information is insufficient: confirm the 2026 reading still includes this point.
+- (LOS 11d) Projected unit credit arithmetic and corridor amortization were core under the older LOS set and are kept with depth notes; the 2026 LOS d is qualitative ('explain how ... affect the financial statements').
+- (LOS 11e) After-tax deficit in the enterprise value bridge: the 2026 summary says to consider the tax deductibility of contributions. Whether the reading deducts the deficit after tax by default is unconfirmed; both versions are shown.
+- (LOS 11e) Deficit-repair contributions are described as not deducted from free cash flow (to avoid double counting with the bridge) and remeasurements as forecast at zero. Both follow from the reading's logic but the wording is unconfirmed.
+- (LOS 11e) The ratio and cash flow reclassification section (old LOS e/f) is kept as an older lens. Its actual-versus-expected-return choice and the pre-tax ledger simplification were flagged before and still apply.
 
-### LM12 Multinational Operations (10 flags)
-- (LOS 12c) Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses.
-- (LOS 12a) The statement that neither IFRS nor US GAAP prescribes the income statement line for transaction gains and losses, and the disclosure wording, should be checked against the curriculum text.
+### LM12 Multinational Operations (7 flags)
+- (LOS 12a) Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses.
 - (LOS 12d) The 'balance sheet hedge' paragraph (matching monetary assets and liabilities under the temporal method) is mechanism; confirm the curriculum uses this term before relying on it for an exam answer.
-- (LOS 12d) Translation terminology: US GAAP 'translation' vs 'remeasurement'. IFRS frames both as translation (into the functional currency, then into the presentation currency). Confirm the curriculum's phrasing.
 - (LOS 12g) US GAAP highly inflationary threshold stated as cumulative three-year inflation of about 100% or more. Confirm the curriculum's exact wording (some texts say 'exceeding 100%').
 - (LOS 12g) HyperinflationLab and the Kestrel Sur numbers assume the price index and exchange rate move evenly through the year (averages are midpoints). The IAS 21 translation difference on the restated opening net investment at the parent level is not modeled; the comparison is at the level of the subsidiary's translated statements, as curriculum examples present it.
-- (LOS 12b) The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b.
-- (LOS 12i) Sustainability ranking of price vs volume growth: the module treats volume as most durable and price as dependent on pricing power. Confirm the curriculum's emphasis.
+- (LOS 12c) The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b.
 - (LOS 12h) Transfer pricing is mentioned as a driver of the earnings mix. Confirm it appears in the 2026 curriculum's discussion of the effective tax rate.
 - (LOS 12e) Scenario lm12-cta-vs-remeasurement hides the cash flow statement: a translated cash flow statement needs an 'effect of exchange rate changes on cash' line outside operating, investing and financing, which the ledger engine does not model. Income statement items are translated at the average rate as an approximation of transaction-date rates.
 
@@ -104,16 +111,16 @@ Each item must be checked against the owner's edition of the curriculum, then fi
 - (LOS 14a) Quality spectrum: the order and labels of the two middle levels (biased accounting choices, then within-GAAP earnings management) were reconstructed. Verify against the 2026 exhibit.
 - (LOS 14c) Beneish accruals coefficient: Beneish (1999) reports 4.679; some curriculum editions print 4.670. The difference is immaterial for item sets but verify which value the 2026 book uses.
 - (LOS 14c) Beneish AQI: Beneish's original definition uses (current assets + net PP&E) / total assets; the curriculum version may also include securities, as used here. Verify.
-- (LOS 14c) M-score cutoff: -1.78 is used as instructed. Confirm the 2026 book uses -1.78 (rather than the later -2.22) and whether it quotes the 3.8% probability.
+- (LOS 14c) M-score cutoff: -1.78 is used as instructed. Confirm the 2026 book uses -1.78 (some sources quote -2.22) and whether it quotes the 3.8% probability. The explanation of why the cutoff sits at a low probability (relative costs of missing a manipulator versus a false alarm) follows Beneish (1999); check whether the curriculum gives that reasoning.
 - (LOS 14c) Altman Z-score zones (1.81 and 2.99) are presented in a beyond-the-curriculum callout and in the lab as commonly cited original thresholds. Verify whether the 2026 book states any cutoffs.
 - (LOS 14b) Non-GAAP measures: wording of SEC requirements (reconciliation, equal or greater prominence) and of IFRS additional subtotals is from general knowledge; confirm the curriculum treats presentation choices under this LOS.
 - (LOS 14h) Real-company cases (Sunbeam, WorldCom, MicroStrategy) are summarized from widely documented public history without specific amounts. The curriculum's own cases may differ; check names and details.
-- (LOS 14i) Tax benefits of employee stock options: the curriculum's treatment may reflect the pre-2016 US GAAP classification (excess tax benefits in financing). Content describes the sustainability issue only; verify the classification wording.
-- (LOS 14j) IFRS 18 (effective 2027) is mentioned in a beyond callout only; the 2026 exam uses the current IAS 7 classification choices.
+- (LOS 14l) Tax benefits of employee stock options: the curriculum's treatment may reflect the pre-2016 US GAAP classification (excess tax benefits in financing). Content describes the sustainability issue only; verify the classification wording.
+- (LOS 14i) IFRS 18 (effective 2027) is mentioned in a beyond callout only; the 2026 exam uses the current IAS 7 classification choices.
 - (LOS 14m) Audit references (ISA 701 key audit matters, PCAOB AS 3101 critical audit matters, opinion types, internal control reporting) are standard but should be checked against the curriculum's wording for this LOS.
 
 ### LM15 Integration of Financial Statement Analysis Techniques (7 flags)
-- (LOS 15a) The curriculum teaches this module through an extended case of a real multinational. This module uses a fictional company (Pinnacle Corp) built to reproduce the same analytical sequence; verify the 2026 case company and its exhibits against the official book.
+- (LOS 15a) CFA Institute's 2026 summary confirms the case company is Nestle (ROE disaggregation, then deeper drivers to judge capital allocation). This module uses a fictional company (Pinnacle Corp) built to reproduce the same analytical sequence; check the book's exhibits before relying on any case figure.
 - (LOS 15e) Removing the investment in associates from EQUITY as well as from assets (equity-financing assumption) is a modelling choice made here; verify whether the 2026 case exhibit adjusts equity or only assets and net income.
 - (LOS 15e) Where equity income is presented (above pretax income, or after tax) changes which DuPont factors it distorts. Pinnacle presents it above pretax income; the classic case company presented it after tax. Check the 2026 exhibit.
 - (LOS 15c) Section heading 'Off-Balance Sheet Leverage from Operating Leases' is reported for 2026. Verify whether the worked example capitalizes pre-2019 operating leases or uses IFRS 16 / ASC 842 disclosures, and whether purchase commitments are treated as debt in the book.
