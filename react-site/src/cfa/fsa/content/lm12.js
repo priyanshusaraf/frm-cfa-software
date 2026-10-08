@@ -85,7 +85,7 @@ export default {
           nodes: {
             hyper: {
               q: "Is the subsidiary's local economy hyperinflationary?",
-              help: "US GAAP: cumulative inflation of about 100% or more over three years. IFRS (IAS 29): judged from several indicators, one of which is cumulative three-year inflation approaching or exceeding 100%.",
+              help: "US GAAP: cumulative inflation exceeding 100% over three years. IFRS (IAS 29): judged from several indicators, one of which is cumulative three-year inflation approaching or exceeding 100%.",
               options: [{ label: "No", next: "fc" }, { label: "Yes", next: "hstd" }],
             },
             fc: {
@@ -584,7 +584,7 @@ export default {
               title: "US GAAP: treat it as a dollar business",
               tone: "purple",
               points: [
-                "An economy is highly inflationary when cumulative inflation over three years is about 100% or more",
+                "An economy is highly inflationary when cumulative inflation over three years exceeds 100%",
                 "Its currency cannot be the functional currency: the parent's reporting currency is used instead",
                 "So the subsidiary is remeasured with the temporal method",
                 "Non-monetary assets keep their historical rates: the building stays at 900 x 0.40 = 360",
@@ -649,7 +649,7 @@ export default {
           t: "callout",
           tone: "gaap",
           title: "Recognizing hyperinflation",
-          html: "<p><b>US GAAP</b> uses a bright line: cumulative inflation of about 100% or more over the past three years makes the economy highly inflationary.</p><p><b>IFRS</b> (IAS 29) uses judgment, guided by indicators: the population prefers to keep wealth in non-monetary assets or a stable foreign currency; prices are quoted in a stable foreign currency; credit prices include compensation for the expected loss of purchasing power; interest rates, wages and prices are linked to a price index; and cumulative inflation over three years approaches or exceeds 100%.</p>",
+          html: "<p><b>US GAAP</b> uses a bright line: cumulative inflation exceeding 100% over the past three years makes the economy highly inflationary. The codification (ASC 830) words it as approximately 100% or more and says a rate above 100% makes the economy highly inflationary in all instances; annual inflation of about 26% compounds to 100% over three years.</p><p><b>IFRS</b> (IAS 29) uses judgment, guided by indicators: the population prefers to keep wealth in non-monetary assets or a stable foreign currency; prices are quoted in a stable foreign currency; credit prices include compensation for the expected loss of purchasing power; interest rates, wages and prices are linked to a price index; and cumulative inflation over three years approaches or exceeds 100%.</p>",
         },
         {
           t: "check",
@@ -830,8 +830,8 @@ export default {
     { topic: "Functional currency indicators", ifrs: "IAS 21: primary factors (sales prices, competitive forces, costs) ranked ahead of secondary ones (financing, retention of receipts), plus factors on the foreign operation's autonomy", usgaap: "ASC 830: cash flow, sales price, sales market, expense, financing and intercompany indicators, with no ranking" },
     { topic: "Functional currency = local currency", ifrs: "Translate to the presentation currency: assets and liabilities at the closing rate, income and expenses at transaction (or average) rates, differences in OCI", usgaap: "Current rate method (translation), CTA in OCI" },
     { topic: "Functional currency = parent's currency", ifrs: "Translate local records into the functional currency: monetary items at the closing rate, non-monetary at historical (or valuation-date) rates, differences in profit", usgaap: "Temporal method (remeasurement), gains and losses in net income" },
-    { topic: "Hyperinflationary economy", ifrs: "IAS 29: restate with a general price index (purchasing power gain or loss in profit), then translate everything at the current rate", usgaap: "Highly inflationary (cumulative three-year inflation about 100% or more): parent's reporting currency is functional, temporal method" },
-    { topic: "Recognizing hyperinflation", ifrs: "Judgment guided by indicators, including cumulative three-year inflation approaching or exceeding 100%", usgaap: "Bright line: cumulative three-year inflation of about 100% or more" },
+    { topic: "Hyperinflationary economy", ifrs: "IAS 29: restate with a general price index (purchasing power gain or loss in profit), then translate everything at the current rate", usgaap: "Highly inflationary (cumulative three-year inflation exceeding 100%): parent's reporting currency is functional, temporal method" },
+    { topic: "Recognizing hyperinflation", ifrs: "Judgment guided by indicators, including cumulative three-year inflation approaching or exceeding 100%", usgaap: "Bright line: cumulative three-year inflation exceeding 100%" },
     { topic: "Transaction gains and losses", ifrs: "In profit; net amount disclosed; line not prescribed", usgaap: "In net income; aggregate amount disclosed; line not prescribed" },
     { topic: "Disposal of a foreign operation", ifrs: "Cumulative translation differences reclassified from equity to profit", usgaap: "CTA reclassified to net income on sale or substantially complete liquidation" },
   ],
@@ -963,12 +963,11 @@ export default {
   ],
 
   flags: [
-    { los: "a", note: "Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses." },
-    { los: "d", note: "The 'balance sheet hedge' paragraph (matching monetary assets and liabilities under the temporal method) is mechanism; confirm the curriculum uses this term before relying on it for an exam answer." },
-    { los: "g", note: "US GAAP highly inflationary threshold stated as cumulative three-year inflation of about 100% or more. Confirm the curriculum's exact wording (some texts say 'exceeding 100%')." },
-    { los: "g", note: "HyperinflationLab and the Kestrel Sur numbers assume the price index and exchange rate move evenly through the year (averages are midpoints). The IAS 21 translation difference on the restated opening net investment at the parent level is not modeled; the comparison is at the level of the subsidiary's translated statements, as curriculum examples present it." },
-    { los: "c", note: "The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b." },
-    { los: "h", note: "Transfer pricing is mentioned as a driver of the earnings mix. Confirm it appears in the 2026 curriculum's discussion of the effective tax rate." },
-    { los: "e", note: "Scenario lm12-cta-vs-remeasurement hides the cash flow statement: a translated cash flow statement needs an 'effect of exchange rate changes on cash' line outside operating, investing and financing, which the ledger engine does not model. Income statement items are translated at the average rate as an approximation of transaction-date rates." },
+    { los: "a", note: "Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses. Research 2026-10: Deloitte's ASC 830 roadmap (ch. 10) confirms the technical point the content makes, that IFRS has a hierarchy of factors and US GAAP has none; no public source reproduces the curriculum's own list or grouping (the CFA Institute 2026 summary gives only the definition), so the curriculum wording is unconfirmed." },
+    { los: "d", note: "The 'balance sheet hedge' paragraph (matching monetary assets and liabilities under the temporal method) is mechanism; confirm the curriculum uses this term before relying on it for an exam answer. Research 2026-10: the CFA Institute 2026 summary confirms temporal-method exposure equals the net monetary position (adjusted for non-monetary items at current value), and AnalystPrep's LOS e notes reduce exposure by selling non-monetary assets for cash, but no curriculum-tracking source uses the term 'balance sheet hedge'." },
+    { los: "g", note: "HyperinflationLab and the Kestrel Sur numbers assume the price index and exchange rate move evenly through the year (averages are midpoints). The IAS 21 translation difference on the restated opening net investment at the parent level is not modeled; the comparison is at the level of the subsidiary's translated statements, as curriculum examples present it. Research 2026-10: this is a modeling disclosure, not a wording question; the CFA Institute 2026 summary confirms only the IFRS sequence (restate, then translate at the current rate), and no public source shows the curriculum's worked example, so the level of comparison cannot be checked." },
+    { los: "c", note: "The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b. Research 2026-10: the CFA Institute 2026 summary frames the topic as sales growth from volume, price and exchange rates (volume and price more sustainable); AnalystPrep's LOS note covers only the subsidiary's translated sales; no source shows how the curriculum treats sales invoiced in the parent's currency." },
+    { los: "h", note: "Transfer pricing is mentioned as a driver of the earnings mix. Confirm it appears in the 2026 curriculum's discussion of the effective tax rate. Research 2026-10: the CFA Institute 2026 summary and AnalystPrep's ETR note discuss the effective tax rate reconciliation and changes in profit mix but do not mention transfer pricing; the only source that does (trustedinstitute.com) is not a reliable curriculum tracker." },
+    { los: "e", note: "Scenario lm12-cta-vs-remeasurement hides the cash flow statement: a translated cash flow statement needs an 'effect of exchange rate changes on cash' line outside operating, investing and financing, which the ledger engine does not model. Income statement items are translated at the average rate as an approximation of transaction-date rates. Research 2026-10: an engine limitation, not a curriculum question; nothing found online changes it." },
   ],
 };

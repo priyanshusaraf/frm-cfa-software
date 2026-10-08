@@ -83,7 +83,7 @@ export default {
               options: [{ label: "Yes", next: "eq" }, { label: "No", next: "fa" }],
             },
             consol: { result: "Consolidate: acquisition method", tone: "purple", html: "100% of the subsidiary's assets, liabilities, revenues and expenses enter Pinnacle's statements line by line. The part Pinnacle does not own is the non-controlling interest, shown inside equity." },
-            jv: { result: "Joint venture: equity method", tone: "cyan", html: "Under IFRS 11 a joint venture uses the equity method; proportionate consolidation is not allowed. US GAAP also uses the equity method, with proportionate consolidation only in narrow cases such as unincorporated entities in construction or extractive industries." },
+            jv: { result: "Joint venture: equity method", tone: "cyan", html: "Under IFRS 11 a joint venture uses the equity method; proportionate consolidation is not allowed. US GAAP also uses the equity method. The 2026 curriculum (errata, April 2026) states plainly that proportionate consolidation is not permitted for joint ventures; a narrow US GAAP industry exception exists but is beyond the curriculum." },
             jop: { result: "Joint operation: recognize your share", tone: "cyan", html: "Pinnacle recognizes its own share of the assets, liabilities, revenues and expenses of the arrangement, much like proportionate consolidation." },
             eq: { result: "Associate: equity method", tone: "green", html: "One line on the balance sheet (investment in associate) and one on the income statement (share of profit of associate)." },
             fa: { result: "Financial asset: IFRS 9 classification", tone: "amber", html: "Fair value through profit or loss, fair value through OCI, or amortized cost, depending on the instrument and the business model. See the next section." },
@@ -278,13 +278,14 @@ export default {
           t: "p",
           html: `<p><b>Losses.</b> If the associate makes losses, the investment falls. It stops at zero: the investor does not carry a negative investment unless it has guaranteed the associate's debts or committed to fund it. Further losses are tracked off the books and recovered against later profits before the investor recognizes income again.</p>
 <p><b>Impairment.</b> Both standards require the investment to be reviewed for impairment. IFRS recognizes a loss when there is objective evidence of a loss event and the recoverable amount is below the carrying amount. US GAAP recognizes a loss when fair value is below carrying amount and the decline is other than temporary. The goodwill embedded in the investment is not tested separately: the whole investment is tested as one asset.</p>
+<p><b>Reversal.</b> Here the standards split. US GAAP prohibits reversing the impairment loss, even if fair value later recovers. IFRS permits a reversal, in line with IAS 36, to the extent that the recoverable amount of the net investment subsequently increases, and only if the estimates used to determine that recoverable amount have changed since the loss was recognized.</p>
 <p><b>Fair value option.</b> US GAAP lets an investor elect fair value for an equity-method investment, with changes through profit. IFRS restricts that choice to venture capital organizations, mutual funds, unit trusts and similar entities.</p>`,
         },
         {
           t: "callout",
-          tone: "flag",
-          title: "Check against your book",
-          html: "Some editions of the curriculum state that neither standard permits reversing an impairment of an equity-method investment. IAS 28 itself allows a reversal under IFRS to the extent the recoverable amount recovers; US GAAP never allows it. Answer the exam the way your edition of the curriculum states it.",
+          tone: "trap",
+          title: "Old study material gets this wrong",
+          html: "Older printings of the curriculum, and notes copied from them, say that neither standard permits reversing an impairment of an equity-method investment. CFA Institute's errata deleted that sentence: the current reading says US GAAP prohibits the reversal and IFRS permits it. Goodwill is different: a goodwill impairment is never reversed under either standard.",
         },
         {
           t: "callout",
@@ -327,7 +328,7 @@ export default {
           caption: "Joint arrangements",
           head: ["", "IFRS", "US GAAP"],
           rows: [
-            ["Joint venture", "Equity method. Proportionate consolidation is not permitted.", "Equity method. Proportionate consolidation only in limited circumstances, such as unincorporated entities in construction and extractive industries."],
+            ["Joint venture", "Equity method. Proportionate consolidation is not permitted.", "Equity method. The curriculum (2026 errata) says proportionate consolidation is not permitted for joint ventures; a narrow industry exception for unincorporated entities is beyond the curriculum."],
             ["Joint operation", "Recognize own share of assets, liabilities, revenues and expenses", "Not a separately defined category in the same way"],
           ],
         },
@@ -389,7 +390,7 @@ export default {
           rows: [
             ["Acquisition-related costs (advisers, lawyers)", "Expensed as incurred. Never added to goodwill."],
             ["Contingent consideration (earn-outs)", "Recognized at fair value at the acquisition date as part of the price, so it is inside the goodwill calculation. If classified as a liability, remeasured each period with changes in profit; if equity, not remeasured. Later changes go to profit, not goodwill, because they reflect events after the acquisition date rather than what was bought on that date."],
-            ["Contingent liabilities of the target", "IFRS: recognized at fair value if it is a present obligation arising from past events and its fair value can be measured reliably, even when an outflow is not probable (a lower bar than outside a business combination). US GAAP, as the curriculum states it: contractual contingent liabilities at acquisition-date fair value; non-contractual ones only if it is more likely than not that they meet the definition of a liability."],
+            ["Contingent liabilities of the target", "The curriculum states one rule: the acquirer must recognize any contingent liability it assumes if 1) it is a present obligation that arises from past events and 2) it can be measured reliably, even if the target never recognized it (a potential warranty obligation, for example). Under IFRS 3 this applies even when an outflow is not probable, a lower bar than outside a business combination. Technical detail beyond the curriculum: ASC 805 recognizes such liabilities at fair value if that can be determined during the measurement period, and otherwise only if a loss is probable and reasonably estimable."],
             ["In-process research and development", "Recognized as a separate intangible asset at fair value."],
             ["Restructuring costs the acquirer plans", "Not part of the acquisition accounting: expensed later when incurred (unless the target already had the obligation)."],
             ["Bargain purchase", "Gain recognized in profit at the acquisition date, after reassessing the fair values."],
@@ -402,31 +403,32 @@ export default {
         },
         {
           t: "p",
-          html: `<p>Goodwill is never amortized under either standard. Instead it is tested for impairment at least annually. The tests differ in the unit tested and the number of steps, and the same facts can produce different losses.</p>`,
+          html: `<p>Goodwill is never amortized under either standard. Instead it is tested for impairment at least annually. Both standards now use one quantitative comparison, but they differ in the unit tested, the measure of value, whether a qualitative shortcut is allowed, and above all whether the loss can go beyond goodwill. The same facts can produce very different losses.</p>`,
         },
         { t: "theater", scenario: "lm10-goodwill-impairment" },
         {
           t: "compare",
           items: [
             {
-              title: "IFRS: one step",
+              title: "IFRS (IAS 36)",
               tone: "accent",
               points: [
                 "Goodwill allocated to cash-generating units (CGUs)",
-                "Impairment = carrying amount of the CGU - recoverable amount",
-                "Recoverable amount = higher of fair value less costs to sell and value in use",
-                "Loss reduces goodwill first, then other assets pro rata",
-                "Goodwill impairment can never be reversed",
+                "Tested at least annually, and whenever there is an indication of impairment; no qualitative bypass",
+                "Loss = carrying amount of the CGU - recoverable amount",
+                "Recoverable amount = higher of fair value less costs of disposal and value in use",
+                "Loss reduces goodwill first, then the CGU's other assets pro rata, so it CAN exceed goodwill",
+                "Goodwill impairment is never reversed",
               ],
             },
             {
-              title: "US GAAP: two steps (as the curriculum presents it)",
+              title: "US GAAP (ASC 350, per the 2026 curriculum errata)",
               tone: "purple",
               points: [
                 "Goodwill allocated to reporting units",
-                "Step 1: is the fair value of the reporting unit below its carrying amount (including goodwill)? If not, stop",
-                "Step 2: implied goodwill = fair value of the unit - fair value of its identifiable net assets; loss = carrying goodwill - implied goodwill",
-                "A qualitative screen may be used before step 1",
+                "Optional qualitative assessment first: if fair value is more likely than not (above 50%) greater than carrying amount, stop",
+                "Otherwise one quantitative test: loss = carrying amount of the reporting unit (incl. goodwill) - its fair value",
+                "The loss is LIMITED to the goodwill allocated to the reporting unit",
                 "Never reversed",
               ],
             },
@@ -434,9 +436,17 @@ export default {
         },
         {
           t: "callout",
-          tone: "beyond",
-          title: "Beyond the curriculum, flagged so you do not mistake it for exam content",
-          html: "Since ASU 2017-04, US GAAP has removed step 2: the loss is simply the amount by which the reporting unit's carrying amount exceeds its fair value, capped at the goodwill balance. The 2026 curriculum still presents the US GAAP test as two steps (confirmed against CFA Institute's 2026 reading summary), so use the two-step arithmetic on the exam.",
+          tone: "trap",
+          title: "Old two-step test: do not use it",
+          html: "Older printings of the curriculum, and many prep notes and question banks, teach a two-step US GAAP test that measures the loss through 'implied goodwill'. CFA Institute's 2026 Level II errata (17 February 2026) replaced that text, the worked example and the summary with the one-step test above (US GAAP's ASU 2017-04). If your book or a practice question shows two steps, it predates the errata.",
+        },
+        {
+          t: "check",
+          id: "lm10-gw-1",
+          q: "A unit carries 2,000 including goodwill of 300. Its fair value, and its recoverable amount, is 1,550. The impairment loss is:",
+          options: ["450 under IFRS and 300 under US GAAP", "300 under both standards", "450 under both standards"],
+          answer: 0,
+          why: "The shortfall is 2,000 - 1,550 = 450. IFRS charges all of it: 300 to goodwill, then 150 to the unit's other assets. US GAAP caps the goodwill impairment at the 300 of goodwill allocated to the unit.",
         },
         {
           t: "check",
@@ -575,10 +585,10 @@ export default {
     { topic: "Debt investments", ifrs: "Amortized cost, FVOCI (recycled), FVPL, via business model and SPPI tests", usgaap: "Held-to-maturity, available-for-sale (recycled), trading" },
     { topic: "Equity investments (no significant influence)", ifrs: "FVPL, or irrevocable FVOCI election with no recycling", usgaap: "Fair value through net income (no OCI option)" },
     { topic: "Fair value option for associates", ifrs: "Only venture capital organizations, mutual funds, unit trusts and similar entities", usgaap: "Available to any investor" },
-    { topic: "Impairment of equity-method investment", ifrs: "Objective evidence of a loss event; recoverable amount below carrying amount", usgaap: "Fair value below carrying amount and decline other than temporary; no reversal" },
-    { topic: "Joint ventures", ifrs: "Equity method; joint operations recognize their own share", usgaap: "Equity method; proportionate consolidation only in limited industries" },
+    { topic: "Impairment of equity-method investment", ifrs: "Objective evidence of a loss event; recoverable amount below carrying amount; reversal permitted to the extent the recoverable amount later increases", usgaap: "Fair value below carrying amount and decline other than temporary; no reversal" },
+    { topic: "Joint ventures", ifrs: "Equity method; joint operations recognize their own share", usgaap: "Equity method; the curriculum treats proportionate consolidation as not permitted" },
     { topic: "NCI measurement", ifrs: "Fair value (full goodwill) or proportionate share of identifiable net assets (partial goodwill)", usgaap: "Fair value (full goodwill) only" },
-    { topic: "Goodwill impairment", ifrs: "One step at the cash-generating unit: carrying amount vs recoverable amount", usgaap: "Two steps at the reporting unit (curriculum): fair value test, then implied goodwill" },
+    { topic: "Goodwill impairment", ifrs: "One quantitative test at the cash-generating unit: carrying amount vs recoverable amount; loss hits goodwill first, then other assets, so it can exceed goodwill", usgaap: "Optional qualitative screen, then one quantitative test at the reporting unit: carrying amount vs fair value; loss capped at the unit's goodwill (2026 errata)" },
     { topic: "Special purpose entities", ifrs: "IFRS 10 single control model", usgaap: "Variable interest entity model: the primary beneficiary consolidates" },
   ],
 
@@ -588,7 +598,7 @@ export default {
     { name: "Goodwill (acquisition method)", tex: "\\text{Consideration} + \\text{NCI} - \\text{FV of identifiable net assets}", plain: "NCI at fair value gives full goodwill; NCI at its share of net assets gives partial goodwill." },
     { name: "Partial goodwill", tex: "\\text{Consideration} - s \\times \\text{FV of identifiable net assets}", plain: "The parent's goodwill only." },
     { name: "NCI share of profit", tex: "(1-s) \\times (\\text{NI}_{\\text{sub}} - \\text{extra depreciation of step-ups})", plain: "The minority's share of the subsidiary's profit as the group measures it." },
-    { name: "US GAAP implied goodwill (curriculum two-step test)", tex: "\\text{FV of reporting unit} - \\text{FV of its identifiable net assets}", plain: "Impairment loss = carrying goodwill minus implied goodwill." },
+    { name: "Goodwill impairment loss", tex: "\\text{IFRS: } CA_{CGU} - RA_{CGU}\\ \\text{(goodwill first, then other assets)};\\quad \\text{US GAAP: } \\min\\left(CA_{RU} - FV_{RU},\\; \\text{Goodwill}_{RU}\\right)", plain: "CA is carrying amount, RA recoverable amount, FV fair value; CGU is the cash-generating unit, RU the reporting unit. Only US GAAP caps the loss at goodwill." },
   ],
 
   recall: [
@@ -667,8 +677,6 @@ export default {
   ],
 
   flags: [
-    { los: "a", note: "Equity-method impairment reversal: curriculum wording may say neither standard permits reversal; IAS 28 permits it. Verify against the owner's book." },
-    { los: "b", note: "Contingent liabilities in a business combination: the US GAAP row uses the curriculum's contractual / more-likely-than-not wording. Current ASC 805 recognizes them at fair value when that is determinable during the measurement period, otherwise if probable and reasonably estimable. Verify which the 2026 book prints." },
-    { los: "a", note: "Disclosures section summarizes IFRS 7/12/13 and ASC 805/810 requirements at an analyst level; check the 2026 book for any specific disclosure list it expects candidates to know." },
+    { los: "a", note: "Disclosures section summarizes IFRS 7/12/13 and ASC 805/810 requirements at an analyst level; check the 2026 book for any specific disclosure list it expects candidates to know. Research 2026-10: the 2026 LOS (CFA Institute refresher page) name 'disclosure' for all five investment types, but the reading summary lists no disclosure items, the 2023 to 2026 Level II errata contain no disclosure corrections, and AnalystPrep's notes list none, so the expected list is still unknown." },
   ],
 };

@@ -110,11 +110,11 @@ export default {
           caption: "The international bodies the curriculum names",
           head: ["Body", "Role"],
           rows: [
-            ["Basel Committee on Banking Supervision", "Sets global standards for bank regulation. Its current framework, Basel III, sets minimum capital, minimum liquidity and stable funding requirements. National regulators turn the standards into local law."],
+            ["Basel Committee on Banking Supervision", "A committee of the Bank for International Settlements whose members are central banks and bank supervisors from around the world. It sets global standards for bank regulation. Its current framework, Basel III, sets minimum capital, minimum liquidity and stable funding requirements. National regulators turn the standards into local law."],
             ["Financial Stability Board (FSB)", "Monitors the global financial system, coordinates national authorities and standard setters, and identifies systemically important financial institutions, which face extra requirements."],
-            ["International Association of Deposit Insurers", "Sets standards for deposit insurance schemes."],
+            ["International Association of Deposit Insurers", "Sets standards for deposit insurance systems (its Core Principles for Effective Deposit Insurance Systems) and is the forum where deposit insurers cooperate."],
             ["International Association of Insurance Supervisors", "Sets standards for insurance supervision, the insurer counterpart of the Basel Committee."],
-            ["International Organization of Securities Commissions", "Sets standards for securities regulation, which covers broker-dealers and market conduct."],
+            ["International Organization of Securities Commissions", "The forum for national regulators of securities and futures markets; sets standards for securities regulation, which covers broker-dealers, exchanges and market conduct."],
           ],
           note: "Banks are then supervised day to day by national authorities, typically the central bank and one or more prudential regulators. Supervision aimed at keeping the institution safe and solvent, rather than at protecting customers in individual transactions, is called prudential supervision.",
         },
@@ -187,7 +187,7 @@ export default {
       blocks: [
         {
           t: "p",
-          html: `<p>Regulators and analysts use the <b>CAMELS</b> framework to organise a bank analysis: <b>C</b>apital adequacy, <b>A</b>sset quality, <b>M</b>anagement capabilities, <b>E</b>arnings, <b>L</b>iquidity position and <b>S</b>ensitivity to market risk. In the US, supervisors rate each component from 1 (strongest) to 5 (weakest) and give a composite rating, which is not made public. Analysts borrow the structure for their own assessment from published statements and disclosures.</p>
+          html: `<p>Regulators and analysts use the <b>CAMELS</b> framework to organise a bank analysis: <b>C</b>apital adequacy, <b>A</b>sset quality, <b>M</b>anagement capabilities, <b>E</b>arnings, <b>L</b>iquidity position and <b>S</b>ensitivity to market risk. Each component is rated on a scale of 1 (best) to 5 (worst), and the component ratings feed a composite rating. Supervisors do not make their CAMELS ratings public, so analysts borrow the structure for their own assessment from published statements and disclosures.</p>
 <p>Start with capital. Harbor has 76 of equity behind 960 of assets. Is that enough? It depends on what the assets are. 180 of Harbor's assets are cash and government bonds, which will almost certainly be worth what the balance sheet says. 210 are commercial real estate loans, which can lose a large share of their value in a downturn. A plain equity-to-assets ratio treats a unit of each as equally risky, which is exactly what it should not do.</p>
 <p>So Basel III weights each asset by its risk before comparing it with capital. Cash carries a 0% weight, so it needs no capital. A typical corporate loan carries 100%, so every 100 of such loans needs at least 8 of total capital behind it. Charges for market risk and operational risk are added on top. The total is <b>risk-weighted assets</b> (RWA).</p>`,
         },
@@ -865,8 +865,8 @@ export default {
             ["Dividends to policyholders", "10", "10 / 1,000 = 1.0%"],
             ["<b>Combined ratio after dividends</b>", "", "<b>97.0%</b>"],
             ["Underwriting result (1,000 - 700 - 273 - 10)", "17", ""],
-            ["Net investment income on average invested assets of 2,000", "75", "Investment yield 3.75%"],
-            ["Realized and unrealized investment gains", "15", "Total investment return (75 + 15) / 2,000 = 4.5%"],
+            ["Net investment income on average invested assets of 2,000", "75", "Without gains (investment yield) 3.75%"],
+            ["Realized and unrealized investment gains", "15", "Total investment return ratio (75 + 15) / 2,000 = 4.5%"],
             ["Pre-tax operating income (underwriting result + net investment income)", "92", ""],
           ],
         },
@@ -904,7 +904,7 @@ export default {
         },
         {
           t: "p",
-          html: `<p><b>Investment returns.</b> The float is invested, mostly in bonds. Investment yield is net investment income (interest and dividends) over average invested assets; total investment return also counts realized and unrealized gains and losses, which are more volatile. Granite: 3.75% and 4.5%.</p>
+          html: `<p><b>Investment returns.</b> The float is invested, mostly in bonds. The headline measure is the <b>total investment return ratio</b>: total investment income, including realized and unrealized gains and losses, over invested assets. Computing it again without the gains (net investment income alone, often called the investment yield) shows how much of the return depends on volatile gains. Granite: 4.5% in total, 3.75% without gains. Prep notes write the denominator simply as invested assets; using the average of the opening and closing balance, as here, matters only when the portfolio grew or shrank during the year.</p>
 <p><b>Liquidity.</b> P&C claims can arrive suddenly and in a lump, so the portfolio must be liquid. The analyst checks the asset mix and the fair value hierarchy: a portfolio heavy in Level 1 and Level 2 assets can be sold quickly; one heavy in Level 3 cannot.</p>
 <p><b>Capital.</b> There is no single global capital standard for insurers comparable to Basel III. Regulation is largely national or regional: in the US, state regulators apply risk-based capital requirements developed by the National Association of Insurance Commissioners; the European Union applies Solvency II. Both scale required capital to the risks in the insurer's underwriting and investments.</p>`,
         },
@@ -1017,7 +1017,7 @@ export default {
     { name: "Underwriting expense ratio", tex: "\\frac{\\text{Underwriting expenses}}{\\text{Net premiums written}}", plain: "Note the WRITTEN denominator." },
     { name: "Combined ratio", tex: "\\text{Loss and LAE ratio} + \\text{Underwriting expense ratio}", plain: "Below 100% is an underwriting profit." },
     { name: "Dividends to policyholders ratio", tex: "\\frac{\\text{Dividends to policyholders}}{\\text{Net premiums earned}}", plain: "Added to the combined ratio to give the combined ratio after dividends." },
-    { name: "Investment yield and total investment return", tex: "\\frac{\\text{Net investment income}}{\\text{Avg invested assets}};\\quad \\frac{\\text{Net investment income} + \\text{Gains}}{\\text{Avg invested assets}}", plain: "Recurring income vs income including volatile realized and unrealized gains." },
+    { name: "Total investment return ratio (and the yield without gains)", tex: "\\frac{\\text{Net investment income} + \\text{Gains}}{\\text{Invested assets}};\\quad \\frac{\\text{Net investment income}}{\\text{Invested assets}}", plain: "Total investment income (including realized and unrealized gains) over invested assets; dropping the gains shows how much of the return they supply." },
     { name: "Life and health ratios", tex: "\\frac{\\text{Total benefits paid}}{\\text{NPW} + \\text{Deposits}};\\quad \\frac{\\text{Commissions} + \\text{Expenses}}{\\text{NPW} + \\text{Deposits}}", plain: "NPW is net premiums written; deposits capture the savings component." },
   ],
 
@@ -1144,13 +1144,9 @@ export default {
   ],
 
   flags: [
-    { los: "b", note: "Capital buffers (2.5% conservation, countercyclical up to 2.5%, G-SIB surcharge) and the 3% leverage ratio: confirm how much the 2026 reading states as testable figures. The 4.5% / 6% / 8% minimums are taught as core." },
-    { los: "b", note: "Examples of national regulators and the role descriptions of IADI, IAIS and IOSCO are paraphrased; check the exact list and wording of the international bodies in the official reading." },
-    { los: "c", note: "IFRS 9 staging vs US GAAP CECL: confirm the reading covers both expected credit loss models and at what depth." },
-    { los: "c", note: "Liquidity: the five Basel III monitoring metrics are as remembered from the curriculum; ASF and RSF weights and LCR run-off rates used in examples are simplified illustrations, not Basel factors." },
-    { los: "c", note: "Risk weights in the Harbor and Cedar examples are illustrative, not quoted from Basel III. The US CAMELS 1 to 5 supervisory rating is mentioned as context; verify it is in the reading." },
-    { los: "c", note: "Recoveries: the US practice (credited to the allowance) is shown in the scenario; IFRS presentation in profit is described as common practice. Verify against the reading if tested." },
-    { los: "f", note: "Investment yield vs total investment return: exact names and whether averages or ending invested assets are used should be checked against the reading. The dividends to policyholders ratio is shown over net premiums earned." },
-    { los: "f", note: "Insurer capital: NAIC risk-based capital (US) and Solvency II (EU) are described generally; IFRS 17 and US GAAP long-duration insurance accounting are deliberately left out pending confirmation they are in the 2026 scope." },
+    { los: "b", note: "Capital buffers (2.5% conservation, countercyclical up to 2.5%, G-SIB surcharge) and the 3% leverage ratio: confirm how much the 2026 reading states as testable figures. The 4.5% / 6% / 8% minimums are taught as core. Research 2026-10: AnalystPrep and IFT notes on the reading give only the 4.5% / 6% / 8% minimums; AnalystNotes (2026) cites 10.5% total under Basel III, which implies the 2.5% conservation buffer; no curriculum-tracking source mentions the countercyclical buffer, the G-SIB surcharge or the leverage ratio, and the CFA Institute 2026 summary says only that Basel III sets minimum capital, liquidity and stable funding requirements." },
+    { los: "c", note: "IFRS 9 staging vs US GAAP CECL: confirm the reading covers both expected credit loss models and at what depth. Research 2026-10: none of the CFA Institute 2026 summary, AnalystPrep, IFT or AnalystNotes mention IFRS 9 staging or CECL; IFT lists allowance for loan losses / non-performing loans and adequacy of adjustments for expected loan losses, so depth remains unconfirmed." },
+    { los: "c", note: "Liquidity: the five Basel III monitoring metrics are as remembered from the curriculum; ASF and RSF weights and LCR run-off rates used in examples are simplified illustrations, not Basel factors. Research 2026-10: the five tools match BIS (bcbs238, Part 2); AnalystPrep and AnalystNotes (2026) name only concentration of funding and contractual maturity mismatch as monitoring metrics, so whether the reading lists all five is unconfirmed." },
+    { los: "c", note: "Recoveries: the US practice (credited to the allowance) is shown in the scenario; IFRS presentation in profit is described as common practice. Verify against the reading if tested. Research 2026-10: no curriculum-tracking source covers recoveries; IFT lists provision for loan losses / net loan charge-offs, which is consistent with recoveries netted against charge-offs, but says nothing on IFRS presentation." },
   ],
 };

@@ -544,10 +544,10 @@ const fullVsPartial = {
 const gwImpairment = {
   id: "lm10-goodwill-impairment",
   module: "lm10",
-  title: "Goodwill impairment: IFRS one step vs US GAAP two steps",
-  standard: "IAS 36 vs ASC 350 as presented in the curriculum",
+  title: "Goodwill impairment: IFRS vs US GAAP, and the cap",
+  standard: "IAS 36 vs ASC 350 (one-step test per the 2026 curriculum errata)",
   summary:
-    "Kestrel's business has deteriorated. The same facts produce a 100 impairment under IFRS and a 150 impairment under the US GAAP two-step test. Follow the arithmetic, then watch the loss hit profit, goodwill and equity.",
+    "Kestrel's business deteriorates over two years. In year one both standards book the same loss. In year two the decline is deep enough to wipe out goodwill, and the standards part company: IFRS keeps going into the unit's other assets, US GAAP stops at the goodwill balance.",
   accounts: [
     cash(),
     asset("netOps", "Identifiable operating assets", "nca"),
@@ -555,39 +555,65 @@ const gwImpairment = {
     liab("liab", "Liabilities", "ncl"),
     equity("sc", "Share capital"),
     re(),
-    exp("impair", "Goodwill impairment loss"),
+    exp("gwImpair", "Goodwill impairment loss"),
+    exp("opsImpair", "Impairment of other assets in the unit"),
   ],
   columns: [
-    { id: "ifrs", label: "IFRS", sub: "one step, cash-generating unit", opening: { cash: 200, netOps: 1200, gw: 200, liab: 600, sc: 800, re: 200 } },
-    { id: "gaap", label: "US GAAP", sub: "two steps, reporting unit", opening: { cash: 200, netOps: 1200, gw: 200, liab: 600, sc: 800, re: 200 } },
+    { id: "ifrs", label: "IFRS", sub: "cash-generating unit, recoverable amount", opening: { cash: 200, netOps: 1200, gw: 200, liab: 600, sc: 800, re: 200 } },
+    { id: "gaap", label: "US GAAP", sub: "reporting unit, fair value, capped at goodwill", opening: { cash: 200, netOps: 1200, gw: 200, liab: 600, sc: 800, re: 200 } },
   ],
   steps: [
     {
-      title: "Run the impairment test and book the loss",
+      title: "Year 1: the unit is worth 1,300 against a carrying amount of 1,400",
+      prompt: "Year 1 test: carrying amount of the unit 1,400 (operating assets 1,200 + goodwill 200); recoverable amount and fair value both 1,300.",
       html:
-        "Facts: the unit being tested is Kestrel's operating business (the cash and liabilities on this balance sheet sit outside it). Its carrying amount including goodwill is 1,400 (identifiable net operating assets 1,200 + goodwill 200). Its recoverable amount, and its fair value, is 1,300. The fair value of its identifiable net assets is 1,250. IFRS compares carrying amount with recoverable amount in ONE step: 1,400 - 1,300 = 100, charged first against goodwill. US GAAP, as the curriculum presents it, first asks IF there is impairment (fair value 1,300 below carrying 1,400: yes), then MEASURES it by computing implied goodwill: 1,300 - 1,250 = 50. The loss is 200 - 50 = 150.",
+        "The unit being tested is Kestrel's operating business (the cash and liabilities on this balance sheet sit outside it). Its carrying amount including goodwill is 1,400. IFRS compares it with the RECOVERABLE amount (the higher of fair value less costs of disposal and value in use), here 1,300. US GAAP compares it with the reporting unit's FAIR VALUE, here also 1,300. Both tests are a single comparison: the unit is 100 short, and the 100 comes off goodwill. With the same numbers in, the two standards give the same loss.",
       entries: {
-        ifrs: [dr("impair", 100), cr("gw", 100)],
-        gaap: [dr("impair", 150), cr("gw", 150)],
+        ifrs: [dr("gwImpair", 100), cr("gw", 100)],
+        gaap: [dr("gwImpair", 100), cr("gw", 100)],
       },
       memo: {
-        title: "US GAAP step 2: implied goodwill",
+        title: "One quantitative test, both standards",
         rows: [
-          ["Fair value of the reporting unit", "1,300"],
-          ["Fair value of identifiable net assets", "(1,250)"],
-          ["Implied goodwill", "50"],
-          ["Carrying amount of goodwill", "200"],
-          ["Impairment loss", "150"],
+          ["Carrying amount of the unit (incl. goodwill 200)", "1,400"],
+          ["Recoverable amount (IFRS) / fair value (US GAAP)", "(1,300)"],
+          ["Shortfall", "100"],
+          ["Goodwill available to absorb it", "200"],
+          ["Impairment loss, charged to goodwill", "100"],
         ],
       },
       insight: "No cash moves. Impairment is a pure accrual: it lowers assets, profit and equity together, and it is added back in the indirect cash flow statement.",
       exam:
-        "IFRS impairment can be reversed for most assets but NEVER for goodwill. US GAAP never reverses impairment of assets held for use. The 2026 curriculum presents the US GAAP two-step test, so use it on the exam. (Since 2017, ASU 2017-04 has removed step 2 in practice; that is beyond the curriculum.)",
+        "US GAAP lets a company skip the number-crunching with an optional qualitative assessment: if it is more likely than not (above 50%) that fair value exceeds carrying amount, no quantitative test is needed. IFRS has no such bypass for goodwill; it is tested at least annually.",
+    },
+    { title: "Close year 1", html: "Net income into retained earnings. Goodwill is now 100, so the unit carries 1,300.", entries: {}, close: true, practice: false },
+    {
+      title: "Year 2: the unit is worth only 950",
+      prompt: "Year 2 test: carrying amount of the unit 1,300 (operating assets 1,200 + goodwill 100); recoverable amount and fair value both 950.",
+      html:
+        "Now the shortfall is 1,300 - 950 = 350, more than the 100 of goodwill left. IFRS charges the whole 350: goodwill goes to zero first, and the remaining 250 is allocated to the unit's other assets pro rata (here all of it to the operating assets). US GAAP's goodwill test is CAPPED at the goodwill allocated to the unit: the loss is 100 and goodwill goes to zero. The operating assets are not written down by the goodwill test under US GAAP; long-lived assets have their own impairment rules, applied separately.",
+      entries: {
+        ifrs: [dr("gwImpair", 100), cr("gw", 100), dr("opsImpair", 250), cr("netOps", 250)],
+        gaap: [dr("gwImpair", 100), cr("gw", 100)],
+      },
+      memo: {
+        title: "Same shortfall, different reach",
+        rows: [
+          ["Shortfall: 1,300 - 950", "350"],
+          ["IFRS: goodwill first, then other assets pro rata", "100 + 250"],
+          ["US GAAP: loss capped at goodwill allocated to the unit", "100"],
+          ["Difference in this year's loss", "250"],
+        ],
+      },
+      insight: "Same facts, a 350 loss under IFRS and a 100 loss under US GAAP. The difference is the cap, not the measurement: both units were worth 950.",
+      exam:
+        "Goodwill impairment is never reversed under either standard. Older printings and many prep notes teach a two-step US GAAP test with 'implied goodwill'; CFA Institute's 2026 errata replaced it with the one-step test shown here.",
     },
   ],
   ratios: [
     { label: "Net income", fn: (S) => S.NI, fmt: "num" },
     { label: "Goodwill", fn: (S) => S.v("BS:gw"), fmt: "num" },
+    { label: "Total assets", fn: (S) => S.TA, fmt: "num" },
     { label: "Total equity", fn: (S) => S.TE, fmt: "num" },
   ],
 };
