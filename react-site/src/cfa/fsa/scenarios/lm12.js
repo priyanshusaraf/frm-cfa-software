@@ -330,7 +330,7 @@ const etrMix = {
         ],
       },
       insight:
-        "Net income rises from 780 to 825 without any improvement in operations. Whether that lasts depends on whether the shift of profit abroad lasts: a one-off project, a temporary tax holiday or aggressive transfer pricing can all reverse.",
+        "Net income rises from 780 to 825 without any improvement in operations. Whether that lasts depends on whether the shift of profit abroad lasts: a one-off project or a temporary tax holiday can reverse.",
       exam:
         "A falling effective tax rate with no change in statutory rates points to a change in the geographic mix of earnings. The rate reconciliation in the income tax note is where you confirm it.",
     },

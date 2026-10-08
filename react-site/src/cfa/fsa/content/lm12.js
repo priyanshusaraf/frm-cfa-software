@@ -63,6 +63,12 @@ export default {
           note: "US GAAP lists its indicators without a ranking; IFRS ranks the primary factors first and uses the others when the primary ones are mixed. In practice the answers usually agree.",
         },
         {
+          t: "callout",
+          tone: "exam",
+          title: "What the exam asks",
+          html: "Questions test whether a fact points to the local currency or to the parent's currency, not which group or label an indicator sits under. Learn the direction each fact points in.",
+        },
+        {
           t: "sort",
           prompt: "Each fact describes Kestrel Europe. Tap a fact, then tap the currency it points to as Kestrel's functional currency.",
           buckets: [
@@ -418,6 +424,10 @@ export default {
         },
         { t: "theater", scenario: "lm12-cta-vs-remeasurement" },
         {
+          t: "p",
+          html: `<p><b>Model notes.</b> The animation hides the cash flow statement. A translated cash flow statement shows a separate line, the effect of exchange rate changes on cash, outside operating, investing and financing activities, so that the opening and closing cash balances (translated at different rates) reconcile; the animation does not model that line. Income statement items are translated at the average rate as an approximation of the rates on the transaction dates.</p>`,
+        },
+        {
           t: "callout",
           tone: "trap",
           title: "Retained earnings traps",
@@ -484,7 +494,7 @@ export default {
         },
         {
           t: "p",
-          html: `<p>Exposure is also something management can steer. Under the temporal method, a subsidiary that holds monetary assets equal to its monetary liabilities has no net exposure, so a rate move produces no remeasurement gain or loss; this is sometimes called a <b>balance sheet hedge</b>. Under the current rate method the same trick would require net assets of zero, which no going concern can arrange, so the CTA is much harder to avoid.</p>
+          html: `<p>Exposure is also something management can steer. Under the temporal method the exposure is the net monetary position (plus any non-monetary items carried at current value), so matching monetary assets with monetary liabilities reduces it. A subsidiary that holds monetary assets equal to its monetary liabilities has no net exposure, and a rate move produces no remeasurement gain or loss. Analysts sometimes call this a balance sheet hedge; the shorthand is theirs, and the examinable idea is the net monetary position itself. Under the current rate method the same trick would require net assets of zero, which no going concern can arrange, so the CTA is much harder to avoid.</p>
 <p>A group can also have both kinds of subsidiary at once: a self-contained euro operation translated with the current rate method and a dollar-functional sales branch remeasured with the temporal method. Its net income then contains remeasurement gains and losses from the second while the first's translation adjustment sits in OCI. The disclosures (below) are the only way to separate them.</p>`,
         },
         {
@@ -617,6 +627,10 @@ export default {
         },
         { t: "widget", name: "HyperinflationLab" },
         {
+          t: "p",
+          html: `<p><b>Model notes.</b> The lab and the Kestrel Sur figures assume the price index and the exchange rate move evenly through the year, so the averages are midpoints of the opening and closing values (index 150 and rate 0.28 for Kestrel Sur). The comparison is made at the level of the subsidiary's translated statements, as curriculum examples present it; how the parent accounts for translating its restated opening net investment is not modeled.</p>`,
+        },
+        {
           t: "table",
           caption: "Kestrel Sur in US dollars: inflation 100%, currency down 60% (0.40 to 0.16, average 0.28)",
           head: ["", "No adjustment (not allowed)", "US GAAP: temporal", "IFRS: IAS 29 then current rate"],
@@ -703,8 +717,13 @@ export default {
         },
         {
           t: "p",
-          html: `<p>Where profit is booked is partly a management choice. <b>Transfer prices</b>, the prices one part of the group charges another for goods, services and intellectual property, decide how much of the group's profit appears in each country. Tax authorities police them, but within the allowed range a group has an incentive to book more profit where the rate is lower.</p>
-<p>So when the ETR moves, read the reconciliation and ask what drove the mix. A lasting shift of real activity abroad may persist; a one-off contract, a temporary tax holiday or an aggressive transfer pricing position can reverse, and with it the low rate. Earnings growth that comes only from a lower ETR is lower quality than growth from operations.</p>`,
+          html: `<p>The examinable point is this: a change in the mix of profits across jurisdictions moves the effective tax rate even when no statutory rate changes, and the rate reconciliation in the income tax note is where you read it. So when the ETR moves, read the reconciliation and ask what drove the mix. A lasting shift of real activity abroad may persist; a one-off contract or a temporary tax holiday can reverse, and with it the low rate. Earnings growth that comes only from a lower ETR is lower quality than growth from operations.</p>`,
+        },
+        {
+          t: "callout",
+          tone: "beyond",
+          title: "Beyond the curriculum: transfer pricing",
+          html: "Where profit is booked is partly a management choice. <b>Transfer prices</b>, the prices one part of the group charges another for goods, services and intellectual property, decide how much of the group's profit appears in each country. Tax authorities police them, but within the allowed range a group has an incentive to book more profit where the rate is lower, and an aggressive position can be reversed on audit. Treat this as background: the examinable skill is reading the mix effect from the reconciliation.",
         },
         {
           t: "check",
@@ -738,11 +757,11 @@ export default {
         {
           t: "p",
           html: `<p><b>How the rate reaches translated sales.</b> A subsidiary's revenue is translated at the average rate under both methods, so if the euro strengthens 10% on average and Kestrel sells the same euros, Pinnacle reports 10% more dollar sales from Kestrel. Pinnacle's OWN export sales invoiced in euros move the same way: each euro invoice is recorded at the spot rate on the sale date, so a stronger euro means more dollars per sale.</p>
-<p>Sales invoiced in the parent's currency behave differently. Suppose Kestrel sells EUR 800 to European customers and also exports USD 220 of goods to US customers, invoiced in dollars. At 1.10 the dollar sales are EUR 200 in Kestrel's books, total EUR 1,000, translated to USD 1,100. If the euro strengthens to 1.25 and nothing else changes, the USD 220 is now only EUR 176 in Kestrel's books: its euro sales FALL 2.4% to EUR 976. Translated back, Pinnacle reports 976 x 1.25 = USD 1,220, up 10.9%, less than the euro's 13.6% rise, because the dollar-invoiced part never changed in dollars.</p>`,
+<p>Sales invoiced in the parent's currency behave differently. The case below is an illustration worked out from the transaction and translation mechanics above, not an example taken from the reading. Suppose Kestrel sells EUR 800 to European customers and also exports USD 220 of goods to US customers, invoiced in dollars. At 1.10 the dollar sales are EUR 200 in Kestrel's books, total EUR 1,000, translated to USD 1,100. If the euro strengthens to 1.25 and nothing else changes, the USD 220 is now only EUR 176 in Kestrel's books: its euro sales FALL 2.4% to EUR 976. Translated back, Pinnacle reports 976 x 1.25 = USD 1,220, up 10.9%, less than the euro's 13.6% rise, because the dollar-invoiced part never changed in dollars.</p>`,
         },
         {
           t: "table",
-          caption: "Kestrel Europe: euro-priced and dollar-priced sales when the euro rises from 1.10 to 1.25",
+          caption: "Illustration: Kestrel Europe's euro-priced and dollar-priced sales when the euro rises from 1.10 to 1.25",
           head: ["", "Euro at 1.10", "Euro at 1.25", "Change"],
           rows: [
             ["Euro-priced sales (EUR 800)", "USD 880", "USD 1,000", "+13.6%"],
@@ -750,6 +769,12 @@ export default {
             ["Kestrel's sales in euros", "1,000", "976", "-2.4%"],
             ["Kestrel's sales translated into dollars", "1,100", "1,220", "+10.9%"],
           ],
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "How the curriculum frames sales growth",
+          html: "The reading frames this as splitting sales growth into volume, price and exchange rate effects, and it treats growth from exchange rate movements as the least sustainable of the three. The invoicing illustration above is a way to reason through a vignette, not a separate rule to memorise.",
         },
         {
           t: "callout",
@@ -962,12 +987,5 @@ export default {
     },
   ],
 
-  flags: [
-    { los: "a", note: "Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses. Research 2026-10: Deloitte's ASC 830 roadmap (ch. 10) confirms the technical point the content makes, that IFRS has a hierarchy of factors and US GAAP has none; no public source reproduces the curriculum's own list or grouping (the CFA Institute 2026 summary gives only the definition), so the curriculum wording is unconfirmed." },
-    { los: "d", note: "The 'balance sheet hedge' paragraph (matching monetary assets and liabilities under the temporal method) is mechanism; confirm the curriculum uses this term before relying on it for an exam answer. Research 2026-10: the CFA Institute 2026 summary confirms temporal-method exposure equals the net monetary position (adjusted for non-monetary items at current value), and AnalystPrep's LOS e notes reduce exposure by selling non-monetary assets for cash, but no curriculum-tracking source uses the term 'balance sheet hedge'." },
-    { los: "g", note: "HyperinflationLab and the Kestrel Sur numbers assume the price index and exchange rate move evenly through the year (averages are midpoints). The IAS 21 translation difference on the restated opening net investment at the parent level is not modeled; the comparison is at the level of the subsidiary's translated statements, as curriculum examples present it. Research 2026-10: this is a modeling disclosure, not a wording question; the CFA Institute 2026 summary confirms only the IFRS sequence (restate, then translate at the current rate), and no public source shows the curriculum's worked example, so the level of comparison cannot be checked." },
-    { los: "c", note: "The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b. Research 2026-10: the CFA Institute 2026 summary frames the topic as sales growth from volume, price and exchange rates (volume and price more sustainable); AnalystPrep's LOS note covers only the subsidiary's translated sales; no source shows how the curriculum treats sales invoiced in the parent's currency." },
-    { los: "h", note: "Transfer pricing is mentioned as a driver of the earnings mix. Confirm it appears in the 2026 curriculum's discussion of the effective tax rate. Research 2026-10: the CFA Institute 2026 summary and AnalystPrep's ETR note discuss the effective tax rate reconciliation and changes in profit mix but do not mention transfer pricing; the only source that does (trustedinstitute.com) is not a reliable curriculum tracker." },
-    { los: "e", note: "Scenario lm12-cta-vs-remeasurement hides the cash flow statement: a translated cash flow statement needs an 'effect of exchange rate changes on cash' line outside operating, investing and financing, which the ledger engine does not model. Income statement items are translated at the average rate as an approximation of transaction-date rates. Research 2026-10: an engine limitation, not a curriculum question; nothing found online changes it." },
-  ],
+  flags: [],
 };

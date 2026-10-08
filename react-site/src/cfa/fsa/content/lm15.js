@@ -633,7 +633,7 @@ export default {
           t: "formula",
           name: "LIFO to FIFO",
           tex: "\\text{Inv}_{FIFO} = \\text{Inv}_{LIFO} + \\text{LR};\\quad \\text{COGS}_{FIFO} = \\text{COGS}_{LIFO} - (\\text{LR}_{end} - \\text{LR}_{beg});\\quad \\text{Equity}_{FIFO} = \\text{Equity}_{LIFO} + \\text{LR}\\,(1-t)",
-          plain: "LR is the LIFO reserve and t the tax rate. Liabilities rise by LR x t (deferred taxes, or taxes payable if the analyst assumes the tax is due). A rising reserve means FIFO cost of goods sold (COGS) is lower than LIFO COGS.",
+          plain: "LR is the LIFO reserve and t the tax rate. The tax slice, LR x t, is booked as a deferred tax liability, as taxes payable if the analyst assumes the tax is due, or as a reduction in cash if the analyst assumes it is paid. Equity rises by LR x (1 - t) in every case. A rising reserve means FIFO cost of goods sold (COGS) is lower than LIFO COGS.",
         },
         { t: "theater", scenario: "lm15-lifo-to-fifo" },
         {
@@ -641,6 +641,25 @@ export default {
           tone: "trap",
           title: "Two sign traps in one formula",
           html: "FIFO COGS is LIFO COGS MINUS the increase in the reserve, not plus: when prices rise, FIFO charges the older, cheaper costs. And equity rises by the after-tax reserve only; the full reserve goes to inventory and the tax slice goes to liabilities. Adding the whole reserve to equity unbalances the balance sheet.",
+        },
+        {
+          t: "p",
+          html: `<p>Where the tax slice goes is an analyst's assumption, and prep sources differ. The scenario above books it as a deferred tax liability, because LIFO conformity means Pinnacle also uses LIFO for tax and no tax falls due unless old layers are liquidated. Some analysts book it as taxes payable, a current liability, on the view that the tax would be owed; others treat it as already paid and reduce cash. The equity answer does not depend on the choice. Take Pinnacle's closing reserve of 300 at 25%: inventory rises by 300 and the tax slice is 75 in every version, so equity rises by 300 - 75 = 225 whether the 75 sits in deferred taxes, in taxes payable, or comes out of cash. What changes is which line absorbs the 75, and so which ratios move.</p>`,
+        },
+        {
+          t: "table",
+          caption: "Pinnacle at year-end: three ways to book the tax on a LIFO reserve of 300 (t = 25%)",
+          head: ["", "As reported (LIFO)", "FIFO, deferred tax liability", "FIFO, taxes payable", "FIFO, tax paid in cash"],
+          rows: [
+            ["Current assets", "2,150", "2,450", "2,450", "2,375"],
+            ["Current liabilities", "900", "900", "975", "900"],
+            ["Total liabilities", "1,800", "1,875", "1,875", "1,800"],
+            ["Equity", "2,350", "<b>2,575</b>", "<b>2,575</b>", "<b>2,575</b>"],
+            ["Current ratio", "2.39", "2.72", "2.51", "2.64"],
+            ["Long-term debt / equity (debt 900)", "0.38", "0.35", "0.35", "0.35"],
+            ["Total liabilities / equity", "0.77", "0.73", "0.73", "0.70"],
+          ],
+          note: "Equity, and every ratio built on interest-bearing debt and equity, is the same in all three versions. The current ratio differs (taxes payable raises current liabilities; paying the tax raises current assets by only the after-tax 225), and so do measures built on total liabilities. On the exam, use the treatment the vignette states; if it does not state one, the equity effect is safe either way.",
         },
         {
           t: "p",
@@ -884,7 +903,7 @@ export default {
           q: "Lumen's current ratio on a FIFO basis is closest to:",
           options: ["1.50", "1.66", "1.62"],
           answer: 1,
-          why: "FIFO current assets = 2,400 + 260 = 2,660. The tax effect goes to a non-current deferred tax liability, so current liabilities stay at 1,600. Current ratio = 2,660 / 1,600 = 1.66. Adding only the after-tax reserve (195) gives 1.62; 1.50 is the reported ratio.",
+          why: "FIFO current assets = 2,400 + 260 = 2,660. The vignette books the tax effect as a non-current deferred tax liability, so current liabilities stay at 1,600. Current ratio = 2,660 / 1,600 = 1.66. Adding only the after-tax reserve (195) to current assets gives 1.62, which would be right only if the tax were assumed paid in cash; 1.50 is the reported ratio.",
         },
         {
           q: "Lumen's net income on a FIFO basis is closest to:",

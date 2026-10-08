@@ -161,8 +161,10 @@ export default {
           html: "Basel III starts from equity as reported under International Financial Reporting Standards (IFRS) or US generally accepted accounting principles (US GAAP) and then adjusts it: goodwill and other intangibles are deducted because they cannot be sold to pay depositors in a crisis, and so are certain deferred tax assets, which are only worth something if the bank earns future profits. Two banks with identical reported equity can have very different regulatory capital.",
         },
         {
-          t: "p",
-          html: `<p>The Financial Stability Board's list of <b>global systemically important banks</b> (G-SIBs) gets an extra capital surcharge on top of the Basel minimums. The logic follows directly from contagion: the bigger and more connected the bank, the greater the damage if it fails, so the higher the cushion society demands.</p>`,
+          t: "callout",
+          tone: "beyond",
+          title: "Beyond the curriculum: the surcharge for systemic banks",
+          html: "Banks on the Financial Stability Board's list of <b>global systemically important banks</b> (G-SIBs) carry an extra capital surcharge on top of the Basel minimums. The logic follows directly from contagion: the bigger and more connected the bank, the greater the damage if it fails, so the higher the cushion society demands. The surcharge and its size are background, not testable figures.",
         },
         {
           t: "check",
@@ -242,7 +244,13 @@ export default {
         },
         {
           t: "p",
-          html: `<p>On top of the minimums, Basel III adds <b>buffers</b>. The <b>capital conservation buffer</b> is 2.5% of RWA in CET1, so a bank needs 7% CET1 to be free of restrictions. A bank that dips into the buffer is not shut down, but its dividends, share buybacks and bonuses are restricted until it rebuilds: the buffer is designed to be used in a downturn, with the payout restrictions forcing capital to be rebuilt afterwards. A <b>countercyclical buffer</b> of up to 2.5% can be switched on by national regulators when credit is growing too fast, and G-SIBs carry their surcharge on top.</p>`,
+          html: `<p>On top of the minimums, Basel III adds a <b>capital conservation buffer</b> of 2.5% of RWA, held in CET1. Including it, a bank needs 7% CET1 (4.5% + 2.5%) and 10.5% total capital (8% + 2.5%) to be free of restrictions. A bank that dips into the buffer is not shut down, but its dividends, share buybacks and bonuses are restricted until it rebuilds: the buffer is designed to be used in a downturn, with the payout restrictions forcing capital to be rebuilt afterwards.</p>`,
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "Which capital figures to know",
+          html: "The 4.5% CET1, 6% Tier 1 and 8% total capital minimums are core. Also recognize the conservation buffer figures: 2.5% of RWA in CET1, giving 7% CET1 and 10.5% total capital including the buffer. Notes for the 2026 reading cite 10.5% as the Basel III total, so a vignette may use it.",
         },
         {
           t: "callout",
@@ -252,9 +260,9 @@ export default {
         },
         {
           t: "callout",
-          tone: "flag",
-          title: "Check against your book",
-          html: "The 4.5%, 6% and 8% minimums are core curriculum. Confirm in your edition how much detail it gives on the conservation and countercyclical buffers, the G-SIB surcharge and the 3% Basel III leverage ratio before memorising them as testable figures.",
+          tone: "beyond",
+          title: "Beyond the curriculum: other buffers and the leverage minimum",
+          html: "Basel III also lets national regulators switch on a <b>countercyclical buffer</b> of up to 2.5% of RWA when credit is growing too fast, adds the G-SIB surcharge for the largest banks, and sets a minimum leverage ratio (Tier 1 capital over total exposure) of 3%. These figures are beyond the 2026 curriculum: know that they exist, but do not treat them as testable. The leverage ratio as an analyst's backstop to risk-weighted ratios, shown above, is the idea to keep.",
         },
         {
           t: "check",
@@ -315,6 +323,12 @@ export default {
           plain: "The provision is the only flow that touches profit. Charge-offs and recoveries move the allowance and the loans against each other or against cash. In the theater's year: 16 + 6 - 5 + 1 = 18.",
         },
         {
+          t: "callout",
+          tone: "exam",
+          title: "Recoveries: the same answer either way",
+          html: "The roll-forward above credits recoveries back to the allowance, the common US practice. Banks reporting under IFRS commonly present them in profit as a reduction of the impairment charge instead. The ratios do not change with the presentation: net charge-offs = charge-offs - recoveries, and provision / net charge-offs is read the same way (above 1 the allowance is being built, below 1 it is being released into profit).",
+        },
+        {
           t: "table",
           caption: "Asset quality ratios, with Harbor Bank year 1 and year 2",
           head: ["Ratio", "What it tells you", "Year 1", "Year 2"],
@@ -337,7 +351,7 @@ export default {
         },
         {
           t: "h",
-          text: "Expected credit losses: IFRS 9 and CECL",
+          text: "Expected credit losses: IFRS 9 and CECL (beyond the curriculum)",
         },
         {
           t: "p",
@@ -370,9 +384,9 @@ export default {
         },
         {
           t: "callout",
-          tone: "flag",
-          title: "Check against your book",
-          html: "Confirm how much of the IFRS 9 staging and the CECL model your edition of the curriculum covers. The mechanics above are the standards themselves; the exam can only test what the reading states.",
+          tone: "beyond",
+          title: "Beyond the curriculum: staging and CECL",
+          html: "The IFRS 9 stages and the CECL model above come from the standards themselves and are background for why allowances jump when credit slips. The 2026 reading's examinable asset quality tools are the ratios in the table earlier in this section: allowance / non-performing loans, allowance / gross loans, provision / net charge-offs, net charge-offs / gross loans and non-performing loans / gross loans, read together to judge whether the allowance is adequate for expected losses.",
         },
         {
           t: "callout",
@@ -555,7 +569,7 @@ export default {
           t: "formula",
           name: "Net stable funding ratio (NSFR)",
           tex: "\\text{NSFR} = \\frac{\\text{Available stable funding}}{\\text{Required stable funding}} \\ge 100\\%",
-          plain: "Are long-term, illiquid assets funded with money that will still be there in a year? Funding sources get weights by stability (equity and long-term debt 100%, stable deposits high, short-term wholesale funding low); assets get weights by how much stable funding they need (cash none, loans most).",
+          plain: "Are long-term, illiquid assets funded with money that will still be there in a year? Funding sources get weights by stability (equity and long-term debt count in full, stable deposits high, short-term wholesale funding low); assets get weights by how much stable funding they need (cash none, loans most). The exact Basel weights are not needed; the weights in the Harbor example are illustrative.",
         },
         {
           t: "table",
@@ -563,10 +577,10 @@ export default {
           head: ["", "Year 1", "Year 2"],
           rows: [
             ["High-quality liquid assets (cash + government bonds)", "70 + 140 = 210", "60 + 120 = 180"],
-            ["Stressed 30-day outflows (10% of deposits + 60% of short-term wholesale funding)", "69 + 24 = 93", "72 + 48 = 120"],
+            ["Stressed 30-day outflows (illustrative: 10% of deposits + 60% of short-term wholesale funding)", "69 + 24 = 93", "72 + 48 = 120"],
             ["<b>LCR</b>", "226%", "150%"],
-            ["Available stable funding (90% of deposits + long-term debt + equity)", "773", "808"],
-            ["Required stable funding (5% government bonds, 50% other securities, 85% loans, 100% other assets)", "563", "646"],
+            ["Available stable funding (illustrative: 90% of deposits + long-term debt + equity)", "773", "808"],
+            ["Required stable funding (illustrative: 5% government bonds, 50% other securities, 85% loans, 100% other assets)", "563", "646"],
             ["<b>NSFR</b>", "137%", "125%"],
             ["Loans / deposits", "81.2%", "88.9%"],
             ["Short-term wholesale funding / total liabilities", "4.9%", "9.0%"],
@@ -576,7 +590,19 @@ export default {
         {
           t: "p",
           html: `<p>Both ratios still clear 100% comfortably, but the trend matters. Harbor funded its loan growth by doubling short-term wholesale borrowing from other institutions, the money that leaves first in a crisis, and by running down its liquid assets. The LCR fell from 226% to 150% in a year.</p>
-<p>Basel III also asks supervisors to monitor further liquidity metrics, which analysts can use where disclosed: the <b>contractual maturity mismatch</b> between assets and liabilities, the <b>concentration of funding</b> (reliance on a few large depositors, products or markets), <b>available unencumbered assets</b> (assets not already pledged that could be used as collateral), the <b>LCR by significant currency</b> (a bank can be liquid in euros and short of dollars) and <b>market-related monitoring tools</b> such as the bank's own funding spreads and share price.</p>`,
+<p>Two further liquidity ideas matter alongside the ratios. The <b>contractual maturity mismatch</b> compares when assets mature with when liabilities fall due: the wider the gap, the more the bank depends on rolling its funding over. The <b>concentration of funding</b> measures reliance on a few large depositors, products or markets, any one of which can leave at once.</p>`,
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "What is core in liquidity",
+          html: "Core: the LCR and the NSFR, each with a 100% minimum, and the ideas of funding concentration and maturity mismatch. Every run-off rate and funding weight in the Harbor table is illustrative, chosen so the arithmetic can be followed, and is not a figure to memorise.",
+        },
+        {
+          t: "callout",
+          tone: "beyond",
+          title: "Beyond the curriculum: the rest of the Basel monitoring list",
+          html: "Basel III's list of supervisory monitoring tools also includes <b>available unencumbered assets</b> (assets not already pledged that could be used as collateral), the <b>LCR by significant currency</b> (a bank can be liquid in euros and short of dollars) and <b>market-related monitoring tools</b> such as the bank's own funding spreads and share price. They are useful where a bank discloses them, but treat them as background rather than core.",
         },
         {
           t: "h",
@@ -763,6 +789,10 @@ export default {
           html: "Harbor is adequately capitalised and liquid today, so default on senior bonds is not imminent. But asset quality and earnings quality deteriorated together, with growth concentrated in commercial real estate and funded by less stable money. The ratios that matter most for bondholders are moving the wrong way. Recommendation: hold with a negative outlook, set a review trigger if coverage of non-performing loans falls further or the LCR approaches 120%, and stress the capital position with the lab below.",
         },
         { t: "widget", name: "CamelsLab" },
+        {
+          t: "p",
+          html: `<p><b>Model notes.</b> The lab's 3% leverage test is shown for completeness; that minimum is beyond the 2026 curriculum. The run-off rates and funding weights behind its liquidity ratios are the illustrative ones from the liquidity section, not Basel factors.</p>`,
+        },
         {
           t: "check",
           id: "lm13-hb-1",
@@ -993,7 +1023,7 @@ export default {
   ],
 
   gaap: [
-    { topic: "Credit loss model for loans at amortized cost", ifrs: "IFRS 9 expected credit loss: 12-month losses for performing loans (stage 1), lifetime losses after a significant increase in credit risk (stages 2 and 3)", usgaap: "Current expected credit loss (CECL): lifetime expected losses for all loans from origination, no staging" },
+    { topic: "Credit loss model for loans at amortized cost (beyond the curriculum)", ifrs: "IFRS 9 expected credit loss: 12-month losses for performing loans (stage 1), lifetime losses after a significant increase in credit risk (stages 2 and 3)", usgaap: "Current expected credit loss (CECL): lifetime expected losses for all loans from origination, no staging" },
     { topic: "Debt securities categories", ifrs: "Amortized cost, FVOCI (recycled on sale), FVPL", usgaap: "Held-to-maturity, available-for-sale (recycled on sale), trading" },
     { topic: "Recoveries of loans written off", ifrs: "Commonly presented in profit as a reduction of the impairment charge", usgaap: "Commonly credited back to the allowance (net charge-offs = charge-offs - recoveries)" },
     { topic: "Cash flows from lending and deposits", ifrs: "Banks usually classify loans and deposits within operating activities; interest received and paid may be operating, investing or financing", usgaap: "Loans made and repaid are typically investing, net change in deposits financing; interest received and paid are operating" },
@@ -1004,7 +1034,7 @@ export default {
     { name: "CET1 ratio", tex: "\\frac{\\text{Common equity Tier 1 capital}}{\\text{Risk-weighted assets}} \\ge 4.5\\%", plain: "Purest loss-absorbing capital against risk-weighted assets; 7.0% with the conservation buffer." },
     { name: "Tier 1 capital ratio", tex: "\\frac{\\text{CET1} + \\text{Additional Tier 1}}{\\text{Risk-weighted assets}} \\ge 6\\%", plain: "Going-concern capital against risk-weighted assets." },
     { name: "Total capital ratio", tex: "\\frac{\\text{Tier 1} + \\text{Tier 2}}{\\text{Risk-weighted assets}} \\ge 8\\%", plain: "All qualifying capital, including subordinated debt, against risk-weighted assets." },
-    { name: "Leverage ratio", tex: "\\frac{\\text{Tier 1 capital}}{\\text{Total exposure}}", plain: "A backstop no risk weight can flatter. Check your book for the 3% minimum." },
+    { name: "Leverage ratio", tex: "\\frac{\\text{Tier 1 capital}}{\\text{Total exposure}}", plain: "A backstop no risk weight can flatter. Basel III's 3% minimum is beyond the 2026 curriculum." },
     { name: "Liquidity coverage ratio", tex: "\\frac{\\text{High-quality liquid assets}}{\\text{Net cash outflows over 30 days of stress}} \\ge 100\\%", plain: "Can the bank survive a month-long run?" },
     { name: "Net stable funding ratio", tex: "\\frac{\\text{Available stable funding}}{\\text{Required stable funding}} \\ge 100\\%", plain: "Are illiquid assets funded with money that stays for a year?" },
     { name: "Allowance roll-forward", tex: "\\text{End} = \\text{Beginning} + \\text{Provision} - \\text{Charge-offs} + \\text{Recoveries}", plain: "Only the provision hits profit." },
@@ -1028,7 +1058,7 @@ export default {
     { q: "What goes into CET1, and what is deducted?", a: "Common shares and related surplus, retained earnings and AOCI; less regulatory deductions such as goodwill, other intangibles and certain deferred tax assets." },
     { q: "What qualifies as Tier 2 capital?", a: "Instruments subordinated to depositors and general creditors with an original maturity of at least five years, such as subordinated debt, plus certain loan loss allowances." },
     { q: "Define the LCR and the NSFR.", a: "LCR: high-quality liquid assets / net cash outflows over 30 stressed days, at least 100%. NSFR: available stable funding / required stable funding over one year, at least 100%." },
-    { q: "Name the five additional Basel III liquidity monitoring metrics.", a: "Contractual maturity mismatch; concentration of funding; available unencumbered assets; LCR by significant currency; market-related monitoring tools." },
+    { q: "Besides the LCR and the NSFR, which two liquidity monitoring ideas are core?", a: "Contractual maturity mismatch (when assets mature against when liabilities fall due) and concentration of funding (reliance on a few depositors, products or markets). Basel's wider list (unencumbered assets, LCR by significant currency, market-related tools) is background." },
     { q: "Why does a charge-off not reduce net income?", a: "The loss was expensed through the provision when it was expected; the charge-off only removes the loan and uses up the allowance." },
     { q: "Name the bank-specific factors CAMELS does not address.", a: "Government support, government ownership, the mission of the institution and corporate culture." },
     { q: "Name the general factors CAMELS does not address.", a: "Competitive environment, off-balance-sheet items, segment information, currency exposure, risk factors and Basel III (Pillar 3) disclosures." },
@@ -1143,10 +1173,5 @@ export default {
     },
   ],
 
-  flags: [
-    { los: "b", note: "Capital buffers (2.5% conservation, countercyclical up to 2.5%, G-SIB surcharge) and the 3% leverage ratio: confirm how much the 2026 reading states as testable figures. The 4.5% / 6% / 8% minimums are taught as core. Research 2026-10: AnalystPrep and IFT notes on the reading give only the 4.5% / 6% / 8% minimums; AnalystNotes (2026) cites 10.5% total under Basel III, which implies the 2.5% conservation buffer; no curriculum-tracking source mentions the countercyclical buffer, the G-SIB surcharge or the leverage ratio, and the CFA Institute 2026 summary says only that Basel III sets minimum capital, liquidity and stable funding requirements." },
-    { los: "c", note: "IFRS 9 staging vs US GAAP CECL: confirm the reading covers both expected credit loss models and at what depth. Research 2026-10: none of the CFA Institute 2026 summary, AnalystPrep, IFT or AnalystNotes mention IFRS 9 staging or CECL; IFT lists allowance for loan losses / non-performing loans and adequacy of adjustments for expected loan losses, so depth remains unconfirmed." },
-    { los: "c", note: "Liquidity: the five Basel III monitoring metrics are as remembered from the curriculum; ASF and RSF weights and LCR run-off rates used in examples are simplified illustrations, not Basel factors. Research 2026-10: the five tools match BIS (bcbs238, Part 2); AnalystPrep and AnalystNotes (2026) name only concentration of funding and contractual maturity mismatch as monitoring metrics, so whether the reading lists all five is unconfirmed." },
-    { los: "c", note: "Recoveries: the US practice (credited to the allowance) is shown in the scenario; IFRS presentation in profit is described as common practice. Verify against the reading if tested. Research 2026-10: no curriculum-tracking source covers recoveries; IFT lists provision for loan losses / net loan charge-offs, which is consistent with recoveries netted against charge-offs, but says nothing on IFRS presentation." },
-  ],
+  flags: [],
 };

@@ -5,8 +5,9 @@
    impairment), Tasman Freight (stretched useful lives). Widgets add Steadfast
    Brewing and Gilded Gadgets (accruals), Vantor Systems and Clearwater
    Supplies (Beneish), and Lumen Devices, Northgate Logistics and Crestline
-   Foods (the red flag game). Real-company cases are limited to widely
-   documented public history. */
+   Foods (the red flag game). Real-company cases (LOS h) are illustrations
+   from public records (SEC filings and press), not the curriculum's own
+   case text. */
 export default {
   id: "lm14",
   num: 14,
@@ -515,14 +516,14 @@ export default {
           rows: [
             ["<b>DSRI</b> days sales in receivables index", "\\(\\dfrac{\\text{Receivables}_t / \\text{Sales}_t}{\\text{Receivables}_{t-1} / \\text{Sales}_{t-1}}\\)", "Receivables growing faster than sales: possible revenue inflation"],
             ["<b>GMI</b> gross margin index", "\\(\\dfrac{\\text{Gross margin}_{t-1}}{\\text{Gross margin}_t}\\)", "Deteriorating margins (note: last year over this year). Weak prospects create pressure to manipulate"],
-            ["<b>AQI</b> asset quality index", "\\(\\dfrac{1 - (\\text{CA}_t + \\text{PP\\&E}_t + \\text{Securities}_t)/\\text{TA}_t}{1 - (\\text{CA}_{t-1} + \\text{PP\\&E}_{t-1} + \\text{Securities}_{t-1})/\\text{TA}_{t-1}}\\)", "A rising share of soft, other assets: costs being capitalized or deferred"],
+            ["<b>AQI</b> asset quality index", "\\(\\dfrac{1 - (\\text{CA}_t + \\text{PP\\&E}_t)/\\text{TA}_t}{1 - (\\text{CA}_{t-1} + \\text{PP\\&E}_{t-1})/\\text{TA}_{t-1}}\\)", "A rising share of soft assets (everything other than current assets and net PP&E): costs being capitalized or deferred"],
             ["<b>SGI</b> sales growth index", "\\(\\dfrac{\\text{Sales}_t}{\\text{Sales}_{t-1}}\\)", "Growth itself is not manipulation, but growth companies face pressure to keep the story going"],
             ["<b>DEPI</b> depreciation index", "\\(\\dfrac{\\text{Dep}_{t-1}/(\\text{Dep}_{t-1} + \\text{PP\\&E}_{t-1})}{\\text{Dep}_t/(\\text{Dep}_t + \\text{PP\\&E}_t)}\\)", "A falling depreciation rate: possibly longer useful lives"],
             ["<b>SGAI</b> selling, general and administrative expense index", "\\(\\dfrac{\\text{SG\\&A}_t / \\text{Sales}_t}{\\text{SG\\&A}_{t-1} / \\text{Sales}_{t-1}}\\)", "Rising overhead relative to sales. Its coefficient is negative in the model"],
             ["<b>TATA</b> total accruals to total assets", "\\(\\dfrac{\\text{Income from continuing operations}_t - \\text{CFO}_t}{\\text{TA}_t}\\)", "Earnings with less cash behind them"],
             ["<b>LVGI</b> leverage index", "\\(\\dfrac{(\\text{Current liabilities}_t + \\text{LTD}_t)/\\text{TA}_t}{(\\text{Current liabilities}_{t-1} + \\text{LTD}_{t-1})/\\text{TA}_{t-1}}\\)", "Rising leverage and covenant pressure. Its coefficient is negative in the model"],
           ],
-          note: "CA = current assets; TA = total assets; Dep = depreciation; LTD = long-term debt; SG&A = selling, general and administrative expense. For the six 'index' variables a value of 1 is neutral; for TATA, 0 is neutral.",
+          note: "CA = current assets; PP&E = net property, plant and equipment; TA = total assets; Dep = depreciation; LTD = long-term debt; SG&A = selling, general and administrative expense. For the six 'index' variables a value of 1 is neutral; for TATA, 0 is neutral. AQI here follows Beneish (1999) and the curriculum-tracking version: only current assets and net PP&E count as hard assets. Some sources also add securities to the hard assets; this module, its examples and the lab exclude them.",
         },
         {
           t: "callout",
@@ -536,8 +537,8 @@ export default {
         },
         {
           t: "p",
-          html: `<p>Vantor's sales grew from 1,000 to 1,300, but receivables went from 100 to 195, gross margin slipped from 40% to 36%, depreciation fell from 50 to 48 while net PP&E grew from 450 to 600, and CFO was only 40 against net income of 110 on total assets of 1,400. Working through the indexes: DSRI = (195 / 1,300) / (100 / 1,000) = 0.15 / 0.10 = 1.50; GMI = 0.40 / 0.36 = 1.11; AQI = 1.36; SGI = 1.30; DEPI = (50 / 500) / (48 / 648) = 1.35; SGAI = 0.92; TATA = (110 - 40) / 1,400 = 0.05; LVGI = 1.07.</p>
-<p>Plugging in gives \\(M \\approx -1.29\\), above the -1.78 cutoff, and \\(N(-1.29) \\approx 9.9\\%\\). Vantor is flagged. The two biggest pushes come from DSRI (0.920 x 1.50 = 1.38) and SGI (0.892 x 1.30 = 1.16). Load Vantor in the lab and change one number at a time to see which variables the score is most sensitive to.</p>`,
+          html: `<p>Vantor's sales grew from 1,000 to 1,300, but receivables went from 100 to 195, gross margin slipped from 40% to 36%, depreciation fell from 50 to 48 while net PP&E grew from 450 to 600, current assets rose from 400 to 560 and total assets from 1,000 to 1,400, and CFO was only 40 against net income of 110. Working through the indexes: DSRI = (195 / 1,300) / (100 / 1,000) = 0.15 / 0.10 = 1.50; GMI = 0.40 / 0.36 = 1.11; AQI = [1 - (560 + 600) / 1,400] / [1 - (400 + 450) / 1,000] = 0.171 / 0.150 = 1.14; SGI = 1.30; DEPI = (50 / 500) / (48 / 648) = 1.35; SGAI = 0.92; TATA = (110 - 40) / 1,400 = 0.05; LVGI = 1.07.</p>
+<p>Plugging in gives \\(M \\approx -1.37\\), above the -1.78 cutoff, and \\(N(-1.37) \\approx 8.5\\%\\). Vantor is flagged. The two biggest pushes come from DSRI (0.920 x 1.50 = 1.38) and SGI (0.892 x 1.30 = 1.16). Load Vantor in the lab and change one number at a time to see which variables the score is most sensitive to.</p>`,
         },
         { t: "widget", name: "BeneishLab" },
         {
@@ -565,6 +566,12 @@ export default {
           tone: "beyond",
           title: "Beyond the curriculum, flagged so you do not mistake it for exam content",
           html: "Altman's original 1968 study is commonly cited with zones: below 1.81 'distress', 1.81 to 2.99 'grey', above 2.99 'safe'. The lab draws these lines because practitioners use them. Learn the direction (higher is safer) and the limitations for the exam; check your book before relying on the specific cutoffs.",
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "What is examinable about the Z-score",
+          html: "The examinable point is direction and limitations: a higher Z-score means a lower probability of bankruptcy, and the model is a single-period, static measure built on reported accounting numbers from an old sample. Do not expect to need the zone cutoffs to answer a question; if a question compares two companies, the one with the higher Z-score is the one with lower estimated bankruptcy risk.",
         },
         {
           t: "p",
@@ -778,7 +785,7 @@ export default {
       blocks: [
         {
           t: "p",
-          html: `<p>The tools only become useful once you have seen them catch something. The cases below come from widely documented public history. Each shows one mechanism from this module, and what an analyst could have seen before the restatement.</p>`,
+          html: `<p>The tools only become useful once you have seen them catch something. The cases below are illustrations drawn from the public record (SEC filings, enforcement releases and press coverage), not the curriculum's own case text. Each shows one mechanism from this module, and what an analyst could have seen before the restatement.</p>`,
         },
         {
           t: "compare",
@@ -815,9 +822,9 @@ export default {
         },
         {
           t: "callout",
-          tone: "flag",
-          title: "Check against the official book",
-          html: "These summaries stick to widely reported facts. The curriculum's own case studies may use different companies or emphasize different details; learn the mechanism each case illustrates rather than the specific amounts.",
+          tone: "beyond",
+          title: "Illustrations from the public record, not the curriculum's case text",
+          html: "These summaries are built from SEC filings and press reports and stick to widely reported facts, without specific amounts. The curriculum presents its own case material, so the companies it names and the details it emphasizes may differ from what you see here. What carries over to the exam is the mechanism each case illustrates (a big bath followed by reserve releases, operating costs capitalized, revenue on bundled contracts pulled forward) and the warning signs an analyst could have read in the statements.",
         },
         {
           t: "p",
@@ -902,9 +909,15 @@ export default {
             ["Capitalizing operating costs", "The payment is reported in investing, not operating", "CFO rises by the full amount; CFO + CFI does not change"],
             ["Acquiring working capital", "Buy a company (CFI outflow), then collect its receivables and sell its inventory (CFO inflow)", "CFO is boosted by cash that was bought, not earned"],
             ["IFRS classification choices", "Report interest paid in financing, or interest and dividends received in operating", "Legal, but makes CFO higher than a peer's that chose differently"],
-            ["Tax benefits of employee stock options", "Exercises of options can produce tax deductions that reduce cash taxes", "Depends on the share price and on employees' exercise decisions, not on operations"],
+            ["Tax benefits of employee stock options", "When employees exercise options, the company can deduct their gain for tax, which cuts cash taxes paid. Under current US GAAP the excess tax benefit is in CFO", "Depends on the share price and on employees' exercise decisions, not on operations, so it should not be treated as recurring operating cash"],
             ["Timing purchases", "Delay inventory purchases or capital spending across the year end", "Shifts cash between periods; the business still needs the goods"],
           ],
+        },
+        {
+          t: "callout",
+          tone: "exam",
+          title: "Stock option tax benefits: classification and sustainability",
+          html: "<p>Under current US GAAP (Accounting Standards Update (ASU) 2016-09, effective for public companies for periods beginning after 15 December 2016), the excess tax benefit from employee stock options is reported in operating cash flow. Older material, written under the earlier rule, shows it as a financing inflow, so do not be thrown if a source puts it there.</p><p>Either way, the examinable point is sustainability. The benefit is large when the share price is high and employees exercise, and it shrinks or disappears when the share price falls or exercises slow. A CFO boost from this source depends on the share price and on employees' decisions, not on the business, so an analyst should not treat it as recurring operating cash and should consider removing it when judging sustainable CFO.</p>",
         },
         { t: "theater", scenario: "lm14-cfo-boost" },
         {
@@ -1262,10 +1275,5 @@ export default {
     },
   ],
 
-  flags: [
-    { los: "c", note: "Beneish AQI: Beneish's original definition uses (current assets + net PP&E) / total assets; the curriculum version may also include securities, as used here. Verify. Research 2026-10: AnalystPrep's Level II notes, which track the curriculum wording, define AQI as non-current assets other than PP&E relative to total assets, computed from 1 - (current assets + PP&E) / total assets with no securities term; Wikipedia's version (citing later Beneish papers) adds securities. Only one curriculum-tracking source was found, so not conclusive. If confirmed, the table formula, the Vantor worked example (AQI would be 1.14, M about -1.37, probability about 8.5%) and the BeneishLab widget (securities field in soft()) all need to change together." },
-    { los: "c", note: "Altman Z-score zones (1.81 and 2.99) are presented in a beyond-the-curriculum callout and in the lab as commonly cited original thresholds. Verify whether the 2026 book states any cutoffs. Research 2026-10: AnalystPrep's Level II notes give the Z-score with direction (higher means lower bankruptcy risk) and limitations (static, accounting-based) but no cutoffs, which is consistent with the beyond callout; no second curriculum-tracking source covered the point, and the 1.81 / 2.99 zones were confirmed only through secondary summaries of Altman (1968)." },
-    { los: "h", note: "Real-company cases (Sunbeam, WorldCom, MicroStrategy) are summarized from widely documented public history without specific amounts. The curriculum's own cases may differ; check names and details. Research 2026-10: the SEC administrative order on Sunbeam (Release 34-47261) supports the facts used here (1996 restructuring charges and reserves inflating 1997 income, bill-and-hold sales without a customer business purpose). A search result pointed to an older table of contents listing Sunbeam (revenue recognition), MicroStrategy (multiple-element contracts) and WorldCom (capitalization) cases, but the file could not be opened, and no 2026 curriculum-tracking source names the cases." },
-    { los: "l", note: "Tax benefits of employee stock options: the curriculum's treatment may reflect the pre-2016 US GAAP classification (excess tax benefits in financing). Content describes the sustainability issue only; verify the classification wording. Research 2026-10: company filings applying ASU 2016-09 confirm that excess tax benefits moved from financing to operating cash flows (public companies, periods beginning after 15 December 2016), so the content's wording is correct under current US GAAP. AnalystPrep's Level II notes on cash flow quality do not mention the item, so the 2026 curriculum's own wording remains unconfirmed." },
-  ],
+  flags: [],
 };

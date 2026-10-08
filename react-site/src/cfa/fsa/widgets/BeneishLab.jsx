@@ -6,8 +6,10 @@ import { useTween, prefersReducedMotion } from "../components/motion.js";
    Every index, contribution, score and probability is computed from the raw
    inputs on screen; nothing is typed in. Coefficients are Beneish (1999) as
    the curriculum reproduces them; the -1.78 cutoff is the one the curriculum
-   uses. Altman zone lines (1.81 / 2.99) are the commonly cited original
-   thresholds and are labelled as such. */
+   uses. AQI follows Beneish (1999): soft assets = 1 - (current assets +
+   net PP&E) / total assets, with no securities term. Altman zone lines
+   (1.81 / 2.99) are the commonly cited original thresholds and are
+   labelled as such. */
 
 const FIELDS = [
   { k: "sales", label: "Sales (revenue)" },
@@ -15,7 +17,6 @@ const FIELDS = [
   { k: "rec", label: "Accounts receivable" },
   { k: "ca", label: "Current assets" },
   { k: "ppe", label: "PP&E (net)" },
-  { k: "sec", label: "Securities (investments)" },
   { k: "ta", label: "Total assets" },
   { k: "dep", label: "Depreciation expense" },
   { k: "sga", label: "SG&A expense" },
@@ -30,22 +31,22 @@ const PRESETS = [
     id: "vantor",
     name: "Vantor Systems",
     note: "fast growth, slipping margins, slow collections",
-    p: { sales: 1000, cogs: 600, rec: 100, ca: 400, ppe: 450, sec: 50, ta: 1000, dep: 50, sga: 150, ni: 80, cfo: 90, cl: 200, ltd: 300 },
-    t: { sales: 1300, cogs: 832, rec: 195, ca: 560, ppe: 600, sec: 50, ta: 1400, dep: 48, sga: 180, ni: 110, cfo: 40, cl: 300, ltd: 450 },
+    p: { sales: 1000, cogs: 600, rec: 100, ca: 400, ppe: 450, ta: 1000, dep: 50, sga: 150, ni: 80, cfo: 90, cl: 200, ltd: 300 },
+    t: { sales: 1300, cogs: 832, rec: 195, ca: 560, ppe: 600, ta: 1400, dep: 48, sga: 180, ni: 110, cfo: 40, cl: 300, ltd: 450 },
   },
   {
     id: "clear",
     name: "Clearwater Supplies",
     note: "steady growth, every ratio stable",
-    p: { sales: 1000, cogs: 600, rec: 100, ca: 400, ppe: 450, sec: 50, ta: 1000, dep: 50, sga: 150, ni: 80, cfo: 95, cl: 200, ltd: 300 },
-    t: { sales: 1080, cogs: 648, rec: 108, ca: 432, ppe: 486, sec: 54, ta: 1080, dep: 54, sga: 162, ni: 86, cfo: 100, cl: 216, ltd: 324 },
+    p: { sales: 1000, cogs: 600, rec: 100, ca: 400, ppe: 450, ta: 1000, dep: 50, sga: 150, ni: 80, cfo: 95, cl: 200, ltd: 300 },
+    t: { sales: 1080, cogs: 648, rec: 108, ca: 432, ppe: 486, ta: 1080, dep: 54, sga: 162, ni: 86, cfo: 100, cl: 216, ltd: 324 },
   },
 ];
 
 const VARS = [
   { k: "DSRI", name: "Days sales in receivables index", coef: 0.92, neutral: 1, signal: "Above 1: receivables grew faster than sales. Possible revenue inflation (aggressive recognition, channel stuffing) or slower collection." },
   { k: "GMI", name: "Gross margin index", coef: 0.528, neutral: 1, signal: "Above 1: gross margin deteriorated (last year's margin over this year's). Companies with weakening prospects have more reason to manipulate." },
-  { k: "AQI", name: "Asset quality index", coef: 0.404, neutral: 1, signal: "Above 1: a larger share of assets is neither current assets, PP&E nor securities, i.e. soft assets. Possible capitalization or deferral of costs." },
+  { k: "AQI", name: "Asset quality index", coef: 0.404, neutral: 1, signal: "Above 1: a larger share of assets is neither current assets nor net PP&E, i.e. soft assets. Possible capitalization or deferral of costs. (Some sources also count securities as hard assets; this lab follows Beneish (1999) and excludes them.)" },
   { k: "SGI", name: "Sales growth index", coef: 0.892, neutral: 1, signal: "Above 1: sales grew. Growth is not manipulation, but high-growth companies face pressure to keep the growth story going." },
   { k: "DEPI", name: "Depreciation index", coef: 0.115, neutral: 1, signal: "Above 1: the depreciation rate fell (last year's rate over this year's). Possibly longer useful lives or other income-increasing estimates." },
   { k: "SGAI", name: "SG&A expense index", coef: -0.172, neutral: 1, signal: "Above 1: selling, general and administrative costs rose as a share of sales. The coefficient is negative in Beneish's model." },
@@ -68,7 +69,7 @@ function safeDiv(a, b) { return Math.abs(b) > 1e-12 ? a / b : NaN; }
 
 export function beneish(p, t) {
   const gm = (d) => safeDiv(d.sales - d.cogs, d.sales);
-  const soft = (d) => 1 - safeDiv(d.ca + d.ppe + d.sec, d.ta);
+  const soft = (d) => 1 - safeDiv(d.ca + d.ppe, d.ta);
   const depRate = (d) => safeDiv(d.dep, d.dep + d.ppe);
   const v = {
     DSRI: safeDiv(safeDiv(t.rec, t.sales), safeDiv(p.rec, p.sales)),
