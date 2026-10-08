@@ -353,6 +353,12 @@ export default {
         },
         {
           t: "callout",
+          tone: "beyond",
+          title: "The associate adjustment is this module's own extension",
+          html: "The last row of the table, CFO / (NI - equity income + dividends from Kestrel), is an analytical extension built for Pinnacle, not a measure the curriculum defines. The curriculum's Nestle case works with the balance-sheet-based and cash-flow-based accruals ratios above, and with cash flow from operations relative to operating earnings (operating income), with no adjustment for an associate. On the exam, compute the accruals ratios with the formulas above and compare CFO with operating earnings when asked; use the reasoning here (equity income in excess of dividends is non-cash) to interpret the result, not as a formula you will be asked for.",
+        },
+        {
+          t: "callout",
           tone: "insight",
           title: "Why integration matters here",
           html: "Run the accruals ratio in isolation and you flag Pinnacle for poor earnings quality. Run it after the DuPont work and you recognize the associate's fingerprint. The techniques are not separate tests; each one tells you how to read the next.",
@@ -470,6 +476,12 @@ export default {
           tone: "exam",
           title: "The curriculum's lease case",
           html: "The 2026 module's 'Off-Balance Sheet Leverage from Operating Leases' case is a pre-2019 exercise. A fund screens its holdings for hidden leverage with the ratio rental expense x 7.4 / total assets, where 7.4 is roughly the present value factor of a 10-year level payment at 6%. A company above the 5% threshold has its operating leases capitalized and its balance sheet amounts and ratios revised; it looks financially weaker, and the recommendation is to reduce the holding. The mechanics are the ones above.",
+        },
+        {
+          t: "callout",
+          tone: "beyond",
+          title: "Purchase commitments: an analyst extension beyond the case",
+          html: "The curriculum's case capitalizes operating leases only. Treating a take-or-pay purchase contract as debt (as the adjustments lab below and the Lumen Foods item set do) is an extension some credit analysts make, applying the same logic: a non-cancellable fixed payment is a claim on future cash, so its present value is added to assets and debt. Do not assume the curriculum requires it. On the exam, capitalize a purchase commitment only when the vignette says the analyst treats it as debt.",
         },
         {
           t: "check",
@@ -671,8 +683,8 @@ export default {
           caption: "Balance sheet modifications and what they do to the ratios",
           head: ["Adjustment", "Assets", "Liabilities", "Equity", "Typical ratio effects"],
           rows: [
-            ["LIFO to FIFO (rising prices)", "+ LIFO reserve", "+ reserve x t", "+ reserve x (1 - t)", "Current ratio up; debt to equity down; inventory turnover down"],
-            ["Capitalize lease or purchase commitments", "+ PV", "+ PV (debt)", "Unchanged", "Debt to equity and debt to capital up; asset turnover and ROA down"],
+            ["LIFO to FIFO (rising prices)", "+ LIFO reserve (+ reserve x (1 - t) net if the tax is assumed paid in cash)", "+ reserve x t (deferred or current tax liability; unchanged if the tax is assumed paid)", "+ reserve x (1 - t)", "Current ratio up; debt to equity down; inventory turnover down"],
+            ["Capitalize operating lease commitments (pre-2019), or purchase commitments as an analyst extension", "+ PV", "+ PV (debt)", "Unchanged", "Debt to equity and debt to capital up; asset turnover and ROA down"],
             ["Pension deficit treated as debt", "Unchanged", "Reclassified into debt", "Unchanged", "Debt ratios up; total liabilities unchanged"],
             ["Remove goodwill (tangible book value)", "- goodwill", "Unchanged", "- goodwill", "ROA and ROE up; debt to equity up"],
             ["Proportionately consolidate an associate's debt", "+ share of its assets", "+ share of its debt", "Unchanged", "Debt ratios up; asset turnover down if only the balance sheet is grossed up (a full proportionate consolidation also adds the share of revenue)"],
@@ -790,7 +802,7 @@ export default {
     { wrong: "Rising ROE means the business is improving.", right: "ROE can rise through leverage, a lower tax rate, an associate's profit or one-off gains while operations deteriorate. Decompose it and strip out non-operating items before drawing a conclusion." },
     { wrong: "Capitalizing an operating lease raises net income because rent disappears.", right: "EBIT rises (rent becomes depreciation), but depreciation plus front-loaded interest exceeds rent early in a lease, so net income falls in the early years." },
     { wrong: "FIFO cost of goods sold equals LIFO cost of goods sold plus the increase in the LIFO reserve.", right: "Minus. A rising reserve means FIFO charges older, cheaper costs, so FIFO COGS is lower and FIFO profit higher." },
-    { wrong: "Converting LIFO to FIFO adds the whole LIFO reserve to equity.", right: "Equity rises by the reserve x (1 - t). The tax slice (reserve x t) goes to deferred tax liabilities (or taxes payable). Inventory rises by the whole reserve." },
+    { wrong: "Converting LIFO to FIFO adds the whole LIFO reserve to equity.", right: "Equity rises by the reserve x (1 - t). The tax slice (reserve x t) goes to deferred tax liabilities, to taxes payable, or out of cash, depending on the analyst's assumption; equity rises by the same amount in every case. Inventory rises by the whole reserve." },
     { wrong: "After IFRS 16 and ASC 842 there is no off-balance-sheet leverage left to adjust for.", right: "Analysts still adjust: for trend comparisons across 2019, for the US GAAP operating lease cost that stays in operating expenses, and for purchase commitments, guarantees and pension deficits that are not counted as debt." },
     { wrong: "Under ASC 842 an operating lease affects the income statement and cash flows exactly like an IFRS 16 lease.", right: "ASC 842 operating leases keep a single straight-line cost in operating expenses and all payments in CFO. Only the balance sheet changes." },
     { wrong: "Normalizing earnings also changes the balance sheet.", right: "Normalization relabels income as recurring or not. The gain, the provision and the cash all happened, so the balance sheet is unchanged." },
@@ -958,9 +970,5 @@ export default {
     },
   ],
 
-  flags: [
-    { los: "c", note: "Section heading 'Off-Balance Sheet Leverage from Operating Leases' is reported for 2026. Verify whether the worked example capitalizes pre-2019 operating leases or uses IFRS 16 / ASC 842 disclosures, and whether purchase commitments are treated as debt in the book. Research 2026-10: AnalystNotes' 2026 Level II notes for this subject describe a pre-2019 screen (rental expense x 7.4 / total assets above 5%) followed by capitalizing the flagged company's operating leases; the content callout now says so. Nothing found on whether the case treats purchase commitments as debt, so that part stays open." },
-    { los: "c", note: "The tax effect of a LIFO to FIFO restatement is recorded as a deferred tax liability in the scenario and item set; the curriculum also allows taxes payable. Confirm which the 2026 book uses in its integration exhibits. Research 2026-10: a 300hours Level II forum thread treats the tax effect as a reduction in cash (cash and CFO fall by the increase in the reserve x t), while other prep summaries in search results book the reserve x t as a deferred tax liability; none refers to the 2026 integration reading's exhibits, so not conclusive." },
-    { los: "a", note: "The accruals ratio adjustment for undistributed equity income (CFO / (NI - equity income + dividends received)) is an analytical extension built for this case; check that the 2026 case computes accruals the same way. Research 2026-10: AnalystNotes' 2026 summary of the Nestle case says the analyst examined balance-sheet-based and cash-flow-based accruals ratios (finding significant fluctuations) and that the ratio of operating cash flow to operating earnings was fairly consistent; it does not mention an associate adjustment. That suggests the case uses CFO / operating income rather than the measure built here, but it is a single source, so the extension is kept and labelled as such." },
-  ],
+  flags: [],
 };

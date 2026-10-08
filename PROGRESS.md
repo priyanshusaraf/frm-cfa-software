@@ -770,7 +770,7 @@ bookmark toggles, both corner pills, and the resize handle present.
 
 | Module | Content | Scenarios | Widgets | Notes |
 |---|---|---|---|---|
-| LM10 Intercorporate Investments | done | 9 | none | 2 flags |
+| LM10 Intercorporate Investments | done | 9 | none | no open flags |
 | LM11 Employee Compensation | REBUILT for the 2026 LOS | 7 | PensionLab, StockOptionLab, SbcForecastLab, PensionBridge | 2026 LOS differ from the older reading: added forecasting SBC and shares, pension modeling and valuation |
 | LM12 Multinational Operations | done | 3 | FxTranslator, HyperinflationLab, FxSalesLab | translator verified by hand |
 | LM13 Financial Institutions | done | 4 | CamelsLab, InsurerLab | no public 2026 summary found |
@@ -781,7 +781,7 @@ Totals: 66 sections, 33 animated scenarios, 243 reconstruct rounds, 14 widgets, 
 137+ flashcards, a timed mock exam. LOS text and letters VERIFIED against CFA Institute's
 official 2026 topic outline (2026-10-08). Independent reviewers recomputed every number in
 every module and fixed about 60 defects. Verified 2026-10-08: all six module gates OK, npm test 167/167,
-build green, CFA Institute 2026 errata applied (goodwill impairment now one-step, R&D, JV, VIE, contingent liabilities), 25 flags closed by research, headless sweep of 46 pages (every scenario played through), widget fuzz of 444
-control actions, all clean. Not verified by the owner in a real browser yet.
-NEXT for CFA: owner commits the books under cfa-l2/; then resolve the 27 open flags in
-react-site/docs/cfa/fsa-curriculum-reconciliation.md.
+build green, CFA Institute 2026 errata applied (goodwill impairment now one-step, R&D, JV, VIE, contingent liabilities), 25 flags closed by research, then an exam-safe pass closed 26 of the last 27 (certain points in the main text, uncertain ones labelled beyond the curriculum, model notes next to widgets; Beneish AQI now per Beneish 1999). Headless sweep of 46 pages (every scenario played through), widget fuzz of every LM11 to LM15 widget control,
+all clean. Fixed: the Lab kept the old step index when you switched scenario (Theater now keyed by scenario id). Not verified by the owner in a real browser yet.
+NEXT for CFA: owner commits the books under cfa-l2/; then close the 1 open flag (LM11 content source) and run the
+line-by-line checklist in react-site/docs/cfa/fsa-curriculum-reconciliation.md.

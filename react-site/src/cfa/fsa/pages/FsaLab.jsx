@@ -18,7 +18,7 @@ export default function FsaLab() {
       <FsaLayout moduleId={null}>
         <Link to="/cfa/fsa/lab" className="fsa-link" style={{ marginLeft: 0 }}><ArrowLeft size={13} /> All animations</Link>
         <div className="fsa-kicker" style={{ marginTop: "0.8rem" }}>LM {mod ? mod.num : ""} · {mod ? mod.title : ""}</div>
-        <Theater scenario={scn} />
+        <Theater key={scn.id} scenario={scn} />
         <p className="fsa-dim">
           Read the full explanation in <Link to={"/cfa/fsa/" + scn.module}>LM {mod ? mod.num : ""}</Link>, or{" "}
           <Link to="/cfa/fsa/practice">rebuild these statements yourself</Link>.

@@ -93,7 +93,7 @@ export function Block({ b }) {
     case "theater": {
       const scn = scenarioById(b.scenario);
       if (!scn) return <Warn>Missing scenario: {b.scenario}</Warn>;
-      return <Theater scenario={scn} />;
+      return <Theater key={scn.id} scenario={scn} />;
     }
     case "widget": {
       const W = widgetFor(b.name);

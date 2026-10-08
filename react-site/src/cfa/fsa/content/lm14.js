@@ -565,7 +565,7 @@ export default {
           t: "callout",
           tone: "beyond",
           title: "Beyond the curriculum, flagged so you do not mistake it for exam content",
-          html: "Altman's original 1968 study is commonly cited with zones: below 1.81 'distress', 1.81 to 2.99 'grey', above 2.99 'safe'. The lab draws these lines because practitioners use them. Learn the direction (higher is safer) and the limitations for the exam; check your book before relying on the specific cutoffs.",
+          html: "Altman's original 1968 study is commonly cited with zones: below 1.81 'distress', 1.81 to 2.99 'grey', above 2.99 'safe'. The lab draws these lines because practitioners use them. They are a practitioner convention, not a curriculum rule.",
         },
         {
           t: "callout",
