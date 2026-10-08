@@ -660,7 +660,7 @@ const rsuWindfall = {
         ifrs: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
         gaap: [dr("comp", 100), cr("apicRsu", 100), dr("dta", 20), cr("taxExp", 20)],
       },
-      insight: "Net income falls by 100 - 20 = 80. Total equity falls by only the 80 too: paid-in capital rose by 100 while retained earnings fell by 80 (the deferred tax asset is a real asset).",
+      insight: "Net income falls by 100 - 20 = 80, so retained earnings fall by 80. Paid-in capital rises by 100, so total equity actually RISES by 20, matched by the new deferred tax asset of 20. Before tax the expense leaves total equity unchanged; the tax benefit is what adds the 20.",
     },
     { title: "Close year one", html: "Net income rolls into retained earnings.", entries: { ifrs: [], gaap: [] }, close: true, practice: false },
     {

@@ -187,7 +187,7 @@ export default function SbcForecastLab() {
           {gap < 0.02 ? <CheckCircle2 size={16} /> : <AlertTriangle size={16} />} The two consistent treatments differ by <Tw v={gap * 100} dp={1} />%
         </div>
         <div style={{ fontSize: "0.8rem", color: "var(--text)", marginTop: "0.3rem", lineHeight: 1.6 }}>
-          Present value of all future SBC: <Tw v={k.pvSbc} />. Treatment 2 converts that, less the <Tw v={x.unrec0} /> already tied to today's unvested units, into shares at today's price. The gap widens when the model's value moves far from the share price, because Treatment 2 always lands between the two. The inconsistent mix overstates Treatment 1 by <b><Tw v={mixOver * 100} dp={1} />%</b>.
+          Present value of all future SBC: <Tw v={k.pvSbc} />. Treatment 2 converts that, less the <Tw v={x.unrec0} /> already tied to today's unvested units, into shares at today's price. The gap widens when the model's value moves far from the share price, because Treatment 2 lands between the two (whenever future SBC at least covers today's unrecognized cost and the unvested units are dilutive). The inconsistent mix overstates Treatment 1 by <b><Tw v={mixOver * 100} dp={1} />%</b>.
         </div>
       </div>
 

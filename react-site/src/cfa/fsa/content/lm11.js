@@ -49,7 +49,7 @@ export default {
           t: "callout",
           tone: "insight",
           title: "Why the deferred components are the analyst's problem",
-          html: "Share-based pay and post-employment benefits are paid later, at an uncertain cost, so the reported expense is an estimate rather than a cash amount. That creates two modeling jobs a salary never does. Share-based pay creates new shares, so you must forecast the share count your value is divided by. A defined benefit pension creates a debt-like obligation, so you must decide how its deficit and its cost enter your valuation. Both are covered in this module in the curriculum's order: share-based pay first, then post-employment benefits.",
+          html: "Share-based pay and post-employment benefits are paid later, at an uncertain cost, so the reported expense is an estimate rather than a cash amount. That creates two modeling jobs a salary never does. Share-based pay creates new shares, so you must forecast the share count your value is divided by. A defined benefit pension creates a debt-like obligation, so you must decide how its deficit and its cost enter your valuation.",
         },
         {
           t: "sort",
@@ -1100,8 +1100,8 @@ export default {
           caption: "Modeling a defined benefit plan (or other post-employment benefits, OPEB), IFRS presentation",
           head: ["Component", "Income statement and OCI", "Net pension liability (asset)", "Cash flow statement", "In a DCF valuation"],
           rows: [
-            ["Service cost (current and past)", "Operating expense in profit or loss", "Increases it", "No direct effect", "Deduct from free cash flow: it is the cost of employees' future work, like share-based pay"],
-            ["Net interest", "Profit or loss (often within finance costs)", "Increases a deficit (reduces a surplus)", "No direct effect", "Exclude from free cash flow: the deficit is deducted at its present value instead"],
+            ["Service cost (current and past)", "Operating expense in profit or loss", "Increases it", "No direct effect", "Deduct forecast current service cost from free cash flow: it is the cost of employees' future work, like share-based pay (past service cost from plan amendments is not normally forecast)"],
+            ["Net interest", "Profit or loss (often within finance costs)", "Increases a deficit (on a surplus it is net interest income, which increases the surplus)", "No direct effect", "Exclude from free cash flow: the deficit is deducted at its present value instead"],
             ["Remeasurements", "Other comprehensive income (OCI), never reclassified", "Increase or decrease it", "No direct effect", "Usually forecast at zero: they are the unpredictable gap between assumptions and outcomes"],
             ["Employer contributions", "None", "Reduce it", "Operating cash outflow", "Not deducted separately: their cost is captured by service cost in free cash flow and the deficit in the bridge"],
           ],
@@ -1111,7 +1111,7 @@ export default {
           t: "formula",
           name: "Net pension liability roll-forward (for the model)",
           tex: "\\text{Net pension liability}_{end} = \\text{Net pension liability}_{beg} + \\text{Service cost} + \\text{Net interest} + \\text{Remeasurements} - \\text{Employer contributions}",
-          plain: "Pinnacle's IFRS year from the earlier sections: 100 + 110 (current 60 and past 50 service cost) + 5 + 35 - 80 = 170. Benefits paid by the plan do not appear, because they reduce the obligation and the plan assets equally. Forecast service cost and net interest drive the income statement, contributions drive the cash flow statement, and this roll-forward ties them to the balance sheet.",
+          plain: "Check it on the IFRS year from the earlier sections: 100 + 110 (current 60 and past 50 service cost) + 5 + 35 - 80 = 170. (The valuation below uses a larger, separate set of figures, with a deficit of 600, so the bridge is easy to see.) Benefits paid by the plan do not appear, because they reduce the obligation and the plan assets equally. Forecast service cost and net interest drive the income statement, contributions drive the cash flow statement, and this roll-forward ties them to the balance sheet.",
         },
         {
           t: "h",
