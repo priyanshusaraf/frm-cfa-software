@@ -158,7 +158,7 @@ const capitalizeCommitments = {
   steps: [
     {
       title: "Capitalize the lease commitments at the start of the year",
-      prompt: "The lease note shows 108 a year of non-cancellable rent for 10 years. The analyst discounts it at Pinnacle's 6% borrowing rate to a present value of 800 and capitalizes it.",
+      prompt: "The lease note shows 108 a year of non-cancellable rent for 10 years. The analyst discounts it at Pinnacle's 6% borrowing rate (about 795, rounded to 800 to keep the arithmetic clean) and capitalizes 800.",
       html:
         "Pinnacle has signed contracts to pay 108 a year for 10 years. It cannot walk away, so that promise is as binding as a bond coupon. The analyst records the present value, 800, twice: as an asset (the right to use the stores) and as a liability (the obligation to pay for them). No cash moves and equity does not change on day one. Debt rises from 3,000 to 3,800.",
       entries: { adj: [dr("rou", 800), cr("lease", 800)] },
@@ -168,7 +168,8 @@ const capitalizeCommitments = {
         rows: [
           ["Annual payments, non-cancellable", "108 x 10 years"],
           ["Discount rate (incremental borrowing rate)", "6%"],
-          ["Analyst's present value (rounded)", "800"],
+          ["Present value: 108 x annuity factor (6%, 10 years) = 108 x 7.360", "795"],
+          ["Rounded for this example", "800"],
           ["Added to assets and to debt", "800"],
         ],
       },
@@ -275,10 +276,10 @@ const lifoToFifo = {
       insight: "Some analysts treat the 60 as taxes payable instead (a current liability), which makes the current ratio rise less. Whichever you choose, state it.",
     },
     {
-      title: "Buy inventory of 2,850 for cash",
-      prompt: "Pinnacle buys 2,850 of inventory for cash.",
+      title: "Buy inventory of 2,850 on credit",
+      prompt: "Pinnacle buys 2,850 of inventory on credit.",
       html: "A purchase is a purchase under any cost flow assumption, so both columns record the same 2,850.",
-      entries: both(LIFO, [dr("stock", 2850), cr("cash", 2850, "CFO", "Cash paid to suppliers")]),
+      entries: both(LIFO, [dr("stock", 2850), cr("ap", 2850)]),
     },
     {
       title: "Sell goods for 4,000; LIFO cost of sales is 2,800",
@@ -288,10 +289,12 @@ const lifoToFifo = {
       entries: both(LIFO, [dr("cash", 4000, "CFO", "Cash received from customers"), cr("sales", 4000), dr("cogs", 2800), cr("stock", 2800)]),
     },
     {
-      title: "Pay operating expenses of 600 and income tax of 150",
-      prompt: "Pinnacle pays 600 of operating expenses and 150 of income tax (25% of LIFO pretax income) in cash.",
-      html: "Taxable income is computed on LIFO: 4,000 - 2,800 - 600 = 600, so tax paid is 150. That cash is real in both columns; FIFO restatement never changes cash.",
+      title: "Pay suppliers 2,850, operating expenses of 600 and income tax of 150",
+      prompt: "Pinnacle pays its suppliers the 2,850 it owes for the year's purchases, 600 of operating expenses and 150 of income tax (25% of LIFO pretax income), all in cash.",
+      html: "Paying the suppliers settles the payable from the purchase. Taxable income is computed on LIFO: 4,000 - 2,800 - 600 = 600, so tax paid is 150. That cash is real in both columns; FIFO restatement never changes cash.",
       entries: both(LIFO, [
+        dr("ap", 2850),
+        cr("cash", 2850, "CFO", "Cash paid to suppliers"),
         dr("opex", 600),
         cr("cash", 600, "CFO", "Cash paid for operating expenses"),
         dr("taxExp", 150),
@@ -315,7 +318,7 @@ const lifoToFifo = {
       },
       insight:
         "FIFO shows higher inventory, higher equity, a higher current ratio and a higher gross margin, and a LOWER inventory turnover. In a period of rising prices LIFO gives the better income statement measure (current costs) and FIFO the better balance sheet measure (current inventory values).",
-      exam: "If the reserve FELL during the year, LIFO layers were liquidated: old cheap costs flowed into cost of sales and LIFO profit was temporarily inflated. FIFO cost of sales is then HIGHER than LIFO cost of sales.",
+      exam: "If the reserve FELL during the year, FIFO cost of sales is HIGHER than LIFO cost of sales. Two causes are possible: prices fell, or the company sold more than it bought and liquidated old LIFO layers, so old cheap costs flowed into cost of sales and inflated LIFO profit for that year only. A liquidation is the one to adjust for when normalizing LIFO earnings.",
     },
   ],
   ratios: [

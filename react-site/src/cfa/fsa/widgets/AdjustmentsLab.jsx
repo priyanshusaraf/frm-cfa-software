@@ -12,7 +12,7 @@ import { fmt } from "../engine/ledger.js";
 const PARAMS = {
   t: 0.25,
   lifo: { beg: 240, end: 300 },
-  commit: { pv: 800, rate: 0.06, life: 10, payment: 108 },
+  commit: { rate: 0.06, life: 10, payment: 108 },
   stake: 0.3,
   kestrelDebt: 2000,
   restructuring: 160,
@@ -49,6 +49,9 @@ const IS = [
 ];
 
 const P = PARAMS;
+/* Present value of the disclosed payments, an ordinary annuity at the
+   borrowing rate, rounded to a whole number as an analyst would. */
+P.commit.pv = Math.round((P.commit.payment * (1 - Math.pow(1 + P.commit.rate, -P.commit.life))) / P.commit.rate);
 const base = (id) => BS.find((l) => l.id === id).v;
 const pct = (x) => Math.round(x * 1000) / 10 + "%";
 const ADJ = [
@@ -65,7 +68,7 @@ const ADJ = [
       ["Into operating expenses", "Amortization: " + P.commit.pv + " / " + P.commit.life + " years", P.commit.pv / P.commit.life],
       ["Into interest expense", "Interest: " + pct(P.commit.rate) + " x " + P.commit.pv, P.commit.pv * P.commit.rate],
     ],
-    why: "Pinnacle must pay " + P.commit.payment + " a year for " + P.commit.life + " years whether or not it takes the packaging. That is a fixed claim like a bond, so the analyst records its present value (" + P.commit.pv + ") as debt and as an asset, and re-splits the payment the way pre-2019 operating leases were capitalized: amortization above EBIT, interest below it. EBIT rises, interest rises more, net income dips.",
+    why: "Pinnacle must pay " + P.commit.payment + " a year for " + P.commit.life + " years whether or not it takes the packaging. That is a fixed claim like a bond, so the analyst discounts the payments at the " + pct(P.commit.rate) + " borrowing rate and records the present value (" + P.commit.pv + ") as debt and as an asset, and re-splits the payment the way pre-2019 operating leases were capitalized: amortization above EBIT, interest below it. EBIT rises, interest rises more, net income dips.",
   },
   {
     id: "pension",

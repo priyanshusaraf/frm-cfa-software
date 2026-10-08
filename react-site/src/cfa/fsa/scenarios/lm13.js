@@ -79,7 +79,7 @@ const bankCredit = {
       title: "Recognize a provision for credit losses of 6",
       prompt: "Harbor's credit team raises its estimate of expected losses on the loan book by 6.",
       html:
-        "<p>No borrower has defaulted yet. Under both expected credit loss models (IFRS 9 expected credit loss and US GAAP current expected credit loss, CECL) Harbor must recognize losses it EXPECTS, not only losses that have already happened. The provision is an expense (profit falls by 6) and the credit side builds the <b>allowance for loan losses</b>, a contra asset that sits under gross loans as a negative number. Net loans fall from 624 to 618.</p><p>This is the biggest judgment call in a bank's accounts. A provision of 4 instead of 6 would have raised pre-tax profit by 2 with no change in a single borrower's behaviour.</p>",
+        "<p>No borrower has defaulted yet. Under both expected credit loss models (IFRS 9 expected credit loss and US GAAP current expected credit loss, CECL) Harbor must recognize losses it EXPECTS, not only losses that have already happened. The provision is an expense (profit falls by 6) and the credit side builds the <b>allowance for loan losses</b>, a contra asset that sits under gross loans as a negative number. Net loans (gross loans of 680 after the new lending, less the allowance) fall from 664 to 658.</p><p>This is the biggest judgment call in a bank's accounts. A provision of 4 instead of 6 would have raised pre-tax profit by 2 with no change in a single borrower's behaviour.</p>",
       entries: [dr("prov", 6), cr("all", 6)],
       memo: {
         title: "Allowance roll-forward so far",
@@ -188,10 +188,10 @@ const rateShock = {
       },
     },
     {
-      title: "Market rates rise by 3 percentage points: the bonds are now worth 255",
+      title: "Market rates rise by about 2 percentage points: the bonds are now worth 255",
       prompt: "Year end: market yields have risen sharply and Harbor's bonds are now worth 255.",
       html:
-        "<p>A 2% bond is worth much less when new bonds pay 5%. The fall of 45 is real: if Harbor had to sell today it would get 255.</p><p><b>FVOCI:</b> the bonds are marked down to 255 and the 45 loss goes to other comprehensive income. Net income is untouched, but equity (through accumulated OCI) falls from 64 to 19.</p><p><b>Amortized cost:</b> no entry at all. The bonds stay at 300 and the 45 loss appears only in the fair value note. Reported equity stays at 64.</p>",
+        "<p>A 2% bond is worth much less when new bonds of similar maturity pay about 4%: with a duration of roughly 8 to 9 years, a 2 percentage point rise cuts its price by about 15%. The fall of 45 is real: if Harbor had to sell today it would get 255.</p><p><b>FVOCI:</b> the bonds are marked down to 255 and the 45 loss goes to other comprehensive income. Net income is untouched, but equity (through accumulated OCI) falls from 64 to 19.</p><p><b>Amortized cost:</b> no entry at all. The bonds stay at 300 and the 45 loss appears only in the fair value note. Reported equity stays at 64.</p>",
       entries: {
         fvoci: [dr("ociLoss", 45), cr("sec", 45)],
         ac: [],

@@ -204,7 +204,7 @@ const capitalizeCosts = {
         ],
       },
       insight:
-        "Net income is four times higher and CFO three times higher, yet the company has exactly the same cash. The one measure the trick cannot move is CFO + CFI, which is why analysts look at free cash flow, not CFO alone.",
+        "Net income is more than four times higher and CFO three times higher, yet the company has exactly the same cash. The one measure the trick cannot move is CFO + CFI, which is why analysts look at free cash flow, not CFO alone.",
       exam: "Capitalization raises net income, CFO and total assets, and lowers CFI, in the year of the spending. Later years carry the amortization. Cash-flow accruals (NI - CFO - CFI) swing from -250 to +550: a large positive accrual is the quantitative footprint.",
     },
   ],

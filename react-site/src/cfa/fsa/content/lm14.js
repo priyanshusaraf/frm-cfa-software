@@ -80,7 +80,7 @@ export default {
           t: "callout",
           tone: "insight",
           title: "Conservatism in the standards versus conservatism in the choices",
-          html: "<p>Some conservatism is built into the rules themselves: research costs are expensed (all research and development under US GAAP, with narrow exceptions; research under IFRS, while qualifying development costs are capitalized); a probable litigation loss is accrued but a probable gain is not; inventory is written down to net realizable value but not written up. These asymmetries are the same for every company, so they reduce comparability less than a company's own choices do.</p><p>The analyst worries most about bias in the choices management makes: estimates, timing and presentation. That is where one company can differ from its peers.</p>",
+          html: "<p>Some conservatism is built into the rules themselves: research costs are expensed (all research and development under US GAAP, with narrow exceptions; research under IFRS, while qualifying development costs are capitalized); a probable litigation loss is accrued but a probable gain is not; inventory is written down to net realizable value but never written up above its cost. These asymmetries are the same for every company, so they reduce comparability less than a company's own choices do.</p><p>The analyst worries most about bias in the choices management makes: estimates, timing and presentation. That is where one company can differ from its peers.</p>",
         },
         {
           t: "sort",
@@ -128,7 +128,7 @@ export default {
         {
           t: "p",
           html: `<p>It is 28 December at Halcyon Appliances. The sales director is 120 of profit short of the bonus target, and the year closes in three days. Customers cannot be made to want more fridges by Friday. But an invoice can be printed by Friday.</p>
-<p>That is the whole logic of recognition problems. Profit is revenue minus expenses, and both are recognized according to rules about <b>timing</b>. Pull revenue into this period, or push expenses out of it, and this period's profit rises with nothing real having changed. The curriculum groups the potential problems into recognition (amounts and timing), classification, and measurement, plus issues around business combinations. This section takes recognition.</p>`,
+<p>That is the whole logic of recognition problems. Profit is revenue minus expenses, and both are recognized according to rules about <b>timing</b>. Pull revenue into this period, or push expenses out of it, and this period's profit rises with nothing real having changed. The curriculum groups the potential problems into recognition (amounts and timing), classification, and measurement, plus issues around business combinations.</p>`,
         },
         {
           t: "h",
@@ -266,7 +266,7 @@ export default {
             ["Goodwill and intangibles", "Impairment testing assumptions", "Optimistic cash flow forecasts that avoid impairment", "Goodwill large relative to equity while the share price sits below book value"],
             ["Financial assets and liabilities", "Fair values without market prices (Level 3)", "Model inputs that flatter value", "Large Level 3 balances, gains on Level 3 assets in a falling market"],
             ["Deferred tax assets", "Valuation allowance", "Too small an allowance on losses unlikely to be used", "Large deferred tax assets in a company with a history of losses"],
-            ["Pensions", "Discount rate, compensation growth, expected return", "Higher discount rate, lower salary growth", "Assumptions out of line with peers"],
+            ["Pensions", "Discount rate, compensation growth, expected return", "Higher discount rate, lower salary growth, and under US GAAP a higher expected return on plan assets (which lowers reported pension expense)", "Assumptions out of line with peers"],
           ],
         },
         { t: "theater", scenario: "lm14-useful-lives" },
@@ -501,7 +501,7 @@ export default {
             ["<b>AQI</b> asset quality index", "\\(\\dfrac{1 - (\\text{CA}_t + \\text{PP\\&E}_t + \\text{Securities}_t)/\\text{TA}_t}{1 - (\\text{CA}_{t-1} + \\text{PP\\&E}_{t-1} + \\text{Securities}_{t-1})/\\text{TA}_{t-1}}\\)", "A rising share of soft, other assets: costs being capitalized or deferred"],
             ["<b>SGI</b> sales growth index", "\\(\\dfrac{\\text{Sales}_t}{\\text{Sales}_{t-1}}\\)", "Growth itself is not manipulation, but growth companies face pressure to keep the story going"],
             ["<b>DEPI</b> depreciation index", "\\(\\dfrac{\\text{Dep}_{t-1}/(\\text{Dep}_{t-1} + \\text{PP\\&E}_{t-1})}{\\text{Dep}_t/(\\text{Dep}_t + \\text{PP\\&E}_t)}\\)", "A falling depreciation rate: possibly longer useful lives"],
-            ["<b>SGAI</b> sales, general and administrative expense index", "\\(\\dfrac{\\text{SG\\&A}_t / \\text{Sales}_t}{\\text{SG\\&A}_{t-1} / \\text{Sales}_{t-1}}\\)", "Rising overhead relative to sales. Its coefficient is negative in the model"],
+            ["<b>SGAI</b> selling, general and administrative expense index", "\\(\\dfrac{\\text{SG\\&A}_t / \\text{Sales}_t}{\\text{SG\\&A}_{t-1} / \\text{Sales}_{t-1}}\\)", "Rising overhead relative to sales. Its coefficient is negative in the model"],
             ["<b>TATA</b> total accruals to total assets", "\\(\\dfrac{\\text{Income from continuing operations}_t - \\text{CFO}_t}{\\text{TA}_t}\\)", "Earnings with less cash behind them"],
             ["<b>LVGI</b> leverage index", "\\(\\dfrac{(\\text{Current liabilities}_t + \\text{LTD}_t)/\\text{TA}_t}{(\\text{Current liabilities}_{t-1} + \\text{LTD}_{t-1})/\\text{TA}_{t-1}}\\)", "Rising leverage and covenant pressure. Its coefficient is negative in the model"],
           ],
@@ -511,7 +511,7 @@ export default {
           t: "callout",
           tone: "exam",
           title: "The cutoff",
-          html: "The curriculum uses an M-score of <b>-1.78</b> as the cutoff: a company scoring above it is flagged as a likely manipulator. Because the probability is \\(N(M)\\), the cutoff corresponds to \\(N(-1.78) \\approx 3.8\\%\\). That sounds low, but manipulators are rare in the population, so a 3.8% estimated probability is already several times the base rate. Some later research uses a stricter -2.22.",
+          html: "The curriculum uses an M-score of <b>-1.78</b> as the cutoff: a company scoring above it is flagged as a likely manipulator. Because the probability is \\(N(M)\\), the cutoff corresponds to \\(N(-1.78) \\approx 3.8\\%\\). That sounds low, but Beneish did not set the cutoff at 50%. He chose it by weighing the two possible errors: missing a manipulator costs an investor far more (a collapse in the share price) than wrongly flagging an honest company (some extra analysis, perhaps a missed opportunity). Because a miss is so much more expensive, the threshold sits at a low probability. Some sources quote a lower cutoff of -2.22, which flags more companies.",
         },
         {
           t: "h",
@@ -576,7 +576,7 @@ export default {
     {
       id: "sustainable",
       title: "Sustainable earnings, mean reversion, and why accruals fade faster",
-      los: ["e", "g"],
+      los: ["f", "g"],
       blocks: [
         {
           t: "p",
@@ -686,7 +686,7 @@ export default {
           q: "A company's NOA was 2,000 at the start of the year and 2,400 at the end. Net income was 300, CFO 100 and CFI -350. Its cash-flow based accruals ratio is closest to:",
           options: ["25.0%", "18.2%", "-6.8%"],
           answer: 0,
-          why: "Accruals = 300 - (100 - 350) = 550. Average NOA = (2,000 + 2,400) / 2 = 2,200. Ratio = 550 / 2,200 = 25.0%. The distractor -6.8% comes from treating CFI as if it were positive: 300 - 100 - 350 = -150, and -150 / 2,200 = -6.8%.",
+          why: "Accruals = 300 - (100 - 350) = 550. Average NOA = (2,000 + 2,400) / 2 = 2,200. Ratio = 550 / 2,200 = 25.0%. 18.2% is the balance-sheet ratio, (2,400 - 2,000) / 2,200, a different measure. The distractor -6.8% comes from treating CFI as if it were positive: 300 - 100 - 350 = -150, and -150 / 2,200 = -6.8%.",
         },
         {
           t: "check",
@@ -703,7 +703,7 @@ export default {
     {
       id: "earnings-indicators",
       title: "Indicators of earnings quality",
-      los: ["f"],
+      los: ["e"],
       blocks: [
         {
           t: "p",
@@ -782,7 +782,7 @@ export default {
               points: [
                 "Line costs, fees paid to other carriers for network access, were recorded as capital expenditure in 2001 and 2002, amounting to several billion dollars",
                 "Net income AND CFO were both inflated, because the outflow moved from operating to investing",
-                "What an analyst could see: line costs falling as a share of revenue while competitors' rose, and capital expenditure that did not fit a slowing market",
+                "What an analyst could see: line costs holding steady as a share of revenue while the telecom market deteriorated, and capital expenditure (and CFO) that did not fit a slowing market",
               ],
             },
             {
@@ -845,7 +845,7 @@ export default {
     {
       id: "cash-flow",
       title: "Cash flow quality",
-      los: ["i", "j"],
+      los: ["l", "i"],
       blocks: [
         {
           t: "p",
@@ -941,7 +941,7 @@ export default {
     {
       id: "balance-sheet",
       title: "Balance sheet quality",
-      los: ["k", "l"],
+      los: ["j", "k"],
       blocks: [
         {
           t: "p",
@@ -1149,7 +1149,7 @@ export default {
           q: "Sorrel's net operating assets at the end of 20X2 are closest to:",
           options: ["4,100", "2,100", "5,300"],
           answer: 0,
-          why: "NOA = (5,800 - 500) - (3,200 - 2,000) = 5,300 - 1,200 = 4,100. Subtracting all liabilities gives 2,100 (equity plus debt minus cash), and stopping after removing cash gives 5,300.",
+          why: "NOA = (5,800 - 500) - (3,200 - 2,000) = 5,300 - 1,200 = 4,100. Subtracting all liabilities instead of only the operating ones gives (5,800 - 500) - 3,200 = 2,100, which is equity less cash; stopping after removing cash gives 5,300.",
         },
         {
           q: "Sorrel's balance-sheet based accruals ratio for 20X2 is closest to:",
@@ -1249,12 +1249,12 @@ export default {
     { los: "a", note: "Quality spectrum: the order and labels of the two middle levels (biased accounting choices, then within-GAAP earnings management) were reconstructed. Verify against the 2026 exhibit." },
     { los: "c", note: "Beneish accruals coefficient: Beneish (1999) reports 4.679; some curriculum editions print 4.670. The difference is immaterial for item sets but verify which value the 2026 book uses." },
     { los: "c", note: "Beneish AQI: Beneish's original definition uses (current assets + net PP&E) / total assets; the curriculum version may also include securities, as used here. Verify." },
-    { los: "c", note: "M-score cutoff: -1.78 is used as instructed. Confirm the 2026 book uses -1.78 (rather than the later -2.22) and whether it quotes the 3.8% probability." },
+    { los: "c", note: "M-score cutoff: -1.78 is used as instructed. Confirm the 2026 book uses -1.78 (some sources quote -2.22) and whether it quotes the 3.8% probability. The explanation of why the cutoff sits at a low probability (relative costs of missing a manipulator versus a false alarm) follows Beneish (1999); check whether the curriculum gives that reasoning." },
     { los: "c", note: "Altman Z-score zones (1.81 and 2.99) are presented in a beyond-the-curriculum callout and in the lab as commonly cited original thresholds. Verify whether the 2026 book states any cutoffs." },
     { los: "b", note: "Non-GAAP measures: wording of SEC requirements (reconciliation, equal or greater prominence) and of IFRS additional subtotals is from general knowledge; confirm the curriculum treats presentation choices under this LOS." },
     { los: "h", note: "Real-company cases (Sunbeam, WorldCom, MicroStrategy) are summarized from widely documented public history without specific amounts. The curriculum's own cases may differ; check names and details." },
-    { los: "i", note: "Tax benefits of employee stock options: the curriculum's treatment may reflect the pre-2016 US GAAP classification (excess tax benefits in financing). Content describes the sustainability issue only; verify the classification wording." },
-    { los: "j", note: "IFRS 18 (effective 2027) is mentioned in a beyond callout only; the 2026 exam uses the current IAS 7 classification choices." },
+    { los: "l", note: "Tax benefits of employee stock options: the curriculum's treatment may reflect the pre-2016 US GAAP classification (excess tax benefits in financing). Content describes the sustainability issue only; verify the classification wording." },
+    { los: "i", note: "IFRS 18 (effective 2027) is mentioned in a beyond callout only; the 2026 exam uses the current IAS 7 classification choices." },
     { los: "m", note: "Audit references (ISA 701 key audit matters, PCAOB AS 3101 critical audit matters, opinion types, internal control reporting) are standard but should be checked against the curriculum's wording for this LOS." },
   ],
 };

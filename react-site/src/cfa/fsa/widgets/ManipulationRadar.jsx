@@ -97,7 +97,7 @@ export const COMPANIES = [
           { id: "dep", label: "Depreciation", vals: [200, 190, 160] },
           { id: "restr", label: "Restructuring charges (labelled non-recurring)", vals: [30, 35, 40] },
           { id: "op", label: "Operating income", sub: true, calc: (g) => zip((r, o, d, x) => r - o - d - x, g("rev"), g("opex"), g("dep"), g("restr")) },
-          { id: "int", label: "Interest expense", vals: [50, 60, 75] },
+          { id: "int", label: "Interest expense", vals: [50, 52, 54] },
           { id: "ni", label: "Net income (taxes ignored)", sub: true, calc: (g) => zip((o, i) => o - i, g("op"), g("int")) },
         ],
       },
@@ -107,13 +107,13 @@ export const COMPANIES = [
           { id: "rec", label: "Accounts receivable", vals: [250, 262, 275] },
           { id: "ppeG", label: "PP&E at cost (gross)", vals: [2000, 2200, 2400] },
           { id: "capdev", label: "Capitalized software and development costs", vals: [40, 110, 210] },
-          { id: "debt", label: "Total debt", vals: [1000, 1200, 1500] },
+          { id: "debt", label: "Total debt", vals: [1000, 1040, 1080] },
         ],
       },
       {
         title: "Cash flow statement",
         rows: [
-          { id: "cfo", label: "Cash from operations (CFO)", vals: [420, 418, 422] },
+          { id: "cfo", label: "Cash from operations (CFO)", vals: [420, 426, 443] },
           { id: "capex", label: "Capital expenditure on PP&E", vals: [-200, -200, -200] },
           { id: "capdevCF", label: "Capitalized development costs paid", vals: [-40, -70, -100] },
         ],
@@ -133,7 +133,7 @@ export const COMPANIES = [
       },
       {
         id: "cap", title: "Costs moving onto the balance sheet", rows: ["capdev", "capdevCF"],
-        why: (g) => "Capitalized software and development costs went from " + n0(g("capdev")[0]) + " to " + n0(g("capdev")[2]) + ", " + (g("capdev")[2] / g("capdev")[0]).toFixed(1) + " times the year 1 balance, in a trucking company. Every unit capitalized is an expense that skipped the income statement and an outflow that left CFO for investing. That is why CFO looks steady: CFO plus all investing outflows is only " + n0(g("cfo")[2] + g("capex")[2] + g("capdevCF")[2]) + " in year 3. A growing share of soft assets is the Beneish AQI red flag.",
+        why: (g) => "Capitalized software and development costs went from " + n0(g("capdev")[0]) + " to " + n0(g("capdev")[2]) + ", " + (g("capdev")[2] / g("capdev")[0]).toFixed(1) + " times the year 1 balance, in a trucking company. Every unit capitalized is an expense that skipped the income statement and an outflow that left CFO for investing. That is part of why CFO looks healthy (" + n0(g("cfo")[0]) + " rising to " + n0(g("cfo")[2]) + ") while CFO plus all investing outflows fell from " + n0(g("cfo")[0] + g("capex")[0] + g("capdevCF")[0]) + " to " + n0(g("cfo")[2] + g("capex")[2] + g("capdevCF")[2]) + ". A growing share of soft assets is the Beneish AQI red flag.",
       },
       {
         id: "restr", title: "'Non-recurring' charges that recur", rows: ["restr"],

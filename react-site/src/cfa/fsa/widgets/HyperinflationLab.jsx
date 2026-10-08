@@ -186,9 +186,15 @@ export default function HyperinflationLab() {
             <Bar label="No adjustment" v={m.naive.ppe} max={maxPpe} tone="red" />
             <Bar label="US GAAP (dollars paid, depreciated)" v={m.gaap.ppe} max={maxPpe} tone="amber" />
             <Bar label="IFRS (IAS 29)" v={m.ifrs.ppe} max={maxPpe} tone="accent" />
-            <p>
-              Translating LCU {fmt(m.ppe)} of cost at the collapsed rate shrinks the building to USD {fmt(Math.round(m.naive.ppe))}, {Math.round((1 - m.naive.ppe / m.gaap.ppe) * 100)}% below the dollars Pinnacle actually paid for it (after one year of depreciation). Nothing happened to the building: the measuring stick shrank. IFRS first restates the cost by the price index (x {m.fE.toFixed(2)}), so the bigger local number and the smaller rate roughly cancel.
-            </p>
+            {deval > 0.0005 ? (
+              <p>
+                Translating LCU {fmt(m.ppe)} of cost at the collapsed rate shrinks the building to USD {fmt(Math.round(m.naive.ppe))}, {Math.round((1 - m.naive.ppe / m.gaap.ppe) * 100)}% below the dollars Pinnacle actually paid for it (after one year of depreciation). Nothing happened to the building: the measuring stick shrank. IFRS first restates the cost by the price index (x {m.fE.toFixed(2)}) and then translates at a rate that is {(1 - deval).toFixed(2)} times the opening rate; the two effects cancel only when the devaluation matches inflation.
+              </p>
+            ) : (
+              <p>
+                With no devaluation, the current rate equals the historical rate, so translating the unrestated cost gives the same USD {fmt(Math.round(m.gaap.ppe))} as US GAAP. IFRS still restates the cost by the price index (x {m.fE.toFixed(2)}) before translating, so it shows a larger figure.
+              </p>
+            )}
             <p className="hyp-verdict">{verdict}</p>
           </div>
 
@@ -220,7 +226,7 @@ export default function HyperinflationLab() {
         </table>
       </div>
       <p className="fsa-dim hyp-note">
-        Simplifications: the price index and the exchange rate move evenly through the year, so the averages are midpoints; the building is the only non-monetary asset and there are no dividends. Under US GAAP the gain on the net monetary position is a remeasurement gain from the exchange rate; under IFRS it is a purchasing power gain from inflation. Both reach net income.
+        Simplifications: the price index and the exchange rate move evenly through the year, so the averages are midpoints; the building is the only non-monetary asset and there are no dividends. The sliders go down to zero so you can see the mechanics, but these treatments apply only once the economy is hyperinflationary (under US GAAP, cumulative inflation of about 100% or more over three years); otherwise the ordinary functional currency rules apply. Under US GAAP the gain on the net monetary position is a remeasurement gain from the exchange rate; under IFRS it is a purchasing power gain from inflation. Both reach net income.
       </p>
     </div>
   );

@@ -522,7 +522,7 @@ export default function FxTranslator({ startMethod = "crm" }) {
               <span><i style={{ background: "var(--accent)" }} /> CTA (current rate method)</span>
               <span><i style={{ background: "var(--purple)" }} /> Remeasurement gain or loss (temporal)</span>
             </div>
-            <p className="fsa-dim fxt-note">Horizontal axis: year-end rate. The slope of each line is its exposure: the CTA line rises by EUR {fmt(netAssets)} per dollar of euro strength, the remeasurement line falls by EUR {fmt(Math.abs(netMon))}.</p>
+            <p className="fsa-dim fxt-note">Horizontal axis: year-end rate. The slope of each line is its exposure in euros: each 0.01 rise in the rate changes the CTA by 0.01 x EUR {fmt(netAssets)} = USD {f0(netAssets * 0.01)} and the remeasurement result by 0.01 x EUR {fmt(netMon)} = USD {f0(netMon * 0.01)}.</p>
           </div>
         </aside>
       </div>

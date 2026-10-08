@@ -268,7 +268,7 @@ export default function DupontLab() {
         <b>{ex ? "What the operating business is doing" : "What the reported numbers seem to say"}</b>
         {ex ? (
           <p>
-            Without Kestrel the tax burden is flat at {fx(c0.f.tb, "x")} (one minus the {fx(TAX_RATE, "pct", 0)} tax rate) and the interest burden sits below 1.0, sliding from {fx(c0.f.ib, "x")} to {fx(c3.f.ib, "x")}. The EBIT margin fell from {fx(c0.f.m, "pct", 2)} to {fx(c3.f.m, "pct", 2)}, and only leverage rising from {fx(c0.f.lev, "x")} to {fx(c3.f.lev, "x")} held core ROE at {fx(c0.roe, "pct", 2)} to {fx(c3.roe, "pct", 2)}. Every point of the reported ROE improvement came from the associate, whose return on its carrying amount rose from {fx(assocRet[0], "pct", 1)} to {fx(assocRet[assocRet.length - 1], "pct", 1)}.
+            Without Kestrel the tax burden is flat at {fx(c0.f.tb, "x")} (one minus the {fx(TAX_RATE, "pct", 0)} tax rate) and the interest burden sits below 1.0, sliding from {fx(c0.f.ib, "x")} to {fx(c3.f.ib, "x")}. The EBIT margin fell from {fx(c0.f.m, "pct", 2)} to {fx(c3.f.m, "pct", 2)}, and leverage rising from {fx(c0.f.lev, "x")} to {fx(c3.f.lev, "x")}, with a smaller lift from asset turnover ({fx(c0.f.at, "x")} to {fx(c3.f.at, "x")}), held core ROE at {fx(c0.roe, "pct", 2)} to {fx(c3.roe, "pct", 2)}. Every point of the reported ROE improvement came from the associate, whose return on its carrying amount rose from {fx(assocRet[0], "pct", 1)} to {fx(assocRet[assocRet.length - 1], "pct", 1)}.
           </p>
         ) : (
           <p>

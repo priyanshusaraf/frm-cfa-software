@@ -5,7 +5,7 @@ import { useTween } from "../components/motion.js";
    Insurance; the life and health (L&H) panel to Juniper Life. Every ratio and
    bar is computed from the inputs; presets only change inputs. */
 
-const GRANITE = { npw: 1050, npe: 1000, losses: 610, lae: 90, uw: 273, divs: 10, inv: 75, assets: 2000 };
+const GRANITE = { npw: 1050, npe: 1000, losses: 610, lae: 90, uw: 273, divs: 10, inv: 75, gains: 15, assets: 2000 };
 const PRESETS = [
   { id: "base", label: "Granite, base year", v: GRANITE },
   { id: "soft", label: "Soft market: prices cut 10%", v: { ...GRANITE, npw: 945, npe: 900 } },
@@ -93,11 +93,13 @@ export default function InsurerLab() {
     const uwResult = p.npe - p.losses - p.lae - p.uw - p.divs;
     const implied = (1 - combDiv) * p.npe;
     const yieldR = p.inv / p.assets;
-    return { lossR, expR, comb, divR, combDiv, uwResult, implied, yieldR, op: uwResult + p.inv };
+    const totalR = (p.inv + p.gains) / p.assets;
+    return { lossR, expR, comb, divR, combDiv, uwResult, implied, yieldR, totalR, op: uwResult + p.inv };
   }, [p]);
   const lh = useMemo(() => ({ ben: l.benefits / (l.npw + l.deposits), exp: l.commExp / (l.npw + l.deposits) }), [l]);
   const scale = Math.max(50, Math.abs(r.uwResult) + Math.abs(p.inv), Math.abs(r.op)) * 1.1;
   const gap = r.uwResult - r.implied;
+  const ratiosOk = Number.isFinite(r.combDiv);
 
   return (
     <div className="fsa-theater">
@@ -125,6 +127,7 @@ export default function InsurerLab() {
           <Field label="Underwriting expenses" value={p.uw} onChange={set("uw")} hint="commissions, premium taxes, policy costs" />
           <Field label="Dividends to policyholders" value={p.divs} onChange={set("divs")} />
           <Field label="Net investment income" value={p.inv} onChange={set("inv")} hint="interest and dividends" />
+          <Field label="Realized and unrealized investment gains" value={p.gains} onChange={set("gains")} hint="volatile; excluded from the yield" />
           <Field label="Average invested assets" value={p.assets} onChange={set("assets")} />
         </div>
 
@@ -136,8 +139,9 @@ export default function InsurerLab() {
           <RatioRow label="Dividends to policyholders ratio" value={r.divR} formula="policyholder dividends / net premiums earned" />
           <RatioRow label="Combined ratio after dividends" value={r.combDiv} formula="combined ratio + dividends ratio" line={1} lineLabel="100%" strong />
           <RatioRow label="Investment yield" value={r.yieldR} scale={0.1} dp={2} formula="net investment income / average invested assets" />
-          <div style={{ fontSize: "0.8rem", marginTop: "0.4rem", color: r.combDiv < 1 ? "var(--green)" : "var(--red)", fontWeight: 600 }}>
-            {r.combDiv < 1 ? "Below 100%: an underwriting profit on the ratio basis." : r.combDiv > 1 ? "Above 100%: underwriting loses money; investment income has to cover it." : "Exactly 100%: underwriting breaks even."}
+          <RatioRow label="Total investment return" value={r.totalR} scale={0.1} dp={2} formula="(net investment income + gains) / average invested assets" />
+          <div style={{ fontSize: "0.8rem", marginTop: "0.4rem", color: !ratiosOk ? "var(--text-dim)" : r.combDiv < 1 ? "var(--green)" : "var(--red)", fontWeight: 600 }}>
+            {!ratiosOk ? "Enter positive premiums written and earned to compute the ratios." : r.combDiv < 1 ? "Below 100%: an underwriting profit on the ratio basis." : r.combDiv > 1 ? "Above 100%: underwriting loses money; investment income has to cover it." : "Exactly 100%: underwriting breaks even."}
           </div>
         </div>
       </div>
@@ -150,7 +154,9 @@ export default function InsurerLab() {
         <div style={{ fontSize: "0.74rem", color: "var(--text-dim)", marginTop: "0.4rem" }}>
           Underwriting result = premiums earned - losses - LAE - underwriting expenses - policyholder dividends = {num(p.npe)} - {num(p.losses)} - {num(p.lae)} - {num(p.uw)} - {num(p.divs)} = <b>{num(r.uwResult)}</b>.
           {" "}The ratio basis implies (100% - {pct(r.combDiv)}) x {num(p.npe)} = <b>{num(r.implied)}</b>.
-          {Math.abs(gap) >= 0.5
+          {!ratiosOk
+            ? ""
+            : Math.abs(gap) >= 0.5
             ? " The two differ by " + num(Math.abs(gap)) + " because the expense ratio divides by premiums written (" + num(p.npw) + ") while the result uses premiums earned (" + num(p.npe) + ")."
             : " Written and earned premiums are close enough that the two agree."}
         </div>

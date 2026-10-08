@@ -144,7 +144,7 @@ export default {
             ["of which: average investment in associate", "1,500", "1,750", "2,000", "2,250"],
             ["Average equity", "6,000", "6,150", "6,250", "6,350"],
           ],
-          note: "Pinnacle presents its share of Kestrel's profit between EBIT and pretax income. Kestrel pays its own taxes, so that share arrives already taxed and Pinnacle's tax expense is 25% of its own pretax profit only.",
+          note: "Pinnacle presents its share of Kestrel's profit between EBIT and pretax income. Kestrel pays its own taxes, so that share arrives already taxed and Pinnacle's tax expense is 25% of its own pretax profit only. The investment grows by more than Kestrel's undistributed profit because Pinnacle's share of Kestrel's other comprehensive income (mainly currency translation) is also added to it under the equity method.",
         },
         {
           t: "table",
@@ -223,8 +223,8 @@ export default {
         },
         {
           t: "p",
-          html: `<p>Now the picture is honest. The tax burden is flat at 0.750, exactly one minus Pinnacle's 25% tax rate, as it should be. The interest burden sits below 1.0 and slowly worsens as interest rises while EBIT falls. The operating business's ROE has gone nowhere: 18.33% to 18.29%. Its EBIT margin fell by 1.5 points and only rising leverage held its ROE level.</p>
-<p>So the entire improvement in reported ROE came from Kestrel, whose profit grew from 150 to 380 on an investment that grew from 1,500 to 2,250. Kestrel's return on Pinnacle's carrying amount rose from 10.0% to 16.9%. The core business still earns a higher ROE than the group, which is why including Kestrel pulls reported ROE BELOW core ROE, but the trend in reported ROE is entirely the associate's.</p>`,
+          html: `<p>Now the picture is honest. The tax burden is flat at 0.750, exactly one minus Pinnacle's 25% tax rate, as it should be. The interest burden sits below 1.0 and slowly worsens as interest rises while EBIT falls. The operating business's ROE has gone nowhere: 18.33% to 18.29%. Its EBIT margin fell by 1.5 points; rising leverage (2.333 to 2.695), with a smaller lift from asset turnover (0.952 to 0.977), is what held its ROE level. Core leverage rises because the investment in Kestrel grows faster than Pinnacle's total equity, so the equity left for the operating business shrinks.</p>
+<p>So the entire improvement in reported ROE came from Kestrel, whose profit grew from 150 to 380 on an investment that grew from 1,500 to 2,250. Kestrel's return on Pinnacle's carrying amount rose from 10.0% to 16.9%. Reported ROE is in effect a blend of the core ROE and Kestrel's return on its carrying amount. Kestrel's return is still below the core business's (16.9% against 18.3% in 20X4), which is why including it pulls reported ROE BELOW core ROE in every year; but because Kestrel's return is climbing toward the core's, the upward trend in reported ROE is entirely the associate's.</p>`,
         },
         {
           t: "callout",
@@ -255,6 +255,10 @@ export default {
       title: "Asset base and capital allocation: follow the capital expenditure",
       los: ["a", "e"],
       blocks: [
+        {
+          t: "p",
+          html: `<p>Start with what the capital is sitting in. A common-size balance sheet (each asset as a percentage of total assets, year by year) shows the asset base composition and how it shifts. For Pinnacle the shift that matters is the associate: the investment in Kestrel rose from 12.5% of average total assets in 20X1 (1,500 / 12,000) to 16.9% in 20X4 (2,250 / 13,300). A growing slice of the capital sits in an asset that produces no revenue for Pinnacle, which is exactly why reported asset turnover drifted down while the operating assets were turning faster. The same common-size view flags a rising share of goodwill and other intangibles (growth by acquisition, and assets that are judgment-heavy to value) or a build-up of cash.</p>`,
+        },
         {
           t: "p",
           html: `<p>The core business's EBIT margin is falling. Is that the whole company slipping, or one division dragging the rest? Group totals cannot answer that; the segment note can. Segment disclosures give revenue, operating profit, assets, capital expenditure and depreciation by business line, which is enough to compute where Pinnacle earns its returns and where it is investing.</p>`,
@@ -297,7 +301,7 @@ export default {
           t: "callout",
           tone: "trap",
           title: "Segment numbers are not group numbers",
-          html: "Segment EBIT is before unallocated corporate costs, and segment assets exclude corporate assets and investments. Segment ROAs are therefore higher than any group ROA you compute, and they are only comparable with each other, not with the group ratio.",
+          html: "Segment EBIT is before unallocated corporate costs, and segment assets exclude corporate assets and investments. Different numerators and denominators mean segment ROAs are comparable with each other, not with a group ROA. The sum of the segments shows the bias: 1,230 of segment EBIT on 10,500 of segment assets is 11.7%, against 1,130 of group EBIT on 13,300 of average total assets, 8.5%. That does not make every segment beat the group figure (Foods earns 7.5%); it means the comparison is not like for like.",
         },
         {
           t: "check",
@@ -397,7 +401,7 @@ export default {
         },
         {
           t: "p",
-          html: `<p>The headline 17.7x blends two very different multiples: the market values Pinnacle's share of Kestrel at 11.8 times the earnings it contributes and Pinnacle's own business at 20.7 times. A comparables analysis that puts Pinnacle's 17.7x next to operating peers would conclude Pinnacle is cheap. On the comparable basis it is the most expensive of the lot, priced for growth while its operating margin is falling. That is the phase 5 conclusion this whole case has been building toward.</p>`,
+          html: `<p>The headline 17.7x blends two very different multiples: the market values Pinnacle's share of Kestrel at 11.8 times the earnings it contributes and Pinnacle's own business at 20.7 times. Suppose operating peers trade at around 19 times earnings. A comparables analysis that puts Pinnacle's 17.7x next to them would conclude Pinnacle is cheap. On the comparable basis, 20.7x, it is dearer than those peers, priced for growth while its operating margin is falling. That is the phase 5 conclusion this whole case has been building toward.</p>`,
         },
         {
           t: "callout",
@@ -439,7 +443,7 @@ export default {
           caption: "Pinnacle, as reported vs commitments capitalized",
           head: ["", "As reported", "Adjusted", "Why"],
           rows: [
-            ["Debt / equity", "0.52", "0.65", "800 of new debt, while equity is nearly unchanged"],
+            ["Debt / equity", "0.52", "0.65", "740 of lease debt at year-end (800 capitalized less 60 repaid), while equity is nearly unchanged"],
             ["EBIT", "992", "1,020", "Rent of 108 replaced by depreciation of 80"],
             ["Interest coverage", "5.5x", "4.5x", "Interest rises by 48, proportionally more than EBIT"],
             ["Asset turnover", "0.91", "0.84", "720 of leased assets added"],
@@ -652,7 +656,7 @@ export default {
             ["Capitalize lease or purchase commitments", "+ PV", "+ PV (debt)", "Unchanged", "Debt to equity and debt to capital up; asset turnover and ROA down"],
             ["Pension deficit treated as debt", "Unchanged", "Reclassified into debt", "Unchanged", "Debt ratios up; total liabilities unchanged"],
             ["Remove goodwill (tangible book value)", "- goodwill", "Unchanged", "- goodwill", "ROA and ROE up; debt to equity up"],
-            ["Proportionately consolidate an associate's debt", "+ share of its assets", "+ share of its debt", "Unchanged", "Debt ratios up; asset turnover down"],
+            ["Proportionately consolidate an associate's debt", "+ share of its assets", "+ share of its debt", "Unchanged", "Debt ratios up; asset turnover down if only the balance sheet is grossed up (a full proportionate consolidation also adds the share of revenue)"],
           ],
         },
         {

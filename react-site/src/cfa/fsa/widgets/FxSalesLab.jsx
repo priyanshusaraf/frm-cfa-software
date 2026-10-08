@@ -138,8 +138,8 @@ function Mix() {
           <Slider key={c.id} label={c.label + " (" + c.cur + ")"} value={chg[c.id]} min={-0.3} max={0.3} step={0.01} onChange={(v) => set(c.id, v)} show={(x) => sgn(x, 0)} />
         ))}
         <div className="fxs-btns">
-          <button type="button" className="fsa-btn" onClick={() => allBy(-0.1)}>Dollar 10% stronger against all</button>
-          <button type="button" className="fsa-btn" onClick={() => allBy(0.1)}>Dollar 10% weaker against all</button>
+          <button type="button" className="fsa-btn" onClick={() => allBy(-0.1)}>All three 10% weaker against the dollar</button>
+          <button type="button" className="fsa-btn" onClick={() => allBy(0.1)}>All three 10% stronger against the dollar</button>
           <button type="button" className="fsa-btn" onClick={() => allBy(0)}><RotateCcw size={14} /> Reset</button>
         </div>
       </div>

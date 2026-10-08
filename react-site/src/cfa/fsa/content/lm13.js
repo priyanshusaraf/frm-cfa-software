@@ -46,7 +46,7 @@ export default {
         {
           t: "p",
           html: `<p><b>Systemic importance.</b> When a manufacturer fails, its competitors pick up its customers. When a bank fails, the damage spreads. Banks lend to each other, settle each other's payments and face each other in derivatives, so one failure can leave others with losses they cannot absorb. Worse, a failure tells depositors at other banks that their money might not be safe either, and they withdraw it even from healthy banks. That spread of distress from one institution to others is <b>contagion</b>. Because the costs fall on people who never dealt with the failed bank, governments care about bank failures in a way they do not care about a failed manufacturer.</p>
-<p><b>Heavy regulation.</b> That systemic importance is why banks are among the most regulated companies in the economy, with rules on how much capital they hold, how much liquidity they keep, and what they must disclose. The next section covers the main ones.</p>
+<p><b>Heavy regulation.</b> That systemic importance is why banks are among the most regulated companies in the economy, with rules on how much capital they hold, how much liquidity they keep, and what they must disclose.</p>
 <p><b>Assets are mostly financial.</b> Loans and securities are claims on other people's cash flows. They are measured at amortized cost or at fair value, using the same classification rules you met in LM10. This makes a bank's balance sheet closer to economic values than a manufacturer's, but it also concentrates the risks that matter: <b>credit risk</b> (borrowers do not pay), <b>liquidity risk</b> (the bank cannot meet withdrawals without selling assets at a loss) and <b>market risk</b>, especially interest rate risk.</p>
 <p><b>High leverage.</b> With equity of 7.9% of assets, a loss equal to 7.9% of Harbor's assets wipes out its owners. Spread across a loan book that is mostly sound, that only takes a bad patch in one large sector.</p>
 <p><b>Funded with other people's short-term money.</b> Deposits can leave on a day's notice while mortgages run for 25 years. Taking short-term funds and lending them long is <b>maturity transformation</b>. It is the economic service banks provide, and it is the reason a loss of confidence can turn into a run that sinks an otherwise solvent bank.</p>`,
@@ -187,7 +187,7 @@ export default {
       blocks: [
         {
           t: "p",
-          html: `<p>Regulators and analysts use the <b>CAMELS</b> framework to organise a bank analysis: <b>C</b>apital adequacy, <b>A</b>sset quality, <b>M</b>anagement capabilities, <b>E</b>arnings, <b>L</b>iquidity position and <b>S</b>ensitivity to market risk. In the US, supervisors rate each component from 1 (strongest) to 5 (weakest) and give a composite rating, which is not made public. Analysts borrow the structure. The next sections take the letters in order.</p>
+          html: `<p>Regulators and analysts use the <b>CAMELS</b> framework to organise a bank analysis: <b>C</b>apital adequacy, <b>A</b>sset quality, <b>M</b>anagement capabilities, <b>E</b>arnings, <b>L</b>iquidity position and <b>S</b>ensitivity to market risk. In the US, supervisors rate each component from 1 (strongest) to 5 (weakest) and give a composite rating, which is not made public. Analysts borrow the structure for their own assessment from published statements and disclosures.</p>
 <p>Start with capital. Harbor has 76 of equity behind 960 of assets. Is that enough? It depends on what the assets are. 180 of Harbor's assets are cash and government bonds, which will almost certainly be worth what the balance sheet says. 210 are commercial real estate loans, which can lose a large share of their value in a downturn. A plain equity-to-assets ratio treats a unit of each as equally risky, which is exactly what it should not do.</p>
 <p>So Basel III weights each asset by its risk before comparing it with capital. Cash carries a 0% weight, so it needs no capital. A typical corporate loan carries 100%, so every 100 of such loans needs at least 8 of total capital behind it. Charges for market risk and operational risk are added on top. The total is <b>risk-weighted assets</b> (RWA).</p>`,
         },
@@ -217,7 +217,7 @@ export default {
           t: "p",
           html: `<p>Not all capital absorbs losses equally well, so Basel III sorts it into tiers by how reliably it can take a hit.</p>
 <p><b>Common equity Tier 1 (CET1)</b> is the purest loss absorber: common shares and the surplus paid in above their par value, retained earnings and accumulated other comprehensive income (AOCI), less regulatory deductions such as goodwill, other intangible assets and certain deferred tax assets. A loss reduces it automatically while the bank keeps operating.</p>
-<p><b>Additional Tier 1 capital</b> (AT1) covers other instruments that also absorb losses while the bank is a going concern: they are subordinated to depositors and general creditors, have no fixed maturity and no obligation to pay dividends or coupons, and give the holder no incentive to have them redeemed. Certain preferred shares qualify.</p>
+<p><b>Additional Tier 1 capital</b> (AT1) covers other instruments that also absorb losses while the bank is a going concern: they rank below depositors, general creditors and even the bank's subordinated debt, have no fixed maturity, carry no obligation to pay dividends or coupons, and give the bank no incentive to redeem them. Each condition keeps the money in place and loss-absorbing while the bank is still trading. Certain non-cumulative perpetual preferred shares qualify.</p>
 <p><b>Tier 2 capital</b> covers instruments that protect depositors only once the bank has failed: they are subordinated to depositors and general creditors and have an original maturity of at least five years. Subordinated debt is the classic example, and certain loan loss allowances also count.</p>`,
         },
         {
@@ -312,7 +312,7 @@ export default {
           t: "formula",
           name: "Allowance roll-forward",
           tex: "\\text{Allowance}_{end} = \\text{Allowance}_{beg} + \\text{Provision} - \\text{Charge-offs} + \\text{Recoveries}",
-          plain: "The provision is the only flow that touches profit. Charge-offs and recoveries move the allowance and the loans against each other or against cash. Harbor's year: 16 + 6 - 5 + 1 = 18.",
+          plain: "The provision is the only flow that touches profit. Charge-offs and recoveries move the allowance and the loans against each other or against cash. In the theater's year: 16 + 6 - 5 + 1 = 18.",
         },
         {
           t: "table",
@@ -598,14 +598,14 @@ export default {
         {
           t: "check",
           id: "lm13-ls-1",
-          q: "A bank's LCR falls from 180% to 120% while its NSFR is unchanged at 115%. The most likely cause is:",
+          q: "A bank's LCR falls from 180% to 120% in one quarter. The most likely cause is:",
           options: [
             "Replacing maturing long-term debt with overnight wholesale borrowing",
             "Issuing new common shares and holding the proceeds in cash",
             "A rise in the allowance for loan losses",
           ],
           answer: 0,
-          why: "Short-term wholesale funding carries high 30-day run-off rates, so the LCR denominator jumps. Issuing shares for cash would raise both ratios, and the allowance does not enter the LCR.",
+          why: "Overnight wholesale funding carries a high 30-day run-off rate, so expected outflows, the LCR denominator, jump. The NSFR falls too, because long-term debt counts in full as available stable funding and overnight wholesale money counts for little or nothing. Issuing shares for cash would raise both ratios, and the allowance for loan losses does not enter the LCR.",
         },
         {
           t: "check",
@@ -622,7 +622,7 @@ export default {
     {
       id: "beyond-camels",
       title: "What CAMELS leaves out",
-      los: ["c", "d"],
+      los: ["c", "e"],
       blocks: [
         {
           t: "p",
@@ -695,7 +695,7 @@ export default {
     {
       id: "harbor",
       title: "Putting it together: analysing Harbor Bank over two years",
-      los: ["d", "e"],
+      los: ["e", "d"],
       blocks: [
         {
           t: "p",
@@ -1100,12 +1100,12 @@ export default {
         {
           q: "Basalt's total investment return and the best reading of its overall performance are:",
           options: [
-            "4.5%; underwriting is roughly break-even before dividends, so investment income provides essentially all of the operating profit",
+            "4.5%; underwriting is at best break-even on the ratio basis, so the operating profit comes from the investment portfolio",
             "3.75%; underwriting is profitable, so investment income is a bonus",
             "4.5%; a combined ratio above 100% means Basalt is unprofitable overall",
           ],
           answer: 0,
-          why: "Total investment return = (150 + 30) / 4,000 = 4.5%; investment yield alone is 3.75%. With a 100% combined ratio (102% after dividends), underwriting contributes nothing or slightly less, and the investment portfolio carries the result.",
+          why: "Total investment return = (150 + 30) / 4,000 = 4.5%; investment yield alone is 3.75%. The combined ratio is 100% (102% after dividends), and in currency the underwriting result is 2,200 - 1,650 - 600 - 44 = -94, worse than the ratios suggest because written premiums exceed earned premiums. Net investment income of 150 turns that underwriting loss into operating income of 56, so the portfolio carries the result. A combined ratio above 100% is an underwriting loss, not an overall loss.",
         },
       ],
     },

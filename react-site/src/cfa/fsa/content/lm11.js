@@ -36,7 +36,7 @@ export default {
                 "Pension expense = the contribution due for the period",
                 "Balance sheet: only an accrual if a contribution is unpaid at year end",
                 "No actuarial assumptions, no remeasurements",
-                "Same under IFRS and US GAAP",
+                "Same under International Financial Reporting Standards (IFRS) and US generally accepted accounting principles (US GAAP)",
               ],
             },
             {
@@ -85,7 +85,7 @@ export default {
         },
         {
           t: "p",
-          html: `<p><b>Other post-employment benefits.</b> Many companies also promise retirees medical cover. The promise is defined by the benefit (the care), not by a contribution, so the sponsor bears the risk that medical costs explode, and the accounting is the same as for a DB pension: an obligation measured at present value, a service cost, an interest cost, and actuarial gains and losses. Two practical differences matter. These plans are usually <b>unfunded</b> (the sponsor pays claims as they arise), so the whole obligation sits on the balance sheet. And the obligation is driven by the <b>health care cost trend rate</b>, the assumed growth in medical costs, which you will meet again in the assumptions section.</p>
+          html: `<p><b>Other post-employment benefits.</b> Many companies also promise retirees medical cover. The promise is defined by the benefit (the care), not by a contribution, so the sponsor bears the risk that medical costs explode, and the accounting is the same as for a DB pension: an obligation measured at present value, a service cost, an interest cost, and actuarial gains and losses. What sets these plans apart in practice is funding and one extra assumption. They are usually <b>unfunded</b> (the sponsor pays claims as they arise), so the whole obligation sits on the balance sheet. And the obligation is driven by the <b>health care cost trend rate</b>, the assumed growth in medical costs, which you will meet again in the assumptions section.</p>
 <p><b>Multi-employer plans</b> pool the contributions of several employers (often in one industry). The curriculum notes that a participant usually accounts for such a plan as defined contribution if there is not enough information to account for its share as defined benefit, which can leave a real deficit off the balance sheet.</p>`,
         },
         {
@@ -243,7 +243,7 @@ export default {
         },
         {
           t: "p",
-          html: `<p><b>On the balance sheet.</b> Both IFRS and US GAAP put the full funded status on the balance sheet: an underfunded plan is a net pension liability (IFRS calls it the net defined benefit liability), an overfunded plan a net pension asset. Two refinements:</p>
+          html: `<p><b>On the balance sheet.</b> Both IFRS and US GAAP put the full funded status on the balance sheet: an underfunded plan is a net pension liability (IFRS calls it the net defined benefit liability), an overfunded plan a net pension asset, subject to the following:</p>
 <ul>
 <li><b>IFRS asset ceiling.</b> A surplus is only an asset if Pinnacle can benefit from it. IFRS caps the net pension asset at the present value of economic benefits available as refunds from the plan or reductions in future contributions. US GAAP has no ceiling.</li>
 <li><b>Several plans.</b> A company with some overfunded and some underfunded plans generally shows the overfunded ones as assets and the underfunded ones as liabilities rather than netting them all.</li>
@@ -480,7 +480,7 @@ export default {
           items: [
             { title: "Balance sheet: count the deficit as debt", html: "Add the net pension liability (the underfunded status) to debt when computing leverage. If the vignette gives only the funded status in the notes, use it; an overfunded plan can be treated as an asset. Some analysts add the deficit net of the related deferred tax asset." },
             { title: "Income statement: only service cost is operating", html: "Remove the reported pension expense from operating costs and replace it with service cost alone. Reclassify interest cost to interest expense, and the return on plan assets to non-operating (investment) income. Under US GAAP use the ACTUAL return rather than the smoothed expected return if you want the economic picture; under IFRS reclassify the net interest to interest expense." },
-            { title: "Cash flow statement: separate funding from cost", html: "Compare employer contributions with TPPC. If contributions exceed TPPC, the excess paid down a debt-like obligation, so move it (after tax) from cash flow from operations (CFO) to cash flow from financing (CFF). If contributions fall short of TPPC, the shortfall is a borrowing from the plan: move it from financing to operating." },
+            { title: "Cash flow statement: separate funding from cost", html: "Compare employer contributions with TPPC. If contributions exceed TPPC, the excess paid down a debt-like obligation, so move it (after tax) from cash flow from operations (CFO) to cash flow from financing (CFF). If contributions fall short of TPPC, the shortfall is a borrowing from the plan: lower CFO and raise CFF by the after-tax shortfall." },
           ],
         },
         { t: "theater", scenario: "lm11-pension-analyst-adjust" },
@@ -595,7 +595,7 @@ export default {
         {
           t: "p",
           html: `<p>Pinnacle wants to reward its managers for growing the share price, and it would rather not spend cash doing it. Giving managers shares or options looks ideal: it ties their wealth to shareholders' wealth, it costs no cash today, and if the share price never rises, options pay nothing.</p>
-<p>That last point is exactly the problem. For years, an at-the-money option was recorded at its intrinsic value on the grant date, which is zero, so options looked free in the income statement. They are not free: something the market would pay real money for was handed to employees in exchange for their work. Today both IFRS and US GAAP require share-based compensation to be <b>expensed at its fair value on the grant date</b>, spread over the period in which employees earn it.</p>`,
+<p>That last point is exactly the problem. For years, an at-the-money option was recorded at its intrinsic value on the grant date, which is zero, so options looked free in the income statement. They are not free: something the market would pay real money for was handed to employees in exchange for their work. Today both IFRS and US GAAP require equity-settled share-based compensation to be <b>expensed at its fair value on the grant date</b>, spread over the period in which employees earn it. (Awards settled in cash are the exception: they are remeasured every period, as you will see in the next section.)</p>`,
         },
         {
           t: "compare",
@@ -682,7 +682,7 @@ export default {
         },
         {
           t: "p",
-          html: `<p>An outright <b>stock grant</b> gives employees shares, usually as <b>restricted stock</b> that cannot be sold or is forfeited unless the employee stays for a vesting period. <b>Performance shares</b> are contingent on a target, often an accounting measure such as return on assets, which gives managers an incentive to manage that measure. In every case the fair value is the market price of the shares on the grant date, and that fixed amount is expensed over the vesting period. The scenario below shows it next to a cash-settled award.</p>`,
+          html: `<p>An outright <b>stock grant</b> gives employees shares, usually as <b>restricted stock</b> that cannot be sold or is forfeited unless the employee stays for a vesting period. <b>Performance shares</b> are contingent on a target, often an accounting measure such as return on assets, which gives managers an incentive to manage that measure. In every case the fair value is the market price of the shares on the grant date, and that fixed amount is expensed over the vesting period, because that is the period in which Pinnacle receives the service the award pays for. If an award vests immediately, there is no future service to wait for, so the whole fair value is expensed on the grant date. The scenario below shows it next to a cash-settled award.</p>`,
         },
         {
           t: "h",
@@ -710,7 +710,7 @@ export default {
           t: "callout",
           tone: "trap",
           title: "Classic trap",
-          html: "Thinking a higher assumed dividend yield raises option expense because dividends sound like 'more value'. It is the reverse: higher expected dividends lower the call value and so lower the expense. A company wanting a smaller expense can assume a shorter term, lower volatility or higher dividends. A shorter expected term alone (5 years to 3 at Pinnacle) cuts the value from 6.00 to 4.89 per option, and the total cost from 90,000 to about 73,400.",
+          html: "Thinking a higher assumed dividend yield raises option expense because dividends sound like 'more value'. It is the reverse: higher expected dividends lower the call value and so lower the expense. A company wanting a smaller expense can assume a shorter term, lower volatility or higher dividends. A shorter expected term alone (5 years to 3 at Pinnacle) cuts the value from 6.00 to 4.89 per option, and the total cost from 90,000 to 73,350.",
         },
         {
           t: "formula",

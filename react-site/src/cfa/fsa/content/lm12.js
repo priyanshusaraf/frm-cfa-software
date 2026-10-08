@@ -20,7 +20,7 @@ export default {
     {
       id: "three-currencies",
       title: "Three currencies, and the one that decides everything",
-      los: ["c", "d"],
+      los: ["a", "d"],
       blocks: [
         {
           t: "p",
@@ -123,7 +123,7 @@ export default {
     {
       id: "transactions",
       title: "Foreign currency transactions: a receivable that changes size",
-      los: ["a"],
+      los: ["b"],
       blocks: [
         {
           t: "p",
@@ -450,7 +450,7 @@ export default {
       blocks: [
         {
           t: "p",
-          html: `<p>On an exam you rarely have time to translate a whole balance sheet just to learn whether the adjustment is positive or negative. You do not need to. The lines translated at the current rate are the ones the rate move can touch: they are the <b>exposed</b> items. Net them, and you know the sign.</p>
+          html: `<p>On an exam you rarely have time to translate a whole balance sheet just to learn whether the adjustment is positive or negative. You do not need to. The lines translated at the current rate are the ones the rate move can touch: they are the <b>exposed</b> items. Net them, and you know the sign. This balance sheet exposure is also called translation exposure or accounting exposure.</p>
 <p>Under the current rate method every asset and liability is at the current rate, so exposure is <b>net assets</b> (equity). That is positive for any solvent subsidiary, which is why a stronger foreign currency almost always means a positive translation adjustment. Under the temporal method only monetary items (and anything carried at current value) are exposed. Inventory and plant are not, so a typical subsidiary that funds its fixed assets with borrowing ends up with a <b>net monetary liability</b>, and a stronger foreign currency means a remeasurement LOSS.</p>`,
         },
         {
@@ -538,7 +538,7 @@ export default {
         },
         {
           t: "p",
-          html: `<p><b>Gross margin under the temporal method</b> moves for a reason worth understanding rather than memorizing. COGS is translated at the older, historical rates of the inventory sold, while revenue uses the average rate. When the foreign currency is <b>strengthening</b>, those older rates are LOWER than the average, so COGS is translated relatively cheaply and the gross margin is HIGHER than in local currency. When the currency is <b>weakening</b>, as the euro was for Kestrel, older rates are higher, COGS is relatively expensive, and the gross margin falls: 37.0% against 40.0%.</p>
+          html: `<p><b>Gross margin under the temporal method</b> moves for a reason worth understanding rather than memorizing. COGS is translated at the older, historical rates of the inventory sold, while revenue uses the average rate. When the foreign currency is <b>strengthening</b>, those older rates are LOWER than the average, so COGS is translated relatively cheaply and the gross margin is HIGHER than in local currency. When the currency is <b>weakening</b>, as the euro was for Kestrel, older rates are higher, COGS is relatively expensive, and the gross margin falls: 37.0% against 40.0%. This assumes first-in, first-out (FIFO) costing, as in the Kestrel example: the inventory left at year end is the newest purchases and carries recent rates, so the goods sold carry the older ones.</p>
 <p>Net profit margin under the temporal method also carries the remeasurement gain or loss, which has nothing to do with operations. Kestrel's 9.4% includes a 62 gain; strip it out and the margin before remeasurement is 145 / 2,200 = 6.6%. An analyst comparing subsidiaries should look at margins before the remeasurement line.</p>`,
         },
         {
@@ -635,6 +635,11 @@ export default {
           note: "Cash expenses are 210 (US GAAP), 160 (IFRS) and 210 (no adjustment). US GAAP remeasurement gain: the net monetary liability of LCU 600 cost USD 240 at 0.40, net inflows of 450 added USD 126 at 0.28, so the position cost -114; at year end it is -150 x 0.16 = -24, a gain of 90.",
         },
         {
+          t: "p",
+          html: `<p>The ratios move as much as the totals. With no adjustment, the shrunken building leaves total assets of only 248, so return on assets reads 98 / 248 = 39.5% and debt to equity 128 / 120 = 1.07x: the subsidiary looks both more profitable per dollar of assets and far more levered than either permitted treatment shows (US GAAP: 37.9% and 0.38x; IFRS: 34.7% and 0.48x).</p>
+<p>Under both permitted treatments, net profit margin is above 50% (176 / 336 = 52.4% under US GAAP, 136 / 256 = 53.1% under IFRS), largely because of the gain on the net monetary liability. That gain comes from owing money in a collapsing currency, not from selling anything. Before it, the margins are 86 / 336 = 25.6% and 64 / 256 = 25.0%. When you compare a hyperinflationary subsidiary with other operations, look at results before the monetary gain or loss, and remember that its size depends on how the subsidiary is financed.</p>`,
+        },
+        {
           t: "callout",
           tone: "insight",
           title: "Why restate-then-translate makes sense",
@@ -716,7 +721,7 @@ export default {
     {
       id: "sales-growth",
       title: "Sales growth: how much of it will still be there next year?",
-      los: ["b", "i"],
+      los: ["c", "i"],
       blocks: [
         {
           t: "p",
@@ -775,7 +780,7 @@ export default {
     {
       id: "countries",
       title: "Countries of operation: who wins when the dollar moves?",
-      los: ["j", "b"],
+      los: ["j", "c"],
       blocks: [
         {
           t: "p",
@@ -926,7 +931,7 @@ export default {
     {
       id: "lm12-is3",
       title: "Kestrel Sur: hyperinflation under two standards",
-      vignette: `<p>Kestrel Sur, a subsidiary of Pinnacle Corp, operates in a hyperinflationary economy. On 1 January it had cash of LCU 200, debt of LCU 800 and share capital of LCU 400, and it bought a building for LCU 1,000 with a 10-year life. During the year it earned revenue of LCU 1,200 and paid cash expenses of LCU 750, both evenly through the year. Year-end cash was LCU 650.</p>
+      vignette: `<p>Kestrel Sur, a subsidiary of Pinnacle Corp, operates in a hyperinflationary economy. On 1 January it bought a building for LCU 1,000 with a 10-year life; after that purchase it had cash of LCU 200, debt of LCU 800 and share capital of LCU 400. During the year it earned revenue of LCU 1,200 and paid cash expenses of LCU 750, both evenly through the year. Year-end cash was LCU 650.</p>
 <p>The general price index was 100 on 1 January, averaged 150 and ended the year at 200. The exchange rate was USD 0.40 per LCU on 1 January, averaged USD 0.28 and ended at USD 0.16. Pinnacle wants to compare the effect of reporting under US GAAP with reporting under IFRS.</p>`,
       questions: [
         {
@@ -958,13 +963,13 @@ export default {
   ],
 
   flags: [
-    { los: "c", note: "Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses." },
-    { los: "a", note: "The statement that neither IFRS nor US GAAP prescribes the income statement line for transaction gains and losses, and the disclosure wording, should be checked against the curriculum text." },
+    { los: "a", note: "Functional currency indicators: the IAS 21 primary/secondary ranking and the ASC 830 indicator list were written from the standards. Check the exact wording and grouping the 2026 curriculum uses." },
+    { los: "b", note: "The statement that neither IFRS nor US GAAP prescribes the income statement line for transaction gains and losses, and the disclosure wording, should be checked against the curriculum text." },
     { los: "d", note: "The 'balance sheet hedge' paragraph (matching monetary assets and liabilities under the temporal method) is mechanism; confirm the curriculum uses this term before relying on it for an exam answer." },
     { los: "d", note: "Translation terminology: US GAAP 'translation' vs 'remeasurement'. IFRS frames both as translation (into the functional currency, then into the presentation currency). Confirm the curriculum's phrasing." },
     { los: "g", note: "US GAAP highly inflationary threshold stated as cumulative three-year inflation of about 100% or more. Confirm the curriculum's exact wording (some texts say 'exceeding 100%')." },
     { los: "g", note: "HyperinflationLab and the Kestrel Sur numbers assume the price index and exchange rate move evenly through the year (averages are midpoints). The IAS 21 translation difference on the restated opening net investment at the parent level is not modeled; the comparison is at the level of the subsidiary's translated statements, as curriculum examples present it." },
-    { los: "b", note: "The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b." },
+    { los: "c", note: "The Kestrel example of sales invoiced in the parent's currency (euro sales fall while translated sales rise less than the euro) is derived from the mechanics; confirm the curriculum's own framing of LOS b." },
     { los: "i", note: "Sustainability ranking of price vs volume growth: the module treats volume as most durable and price as dependent on pricing power. Confirm the curriculum's emphasis." },
     { los: "h", note: "Transfer pricing is mentioned as a driver of the earnings mix. Confirm it appears in the 2026 curriculum's discussion of the effective tax rate." },
     { los: "e", note: "Scenario lm12-cta-vs-remeasurement hides the cash flow statement: a translated cash flow statement needs an 'effect of exchange rate changes on cash' line outside operating, investing and financing, which the ledger engine does not model. Income statement items are translated at the average rate as an approximation of transaction-date rates." },
