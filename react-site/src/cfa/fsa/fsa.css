@@ -415,3 +415,24 @@
 .fsa-pr-memo { margin: 0.3rem 0 0.4rem; font-size: 0.78rem; max-width: 460px; }
 .fsa-pr-memo td { padding: 0.15rem 0.5rem; }
 .fsa-pr-memo td:last-child { text-align: right; font-family: var(--mono); }
+
+.fsa-side-short { display: none; }
+@media (max-width: 1100px) {
+  .fsa-side {
+    display: flex; gap: 0.3rem; overflow-x: auto; white-space: nowrap;
+    padding-bottom: 0.6rem; border-bottom: 1px solid var(--border);
+    scrollbar-width: thin;
+  }
+  .fsa-side-brand, .fsa-side-sub, .fsa-side-group, .fsa-side-sec, .fsa-side-full, .fsa-side a .n { display: none !important; }
+  .fsa-side-short { display: inline; }
+  .fsa-side a { flex: none; border: 1px solid var(--border); padding: 0.3rem 0.6rem; font-size: 0.78rem; }
+}
+@media (max-width: 700px) {
+  .fsa-th-steps { order: 3; flex-basis: 100%; }
+  .fsa-theater { padding: 0.8rem 0.7rem; margin-left: -0.3rem; margin-right: -0.3rem; }
+  .fsa-main h1 { font-size: 1.55rem; }
+  .fsa-stmt th, .fsa-stmt td { padding: 0.22rem 0.4rem; }
+  .fsa-col-h { min-width: 4.6rem; }
+  .fsa-num-v { min-width: 2.6rem; }
+  .fsa-delta { display: none; }
+}

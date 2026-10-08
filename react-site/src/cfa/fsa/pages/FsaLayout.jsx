@@ -51,7 +51,8 @@ export default function FsaLayout({ children, moduleId }) {
           <React.Fragment key={m.id}>
             <NavLink to={"/cfa/fsa/" + m.id} className={({ isActive }) => (isActive ? "active" : "")}>
               <span className="n">{m.num}</span>
-              <span>{m.short || m.title}{m.pending ? <em className="fsa-dim" style={{ fontSize: "0.72rem" }}> · in progress</em> : null}</span>
+              <span className="fsa-side-full">{m.short || m.title}{m.pending ? <em className="fsa-dim" style={{ fontSize: "0.72rem" }}> · in progress</em> : null}</span>
+              <span className="fsa-side-short">LM {m.num}</span>
             </NavLink>
             {current && current.id === m.id && m.sections.map((s) => (
               <a
