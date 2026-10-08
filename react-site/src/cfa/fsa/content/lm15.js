@@ -23,7 +23,7 @@ export default {
           t: "p",
           html: `<p>Your portfolio manager sends one line: "Pinnacle Corp's return on equity has gone up four years running. Do we buy?" Pinnacle is a US-listed consumer goods multinational that reports under US generally accepted accounting principles (US GAAP), sells beverages, foods and nutrition products, and owns 30% of a listed company, Kestrel Ltd, which it accounts for with the equity method.</p>
 <p>The tempting move is to download ten years of statements, compute every ratio you know, and see what jumps out. It fails for a practical reason: you will produce forty ratios, most of them irrelevant to the question, and you will still not know which adjustments matter. A credit analyst asking whether Pinnacle deserves its A rating needs leverage including every debt-like obligation; an equity analyst valuing Pinnacle against peers needs earnings that are comparable across companies and sustainable over time. Same company, same annual report, different work.</p>
-<p>So integration starts with the purpose. The curriculum frames the work as a six-phase framework, and the point of the framework is that each phase produces something specific that the next phase consumes. The rest of this module walks through the framework applied to Pinnacle, the way the curriculum walks through its own extended case of a multinational.</p>`,
+<p>So integration starts with the purpose. The curriculum frames the work as a six-phase framework, and the point of the framework is that each phase produces something specific that the next phase consumes. The rest of this module walks through the framework applied to Pinnacle, the way the curriculum walks through its own extended case on Nestle: DuPont analysis with and without the associates, asset base composition, capital structure, segments, accruals and cash flow relationships, and a decomposition of the market valuation. Pinnacle is fictional, so every figure here can be recomputed, but none of them comes from the book.</p>`,
         },
         {
           t: "table",
@@ -203,7 +203,7 @@ export default {
             { title: "Pretax income", html: "Subtract it here too when it is presented above the pretax line, as Pinnacle does. If a company presents it after tax (some companies reporting under International Financial Reporting Standards, IFRS, show it below income tax), EBT already excludes it and only net income changes." },
             { title: "EBIT and revenue", html: "Unchanged when equity income is presented below EBIT. The EBIT margin is the one factor the associate cannot touch." },
             { title: "Total assets", html: "Subtract the investment in associates (average balance for an average-based ratio): those assets produce no revenue for Pinnacle." },
-            { title: "Equity", html: "Subtract the same investment, on the assumption that the stake was financed with equity rather than debt. This is a modelling choice; state it." },
+            { title: "Leverage", html: "Leave it as reported (average total assets over average equity). The curriculum case does not know how the investment in associates was financed, so it does not adjust the leverage factor." },
           ],
         },
         { t: "theater", scenario: "lm15-strip-associate" },
@@ -216,15 +216,15 @@ export default {
             ["Interest burden", "0.917", "0.908", "0.897", "0.885"],
             ["EBIT margin", "12.0%", "11.6%", "10.9%", "10.5%"],
             ["Asset turnover", "0.952", "0.958", "0.972", "0.977"],
-            ["Leverage", "2.333", "2.443", "2.565", "2.695"],
-            ["<b>ROE</b>", "<b>18.33%</b>", "<b>18.41%</b>", "<b>18.35%</b>", "<b>18.29%</b>"],
+            ["Leverage (as reported)", "2.000", "2.033", "2.064", "2.094"],
+            ["<b>ROE</b>", "<b>15.71%</b>", "<b>15.31%</b>", "<b>14.77%</b>", "<b>14.22%</b>"],
           ],
-          note: "20X4: net income 1,130 - 380 = 750; EBT 1,380 - 380 = 1,000; average assets 13,300 - 2,250 = 11,050; average equity 6,350 - 2,250 = 4,100. ROE = 750 / 4,100 = 18.29%.",
+          note: "20X4: net income 1,130 - 380 = 750; EBT 1,380 - 380 = 1,000; average assets 13,300 - 2,250 = 11,050; leverage stays at 13,300 / 6,350 = 2.094. ROE = (750 / 11,050) x 2.094 = 6.79% x 2.094 = 14.22%.",
         },
         {
           t: "p",
-          html: `<p>Now the picture is honest. The tax burden is flat at 0.750, exactly one minus Pinnacle's 25% tax rate, as it should be. The interest burden sits below 1.0 and slowly worsens as interest rises while EBIT falls. The operating business's ROE has gone nowhere: 18.33% to 18.29%. Its EBIT margin fell by 1.5 points; rising leverage (2.333 to 2.695), with a smaller lift from asset turnover (0.952 to 0.977), is what held its ROE level. Core leverage rises because the investment in Kestrel grows faster than Pinnacle's total equity, so the equity left for the operating business shrinks.</p>
-<p>So the entire improvement in reported ROE came from Kestrel, whose profit grew from 150 to 380 on an investment that grew from 1,500 to 2,250. Kestrel's return on Pinnacle's carrying amount rose from 10.0% to 16.9%. Reported ROE is in effect a blend of the core ROE and Kestrel's return on its carrying amount. Kestrel's return is still below the core business's (16.9% against 18.3% in 20X4), which is why including it pulls reported ROE BELOW core ROE in every year; but because Kestrel's return is climbing toward the core's, the upward trend in reported ROE is entirely the associate's.</p>`,
+          html: `<p>Now the picture is honest. The tax burden is flat at 0.750, exactly one minus Pinnacle's 25% tax rate, as it should be. The interest burden sits below 1.0 and slowly worsens as interest rises while EBIT falls. The operating business's ROE fell every year, from 15.71% to 14.22%, while reported ROE rose from 16.25% to 17.80%. Its EBIT margin fell by 1.5 points, and the small lift from asset turnover (0.952 to 0.977) and leverage (2.000 to 2.094) did not make up for it.</p>
+<p>So the entire improvement in reported ROE came from Kestrel, whose profit grew from 150 to 380 on an investment that grew from 1,500 to 2,250. Kestrel's return on Pinnacle's carrying amount rose from 10.0% to 16.9%. Core ROE sits below reported ROE in every year because a large and growing part of Pinnacle's earnings comes from the associate, the same pattern the curriculum finds for Nestle: once the associates are removed, ROE is lower. What the curriculum case found reassuring was that the company-only ROE followed the same rising trend; Pinnacle's does the opposite.</p>`,
         },
         {
           t: "callout",
@@ -234,9 +234,9 @@ export default {
         },
         {
           t: "callout",
-          tone: "flag",
-          title: "Check against your book",
-          html: "Where equity income appears varies by company. The curriculum's case company presented its share of associates' results after tax; Pinnacle here presents it above pretax income, which is why it shows up in the interest burden. The removal rules above handle both. The curriculum case removed the investment from assets; whether it also reduces equity (as done here) should be checked against the 2026 exhibit.",
+          tone: "exam",
+          title: "How the curriculum case does it",
+          html: "Where equity income appears varies by company. Nestle presents its income from associates and joint ventures after taxes, below profit before taxes; Pinnacle here presents it above pretax income, which is why it shows up in the interest burden. The removal rules above handle both. The curriculum case removes the associates' income and assets and, lacking information on how the investment was financed, leaves the leverage factor unadjusted. Removing the investment from equity as well is a refinement only when you know the stake was equity-financed; the transaction theater above shows that version, because a ledger has to balance.",
         },
         {
           t: "check",
@@ -467,9 +467,9 @@ export default {
         },
         {
           t: "callout",
-          tone: "flag",
-          title: "Check against your book",
-          html: "The 2026 module is reported to keep a section titled 'Off-Balance Sheet Leverage from Operating Leases'. Whether its worked case capitalizes pre-2019 operating leases (as the classic edition did) or works from post-IFRS 16 disclosures should be verified. The mechanics above are the same either way.",
+          tone: "exam",
+          title: "The curriculum's lease case",
+          html: "The 2026 module's 'Off-Balance Sheet Leverage from Operating Leases' case is a pre-2019 exercise. A fund screens its holdings for hidden leverage with the ratio rental expense x 7.4 / total assets, where 7.4 is roughly the present value factor of a 10-year level payment at 6%. A company above the 5% threshold has its operating leases capitalized and its balance sheet amounts and ratios revised; it looks financially weaker, and the recommendation is to reduce the holding. The mechanics are the ones above.",
         },
         {
           t: "check",
@@ -719,7 +719,7 @@ export default {
           t: "callout",
           tone: "exam",
           title: "Overall financial condition",
-          html: "After the balance sheet modifications, normalization and cash flow modifications, Pinnacle looks like this: an operating business with a slowly falling margin and flat ROE, more leverage than reported once commitments, the pension deficit and its share of Kestrel's debt are counted, earnings that are cash-backed once the associate's accruals are understood, and a market price that already values the operating business at a premium. Each adjustment changed a ratio; together they changed the answer.",
+          html: "After the balance sheet modifications, normalization and cash flow modifications, Pinnacle looks like this: an operating business with a slowly falling margin and a falling ROE, more leverage than reported once commitments, the pension deficit and its share of Kestrel's debt are counted, earnings that are cash-backed once the associate's accruals are understood, and a market price that already values the operating business at a premium. Each adjustment changed a ratio; together they changed the answer.",
         },
         {
           t: "check",
@@ -746,7 +746,7 @@ export default {
           t: "steps",
           title: "Pinnacle: conclusions for the portfolio manager",
           items: [
-            { title: "ROE growth is the associate's, not Pinnacle's", html: "Reported ROE rose from 16.25% to 17.80%; excluding Kestrel it was flat at about 18.3%. The rise came through the interest burden and tax burden, both distorted by equity income." },
+            { title: "ROE growth is the associate's, not Pinnacle's", html: "Reported ROE rose from 16.25% to 17.80%; excluding Kestrel it fell from 15.7% to 14.2%. The rise came through the interest burden and tax burden, both distorted by equity income." },
             { title: "The operating margin is falling", html: "EBIT margin fell from 12.0% to 10.5%. Segment data points to a mix of a strong Beverages business, a declining Foods business, and a Nutrition business absorbing capital at a modest return." },
             { title: "Earnings are cash-backed, once the associate is understood", html: "Rising accruals are mostly Kestrel's undistributed profit; CFO is a stable 1.45 times earnings excluding it." },
             { title: "The market already pays a premium for the core", html: "Excluding the stake at market, the operating business trades at 20.7 times its earnings, against 17.7 times on the headline numbers." },
@@ -793,7 +793,7 @@ export default {
   formulas: [
     { name: "Three-factor DuPont", tex: "\\text{ROE} = \\frac{\\text{NI}}{\\text{Rev}} \\times \\frac{\\text{Rev}}{\\text{Avg TA}} \\times \\frac{\\text{Avg TA}}{\\text{Avg equity}}", plain: "Net margin x asset turnover x leverage." },
     { name: "Five-factor DuPont", tex: "\\text{ROE} = \\frac{\\text{NI}}{\\text{EBT}} \\times \\frac{\\text{EBT}}{\\text{EBIT}} \\times \\frac{\\text{EBIT}}{\\text{Rev}} \\times \\frac{\\text{Rev}}{\\text{Avg TA}} \\times \\frac{\\text{Avg TA}}{\\text{Avg equity}}", plain: "Tax burden x interest burden x EBIT margin x asset turnover x leverage." },
-    { name: "ROE excluding an associate", tex: "\\text{ROE}_{core} = \\frac{\\text{NI} - \\text{Equity income}}{\\text{Avg equity} - \\text{Avg investment in associates}}", plain: "Remove the income and the investment consistently; also remove the investment from assets for asset turnover and leverage." },
+    { name: "ROE excluding an associate", tex: "\\text{ROE}_{core} = \\frac{\\text{NI} - \\text{Equity income}}{\\text{Avg TA} - \\text{Avg investment in associates}} \\times \\frac{\\text{Avg TA}}{\\text{Avg equity}}", plain: "Remove the income from net income and the investment from total assets; leave leverage as reported when the financing of the investment is unknown, as in the curriculum case." },
     { name: "Implied value of the core business", tex: "\\text{Market cap} - s \\times \\text{Market cap}_{associate}", plain: "What the market pays for everything except the stake." },
     { name: "Implied core P/E", tex: "\\frac{\\text{Market cap} - s \\times \\text{Market cap}_{associate}}{\\text{NI} - \\text{Equity income}}", plain: "Compare this, not the headline P/E, with operating peers." },
     { name: "Balance sheet accruals ratio", tex: "\\frac{\\text{NOA}_{end} - \\text{NOA}_{beg}}{(\\text{NOA}_{end} + \\text{NOA}_{beg})/2}", plain: "Growth in net operating assets relative to their average." },
@@ -809,7 +809,7 @@ export default {
     { q: "What are the outputs of phase 3?", a: "Adjusted financial statements, common-size statements, ratios and graphs, and forecasts." },
     { q: "What are the five factors of the extended DuPont decomposition?", a: "Tax burden (NI / EBT), interest burden (EBT / EBIT), EBIT margin (EBIT / revenue), asset turnover (revenue / average total assets) and leverage (average total assets / average equity)." },
     { q: "Why can equity income push the interest burden above 1.0?", a: "When it is presented between EBIT and pretax income it is added to EBT but not to EBIT, so EBT can exceed EBIT even after interest expense." },
-    { q: "How do you remove an associate from a DuPont analysis?", a: "Subtract equity income from net income (and from EBT if presented above it); subtract the investment from total assets and, assuming equity financing, from equity. EBIT and revenue are unchanged." },
+    { q: "How do you remove an associate from a DuPont analysis?", a: "Subtract equity income from net income (and from EBT if presented above it); subtract the investment from total assets. Leave leverage as reported unless you know how the stake was financed. EBIT and revenue are unchanged." },
     { q: "How do you compute the implied P/E of the business excluding a listed associate?", a: "(Market cap - ownership share x associate's market cap) / (net income - equity income)." },
     { q: "Give the cash flow accruals ratio.", a: "(NI - (CFO + CFI)) / average net operating assets. Higher means more of earnings is accrual, a lower-quality signal." },
     { q: "Restating LIFO to FIFO: what happens to inventory, liabilities and equity?", a: "Inventory + LIFO reserve; liabilities + reserve x t; equity + reserve x (1 - t)." },
@@ -836,7 +836,7 @@ export default {
 <tr><td>Average investment in associate</td><td>900</td></tr>
 <tr><td>Average equity</td><td>4,800</td></tr>
 </tbody></table>
-<p>Corvina's market capitalization is 12,000. Its stake in the bottler has a market value of 1,800. An analyst removes the associate from the DuPont analysis by deducting the investment from both assets and equity.</p>`,
+<p>Corvina's market capitalization is 12,000. Its stake in the bottler has a market value of 1,800. An analyst removes the associate from the DuPont analysis the way the curriculum case does: equity income comes out of earnings and the investment comes out of total assets, and because the financing of the stake is unknown, leverage is left as reported.</p>`,
       questions: [
         {
           q: "Corvina's five-factor DuPont components (tax burden, interest burden, EBIT margin, asset turnover, leverage) are closest to:",
@@ -846,9 +846,9 @@ export default {
         },
         {
           q: "Corvina's ROE excluding the associate is closest to:",
-          options: ["13.1%", "15.0%", "16.2%"],
-          answer: 2,
-          why: "Net income excluding equity income = 720 - 90 = 630. Equity excluding the investment = 4,800 - 900 = 3,900. ROE = 630 / 3,900 = 16.2%. Dividing 630 by the unadjusted equity of 4,800 gives 13.1%; 15.0% is the reported ROE.",
+          options: ["13.1%", "14.5%", "16.2%"],
+          answer: 1,
+          why: "Net income excluding equity income = 720 - 90 = 630. Total assets excluding the investment = 9,600 - 900 = 8,700, so return on the remaining assets = 630 / 8,700 = 7.24%. Leverage stays at 9,600 / 4,800 = 2.00, so ROE = 7.24% x 2.00 = 14.5%. Deducting the investment from equity as well (630 / 3,900 = 16.2%) assumes the stake was equity-financed, which the vignette does not support; 630 / 4,800 = 13.1% removes the income but leaves the investment in assets.",
         },
         {
           q: "Compared with the reported decomposition, removing the associate:",
@@ -940,12 +940,8 @@ export default {
   ],
 
   flags: [
-    { los: "a", note: "CFA Institute's 2026 summary confirms the case company is Nestle (ROE disaggregation, then deeper drivers to judge capital allocation). This module uses a fictional company (Pinnacle Corp) built to reproduce the same analytical sequence; check the book's exhibits before relying on any case figure." },
-    { los: "e", note: "Removing the investment in associates from EQUITY as well as from assets (equity-financing assumption) is a modelling choice made here; verify whether the 2026 case exhibit adjusts equity or only assets and net income." },
-    { los: "e", note: "Where equity income is presented (above pretax income, or after tax) changes which DuPont factors it distorts. Pinnacle presents it above pretax income; the classic case company presented it after tax. Check the 2026 exhibit." },
-    { los: "c", note: "Section heading 'Off-Balance Sheet Leverage from Operating Leases' is reported for 2026. Verify whether the worked example capitalizes pre-2019 operating leases or uses IFRS 16 / ASC 842 disclosures, and whether purchase commitments are treated as debt in the book." },
-    { los: "d", note: "IFRS 18 (effective 2027) is used only in a 'beyond' callout as a real example of a standard issued but not yet effective. It is not 2026 curriculum content." },
-    { los: "c", note: "The tax effect of a LIFO to FIFO restatement is recorded as a deferred tax liability in the scenario and item set; the curriculum also allows taxes payable. Confirm which the 2026 book uses in its integration exhibits." },
-    { los: "a", note: "The accruals ratio adjustment for undistributed equity income (CFO / (NI - equity income + dividends received)) is an analytical extension built for this case; check that the 2026 case computes accruals the same way." },
+    { los: "c", note: "Section heading 'Off-Balance Sheet Leverage from Operating Leases' is reported for 2026. Verify whether the worked example capitalizes pre-2019 operating leases or uses IFRS 16 / ASC 842 disclosures, and whether purchase commitments are treated as debt in the book. Research 2026-10: AnalystNotes' 2026 Level II notes for this subject describe a pre-2019 screen (rental expense x 7.4 / total assets above 5%) followed by capitalizing the flagged company's operating leases; the content callout now says so. Nothing found on whether the case treats purchase commitments as debt, so that part stays open." },
+    { los: "c", note: "The tax effect of a LIFO to FIFO restatement is recorded as a deferred tax liability in the scenario and item set; the curriculum also allows taxes payable. Confirm which the 2026 book uses in its integration exhibits. Research 2026-10: a 300hours Level II forum thread treats the tax effect as a reduction in cash (cash and CFO fall by the increase in the reserve x t), while other prep summaries in search results book the reserve x t as a deferred tax liability; none refers to the 2026 integration reading's exhibits, so not conclusive." },
+    { los: "a", note: "The accruals ratio adjustment for undistributed equity income (CFO / (NI - equity income + dividends received)) is an analytical extension built for this case; check that the 2026 case computes accruals the same way. Research 2026-10: AnalystNotes' 2026 summary of the Nestle case says the analyst examined balance-sheet-based and cash-flow-based accruals ratios (finding significant fluctuations) and that the ratio of operating cash flow to operating earnings was fairly consistent; it does not mention an associate adjustment. That suggests the case uses CFO / operating income rather than the measure built here, but it is a single source, so the extension is kept and labelled as such." },
   ],
 };

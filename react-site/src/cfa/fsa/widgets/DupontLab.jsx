@@ -29,9 +29,13 @@ function compute(d, ex) {
   const ebt = d.ebit - d.int + (ex ? 0 : d.ei);
   const ni = ebt - tax;
   const ta = d.avgTA - (ex ? d.avgInv : 0);
-  const eq = d.avgEq - (ex ? d.avgInv : 0);
-  const f = { tb: ni / ebt, ib: ebt / d.ebit, m: d.ebit / d.rev, at: d.rev / ta, lev: ta / eq };
-  return { y: d.y, d, tax, ebt, ni, ta, eq, f, roe: ni / eq, prod: f.tb * f.ib * f.m * f.at * f.lev };
+  /* The curriculum's Nestle case does not know how the stake was financed,
+     so it leaves the leverage ratio as reported. Core ROE is then core ROA
+     times reported leverage, which is exactly the product of the factors. */
+  const lev = d.avgTA / d.avgEq;
+  const f = { tb: ni / ebt, ib: ebt / d.ebit, m: d.ebit / d.rev, at: d.rev / ta, lev };
+  const roe = ex ? (ni / ta) * lev : ni / d.avgEq;
+  return { y: d.y, d, tax, ebt, ni, ta, eq: d.avgEq, f, roe, prod: f.tb * f.ib * f.m * f.at * f.lev };
 }
 
 const fx = (v, kind, dp) => (kind === "pct" ? (v * 100).toFixed(dp == null ? 1 : dp) + "%" : v.toFixed(dp == null ? 3 : dp));
@@ -150,7 +154,7 @@ export default function DupontLab() {
         </div>
         <span className="fsa-dim" style={{ fontSize: "0.8rem" }}>
           {ex
-            ? "Equity income removed from NI and EBT; investment removed from average assets and average equity; tax unchanged."
+            ? "Equity income removed from NI and EBT; investment removed from average assets; leverage kept as reported (the curriculum case does not know how the stake was financed); tax unchanged."
             : "Kestrel's share of profit sits between EBIT and pretax income; the investment sits in total assets."}
         </span>
       </div>
@@ -191,7 +195,7 @@ export default function DupontLab() {
               <th>× Asset turnover</th>
               <th>× Leverage</th>
               <th>= Product</th>
-              <th>NI / avg equity</th>
+              <th>{ex ? "Core ROA × reported leverage" : "NI / avg equity"}</th>
               <th>Check</th>
             </tr>
           </thead>
@@ -207,7 +211,7 @@ export default function DupontLab() {
                   <td><TweenNum value={r.f.at} kind="x" /></td>
                   <td><TweenNum value={r.f.lev} kind="x" /></td>
                   <td><TweenNum value={r.prod} kind="pct" dp={2} /></td>
-                  <td>{n0(r.ni)} / {n0(r.eq)} = <TweenNum value={r.roe} kind="pct" dp={2} /></td>
+                  <td>{ex ? <>{n0(r.ni)} / {n0(r.ta)} × {fx(r.f.lev, "x")} = </> : <>{n0(r.ni)} / {n0(r.eq)} = </>}<TweenNum value={r.roe} kind="pct" dp={2} /></td>
                   <td className={ok ? "up" : "down"}>{ok ? "ties" : "off"}</td>
                 </tr>
               );
@@ -268,7 +272,7 @@ export default function DupontLab() {
         <b>{ex ? "What the operating business is doing" : "What the reported numbers seem to say"}</b>
         {ex ? (
           <p>
-            Without Kestrel the tax burden is flat at {fx(c0.f.tb, "x")} (one minus the {fx(TAX_RATE, "pct", 0)} tax rate) and the interest burden sits below 1.0, sliding from {fx(c0.f.ib, "x")} to {fx(c3.f.ib, "x")}. The EBIT margin fell from {fx(c0.f.m, "pct", 2)} to {fx(c3.f.m, "pct", 2)}, and leverage rising from {fx(c0.f.lev, "x")} to {fx(c3.f.lev, "x")}, with a smaller lift from asset turnover ({fx(c0.f.at, "x")} to {fx(c3.f.at, "x")}), held core ROE at {fx(c0.roe, "pct", 2)} to {fx(c3.roe, "pct", 2)}. Every point of the reported ROE improvement came from the associate, whose return on its carrying amount rose from {fx(assocRet[0], "pct", 1)} to {fx(assocRet[assocRet.length - 1], "pct", 1)}.
+            Without Kestrel the tax burden is flat at {fx(c0.f.tb, "x")} (one minus the {fx(TAX_RATE, "pct", 0)} tax rate) and the interest burden sits below 1.0, sliding from {fx(c0.f.ib, "x")} to {fx(c3.f.ib, "x")}. The EBIT margin fell from {fx(c0.f.m, "pct", 2)} to {fx(c3.f.m, "pct", 2)}; asset turnover ({fx(c0.f.at, "x")} to {fx(c3.f.at, "x")}) and leverage ({fx(c0.f.lev, "x")} to {fx(c3.f.lev, "x")}) edged up but could not offset it, so core ROE fell from {fx(c0.roe, "pct", 2)} to {fx(c3.roe, "pct", 2)} while reported ROE rose. Every point of the reported improvement came from the associate, whose return on its carrying amount rose from {fx(assocRet[0], "pct", 1)} to {fx(assocRet[assocRet.length - 1], "pct", 1)}.
           </p>
         ) : (
           <p>

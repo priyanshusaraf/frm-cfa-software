@@ -90,7 +90,7 @@ const stripAssociate = {
       title: "Analyst adjustment: remove the associate from income, assets and equity",
       prompt: "The analyst removes the associate entirely: its share of profit from the income statement and the investment from the balance sheet, assuming the stake was financed with equity.",
       html:
-        "Three removals keep the view internally consistent. The 180 of equity income leaves net income and pretax income (it carried no tax at Pinnacle, so tax stays at 220). The 1,620 investment leaves total assets, because those assets generate no revenue for Pinnacle. And 1,620 leaves equity, on the assumption that the stake was paid for with shareholders' money rather than debt: 180 of it through lower net income this year and 1,440 through the contra line. Debt stays where it is.",
+        "Three removals keep the view internally consistent. The 180 of equity income leaves net income and pretax income (it carried no tax at Pinnacle, so tax stays at 220). The 1,620 investment leaves total assets, because those assets generate no revenue for Pinnacle. And 1,620 leaves equity, on the assumption that the stake was paid for with shareholders' money rather than debt: 180 of it through lower net income this year and 1,440 through the contra line. Debt stays where it is. A ledger cannot drop an asset without dropping something on the other side, so this column takes the equity-financed view; the curriculum case, which does not know how the stake was financed, instead keeps the leverage ratio as reported.",
       entries: {
         core: [dr("eqInc", 180), dr("carve", 1440), cr("inv", 1620)],
       },
@@ -106,11 +106,12 @@ const stripAssociate = {
           ["EBIT margin: 1,080 / 9,000 in both", "12.0% vs 12.0%"],
           ["Asset turnover: 9,000 / 10,840 vs 9,000 / 9,220", "0.830 vs 0.976"],
           ["Leverage: 10,840 / 6,840 vs 9,220 / 5,220", "1.585 vs 1.766"],
-          ["ROE: 840 / 6,840 vs 660 / 5,220", "12.3% vs 12.6%"],
+          ["ROE, equity-financed view (this column): 840 / 6,840 vs 660 / 5,220", "12.3% vs 12.6%"],
+          ["ROE, curriculum method (leverage kept at 1.585): (660 / 9,220) x 1.585", "11.3%"],
         ],
       },
       insight:
-        "The EBIT margin is identical, so anyone who thinks the associate inflates margins is thinking of NET margin. What it inflates here is the tax burden and the interest burden, and it depresses asset turnover. The core business earns a slightly higher ROE than the group: Kestrel's 180 on 1,620 is an 11% return.",
+        "The EBIT margin is identical, so anyone who thinks the associate inflates margins is thinking of NET margin. What it inflates here is the tax burden and the interest burden, and it depresses asset turnover. Core ROE depends on how you treat the financing of the stake. The curriculum case keeps leverage as reported: core ROA of 660 / 9,220 = 7.16% times 1.585 gives 11.3%, BELOW the reported 12.3%. This ledger column has to balance, so it takes the equity-financed view instead and shows 12.6%. Learn the curriculum's method for the exam.",
       exam:
         "An interest burden above 1.0, or a tax burden well above one minus the statutory rate, is a signal that income from outside the operating business sits between EBIT and net income. Find it before you interpret the trend.",
     },
